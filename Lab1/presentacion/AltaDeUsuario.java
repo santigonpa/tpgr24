@@ -2,7 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class subo {
+public class AltaDeUsuario {
 
 	private JFrame frame;
 
@@ -13,7 +13,7 @@ public class subo {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					subo window = new subo();
+					AltaDeUsuario window = new AltaDeUsuario();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -25,7 +25,7 @@ public class subo {
 	/**
 	 * Create the application.
 	 */
-	public subo() {
+	public AltaDeUsuario() {
 		initialize();
 	}
 
