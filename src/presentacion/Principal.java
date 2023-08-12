@@ -15,6 +15,7 @@ public class Principal {
 
 	private JFrame trabajouy;
 	private ConsultarUsuario conUsrInternalFrame;
+	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
 	 
 	/**
 	 * Launch the application.
@@ -44,6 +45,11 @@ public class Principal {
 		conUsrInternalFrame.setBounds(163, 79, 393, 258);
         conUsrInternalFrame.setVisible(false);
         trabajouy.getContentPane().setLayout(null);
+        
+        addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
+        addTOfLabAPaqInternalFrame.setBounds(100, 100, 456, 160);
+        addTOfLabAPaqInternalFrame.setClosable(true);
+        trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
         
         trabajouy.getContentPane().add(conUsrInternalFrame);
 	}
