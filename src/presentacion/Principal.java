@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
+import java.awt.Rectangle;
 
 public class Principal {
 
@@ -47,6 +48,8 @@ public class Principal {
         trabajouy.getContentPane().setLayout(null);
         
         addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
+        addTOfLabAPaqInternalFrame.setNormalBounds(new Rectangle(100, 100, 400, 150));
+        addTOfLabAPaqInternalFrame.setMaximizable(true);
         addTOfLabAPaqInternalFrame.setBounds(100, 100, 456, 160);
         addTOfLabAPaqInternalFrame.setClosable(true);
         trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);

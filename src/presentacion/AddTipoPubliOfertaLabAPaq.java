@@ -47,7 +47,7 @@ public class AddTipoPubliOfertaLabAPaq extends JInternalFrame {
 		setBounds(100, 100, 409, 153);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{199, 34, 0, 60, 15, 0};
-		gridBagLayout.rowHeights = new int[]{36, 30, 30, 0, 0};
+		gridBagLayout.rowHeights = new int[]{36, 30, 25, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
@@ -81,7 +81,7 @@ public class AddTipoPubliOfertaLabAPaq extends JInternalFrame {
 		JComboBox comboBox_1 = new JComboBox();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 3;
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.fill = GridBagConstraints.BOTH;
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.gridx = 1;
 		gbc_comboBox_1.gridy = 1;
