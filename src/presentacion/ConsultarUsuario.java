@@ -6,6 +6,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSpinner;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JTextPane;
 
 public class ConsultarUsuario extends JInternalFrame {
 
@@ -30,6 +32,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	 */
 	public ConsultarUsuario() {
 		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout(0, 0));
 
 	}
 

@@ -1,6 +1,8 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -11,8 +13,9 @@ import java.awt.BorderLayout;
 
 public class Principal {
 
-	private JFrame frame;
-
+	private JFrame trabajouy;
+	private ConsultarUsuario conUsrInternalFrame;
+	 
 	/**
 	 * Launch the application.
 	 */
@@ -21,7 +24,7 @@ public class Principal {
 			public void run() {
 				try {
 					Principal window = new Principal();
-					window.frame.setVisible(true);
+					window.trabajouy.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,27 +37,52 @@ public class Principal {
 	 */
 	public Principal() {
 		initialize();
+		
+		conUsrInternalFrame = new ConsultarUsuario();
+		conUsrInternalFrame.setMaximizable(true);
+		conUsrInternalFrame.setClosable(true);
+		conUsrInternalFrame.setBounds(163, 79, 393, 258);
+        conUsrInternalFrame.setVisible(false);
+        trabajouy.getContentPane().setLayout(null);
+        
+        trabajouy.getContentPane().add(conUsrInternalFrame);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		trabajouy = new JFrame();
+		trabajouy.setTitle("trabajouy");
+		trabajouy.setBounds(100, 100, 703, 564);
+		trabajouy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		trabajouy.setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Sistema");
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Salir");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                // Salgo de la aplicación
+            	trabajouy.setVisible(false);
+            	trabajouy.dispose();
+            }
+		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenu mnNewMenu_1 = new JMenu("Usuarios");
 		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Consulta usuario");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	conUsrInternalFrame.setVisible(true);
+            }
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_1);
 		
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
