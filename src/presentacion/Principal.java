@@ -10,6 +10,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
 
 public class Principal {
 
@@ -39,13 +42,14 @@ public class Principal {
 		initialize();
 		
 		conUsrInternalFrame = new ConsultarUsuario();
+		conUsrInternalFrame.setBounds(163, 79, 444, 302);
 		conUsrInternalFrame.setMaximizable(true);
 		conUsrInternalFrame.setClosable(true);
-		conUsrInternalFrame.setBounds(163, 79, 393, 258);
         conUsrInternalFrame.setVisible(false);
         trabajouy.getContentPane().setLayout(null);
         
         trabajouy.getContentPane().add(conUsrInternalFrame);
+        conUsrInternalFrame.getContentPane().setLayout(null);
 	}
 
 	/**

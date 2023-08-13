@@ -19,6 +19,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JLabel;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
 
 public class ConsultarUsuario extends JInternalFrame {
 	private JTextField txtNombre;
@@ -101,16 +104,9 @@ public class ConsultarUsuario extends JInternalFrame {
 		txtpnFechaDeNacimientoLabel.setBounds(25, 83, 109, 20);
 		getContentPane().add(txtpnFechaDeNacimientoLabel);
 		
-		JSpinner spinnerDay1 = new JSpinner();
-		spinnerDay1.setBounds(25, 133, 30, 20);
-		getContentPane().add(spinnerDay1);
-		
-		JSpinner spinnerMonth1 = new JSpinner();
-		spinnerMonth1.setBounds(65, 133, 30, 20);
-		getContentPane().add(spinnerMonth1);
-		
 		JSpinner spinnerYear1 = new JSpinner();
-		spinnerYear1.setBounds(104, 133, 30, 20);
+		spinnerYear1.setModel(new SpinnerDateModel(new Date(1691809200000L), null, null, Calendar.DAY_OF_YEAR));
+		spinnerYear1.setBounds(25, 133, 131, 20);
 		getContentPane().add(spinnerYear1);
 		
 		JTextPane txtpnMes = new JTextPane();
