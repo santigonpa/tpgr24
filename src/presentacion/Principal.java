@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.Rectangle;
+import java.awt.GridBagLayout;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -18,6 +20,7 @@ public class Principal {
 
 	private JFrame trabajouy;
 	private ConsultarUsuario conUsrInternalFrame;
+	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
 	 
 	/**
 	 * Launch the application.
@@ -50,6 +53,16 @@ public class Principal {
         
         trabajouy.getContentPane().add(conUsrInternalFrame);
         conUsrInternalFrame.getContentPane().setLayout(null);
+        
+        addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
+        addTOfLabAPaqInternalFrame.setNormalBounds(new Rectangle(100, 100, 500, 172));
+        GridBagLayout gridBagLayout = (GridBagLayout) addTOfLabAPaqInternalFrame.getContentPane().getLayout();
+        gridBagLayout.columnWidths = new int[]{9, 81, 0, 0, 0};
+        addTOfLabAPaqInternalFrame.setMaximizable(true);
+        addTOfLabAPaqInternalFrame.setBounds(100, 100, 456, 165);
+        addTOfLabAPaqInternalFrame.setClosable(true);
+        trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
+
 	}
 
 	/**
@@ -90,6 +103,17 @@ public class Principal {
 		
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Agregar Tipo Oferta Laboral");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e2) {
+				addTOfLabAPaqInternalFrame.setVisible(true);
+            }
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_2);
+		
+		
+
 		
 		JMenu mnNewMenu_3 = new JMenu("Ofertas");
 		menuBar.add(mnNewMenu_3);
