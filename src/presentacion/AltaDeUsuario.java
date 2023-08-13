@@ -35,7 +35,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	private JTextField textField_3;
 	private JTextField descripcion;
 	private JTextField link;
-	private JTextField textField_4;
+	private JTextField nacionalidad;
 
 	/**
 	 * Launch the application.
@@ -72,9 +72,9 @@ public class AltaDeUsuario extends JInternalFrame{
 	    JLabel lblNewLabel_6 = new JLabel("Nacionalidad :");
 	    getContentPane().add(lblNewLabel_6, "cell 8 3,alignx trailing");
 	    
-	    textField_4 = new JTextField();
-	    getContentPane().add(textField_4, "cell 9 3 4 1,growx");
-	    textField_4.setColumns(10);
+	    nacionalidad = new JTextField();
+	    getContentPane().add(nacionalidad, "cell 9 3 4 1,growx");
+	    nacionalidad.setColumns(10);
 	    
 	    
 	    JList list = new JList();
@@ -115,9 +115,19 @@ public class AltaDeUsuario extends JInternalFrame{
             public void actionPerformed(ActionEvent e) {
                 String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
                 if (selectedOption.equals("Empresa")) {
-                    link.setText("hola");
+                	link.setEditable(true);
+                    descripcion.setEditable(true);
+                	nacionalidad.setEditable(false);
+                    dia.setEnabled(false);
+                    mes.setEnabled(false);
+                    anio.setEnabled(false);
                 } else if (selectedOption.equals("Postulante")) {
-                    link.setText("chau");
+                	nacionalidad.setEditable(true);
+                    dia.setEnabled(true);
+                    mes.setEnabled(true);
+                    anio.setEnabled(true);
+                	link.setEditable(false);
+                    descripcion.setEditable(false);
                 }
             }
         });
