@@ -21,6 +21,9 @@ public class Principal {
 	private JFrame trabajouy;
 	private ConsultarUsuario conUsrInternalFrame;
 	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
+	private ModificarDatosDeUsuario modDatosUser;
+	private AltaDeUsuario altaUser;
+	private ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales conPaquetes;
 	 
 	/**
 	 * Launch the application.
@@ -62,7 +65,37 @@ public class Principal {
         addTOfLabAPaqInternalFrame.setBounds(100, 100, 456, 165);
         addTOfLabAPaqInternalFrame.setClosable(true);
         trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
-
+        
+        modDatosUser = new ModificarDatosDeUsuario();
+        modDatosUser.setBounds(100, 100, 550, 300);
+        modDatosUser.setMaximizable(true);
+        modDatosUser.setClosable(true);
+        modDatosUser.setVisible(false);
+        trabajouy.getContentPane().setLayout(null);
+        
+        trabajouy.getContentPane().add(modDatosUser);
+        modDatosUser.getContentPane();
+        
+        altaUser = new AltaDeUsuario();
+        altaUser.setBounds(100, 100, 550, 300);
+        altaUser.setMaximizable(true);
+        altaUser.setClosable(true);
+        altaUser.setVisible(false);
+        trabajouy.getContentPane().setLayout(null);
+        
+        trabajouy.getContentPane().add(altaUser);
+        altaUser.getContentPane();
+        
+        conPaquetes = new ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales();
+        conPaquetes.setBounds(100, 100, 550, 300);
+        conPaquetes.setMaximizable(true);
+        conPaquetes.setClosable(true);
+        conPaquetes.setVisible(false);
+        trabajouy.getContentPane().setLayout(null);
+        
+        trabajouy.getContentPane().add(conPaquetes);
+        conPaquetes.getContentPane();
+        
 	}
 
 	/**
@@ -101,17 +134,42 @@ public class Principal {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Modificar usuario");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	modDatosUser.setVisible(true);
+            }
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Agregar Tipo Oferta Laboral");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Agregar Tipo Oferta Laboral");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
 				addTOfLabAPaqInternalFrame.setVisible(true);
             }
 		});
-		mnNewMenu_2.add(mntmNewMenuItem_2);
+		mnNewMenu_2.add(mntmNewMenuItem_3);
 		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Consulta de Paquetes");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e2) {
+				conPaquetes.setVisible(true);
+            }
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_4);
+		
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Alta de usuarios");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				altaUser.setVisible(true);
+            }
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_5);
 		
 
 		
