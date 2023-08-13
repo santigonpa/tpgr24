@@ -48,6 +48,7 @@ public class ConsultarUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ConsultarUsuario() {
+		setResizable(true);
 		getContentPane().setBackground(new Color(238, 238, 238));
 		setTitle("Consulta de usuario");
 		setIconifiable(true);
@@ -63,6 +64,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(txtpnNombreLabel);
 		
 		txtNombre = new JTextField();
+		txtNombre.setEditable(false);
 		txtNombre.setText("Pepe");
 		txtNombre.setBounds(83, 21, 96, 20);
 		getContentPane().add(txtNombre);
@@ -75,6 +77,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(txtpnApellidoLabel);
 		
 		txtApellido = new JTextField();
+		txtApellido.setEditable(false);
 		txtApellido.setText("Grillo");
 		txtApellido.setColumns(1);
 		txtApellido.setBounds(287, 21, 131, 20);
@@ -138,18 +141,21 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(txtpnNscionalidadLabel);
 		
 		textNickname = new JTextField();
+		textNickname.setEditable(false);
 		textNickname.setText("PepeGrillo15");
 		textNickname.setColumns(1);
 		textNickname.setBounds(83, 52, 96, 20);
 		getContentPane().add(textNickname);
 		
 		textEmail = new JTextField();
+		textEmail.setEditable(false);
 		textEmail.setText("Pepe@gmail.com");
 		textEmail.setColumns(1);
 		textEmail.setBounds(287, 52, 131, 20);
 		getContentPane().add(textEmail);
 		
 		textNacionalidad = new JTextField();
+		textNacionalidad.setEditable(false);
 		textNacionalidad.setText("Peruana");
 		textNacionalidad.setColumns(1);
 		textNacionalidad.setBounds(287, 83, 131, 20);
@@ -162,6 +168,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(txtpnLinkLabel);
 		
 		txtLink = new JTextField();
+		txtLink.setEditable(false);
 		txtLink.setText("www.elponypisador.com");
 		txtLink.setColumns(1);
 		txtLink.setBounds(94, 225, 183, 20);
@@ -174,6 +181,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(txtpnDescripcionLabel);
 		
 		JTextArea txtrDescripcion = new JTextArea();
+		txtrDescripcion.setEditable(false);
 		txtrDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		txtrDescripcion.setLineWrap(true);
 		txtrDescripcion.setText("Esto es una descripción de una empresa que es muy larga y necesito que ocupe mucho para testear.");
@@ -183,6 +191,9 @@ public class ConsultarUsuario extends JInternalFrame {
 		JMenu mnOfertas = new JMenu("Ofertas");
 		mnOfertas.setBounds(173, 117, 111, 24);
 		getContentPane().add(mnOfertas);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("bartender");
+		mnOfertas.add(mntmNewMenuItem);
 
 	}
 }
