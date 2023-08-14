@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales extends JInternalFrame {
+public class ConsultaDeTiposDePublicacionDeOfertasLaborales extends JInternalFrame {
 	private JTable table;
 	private JTable table_1;
 
@@ -26,7 +26,7 @@ public class ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales extends JIn
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales frame = new ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales();
+					ConsultaDeTiposDePublicacionDeOfertasLaborales frame = new ConsultaDeTiposDePublicacionDeOfertasLaborales();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales extends JIn
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales() {
+	public ConsultaDeTiposDePublicacionDeOfertasLaborales() {
 		setBounds(100, 100, 450, 300);
 		setTitle("Consulta de Paquetes de Tipo de publicacion de Ofertas Laborales");
 		setBounds(100, 100, 450, 300);

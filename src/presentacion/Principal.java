@@ -23,7 +23,7 @@ public class Principal {
 	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
 	private ModificarDatosDeUsuario modDatosUser;
 	private AltaDeUsuario altaUser;
-	private ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales conPaquetes;
+	private ConsultaDeTiposDePublicacionDeOfertasLaborales conPaquetes;
 	 
 	/**
 	 * Launch the application.
@@ -86,7 +86,7 @@ public class Principal {
         trabajouy.getContentPane().add(altaUser);
         altaUser.getContentPane();
         
-        conPaquetes = new ConsultaDePaqueteDeTiposDePublicacionDeOfertasLaborales();
+        conPaquetes = new ConsultaDeTiposDePublicacionDeOfertasLaborales();
         conPaquetes.setBounds(100, 100, 550, 300);
         conPaquetes.setMaximizable(true);
         conPaquetes.setClosable(true);
