@@ -24,6 +24,7 @@ public class Principal {
 	private ModificarDatosDeUsuario modDatosUser;
 	private AltaDeUsuario altaUser;
 	private ConsultaDeTiposDePublicacionDeOfertasLaborales conPaquetes;
+	private ConsultaDeOfertaLaboral conOfertaLab;
 	 
 	/**
 	 * Launch the application.
@@ -83,6 +84,13 @@ public class Principal {
         altaUser.setVisible(false);
         trabajouy.getContentPane().setLayout(null);
         
+		conOfertaLab = new ConsultaDeOfertaLaboral();
+		conOfertaLab.setBounds(163, 79, 444, 302);
+		conOfertaLab.setMaximizable(true);
+		conOfertaLab.setClosable(true);
+		conOfertaLab.setVisible(false);
+        trabajouy.getContentPane().setLayout(null);
+
         trabajouy.getContentPane().add(altaUser);
         altaUser.getContentPane();
         
@@ -174,6 +182,15 @@ public class Principal {
 
 		
 		JMenu mnNewMenu_3 = new JMenu("Ofertas");
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Consulta de oferta laboral"); 
+						mntmNewMenuItem_6.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e2) {
+								conOfertaLab.setVisible(true);
+				            }
+						});
+						mnNewMenu_3.add(mntmNewMenuItem_6);
+						
 		menuBar.add(mnNewMenu_3);
 	}
 
