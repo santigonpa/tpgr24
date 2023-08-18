@@ -61,7 +61,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		JLabel txtOferta = new JLabel("Oferta laboral:");
 		
 		JComboBox<String> seleccionDeOfertaLaboral = new JComboBox<>();
-		seleccionDeOfertaLaboral.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una oferta laboral", "Oferta 1", "Oferta 2"}));
+		seleccionDeOfertaLaboral.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione una oferta laboral", "Oferta 1", "Oferta 2"}));
 		
 		JLabel txtDatosOferta = new JLabel("Datos de la oferta laboral");
 		
@@ -99,8 +99,8 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		JLabel txtPostulante = new JLabel("Postulante:");
 		
-		JComboBox comboBoxPostulantes = new JComboBox();
-		comboBoxPostulantes.setModel(new DefaultComboBoxModel(new String[] {"Seleccione un/a postulante", "Juan", "Juana", "Juane", "Juani"}));
+		JComboBox<String> comboBoxPostulantes = new JComboBox<>();
+		comboBoxPostulantes.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione un/a postulante", "Juan", "Juana", "Juane", "Juani"}));
 		
 		JLabel txtDatosPostulante = new JLabel("Ingreso de datos del postulante");
 		
@@ -245,13 +245,13 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		JTextArea textAreaCVReducido = new JTextArea();
 		scrollPaneCVReducido.setViewportView(textAreaCVReducido);
 		
-		JList listaHorarios = new JList();
-		listaHorarios.setModel(new AbstractListModel() {
+		JList <String> listaHorarios = new JList<>();
+		listaHorarios.setModel(new AbstractListModel<>() {
 			String[] values = new String[] {"Lunes:", "Martes:", "Miércoles:", "Jueves:", "Viernes:", "Sábado:", "Domingo:"};
 			public int getSize() {
 				return values.length;
 			}
-			public Object getElementAt(int index) {
+			public String getElementAt(int index) {
 				return values[index];
 			}
 		});
