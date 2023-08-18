@@ -108,7 +108,7 @@ public class Principal {
         
         altOfLab = new AltaDeOfertaLaboral();
         altOfLab.setTitle("Alta de Oferta Laboral\r\n");
-        altOfLab.setBounds(30, 22, 521, 378);
+        altOfLab.setBounds(100, 100, 561, 475);
         altOfLab.setMaximizable(true);
         altOfLab.setClosable(true);
         altOfLab.setVisible(false);
