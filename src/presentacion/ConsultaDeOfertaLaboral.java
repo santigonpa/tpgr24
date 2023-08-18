@@ -49,110 +49,105 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		setTitle("Consulta de oferta laboral");
 		setClosable(true);
 		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("49px"),
-				ColumnSpec.decode("93px:grow"),
-				FormSpecs.LABEL_COMPONENT_GAP_COLSPEC,
-				ColumnSpec.decode("96px:grow"),
-				FormSpecs.LABEL_COMPONENT_GAP_COLSPEC,
-				ColumnSpec.decode("42px"),
-				FormSpecs.LABEL_COMPONENT_GAP_COLSPEC,
-				ColumnSpec.decode("96px:grow"),},
-			new RowSpec[] {
-				FormSpecs.LINE_GAP_ROWSPEC,
-				RowSpec.decode("20px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Tipo de publicación");
-		getContentPane().add(lblNewLabel_1, "2, 2, left, center");
+		lblNewLabel_1.setBounds(49, 7, 88, 13);
+		getContentPane().add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
-		getContentPane().add(textField_1, "4, 2, left, top");
+		textField_1.setBounds(163, 4, 86, 19);
+		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Empresa");
-		getContentPane().add(lblNewLabel, "5, 2, 3, 1, right, center");
+		lblNewLabel.setBounds(285, 7, 40, 13);
+		getContentPane().add(lblNewLabel);
+		textField.setBounds(325, 4, 86, 19);
 		textField.setText("");
-		getContentPane().add(textField, "8, 2, left, top");
+		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
-		getContentPane().add(lblNewLabel_2, "2, 4, right, default");
+		lblNewLabel_2.setBounds(123, 33, 36, 13);
+		getContentPane().add(lblNewLabel_2);
 		
 		textField_2 = new JTextField();
-		getContentPane().add(textField_2, "4, 4, left, default");
+		textField_2.setBounds(163, 30, 86, 19);
+		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Horario");
-		getContentPane().add(lblNewLabel_3, "6, 4, right, default");
+		lblNewLabel_3.setBounds(287, 33, 34, 13);
+		getContentPane().add(lblNewLabel_3);
 		
 		textField_3 = new JTextField();
-		getContentPane().add(textField_3, "8, 4, left, default");
+		textField_3.setBounds(325, 30, 86, 19);
+		getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Remuneración UYU$");
-		getContentPane().add(lblNewLabel_1_1, "1, 6, 2, 1, right, default");
+		lblNewLabel_1_1.setBounds(66, 58, 93, 13);
+		getContentPane().add(lblNewLabel_1_1);
 		
 		textField_4 = new JTextField();
+		textField_4.setBounds(163, 55, 86, 19);
 		textField_4.setColumns(10);
-		getContentPane().add(textField_4, "4, 6, left, default");
+		getContentPane().add(textField_4);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Ciudad");
-		getContentPane().add(lblNewLabel_1_2, "6, 6, right, default");
+		lblNewLabel_1_2.setBounds(290, 58, 31, 13);
+		getContentPane().add(lblNewLabel_1_2);
 		
 		textField_5 = new JTextField();
+		textField_5.setBounds(325, 55, 86, 19);
 		textField_5.setColumns(10);
-		getContentPane().add(textField_5, "8, 6, left, default");
+		getContentPane().add(textField_5);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Departamento");
-		getContentPane().add(lblNewLabel_2_1, "2, 8, right, default");
+		lblNewLabel_2_1.setBounds(94, 83, 65, 13);
+		getContentPane().add(lblNewLabel_2_1);
 		
 		textField_8 = new JTextField();
+		textField_8.setBounds(163, 80, 86, 19);
 		textField_8.setColumns(10);
-		getContentPane().add(textField_8, "4, 8, left, default");
+		getContentPane().add(textField_8);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Nombre");
-		getContentPane().add(lblNewLabel_2_2, "6, 8, right, default");
+		lblNewLabel_2_2.setBounds(285, 83, 36, 13);
+		getContentPane().add(lblNewLabel_2_2);
 		
 		textField_6 = new JTextField();
+		textField_6.setBounds(325, 80, 86, 19);
 		textField_6.setColumns(10);
-		getContentPane().add(textField_6, "8, 8, left, default");
+		getContentPane().add(textField_6);
 		
 		JLabel lblNewLabel_2_3 = new JLabel("Fecha de Alta");
-		getContentPane().add(lblNewLabel_2_3, "2, 10, right, default");
+		lblNewLabel_2_3.setBounds(97, 108, 62, 13);
+		getContentPane().add(lblNewLabel_2_3);
 		
 		textField_9 = new JTextField();
+		textField_9.setBounds(163, 105, 86, 19);
 		textField_9.setColumns(10);
-		getContentPane().add(textField_9, "4, 10, left, default");
+		getContentPane().add(textField_9);
 		
 		JLabel lblNewLabel_2_3_1 = new JLabel("Keywords");
-		getContentPane().add(lblNewLabel_2_3_1, "6, 10, 2, 1, right, default");
+		lblNewLabel_2_3_1.setBounds(281, 108, 44, 13);
+		getContentPane().add(lblNewLabel_2_3_1);
 		
 		textField_7 = new JTextField();
+		textField_7.setBounds(325, 105, 86, 19);
 		textField_7.setColumns(10);
-		getContentPane().add(textField_7, "8, 10, left, default");
+		getContentPane().add(textField_7);
 		
 		JLabel lblNewLabel_4 = new JLabel("Descripción");
-		getContentPane().add(lblNewLabel_4, "2, 14");
+		lblNewLabel_4.setBounds(49, 160, 110, 13);
+		getContentPane().add(lblNewLabel_4);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setBounds(49, 179, 226, 54);
 		textArea.setWrapStyleWord(true);
-		getContentPane().add(textArea, "2, 16, 3, 3, fill, fill");
+		getContentPane().add(textArea);
 
 	}
 

@@ -1,38 +1,29 @@
 package presentacion;
 
 import java.awt.EventQueue;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.swing.JFrame;
-import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
 import java.util.Calendar;
-import javax.swing.JSlider;
-import javax.swing.JToggleButton;
-import javax.swing.SpinnerModel;
+import java.util.Date;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JTable;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 
-public class AltaDeOfertaLaboral {
+public class AltaDeOfertaLaboral extends JInternalFrame {
 
-	private JFrame frmHola;
+	private JInternalFrame frmHola;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -40,8 +31,8 @@ public class AltaDeOfertaLaboral {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AltaDeOfertaLaboral window = new AltaDeOfertaLaboral();
-					window.frmHola.setVisible(true);
+					AltaDeOfertaLaboral frame = new AltaDeOfertaLaboral();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,18 +41,11 @@ public class AltaDeOfertaLaboral {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public AltaDeOfertaLaboral() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmHola = new JFrame();
-		frmHola.setOpacity(2.0f);
+		frmHola = new JInternalFrame();
+		frmHola.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmHola.setTitle("Alta de Oferta Laboral");
 		frmHola.setBounds(100, 100, 561, 475);
 		frmHola.getContentPane().setLayout(null);
@@ -203,7 +187,7 @@ public class AltaDeOfertaLaboral {
         btnNewButton_2_1.setBounds(158, 407, 102, 21);
         frmHola.getContentPane().add(btnNewButton_2_1);
         
-		
-	
+
 	}
+
 }

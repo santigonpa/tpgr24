@@ -25,6 +25,7 @@ public class Principal {
 	private AltaDeUsuario altaUser;
 	private ConsultaDeTiposDePublicacionDeOfertasLaborales conPaquetes;
 	private ConsultaDeOfertaLaboral conOfertaLab;
+	private AltaDeOfertaLaboral altOfLab;
 	 
 	/**
 	 * Launch the application.
@@ -63,7 +64,7 @@ public class Principal {
         GridBagLayout gridBagLayout = (GridBagLayout) addTOfLabAPaqInternalFrame.getContentPane().getLayout();
         gridBagLayout.columnWidths = new int[]{9, 81, 0, 0, 0};
         addTOfLabAPaqInternalFrame.setMaximizable(true);
-        addTOfLabAPaqInternalFrame.setBounds(100, 100, 456, 165);
+        addTOfLabAPaqInternalFrame.setBounds(79, 44, 456, 165);
         addTOfLabAPaqInternalFrame.setClosable(true);
         trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
         
@@ -103,6 +104,18 @@ public class Principal {
         
         trabajouy.getContentPane().add(conPaquetes);
         conPaquetes.getContentPane();
+        trabajouy.getContentPane().setLayout(null);
+        
+        altOfLab = new AltaDeOfertaLaboral();
+        altOfLab.setTitle("Alta de Oferta Laboral\r\n");
+        altOfLab.setBounds(30, 22, 521, 378);
+        altOfLab.setMaximizable(true);
+        altOfLab.setClosable(true);
+        altOfLab.setVisible(false);
+        
+        trabajouy.getContentPane().add(altOfLab);
+        altOfLab.getContentPane();
+        trabajouy.getContentPane().setLayout(null);
         
 	}
 
@@ -192,6 +205,13 @@ public class Principal {
 						mnNewMenu_3.add(mntmNewMenuItem_6);
 						
 		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Alta de Oferta Laboral");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e2) {
+				altOfLab.setVisible(true);
+            }
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_7);
 	}
-
 }
