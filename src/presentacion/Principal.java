@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Principal {
 
@@ -24,6 +26,7 @@ public class Principal {
 	private ModificarDatosDeUsuario modDatosUser;
 	private AltaDeUsuario altaUser;
 	private ConsultaDeTiposDePublicacionDeOfertasLaborales conPaquetes;
+	private PostulacionAOfertaLaboral PosAOferLab;
 	 
 	/**
 	 * Launch the application.
@@ -96,6 +99,11 @@ public class Principal {
         trabajouy.getContentPane().add(conPaquetes);
         conPaquetes.getContentPane();
         
+        
+        PosAOferLab = new PostulacionAOfertaLaboral();
+        PosAOferLab.setBounds(20, 20, 710, 665);
+        trabajouy.getContentPane().add(PosAOferLab);
+        
 	}
 
 	/**
@@ -104,7 +112,7 @@ public class Principal {
 	private void initialize() {
 		trabajouy = new JFrame();
 		trabajouy.setTitle("trabajouy");
-		trabajouy.setBounds(100, 100, 703, 564);
+		trabajouy.setBounds(100, 100, 850, 850);
 		trabajouy.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -175,6 +183,13 @@ public class Principal {
 		
 		JMenu mnNewMenu_3 = new JMenu("Ofertas");
 		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem menuItemPostulacionAOfertaLaboral = new JMenuItem("Postulacion a Oferta Laboral");
+		menuItemPostulacionAOfertaLaboral.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent clic) {
+				PosAOferLab.setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(menuItemPostulacionAOfertaLaboral);
 	}
-
 }
