@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JSpinner;
 import java.awt.BorderLayout;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JTextPane;
@@ -13,6 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
@@ -24,12 +29,12 @@ import java.util.Date;
 import java.util.Calendar;
 
 public class ConsultarUsuario extends JInternalFrame {
-	private JTextField txtNombre;
-	private JTextField txtApellido;
-	private JTextField textNickname;
-	private JTextField textEmail;
-	private JTextField textNacionalidad;
-	private JTextField txtLink;
+	private JTextField nombre;
+	private JTextField apellido;
+	private JTextField nickname;
+	private JTextField email;
+	private JTextField nacionalidad;
+	private JTextField link;
 
 	/**
 	 * Launch the application.
@@ -63,133 +68,160 @@ public class ConsultarUsuario extends JInternalFrame {
 		JTextPane txtpnNombreLabel = new JTextPane();
 		txtpnNombreLabel.setBackground(new Color(238, 238, 238));
 		txtpnNombreLabel.setText("Nombre:");
-		txtpnNombreLabel.setBounds(25, 21, 48, 20);
+		txtpnNombreLabel.setBounds(25, 35, 48, 20);
 		getContentPane().add(txtpnNombreLabel);
 		
-		txtNombre = new JTextField();
-		txtNombre.setEditable(false);
-		txtNombre.setText("Pepe");
-		txtNombre.setBounds(83, 21, 96, 20);
-		getContentPane().add(txtNombre);
-		txtNombre.setColumns(1);
+		nombre = new JTextField();
+		nombre.setEditable(false);
+		nombre.setText("Pepe");
+		nombre.setBounds(83, 35, 96, 20);
+		getContentPane().add(nombre);
+		nombre.setColumns(1);
 		
 		JTextPane txtpnApellidoLabel = new JTextPane();
 		txtpnApellidoLabel.setText("Apellido:");
 		txtpnApellidoLabel.setBackground(new Color(238, 238, 238));
-		txtpnApellidoLabel.setBounds(229, 21, 48, 20);
+		txtpnApellidoLabel.setBounds(229, 66, 48, 20);
 		getContentPane().add(txtpnApellidoLabel);
 		
-		txtApellido = new JTextField();
-		txtApellido.setEditable(false);
-		txtApellido.setText("Grillo");
-		txtApellido.setColumns(1);
-		txtApellido.setBounds(287, 21, 131, 20);
-		getContentPane().add(txtApellido);
+		apellido = new JTextField();
+		apellido.setEditable(false);
+		apellido.setText("Grillo");
+		apellido.setColumns(1);
+		apellido.setBounds(287, 66, 131, 20);
+		getContentPane().add(apellido);
 		
 		JTextPane txtpnNicknameLabel = new JTextPane();
 		txtpnNicknameLabel.setText("Nickname:");
 		txtpnNicknameLabel.setBackground(new Color(238, 238, 238));
-		txtpnNicknameLabel.setBounds(25, 52, 56, 20);
+		txtpnNicknameLabel.setBounds(25, 66, 56, 20);
 		getContentPane().add(txtpnNicknameLabel);
 		
 		JTextPane txtpnEmailLabel = new JTextPane();
 		txtpnEmailLabel.setText("Email:");
 		txtpnEmailLabel.setBackground(new Color(238, 238, 238));
-		txtpnEmailLabel.setBounds(239, 52, 35, 20);
+		txtpnEmailLabel.setBounds(242, 97, 35, 20);
 		getContentPane().add(txtpnEmailLabel);
 		
 		JTextPane txtpnFechaDeNacimientoLabel = new JTextPane();
 		txtpnFechaDeNacimientoLabel.setText("Fecha de nacimiento:");
 		txtpnFechaDeNacimientoLabel.setBackground(new Color(238, 238, 238));
-		txtpnFechaDeNacimientoLabel.setBounds(25, 83, 109, 20);
+		txtpnFechaDeNacimientoLabel.setBounds(25, 97, 109, 20);
 		getContentPane().add(txtpnFechaDeNacimientoLabel);
 		
-		JSpinner spinnerYear1 = new JSpinner();
-		spinnerYear1.setModel(new SpinnerDateModel(new Date(1691809200000L), null, null, Calendar.DAY_OF_YEAR));
-		spinnerYear1.setBounds(25, 133, 131, 20);
-		getContentPane().add(spinnerYear1);
+		JSpinner fechaNacimiento = new JSpinner();
+		fechaNacimiento.setModel(new SpinnerDateModel(new Date(1691809200000L), null, null, Calendar.DAY_OF_YEAR));
+		fechaNacimiento.setBounds(35, 149, 131, 20);
+		getContentPane().add(fechaNacimiento);
 		
 		JTextPane txtpnMes = new JTextPane();
 		txtpnMes.setText("mes");
 		txtpnMes.setForeground(new Color(128, 128, 128));
 		txtpnMes.setBackground(new Color(238, 238, 238));
-		txtpnMes.setBounds(65, 110, 30, 20);
+		txtpnMes.setBounds(65, 118, 30, 20);
 		getContentPane().add(txtpnMes);
 		
 		JTextPane txtpnDa = new JTextPane();
 		txtpnDa.setText("día");
 		txtpnDa.setForeground(Color.GRAY);
 		txtpnDa.setBackground(new Color(238, 238, 238));
-		txtpnDa.setBounds(25, 110, 30, 20);
+		txtpnDa.setBounds(25, 118, 30, 20);
 		getContentPane().add(txtpnDa);
 		
 		JTextPane txtpnAo = new JTextPane();
 		txtpnAo.setText("año");
 		txtpnAo.setForeground(Color.GRAY);
 		txtpnAo.setBackground(new Color(238, 238, 238));
-		txtpnAo.setBounds(104, 110, 30, 20);
+		txtpnAo.setBounds(117, 118, 30, 20);
 		getContentPane().add(txtpnAo);
 		
 		JTextPane txtpnNscionalidadLabel = new JTextPane();
 		txtpnNscionalidadLabel.setText("Nacionalidad:");
 		txtpnNscionalidadLabel.setBackground(new Color(238, 238, 238));
-		txtpnNscionalidadLabel.setBounds(206, 83, 71, 20);
+		txtpnNscionalidadLabel.setBounds(206, 118, 71, 20);
 		getContentPane().add(txtpnNscionalidadLabel);
 		
-		textNickname = new JTextField();
-		textNickname.setEditable(false);
-		textNickname.setText("PepeGrillo15");
-		textNickname.setColumns(1);
-		textNickname.setBounds(83, 52, 96, 20);
-		getContentPane().add(textNickname);
+		nickname = new JTextField();
+		nickname.setEditable(false);
+		nickname.setText("PepeGrillo15");
+		nickname.setColumns(1);
+		nickname.setBounds(83, 66, 96, 20);
+		getContentPane().add(nickname);
 		
-		textEmail = new JTextField();
-		textEmail.setEditable(false);
-		textEmail.setText("Pepe@gmail.com");
-		textEmail.setColumns(1);
-		textEmail.setBounds(287, 52, 131, 20);
-		getContentPane().add(textEmail);
+		email = new JTextField();
+		email.setEditable(false);
+		email.setText("Pepe@gmail.com");
+		email.setColumns(1);
+		email.setBounds(287, 97, 131, 20);
+		getContentPane().add(email);
 		
-		textNacionalidad = new JTextField();
-		textNacionalidad.setEditable(false);
-		textNacionalidad.setText("Peruana");
-		textNacionalidad.setColumns(1);
-		textNacionalidad.setBounds(287, 83, 131, 20);
-		getContentPane().add(textNacionalidad);
+		nacionalidad = new JTextField();
+		nacionalidad.setEditable(false);
+		nacionalidad.setText("Peruana");
+		nacionalidad.setColumns(1);
+		nacionalidad.setBounds(287, 118, 131, 20);
+		getContentPane().add(nacionalidad);
 		
 		JTextPane txtpnLinkLabel = new JTextPane();
 		txtpnLinkLabel.setText("Link:");
 		txtpnLinkLabel.setBackground(new Color(238, 238, 238));
-		txtpnLinkLabel.setBounds(63, 225, 30, 20);
+		txtpnLinkLabel.setBounds(65, 240, 30, 20);
 		getContentPane().add(txtpnLinkLabel);
 		
-		txtLink = new JTextField();
-		txtLink.setEditable(false);
-		txtLink.setText("www.elponypisador.com");
-		txtLink.setColumns(1);
-		txtLink.setBounds(94, 225, 183, 20);
-		getContentPane().add(txtLink);
+		link = new JTextField();
+		link.setEditable(false);
+		link.setText("www.elponypisador.com");
+		link.setColumns(1);
+		link.setBounds(105, 240, 183, 20);
+		getContentPane().add(link);
 		
 		JTextPane txtpnDescripcionLabel = new JTextPane();
 		txtpnDescripcionLabel.setText("Descripción:");
 		txtpnDescripcionLabel.setBackground(new Color(238, 238, 238));
-		txtpnDescripcionLabel.setBounds(25, 164, 65, 20);
+		txtpnDescripcionLabel.setBounds(16, 180, 65, 20);
 		getContentPane().add(txtpnDescripcionLabel);
 		
-		JTextArea txtrDescripcion = new JTextArea();
-		txtrDescripcion.setEditable(false);
-		txtrDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		txtrDescripcion.setLineWrap(true);
-		txtrDescripcion.setText("Esto es una descripción de una empresa que es muy larga y necesito que ocupe mucho para testear.");
-		txtrDescripcion.setBounds(93, 164, 325, 49);
-		getContentPane().add(txtrDescripcion);
+		JTextArea descripcion = new JTextArea();
+		descripcion.setEditable(false);
+		descripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		descripcion.setLineWrap(true);
+		descripcion.setText("Esto es una descripción de una empresa que es muy larga y necesito que ocupe mucho para testear.");
+		descripcion.setBounds(93, 180, 325, 49);
+		getContentPane().add(descripcion);
 		
 		JMenu mnOfertas = new JMenu("Ofertas");
-		mnOfertas.setBounds(173, 117, 111, 24);
+		mnOfertas.setBounds(229, 145, 111, 24);
 		getContentPane().add(mnOfertas);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("bartender");
 		mnOfertas.add(mntmNewMenuItem);
-
+		
+		JComboBox tipoDeUsuario = new JComboBox();
+		tipoDeUsuario.setBounds(287, 11, 109, 22);
+		tipoDeUsuario.setModel(new DefaultComboBoxModel(new String[] {"Empresa", "Postulante"}));
+		getContentPane().add(tipoDeUsuario);
+	   tipoDeUsuario.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+               String selectedOption = (String) tipoDeUsuario.getSelectedItem();
+               if (selectedOption.equals("Empresa")) {
+               	link.setEditable(true);
+                   descripcion.setEditable(true);
+               	nacionalidad.setEditable(false);
+           
+                   fechaNacimiento.setEnabled(false);
+               } else if (selectedOption.equals("Postulante")) {
+               	nacionalidad.setEditable(true);
+               	fechaNacimiento.setEnabled(true);
+               	link.setEditable(false);
+                   descripcion.setEditable(false);
+               }
+           }
+	   });
+	
+		
+	
+	
+	
+	
 	}
 }

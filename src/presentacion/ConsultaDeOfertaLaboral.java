@@ -52,7 +52,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Tipo de publicación");
-		lblNewLabel_1.setBounds(49, 7, 88, 13);
+		lblNewLabel_1.setBounds(10, 7, 127, 13);
 		getContentPane().add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
@@ -61,7 +61,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Empresa");
-		lblNewLabel.setBounds(285, 7, 40, 13);
+		lblNewLabel.setBounds(259, 7, 66, 13);
 		getContentPane().add(lblNewLabel);
 		textField.setBounds(325, 4, 86, 19);
 		textField.setText("");
@@ -69,7 +69,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
-		lblNewLabel_2.setBounds(123, 33, 36, 13);
+		lblNewLabel_2.setBounds(10, 33, 149, 13);
 		getContentPane().add(lblNewLabel_2);
 		
 		textField_2 = new JTextField();
@@ -78,7 +78,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Horario");
-		lblNewLabel_3.setBounds(287, 33, 34, 13);
+		lblNewLabel_3.setBounds(259, 33, 62, 13);
 		getContentPane().add(lblNewLabel_3);
 		
 		textField_3 = new JTextField();
@@ -87,7 +87,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Remuneración UYU$");
-		lblNewLabel_1_1.setBounds(66, 58, 93, 13);
+		lblNewLabel_1_1.setBounds(10, 58, 149, 13);
 		getContentPane().add(lblNewLabel_1_1);
 		
 		textField_4 = new JTextField();
@@ -96,7 +96,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textField_4);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Ciudad");
-		lblNewLabel_1_2.setBounds(290, 58, 31, 13);
+		lblNewLabel_1_2.setBounds(259, 58, 62, 13);
 		getContentPane().add(lblNewLabel_1_2);
 		
 		textField_5 = new JTextField();
@@ -105,7 +105,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textField_5);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Departamento");
-		lblNewLabel_2_1.setBounds(94, 83, 65, 13);
+		lblNewLabel_2_1.setBounds(10, 83, 149, 13);
 		getContentPane().add(lblNewLabel_2_1);
 		
 		textField_8 = new JTextField();
@@ -114,7 +114,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textField_8);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Nombre");
-		lblNewLabel_2_2.setBounds(285, 83, 36, 13);
+		lblNewLabel_2_2.setBounds(259, 83, 62, 13);
 		getContentPane().add(lblNewLabel_2_2);
 		
 		textField_6 = new JTextField();
@@ -123,7 +123,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textField_6);
 		
 		JLabel lblNewLabel_2_3 = new JLabel("Fecha de Alta");
-		lblNewLabel_2_3.setBounds(97, 108, 62, 13);
+		lblNewLabel_2_3.setBounds(10, 108, 149, 13);
 		getContentPane().add(lblNewLabel_2_3);
 		
 		textField_9 = new JTextField();
@@ -132,7 +132,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textField_9);
 		
 		JLabel lblNewLabel_2_3_1 = new JLabel("Keywords");
-		lblNewLabel_2_3_1.setBounds(281, 108, 44, 13);
+		lblNewLabel_2_3_1.setBounds(259, 108, 66, 13);
 		getContentPane().add(lblNewLabel_2_3_1);
 		
 		textField_7 = new JTextField();

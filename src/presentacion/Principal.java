@@ -91,7 +91,7 @@ public class Principal {
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);
-        trabajouy.getContentPane().setLayout(null);
+        trabajouy.getContentPane().add(conOfertaLab);
 
         trabajouy.getContentPane().add(altaUser);
         altaUser.getContentPane();
