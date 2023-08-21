@@ -19,8 +19,9 @@ import logica_Controladores.ControladorUsuario;
     }
 
     public IControladorOferta getInOfer() {
-        return new ControladorOferta();
+        return ControladorOferta.getInstance();
     }
+    
     public IControladorUsuario getInUser() {
         return new ControladorUsuario();
     }
