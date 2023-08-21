@@ -12,12 +12,17 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+
+import logica_Controladores.IControladorOferta;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 public class AltaDeOfertaLaboral extends JInternalFrame {
 
+	private static IControladorOferta ICO;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -30,7 +35,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AltaDeOfertaLaboral frame = new AltaDeOfertaLaboral();
+					AltaDeOfertaLaboral frame = new AltaDeOfertaLaboral(ICO);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +47,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AltaDeOfertaLaboral() {
+	public AltaDeOfertaLaboral(IControladorOferta ICO) {
+		this.ICO = ICO;
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Alta de Oferta Laboral");
 		setBounds(100, 100, 561, 475);
@@ -113,7 +120,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         
         //Configura el SpinnerDateModel solo para la parte de la hora
         JSpinner spinner1 = new JSpinner();
-        spinner1.setModel(new SpinnerDateModel(new Date(1692241), null, null, Calendar.HOUR_OF_DAY));
+        spinner1.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
         spinner1.setBounds(76, 191, 50, 20);
         getContentPane().add(spinner1);
         JSpinner.DateEditor editor2 = new JSpinner.DateEditor(spinner1, "HH:mm");
@@ -173,7 +180,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_5_2);
         
         JSpinner spinner_1 = new JSpinner();
-        spinner_1.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.DAY_OF_YEAR));
+        spinner_1.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
         spinner_1.setBounds(290, 347, 88, 20);
         getContentPane().add(spinner_1);
         
