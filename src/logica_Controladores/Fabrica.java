@@ -23,7 +23,7 @@ import logica_Controladores.ControladorUsuario;
     }
     
     public IControladorUsuario getInUser() {
-        return new ControladorUsuario();
+        return ControladorUsuario.getInstance();
     }
 
 }
