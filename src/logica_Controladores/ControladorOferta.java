@@ -12,6 +12,8 @@ public class ControladorOferta implements IControladorOferta {
         }
         return instancia;
     }
+	
+	
 		
 	
 	

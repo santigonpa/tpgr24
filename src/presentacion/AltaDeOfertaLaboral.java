@@ -2,8 +2,11 @@ package presentacion;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.text.*;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -12,6 +15,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.text.DocumentFilter;
 
 import logica_Controladores.IControladorOferta;
 
@@ -20,13 +24,15 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 public class AltaDeOfertaLaboral extends JInternalFrame {
-
+	
+	// interfaz de oferta
 	private static IControladorOferta ICO;
 	
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textFieldNombre;
+	private JTextField textFieldRemuneracion;
+	private JTextField textFieldCiudad;
+	private JTextField textFieldDepartamento;
+	private JTextArea textAreaDescripcion;
 	
 	/**
 	 * Launch the application.
@@ -83,14 +89,14 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		lblNewLabel_3.setBounds(20, 92, 62, 13);
 		getContentPane().add(lblNewLabel_3);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 115, 181, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldNombre = new JTextField();
+		textFieldNombre.setBounds(10, 115, 181, 19);
+		getContentPane().add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 243, 528, 94);
-		getContentPane().add(textArea);
+		textAreaDescripcion = new JTextArea();
+		textAreaDescripcion.setBounds(10, 243, 528, 94);
+		getContentPane().add(textAreaDescripcion);
 		
 		JLabel lblNewLabel_4 = new JLabel("Descripcion :");
 		lblNewLabel_4.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -126,10 +132,33 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         JSpinner.DateEditor editor2 = new JSpinner.DateEditor(spinner1, "HH:mm");
         spinner1.setEditor(editor2);
         
-        textField_1 = new JTextField();
-        textField_1.setBounds(210, 115, 63, 19);
-        getContentPane().add(textField_1);
-        textField_1.setColumns(10);
+        
+        textFieldRemuneracion = new JTextField();
+        textFieldRemuneracion.setBounds(210, 115, 63, 19);
+        getContentPane().add(textFieldRemuneracion);
+        textFieldRemuneracion.setColumns(10);
+        
+        //ESTO ES PARA QUE REMUNERACION SOLO RECIBA NUMEROS
+        
+        AbstractDocument doc = (AbstractDocument) textFieldRemuneracion.getDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                if (text != null && text.matches("\\d+")) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text != null && text.matches("\\d+")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
+        
+        
         
         JLabel lblNewLabel_4_1 = new JLabel("Remuneración:");
         lblNewLabel_4_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -146,20 +175,20 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         lblNewLabel_4_1_2.setBounds(328, 92, 50, 13);
         getContentPane().add(lblNewLabel_4_1_2);
         
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
-        textField_2.setBounds(309, 115, 96, 19);
-        getContentPane().add(textField_2);
+        textFieldCiudad = new JTextField();
+        textFieldCiudad.setColumns(10);
+        textFieldCiudad.setBounds(309, 115, 96, 19);
+        getContentPane().add(textFieldCiudad);
         
         JLabel lblNewLabel_4_1_2_1 = new JLabel("Departamento :");
         lblNewLabel_4_1_2_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
         lblNewLabel_4_1_2_1.setBounds(429, 92, 109, 13);
         getContentPane().add(lblNewLabel_4_1_2_1);
         
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
-        textField_3.setBounds(427, 115, 96, 19);
-        getContentPane().add(textField_3);
+        textFieldDepartamento = new JTextField();
+        textFieldDepartamento.setColumns(10);
+        textFieldDepartamento.setBounds(427, 115, 96, 19);
+        getContentPane().add(textFieldDepartamento);
         
         JLabel lblNewLabel_5_1 = new JLabel("Seleccione Palabras Clave (KEYWORDS) : ");
         lblNewLabel_5_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -181,18 +210,78 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         
         JSpinner spinner_1 = new JSpinner();
         spinner_1.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
-        spinner_1.setBounds(290, 347, 88, 20);
+        spinner_1.setBounds(290, 347, 105, 20);
         getContentPane().add(spinner_1);
         
-        JButton btnNewButton_2 = new JButton("CANCELAR");
-        btnNewButton_2.setBounds(293, 407, 102, 21);
-        getContentPane().add(btnNewButton_2);
+        JButton btnCancelar = new JButton("CANCELAR");
+        btnCancelar.setBounds(293, 407, 102, 21);
+        getContentPane().add(btnCancelar);
         
-        JButton btnNewButton_2_1 = new JButton("ACEPTAR");
-        btnNewButton_2_1.setBounds(158, 407, 102, 21);
-        getContentPane().add(btnNewButton_2_1);
+        btnCancelar.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        		limpiarFormulario();
+                setVisible(false);
+                
+        	}
+        });
+        
+        
+        JButton btnAceptar = new JButton("ACEPTAR");
+        btnAceptar.setBounds(158, 407, 102, 21);
+        getContentPane().add(btnAceptar);
+        //inicio evento para que cuando apreto el boton sucedan cosas, lo hago con la operacion porque es complejo lo que realiza
+        btnAceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cmdAltaDeOfertaLaboralActionPerformed(e);
+            }
+        });
+        
+        
         
 
+	}
+	
+	// INICIO DE METODOS DE LOS EVENTOS
+	protected void cmdAltaDeOfertaLaboralActionPerformed(ActionEvent e) {
+		//obtener los datos de los campos
+		String nombreOferta = this.textFieldNombre.getText();
+		String ciudadOferta = this.textFieldCiudad.getText();
+		String remuneracionTexto = textFieldRemuneracion.getText();
+        if (!remuneracionTexto.isEmpty()) {
+            int numeroRemuneracion = Integer.parseInt(remuneracionTexto);
+        }
+	}
+	
+	//Deja el formulario como cuando entras por primera vez
+		
+	public void limpiarFormulario() {
+	    // Deshabilitar el filtro del documento
+	    AbstractDocument doc = (AbstractDocument) textFieldRemuneracion.getDocument();
+	    doc.setDocumentFilter(null);
+
+	    // Limpiar el campo de texto
+	    textFieldRemuneracion.setText("");
+	    this.textFieldNombre.setText("");
+		this.textFieldCiudad.setText("");
+		this.textAreaDescripcion.setText("");
+		this.textFieldDepartamento.setText("");
+
+	    // Volver a habilitar el filtro del documento
+	    doc.setDocumentFilter(new DocumentFilter() {
+	        @Override
+	        public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+	            if (text.matches("\\d+")) {
+	                super.insertString(fb, offset, text, attr);
+	            }
+	        }
+
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+	            if (text.matches("\\d+")) {
+	                super.replace(fb, offset, length, text, attrs);
+	            }
+	        }
+	    });
 	}
 
 }

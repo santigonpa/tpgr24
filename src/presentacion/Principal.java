@@ -224,6 +224,7 @@ public class Principal {
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
 				altOfLab.setVisible(true);
+				altOfLab.limpiarFormulario();
             }
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_7);
