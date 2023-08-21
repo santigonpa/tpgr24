@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import logica_DataTypes.DataHorario;
+import logica_DataTypes.DataOferta;
 import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.Postulacion;
@@ -31,6 +32,26 @@ public class OfertaLaboral {
 	private Set<KeyWord> palabrasClave;
 	
 	// Operaciones
+	
+	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
+			String departamento,DataHorario horaInicio, DataHorario horaFin
+			, float remuneracion , float costoDeOfertaLaboral, Date fechaDeAlta)
+	{
+		this.nombre = nombre;
+		this.ciudad = ciudad;
+		this.descripcion = descripcion;
+		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
+		this.horaFin = horaFin;
+		this.horaInicio = horaInicio;
+		this.departamento = departamento;
+		this.remuneracion = remuneracion;
+		this.fechaDeAlta = fechaDeAlta;
+		
+	}
+	
+	public DataOferta getDataOferta() {
+		
+	}
 	
 	
 	
