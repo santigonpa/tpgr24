@@ -1,4 +1,4 @@
-package logica_entidades;
+package logica_Entidades;
 
 public class KeyWord {
 
