@@ -30,6 +30,7 @@ public class OfertaLaboral {
 	private Empresa empresaAsociada;
 	private TipoPublicacion tipoDeOferta;
 	private Set<KeyWord> palabrasClave;
+	//private DataOferta dataOferta;
 	
 	// Operaciones
 	
@@ -46,16 +47,43 @@ public class OfertaLaboral {
 		this.departamento = departamento;
 		this.remuneracion = remuneracion;
 		this.fechaDeAlta = fechaDeAlta;
-		
+		/*DataOferta dataOferta = new DataOferta(nombre,descripcion,ciudad,departamento,
+				horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
+		this.dataOferta = dataOferta;*/
 	}
 	
-	public DataOferta getDataOferta() {
-		
+	public DataOferta getDataOferta(String nombre, String descripcion, String ciudad, 
+			String departamento, DataHorario horaInicio, DataHorario horaFin
+			, float remuneracion, float costoDeOfertaLaboral, Date fechaDeAlta) {
+		DataOferta DO = new DataOferta(nombre,descripcion,ciudad,departamento,
+				horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
+		return DO;
+	}
+	/*public DataOferta getDataOferta() {
+		return this.DataOferta;
+	}*/
+	
+	public void setEmpresa(Empresa e) {
+		this.empresaAsociada = e;
 	}
 	
+	public boolean existeLaPostulacion(String postulante) {
+		
+		
+		return true;
+	}
 	
+	public void agregarKeywordAOferta(KeyWord key) {
+		this.palabrasClave.add(key);
+	}
 	
+	/*public void agregarPostulacionAOferta(Postulacion postulacion) {
+		
+	}*/
 	
+	public void setTipoPublicacion(TipoPublicacion tp){
+		this.tipoDeOferta = tp;
+	}
 	
 	
 }
