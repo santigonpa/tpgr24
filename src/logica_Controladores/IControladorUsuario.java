@@ -11,4 +11,7 @@ public interface IControladorUsuario {
 
 	public abstract Set<DataTipoPublicacion> getDataTipoPublicacion();
 
+	public abstract void altaUsuario(String nickname, String nombre, String apellido, String email, String descripcion,
+			String web);
+
 }

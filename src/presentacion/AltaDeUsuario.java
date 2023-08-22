@@ -218,13 +218,13 @@ public class AltaDeUsuario extends JInternalFrame{
     		try {
     	    	if (selectedOption.equals("Empresa")) {
     	    		//operacion de alta
-        			ICO.altaUsuario(nickname,nombre, apellido, email, descripcion, web);
+        			ICU.altaUsuario(nickname,nombre, apellido, email, descripcion, web);
         			
         			// muestro éxito de la operación
                     JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario",
                             JOptionPane.INFORMATION_MESSAGE);
     	    	}else if (selectedOption.equals("Postulante")) {
-    	    		ICO.altaUsuario(nickname,nombre, apellido, email, nacimiento, web);
+    	    		ICU.altaUsuario(nickname,nombre, apellido, email, nacimiento, web);
     	    		
     	    		 JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario",
                              JOptionPane.INFORMATION_MESSAGE);

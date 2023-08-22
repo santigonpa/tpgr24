@@ -16,7 +16,4 @@ public interface IControladorOferta  {
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, float remuneracion, String ciudad,
 			String departamento, Date fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException;
 
-	public abstract void altaUsuario(String nickname, String nombre, String apellido, String email, String descripcion,
-			String web);
-
 }
