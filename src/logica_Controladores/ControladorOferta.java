@@ -11,6 +11,8 @@ import utils.Fabrica;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.ManejadorOferta;
+import logica_Manejadores.ManejadorPaquetesYTiposPubli;
+import logica_Manejadores.ManejadorUsuario;
 
 public class ControladorOferta implements IControladorOferta {
 	
@@ -25,21 +27,38 @@ public class ControladorOferta implements IControladorOferta {
         return instancia;
     }
 
-	public void altaPublicacionOfertaLaboral(Empresa empresa, TipoPublicacion tipoPubli, String nombre,
+	public void altaPublicacionOfertaLaboral(String empresa,String tipoPubli, String nombre,
 			String descripcion, DataHorario horarioInicio, DataHorario horarioFin, int remuneracion, String ciudad,
-			String departamento, Date fecha, Set<KeyWord> palabrasClaveSelec) throws NombreRepetidoOfertaException {
+			String departamento, Date fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
 		
 		Fabrica fabrica = Fabrica.getInstance();
+		ManejadorUsuario mu = fabrica.getManejadorUsuario();
 		ManejadorOferta mo = fabrica.getManejadorOferta();
+		ManejadorPaquetesYTiposPubli mpt = fabrica.getManejadorPaquetesYTiposPubli();
 		
 		OfertaLaboral nuevaOferta = mo.obtenerOferta(nombre);
-		if(nuevaOferta != null) {throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); }
+		if(nuevaOferta != null){throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); }
 		int costoOfertaLaboral;
-		if(empresa.tienePaqueteAsociado()){costoOfertaLaboral = empresa.costoPaqueteAsociado();}
-		else {costoOfertaLaboral = tipoPubli.getCostoAsociado();}
+		//busco Empresa
+		Empresa emp = mu.obtenerUsuario(empresa);
+		
+		//busco tipo de publicacion
+		TipoPublicacion tp = mpt.obtenerTipoPublicacion(tipoPubli);
+		
+		//pregunto si tiene costo asociado al paquete 
+		if(emp.tienePaqueteAsociado()){costoOfertaLaboral = empresa.costoPaqueteAsociado();}
+		else{costoOfertaLaboral = tp.getCostoAsociado();}
+		//se crea la nueva oferta
 		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
 				departamento,horarioInicio,horarioFin
 				,remuneracion ,costoDeOfertaLaboral,fecha);
+		
+		nuevaOferta.setEmpresa(emp);
+		emp.linkearOfertaEmpresa(nuevaOferta);
+		nuevaOferta.setTipoPublicacion(tp);
+		mo.linkearKeywords(palabrasClaveSelec,nombre); //linkea la coleccion de keywords a la oferta
+		mo.addOferta(nuevaOferta);
+			
 	}
 		
 	

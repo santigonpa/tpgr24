@@ -5,6 +5,8 @@ import logica_Controladores.ControladorUsuario;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import logica_Manejadores.ManejadorOferta;
+import logica_Manejadores.ManejadorPaquetesYTiposPubli;
+import logica_Manejadores.ManejadorUsuario;
 
 
 	public class Fabrica {
@@ -34,5 +36,15 @@ import logica_Manejadores.ManejadorOferta;
     public ManejadorOferta getManejadorOferta() {
     	return ManejadorOferta.getInstance();
     }
+
+	public ManejadorUsuario getManejadorUsuario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ManejadorPaquetesYTiposPubli getManejadorPaquetesYTiposPubli() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

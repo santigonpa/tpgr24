@@ -2,6 +2,7 @@ package logica_Manejadores;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import logica_Entidades.OfertaLaboral;
 
@@ -28,6 +29,11 @@ public class ManejadorOferta {
 
 	public OfertaLaboral obtenerOferta(String nombre) {
 		return ((OfertaLaboral)this.ofertasLaborales.get(nombre));
+	}
+
+	public void linkearKeywords(Set<String> palabrasClaveSelec , String nombreOfertaLaboral) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
