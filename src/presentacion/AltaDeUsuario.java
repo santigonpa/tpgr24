@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
@@ -36,6 +38,8 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.ItemListener;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ItemEvent;
 
 
@@ -82,52 +86,50 @@ public class AltaDeUsuario extends JInternalFrame{
 	    setMaximizable(true);
 	    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setClosable(true);
-	    getContentPane().setLayout(new MigLayout("", "[0.00px,grow,left][20.00px,grow,left][][][grow][grow][20.00px,grow,left][20.00px,grow,left][70.00px,grow,left][86.00px,grow,left][70.00px,grow][grow][grow]", "[30.00][30][30][30px][2px,grow][3px,grow][10px,grow][]"));
+	    getContentPane().setLayout(new MigLayout("", "[0.00px,grow,left][20.00px,grow,left][][][][][grow][][grow][20.00px,grow,left][20.00px,grow,left][70.00px,grow,left][86.00px,grow,left][70.00px,grow][grow][grow]", "[30.00][30][30][30px][][2px,grow][3px,grow][10px,grow][]"));
 	    
 	    JLabel lblNewLabel_5 = new JLabel("       Fecha de nacimiento :");
-	    getContentPane().add(lblNewLabel_5, "cell 0 3 7 1");
+	    getContentPane().add(lblNewLabel_5, "cell 0 3 10 1");
 	    
 	    JLabel lblNewLabel_6 = new JLabel("Nacionalidad :");
-	    getContentPane().add(lblNewLabel_6, "cell 8 3,alignx trailing");
+	    getContentPane().add(lblNewLabel_6, "cell 11 3,alignx trailing");
 	    
 	    textFieldNacionalidad = new JTextField();
-	    getContentPane().add(textFieldNacionalidad, "cell 9 3 4 1,growx");
+	    getContentPane().add(textFieldNacionalidad, "cell 12 3 4 1,growx");
 	    textFieldNacionalidad.setColumns(10);
+	    
+	 // Crear un SpinnerDateModel para manejar la fecha
+	    Date initialDate = Calendar.getInstance().getTime();
+        SpinnerDateModel dateModel = new SpinnerDateModel(initialDate, null, null, Calendar.DAY_OF_MONTH);
+	    JSpinner dateSpinner = new JSpinner(dateModel);
+	    getContentPane().add(dateSpinner, "cell 3 4 2 1,grow");
+	 // Personalizar la apariencia del JSpinner para mostrar solo la fecha
+	    JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy");
+	    dateSpinner.setEditor(dateEditor);
 	    
 	    
 	    JList list = new JList();
-	    getContentPane().add(list, "cell 0 4,grow");
-	    
-	    //Seleccion de numeros fecha de nacimiento
-	    
-	    JSpinner dia = new JSpinner();
-	    getContentPane().add(dia, "cell 2 4");
-	    
-	    JSpinner mes = new JSpinner();
-	    getContentPane().add(mes, "cell 3 4");
-	    
-	    JSpinner anio = new JSpinner();
-	    getContentPane().add(anio, "cell 4 4");
+	    getContentPane().add(list, "cell 0 5,grow");
 	    
 	    
 	    JLabel lblNewLabel_7 = new JLabel("   Descripción : ");
-	    getContentPane().add(lblNewLabel_7, "cell 1 5 3 1");
+	    getContentPane().add(lblNewLabel_7, "cell 1 6 5 1");
 	    
 	    textFieldDescripcion = new JTextField();
-	    getContentPane().add(textFieldDescripcion, "cell 4 5 8 1,growx");
+	    getContentPane().add(textFieldDescripcion, "cell 6 6 9 1,growx");
 	    textFieldDescripcion.setColumns(10);
 	    
 	    JLabel lblNewLabel_8 = new JLabel("    Link :");
-	    getContentPane().add(lblNewLabel_8, "cell 1 6 2 1");
+	    getContentPane().add(lblNewLabel_8, "cell 1 7 4 1");
 	    
 	    textFieldLink = new JTextField();
-	    getContentPane().add(textFieldLink, "cell 4 6 8 1,growx");
+	    getContentPane().add(textFieldLink, "cell 6 7 9 1,growx");
 	    textFieldLink.setColumns(10);
 	    
 		
 	    JComboBox<String> seleccionTipoUsuario = new JComboBox<>();
 	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"}));
-	    getContentPane().add(seleccionTipoUsuario, "cell 7 0 6 1,growx");
+	    getContentPane().add(seleccionTipoUsuario, "cell 10 0 6 1,growx");
 	    seleccionTipoUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,14 +138,10 @@ public class AltaDeUsuario extends JInternalFrame{
                 	textFieldLink.setEditable(true);
                     textFieldDescripcion.setEditable(true);
                 	textFieldNacionalidad.setEditable(false);
-                    dia.setEnabled(false);
-                    mes.setEnabled(false);
-                    anio.setEnabled(false);
+                	dateSpinner.setEnabled(false);
                 } else if (selectedOption.equals("Postulante")) {
                 	textFieldNacionalidad.setEditable(true);
-                    dia.setEnabled(true);
-                    mes.setEnabled(true);
-                    anio.setEnabled(true);
+                	dateSpinner.setEnabled(true);
                 	textFieldLink.setEditable(false);
                     textFieldDescripcion.setEditable(false);
                 }
@@ -151,44 +149,44 @@ public class AltaDeUsuario extends JInternalFrame{
         });
 	    
 	    JLabel lblNewLabel = new JLabel("Tipo de usuario :");
-	    getContentPane().add(lblNewLabel, "cell 0 0 7 1,growx");
+	    getContentPane().add(lblNewLabel, "cell 0 0 10 1,growx");
 	    
 	    	    
 	    JLabel lblNewLabel_1 = new JLabel("Nombre :");
-	    getContentPane().add(lblNewLabel_1, "cell 0 1 3 1,alignx center");
+	    getContentPane().add(lblNewLabel_1, "cell 0 1 5 1,alignx center");
 	    
 	    textFieldNombre = new JTextField();
-	    getContentPane().add(textFieldNombre, "cell 3 1 5 1,growx");
+	    getContentPane().add(textFieldNombre, "cell 5 1 6 1,growx");
 	    textFieldNombre.setColumns(10);
 	    
 	    JLabel lblNewLabel_2 = new JLabel("Apellido :");
-	    getContentPane().add(lblNewLabel_2, "cell 8 1,alignx center");
+	    getContentPane().add(lblNewLabel_2, "cell 11 1,alignx center");
 	    
 	    textFieldApellido = new JTextField();
-	    getContentPane().add(textFieldApellido, "cell 9 1 4 1,growx");
+	    getContentPane().add(textFieldApellido, "cell 12 1 4 1,growx");
 	    textFieldApellido.setColumns(10);
 	    
 	    JLabel lblNewLabel_3 = new JLabel("   Nickname :");
-	    getContentPane().add(lblNewLabel_3, "cell 0 2 3 1,alignx center");
+	    getContentPane().add(lblNewLabel_3, "cell 0 2 5 1,alignx center");
 	    
 	    textFieldNickname = new JTextField();
-	    getContentPane().add(textFieldNickname, "cell 3 2 5 1,growx");
+	    getContentPane().add(textFieldNickname, "cell 5 2 6 1,growx");
 	    textFieldNickname.setColumns(10);
 	    
 	    JLabel lblNewLabel_4 = new JLabel("Email :");
-	    getContentPane().add(lblNewLabel_4, "cell 8 2,alignx center");
+	    getContentPane().add(lblNewLabel_4, "cell 11 2,alignx center");
 		  
 	    textFieldEmail = new JTextField();
-	    getContentPane().add(textFieldEmail, "cell 9 2 4 1,growx");
+	    getContentPane().add(textFieldEmail, "cell 12 2 4 1,growx");
 	    textFieldEmail.setColumns(10);
 	    
 	    
 	    JButton btnNewButton_1 = new JButton("Aceptar");
 	    btnNewButton_1.setForeground(SystemColor.windowText);
-	    getContentPane().add(btnNewButton_1, "cell 9 7");
+	    getContentPane().add(btnNewButton_1, "cell 12 8");
 	    
 	    JButton btnNewButton_2 = new JButton("Cancelar");
-	    getContentPane().add(btnNewButton_2, "cell 10 7");
+	    getContentPane().add(btnNewButton_2, "cell 13 8");
 	    
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
