@@ -3,6 +3,8 @@ package logica_Entidades;
 import java.util.Map;
 import java.util.HashMap;
 import java.time.*;
+import java.util.Set;
+
 
 import logica_DataTypes.DataPostulante;
 
@@ -11,8 +13,7 @@ public class Postulante extends Usuario{
 	//Atributos
 	private LocalDate nacimiento;
 	private String nacionalidad;
-	private Map<String, Postulacion> postulaciones;
-	
+	private Set<Postulacion> postulaciones;
 	//Constructores
 	
 	public Postulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad){
@@ -62,6 +63,17 @@ public class Postulante extends Usuario{
 		this.setApellido(apellido);
 		this.setNacionalidad(nacionalidad);
 	}
+
+		public void agregarPostulacionAPostulante(Postulacion postulacion) {
+		this.postulaciones.add(postulacion);
+	}
 	
+	public boolean estaPostulado(Postulacion p) {
+		return this.postulaciones.contains(p);
+	}
+	
+	public Set<Postulacion> obtenerPostulaciones(){
+		return this.postulaciones;
+	}	
 	
 }
