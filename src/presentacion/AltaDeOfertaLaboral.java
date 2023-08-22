@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.text.*;
+import java.util.List;
 import java.util.*;
 
 import javax.swing.JInternalFrame;
@@ -23,6 +24,7 @@ import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
 import logica_DataTypes.DataUsuario;
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataTipoPublicacion;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import utils.Fabrica;
@@ -44,6 +46,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	private JTextField textFieldDepartamento;
 	private JTextArea textAreaDescripcion;
 	private JComboBox<DataEmpresa> comboBoxEmpresa;
+	private JComboBox<DataTipoPublicacion> comboBoxTipoPublicacion;
 	
 	/**
 	 * Launch the application.
@@ -65,10 +68,6 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaDeOfertaLaboral(IControladorOferta ICO, IControladorUsuario ICU) {
-		this.ICO = ICO;
-		this.ICU = ICU;
-		Fabrica fabrica = Fabrica.getInstance();
-		IControladorOferta of = fabrica.getInOfer();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Alta de Oferta Laboral");
@@ -89,9 +88,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 38, 215, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(235, 38, 303, 21);
-		getContentPane().add(comboBox_1);
+		JComboBox comboBoxTipoDePublicacion = new JComboBox<DataTipoPublicacion>();
+		comboBoxEmpresa.setBounds(235, 38, 303, 21);
+		getContentPane().add(comboBoxEmpresa);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingrese debajo los siguientes datos acerca de la oferta laboral :");
 		lblNewLabel_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -266,17 +265,18 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		String departamento = this.textFieldDepartamento.getText();
 		String remuneracionTexto = textFieldRemuneracion.getText();
 		String empresa = (String) comboBoxEmpresa.getSelectedItem();
-		
+		String tipoPubli = (String) comboBoxTipoPublicacion.getSelectedItem();
+		int remuneracion;
         //si el campo esta vacio
 		if(!remuneracionTexto.isEmpty()) {
-		int remuneracion = Integer.parseInt(remuneracionTexto);}
+		remuneracion = Integer.parseInt(remuneracionTexto);}
 		//OBTENER DATOS DE LAS HORAS Y FECHAS
         
         
         if (verificarFormulario()) {
             try {
                 //ESTA OPERACION DA EL ALTA
-            	this.ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
+            	ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La oferta se ha creado con exito", "Alta de Oferta Laboral",
@@ -355,7 +355,18 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	    // Establecer el modelo en el JComboBox
 	    comboBoxEmpresa.setModel(model);
 	}
-
-
+	
+	public void cargarTiposDePublicacion() {
+	    Set<DataTipoPublicacion> tiposDePublicacion = ICU.getDataTipoPublicacion();
+	    DefaultComboBoxModel<DataTipoPublicacion> model = new DefaultComboBoxModel<>();
+	    
+	    // Agregar los tipos de publicación al modelo del JComboBox
+	    for (DataTipoPublicacion tipoPublicacion : tiposDePublicacion) {
+	        model.addElement(tipoPublicacion);
+	    }
+	    
+	    // Establecer el modelo en el JComboBox
+	    comboBoxTipoPublicacion.setModel(model);
+	}
 
 }

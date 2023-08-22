@@ -3,7 +3,9 @@ package logica_Controladores;
 import java.util.Set;
 
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataTipoPublicacion;
 import utils.Fabrica;
+import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
 
 public class ControladorUsuario implements IControladorUsuario {
@@ -27,7 +29,14 @@ public class ControladorUsuario implements IControladorUsuario {
 		Set<DataEmpresa> res = mu.getDataEmpresas();
 		return res;
 	}
+
+	@Override
+	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
+		Fabrica fabrica = Fabrica.getInstance();
+		ManejadorPaquetesYTiposPubli mu = fabrica.getManejadorPaquetesYTiposPubli();
 		
-	
+		Set<DataTipoPublicacion> res = mu.getDataTipoPublicacion();
+		return res;
+	}
 	
 }

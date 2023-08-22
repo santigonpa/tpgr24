@@ -19,4 +19,8 @@ public class DataTipoPublicacion {
 	public String getNombre() {
 		return nombre;
 	}
+	//esto es para que se muestre el nombre del TipoPublicacion en los comboBox
+			public String toString() {
+		        return this.getNombre(); // Devuelve el nombre del TipoPublicacion
+		    }
 }

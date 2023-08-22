@@ -41,5 +41,8 @@ public class DataEmpresa extends DataUsuario{
 		public void setLinkWeb(String l) {
 			this.web = l;
 		}
-
+		//esto es para que se muestre el nombre de la empresa en los comboBox
+		public String toString() {
+	        return this.getNombre(); // Devuelve el nombre de la empresa
+	    }
 }
