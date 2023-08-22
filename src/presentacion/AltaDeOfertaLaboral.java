@@ -11,12 +11,15 @@ import javax.swing.text.*;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.text.DocumentFilter;
 
+import excepciones.NombreRepetidoOfertaException;
+import excepciones.UsuarioRepetidoException;
 import logica_Controladores.IControladorOferta;
 
 import javax.swing.JButton;
@@ -242,14 +245,40 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	}
 	
 	// INICIO DE METODOS DE LOS EVENTOS
+	
+	//Esto se invoca cuando le damos a aceptar
 	protected void cmdAltaDeOfertaLaboralActionPerformed(ActionEvent e) {
 		//obtener los datos de los campos
-		String nombreOferta = this.textFieldNombre.getText();
-		String ciudadOferta = this.textFieldCiudad.getText();
+		String nombre = this.textFieldNombre.getText();
+		String ciudad = this.textFieldCiudad.getText();
+		String descripcion = this.textAreaDescripcion.getText();
+		String departamento = this.textFieldDepartamento.getText();
 		String remuneracionTexto = textFieldRemuneracion.getText();
-        if (!remuneracionTexto.isEmpty()) {
-            int numeroRemuneracion = Integer.parseInt(remuneracionTexto);
+        //si el campo esta vacio
+		if(!remuneracionTexto.isEmpty()) {
+		int remuneracion = Integer.parseInt(remuneracionTexto);}
+		//OBTENER DATOS DE LAS HORAS Y FECHAS
+        
+        
+        if (verificarFormulario()) {
+            try {
+                //ESTA OPERACION DA EL ALTA
+            	this.ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
+
+                // Muestro éxito de la operación
+                JOptionPane.showMessageDialog(this, "La oferta se ha creado con exito", "Alta de Oferta Laboral",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (NombreRepetidoOfertaException e) {
+                // Muestro error de registro
+               JOptionPane.showMessageDialog(this, e.getMessage(), "Alta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+           }
+
+            // Limpio el internal frame antes de cerrar la ventana
+            limpiarFormulario();
+            setVisible(false);
         }
+        
 	}
 	
 	//Deja el formulario como cuando entras por primera vez
@@ -282,6 +311,23 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	            }
 	        }
 	    });
+	}
+	
+	private boolean verificarFormulario() {
+		String nombreOferta = this.textFieldNombre.getText();
+        String ciudadOferta = this.textFieldCiudad.getText();
+        String remuneracion = this.textFieldRemuneracion.getText();
+        String departamento = this.textFieldDepartamento.getText();
+        String descripcion = this.textAreaDescripcion.getText();
+
+        if (nombreOferta.isEmpty() || ciudadOferta.isEmpty() || remuneracion.isEmpty( )|| descripcion.isEmpty()|| departamento.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+
+        return true;
 	}
 
 }
