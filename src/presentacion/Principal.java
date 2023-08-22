@@ -92,7 +92,7 @@ public class Principal {
         trabajouy.getContentPane().add(modDatosUser);
         modDatosUser.getContentPane();
         
-        altaUser = new AltaDeUsuario();
+        altaUser = new AltaDeUsuario(ICO, ICU);
         altaUser.setBounds(100, 100, 550, 300);
         altaUser.setMaximizable(true);
         altaUser.setClosable(true);
