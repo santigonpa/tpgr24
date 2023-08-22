@@ -10,7 +10,7 @@ public class DataOferta {
 	private String descripcion;
 	private String ciudad;
 	private String departamento;
-	private LocalTime horaInicio; // horario de trbaajo asociado
+	private LocalTime horaInicio; //  horario de trbaajo asociado
 	private LocalTime horaFin;
 	private float remuneracion;
 	private float costoDeOfertaLaboral; 

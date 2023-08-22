@@ -12,7 +12,7 @@ import logica_Entidades.TipoPublicacion;
 
 public class OfertaLaboral {
 	
-	//atributos de la oferta laboral
+	 //atributos de la oferta laboral
 	
 	private String nombre;
 	private String descripcion;
