@@ -1,18 +1,18 @@
-package logica_Entidades;
+package logica_DataTypes;
 
-import logica_DataTypes.DataUsuario;
+public class DataUsuario {
 
-public abstract class Usuario {
-	
-	//Atributos
 	private String nickName;
 	private String nombre;
 	private String apellido;
 	private String email;
 
-	//Constructor
+	//constructores
 	
-	public Usuario(String nickName, String nombre, String apellido, String email) {
+	public DataUsuario() {
+	}
+	
+	public DataUsuario(String nickName, String nombre, String apellido, String email) {
 		this.nickName = nickName;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -53,12 +53,5 @@ public abstract class Usuario {
 	
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	//obtener dataTypes
-	
-	public DataUsuario getDTUsuario(){
-		DataUsuario DtUser = new DataUsuario(this.nickName, this.nombre, this.apellido, this.email);
-		return DtUser;
 	}
 }
