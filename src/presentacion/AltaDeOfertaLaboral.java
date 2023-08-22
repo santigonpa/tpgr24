@@ -19,8 +19,13 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
+import excepciones.UsuarioNoExisteException;
+import logica.DataEmpresa;
 import logica_Controladores.IControladorOferta;
+import logica_Controladores.IControladorUsuario;
+import utils.Fabrica;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -29,12 +34,14 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	
 	// interfaz de oferta
 	private static IControladorOferta ICO;
+	private static IControladorUsuario ICU;
 	
 	private JTextField textFieldNombre;
 	private JTextField textFieldRemuneracion;
 	private JTextField textFieldCiudad;
 	private JTextField textFieldDepartamento;
 	private JTextArea textAreaDescripcion;
+	private JComboBox<DataEmpresa> comboBoxEmpresa;
 	
 	/**
 	 * Launch the application.
@@ -55,17 +62,20 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AltaDeOfertaLaboral(IControladorOferta ICO) {
+	public AltaDeOfertaLaboral(IControladorOferta ICO, IControladorUsuario ICU) {
 		this.ICO = ICO;
+		this.ICU = ICU;
+		Fabrica fabrica = Fabrica.getInstance();
+		IControladorOferta of = fabrica.getInOfer();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Alta de Oferta Laboral");
 		setBounds(100, 100, 561, 475);
 		getContentPane().setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(177, 7, 361, 21);
-		getContentPane().add(comboBox);
+		JComboBox<DataEmpresa> comboBoxEmpresa = new JComboBox()<>;
+		comboBoxEmpresa.setBounds(177, 7, 361, 21);
+		getContentPane().add(comboBoxEmpresa);
 		
 		JLabel lblNewLabel = new JLabel("Selecicone la empresa");
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -260,7 +270,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         
         
         if (verificarFormulario()) {
-            /*try {
+            try {
                 //ESTA OPERACION DA EL ALTA
             	this.ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
 
@@ -271,7 +281,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
             } catch (NombreRepetidoOfertaException e2) {
                 // Muestro error de registro
                JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-           }*/
+           }
 
             // Limpio el internal frame antes de cerrar la ventana
             limpiarFormulario();
@@ -328,5 +338,15 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 
         return true;
 	}
+	public void cargarEmpresas() {
+        DefaultComboBoxModel<DataEmpresa> model;
+        try {
+            model = new DefaultComboBoxModel<DataEmpresa>(ICU.getDTEmpresas());
+            comboBoxUsuarios.setModel(model);
+        } catch (UsuarioNoExisteException e) {
+            // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
+        }
+
+    }
 
 }

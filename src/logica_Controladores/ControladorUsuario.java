@@ -1,5 +1,9 @@
 package logica_Controladores;
 
+import java.util.Set;
+import utils.Fabrica;
+import logica_Manejadores.ManejadorUsuario;
+
 public class ControladorUsuario implements IControladorUsuario {
 	
 	private static ControladorUsuario instancia;
@@ -12,6 +16,15 @@ public class ControladorUsuario implements IControladorUsuario {
         }
         return instancia;
     }
+
+	@Override
+	public Set<DataEmpresa> getDataEmpresa() {
+		Fabrica fabrica = Fabrica.getInstance();
+		ManejadorUsuario mu = fabrica.getManejadorUsuario();
+		
+		Set<DataEmpresa> res = mu.getDataEmpresas();
+		return res;
+	}
 		
 	
 	
