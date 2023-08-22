@@ -7,7 +7,7 @@ import java.util.Set;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 
-public class ManejadorOferta {
+public class ManejadorOferta{
 
 	private static ManejadorOferta instancia;
 	private Map<String,OfertaLaboral> ofertasLaborales;
@@ -15,6 +15,7 @@ public class ManejadorOferta {
 	
 	private ManejadorOferta() {
 		this.ofertasLaborales = new HashMap<String, OfertaLaboral>();
+		
 	}
 	
 	public static ManejadorOferta getInstance() {
