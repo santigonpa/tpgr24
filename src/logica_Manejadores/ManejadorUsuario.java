@@ -5,8 +5,10 @@ import java.util.Map;
 import java.util.Set;
 
 import logica.ManejadorUsuario;
-import logica.Usuario;
+import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
+import logica_DataTypes.DataEmpresa;
+import logica_Entidades.Postulante;
 
 public class ManejadorUsuario {
 	
@@ -26,7 +28,7 @@ public class ManejadorUsuario {
     }
 
     public void addUsuario(Usuario usu) {
-        String nick = usu.getNickname();
+        String nick = usu.getNickName();
         usuarios.put(nick, usu);
     }
 
@@ -34,19 +36,19 @@ public class ManejadorUsuario {
         return ((Usuario) usuarios.get(nick));
     }
     
-    public set<DataEmpresa> getDataEmpresas () {
-    	set<DataEmpresa> res;
-    	set<Empresa> temp;
+    public Set<DataEmpresa> getDataEmpresas () {
+    	Set<DataEmpresa> res;
+    	Set<Empresa> temp;
     	
     	// Obtener las claves del Map
         Set<String> clavesEmpresas = this.empresas.keySet();
         for(String nombreEmpresa : clavesEmpresas) {
         	Empresa empAct = ((Empresa) this.empresas.get(nombreEmpresa));
-        	temp.insert(empAct);
+        	temp.add(empAct);
         }
         for(Empresa empAct: temp) {
-        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNombre());
-        	res.insert(nuevaDTEmp);
+        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNombre()); //falta poner los atributos no se todavia cuales son
+        	res.add(nuevaDTEmp);
         }
         
     	return res;

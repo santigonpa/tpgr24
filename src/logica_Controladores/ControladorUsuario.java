@@ -1,6 +1,8 @@
 package logica_Controladores;
 
 import java.util.Set;
+
+import logica_DataTypes.DataEmpresa;
 import utils.Fabrica;
 import logica_Manejadores.ManejadorUsuario;
 

@@ -2,7 +2,7 @@ package logica_Controladores;
 
 import java.util.Set;
 
-import presentacion.DataEmpresa;
+import logica_DataTypes.DataEmpresa;
 
 public interface IControladorUsuario {
 
