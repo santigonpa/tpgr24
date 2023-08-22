@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import logica_Controladores.Fabrica;
+import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 
 import javax.swing.JMenu;

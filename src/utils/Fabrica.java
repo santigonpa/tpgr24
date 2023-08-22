@@ -1,7 +1,10 @@
-package logica_Controladores;
+package utils;
 
 import logica_Controladores.ControladorOferta;
 import logica_Controladores.ControladorUsuario;
+import logica_Controladores.IControladorOferta;
+import logica_Controladores.IControladorUsuario;
+import logica_Manejadores.ManejadorOferta;
 
 
 	public class Fabrica {
@@ -24,6 +27,12 @@ import logica_Controladores.ControladorUsuario;
     
     public IControladorUsuario getInUser() {
         return ControladorUsuario.getInstance();
+    }
+    
+    // ---------------------------------------------
+
+    public ManejadorOferta getManejadorOferta() {
+    	return ManejadorOferta.getInstance();
     }
 
 }

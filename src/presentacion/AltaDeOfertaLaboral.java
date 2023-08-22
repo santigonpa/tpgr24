@@ -260,7 +260,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         
         
         if (verificarFormulario()) {
-            /*try {
+            try {
                 //ESTA OPERACION DA EL ALTA
             	this.ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
 
@@ -271,7 +271,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
             } catch (NombreRepetidoOfertaException e2) {
                 // Muestro error de registro
                JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-           }*/
+           }
 
             // Limpio el internal frame antes de cerrar la ventana
             limpiarFormulario();

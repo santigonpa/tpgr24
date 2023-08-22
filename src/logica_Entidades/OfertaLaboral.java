@@ -75,6 +75,10 @@ public class OfertaLaboral {
 	public void setTipoPublicacion(TipoPublicacion tp){
 		this.tipoDeOferta = tp;
 	}
+
+	public String getNombreOferta() {
+		return this.nombre;
+	}
 	
 	
 }
