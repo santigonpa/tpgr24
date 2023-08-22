@@ -81,10 +81,10 @@ public class Empresa extends Usuario{
 		return DtEmp;
 	}
 	
-	public void linkearOfertaEmpresa(OfertaLaboral of) {
-		this.ofertas.put(of.getNombre(), of);
+//	public void linkearOfertaEmpresa(OfertaLaboral of) {
+//		this.ofertas.put(of.getNombre(), of);
 		
-	}
+//	}
 	
 	public void modificarEm(String nombre, String apellido, String descripcion, String link) {
 		this.setNombre(nombre);

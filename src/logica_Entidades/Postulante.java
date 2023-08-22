@@ -47,10 +47,10 @@ public class Postulante extends Usuario{
 		return DtPost;
 	}
 	
-	public void agregarPostulacionAPostulante(Postulacion post){
-		String nombreOfer = this.post.getNombreOferta();
+	//public void agregarPostulacionAPostulante(Postulacion post){
+		//String nombreOfer = this.post.getNombreOferta();
 		
-	}
+	//}
 	
 	public void modificarPos(String nombre, String apellido, int dia, int mes, int anio, String nacionalidad) {
 		LocalDate fechaIn = LocalDate.of(dia,  mes, anio);
