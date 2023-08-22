@@ -65,7 +65,7 @@ public class Empresa extends Usuario{
 	//obtener info
 	
 	public int costoPaqueteAsociado() {
-		return 0;
+		return compra.getCosto();
 	} 
 	
 	public boolean tienePaqueteAsociado() {
