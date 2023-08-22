@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.text.*;
+import java.util.*;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -20,7 +21,8 @@ import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
-import logica.DataEmpresa;
+import logica.DataUsuario;
+import logica_DataTypes.DataEmpresa;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import utils.Fabrica;
@@ -50,7 +52,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AltaDeOfertaLaboral frame = new AltaDeOfertaLaboral(ICO);
+					AltaDeOfertaLaboral frame = new AltaDeOfertaLaboral(ICO, ICU);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -338,15 +340,20 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 
         return true;
 	}
+	
 	public void cargarEmpresas() {
-        DefaultComboBoxModel<DataEmpresa> model;
-        try {
-            model = new DefaultComboBoxModel<DataEmpresa>(ICU.getDTEmpresas());
-            comboBoxUsuarios.setModel(model);
-        } catch (UsuarioNoExisteException e) {
-            // No se imprime mensaje de error sino que simplemente no se muestra ningún elemento
-        }
+		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+		DefaultComboBoxModel<DataEmpresa> model = new DefaultComboBoxModel<>();
+	    
+	    // Agregar las empresas al modelo del JComboBox
+	    for (DataEmpresa empresa : empresas) {
+	        model.addElement(empresa);
+	    }
+	    
+	    // Establecer el modelo en el JComboBox
+	    comboBoxEmpresa.setModel(model);
+	}
 
-    }
+
 
 }
