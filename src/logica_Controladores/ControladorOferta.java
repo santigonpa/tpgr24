@@ -56,7 +56,7 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaOferta.setEmpresa(emp);
 		emp.linkearOfertaEmpresa(nuevaOferta);
 		nuevaOferta.setTipoPublicacion(tp);
-		mo.linkearKeywords(palabrasClaveSelec,nombre); //linkea la coleccion de keywords a la oferta
+		mo.linkearKeywords(palabrasClaveSelec,nuevaOferta); //linkea la coleccion de keywords a la oferta
 		mo.addOferta(nuevaOferta);
 			
 	}
