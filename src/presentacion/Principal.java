@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
+import logica_Controladores.IControladorUsuario;
 
 import javax.swing.JMenu;
 import java.awt.Rectangle;
@@ -33,6 +34,7 @@ public class Principal {
 	private PostulacionAOfertaLaboral PosAOferLab;
 	
 	private IControladorOferta ICO;
+	private IControladorUsuario ICU;
 	 
 	/**
 	 * Launch the application.
@@ -59,6 +61,7 @@ public class Principal {
 		// Inicialización de controladores
         Fabrica fabrica = Fabrica.getInstance();
         this.ICO = fabrica.getInOfer();
+        this.ICU = fabrica.getInUser();
 		
 		conUsrInternalFrame = new ConsultarUsuario();
 		conUsrInternalFrame.setBounds(163, 79, 444, 302);
@@ -117,7 +120,7 @@ public class Principal {
         conPaquetes.getContentPane();
         trabajouy.getContentPane().setLayout(null);
         
-        altOfLab = new AltaDeOfertaLaboral(ICO);
+        altOfLab = new AltaDeOfertaLaboral(ICO, ICU);
         altOfLab.setTitle("Alta de Oferta Laboral\r\n");
         altOfLab.setBounds(100, 100, 561, 475);
         altOfLab.setMaximizable(true);
@@ -223,6 +226,7 @@ public class Principal {
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Alta de Oferta Laboral");
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
+				altOfLab.cargarEmpresas();
 				altOfLab.setVisible(true);
 				altOfLab.limpiarFormulario();
             }

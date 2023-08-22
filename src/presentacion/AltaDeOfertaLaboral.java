@@ -21,7 +21,7 @@ import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
-import logica.DataUsuario;
+import logica_DataTypes.DataUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -75,7 +75,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		setBounds(100, 100, 561, 475);
 		getContentPane().setLayout(null);
 		
-		JComboBox<DataEmpresa> comboBoxEmpresa = new JComboBox()<>;
+		JComboBox<DataEmpresa> comboBoxEmpresa = new JComboBox<DataEmpresa>();
 		comboBoxEmpresa.setBounds(177, 7, 361, 21);
 		getContentPane().add(comboBoxEmpresa);
 		
@@ -265,6 +265,8 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		String descripcion = this.textAreaDescripcion.getText();
 		String departamento = this.textFieldDepartamento.getText();
 		String remuneracionTexto = textFieldRemuneracion.getText();
+		String empresa = (String) comboBoxEmpresa.getSelectedItem();
+		
         //si el campo esta vacio
 		if(!remuneracionTexto.isEmpty()) {
 		int remuneracion = Integer.parseInt(remuneracionTexto);}

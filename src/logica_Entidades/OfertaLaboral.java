@@ -22,7 +22,7 @@ public class OfertaLaboral {
 	private LocalTime horaFin;
 	private float remuneracion;
 	private float costoDeOfertaLaboral; 
-	private LocalDate fechaDeAlta; // la del momento en el alta
+	private java.sql.Date fechaDeAlta; // la del momento en el alta
 	
 	//Links de oferta
 		
@@ -35,23 +35,24 @@ public class OfertaLaboral {
 	// Operaciones
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
-			String departamento,LocalTime horaInicio, LocalTime horaFin
-			, float remuneracion , float costoDeOfertaLaboral, LocalDate fechaDeAlta)
+			String departamento,LocalTime horarioInicio, LocalTime horarioFin
+			, float remuneracion , float costoDeOfertaLaboral, java.sql.Date fecha)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
-		this.horaFin = horaFin;
-		this.horaInicio = horaInicio;
+		this.horaFin = horarioFin;
+		this.horaInicio = horarioInicio;
 		this.departamento = departamento;
 		this.remuneracion = remuneracion;
-		this.fechaDeAlta = fechaDeAlta;
+		this.fechaDeAlta = fecha;
 	}
 	
 	public DataOferta getDataOferta() {
-		DataOferta DO = new DataOferta(this.nombre,this.descripcion,this.ciudad,this.departamento,
-				this.horaInicio,this.horaFin,this.remuneracion,this.costoDeOfertaLaboral,this.fechaDeAlta);
+		DataOferta DO = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
+				this.departamento,this.horaInicio, this.horaFin
+				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta);
 		return DO;
 	}
 	

@@ -14,11 +14,11 @@ public class DataOferta {
 	private LocalTime horaFin;
 	private float remuneracion;
 	private float costoDeOfertaLaboral; 
-	private LocalDate fechaDeAlta; //la del momento en el alta
+	private java.sql.Date fechaDeAlta; //la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , float costoDeOfertaLaboral, LocalDate fechaDeAlta2)
+			, float remuneracion , float costoDeOfertaLaboral, java.sql.Date fechaDeAlta2)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
@@ -31,5 +31,6 @@ public class DataOferta {
 		this.fechaDeAlta = fechaDeAlta2;
 		
 	}
+
 }
 

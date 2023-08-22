@@ -36,7 +36,7 @@ public class Postulacion {
 		}
 		
 		public String getNombreOfer() {
-			return ofer.getNombre();
+			return ofer.getNombreOferta();
 		}
 		
 		public DataPostulacion getDTPostulacion() {

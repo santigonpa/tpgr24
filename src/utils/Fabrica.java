@@ -38,8 +38,7 @@ import logica_Manejadores.ManejadorUsuario;
     }
 
 	public ManejadorUsuario getManejadorUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+		return ManejadorUsuario.getinstance();
 	}
 
 	public ManejadorPaquetesYTiposPubli getManejadorPaquetesYTiposPubli() {

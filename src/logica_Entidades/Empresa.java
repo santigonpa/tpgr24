@@ -93,4 +93,8 @@ public class Empresa extends Usuario{
 		this.setLinkWeb(link);
 	}
 
+	public void linkearOfertaEmpresa(OfertaLaboral nuevaOferta,String nombreOferta) {
+		this.ofertas.put(nombreOferta, nuevaOferta);
+	}
+
 }

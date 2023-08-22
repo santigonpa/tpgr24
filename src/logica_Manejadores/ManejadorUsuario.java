@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import logica.ManejadorUsuario;
+import logica_Manejadores.ManejadorUsuario;
 import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
 import logica_DataTypes.DataEmpresa;
@@ -36,9 +36,10 @@ public class ManejadorUsuario {
         return ((Usuario) usuarios.get(nick));
     }
     
-    public Set<DataEmpresa> getDataEmpresas () {
-    	Set<DataEmpresa> res;
-    	Set<Empresa> temp;
+    @SuppressWarnings("null")
+	public Set<DataEmpresa> getDataEmpresas () {
+    	Set<DataEmpresa> res = null;
+    	Set<Empresa> temp = null;
     	
     	// Obtener las claves del Map
         Set<String> clavesEmpresas = this.empresas.keySet();
@@ -47,7 +48,7 @@ public class ManejadorUsuario {
         	temp.add(empAct);
         }
         for(Empresa empAct: temp) {
-        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNombre()); //falta poner los atributos no se todavia cuales son
+        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct.getDescripcion(),empAct.getLinkWeb());
         	res.add(nuevaDTEmp);
         }
         
