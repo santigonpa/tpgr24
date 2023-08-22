@@ -1,5 +1,5 @@
 package logica_Entidades;
-
+import java.time.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,17 +12,17 @@ import logica_Entidades.TipoPublicacion;
 
 public class OfertaLaboral {
 	
-	//atributos de la oferta laboral
+	 //atributos de la oferta laboral
 	
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
 	private String departamento;
-	private DataHorario horaInicio; // horario de trbaajo asociado
-	private DataHorario horaFin;
+	private LocalTime horaInicio; // horario de trabajo asociado - mejor usar la libreria, pase de DataHorario
+	private LocalTime horaFin;
 	private float remuneracion;
 	private float costoDeOfertaLaboral; 
-	private Date fechaDeAlta; // la del momento en el alta
+	private LocalDate fechaDeAlta; // la del momento en el alta
 	
 	//Links de oferta
 		
@@ -35,8 +35,8 @@ public class OfertaLaboral {
 	// Operaciones
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
-			String departamento,DataHorario horaInicio, DataHorario horaFin
-			, float remuneracion , float costoDeOfertaLaboral, Date fechaDeAlta)
+			String departamento,LocalTime horaInicio, LocalTime horaFin
+			, float remuneracion , float costoDeOfertaLaboral, LocalDate fechaDeAlta)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
@@ -56,12 +56,21 @@ public class OfertaLaboral {
 	}
 	
 	public void setEmpresa(Empresa e) {
-		this.empresaAsociada = e;
+		this.empresaAsociada = e; 
 	}
 	
 	public boolean existeLaPostulacion(String postulante) {
-		
-		return true;
+		boolean condicion = false;
+		if (this.postulacionesSobreLaOferta != null) {
+			for(Postulacion pos : this.postulacionesSobreLaOferta) {
+				if(pos.getNickPostulante().equals(postulante)) { //para comparar strings usamos equals
+					condicion = true;
+					break;
+				}
+					
+			}
+		}
+		return condicion;
 	}
 	
 	public void agregarKeywordAOferta(KeyWord key) {
