@@ -19,7 +19,6 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
-import excepciones.UsuarioRepetidoException;
 import logica_Controladores.IControladorOferta;
 
 import javax.swing.JButton;
@@ -261,7 +260,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         
         
         if (verificarFormulario()) {
-            try {
+            /*try {
                 //ESTA OPERACION DA EL ALTA
             	this.ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
 
@@ -269,10 +268,10 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La oferta se ha creado con exito", "Alta de Oferta Laboral",
                         JOptionPane.INFORMATION_MESSAGE);
 
-            } catch (NombreRepetidoOfertaException e) {
+            } catch (NombreRepetidoOfertaException e2) {
                 // Muestro error de registro
-               JOptionPane.showMessageDialog(this, e.getMessage(), "Alta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
-           }
+               JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+           }*/
 
             // Limpio el internal frame antes de cerrar la ventana
             limpiarFormulario();
