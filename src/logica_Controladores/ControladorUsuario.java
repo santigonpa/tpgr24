@@ -1,6 +1,7 @@
 package logica_Controladores;
 
 import java.util.Set;
+import java.util.Date;
 import java.util.Map;
 import java.time.*;
 
@@ -117,20 +118,42 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		return res;
 	}
 
-	@Override
-	public void altaUsuario(String nickname, String nombre, String apellido, String email, String descripcion,
-			String web) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	public Set<DataKeyWord> getDataKeyWord() {
 		Fabrica fabrica = Fabrica.getInstance();
 		ManejadorOferta mu = fabrica.getManejadorOferta();
 		
 		Set<DataKeyWord> res = mu.getDataKeyWord();
 		return res;
+	}
+
+	@Override
+	public void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
+			String web) throws NicknameYaExisteException {
+		ManejadorUsuario mu = ManejadorUsuario.getinstance();
+        Usuario empresa = mu.obtenerUsuario(nickname);
+        if ( empresa!= null)
+            throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
+
+        empresa = new Empresa(nickname,nombre,apellido,email,descripcion,web);
+        mu.addUsuario(empresa);
+		
+	}
+
+	@Override
+	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
+			String web) throws NicknameYaExisteException {
+		ManejadorUsuario mu = ManejadorUsuario.getinstance();
+        Usuario postulante = mu.obtenerUsuario(nickname);
+        if (postulante != null)
+            throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
+     // Convertir Date a Instant
+        Instant instant = nacimiento.toInstant();
+
+        // Convertir Instant a LocalDate
+        LocalDate nacLD = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        postulante = new Postulante(nickname, nombre, apellido, email, nacLD, web);
+        mu.addUsuario(postulante);
+		
 	}
 	
 }

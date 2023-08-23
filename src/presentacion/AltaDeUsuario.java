@@ -65,8 +65,9 @@ public class AltaDeUsuario extends JInternalFrame{
 	/**
 	 * Create the application.
 	 */
-	public AltaDeUsuario(IControladorOferta ICO, IControladorUsuario ICU) {
-
+	public AltaDeUsuario(IControladorOferta Ico, IControladorUsuario Icu) {
+		ICO =Ico;
+		ICU = Icu;
 		setTitle("Alta de usuario");
 		setBounds(100, 100, 450, 300);
 		setResizable(true);
@@ -89,7 +90,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	 // Crear un SpinnerDateModel para manejar la fecha
 	    Date initialDate = Calendar.getInstance().getTime();
         SpinnerDateModel dateModel = new SpinnerDateModel(initialDate, null, null, Calendar.DAY_OF_MONTH);
-	    JSpinner spinnerNacimiento = new JSpinner(dateModel);
+	    spinnerNacimiento = new JSpinner(dateModel);
 	    getContentPane().add(spinnerNacimiento, "cell 3 4 2 1,grow");
 	 // Personalizar la apariencia del JSpinner para mostrar solo la fecha
 	    JSpinner.DateEditor de_spinnerNacimiento = new JSpinner.DateEditor(spinnerNacimiento, "dd/MM/yyyy");
@@ -115,7 +116,8 @@ public class AltaDeUsuario extends JInternalFrame{
 	    textFieldLink.setColumns(10);
 	    
 		
-	    JComboBox<String> seleccionTipoUsuario = new JComboBox<String>();
+	    seleccionTipoUsuario = new JComboBox<String>();
+
 	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"}));
 	    getContentPane().add(seleccionTipoUsuario, "cell 10 0 6 1,growx");
 	    seleccionTipoUsuario.addActionListener(new ActionListener() {
