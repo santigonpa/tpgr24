@@ -1,6 +1,7 @@
 package presentacion;
 
 import java.awt.EventQueue;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -19,11 +20,16 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.DocumentFilter.FilterBypass;
 
 public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
-	private JTextField txtIngreseTexto;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNombre;
+	private JTextField textFieldDescripcion;
+	private JTextField textFieldCosto;
 
 	/**
 	 * Launch the application.
@@ -51,16 +57,16 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		setMaximizable(true);
 		getContentPane().setLayout(null);
 		
-		txtIngreseTexto = new JTextField();
-		txtIngreseTexto.setBounds(173, 13, 230, 20);
-		getContentPane().add(txtIngreseTexto);
-		txtIngreseTexto.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(173, 13, 230, 20);
+		getContentPane().add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Descripcion :");
 		lblNewLabel_1.setBounds(10, 56, 70, 24);
 		getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Induque la exposicion en formato ");
+		JLabel lblNewLabel_1_1 = new JLabel("Indique la exposicion en formato ");
 		lblNewLabel_1_1.setBounds(10, 99, 165, 31);
 		getContentPane().add(lblNewLabel_1_1);
 		
@@ -80,19 +86,19 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		lblNewLabel_1_1_1_1.setBounds(10, 184, 70, 43);
 		getContentPane().add(lblNewLabel_1_1_1_1);
 		
-		textField = new JTextField();
-		textField.setBounds(90, 50, 313, 38);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldDescripcion = new JTextField();
+		textFieldDescripcion.setBounds(90, 50, 313, 38);
+		getContentPane().add(textFieldDescripcion);
+		textFieldDescripcion.setColumns(10);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-		spinner.setBounds(128, 130, 68, 20);
-		getContentPane().add(spinner);
+		JSpinner ex = new JSpinner();
+		ex.setModel(new SpinnerNumberModel(0, 0, 100, 1));
+		ex.setBounds(128, 130, 68, 20);
+		getContentPane().add(ex);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(375, 117, 30, 20);
-		getContentPane().add(spinner_1);
+		JSpinner duracion = new JSpinner();
+		duracion.setBounds(375, 117, 30, 20);
+		getContentPane().add(duracion);
 		
 		JLabel lblNewLabel = new JLabel("(en dias) :");
 		lblNewLabel.setBounds(275, 132, 70, 14);
@@ -103,6 +109,11 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				darAlta(e);
+			}
+		});
 		btnNewButton.setBounds(225, 236, 89, 23);
 		getContentPane().add(btnNewButton);
 		
@@ -117,13 +128,38 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		btnCancelar.setBounds(335, 236, 89, 23);
 		getContentPane().add(btnCancelar);
 		
-		JSpinner spinner_4_1 = new JSpinner();
-		spinner_4_1.setBounds(286, 187, 68, 20);
-		getContentPane().add(spinner_4_1);
+		JSpinner fecha = new JSpinner();
+		fecha.setBounds(286, 187, 68, 20);
+		getContentPane().add(fecha);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(61, 196, 70, 19);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		textFieldCosto = new JTextField();
+		textFieldCosto.setBounds(61, 196, 70, 19);
+		getContentPane().add(textFieldCosto);
+		textFieldCosto.setColumns(10);
+		
+		//ESTO ES PARA QUE REMUNERACION SOLO RECIBA NUMEROS
+        
+        AbstractDocument doc = (AbstractDocument) textFieldCosto.getDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                if (text != null && text.matches("\\d+")) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text != null && text.matches("\\d+")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });         
+	}
+	
+	protected void darAlta(ActionEvent e) {
+		String nombre = this.txtNombre.getText();
+		String descripcion = this.textFieldDescripcion.getText();
+		int exp = (int) ex.getValue();
 	}
 }
