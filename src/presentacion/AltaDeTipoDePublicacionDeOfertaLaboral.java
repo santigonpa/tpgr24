@@ -91,11 +91,6 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textFieldDescripcion);
 		textFieldDescripcion.setColumns(10);
 		
-		JSpinner ex = new JSpinner();
-		ex.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-		ex.setBounds(128, 130, 68, 20);
-		getContentPane().add(ex);
-		
 		JSpinner duracion = new JSpinner();
 		duracion.setBounds(375, 117, 30, 20);
 		getContentPane().add(duracion);
@@ -137,6 +132,11 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
+		JSpinner exp = new JSpinner();
+		exp.setModel(new SpinnerNumberModel(0, 0, 0, 1));
+		exp.setBounds(128, 130, 30, 20);
+		getContentPane().add(exp);
+		
 		//ESTO ES PARA QUE REMUNERACION SOLO RECIBA NUMEROS
         
         AbstractDocument doc = (AbstractDocument) textFieldCosto.getDocument();
@@ -160,6 +160,8 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	protected void darAlta(ActionEvent e) {
 		String nombre = this.txtNombre.getText();
 		String descripcion = this.textFieldDescripcion.getText();
-		int exp = (int) ex.getValue();
+		int exposicion = (int) exp.getValue();
+		int dur = duracion.getValue();
+		
 	}
 }
