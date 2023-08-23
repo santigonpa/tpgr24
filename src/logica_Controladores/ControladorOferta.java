@@ -1,15 +1,12 @@
 package logica_Controladores;
 
-import java.sql.Date;
 import java.time.LocalTime;
 import java.util.Set;
 
 import excepciones.NombreRepetidoOfertaException;
-import logica_DataTypes.DataHorario;
 import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
 import utils.Fabrica;
-import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.ManejadorOferta;
 import logica_Manejadores.ManejadorPaquetesYTiposPubli;
@@ -30,7 +27,7 @@ public class ControladorOferta implements IControladorOferta {
 
 	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, float remuneracion, String ciudad,
-			String departamento, Date fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
+			String departamento, java.util.Date fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		ManejadorUsuario mu = fabrica.getManejadorUsuario();
@@ -61,6 +58,7 @@ public class ControladorOferta implements IControladorOferta {
 		mo.addOferta(nuevaOferta);
 			
 	}
+
 		
 	
 	

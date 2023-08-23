@@ -36,7 +36,7 @@ public class OfertaLaboral {
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horarioInicio, LocalTime horarioFin
-			, float remuneracion , float costoDeOfertaLaboral, java.sql.Date fecha)
+			, float remuneracion , float costoDeOfertaLaboral, java.util.Date fecha)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
@@ -46,7 +46,7 @@ public class OfertaLaboral {
 		this.horaInicio = horarioInicio;
 		this.departamento = departamento;
 		this.remuneracion = remuneracion;
-		this.fechaDeAlta = fecha;
+		this.fechaDeAlta = (java.sql.Date) fecha;
 	}
 	
 	public DataOferta getDataOferta() {

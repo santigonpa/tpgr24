@@ -62,6 +62,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -77,8 +78,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AltaDeOfertaLaboral(IControladorOferta ICO, IControladorUsuario ICU) {
-		
+	public AltaDeOfertaLaboral(IControladorOferta Ico, IControladorUsuario Icu) {
+		ICO = Ico;
+		ICU =Icu;
 		seleccionados = new HashSet<>();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -429,5 +431,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	    
 	    // Establecer el modelo en el JList
 	    listaKeyWords.setModel(model);
+	}
+	
+	public void chequearDatosCargados() {
+		
 	}
 }
