@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.time.*;
 import java.util.Set;
+import java.util.HashSet;
+
 
 
 import logica_DataTypes.DataPostulante;
@@ -20,7 +22,7 @@ public class Postulante extends Usuario{
 		super(nickName, nombre, apellido, email);
 		this.nacimiento = nacimiento;
 		this.nacionalidad = nacionalidad;
-		this.postulaciones = new HashMap<>();
+		this.postulaciones = new HashSet<>();
 	}
 	
 	//getters

@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.text.*;
@@ -24,12 +27,14 @@ import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
 import logica_DataTypes.DataUsuario;
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import utils.Fabrica;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -47,7 +52,10 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	private JTextArea textAreaDescripcion;
 	private JComboBox<DataEmpresa> comboBoxEmpresa;
 	private JComboBox<DataTipoPublicacion> comboBoxTipoPublicacion;
-	
+	private JSpinner spinnerInicio;
+	private JSpinner spinnerFin;
+	private JSpinner spinnerFecha;
+	private JList listaKeyWords;
 	/**
 	 * Launch the application.
 	 */
@@ -130,20 +138,20 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_7);
         
         //Configura el SpinnerDateModel solo para la parte de la hora
-        JSpinner spinner = new JSpinner();
-        spinner.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
-        spinner.setBounds(76, 168, 50, 20);
-        getContentPane().add(spinner);
-        JSpinner.DateEditor editor = new JSpinner.DateEditor(spinner, "HH:mm");
-        spinner.setEditor(editor);
+        JSpinner spinnerInicio = new JSpinner();
+        spinnerInicio.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
+        spinnerInicio.setBounds(76, 168, 50, 20);
+        getContentPane().add(spinnerInicio);
+        JSpinner.DateEditor editor = new JSpinner.DateEditor(spinnerInicio, "HH:mm");
+        spinnerInicio.setEditor(editor);
         
         //Configura el SpinnerDateModel solo para la parte de la hora
-        JSpinner spinner1 = new JSpinner();
-        spinner1.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
-        spinner1.setBounds(76, 191, 50, 20);
-        getContentPane().add(spinner1);
-        JSpinner.DateEditor editor2 = new JSpinner.DateEditor(spinner1, "HH:mm");
-        spinner1.setEditor(editor2);
+        JSpinner spinnerFin = new JSpinner();
+        spinnerFin.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
+        spinnerFin.setBounds(76, 191, 50, 20);
+        getContentPane().add(spinnerFin);
+        JSpinner.DateEditor editor2 = new JSpinner.DateEditor(spinnerFin, "HH:mm");
+        spinnerFin.setEditor(editor2);
         
         
         textFieldRemuneracion = new JTextField();
@@ -208,23 +216,23 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         lblNewLabel_5_1.setBounds(177, 146, 243, 13);
         getContentPane().add(lblNewLabel_5_1);
         
-        JList list = new JList();
-        list.setBounds(177, 171, 228, 62);
-        getContentPane().add(list);
+        JList listaKeyWords = new JList();
+        listaKeyWords.setBounds(177, 171, 228, 62);
+        getContentPane().add(listaKeyWords);
         
-        JButton btnNewButton = new JButton("Seleccionar");
-        btnNewButton.setBounds(429, 185, 103, 30);
-        getContentPane().add(btnNewButton);
+        JButton btnSeleccionarKeyword = new JButton("Seleccionar");
+        btnSeleccionarKeyword.setBounds(429, 185, 103, 30);
+        getContentPane().add(btnSeleccionarKeyword);
         
         JLabel lblNewLabel_5_2 = new JLabel("Fecha Del Alta : ");
         lblNewLabel_5_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
         lblNewLabel_5_2.setBounds(142, 349, 131, 13);
         getContentPane().add(lblNewLabel_5_2);
         
-        JSpinner spinner_1 = new JSpinner();
-        spinner_1.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
-        spinner_1.setBounds(290, 347, 105, 20);
-        getContentPane().add(spinner_1);
+        JSpinner spinnerFecha = new JSpinner();
+        spinnerFecha.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
+        spinnerFecha.setBounds(290, 347, 105, 20);
+        getContentPane().add(spinnerFecha);
         
         JButton btnCancelar = new JButton("CANCELAR");
         btnCancelar.setBounds(293, 407, 102, 21);
@@ -266,6 +274,21 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		String remuneracionTexto = textFieldRemuneracion.getText();
 		String empresa = (String) comboBoxEmpresa.getSelectedItem();
 		String tipoPubli = (String) comboBoxTipoPublicacion.getSelectedItem();
+		Date fecha = (Date) spinnerFecha.getValue();
+
+		
+		// Obtener el valor seleccionado del spinner
+		Date horaSeleccionadaDate = (Date) spinnerInicio.getValue();
+		// Convertir el valor a un objeto LocalTime
+		Instant instant = horaSeleccionadaDate.toInstant();
+		LocalTime horarioInicio = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+		
+		// Obtener el valor seleccionado del spinner
+		Date horaSeleccionadaDate2 = (Date) spinnerInicio.getValue();
+		// Convertir el valor a un objeto LocalTime
+		Instant instant2 = horaSeleccionadaDate.toInstant();
+		LocalTime horarioFin = instant2.atZone(ZoneId.systemDefault()).toLocalTime();
+		
 		int remuneracion;
         //si el campo esta vacio
 		if(!remuneracionTexto.isEmpty()) {
@@ -367,6 +390,20 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	    
 	    // Establecer el modelo en el JComboBox
 	    comboBoxTipoPublicacion.setModel(model);
+	}
+	
+	public void cargarKeywords() { //FALTA INICIARLO CON EL INTERVAL FRAME EN PRINCIPAL
+	    Set<DataKeyWord> keywords = ICU.getDataKeyWord();
+	    
+	    DefaultListModel<DataKeyWord> model = new DefaultListModel<>();
+	    
+	    // Agregar las keywords al modelo del JList
+	    for (DataKeyWord keyword : keywords) {
+	        model.addElement(keyword);
+	    }
+	    
+	    // Establecer el modelo en el JList
+	    listaKeyWords.setModel(model);
 	}
 
 }

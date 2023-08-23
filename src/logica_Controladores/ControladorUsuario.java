@@ -4,15 +4,13 @@ import java.util.Set;
 import java.util.Map;
 import java.time.*;
 
-import logica_excepciones.NicknameYaExisteException;
-import logica_excepciones.RegistroAPostulacionYaExisteException;
-import logica_excepciones.EmailYaExisteException;
+import excepciones.NicknameYaExisteException;
+import excepciones.RegistroAPostulacionYaExisteException;
+import excepciones.EmailYaExisteException;
 import logica_DataTypes.DataEmpresa;
-<<<<<<< HEAD
+import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
-=======
 import logica_DataTypes.DataUsuario;
->>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
 import utils.Fabrica;
 import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
@@ -51,7 +49,7 @@ public class ControladorUsuario implements IControladorUsuario {
 			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
 		}
 		if(manejador.emailYaExiste(email)) {
-			throw new EmailYaExisteException("Ya existe un usuasio con este email");
+			throw new EmailYaExisteException("Ya existe un usuario con este email");
 		}
 		
 		Postulante post = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
@@ -83,7 +81,7 @@ public void agregarPostulacionAPostulante(String postulante, Postulacion postula
 }
 
 public Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa){
-	Empresa e = this.manejador.obtenerEmpresa(empresa.getNickName());
+	Empresa e = (Empresa) this.manejador.obtenerUsuario(empresa.getNickName());
 	Map<String, OfertaLaboral> ofertas = e.getOfertas();
 	return ofertas;
 }
@@ -116,6 +114,19 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 		Set<DataTipoPublicacion> res = mu.getDataTipoPublicacion();
 		return res;
+	}
+
+	@Override
+	public void altaUsuario(String nickname, String nombre, String apellido, String email, String descripcion,
+			String web) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public Set<DataKeyWord> getDataKeyWord() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -3,6 +3,7 @@ package logica_Controladores;
 import java.util.Set;
 
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
 
 public interface IControladorUsuario {
@@ -13,5 +14,7 @@ public interface IControladorUsuario {
 
 	public abstract void altaUsuario(String nickname, String nombre, String apellido, String email, String descripcion,
 			String web);
+
+	public abstract Set<DataKeyWord> getDataKeyWord();
 
 }

@@ -227,6 +227,7 @@ public class Principal {
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
 				altOfLab.cargarEmpresas();
+				altOfLab.cargarTiposDePublicacion();
 				altOfLab.setVisible(true);
 				altOfLab.limpiarFormulario();
             }
