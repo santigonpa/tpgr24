@@ -26,7 +26,8 @@ import logica_Entidades.OfertaLaboral;
 public class ControladorUsuario implements IControladorUsuario {
 	
 	//Atributos
-	private ManejadorUsuario manejador;
+	private ManejadorUsuario manejadorUsuario;
+	private ManejadorPaquetesYTiposPubli ManejadorTiposPubli;
 	
 	private static ControladorUsuario instancia;
 	
@@ -34,7 +35,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 	
 	public void setManejador(ManejadorUsuario m) {
-		this.manejador = m;
+		this.manejadorUsuario = m;
 	}
 	
 	public static ControladorUsuario getInstance() {
@@ -47,34 +48,34 @@ public class ControladorUsuario implements IControladorUsuario {
 	//alta postulante
 	public void darAltaUsuario(String nickname, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException{
 		
-		if(manejador.nickNameYaExiste(nickname)) {
+		if(manejadorUsuario.nickNameYaExiste(nickname)) {
 			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
 		}
-		if(manejador.emailYaExiste(email)) {
+		if(manejadorUsuario.emailYaExiste(email)) {
 			throw new EmailYaExisteException("Ya existe un usuario con este email");
 		}
 		
 		Postulante post = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
-		this.manejador.addUsuario(post);
+		this.manejadorUsuario.addUsuario(post);
 		
 	}
  
 	//alta empresa
 public void darAltaUsuario(String nickname, String nombre, String apellido, String email, String descripcion, String web) throws NicknameYaExisteException, EmailYaExisteException{
 		
-		if(manejador.nickNameYaExiste(nickname)) {
+		if(manejadorUsuario.nickNameYaExiste(nickname)) {
 			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
 		}
-		if(manejador.emailYaExiste(email)) {
+		if(manejadorUsuario.emailYaExiste(email)) {
 			throw new EmailYaExisteException("Ya existe un usuasio con este email");
 		}
 		
 		Empresa emp = new Empresa(nickname, nombre, apellido, email, descripcion, web);
-		this.manejador.addUsuario(emp);
+		this.manejadorUsuario.addUsuario(emp);
 	}
 
 public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws RegistroAPostulacionYaExisteException {
-	Postulante pos = this.manejador.obtenerPostulante(postulante);
+	Postulante pos = this.manejadorUsuario.obtenerPostulante(postulante);
 	if(pos.estaPostulado(postulacion)) {
 		throw new RegistroAPostulacionYaExisteException("El postulante ya se encuentra postulado a dicha postulacion");
 	}else {
@@ -83,19 +84,19 @@ public void agregarPostulacionAPostulante(String postulante, Postulacion postula
 }
 
 public Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa){
-	Empresa e = (Empresa) this.manejador.obtenerUsuario(empresa.getNickName());
+	Empresa e = (Empresa) this.manejadorUsuario.obtenerUsuario(empresa.getNickName());
 	Map<String, OfertaLaboral> ofertas = e.getOfertas();
 	return ofertas;
 }
 
 public DataUsuario listarInfoUser(String usuario) {
-	Usuario user = this.manejador.obtenerUsuario(usuario);
+	Usuario user = this.manejadorUsuario.obtenerUsuario(usuario);
 	DataUsuario DtUser = new DataUsuario(user.getNickName(), user.getNombre(), user.getApellido(), user.getEmail());
 	return DtUser;
 }
 
 public Set<Postulacion> obtenerPostulaciones(String usuario){
-	Postulante post = (Postulante)this.manejador.obtenerUsuario(usuario);
+	Postulante post = (Postulante)this.manejadorUsuario.obtenerUsuario(usuario);
 	Set<Postulacion> res = post.obtenerPostulaciones();
 	return res;
 }
@@ -112,9 +113,9 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	@Override
 	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
 		Fabrica fabrica = Fabrica.getInstance();
-		ManejadorPaquetesYTiposPubli mu = fabrica.getManejadorPaquetesYTiposPubli();
+		ManejadorTiposPubli = fabrica.getManejadorPaquetesYTiposPubli();
 		
-		Set<DataTipoPublicacion> res = mu.getDataTipoPublicacion();
+		Set<DataTipoPublicacion> res = this.ManejadorTiposPubli.getDataTipoPublicacion();
 		return res;
 	}
 

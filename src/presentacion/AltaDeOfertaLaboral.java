@@ -88,7 +88,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		setBounds(100, 100, 561, 475);
 		getContentPane().setLayout(null);
 		
-		JComboBox<DataEmpresa> comboBoxEmpresa = new JComboBox<DataEmpresa>();
+		comboBoxEmpresa = new JComboBox<DataEmpresa>();
 		comboBoxEmpresa.setBounds(177, 7, 361, 21);
 		getContentPane().add(comboBoxEmpresa);
 		
