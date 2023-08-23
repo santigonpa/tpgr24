@@ -12,6 +12,7 @@ import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import utils.Fabrica;
+import logica_Manejadores.ManejadorOferta;
 import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
 import logica_Entidades.Postulacion;
@@ -125,8 +126,11 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 
 
 	public Set<DataKeyWord> getDataKeyWord() {
-		// TODO Auto-generated method stub
-		return null;
+		Fabrica fabrica = Fabrica.getInstance();
+		ManejadorOferta mu = fabrica.getManejadorOferta();
+		
+		Set<DataKeyWord> res = mu.getDataKeyWord();
+		return res;
 	}
 	
 }

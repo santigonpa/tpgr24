@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataKeyWord;
+import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 
@@ -47,6 +50,25 @@ public class ManejadorOferta{
 	public void addOferta(OfertaLaboral nuevaOferta) {
 		String nombre = nuevaOferta.getNombreOferta();
         this.ofertasLaborales.put(nombre, nuevaOferta);
+	}
+
+	@SuppressWarnings("null")
+	public Set<DataKeyWord> getDataKeyWord() {
+		Set<DataKeyWord> res = null;
+    	Set<KeyWord> temp = null;
+    	
+    	// Obtener las claves del Map
+        Set<String> clavesKeyWord = this.keywordsTotales.keySet();
+        for(String nombreKeyword : clavesKeyWord) {
+        	KeyWord keyAct = ((KeyWord) this.keywordsTotales.get(nombreKeyword));
+        	temp.add(keyAct);
+        }
+        for(KeyWord keyAct: temp) {
+        	DataKeyWord nuevaDTKey = new DataKeyWord(keyAct.getPalabraClave());
+        	res.add(nuevaDTKey);
+        }
+        
+    	return res;
 	}
 
 }

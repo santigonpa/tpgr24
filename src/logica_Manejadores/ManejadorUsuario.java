@@ -55,4 +55,19 @@ public class ManejadorUsuario {
     	return res;
     }
 
+	public boolean nickNameYaExiste(String nickname) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean emailYaExiste(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Postulante obtenerPostulante(String postulante) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
