@@ -6,7 +6,7 @@ import logica_DataTypes.DataPostulacion;
 
 public class Postulacion {
 
-	//Atributos 
+	//Atributos
 	private LocalDate fecha;
 	private String cv;
 	private String motivacion;
@@ -36,7 +36,7 @@ public class Postulacion {
 		}
 		
 		public String getNombreOfer() {
-			return ofer.getNombre();
+			return ofer.getNombreOferta();
 		}
 		
 		public DataPostulacion getDTPostulacion() {
