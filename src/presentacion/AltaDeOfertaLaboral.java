@@ -10,8 +10,8 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.text.*;
-import java.util.List;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -24,14 +24,11 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
-import excepciones.UsuarioNoExisteException;
-import logica_DataTypes.DataUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
-import utils.Fabrica;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -41,6 +38,10 @@ import javax.swing.JFrame;
 
 public class AltaDeOfertaLaboral extends JInternalFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// interfaz de oferta
 	private static IControladorOferta ICO;
 	private static IControladorUsuario ICU;
@@ -55,7 +56,8 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	private JSpinner spinnerInicio;
 	private JSpinner spinnerFin;
 	private JSpinner spinnerFecha;
-	private JList listaKeyWords;
+	private JList<DataKeyWord> listaKeyWords;
+	private Set<String> seleccionados;
 	/**
 	 * Launch the application.
 	 */
@@ -77,6 +79,8 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	 */
 	public AltaDeOfertaLaboral(IControladorOferta ICO, IControladorUsuario ICU) {
 		
+		seleccionados = new HashSet<>();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Alta de Oferta Laboral");
 		setBounds(100, 100, 561, 475);
@@ -96,9 +100,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 38, 215, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		JComboBox comboBoxTipoDePublicacion = new JComboBox<DataTipoPublicacion>();
+		JComboBox<DataTipoPublicacion> comboBoxTipoDePublicacion = new JComboBox<DataTipoPublicacion>();
 		comboBoxEmpresa.setBounds(235, 38, 303, 21);
-		getContentPane().add(comboBoxEmpresa);
+		getContentPane().add(comboBoxTipoDePublicacion);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingrese debajo los siguientes datos acerca de la oferta laboral :");
 		lblNewLabel_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -216,13 +220,33 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         lblNewLabel_5_1.setBounds(177, 146, 243, 13);
         getContentPane().add(lblNewLabel_5_1);
         
-        JList listaKeyWords = new JList();
+        JList<DataKeyWord> listaKeyWords = new JList<DataKeyWord>();
         listaKeyWords.setBounds(177, 171, 228, 62);
         getContentPane().add(listaKeyWords);
         
         JButton btnSeleccionarKeyword = new JButton("Seleccionar");
         btnSeleccionarKeyword.setBounds(429, 185, 103, 30);
         getContentPane().add(btnSeleccionarKeyword);
+        
+        btnSeleccionarKeyword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener el elemento seleccionado
+                DataKeyWord seleccion = (DataKeyWord)listaKeyWords.getSelectedValue();
+                if (seleccion != null) {
+                    // Agregar el identificador al conjunto de seleccionados
+                    seleccionados.add(seleccion.getPalabraClave());
+
+                    // Deshabilitar la selección en la lista
+                    DefaultListModel<DataKeyWord> model = (DefaultListModel<DataKeyWord>) listaKeyWords.getModel();
+                    model.removeElement(seleccion);
+
+                    // Actualizar la JList
+                    listaKeyWords.setModel(model);
+                }
+            }
+        });
+    
         
         JLabel lblNewLabel_5_2 = new JLabel("Fecha Del Alta : ");
         lblNewLabel_5_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -284,22 +308,23 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		LocalTime horarioInicio = instant.atZone(ZoneId.systemDefault()).toLocalTime();
 		
 		// Obtener el valor seleccionado del spinner
-		Date horaSeleccionadaDate2 = (Date) spinnerInicio.getValue();
+		Date horaSeleccionadaDate2 = (Date) spinnerFin.getValue();
 		// Convertir el valor a un objeto LocalTime
-		Instant instant2 = horaSeleccionadaDate.toInstant();
+		Instant instant2 = horaSeleccionadaDate2.toInstant();
 		LocalTime horarioFin = instant2.atZone(ZoneId.systemDefault()).toLocalTime();
 		
-		int remuneracion;
+		float remuneracion = 0;
+		
         //si el campo esta vacio
 		if(!remuneracionTexto.isEmpty()) {
-		remuneracion = Integer.parseInt(remuneracionTexto);}
+		remuneracion = (float)Integer.parseInt(remuneracionTexto);}
 		//OBTENER DATOS DE LAS HORAS Y FECHAS
         
         
         if (verificarFormulario()) {
             try {
                 //ESTA OPERACION DA EL ALTA
-            	ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec);
+            	ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha,seleccionados);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La oferta se ha creado con exito", "Alta de Oferta Laboral",
@@ -392,7 +417,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	    comboBoxTipoPublicacion.setModel(model);
 	}
 	
-	public void cargarKeywords() { //FALTA INICIARLO CON EL INTERVAL FRAME EN PRINCIPAL
+	public void cargarKeywords() {
 	    Set<DataKeyWord> keywords = ICU.getDataKeyWord();
 	    
 	    DefaultListModel<DataKeyWord> model = new DefaultListModel<>();
@@ -405,5 +430,4 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	    // Establecer el modelo en el JList
 	    listaKeyWords.setModel(model);
 	}
-
 }

@@ -228,6 +228,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e2) {
 				altOfLab.cargarEmpresas();
 				altOfLab.cargarTiposDePublicacion();
+				altOfLab.cargarKeywords();
 				altOfLab.setVisible(true);
 				altOfLab.limpiarFormulario();
             }
