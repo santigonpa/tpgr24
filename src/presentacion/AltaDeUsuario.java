@@ -231,9 +231,10 @@ public class AltaDeUsuario extends JInternalFrame{
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
 		String email = this.textFieldEmail.getText();
+		String selectedOption1 = (String) seleccionTipoUsuario.getSelectedItem();
 		
-		if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty( )|| email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
+		if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty( )|| email.isEmpty() || selectedOption1.equals("Seleccione tipo usuario...") ) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos y debe seleccionar empresa o postulante", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
