@@ -223,6 +223,7 @@ public class Principal {
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				altaUser.setVisible(true);
+				altaUser.limpiarFormulario();
             }
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_5);
