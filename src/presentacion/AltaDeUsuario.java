@@ -45,6 +45,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	private JTextField textFieldNacionalidad;
 	private JComboBox<String> seleccionTipoUsuario;
 	private JSpinner spinnerNacimiento;
+	private String[] arreglo;
 
 	/**
 	 * Launch the application.
@@ -117,8 +118,8 @@ public class AltaDeUsuario extends JInternalFrame{
 	    
 		
 	    seleccionTipoUsuario = new JComboBox<String>();
-
-	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"}));
+	    arreglo = new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"};
+	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel<String>(arreglo));
 	    getContentPane().add(seleccionTipoUsuario, "cell 10 0 6 1,growx");
 	    seleccionTipoUsuario.addActionListener(new ActionListener() {
             @Override
@@ -209,9 +210,13 @@ public class AltaDeUsuario extends JInternalFrame{
     	        if (selectedOption.equals("Empresa")) {
     	            ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web);
     	            JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
+    	            limpiarFormulario();
+                    setVisible(false);
     	        } else if (selectedOption.equals("Postulante")) {
     	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
     	            JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
+    	            limpiarFormulario();
+                    setVisible(false);
     	        }
     	    } catch (NicknameYaExisteException e2) {
     	        // Manejar la excepción NicknameYaExisteException aquí
@@ -255,6 +260,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	}
 	
 	public void limpiarFormulario() {
+		this.seleccionTipoUsuario.setSelectedItem(arreglo[0]);
 		this.textFieldNickname.setText("");
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
