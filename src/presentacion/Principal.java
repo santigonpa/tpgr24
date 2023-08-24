@@ -26,7 +26,7 @@ import java.awt.CardLayout;
 public class Principal {
 
 	private JFrame trabajouy;
-	private ConsultarUsuario conUsrInternalFrame;
+	private ConsultaDeUsuario conUsrInternalFrame;
 	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
 	private ModificarDatosDeUsuario modDatosUser;
 	private AltaDeUsuario altaUser;
@@ -66,7 +66,8 @@ public class Principal {
         this.ICO = fabrica.getInOfer();
         this.ICU = fabrica.getInUser();
 		
-		conUsrInternalFrame = new ConsultarUsuario();
+		conUsrInternalFrame = new ConsultaDeUsuario();
+		conUsrInternalFrame.setTitle("Consulta de Usuario");
 		conUsrInternalFrame.setBounds(163, 79, 444, 302);
 		conUsrInternalFrame.setMaximizable(true);
 		conUsrInternalFrame.setClosable(true);
