@@ -61,4 +61,9 @@ public class CompraPaquete {
 		DataCompraPaquete DtCompraPaq = new DataCompraPaquete(this.fechaCompra, this.fechaVenc);
 		return DtCompraPaq;
 	}
+
+	public int getCosto() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
