@@ -1,13 +1,14 @@
 package logica_Manejadores;
 
 import java.util.Set;
+import java.util.Map;
 
 import logica_DataTypes.DataEmpresa;
 import logica_Entidades.Usuario;
 
 public interface IManejadorUsuario {
 
-	public abstract Set<DataEmpresa> getDataEmpresas();
+	public abstract Map<String, DataEmpresa> getDataEmpresas();
 
 	public abstract boolean nickNameYaExiste(String nickname);
 

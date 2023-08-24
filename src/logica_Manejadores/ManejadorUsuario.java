@@ -50,8 +50,8 @@ public class ManejadorUsuario implements IManejadorUsuario {
         return  usuarios.getOrDefault(nick,null); //si no existe deberia retornar null
     }
     
-    public Set<DataEmpresa> getDataEmpresas () {
-    	Set<DataEmpresa> res = new HashSet<>();;
+    public Map<String, DataEmpresa> getDataEmpresas () {
+    	Map<String, DataEmpresa> res = new HashMap<>();;
     	Set<Empresa> temp = new HashSet<>();
     	
     	// Obtener las claves del Map
@@ -62,7 +62,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
         }
         for(Empresa empAct: temp) {
         	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct.getDescripcion(),empAct.getLinkWeb());
-        	res.add(nuevaDTEmp);
+        	res.put(empAct.getNickName(), nuevaDTEmp);
         }
         
     	return res;
