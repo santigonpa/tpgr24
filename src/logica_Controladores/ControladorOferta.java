@@ -9,6 +9,9 @@ import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
 import utils.Fabrica;
 import logica_Entidades.OfertaLaboral;
+import logica_Manejadores.IManejadorOferta;
+import logica_Manejadores.IManejadorPyT;
+import logica_Manejadores.IManejadorUsuario;
 import logica_Manejadores.ManejadorOferta;
 import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
@@ -31,9 +34,9 @@ public class ControladorOferta implements IControladorOferta {
 			String departamento, java.util.Date fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
 		
 		Fabrica fabrica = Fabrica.getInstance();
-		ManejadorUsuario mu = fabrica.getManejadorUsuario();
-		ManejadorOferta mo = fabrica.getManejadorOferta();
-		ManejadorPaquetesYTiposPubli mpt = fabrica.getManejadorPaquetesYTiposPubli();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		IManejadorOferta mo = fabrica.getInManejadorOferta();
+		IManejadorPyT mpt = fabrica.getInManejadorPyT();
 		
 		OfertaLaboral nuevaOferta = mo.obtenerOferta(nombre);
 		if(nuevaOferta != null){throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); }

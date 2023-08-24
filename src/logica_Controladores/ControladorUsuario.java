@@ -13,7 +13,9 @@ import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import utils.Fabrica;
-import logica_Manejadores.ManejadorOferta;
+import logica_Manejadores.IManejadorUsuario;
+import logica_Manejadores.IManejadorOferta;
+import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
 import logica_Entidades.Postulacion;
@@ -26,16 +28,10 @@ import logica_Entidades.OfertaLaboral;
 public class ControladorUsuario implements IControladorUsuario {
 	
 	//Atributos
-	private ManejadorUsuario manejadorUsuario;
-	private ManejadorPaquetesYTiposPubli ManejadorTiposPubli;
 	
 	private static ControladorUsuario instancia;
 	
 	private ControladorUsuario(){
-	}
-	
-	public void setManejador(ManejadorUsuario m) {
-		this.manejadorUsuario = m;
 	}
 	
 	public static ControladorUsuario getInstance() {
@@ -48,20 +44,26 @@ public class ControladorUsuario implements IControladorUsuario {
 	//alta postulante
 	public void darAltaUsuario(String nickname, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException{
 		
-		if(manejadorUsuario.nickNameYaExiste(nickname)) {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+		
+		if(manejadorUsuario.emailYaExiste(nickname)) {
 			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
 		}
-		if(manejadorUsuario.emailYaExiste(email)) {
+		if(manejadorUsuario.nickNameYaExiste(email)) {
 			throw new EmailYaExisteException("Ya existe un usuario con este email");
 		}
 		
-		Postulante post = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
-		this.manejadorUsuario.addUsuario(post);
+		Usuario post = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
+		manejadorUsuario.addUsuario(post);
 		
 	}
  
 	//alta empresa
 public void darAltaUsuario(String nickname, String nombre, String apellido, String email, String descripcion, String web) throws NicknameYaExisteException, EmailYaExisteException{
+		
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 		
 		if(manejadorUsuario.nickNameYaExiste(nickname)) {
 			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
@@ -70,12 +72,15 @@ public void darAltaUsuario(String nickname, String nombre, String apellido, Stri
 			throw new EmailYaExisteException("Ya existe un usuasio con este email");
 		}
 		
-		Empresa emp = new Empresa(nickname, nombre, apellido, email, descripcion, web);
-		this.manejadorUsuario.addUsuario(emp);
+		Usuario emp = new Empresa(nickname, nombre, apellido, email, descripcion, web);
+		manejadorUsuario.addUsuario(emp);
 	}
 
 public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws RegistroAPostulacionYaExisteException {
-	Postulante pos = this.manejadorUsuario.obtenerPostulante(postulante);
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+	
+	Usuario pos = manejadorUsuario.obtenerPostulante(postulante);
 	if(pos.estaPostulado(postulacion)) {
 		throw new RegistroAPostulacionYaExisteException("El postulante ya se encuentra postulado a dicha postulacion");
 	}else {
@@ -84,13 +89,16 @@ public void agregarPostulacionAPostulante(String postulante, Postulacion postula
 }
 
 public Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa){
-	Empresa e = (Empresa) this.manejadorUsuario.obtenerUsuario(empresa.getNickName());
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+	
+	Usuario e = (Empresa) manejadorUsuario.obtenerUsuario(empresa.getNickName());
 	Map<String, OfertaLaboral> ofertas = e.getOfertas();
 	return ofertas;
 }
 
 public DataUsuario listarInfoUser(String usuario) {
-	Usuario user = this.manejadorUsuario.obtenerUsuario(usuario);
+	Usuario user = manejadorUsuario.obtenerUsuario(usuario);
 	DataUsuario DtUser = new DataUsuario(user.getNickName(), user.getNombre(), user.getApellido(), user.getEmail());
 	return DtUser;
 }
@@ -104,7 +112,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	@Override
 	public Set<DataEmpresa> getDataEmpresa() {
 		Fabrica fabrica = Fabrica.getInstance();
-		ManejadorUsuario mu = fabrica.getManejadorUsuario();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		
 		Set<DataEmpresa> res = mu.getDataEmpresas();
 		return res;
@@ -113,15 +121,15 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	@Override
 	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
 		Fabrica fabrica = Fabrica.getInstance();
-		ManejadorTiposPubli = fabrica.getManejadorPaquetesYTiposPubli();
+		IManejadorPyT mpyt = fabrica.getInManejadorPyT();
 		
-		Set<DataTipoPublicacion> res = this.ManejadorTiposPubli.getDataTipoPublicacion();
+		Set<DataTipoPublicacion> res = mpyt.getDataTipoPublicacion();
 		return res;
 	}
 
 	public Set<DataKeyWord> getDataKeyWord() {
 		Fabrica fabrica = Fabrica.getInstance();
-		ManejadorOferta mu = fabrica.getManejadorOferta();
+		IManejadorOferta mu = fabrica.getInManejadorOferta();
 		
 		Set<DataKeyWord> res = mu.getDataKeyWord();
 		return res;

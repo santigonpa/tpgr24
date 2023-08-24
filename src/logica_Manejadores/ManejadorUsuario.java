@@ -36,16 +36,18 @@ public class ManejadorUsuario implements IManejadorUsuario {
             // Es un objeto de tipo Empresa
     		String nick = usu.getNickName();
             this.empresas.put(nick, usu);
+            this.usuarios.put(nick, usu);
         } else if (usu instanceof Postulante) {
         	String nick = usu.getNickName();
             this.postulantes.put(nick, usu);
+            this.usuarios.put(nick, usu);
         }
     	
     }
     
 
     public Usuario obtenerUsuario(String nick) {
-        return ((Usuario) usuarios.get(nick));
+        return  usuarios.getOrDefault(nick,null); //si no existe deberia retornar null
     }
     
     public Set<DataEmpresa> getDataEmpresas () {
