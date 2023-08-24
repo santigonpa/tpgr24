@@ -7,44 +7,31 @@ import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
-import utils.Fabrica;
-
-import javax.swing.SwingConstants;
-import javax.swing.text.JTextComponent;
-
-import excepciones.NombreRepetidoOfertaException;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import excepciones.NicknameYaExisteException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
-import java.awt.Color;
 import java.awt.SystemColor;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.ItemListener;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-import java.awt.event.ItemEvent;
 
 
 public class AltaDeUsuario extends JInternalFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// interfaz de oferta
 	private static IControladorOferta ICO;
 	private static IControladorUsuario ICU;
@@ -56,7 +43,8 @@ public class AltaDeUsuario extends JInternalFrame{
 	private JTextField textFieldDescripcion;
 	private JTextField textFieldLink;
 	private JTextField textFieldNacionalidad;
-	private JComboBox seleccionTipoUsuario;
+	private JComboBox<String> seleccionTipoUsuario;
+	private JSpinner spinnerNacimiento;
 
 	/**
 	 * Launch the application.
@@ -77,8 +65,9 @@ public class AltaDeUsuario extends JInternalFrame{
 	/**
 	 * Create the application.
 	 */
-	public AltaDeUsuario(IControladorOferta ICO, IControladorUsuario ICU) {
-
+	public AltaDeUsuario(IControladorOferta Ico, IControladorUsuario Icu) {
+		ICO =Ico;
+		ICU = Icu;
 		setTitle("Alta de usuario");
 		setBounds(100, 100, 450, 300);
 		setResizable(true);
@@ -101,15 +90,15 @@ public class AltaDeUsuario extends JInternalFrame{
 	 // Crear un SpinnerDateModel para manejar la fecha
 	    Date initialDate = Calendar.getInstance().getTime();
         SpinnerDateModel dateModel = new SpinnerDateModel(initialDate, null, null, Calendar.DAY_OF_MONTH);
-	    JSpinner dateSpinner = new JSpinner(dateModel);
-	    getContentPane().add(dateSpinner, "cell 3 4 2 1,grow");
+	    spinnerNacimiento = new JSpinner(dateModel);
+	    getContentPane().add(spinnerNacimiento, "cell 3 4 2 1,grow");
 	 // Personalizar la apariencia del JSpinner para mostrar solo la fecha
-	    JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "dd/MM/yyyy");
-	    dateSpinner.setEditor(dateEditor);
+	    JSpinner.DateEditor de_spinnerNacimiento = new JSpinner.DateEditor(spinnerNacimiento, "dd/MM/yyyy");
+	    spinnerNacimiento.setEditor(de_spinnerNacimiento);
 	    
 	    
-	    JList list = new JList();
-	    getContentPane().add(list, "cell 0 5,grow");
+	    /*JList<Object> list = new JList<Object>();
+	    getContentPane().add(list, "cell 0 5,grow");*/
 	    
 	    
 	    JLabel lblNewLabel_7 = new JLabel("   Descripción : ");
@@ -127,8 +116,9 @@ public class AltaDeUsuario extends JInternalFrame{
 	    textFieldLink.setColumns(10);
 	    
 		
-	    JComboBox<String> seleccionTipoUsuario = new JComboBox<>();
-	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"}));
+	    seleccionTipoUsuario = new JComboBox<String>();
+
+	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"}));
 	    getContentPane().add(seleccionTipoUsuario, "cell 10 0 6 1,growx");
 	    seleccionTipoUsuario.addActionListener(new ActionListener() {
             @Override
@@ -138,10 +128,10 @@ public class AltaDeUsuario extends JInternalFrame{
                 	textFieldLink.setEditable(true);
                     textFieldDescripcion.setEditable(true);
                 	textFieldNacionalidad.setEditable(false);
-                	dateSpinner.setEnabled(false);
+                	spinnerNacimiento.setEnabled(false);
                 } else if (selectedOption.equals("Postulante")) {
                 	textFieldNacionalidad.setEditable(true);
-                	dateSpinner.setEnabled(true);
+                	spinnerNacimiento.setEnabled(true);
                 	textFieldLink.setEditable(false);
                     textFieldDescripcion.setEditable(false);
                 }
@@ -210,30 +200,26 @@ public class AltaDeUsuario extends JInternalFrame{
     	String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
     	String descripcion = this.textFieldDescripcion.getText();
     	String web = this.textFieldLink.getText();
-        //falta la fecha...
+    	Date nacimiento = (Date) spinnerNacimiento.getValue();
     	String nacionalidad = this.textFieldNacionalidad.getText();
         
     	
     	if (verificarFormularioUsuario()) {
-    		try {
-    	    	if (selectedOption.equals("Empresa")) {
-    	    		//operacion de alta
-        			ICU.altaUsuario(nickname,nombre, apellido, email, descripcion, web);
-        			
-        			// muestro éxito de la operación
-                    JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario",
-                            JOptionPane.INFORMATION_MESSAGE);
-    	    	}else if (selectedOption.equals("Postulante")) {
-    	    		ICU.altaUsuario(nickname,nombre, apellido, email, nacimiento, web);
-    	    		
-    	    		 JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario",
-                             JOptionPane.INFORMATION_MESSAGE);
-    	    	}
-    		}catch (NicknameYaExisteException e2) {
-    			JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Usuario", JOptionPane.ERROR_MESSAGE);
-    		}
+    	    try {
+    	        if (selectedOption.equals("Empresa")) {
+    	            ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web);
+    	            JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
+    	        } else if (selectedOption.equals("Postulante")) {
+    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
+    	            JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
+    	        }
+    	    } catch (NicknameYaExisteException e2) {
+    	        // Manejar la excepción NicknameYaExisteException aquí
+    	        JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Usuario", JOptionPane.ERROR_MESSAGE);
+    	    }
+    	    }
     	}
-	}
+
 	
 	private boolean verificarFormularioUsuario() {
 		String nickname = this.textFieldNickname.getText();
