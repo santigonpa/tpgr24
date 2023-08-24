@@ -1,7 +1,6 @@
 package logica_Controladores;
 
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Set;
 
 import excepciones.NombreRepetidoOfertaException;
@@ -12,9 +11,6 @@ import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
-import logica_Manejadores.ManejadorOferta;
-import logica_Manejadores.ManejadorPaquetesYTiposPubli;
-import logica_Manejadores.ManejadorUsuario;
 
 public class ControladorOferta implements IControladorOferta {
 	

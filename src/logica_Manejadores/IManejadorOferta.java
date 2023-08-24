@@ -11,4 +11,8 @@ public interface IManejadorOferta {
 
 	public abstract Set<DataKeyWord> getDataKeyWord();
 
+	public abstract void linkearKeywords(Set<String> palabrasClaveSelec, OfertaLaboral nuevaOferta);
+
+	public abstract void addOferta(OfertaLaboral nuevaOferta);
+
 }
