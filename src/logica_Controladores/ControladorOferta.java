@@ -1,8 +1,10 @@
 package logica_Controladores;
 
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.Set;
 
+import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
@@ -11,6 +13,7 @@ import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
+
 
 public class ControladorOferta implements IControladorOferta {
 	
@@ -58,8 +61,17 @@ public class ControladorOferta implements IControladorOferta {
 		mo.addOferta(nuevaOferta);
 			
 	}
-
+	
+	public void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
+			int costo, int duracion, Date fecha) throws NombreTipoPubliYaExisteException{
 		
-	
-	
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
+		
+		if(manejadorPyT.nombreTipoPubliYaExisteException(nombre)) {
+			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre");
+		}
+		TipoPublicacion tp = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo);
+		manejadorPyT.addTipoPublicacion(tp);
+	}		
 }
