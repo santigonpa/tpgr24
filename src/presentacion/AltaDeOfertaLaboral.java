@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.text.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.JInternalFrame;
@@ -57,7 +58,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	private JSpinner spinnerFin;
 	private JSpinner spinnerFecha;
 	private JList<DataKeyWord> listaKeyWords;
-	private Set<String> seleccionados;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -81,7 +82,6 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	public AltaDeOfertaLaboral(IControladorOferta Ico, IControladorUsuario Icu) {
 		ICO = Ico;
 		ICU =Icu;
-		seleccionados = new HashSet<>();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Alta de Oferta Laboral");
@@ -223,32 +223,11 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_5_1);
         
         JList<DataKeyWord> listaKeyWords = new JList<DataKeyWord>();
-        listaKeyWords.setBounds(177, 171, 228, 62);
+        listaKeyWords.setBounds(177, 171, 282, 62);
         getContentPane().add(listaKeyWords);
         
-        JButton btnSeleccionarKeyword = new JButton("Seleccionar");
-        btnSeleccionarKeyword.setBounds(429, 185, 103, 30);
-        getContentPane().add(btnSeleccionarKeyword);
         
-        btnSeleccionarKeyword.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Obtener el elemento seleccionado
-                DataKeyWord seleccion = (DataKeyWord)listaKeyWords.getSelectedValue();
-                if (seleccion != null) {
-                    // Agregar el identificador al conjunto de seleccionados
-                    seleccionados.add(seleccion.getPalabraClave());
-
-                    // Deshabilitar la selección en la lista
-                    DefaultListModel<DataKeyWord> model = (DefaultListModel<DataKeyWord>) listaKeyWords.getModel();
-                    model.removeElement(seleccion);
-
-                    // Actualizar la JList
-                    listaKeyWords.setModel(model);
-                }
-            }
-        });
-    
+        
         
         JLabel lblNewLabel_5_2 = new JLabel("Fecha Del Alta : ");
         lblNewLabel_5_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
@@ -314,6 +293,12 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		// Convertir el valor a un objeto LocalTime
 		Instant instant2 = horaSeleccionadaDate2.toInstant();
 		LocalTime horarioFin = instant2.atZone(ZoneId.systemDefault()).toLocalTime();
+		List<DataKeyWord> seleccionadosKeyword = listaKeyWords.getSelectedValuesList();
+		Set<String> seleccionados = new HashSet<>();
+		for(DataKeyWord value : seleccionadosKeyword) {
+			seleccionados.add(value.toString());
+		}
+		
 		
 		float remuneracion = 0;
 		
