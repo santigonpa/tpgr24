@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
+import logica_cargarDatos.datosDePrueba.cargarDatos;
 
 import javax.swing.JMenu;
 import java.awt.Rectangle;
@@ -165,7 +166,17 @@ public class Principal {
             	trabajouy.dispose();
             }
 		});
+		
+		JMenuItem cgMenuItem = new JMenuItem("Cargar Datos");
+		mnNewMenu.add(cgMenuItem);
 		mnNewMenu.add(mntmNewMenuItem);
+		cgMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarDatos cargador = new cargarDatos();
+		        cargador.cargar();
+
+            }
+		});
 		
 		JMenu mnNewMenu_1 = new JMenu("Usuarios");
 		menuBar.add(mnNewMenu_1);
