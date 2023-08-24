@@ -73,7 +73,6 @@ public class ConsultarUsuario extends JInternalFrame {
 		
 		nombre = new JTextField();
 		nombre.setEditable(false);
-		nombre.setText("Pepe");
 		nombre.setBounds(83, 35, 96, 20);
 		getContentPane().add(nombre);
 		nombre.setColumns(1);
