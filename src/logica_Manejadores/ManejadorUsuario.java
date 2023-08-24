@@ -14,6 +14,7 @@ import logica_Entidades.Postulante;
 public class ManejadorUsuario implements IManejadorUsuario {
 	
 	private Map<String, Usuario> usuarios;
+	private Map<String,Usuario> usuariosPorEmail; //los emails son unicos tambien
 	private Map<String, Usuario> empresas;
 	private Map<String,Usuario> postulantes;
     private static ManejadorUsuario instancia = null;
@@ -22,6 +23,8 @@ public class ManejadorUsuario implements IManejadorUsuario {
         usuarios = new HashMap<String, Usuario>();
         empresas = new HashMap<String,Usuario>();
         postulantes = new HashMap<String,Usuario>();
+        usuariosPorEmail = new HashMap<String, Usuario>();
+        
     }
 
     public static ManejadorUsuario getinstance() {
@@ -31,16 +34,18 @@ public class ManejadorUsuario implements IManejadorUsuario {
     }
 
     public void addUsuario(Usuario usu) {
-        
+        String email = usu.getEmail();
     	if (usu instanceof Empresa) {
             // Es un objeto de tipo Empresa
     		String nick = usu.getNickName();
             this.empresas.put(nick, usu);
             this.usuarios.put(nick, usu);
+            this.usuariosPorEmail.put(email, usu);
         } else if (usu instanceof Postulante) {
         	String nick = usu.getNickName();
             this.postulantes.put(nick, usu);
             this.usuarios.put(nick, usu);
+            this.usuariosPorEmail.put(email, usu);
         }
     	
     }
@@ -48,6 +53,10 @@ public class ManejadorUsuario implements IManejadorUsuario {
 
     public Usuario obtenerUsuario(String nick) {
         return  usuarios.getOrDefault(nick,null); //si no existe deberia retornar null
+    }
+    
+    public Usuario obtenerUsuarioPorEmail(String email) {
+        return  usuariosPorEmail.getOrDefault(email,null); //si no existe deberia retornar null
     }
     
     public Map<String, DataEmpresa> getDataEmpresas () {

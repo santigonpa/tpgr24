@@ -68,13 +68,12 @@ public class ConsultarUsuario extends JInternalFrame {
 		JTextPane txtpnNombreLabel = new JTextPane();
 		txtpnNombreLabel.setBackground(new Color(238, 238, 238));
 		txtpnNombreLabel.setText("Nombre:");
-		txtpnNombreLabel.setBounds(25, 35, 48, 20);
+		txtpnNombreLabel.setBounds(25, 42, 48, 20);
 		getContentPane().add(txtpnNombreLabel);
 		
 		nombre = new JTextField();
 		nombre.setEditable(false);
-		nombre.setText("Pepe");
-		nombre.setBounds(83, 35, 96, 20);
+		nombre.setBounds(83, 42, 96, 20);
 		getContentPane().add(nombre);
 		nombre.setColumns(1);
 		
@@ -197,8 +196,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		mnOfertas.add(mntmNewMenuItem);
 		
 		JComboBox tipoDeUsuario = new JComboBox();
-		tipoDeUsuario.setBounds(287, 11, 109, 22);
-		tipoDeUsuario.setModel(new DefaultComboBoxModel(new String[] {"Empresa", "Postulante"}));
+		tipoDeUsuario.setBounds(65, 10, 294, 22);
 		getContentPane().add(tipoDeUsuario);
 	   tipoDeUsuario.addActionListener(new ActionListener() {
 		   public void actionPerformed(ActionEvent e) {
