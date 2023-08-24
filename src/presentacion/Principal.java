@@ -32,6 +32,7 @@ public class Principal {
 	private ConsultaDeOfertaLaboral conOfertaLab;
 	private AltaDeOfertaLaboral altOfLab;
 	private PostulacionAOfertaLaboral PosAOferLab;
+	private AltaDeTipoDePublicacionDeOfertaLaboral Altideof;
 	
 	private IControladorOferta ICO;
 	private IControladorUsuario ICU;
@@ -134,6 +135,11 @@ public class Principal {
         PosAOferLab = new PostulacionAOfertaLaboral();
         PosAOferLab.setBounds(10, 10, 710, 665);
         trabajouy.getContentPane().add(PosAOferLab);
+        
+        Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral();
+        trabajouy.getContentPane().add(Altideof);
+        Altideof.getContentPane();
+	
 	}
 
 	/**
@@ -242,5 +248,14 @@ public class Principal {
             }
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_8);
+		
+		JMenuItem mntmNewMenuItemAltaDePubliDeTipoOferLab = new JMenuItem("Alta de tipo de publicacion de oferta laboral");
+		mntmNewMenuItemAltaDePubliDeTipoOferLab.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				Altideof.setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItemAltaDePubliDeTipoOferLab);
 	}
 }
+
