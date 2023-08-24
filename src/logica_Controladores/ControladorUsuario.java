@@ -16,7 +16,6 @@ import utils.Fabrica;
 import logica_Manejadores.IManejadorUsuario;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
-import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Usuario;
@@ -80,8 +79,8 @@ public void agregarPostulacionAPostulante(String postulante, Postulacion postula
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
-	Usuario pos = manejadorUsuario.obtenerPostulante(postulante);
-	if(pos.estaPostulado(postulacion)) {
+	Postulante pos = (Postulante)  manejadorUsuario.obtenerUsuario(postulante);
+	if((pos).estaPostulado(postulacion)) {
 		throw new RegistroAPostulacionYaExisteException("El postulante ya se encuentra postulado a dicha postulacion");
 	}else {
 	pos.agregarPostulacionAPostulante(postulacion);
@@ -92,19 +91,25 @@ public Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa){
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
-	Usuario e = (Empresa) manejadorUsuario.obtenerUsuario(empresa.getNickName());
+	Empresa e = (Empresa) manejadorUsuario.obtenerUsuario(empresa.getNickName());
 	Map<String, OfertaLaboral> ofertas = e.getOfertas();
 	return ofertas;
 }
 
 public DataUsuario listarInfoUser(String usuario) {
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+	
 	Usuario user = manejadorUsuario.obtenerUsuario(usuario);
 	DataUsuario DtUser = new DataUsuario(user.getNickName(), user.getNombre(), user.getApellido(), user.getEmail());
 	return DtUser;
 }
 
 public Set<Postulacion> obtenerPostulaciones(String usuario){
-	Postulante post = (Postulante)this.manejadorUsuario.obtenerUsuario(usuario);
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+	
+	Postulante post = (Postulante)manejadorUsuario.obtenerUsuario(usuario);
 	Set<Postulacion> res = post.obtenerPostulaciones();
 	return res;
 }
