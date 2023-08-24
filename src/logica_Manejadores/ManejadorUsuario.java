@@ -11,7 +11,7 @@ import logica_Entidades.Empresa;
 import logica_DataTypes.DataEmpresa;
 import logica_Entidades.Postulante;
 
-public class ManejadorUsuario {
+public class ManejadorUsuario implements IManejadorUsuario {
 	
 	private Map<String, Usuario> usuarios;
 	private Map<String, Usuario> empresas;

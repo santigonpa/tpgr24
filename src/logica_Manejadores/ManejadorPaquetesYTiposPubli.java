@@ -12,7 +12,7 @@ import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Paquete;
 import logica_Entidades.TipoPublicacion;
 
-public class ManejadorPaquetesYTiposPubli {
+public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	
 	private static ManejadorPaquetesYTiposPubli instancia;
 	private Map<String,TipoPublicacion> tiposDePublicacion;

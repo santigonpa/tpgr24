@@ -4,6 +4,9 @@ import logica_Controladores.ControladorOferta;
 import logica_Controladores.ControladorUsuario;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
+import logica_Manejadores.IManejadorOferta;
+import logica_Manejadores.IManejadorPyT;
+import logica_Manejadores.IManejadorUsuario;
 import logica_Manejadores.ManejadorOferta;
 import logica_Manejadores.ManejadorPaquetesYTiposPubli;
 import logica_Manejadores.ManejadorUsuario;
@@ -33,17 +36,16 @@ import logica_Manejadores.ManejadorUsuario;
     
     // ---------------------------------------------
 
-    public ManejadorOferta getManejadorOferta() {
+    public IManejadorOferta getInManejadorOferta() {
     	return ManejadorOferta.getInstance();
     }
 
-	public ManejadorUsuario getManejadorUsuario() {
+	public IManejadorUsuario getInManejadorUsuario() {
 		return ManejadorUsuario.getinstance();
 	}
 
-	public ManejadorPaquetesYTiposPubli getManejadorPaquetesYTiposPubli() {
-		// TODO Auto-generated method stub
-		return null;
+	public IManejadorPyT getInManejadorPyT() {
+		return ManejadorPaquetesYTiposPubli.getInstance();
 	}
 
 }

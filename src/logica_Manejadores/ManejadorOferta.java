@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import logica_Controladores.ControladorUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 
-public class ManejadorOferta{
+public class ManejadorOferta implements IManejadorOferta{
+	
 
 	private static ManejadorOferta instancia;
 	private Map<String,OfertaLaboral> ofertasLaborales;
