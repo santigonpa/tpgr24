@@ -121,5 +121,24 @@ public class OfertaLaboral {
 		}
 		return false;
 	}
+
+	public LocalTime getHoraInicio() {
+		
+		return this.horaInicio;
+	}
+public LocalTime getHoraFin() {
+		
+		return this.horaInicio;
+	}
+
+	public float getCosto() {
+		// Auto-generated method stub
+		return this.costoDeOfertaLaboral;
+	}
+
+	public java.sql.Date getFecha() {
+		
+		return this.fechaDeAlta;
+	}
 	
 }

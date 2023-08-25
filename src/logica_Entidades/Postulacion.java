@@ -7,15 +7,15 @@ import logica_DataTypes.DataPostulacion;
 public class Postulacion {
 
 	//Atributos
-	private LocalDate fecha;
+	private LocalTime fecha;
 	private String cv;
 	private String motivacion;
 	private Postulante post;
 	private OfertaLaboral ofer;
 	
 	//Constructor
-	public Postulacion(LocalDate f, String cv, String m, Postulante p, OfertaLaboral ofer) {
-		this.fecha = f;
+	public Postulacion(LocalTime fecha2, String cv, String m, Postulante p, OfertaLaboral ofer) {
+		this.fecha = fecha2;
 		this.cv = cv;
 		this.motivacion = m;
 		this.post = p;

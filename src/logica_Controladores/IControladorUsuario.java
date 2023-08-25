@@ -5,8 +5,10 @@ import java.util.Map;
 import java.util.Set;
 
 import excepciones.NicknameYaExisteException;
+import excepciones.UsuarioNoExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
+import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.OfertaLaboral;
@@ -28,6 +30,8 @@ public interface IControladorUsuario {
 
 	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
 
-	public abstract Set<DataUsuario> getDataUsuarios();
+	public abstract Set<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException;
+
+	public abstract Set<DataOferta> getDataOfertasDeEmpresa(String nickName);
 
 }

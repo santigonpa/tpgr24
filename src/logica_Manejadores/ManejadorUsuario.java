@@ -8,10 +8,12 @@ import java.util.HashSet;
 import logica_Manejadores.ManejadorUsuario;
 import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
+import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulante;
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
-import logica_Entidades.Postulante;
 
 public class ManejadorUsuario implements IManejadorUsuario {
 	
@@ -89,11 +91,6 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		return false;
 	}
 
-	public Postulante obtenerPostulante(String postulante) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public DataEmpresa getDataEmpresa(String empresa) {
 		Empresa emp = (Empresa) empresas.get(empresa);
 		DataEmpresa res = emp.getDTEmpresa();
@@ -146,6 +143,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
         }
         
     	return res;
+	}
+
+	@Override
+	public Set<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName) {
+		Set<DataOferta> res = new HashSet<>();
+		Empresa emp = (Empresa) this.empresas.get(nickName);
+		Map<String,OfertaLaboral> mapaOfertas = emp.getOfertas();
+		Set<String> claves = mapaOfertas.keySet();
+		for(String clave : claves) {
+			OfertaLaboral of = mapaOfertas.get(clave);
+			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha());
+			res.add(ofert);
+		}
+		return res;
 	}
 
 	

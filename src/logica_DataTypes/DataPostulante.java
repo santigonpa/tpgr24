@@ -1,10 +1,7 @@
 package logica_DataTypes;
 
 import java.time.*;
-import java.util.HashMap;
-import java.util.Map;
-
-import logica_Entidades.Postulacion;
+import java.time.format.DateTimeFormatter;
 
 public class DataPostulante extends DataUsuario {
 	//Atributos
@@ -38,5 +35,17 @@ public class DataPostulante extends DataUsuario {
 		public void setNacionalidad(String nacionalidad) {
 			this.nacionalidad = nacionalidad;
 		}
-		
+
+		public String getFechaString() {
+			// Define el formato deseado
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        
+	        // Convierte el LocalDate a una cadena con el formato especificado
+	        String fechaFormateada = this.nacimiento.format(formatter);
+		return fechaFormateada;
+		}
+		//esto es para que se muestre el nombre del postulante en los comboBox
+				public String toString() {
+			        return this.getNombre(); // Devuelve el nombre del postulante
+			    }
 }

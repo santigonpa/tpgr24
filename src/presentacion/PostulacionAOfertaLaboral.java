@@ -29,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JFormattedTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerDateModel;
 
@@ -41,7 +42,7 @@ import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
-import logica_excepciones.yaExistePostulacionAOfertaException;
+import excepciones.yaExistePostulacionAOfertaException;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
@@ -178,7 +179,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		Postulantes = new JComboBox<>();
 		Postulantes.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione un/a postulante", "Juan", "Juana", "Juane", "Juani"}));
-		Map<String, DataPostulante> postulantes = IMU.getDataEstudiantes();
+		Map<String, DataPostulante> postulantes = IMU.getDataPostulantes();
 		for (Map.Entry<String, DataPostulante> entry : postulantes.entrySet()) {
 		    String key = entry.getKey();
 		    Postulantes.addItem(key);

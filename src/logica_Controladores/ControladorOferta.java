@@ -10,6 +10,8 @@ import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
 import utils.Fabrica;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulacion;
+import logica_Entidades.Postulante;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
@@ -86,7 +88,7 @@ public class ControladorOferta implements IControladorOferta {
 		
 		oferta.agregarPostulacionAOferta(nuevaPost);
 		IControladorUsuario icu = (IControladorUsuario) fabrica.getInUser();
-		icu.agregarPostulacionApostulante(nuevaPost, post);
+		this.agregarPostulacionApostulante(nuevaPost, post);
 		
 	}
 	public void agregarPostulacionApostulante(Postulacion nuevaPost, String post) {
@@ -95,4 +97,5 @@ public class ControladorOferta implements IControladorOferta {
 		Postulante pos = imu.obtenerPostulante(post);
 		pos.agregarPostulacionAPostulante(nuevaPost);
 	}
+
 }

@@ -8,9 +8,11 @@ import java.time.*;
 
 import excepciones.NicknameYaExisteException;
 import excepciones.RegistroAPostulacionYaExisteException;
+import excepciones.UsuarioNoExisteException;
 import excepciones.EmailYaExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
+import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import utils.Fabrica;
@@ -180,15 +182,25 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	}
 
 	@Override
-	public Set<DataUsuario> getDataUsuarios() {
+	public Set<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		
 		Set<DataUsuario> res = new HashSet<>();
 		Map<String, DataUsuario> m = mu.getDataUsuario();
+		if(m!=null) {
 		for (Map.Entry<String, DataUsuario> entry : m.entrySet()) {
 		    res.add(entry.getValue());
 		}
+		return res;
+	}else {throw new UsuarioNoExisteException("No existen Usuarios");}
+		}
+
+	@Override
+	public Set<DataOferta> getDataOfertasDeEmpresa(String nickName) {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		Set<DataOferta> res = mu.obtenerOfertasDeUnaEmpresa(nickName);
 		return res;
 	}
 	

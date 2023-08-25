@@ -72,9 +72,9 @@ public class Principal {
 		IManejadorUsuario IMU =fabrica.getInManejadorUsuario();
 		IManejadorOferta IMO = fabrica.getInManejadorOferta();
 		
-		conUsrInternalFrame = new ConsultaDeUsuario(ICU);
+		conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
 		conUsrInternalFrame.setTitle("Consulta de Usuario");
-		conUsrInternalFrame.setBounds(163, 79, 444, 302);
+		conUsrInternalFrame.setBounds(163, 79, 610, 347);
 		conUsrInternalFrame.setMaximizable(true);
 		conUsrInternalFrame.setClosable(true);
         conUsrInternalFrame.setVisible(false);
@@ -192,6 +192,7 @@ public class Principal {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Consulta usuario");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	conUsrInternalFrame.cargarUsuarios();
             	conUsrInternalFrame.setVisible(true);
             }
 		});

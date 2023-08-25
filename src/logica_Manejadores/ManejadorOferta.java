@@ -1,13 +1,11 @@
 package logica_Manejadores;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import logica_Controladores.ControladorUsuario;
-import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
-import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 
@@ -54,10 +52,9 @@ public class ManejadorOferta implements IManejadorOferta{
         this.ofertasLaborales.put(nombre, nuevaOferta);
 	}
 
-	@SuppressWarnings("null")
 	public Set<DataKeyWord> getDataKeyWord() {
-		Set<DataKeyWord> res = null;
-    	Set<KeyWord> temp = null;
+		Set<DataKeyWord> res = new HashSet<>();
+    	Set<KeyWord> temp = new HashSet<>();
     	
     	// Obtener las claves del Map
         Set<String> clavesKeyWord = this.keywordsTotales.keySet();
@@ -72,5 +69,6 @@ public class ManejadorOferta implements IManejadorOferta{
         
     	return res;
 	}
+
 
 }

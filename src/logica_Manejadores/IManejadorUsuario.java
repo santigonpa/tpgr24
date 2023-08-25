@@ -1,10 +1,13 @@
 package logica_Manejadores;
 
 import java.util.Map;
+import java.util.Set;
 
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
+import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
 
 public interface IManejadorUsuario {
@@ -25,6 +28,8 @@ public interface IManejadorUsuario {
 
 	public abstract Map<String, DataUsuario> getDataUsuario();
 
-	ublic abstract Postulante obtenerPostulante(String post);
+	public abstract Postulante obtenerPostulante(String post);
+
+	public abstract Set<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName);
 
 }

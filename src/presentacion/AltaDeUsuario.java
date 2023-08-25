@@ -237,7 +237,7 @@ public class AltaDeUsuario extends JInternalFrame{
 		String email = this.textFieldEmail.getText();
 		String selectedOption1 = (String) seleccionTipoUsuario.getSelectedItem();
 		
-		if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty( )|| email.isEmpty() || selectedOption1.equals("Seleccione tipo usuario...") ) {
+		if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty( ) ||email.isEmpty() ||selectedOption1.equals("Seleccione tipo usuario...") ) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos y debe seleccionar empresa o postulante", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
             return false;
@@ -245,16 +245,15 @@ public class AltaDeUsuario extends JInternalFrame{
 		String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
     	if (selectedOption.equals("Empresa")) {
     		String descripcion = this.textAreaDescripcion.getText();
-    		String web = this.textFieldLink.getText();
-    		if (descripcion.isEmpty() || web.isEmpty()) {
+    		//String web = this.textFieldLink.getText(); LA WEB NO ES OBLIGATORIA
+    		if (descripcion.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
                         JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } else if (selectedOption.equals("Postulante")) {
-        	//falta la fecha...
     		String nacionalidad = this.textFieldNacionalidad.getText();
-    		if (nacionalidad.isEmpty()) { //falta condicion si no puso fecha
+    		if (nacionalidad.isEmpty()) { 
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
                         JOptionPane.ERROR_MESSAGE);
                 return false;

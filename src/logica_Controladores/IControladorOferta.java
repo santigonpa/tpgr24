@@ -6,6 +6,8 @@ import java.util.Set;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
+import logica_DataTypes.DataOferta;
+import logica_Entidades.Postulacion;
 
 public interface IControladorOferta  {
 	
@@ -21,6 +23,7 @@ public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcio
 public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalTime fecha);
 
 public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
+
 
 
 }
