@@ -74,4 +74,25 @@ public class ControladorOferta implements IControladorOferta {
 		TipoPublicacion tp = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fecha);
 		manejadorPyT.addTipoPublicacion(tp);
 	}		
+
+	public void agregarPostulacion(String post, String ofer, String cv, String mot, LocalTime fecha) {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		IManejadorOferta mo = fabrica.getInManejadorOferta();
+
+		OfertaLaboral oferta = mo.obtenerOferta(ofer);
+		Postulante p = mu.obtenerPostulante(post);
+		Postulacion nuevaPost = new Postulacion(fecha, cv, mot, p, oferta);
+		
+		oferta.agregarPostulacionAOferta(nuevaPost);
+		IControladorUsuario icu = (IControladorUsuario) fabrica.getInUser();
+		icu.agregarPostulacionApostulante(nuevaPost, post);
+		
+	}
+	public void agregarPostulacionApostulante(Postulacion nuevaPost, String post) {
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorUsuario imu = fab.getInManejadorUsuario();
+		Postulante pos = imu.obtenerPostulante(post);
+		pos.agregarPostulacionAPostulante(nuevaPost);
+	}
 }

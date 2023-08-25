@@ -18,4 +18,9 @@ public interface IControladorOferta  {
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
 		int costo, int duracion, Date fecha) throws NombreTipoPubliYaExisteException;
 
+public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalTime fecha);
+
+public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
+
+
 }

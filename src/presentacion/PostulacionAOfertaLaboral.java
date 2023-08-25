@@ -41,6 +41,7 @@ import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
+import logica_excepciones.yaExistePostulacionAOfertaException;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
@@ -401,7 +402,44 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		String ofer = (String) seleccionDeOfertaLaboral.getSelectedItem();
 		String post = (String) Postulantes.getSelectedItem();
 		
-		if(!estaRegistradoPostulante(post))
+		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer); 
+				
+		if(oferta.existePostulacion(post)) { 
+			throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
+		}
+	
+		if(verificarFormulario()) {
+			ICO.agregarPostulacion(post, ofer, cv, mot, fecha);
+			limpiarFormulario();
+			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+			setVisible(false);
+		}
 		
 	}
+	
+	private boolean verificarFormulario() {
+		String cv = CVReducido.getText();
+		String mot = motivacion.getText();
+		LocalTime fecha = (LocalTime) spinner.getValue();
+		String empr = (String) seleccionDeEmpresa.getSelectedItem();
+		String ofer = (String) seleccionDeOfertaLaboral.getSelectedItem();
+		String post = (String) Postulantes.getSelectedItem();
+		
+		if(cv.isEmpty() || mot.isEmpty() || fecha.equals(null) || empr.isEmpty() || ofer.isEmpty() || post.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+		}
+		return true;
+	} 
+	
+	public void limpiarFormulario() {
+		this.CVReducido.setText("");
+		this.motivacion.setText("");
+		this.seleccionDeEmpresa.setSelectedItem(null);
+		this.seleccionDeOfertaLaboral.setSelectedItem(null);
+		this.Postulantes.setSelectedItem(null);
+	}
+		
+	
 }

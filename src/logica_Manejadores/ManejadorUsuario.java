@@ -117,6 +117,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	return res;
 	}
 
+	public Postulante obtenerPostulante(String post) {
+		Postulante p = (Postulante) postulantes.get(post);
+		return p;
+	}
+
 	@Override
 	public Map<String, DataUsuario> getDataUsuario() {
 		Map<String, DataUsuario> res = new HashMap<>();;

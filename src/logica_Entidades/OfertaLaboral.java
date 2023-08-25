@@ -113,5 +113,13 @@ public class OfertaLaboral {
 		return res;
 	}
 	
+	public boolean existePostulacion(String post) {
+		for(Postulacion postulaciones : postulacionesSobreLaOferta) {
+			if(postulaciones.getNickPostulante().equals(post)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }

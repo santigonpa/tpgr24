@@ -25,4 +25,6 @@ public interface IManejadorUsuario {
 
 	public abstract Map<String, DataUsuario> getDataUsuario();
 
+	ublic abstract Postulante obtenerPostulante(String post);
+
 }
