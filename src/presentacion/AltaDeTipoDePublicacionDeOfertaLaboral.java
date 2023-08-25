@@ -214,14 +214,14 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	        duracion = (int) spinnerDuracion.getValue();
 	        fechaAlta = (Date) fecha.getValue();
 	    } catch (NumberFormatException ex) {
-	        JOptionPane.showMessageDialog(this, "Por favor ingrese valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+	        JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
 	        return; // Salir del método si ocurre una excepción
 	    }
 	    
 		if (verificarFormularioAlta()) {
 			try {
 				ICO.altaDeTipoDePubliDeOferLab(nombreTipoPubli, descripcion, expo, duracion, costo, fechaAlta);
-				JOptionPane.showMessageDialog(this, "El tipo de publicacion de oferta laboral fue dado de alta con exito","Error", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "El tipo de publicacion de oferta laboral fue dado de alta con exito.","Alta de Tipo de Publicacion de Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 	            limpiarFormulario();
 	            setVisible(false);
 			
@@ -240,7 +240,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 				
 		
 		if (nombreTipoPubli.isEmpty() || descripcion.isEmpty() || expo < 1 || costo < 1) {
-            JOptionPane.showMessageDialog(this, "Revise que sus entradas sean correctas", "ATENCION",
+            JOptionPane.showMessageDialog(this, "Revise que sus entradas sean correctas.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }

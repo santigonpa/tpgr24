@@ -71,7 +71,7 @@ public class ControladorOferta implements IControladorOferta {
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
 		if(manejadorPyT.nombreTipoPubliYaExisteException(nombre)) {
-			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre");
+			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre.");
 		}
 		TipoPublicacion tp = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fecha);
 		manejadorPyT.addTipoPublicacion(tp);
