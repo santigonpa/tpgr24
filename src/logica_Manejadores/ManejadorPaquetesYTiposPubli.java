@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import excepciones.NombreTipoPubliYaExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Entidades.Empresa;
@@ -54,6 +55,15 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
         }
         
     	return res;
+	}
+	
+	public void addTipoPublicacion(TipoPublicacion tp) {
+		String nombre = tp.getNombre();
+		this.tiposDePublicacion.put(nombre, tp);
+	}
+	
+	public boolean nombreTipoPubliYaExisteException(String nombre) {
+		return tiposDePublicacion.containsKey(nombre);
 	}
 
 }

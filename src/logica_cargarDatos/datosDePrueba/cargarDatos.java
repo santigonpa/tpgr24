@@ -1,12 +1,25 @@
 package logica_cargarDatos.datosDePrueba;
 
+import logica_Entidades.Empresa;
+import logica_Entidades.KeyWord;
+import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
+import logica_Entidades.TipoPublicacion;
 import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import utils.Fabrica;
 
 public class cargarDatos {
@@ -15,6 +28,11 @@ public class cargarDatos {
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
 		IManejadorPyT mpyt = fabrica.getInManejadorPyT();
+		
+		//------------------------------//
+		//Carga de usuarios
+		
+		//Cambio formato a LocalDate
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate n1 = LocalDate.parse("15-03-1985", dateFormatter);
 		LocalDate n2 = LocalDate.parse("21-08-1990", dateFormatter);
@@ -28,17 +46,215 @@ public class cargarDatos {
 		LocalDate n10 = LocalDate.parse("02-12-1986", dateFormatter);
 		
 		
-		Usuario P1 = new Postulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya");
-		Usuario P2 = new Postulante("matilo","Matias","Lopez","matias.lopez90@hotmail.com",n2,"Argentina");
-		Usuario P3 = new Postulante("maro","Maria","Rodriguez","marrod@gmail.com",n3,"Uruguaya");
-		Usuario P4 = new Postulante("javierf","Javier","Fernandez","javierf93@yahoo.com",n4,"Mexicana");
-		Usuario P5 = new Postulante("valen25","Valentina","Martinez","vale87@gmail.com",n5,"Uruguaya");
-		Usuario P6 = new Postulante("andpel2","Andres","Perez","anpe92@hotmail.com",n6,"Chilena");
-		Usuario P7 = new Postulante("sicam","Camila","Silva","camisilva89@gmail.com",n7,"Uruguaya");
-		Usuario P8 = new Postulante("sebgon","Sebastian","Gonzalez","gonza95@yahoo.com",n8,"Colombiana");
-		Usuario P9 = new Postulante("isabel","Isabella","Lopez","loisa@gmail.com",n9,"Uruguaya");
-		Usuario P10 = new Postulante("marram02","Martin","Ramirez","marram@hotmail.com",n10,"Argentina");
+		//Creo Postulantes
+		Usuario p1 = new Postulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya");
+		Usuario p2 = new Postulante("matilo","Matias","Lopez","matias.lopez90@hotmail.com",n2,"Argentina");
+		Usuario p3 = new Postulante("maro","Maria","Rodriguez","marrod@gmail.com",n3,"Uruguaya");
+		Usuario p4 = new Postulante("javierf","Javier","Fernandez","javierf93@yahoo.com",n4,"Mexicana");
+		Usuario p5 = new Postulante("valen25","Valentina","Martinez","vale87@gmail.com",n5,"Uruguaya");
+		Usuario p6 = new Postulante("andpel2","Andres","Perez","anpe92@hotmail.com",n6,"Chilena");
+		Usuario p7 = new Postulante("sicam","Camila","Silva","camisilva89@gmail.com",n7,"Uruguaya");
+		Usuario p8 = new Postulante("sebgon","Sebastian","Gonzalez","gonza95@yahoo.com",n8,"Colombiana");
+		Usuario p9 = new Postulante("isabel","Isabella","Lopez","loisa@gmail.com",n9,"Uruguaya");
+		Usuario p10 = new Postulante("marram02","Martin","Ramirez","marram@hotmail.com",n10,"Argentina");
 		
+		//Creo Empresas
+		Usuario e1 = new Empresa("EcoTech","Sophia","Johnosn","info@EcoTehc.com","EcoTech Innovations es una empresa lider en soluciones tecnol´ogicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafios ambientales mas apremiantes de nuestro tiempo. Desde sistemas de energıa renovable y dispositivos de monitorizacion ambiental hasta soluciones de gestion de residuos inteligentes, nuestra mision es proporcionar herramientas que permitan a las empresas y comunidades adoptar practicas mas ecologicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnologia y la naturaleza, y trabajamos incansablemente para impulsar un futuro mas limpio y sostenible.","http://www.EcoTechInnovations.com");
+		Usuario e2 = new Empresa("FusionTech","William","Smith","contacto@FusionTech.net","FusionTech Dynamics es una empresa pionera en el ambito de la inteligencia artificial y la automatizacion avanzada. Nuestro equipo multidisciplinario de ingenieros, cientificos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimizacion de procesos industriales hasta la creacion de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnologia mejore y amplie nuestras capacidades innatas.","http://www.FusionTechDynamics.net");
+		Usuario e3 = new Empresa("GlobalHealth","Isabella","Brown","jobs@GlobalHelath.uy","GlobalHealth Dynamics es una empresa comprometida con el avance de la atencion medica a nivel mundial. Como lideres en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnosticos mas precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra vision es crear un ecosistema de salud conectado en el que los datos medicos se utilicen de manera etica y segura para mejorar la calidad de vida de las personas. A traves de la innovacion constante y la colaboracion con expertos medicos, estamos dando forma al futuro de la atencion medica, donde la tecnologia y la compasion se unen parasalvar vidas y mejorar el bienestar en todo el mundo.","http://www.globalhealthdynamics.uy/info");
+		Usuario e4 = new Empresa("ANTEL","Washington","Rocha","jarrington@ANTEL.com.uy","En Antel te brindamos servicios de vanguardia en tecnologia de comunicacion en Telefonia Movil, Fija, Banda Ancha y Datos","ANTEL.com.uy");
+		Usuario e5 = new Empresa("MIEM","Pablo","Bengoechea","eldiez@MIEM.org.uy","Balance Energetico Nacional (BEN). La Direccion Nacional de Energia (DNE) del Ministerio de Industria, Energia y Mineria (MIEM) presenta anualmente el BEN.","MIEM.com.uy");
+		Usuario e6 = new Empresa("TechSolutions","Mercedes","Venn","Mercedes@TechSolutions.com.uy", "”TechSolutions Inc.” es una empresa l´ıder en el sector de tecnologia de la informacion y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamanos y sectores. Su enfoque se centra en la creacion de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.","TechSolutions.com");
+		
+		//Agrego Usarios
+		mu.addUsuario(p1);
+		mu.addUsuario(p2);
+		mu.addUsuario(p3);
+		mu.addUsuario(p4);
+		mu.addUsuario(p5);
+		mu.addUsuario(p6);
+		mu.addUsuario(p7);
+		mu.addUsuario(p8);
+		mu.addUsuario(p9);
+		mu.addUsuario(p10);
+		mu.addUsuario(e1);
+		mu.addUsuario(e2);
+		mu.addUsuario(e3);
+		mu.addUsuario(e4);
+		mu.addUsuario(e5);
+		mu.addUsuario(e6);
+		
+		//------------------------------//		
+		
+		//Cargo Tipos de Publicacion
+		
+		//Cambio a LocalDate fecha de alta, fala agregarla a los parametros
+		LocalDate at1 = LocalDate.parse("10-08-2023", dateFormatter);
+		LocalDate at2 = LocalDate.parse("05-08-2023", dateFormatter);
+		LocalDate at3 = LocalDate.parse("15-08-2023", dateFormatter);
+		LocalDate at4 = LocalDate.parse("07-08-2023", dateFormatter);
+		
+		//Creo Tipos
+		TipoPublicacion tp1 = new TipoPublicacion("Premium","Obten maxima visibilidad.",1,30,4000);
+		TipoPublicacion tp2 = new TipoPublicacion("Destacada","Destaca tu anuncio",2,15,500);
+		TipoPublicacion tp3 = new TipoPublicacion("Estandar","Mejora la posicion de tu anuncio",3,20,150);
+		TipoPublicacion tp4 = new TipoPublicacion("Basica","Publica de forma sencilla en la lista de ofertas",4,7,50);
+		
+		//Agrego Tipos
+		
+		/*no existe todavia la operacion
+		mpyt.addTipoPublicacion(tp1);
+		mpyt.addTipoPublicacion(tp2);
+		mpyt.addTipoPublicacion(tp3);
+		mpyt.addTipoPublicacion(tp4);
+		 */
+		
+		//Cargo Keywords
+		KeyWord k1 = new KeyWord("Tiempo completo");
+		KeyWord k2 = new KeyWord("Medio tiempo");
+		KeyWord k3 = new KeyWord("Remoto");
+		KeyWord k4 = new KeyWord("Freelance");
+		KeyWord k5 = new KeyWord("Temporal");
+		KeyWord k6 = new KeyWord("Permanente");
+		KeyWord k7 = new KeyWord("Computacion");
+		KeyWord k8 = new KeyWord("Administracion");
+		KeyWord k9 = new KeyWord("Logistica");
+		KeyWord k10 = new KeyWord("Contabilidad");
+		
+		//Agrego Kewword
+		/*
+		mo.addKeyword(k1);
+		mo.addKeyword(k2);
+		mo.addKeyword(k3);
+		mo.addKeyword(k4);
+		mo.addKeyword(k5);
+		mo.addKeyword(k6);
+		mo.addKeyword(k7);
+		mo.addKeyword(k8);
+		mo.addKeyword(k9);
+		mo.addKeyword(k10);
+		*/
+		
+		//Agrego Ofertas Laborales
+		
+		//Convierto las horas a LocalTime
+		//Hora inicio
+		LocalTime hi1 = LocalTime.parse("09:00");
+		LocalTime hi2 = LocalTime.parse("08:00");
+		LocalTime hi3 = LocalTime.parse("14:00");
+		LocalTime hi4 = LocalTime.parse("09:00");
+		LocalTime hi5 = LocalTime.parse("18:00");
+		LocalTime hi6 = LocalTime.parse("09:00");
+		LocalTime hi7 = LocalTime.parse("10:00");
+		LocalTime hi8 = LocalTime.parse("08:30");
+		//HoraFinal
+		LocalTime hf1 = LocalTime.parse("18:00");
+		LocalTime hf2 = LocalTime.parse("17:00");
+		LocalTime hf3 = LocalTime.parse("18:00");
+		LocalTime hf4 = LocalTime.parse("13:00");
+		LocalTime hf5 = LocalTime.parse("22:00");
+		LocalTime hf6 = LocalTime.parse("18:00");
+		LocalTime hf7 = LocalTime.parse("19:00");
+		LocalTime hf8 = LocalTime.parse("17:30");
+		
+		//Convierto las Fechas
+
+		Date ao1 = new Date();
+		Date ao2 = new Date();
+		Date ao3 = new Date();
+		Date ao4 = new Date();
+		Date ao5 = new Date();
+		Date ao6 = new Date();
+		Date ao7 = new Date();
+		Date ao8 = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			ao1 = sdf.parse("14-08-2023");
+			ao2 = sdf.parse("14-08-2023");
+			ao3 = sdf.parse("13-08-2023");
+			ao4 = sdf.parse("11-08-2023");
+			ao5 = sdf.parse("20-08-2023");
+			ao6 = sdf.parse("15-08-2023");
+			ao7 = sdf.parse("15-08-2023");
+			ao8 = sdf.parse("16-08-2023");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+		
+		//Creo Oferta
+		OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1);
+		OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2);
+		OfertaLaboral o3 = new OfertaLaboral("Disenador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3);
+		OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4);
+		OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5);
+		OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6);
+		OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7);
+		OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8);
+		
+		//Agrego Oferta .............. no esta la operacion
+		/*
+		mu.addOferta(o1);
+		mu.addOferta(o2);
+		mu.addOferta(o3);
+		mu.addOferta(o4);
+		mu.addOferta(o5);
+		mu.addOferta(o6);
+		mu.addOferta(o7);
+		mu.addOferta(o8);
+		*/
+		
+		//Agrego Keyword a Oferta
+		//Creo los set de Keywords
+		Set<String> setk1 = new HashSet<>(Set.of(k1.getPalabraClave(),k2.getPalabraClave(),k3.getPalabraClave(),k4.getPalabraClave(),k5.getPalabraClave(),k6.getPalabraClave()));
+		Set<String> setk2 = new HashSet<>(Set.of(k5.getPalabraClave()));
+		Set<String> setk3 = new HashSet<>(Set.of(k2.getPalabraClave(),k3.getPalabraClave(),k6.getPalabraClave()));
+		Set<String> setk4 = new HashSet<>(Set.of(k2.getPalabraClave()));
+		Set<String> setk5 = new HashSet<>(Set.of(k4.getPalabraClave()));
+		Set<String> setk6 = new HashSet<>(Set.of(k1.getPalabraClave()));
+		
+		//Linkeo Keywords con Oferta		
+		mo.linkearKeywords(setk1,o1);
+		mo.linkearKeywords(setk2,o2);
+		mo.linkearKeywords(setk3,o3);
+		mo.linkearKeywords(setk4,o4);
+		mo.linkearKeywords(setk5,o5);
+		mo.linkearKeywords(setk6,o6);
+		
+		//Linkeo Tipo con Oferta ........... falta implementar
+		/*
+		mo.linkearTipo(tp1,o1);
+		mo.linkearTipo(tp3,o2);
+		mo.linkearTipo(tp3,o3);
+		mo.linkearTipo(tp1,o4);
+		mo.linkearTipo(tp2,o5);
+		mo.linkearTipo(tp4,o6);
+		mo.linkearTipo(tp1,o7);
+		mo.linkearTipo(tp2,o8);
+		*/
+		
+		//------------------------------//	
+		
+		//Convierto String a LocalDate
+		LocalDate fPos1 = LocalDate.parse("16-08-2023", dateFormatter);
+		LocalDate fPos2 = LocalDate.parse("15-08-2023", dateFormatter);
+		LocalDate fPos3 = LocalDate.parse("14-08-2023", dateFormatter);
+		LocalDate fPos4 = LocalDate.parse("13-08-2023", dateFormatter);
+		LocalDate fPos5 = LocalDate.parse("12-08-2023", dateFormatter);
+		LocalDate fPos6 = LocalDate.parse("16-08-2023", dateFormatter);
+		
+		
+		//Creo Postulaciones
+		Postulacion pos1 = new Postulacion(fPos1,"Licenciada en Administracion, experiencia en gestion de equipos y proyectos. Conocimientos en Office.","Estoy emocionada por la oportunidad de formar parte de un equipo dinamico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o1);
+		Postulacion pos2 = new Postulacion(fPos2,"Estudiante de Comunicacion, habilidades en redacci´on y manejo de redes sociales. Experiencia en practicas en medios locales","Me encantaria formar parte de un equipo que me permita desarrollar mis habilidades en comunicacion y marketing.",(Postulante)p2,o2);
+		Postulacion pos3 = new Postulacion(fPos3,"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones moviles. Conocimientos en JavaScript y React.","Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnolog´ıa.",(Postulante)p3,o1);
+		Postulacion pos4 = new Postulacion(fPos4,"T´ecnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos el´ectricos.","Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades t´ecnicas y contribuir al mantenimiento eficiente.",(Postulante)p4,o3);
+		Postulacion pos5 = new Postulacion(fPos5,"M´usico profesional, experiencia en espect´aculos en vivo. Habilidades en canto y guitarra.","Me gustar´ıa combinar mi pasi´on por la m´usica con una oportunidad laboral que me permita seguir creciendo como artista.",(Postulante)p5,o2);
+		Postulacion pos6 = new Postulacion(fPos6,"Licenciada en Administraci´on, me considero genia, experiencia en gesti´on de equipos y proyectos. Conocimientos en Microsoft Office.","Estoy emocionada por la oportunidad de formar parte de un equipo din´amico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o2);
+		
+		//------------------------------//	
+		//Falta todo lo de Paquete que es opcional, veremos si se hace.
+
 	}
 
 }

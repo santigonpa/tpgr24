@@ -150,6 +150,8 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 			String web) throws NicknameYaExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario empresa = mu.obtenerUsuario(nickname);
+        Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
+        if(emailEnUso != null) {throw new NicknameYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if ( empresa!= null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
 
@@ -163,6 +165,8 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 			String web) throws NicknameYaExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario postulante = mu.obtenerUsuario(nickname);
+        Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
+        if(emailEnUso != null) {throw new NicknameYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if (postulante != null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
      // Convertir Date a Instant

@@ -1,6 +1,8 @@
 package presentacion;
 
 import java.awt.EventQueue;
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,10 +24,11 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
 
+
 public class Principal {
 
 	private JFrame trabajouy;
-	private ConsultarUsuario conUsrInternalFrame;
+	private ConsultaDeUsuario conUsrInternalFrame;
 	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
 	private ModificarDatosDeUsuario modDatosUser;
 	private AltaDeUsuario altaUser;
@@ -65,7 +68,8 @@ public class Principal {
         this.ICO = fabrica.getInOfer();
         this.ICU = fabrica.getInUser();
 		
-		conUsrInternalFrame = new ConsultarUsuario();
+		conUsrInternalFrame = new ConsultaDeUsuario();
+		conUsrInternalFrame.setTitle("Consulta de Usuario");
 		conUsrInternalFrame.setBounds(163, 79, 444, 302);
 		conUsrInternalFrame.setMaximizable(true);
 		conUsrInternalFrame.setClosable(true);
@@ -137,7 +141,7 @@ public class Principal {
         PosAOferLab.setBounds(10, 10, 710, 665);
         trabajouy.getContentPane().add(PosAOferLab);
         
-        Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral();
+        Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
         trabajouy.getContentPane().add(Altideof);
         Altideof.getContentPane();
 	
@@ -222,6 +226,7 @@ public class Principal {
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				altaUser.setVisible(true);
+				altaUser.limpiarFormulario();
             }
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_5);
