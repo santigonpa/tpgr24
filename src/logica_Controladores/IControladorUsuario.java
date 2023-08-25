@@ -1,12 +1,15 @@
 package logica_Controladores;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 import excepciones.NicknameYaExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
+import logica_Entidades.OfertaLaboral;
+
 
 public interface IControladorUsuario {
 
@@ -21,5 +24,7 @@ public interface IControladorUsuario {
 
 	public abstract void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
 			String web)throws NicknameYaExisteException;
+
+	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
 
 }

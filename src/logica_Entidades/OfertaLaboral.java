@@ -20,8 +20,8 @@ public class OfertaLaboral {
 	private String departamento;
 	private LocalTime horaInicio; // horario de trabajo asociado - mejor usar la libreria, pase de DataHorario
 	private LocalTime horaFin;
-	private float remuneracion;
-	private float costoDeOfertaLaboral; 
+	private int remuneracion;
+	private int costoDeOfertaLaboral; 
 	private java.sql.Date fechaDeAlta; // la del momento en el alta
 	
 	//Links de oferta
@@ -88,6 +88,29 @@ public class OfertaLaboral {
 
 	public String getNombreOferta() {
 		return this.nombre;
+	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public String getCiudad() {
+		return this.ciudad;
+	}
+
+	public String getDepartamento() {
+		return this.departamento;
+	}
+
+	public int getRemuneracion() {
+		// TODO Auto-generated method stub
+		return this.remuneracion;
+	}
+
+	public String getFechaAltaComoString() {
+		Date fecha = this.fechaDeAlta;
+		String res = fecha.getDay() + "" + fecha.getMonth() + "" + fecha.getYear() + "";
+		return res;
 	}
 	
 	

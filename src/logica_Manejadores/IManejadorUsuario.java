@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.Map;
 
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataPostulante;
 import logica_Entidades.Usuario;
 
 public interface IManejadorUsuario {
@@ -18,6 +19,8 @@ public interface IManejadorUsuario {
 
 	public abstract Usuario obtenerUsuario(String nickName);
 
+	public abstract DataEmpresa getDataEmpresa(String empresa);
 
+	public abstract Map<String, DataPostulante> getDataEstudiantes();
 
 }

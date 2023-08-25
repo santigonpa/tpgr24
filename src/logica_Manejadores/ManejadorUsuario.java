@@ -1,5 +1,6 @@
 package logica_Manejadores;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -9,6 +10,7 @@ import logica_Manejadores.ManejadorUsuario;
 import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
 import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataPostulante;
 import logica_Entidades.Postulante;
 
 public class ManejadorUsuario implements IManejadorUsuario {
@@ -81,6 +83,29 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	public Postulante obtenerPostulante(String postulante) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public DataEmpresa getDataEmpresa(String empresa) {
+		Empresa emp = (Empresa) empresas.get(empresa);
+		DataEmpresa res = emp.getDTEmpresa();
+		return res;
+	}
+	public Map<String, DataPostulante> getDataEstudiantes(){
+		Map<String, DataPostulante> res = new HashMap<>();;
+    	Set<Postulante> temp = new HashSet<>();
+    	
+    	// Obtener las claves del Map
+        Set<String> clavesPostulantes = this.postulantes.keySet();
+        for(String nombrePostulante : clavesPostulantes) {
+        	Postulante empAct = ((Postulante) this.postulantes.get(nombrePostulante));
+        	temp.add(empAct);
+        }
+        for(Postulante empAct: temp) {
+        	DataPostulante nuevaDTPost = new DataPostulante(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct.getNacimineto(),empAct.getNacionalidad());
+        	res.put(empAct.getNickName(), nuevaDTPost);
+        }
+        
+    	return res;
 	}
 
 }

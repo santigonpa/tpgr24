@@ -2,6 +2,7 @@ package logica_Controladores;
 
 import java.util.Set;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 import java.time.*;
 
@@ -119,7 +120,11 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		
-		Set<DataEmpresa> res = mu.getDataEmpresas();
+		Set<DataEmpresa> res = new HashSet<>();
+		Map<String, DataEmpresa> m = mu.getDataEmpresas();
+		for (Map.Entry<String, DataEmpresa> entry : m.entrySet()) {
+		    res.add(entry.getValue());
+		}
 		return res;
 	}
 

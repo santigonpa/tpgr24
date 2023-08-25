@@ -190,7 +190,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		getContentPane().add(descripcion);
 		
 		JMenu mnOfertas = new JMenu("Ofertas");
-		mnOfertas.setBounds(229, 145, 111, 24);
+		mnOfertas.setBounds(229, 149, 111, 24);
 		getContentPane().add(mnOfertas);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("bartender");
