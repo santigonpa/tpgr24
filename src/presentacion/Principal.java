@@ -13,6 +13,8 @@ import javax.swing.JMenuItem;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
+import logica_Manejadores.IManejadorOferta;
+import logica_Manejadores.IManejadorUsuario;
 import logica_cargarDatos.datosDePrueba.cargarDatos;
 
 import javax.swing.JMenu;
@@ -64,11 +66,13 @@ public class Principal {
 		initialize();
 		
 		// Inicialización de controladores
-        Fabrica fabrica = Fabrica.getInstance();
-        this.ICO = fabrica.getInOfer();
-        this.ICU = fabrica.getInUser();
+		Fabrica fabrica = Fabrica.getInstance();
+		IControladorUsuario ICU = fabrica.getInUser();
+		IControladorOferta ICO = fabrica.getInOfer();
+		IManejadorUsuario IMU =fabrica.getInManejadorUsuario();
+		IManejadorOferta IMO = fabrica.getInManejadorOferta();
 		
-		conUsrInternalFrame = new ConsultaDeUsuario();
+		conUsrInternalFrame = new ConsultaDeUsuario(ICU);
 		conUsrInternalFrame.setTitle("Consulta de Usuario");
 		conUsrInternalFrame.setBounds(163, 79, 444, 302);
 		conUsrInternalFrame.setMaximizable(true);
@@ -137,7 +141,7 @@ public class Principal {
         altOfLab.getContentPane();
         trabajouy.getContentPane().setLayout(null);
         
-        PosAOferLab = new PostulacionAOfertaLaboral();
+        PosAOferLab = new PostulacionAOfertaLaboral(ICU,ICO,IMU,IMO);
         PosAOferLab.setBounds(10, 10, 710, 665);
         trabajouy.getContentPane().add(PosAOferLab);
         

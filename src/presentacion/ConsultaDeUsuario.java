@@ -1,14 +1,29 @@
 package presentacion;
 
 import java.awt.EventQueue;
+import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
+
+import logica_Controladores.IControladorOferta;
+import logica_Controladores.IControladorUsuario;
+import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataUsuario;
+import utils.Fabrica;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 public class ConsultaDeUsuario extends JInternalFrame {
+	
+	private JComboBox<DataUsuario> comboBoxUsuarios;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Launch the application.
@@ -17,7 +32,10 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConsultaDeUsuario frame = new ConsultaDeUsuario();
+					Fabrica fabrica = Fabrica.getInstance();
+					IControladorUsuario ICU = fabrica.getInUser();
+					//IControladorOferta ICO = fabrica.getInOfer();
+					ConsultaDeUsuario frame = new ConsultaDeUsuario(ICU);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +47,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaDeUsuario() {
+	public ConsultaDeUsuario(IControladorUsuario ICU) {
 		setBounds(100, 100, 469, 332);
 		getContentPane().setLayout(null);
 		
@@ -37,9 +55,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		lblNewLabel.setBounds(125, 11, 178, 14);
 		getContentPane().add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(83, 36, 265, 22);
-		getContentPane().add(comboBox);
+		comboBoxUsuarios = new JComboBox<DataUsuario>();
+		comboBoxUsuarios.setBounds(83, 36, 265, 22);
+		getContentPane().add(comboBoxUsuarios);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
 		lblNewLabel_1.setBounds(10, 67, 46, 14);
@@ -117,5 +135,18 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		linkLabel.setBounds(60, 142, 200, 14);
 		getContentPane().add(linkLabel);
 
+	}
+	
+	public void cargarEmpresas() {
+		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+		DefaultComboBoxModel<DataEmpresa> model = new DefaultComboBoxModel<>();
+	    
+	    // Agregar las empresas al modelo del JComboBox
+	    for (DataEmpresa empresa : empresas) {
+	        model.addElement(empresa);
+	    }
+	    
+	    // Establecer el modelo en el JComboBox
+	    comboBoxEmpresa.setModel(model);
 	}
 }

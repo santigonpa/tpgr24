@@ -40,6 +40,7 @@ import logica_Entidades.Empresa;
 import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
+import utils.Fabrica;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
@@ -47,6 +48,10 @@ import javax.swing.JScrollBar;
 
 public class PostulacionAOfertaLaboral extends JInternalFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static IControladorUsuario ICU;
 	private static IControladorOferta ICO;
 	private static IManejadorUsuario IMU;
@@ -88,7 +93,12 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostulacionAOfertaLaboral frame = new PostulacionAOfertaLaboral();
+					Fabrica fabrica = Fabrica.getInstance();
+					IControladorUsuario ICU = fabrica.getInUser();
+					IControladorOferta ICO = fabrica.getInOfer();
+					IManejadorUsuario IMU =fabrica.getInManejadorUsuario();
+					IManejadorOferta IMO = fabrica.getInManejadorOferta();
+					PostulacionAOfertaLaboral frame = new PostulacionAOfertaLaboral(ICU,ICO,IMU,IMO);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -100,7 +110,12 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostulacionAOfertaLaboral() {
+	public PostulacionAOfertaLaboral(IControladorUsuario Icu,IControladorOferta Ico,IManejadorUsuario Imu,IManejadorOferta Imo) {
+		
+		ICU = Icu;
+		ICO = Ico;
+		IMU = Imu;
+		IMO = Imo;
 		setClosable(true);
 		setTitle("Postulacion a Oferta Laboral");
 		setBounds(100, 100, 710, 665);

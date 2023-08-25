@@ -28,6 +28,7 @@ import excepciones.NombreRepetidoOfertaException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
+import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 
@@ -67,6 +68,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Fabrica fabrica = Fabrica.getInstance();
+					IControladorUsuario ICU = fabrica.getInUser();
+					IControladorOferta ICO = fabrica.getInOfer();
 					AltaDeOfertaLaboral frame = new AltaDeOfertaLaboral(ICO, ICU);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -102,9 +106,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 38, 215, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		JComboBox<DataTipoPublicacion> comboBoxTipoDePublicacion = new JComboBox<DataTipoPublicacion>();
+		comboBoxTipoPublicacion = new JComboBox<DataTipoPublicacion>();
 		comboBoxEmpresa.setBounds(235, 38, 303, 21);
-		getContentPane().add(comboBoxTipoDePublicacion);
+		getContentPane().add(comboBoxTipoPublicacion);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingrese debajo los siguientes datos acerca de la oferta laboral :");
 		lblNewLabel_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));

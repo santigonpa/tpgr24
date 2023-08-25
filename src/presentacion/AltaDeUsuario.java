@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
+import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import excepciones.NicknameYaExisteException;
@@ -24,6 +25,7 @@ import javax.swing.JSpinner;
 import java.awt.SystemColor;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JTextArea;
 
 
 public class AltaDeUsuario extends JInternalFrame{
@@ -40,12 +42,12 @@ public class AltaDeUsuario extends JInternalFrame{
 	private JTextField textFieldApellido;
 	private JTextField textFieldNickname;
 	private JTextField textFieldEmail;
-	private JTextField textFieldDescripcion;
 	private JTextField textFieldLink;
 	private JTextField textFieldNacionalidad;
 	private JComboBox<String> seleccionTipoUsuario;
 	private JSpinner spinnerNacimiento;
 	private String[] arreglo;
+	private JTextArea textAreaDescripcion;
 
 	/**
 	 * Launch the application.
@@ -54,6 +56,9 @@ public class AltaDeUsuario extends JInternalFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					Fabrica fabrica = Fabrica.getInstance();
+					IControladorUsuario ICU = fabrica.getInUser();
+					IControladorOferta ICO = fabrica.getInOfer();
 					AltaDeUsuario frame = new AltaDeUsuario(ICO,ICU);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -70,7 +75,7 @@ public class AltaDeUsuario extends JInternalFrame{
 		ICO =Ico;
 		ICU = Icu;
 		setTitle("Alta de usuario");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 387);
 		setResizable(true);
 	    setIconifiable(true);
 	    setMaximizable(true);
@@ -105,9 +110,8 @@ public class AltaDeUsuario extends JInternalFrame{
 	    JLabel lblNewLabel_7 = new JLabel("   Descripción : ");
 	    getContentPane().add(lblNewLabel_7, "cell 1 6 5 1");
 	    
-	    textFieldDescripcion = new JTextField();
-	    getContentPane().add(textFieldDescripcion, "cell 6 6 9 1,growx");
-	    textFieldDescripcion.setColumns(10);
+	    textAreaDescripcion = new JTextArea();
+	    getContentPane().add(textAreaDescripcion, "cell 6 6 8 1,grow");
 	    
 	    JLabel lblNewLabel_8 = new JLabel("    Link :");
 	    getContentPane().add(lblNewLabel_8, "cell 1 7 4 1");
@@ -127,14 +131,14 @@ public class AltaDeUsuario extends JInternalFrame{
             	String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
                 if (selectedOption.equals("Empresa")) {
                 	textFieldLink.setEditable(true);
-                    textFieldDescripcion.setEditable(true);
+                    textAreaDescripcion.setEditable(true);
                 	textFieldNacionalidad.setEditable(false);
                 	spinnerNacimiento.setEnabled(false);
                 } else if (selectedOption.equals("Postulante")) {
                 	textFieldNacionalidad.setEditable(true);
                 	spinnerNacimiento.setEnabled(true);
                 	textFieldLink.setEditable(false);
-                    textFieldDescripcion.setEditable(false);
+                    textAreaDescripcion.setEditable(false);
                 }
             }
         });
@@ -199,7 +203,7 @@ public class AltaDeUsuario extends JInternalFrame{
 		String apellido = this.textFieldApellido.getText();
 		String email = this.textFieldEmail.getText();
     	String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
-    	String descripcion = this.textFieldDescripcion.getText();
+    	String descripcion = this.textAreaDescripcion.getText();
     	String web = this.textFieldLink.getText();
     	Date nacimiento = (Date) spinnerNacimiento.getValue();
     	String nacionalidad = this.textFieldNacionalidad.getText();
@@ -240,7 +244,7 @@ public class AltaDeUsuario extends JInternalFrame{
         }
 		String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
     	if (selectedOption.equals("Empresa")) {
-    		String descripcion = this.textFieldDescripcion.getText();
+    		String descripcion = this.textAreaDescripcion.getText();
     		String web = this.textFieldLink.getText();
     		if (descripcion.isEmpty() || web.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
@@ -266,7 +270,7 @@ public class AltaDeUsuario extends JInternalFrame{
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
 		this.textFieldEmail.setText("");
-    	this.textFieldDescripcion.setText("");
+    	this.textAreaDescripcion.setText("");
     	this.textFieldLink.setText("");
     	this.textFieldNacionalidad.setText("");
 	}
