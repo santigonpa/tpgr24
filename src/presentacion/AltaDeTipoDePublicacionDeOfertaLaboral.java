@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 
 
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,6 +17,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import excepciones.NombreTipoPubliYaExisteException;
 import logica_Controladores.IControladorOferta;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -33,6 +35,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.DocumentFilter.FilterBypass;
 import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
 
 public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	private JTextField txtNombre;
@@ -52,7 +55,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AltaDeTipoDePublicacionDeOfertaLaboral frame = new AltaDeTipoDePublicacionDeOfertaLaboral();
+					AltaDeTipoDePublicacionDeOfertaLaboral frame = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +67,8 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AltaDeTipoDePublicacionDeOfertaLaboral() {
+	public AltaDeTipoDePublicacionDeOfertaLaboral(IControladorOferta Ico) {
+		ICO = Ico;
 		setTitle("Alta de Tipo de Publicacion de Oferta Laboral");
 		setBounds(100, 100, 504, 307);
 		setIconifiable(true);
@@ -199,17 +203,33 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		String nombreTipoPubli = this.txtNombre.getText();
 		String descripcion = (String) this.textoDescripcion.getText();
 		
-		int expo = Integer.parseInt(this.textFieldExposicion.getText());
-		int costo = Integer.parseInt(this.textFieldCosto.getText());
-		int duracion = (int) spinnerDuracion.getValue();
-				
-		Date fechaAlta = (Date) fecha.getValue();
+		int expo = 0;
+	    int costo = 0;
+	    int duracion = 0;
+	    Date fechaAlta = null;
 		
-		
-		/*if (verificarFormularioAlta()) {
-			ICO.TipoPublicacion(nombreTipoPubli, descripcion, expo, duracion, costo);
+	    try {
+	        expo = Integer.parseInt(this.textFieldExposicion.getText());
+	        costo = Integer.parseInt(this.textFieldCosto.getText());
+	        duracion = (int) spinnerDuracion.getValue();
+	        fechaAlta = (Date) fecha.getValue();
+	    } catch (NumberFormatException ex) {
+	        JOptionPane.showMessageDialog(this, "Por favor ingrese valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+	        return; // Salir del método si ocurre una excepción
+	    }
+	    
+		if (verificarFormularioAlta()) {
+			try {
+				ICO.altaDeTipoDePubliDeOferLab(nombreTipoPubli, descripcion, expo, duracion, costo, fechaAlta);
+				JOptionPane.showMessageDialog(this, "El tipo de publicacion de oferta laboral fue dado de alta con exito","Error", JOptionPane.INFORMATION_MESSAGE);
+	            limpiarFormulario();
+	            setVisible(false);
+			
+			} catch (NombreTipoPubliYaExisteException e1) {
+				 JOptionPane.showMessageDialog(this, e1.getMessage(), "Alta de Tipo de Publicacion de Oferta Laboral", JOptionPane.ERROR_MESSAGE);
+	        }
 		}
-		*/
+		
 	}
 	private boolean verificarFormularioAlta() {
 		String nombreTipoPubli = this.txtNombre.getText();
@@ -220,11 +240,22 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 				
 		
 		if (nombreTipoPubli.isEmpty() || descripcion.isEmpty() || expo < 1 || costo < 1) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos y el costo y la exposicion deben ser mayores a 0", "ATENCION",
+            JOptionPane.showMessageDialog(this, "Revise que sus entradas sean correctas", "ATENCION",
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
 		
 		return true;
 	}
+	
+	public void limpiarFormulario() {
+		this.txtNombre.setText("");
+		this.textoDescripcion.setText("");
+		this.textFieldExposicion.setText("0");
+		this.textFieldCosto.setText("0");
+		this.spinnerDuracion.setValue(1);
+		
+	}
+	
 }
+

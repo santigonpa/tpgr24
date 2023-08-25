@@ -1,4 +1,4 @@
-package logica_excepciones;
+package excepciones;
 
 public class EmailYaExisteException extends Exception {
 	public EmailYaExisteException(String s) {

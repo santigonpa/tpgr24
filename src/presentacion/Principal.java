@@ -2,6 +2,7 @@ package presentacion;
 
 import java.awt.EventQueue;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +23,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
+
 
 public class Principal {
 
@@ -138,7 +140,7 @@ public class Principal {
         PosAOferLab.setBounds(10, 10, 710, 665);
         trabajouy.getContentPane().add(PosAOferLab);
         
-        Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral();
+        Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
         trabajouy.getContentPane().add(Altideof);
         Altideof.getContentPane();
 	
