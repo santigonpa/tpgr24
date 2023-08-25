@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
-import net.miginfocom.swing.MigLayout;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -34,8 +33,6 @@ public class AltaDeUsuario extends JInternalFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// interfaz de oferta
-	private static IControladorOferta ICO;
 	private static IControladorUsuario ICU;
 	
 	private JTextField textFieldNombre;
@@ -72,7 +69,6 @@ public class AltaDeUsuario extends JInternalFrame{
 	 * Create the application.
 	 */
 	public AltaDeUsuario(IControladorOferta Ico, IControladorUsuario Icu) {
-		ICO =Ico;
 		ICU = Icu;
 		setTitle("Alta de usuario");
 		setBounds(100, 100, 450, 387);
@@ -81,23 +77,27 @@ public class AltaDeUsuario extends JInternalFrame{
 	    setMaximizable(true);
 	    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	    setClosable(true);
-	    getContentPane().setLayout(new MigLayout("", "[0.00px,grow,left][20.00px,grow,left][][][][][grow][][grow][20.00px,grow,left][20.00px,grow,left][70.00px,grow,left][86.00px,grow,left][70.00px,grow][grow][grow]", "[30.00][30][30][30px][][2px,grow][3px,grow][10px,grow][]"));
+	    getContentPane().setLayout(null);
 	    
 	    JLabel lblNewLabel_5 = new JLabel("       Fecha de nacimiento :");
-	    getContentPane().add(lblNewLabel_5, "cell 0 3 10 1");
+	    lblNewLabel_5.setBounds(0, 117, 147, 14);
+	    getContentPane().add(lblNewLabel_5);
 	    
 	    JLabel lblNewLabel_6 = new JLabel("Nacionalidad :");
-	    getContentPane().add(lblNewLabel_6, "cell 11 3,alignx trailing");
+	    lblNewLabel_6.setBounds(176, 117, 80, 14);
+	    getContentPane().add(lblNewLabel_6);
 	    
 	    textFieldNacionalidad = new JTextField();
-	    getContentPane().add(textFieldNacionalidad, "cell 12 3 4 1,growx");
+	    textFieldNacionalidad.setBounds(266, 114, 146, 20);
+	    getContentPane().add(textFieldNacionalidad);
 	    textFieldNacionalidad.setColumns(10);
 	    
 	 // Crear un SpinnerDateModel para manejar la fecha
 	    Date initialDate = Calendar.getInstance().getTime();
         SpinnerDateModel dateModel = new SpinnerDateModel(initialDate, null, null, Calendar.DAY_OF_MONTH);
 	    spinnerNacimiento = new JSpinner(dateModel);
-	    getContentPane().add(spinnerNacimiento, "cell 3 4 2 1,grow");
+	    spinnerNacimiento.setBounds(36, 142, 80, 23);
+	    getContentPane().add(spinnerNacimiento);
 	 // Personalizar la apariencia del JSpinner para mostrar solo la fecha
 	    JSpinner.DateEditor de_spinnerNacimiento = new JSpinner.DateEditor(spinnerNacimiento, "dd/MM/yyyy");
 	    spinnerNacimiento.setEditor(de_spinnerNacimiento);
@@ -108,23 +108,28 @@ public class AltaDeUsuario extends JInternalFrame{
 	    
 	    
 	    JLabel lblNewLabel_7 = new JLabel("   Descripción : ");
-	    getContentPane().add(lblNewLabel_7, "cell 1 6 5 1");
+	    lblNewLabel_7.setBounds(0, 188, 96, 14);
+	    getContentPane().add(lblNewLabel_7);
 	    
 	    textAreaDescripcion = new JTextArea();
-	    getContentPane().add(textAreaDescripcion, "cell 6 6 8 1,grow");
+	    textAreaDescripcion.setBounds(93, 183, 319, 92);
+	    getContentPane().add(textAreaDescripcion);
 	    
 	    JLabel lblNewLabel_8 = new JLabel("    Link :");
-	    getContentPane().add(lblNewLabel_8, "cell 1 7 4 1");
+	    lblNewLabel_8.setBounds(11, 289, 72, 14);
+	    getContentPane().add(lblNewLabel_8);
 	    
 	    textFieldLink = new JTextField();
-	    getContentPane().add(textFieldLink, "cell 6 7 9 1,growx");
+	    textFieldLink.setBounds(93, 286, 319, 20);
+	    getContentPane().add(textFieldLink);
 	    textFieldLink.setColumns(10);
 	    
 		
 	    seleccionTipoUsuario = new JComboBox<String>();
+	    seleccionTipoUsuario.setBounds(166, 12, 261, 20);
 	    arreglo = new String[] {"Seleccione tipo usuario...", "Empresa", "Postulante"};
 	    seleccionTipoUsuario.setModel(new DefaultComboBoxModel<String>(arreglo));
-	    getContentPane().add(seleccionTipoUsuario, "cell 10 0 6 1,growx");
+	    getContentPane().add(seleccionTipoUsuario);
 	    seleccionTipoUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -144,44 +149,55 @@ public class AltaDeUsuario extends JInternalFrame{
         });
 	    
 	    JLabel lblNewLabel = new JLabel("Tipo de usuario :");
-	    getContentPane().add(lblNewLabel, "cell 0 0 10 1,growx");
+	    lblNewLabel.setBounds(7, 15, 126, 14);
+	    getContentPane().add(lblNewLabel);
 	    
 	    	    
 	    JLabel lblNewLabel_1 = new JLabel("Nombre :");
-	    getContentPane().add(lblNewLabel_1, "cell 0 1 5 1,alignx center");
+	    lblNewLabel_1.setBounds(19, 49, 57, 14);
+	    getContentPane().add(lblNewLabel_1);
 	    
 	    textFieldNombre = new JTextField();
-	    getContentPane().add(textFieldNombre, "cell 5 1 6 1,growx");
+	    textFieldNombre.setBounds(93, 46, 79, 20);
+	    getContentPane().add(textFieldNombre);
 	    textFieldNombre.setColumns(10);
 	    
 	    JLabel lblNewLabel_2 = new JLabel("Apellido :");
-	    getContentPane().add(lblNewLabel_2, "cell 11 1,alignx center");
+	    lblNewLabel_2.setBounds(193, 49, 55, 14);
+	    getContentPane().add(lblNewLabel_2);
 	    
 	    textFieldApellido = new JTextField();
-	    getContentPane().add(textFieldApellido, "cell 12 1 4 1,growx");
+	    textFieldApellido.setBounds(265, 46, 147, 20);
+	    getContentPane().add(textFieldApellido);
 	    textFieldApellido.setColumns(10);
 	    
-	    JLabel lblNewLabel_3 = new JLabel("   Nickname :");
-	    getContentPane().add(lblNewLabel_3, "cell 0 2 5 1,alignx center");
+	    JLabel lblNewLabel_3 = new JLabel("Nickname :");
+	    lblNewLabel_3.setBounds(19, 80, 77, 14);
+	    getContentPane().add(lblNewLabel_3);
 	    
 	    textFieldNickname = new JTextField();
-	    getContentPane().add(textFieldNickname, "cell 5 2 6 1,growx");
+	    textFieldNickname.setBounds(93, 77, 79, 20);
+	    getContentPane().add(textFieldNickname);
 	    textFieldNickname.setColumns(10);
 	    
 	    JLabel lblNewLabel_4 = new JLabel("Email :");
-	    getContentPane().add(lblNewLabel_4, "cell 11 2,alignx center");
+	    lblNewLabel_4.setBounds(193, 80, 49, 14);
+	    getContentPane().add(lblNewLabel_4);
 		  
 	    textFieldEmail = new JTextField();
-	    getContentPane().add(textFieldEmail, "cell 12 2 4 1,growx");
+	    textFieldEmail.setBounds(265, 80, 147, 20);
+	    getContentPane().add(textFieldEmail);
 	    textFieldEmail.setColumns(10);
 	    
 	    
 	    JButton btnNewButton_1 = new JButton("Aceptar");
+	    btnNewButton_1.setBounds(222, 327, 84, 23);
 	    btnNewButton_1.setForeground(SystemColor.windowText);
-	    getContentPane().add(btnNewButton_1, "cell 12 8");
+	    getContentPane().add(btnNewButton_1);
 	    
 	    JButton btnNewButton_2 = new JButton("Cancelar");
-	    getContentPane().add(btnNewButton_2, "cell 13 8");
+	    btnNewButton_2.setBounds(316, 327, 96, 23);
+	    getContentPane().add(btnNewButton_2);
 	    
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

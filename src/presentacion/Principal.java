@@ -71,50 +71,15 @@ public class Principal {
 		IControladorOferta ICO = fabrica.getInOfer();
 		IManejadorUsuario IMU =fabrica.getInManejadorUsuario();
 		IManejadorOferta IMO = fabrica.getInManejadorOferta();
-		
-		conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
-		conUsrInternalFrame.setTitle("Consulta de Usuario");
-		conUsrInternalFrame.setBounds(163, 79, 610, 347);
-		conUsrInternalFrame.setMaximizable(true);
-		conUsrInternalFrame.setClosable(true);
-        conUsrInternalFrame.setVisible(false);
         trabajouy.getContentPane().setLayout(null);
-        
-        trabajouy.getContentPane().add(conUsrInternalFrame);
-        conUsrInternalFrame.getContentPane().setLayout(null);
-        
-        addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
-        addTOfLabAPaqInternalFrame.setNormalBounds(new Rectangle(100, 100, 500, 172));
-        GridBagLayout gridBagLayout = (GridBagLayout) addTOfLabAPaqInternalFrame.getContentPane().getLayout();
-        gridBagLayout.columnWidths = new int[]{9, 81, 0, 0, 0};
-        addTOfLabAPaqInternalFrame.setMaximizable(true);
-        addTOfLabAPaqInternalFrame.setBounds(79, 44, 456, 165);
-        addTOfLabAPaqInternalFrame.setClosable(true);
-        trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
-        
-        modDatosUser = new ModificarDatosDeUsuario();
-        modDatosUser.setBounds(100, 100, 550, 300);
-        modDatosUser.setMaximizable(true);
-        modDatosUser.setClosable(true);
-        modDatosUser.setVisible(false);
         trabajouy.getContentPane().setLayout(null);
-        
-        trabajouy.getContentPane().add(modDatosUser);
-        modDatosUser.getContentPane();
         
         altaUser = new AltaDeUsuario(ICO, ICU);
-        altaUser.setBounds(100, 100, 550, 300);
+        altaUser.setBounds(100, 100, 450, 387);
         altaUser.setMaximizable(true);
         altaUser.setClosable(true);
         altaUser.setVisible(false);
         trabajouy.getContentPane().setLayout(null);
-        
-		conOfertaLab = new ConsultaDeOfertaLaboral();
-		conOfertaLab.setBounds(163, 79, 444, 302);
-		conOfertaLab.setMaximizable(true);
-		conOfertaLab.setClosable(true);
-		conOfertaLab.setVisible(false);
-        trabajouy.getContentPane().add(conOfertaLab);
 
         trabajouy.getContentPane().add(altaUser);
         altaUser.getContentPane();
@@ -148,6 +113,41 @@ public class Principal {
         Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
         trabajouy.getContentPane().add(Altideof);
         Altideof.getContentPane();
+        
+        conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
+        conUsrInternalFrame.setTitle("Consulta de Usuario");
+        conUsrInternalFrame.setBounds(100, 100, 578, 332);
+        conUsrInternalFrame.setMaximizable(true);
+        conUsrInternalFrame.setClosable(true);
+        conUsrInternalFrame.setVisible(false);
+        
+        trabajouy.getContentPane().add(conUsrInternalFrame);
+        conUsrInternalFrame.getContentPane().setLayout(null);
+        
+        addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
+        addTOfLabAPaqInternalFrame.setNormalBounds(new Rectangle(100, 100, 500, 172));
+        GridBagLayout gridBagLayout = (GridBagLayout) addTOfLabAPaqInternalFrame.getContentPane().getLayout();
+        gridBagLayout.columnWidths = new int[]{9, 81, 0, 0, 0};
+        addTOfLabAPaqInternalFrame.setMaximizable(true);
+        addTOfLabAPaqInternalFrame.setBounds(79, 44, 456, 165);
+        addTOfLabAPaqInternalFrame.setClosable(true);
+        trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
+        
+        modDatosUser = new ModificarDatosDeUsuario();
+        modDatosUser.setBounds(100, 100, 550, 300);
+        modDatosUser.setMaximizable(true);
+        modDatosUser.setClosable(true);
+        modDatosUser.setVisible(false);
+        
+        trabajouy.getContentPane().add(modDatosUser);
+        modDatosUser.getContentPane();
+        
+		conOfertaLab = new ConsultaDeOfertaLaboral();
+		conOfertaLab.setBounds(163, 79, 444, 302);
+		conOfertaLab.setMaximizable(true);
+		conOfertaLab.setClosable(true);
+		conOfertaLab.setVisible(false);
+		trabajouy.getContentPane().add(conOfertaLab);
 	
 	}
 

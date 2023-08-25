@@ -8,8 +8,6 @@ import java.util.Set;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-import javax.swing.JTextPane;
-
 import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
 import logica_Controladores.IControladorOferta;
@@ -22,6 +20,8 @@ import utils.Fabrica;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 public class ConsultaDeUsuario extends JInternalFrame {
 	
@@ -34,6 +34,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	private JLabel linkLabel;
 	private JLabel apellidoLabel;
 	private JLabel nacionLabel;
+	private JLabel emailLabel;
 	private JTextPane descPane;
 	/**
 	 * 
@@ -68,11 +69,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Elija el Usuario que desea consultar:");
-		lblNewLabel.setBounds(125, 11, 178, 14);
+		lblNewLabel.setBounds(192, 11, 178, 14);
 		getContentPane().add(lblNewLabel);
 		
 		comboBoxUsuarios = new JComboBox<DataUsuario>();
-		comboBoxUsuarios.setBounds(83, 36, 265, 22);
+		comboBoxUsuarios.setBounds(148, 36, 265, 22);
 		getContentPane().add(comboBoxUsuarios);
 		
 		comboBoxUsuarios.addActionListener(new ActionListener() {
@@ -84,6 +85,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	DataEmpresa selectedEmpresa = (DataEmpresa) selectedOption;
                 	nombreLabel.setText(selectedEmpresa.getNombre());
                 	nicknameLabel.setText(selectedEmpresa.getNickName());
+                	emailLabel.setText(selectedEmpresa.getEmail());
                 	linkLabel.setText(selectedEmpresa.getLinkWeb());
                 	apellidoLabel.setText(selectedEmpresa.getApellido());
                 	descPane.setText(selectedEmpresa.getDescripcion());
@@ -112,6 +114,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	nombreLabel.setText(selectedPostulante.getNombre());
                 	nicknameLabel.setText(selectedPostulante.getNickName());
                 	apellidoLabel.setText(selectedPostulante.getApellido());
+                	emailLabel.setText(selectedPostulante.getEmail());
                 	nacionLabel.setText(selectedPostulante.getNacionalidad());
                 	fechaNacLabel.setText(selectedPostulante.getFechaString());
                 	
@@ -121,81 +124,93 @@ public class ConsultaDeUsuario extends JInternalFrame {
         });
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
-		lblNewLabel_1.setBounds(10, 67, 46, 14);
+		lblNewLabel_1.setBounds(10, 67, 64, 14);
 		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Nickname:");
-		lblNewLabel_2.setBounds(10, 92, 54, 14);
+		lblNewLabel_2.setBounds(10, 92, 76, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		fechaNacLabel = new JLabel("Fecha nacimiento:");
-		fechaNacLabel.setBounds(10, 117, 96, 14);
+		fechaNacLabel.setBounds(10, 117, 112, 14);
 		getContentPane().add(fechaNacLabel);
 		
 		JLabel linkDesLabel = new JLabel("Link Web:");
-		linkDesLabel.setBounds(10, 142, 54, 14);
+		linkDesLabel.setBounds(10, 142, 78, 14);
 		getContentPane().add(linkDesLabel);
 		
 		JLabel lblNewLabel_5 = new JLabel("Descripcion:");
-		lblNewLabel_5.setBounds(10, 167, 64, 14);
+		lblNewLabel_5.setBounds(10, 167, 76, 14);
 		getContentPane().add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Apellido:");
-		lblNewLabel_6.setBounds(257, 68, 46, 14);
+		lblNewLabel_6.setBounds(257, 68, 80, 14);
 		getContentPane().add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Email:");
-		lblNewLabel_7.setBounds(257, 92, 46, 14);
+		lblNewLabel_7.setBounds(257, 92, 80, 14);
 		getContentPane().add(lblNewLabel_7);
 		
 		JLabel nacionDesLabel = new JLabel("Nacionalidad:");
-		nacionDesLabel.setBounds(254, 117, 64, 14);
+		nacionDesLabel.setBounds(257, 117, 94, 14);
 		getContentPane().add(nacionDesLabel);
 		
-		descPane = new JTextPane();
-		descPane.setBounds(72, 168, 432, 68);
-		getContentPane().add(descPane);
-		
 		JLabel ofertasDesBox = new JLabel("Ofertas:");
-		ofertasDesBox.setBounds(10, 251, 46, 14);
+		ofertasDesBox.setBounds(79, 251, 64, 14);
 		getContentPane().add(ofertasDesBox);
 		
 		comboOferta = new JComboBox<DataOferta>();
-		comboOferta.setBounds(72, 247, 347, 22);
+		comboOferta.setBounds(148, 247, 265, 22);
 		comboOferta.setVisible(false);
 		getContentPane().add(comboOferta);
 		
 		nombreLabel = new JLabel("");
-		nombreLabel.setBounds(66, 67, 162, 14);
+		nombreLabel.setBounds(64, 67, 164, 14);
 		getContentPane().add(nombreLabel);
 		
 		nicknameLabel = new JLabel("");
-		nicknameLabel.setBounds(74, 92, 173, 14);
+		nicknameLabel.setBounds(76, 92, 171, 14);
 		getContentPane().add(nicknameLabel);
 		
 		fechaNacLabel = new JLabel("");
-		fechaNacLabel.setBounds(101, 117, 112, 14);
+		fechaNacLabel.setBounds(119, 117, 94, 14);
 		getContentPane().add(fechaNacLabel);
 		
 		apellidoLabel = new JLabel("");
 		apellidoLabel.setBounds(313, 67, 191, 14);
 		getContentPane().add(apellidoLabel);
 		
-		JLabel emailLabel = new JLabel("");
-		emailLabel.setBounds(323, 92, 221, 14);
+		emailLabel = new JLabel("");
+		emailLabel.setBounds(301, 92, 243, 14);
 		getContentPane().add(emailLabel);
 		
 		nacionLabel = new JLabel("");
-		nacionLabel.setBounds(326, 117, 178, 14);
+		nacionLabel.setBounds(340, 117, 164, 14);
 		getContentPane().add(nacionLabel);
 		
 		JButton btnNewButton = new JButton("Salir");
-		btnNewButton.setBounds(455, 270, 89, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        		limpiarFormulario();
+		                setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(473, 268, 89, 23);
 		getContentPane().add(btnNewButton);
 		
 		linkLabel = new JLabel("");
-		linkLabel.setBounds(60, 142, 277, 14);
+		linkLabel.setBounds(72, 142, 265, 14);
 		getContentPane().add(linkLabel);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(491, 179, -412, 51);
+		getContentPane().add(textArea);
+		
+		descPane = new JTextPane();
+		descPane.setEnabled(false);
+		descPane.setEditable(false);
+		descPane.setBounds(80, 167, 402, 73);
+		getContentPane().add(descPane);
 
 	}
 	
@@ -215,4 +230,16 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		}catch(UsuarioNoExisteException e) {}
 	}
 	
+	
+	public void limpiarFormulario() {
+		nombreLabel.setText("");
+    	nicknameLabel.setText("");
+    	linkLabel.setText("");
+    	apellidoLabel.setText("");
+    	emailLabel.setText("");
+    	descPane.setText("");
+    	nacionLabel.setText("");
+    	fechaNacLabel.setText("");
+		
+	}
 }
