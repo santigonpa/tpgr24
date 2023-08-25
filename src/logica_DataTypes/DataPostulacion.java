@@ -2,7 +2,7 @@ package logica_DataTypes;
 
 import java.time.*;
 
-public class DataPostulacion {
+public class DataPostulacion extends DataUsuario {
 
 	//Atributos
 	private LocalDate fecha;

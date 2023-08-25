@@ -1,11 +1,5 @@
 package logica_DataTypes;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import logica_Entidades.CompraPaquete;
-import logica_Entidades.OfertaLaboral;
-
 public class DataEmpresa extends DataUsuario{
 	//Atributos
 		private String descripcion;

@@ -1,6 +1,5 @@
 package logica_Manejadores;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +10,7 @@ import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataPostulante;
+import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
 
 public class ManejadorUsuario implements IManejadorUsuario {
@@ -99,7 +99,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		DataEmpresa res = emp.getDTEmpresa();
 		return res;
 	}
-	public Map<String, DataPostulante> getDataEstudiantes(){
+	public Map<String, DataPostulante> getDataPostulantes(){
 		Map<String, DataPostulante> res = new HashMap<>();;
     	Set<Postulante> temp = new HashSet<>();
     	
@@ -116,5 +116,33 @@ public class ManejadorUsuario implements IManejadorUsuario {
         
     	return res;
 	}
+
+	@Override
+	public Map<String, DataUsuario> getDataUsuario() {
+		Map<String, DataUsuario> res = new HashMap<>();;
+    	Set<Usuario> temp = new HashSet<>();
+    	
+    	// Obtener las claves del Map
+        Set<String> clavesUsuarios = this.usuarios.keySet();
+        for(String nombreUsuario : clavesUsuarios) {
+        	Usuario user =  this.usuarios.get(nombreUsuario);
+        	temp.add(user);
+        }
+        for(Usuario empAct: temp) {
+        	if(empAct instanceof Empresa) {
+        		Empresa empAct1 =(Empresa) empAct;
+        		DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct1.getDescripcion(),empAct1.getLinkWeb());
+            	res.put(empAct.getNickName(), nuevaDTEmp);
+        	}else if (empAct instanceof Postulante){
+        		Postulante empAct1 =(Postulante) empAct;
+        		DataPostulante nuevaDTPost = new DataPostulante(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct1.getNacimineto(),empAct1.getNacionalidad());
+            	res.put(empAct.getNickName(), nuevaDTPost);
+        	}
+        }
+        
+    	return res;
+	}
+
+	
 
 }

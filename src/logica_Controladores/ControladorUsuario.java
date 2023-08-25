@@ -178,5 +178,18 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         mu.addUsuario(postulante);
 		
 	}
+
+	@Override
+	public Set<DataUsuario> getDataUsuarios() {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		
+		Set<DataUsuario> res = new HashSet<>();
+		Map<String, DataUsuario> m = mu.getDataUsuario();
+		for (Map.Entry<String, DataUsuario> entry : m.entrySet()) {
+		    res.add(entry.getValue());
+		}
+		return res;
+	}
 	
 }

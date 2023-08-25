@@ -8,6 +8,7 @@ import excepciones.NicknameYaExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
+import logica_DataTypes.DataUsuario;
 import logica_Entidades.OfertaLaboral;
 
 
@@ -26,5 +27,7 @@ public interface IControladorUsuario {
 			String web)throws NicknameYaExisteException;
 
 	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
+
+	public abstract Set<DataUsuario> getDataUsuarios();
 
 }

@@ -20,6 +20,7 @@ import javax.swing.JButton;
 public class ConsultaDeUsuario extends JInternalFrame {
 	
 	private JComboBox<DataUsuario> comboBoxUsuarios;
+	private IControladorUsuario ICU;
 	/**
 	 * 
 	 */
@@ -47,7 +48,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaDeUsuario(IControladorUsuario ICU) {
+	public ConsultaDeUsuario(IControladorUsuario Icu) {
+		ICU =Icu;
+		
 		setBounds(100, 100, 469, 332);
 		getContentPane().setLayout(null);
 		
@@ -137,13 +140,13 @@ public class ConsultaDeUsuario extends JInternalFrame {
 
 	}
 	
-	public void cargarEmpresas() {
-		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
-		DefaultComboBoxModel<DataEmpresa> model = new DefaultComboBoxModel<>();
+	public void cargarUsuarios() {
+		Set<DataUsuario> usuarios = ICU.getDataUsuarios();
+		DefaultComboBoxModel<DataUsuario> model = new DefaultComboBoxModel<>();
 	    
 	    // Agregar las empresas al modelo del JComboBox
-	    for (DataEmpresa empresa : empresas) {
-	        model.addElement(empresa);
+	    for (DataUsuario usuario : usuarios) {
+	        model.addElement(usuario);
 	    }
 	    
 	    // Establecer el modelo en el JComboBox
