@@ -420,14 +420,14 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	
 		if(verificarFormulario()) {
 			ICO.agregarPostulacion(post, ofer, cv, mot, fecha);
-			//limpiarFormulario();
+			limpiarFormulario();
 			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 			setVisible(false);
 		}
 		
 	}
 	
-	public void cargarDatos() {
+	public void cargarDatos() throws UsuarioNoExisteException {
 		//Para las empresas
 		DefaultComboBoxModel<DataEmpresa> modelEmp = new DefaultComboBoxModel<>();
 		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
@@ -462,11 +462,11 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		return true;
 	} 
 	
-	//public void limpiarFormulario() {
-		//this.CVReducido.setText("");
-		//this.motivacion.setText("");
-		//this.comboBoxEmp.setSelectedItem(null);
-		//this.comboBoxOferta.setSelectedItem(null);
-		//this.comboBoxPost.setSelectedItem(null);
-	//}
+	public void limpiarFormulario() {
+		this.CVReducido.setText("");
+		this.motivacion.setText("");
+		this.comboBoxEmp.setSelectedItem(null);
+		this.comboBoxOferta.setSelectedItem(null);
+		this.comboBoxPost.setSelectedItem(null);
+	}
 }
