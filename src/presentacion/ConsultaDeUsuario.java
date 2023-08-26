@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
@@ -26,6 +27,7 @@ import javax.swing.event.InternalFrameEvent;
 
 
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 
 public class ConsultaDeUsuario extends JInternalFrame {
@@ -85,6 +87,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		comboBoxUsuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	limpiarFormulario();
             	DataUsuario selectedOption = (DataUsuario)comboBoxUsuarios.getSelectedItem();
       
                 if (selectedOption instanceof DataEmpresa) {
@@ -118,6 +121,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	textArea.setVisible(false);
                 	comboOferta.setVisible(false);
                 	
+
+                	
                 	DataPostulante selectedPostulante = (DataPostulante) selectedOption;
                 	nombreLabel.setText(selectedPostulante.getNombre());
                 	nicknameLabel.setText(selectedPostulante.getNickName());
@@ -150,7 +155,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		getContentPane().add(linkDesLabel);
 		
 		JLabel lblNewLabel_5 = new JLabel("Descripcion:");
-		lblNewLabel_5.setBounds(10, 167, 76, 14);
+		lblNewLabel_5.setBounds(10, 167, 94, 14);
 		getContentPane().add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Apellido:");
@@ -191,7 +196,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		getContentPane().add(apellidoLabel);
 		
 		emailLabel = new JLabel("");
-		emailLabel.setBounds(301, 92, 243, 14);
+		emailLabel.setVerticalAlignment(SwingConstants.TOP);
+		emailLabel.setBounds(295, 92, 243, 22);
 		getContentPane().add(emailLabel);
 		
 		nacionLabel = new JLabel("");
@@ -219,17 +225,18 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		linkLabel = new JLabel("");
 		linkLabel.setBounds(72, 142, 265, 14);
 		getContentPane().add(linkLabel);
-		
-		
-		textArea = new JTextArea();
+
+        scrollPane = new JScrollPane();
+        scrollPane.setBounds(96, 167, 386, 73); // Posición y tamaño del JScrollPane
+
+        getContentPane().add(scrollPane);
+        
+        
+        textArea = new JTextArea();
+        scrollPane.setViewportView(textArea);
         textArea.setEditable(false);
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
-
-        scrollPane = new JScrollPane(textArea);
-        scrollPane.setBounds(80, 167, 402, 73); // Posición y tamaño del JScrollPane
-
-        getContentPane().add(scrollPane);
 
 	}
 	
