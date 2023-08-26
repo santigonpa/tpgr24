@@ -22,6 +22,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+
 
 public class ConsultaDeUsuario extends JInternalFrame {
 	
@@ -195,6 +198,14 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		                setVisible(false);
 			}
 		});
+		
+		addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                limpiarFormulario();
+            }
+        });
+		
 		btnNewButton.setBounds(473, 268, 89, 23);
 		getContentPane().add(btnNewButton);
 		
