@@ -49,7 +49,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		});
 	}
 
-	s/**
+	/**
 	 * Create the frame.
 	 */
 	public ConsultaDeOfertaLaboral() {
