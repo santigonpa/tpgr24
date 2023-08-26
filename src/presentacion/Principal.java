@@ -143,7 +143,7 @@ public class Principal {
         modDatosUser.getContentPane();
         
 		conOfertaLab = new ConsultaDeOfertaLaboral();
-		conOfertaLab.setBounds(163, 79, 444, 302);
+		conOfertaLab.setBounds(100, 100, 392, 456);
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);
