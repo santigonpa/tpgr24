@@ -21,14 +21,12 @@ import utils.Fabrica;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-<<<<<<< HEAD
-import javax.swing.JTextPane;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-=======
+
 import javax.swing.JScrollPane;
->>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
+
 
 public class ConsultaDeUsuario extends JInternalFrame {
 	
