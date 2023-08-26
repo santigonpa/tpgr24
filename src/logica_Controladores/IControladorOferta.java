@@ -1,5 +1,6 @@
 package logica_Controladores;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Set;
@@ -20,7 +21,7 @@ public interface IControladorOferta  {
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
 		int costo, int duracion, Date fecha) throws NombreTipoPubliYaExisteException;
 
-public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalTime fecha);
+public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha);
 
 public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
 

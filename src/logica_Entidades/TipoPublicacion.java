@@ -1,8 +1,6 @@
 package logica_Entidades;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import logica_DataTypes.DataTipoPublicacion;
 
 public class TipoPublicacion {
