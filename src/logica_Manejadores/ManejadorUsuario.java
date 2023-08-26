@@ -118,6 +118,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		Postulante p = (Postulante) postulantes.get(post);
 		return p;
 	}
+	
+	public Empresa obtenerEmpresa(String emp) {
+		Empresa e = (Empresa) empresas.get(emp);
+		return e;
+	}
 
 	@Override
 	public Map<String, DataUsuario> getDataUsuario() {

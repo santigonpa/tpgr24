@@ -2,6 +2,7 @@ package logica_DataTypes;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class DataOferta {
 	
@@ -101,6 +102,11 @@ public class DataOferta {
 
 	public void setFechaDeAlta(LocalDate fechaDeAlta) {
 		this.fechaDeAlta = fechaDeAlta;
+	}
+
+	public String getFechaAltaComoString() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fechaDeAlta.format(formatter);
 	}
 
 }
