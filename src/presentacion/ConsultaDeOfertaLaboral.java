@@ -78,7 +78,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		setMaximizable(true);
 		setTitle("Consulta de oferta laboral");
 		setClosable(true);
-		setBounds(50, 50, 392, 456);		
+		setBounds(50, 50, 500, 456);		
 		getContentPane().setLayout(null);
 		
 		JLabel lblEmpresa = new JLabel("Empresa:");
@@ -86,7 +86,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblEmpresa);
 		
 		comboBoxEmpresas = new JComboBox<DataEmpresa>();
-		comboBoxEmpresas.setBounds(83, 6, 287, 21);
+		comboBoxEmpresas.setBounds(83, 6, 389, 21);
 		getContentPane().add(comboBoxEmpresas);
 		
 		comboBoxEmpresas.addActionListener(new ActionListener() {
@@ -109,7 +109,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		});
 		
 		comboBoxOfertas = new JComboBox<DataOferta>();
-		comboBoxOfertas.setBounds(83, 38, 287, 21);
+		comboBoxOfertas.setBounds(83, 38, 389, 21);
 		getContentPane().add(comboBoxOfertas);
 			
 		comboBoxOfertas.addActionListener(new ActionListener() {
@@ -143,7 +143,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblOferta);
 		
 		JLabel lblInfoOferta = new JLabel("Informacion de la oferta laboral");
-		lblInfoOferta.setBounds(146, 88, 208, 13);
+		lblInfoOferta.setBounds(186, 88, 208, 13);
 		getContentPane().add(lblInfoOferta);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
@@ -151,7 +151,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblDescripcion);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(104, 111, 266, 64);
+		scrollPane.setBounds(104, 111, 368, 64);
 		getContentPane().add(scrollPane);
 		
 		textAreaDescripcion = new JTextArea();
@@ -163,19 +163,19 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblCiudad);
 		
 		JLabel lblDepartamento = new JLabel("Departamento:");
-		lblDepartamento.setBounds(189, 194, 107, 13);
+		lblDepartamento.setBounds(247, 194, 107, 13);
 		getContentPane().add(lblDepartamento);
 		
 		textFieldCiudad = new JTextField();
 		textFieldCiudad.setEditable(false);
-		textFieldCiudad.setBounds(72, 191, 107, 19);
+		textFieldCiudad.setBounds(104, 191, 120, 19);
 		getContentPane().add(textFieldCiudad);
 		textFieldCiudad.setColumns(10);
 		
 		textFieldDepartamento = new JTextField();
 		textFieldDepartamento.setEditable(false);
 		textFieldDepartamento.setColumns(10);
-		textFieldDepartamento.setBounds(295, 191, 75, 19);
+		textFieldDepartamento.setBounds(352, 190, 120, 19);
 		getContentPane().add(textFieldDepartamento);
 		
 		JLabel lblHoraInicio = new JLabel("Hora inicio:");
@@ -183,7 +183,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblHoraInicio);
 		
 		JLabel lblHoraFin = new JLabel("Hora fin");
-		lblHoraFin.setBounds(189, 232, 89, 13);
+		lblHoraFin.setBounds(257, 232, 89, 13);
 		getContentPane().add(lblHoraFin);	
 		
 		JLabel lblRemuneracion = new JLabel("Remuneracion:");
@@ -191,19 +191,19 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblRemuneracion);
 		
 		JLabel lblCosto = new JLabel("Costo:");
-		lblCosto.setBounds(189, 273, 84, 13);
+		lblCosto.setBounds(257, 273, 84, 13);
 		getContentPane().add(lblCosto);
 		
 		textFieldRemuneracion = new JTextField();
 		textFieldRemuneracion.setEditable(false);
 		textFieldRemuneracion.setColumns(10);
-		textFieldRemuneracion.setBounds(104, 270, 75, 19);
+		textFieldRemuneracion.setBounds(104, 270, 120, 19);
 		getContentPane().add(textFieldRemuneracion);
 		
 		textFieldCosto = new JTextField();
 		textFieldCosto.setEditable(false);
 		textFieldCosto.setColumns(10);
-		textFieldCosto.setBounds(295, 270, 75, 19);
+		textFieldCosto.setBounds(352, 269, 120, 19);
 		getContentPane().add(textFieldCosto);
 		
 		JLabel lblFechaDeAlta = new JLabel("Fecha de alta:");
@@ -216,7 +216,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblPostulaciones);
 		
 		comboBoxPostulaciones = new JComboBox<>();
-		comboBoxPostulaciones.setBounds(104, 351, 266, 21);
+		comboBoxPostulaciones.setBounds(104, 351, 368, 21);
 		getContentPane().add(comboBoxPostulaciones);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -233,19 +233,19 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		textFieldHoraInicio = new JTextField();
 		textFieldHoraInicio.setEditable(false);
 		textFieldHoraInicio.setColumns(10);
-		textFieldHoraInicio.setBounds(104, 227, 75, 19);
+		textFieldHoraInicio.setBounds(104, 227, 120, 19);
 		getContentPane().add(textFieldHoraInicio);
 		
 		textFieldHoraFin = new JTextField();
 		textFieldHoraFin.setEditable(false);
 		textFieldHoraFin.setColumns(10);
-		textFieldHoraFin.setBounds(295, 227, 75, 19);
+		textFieldHoraFin.setBounds(352, 228, 120, 19);
 		getContentPane().add(textFieldHoraFin);
 		
 		textFieldFechaDeAlta = new JTextField();
 		textFieldFechaDeAlta.setEditable(false);
 		textFieldFechaDeAlta.setColumns(10);
-		textFieldFechaDeAlta.setBounds(104, 307, 75, 19);
+		textFieldFechaDeAlta.setBounds(104, 307, 120, 19);
 		getContentPane().add(textFieldFechaDeAlta);
 	}
 	
