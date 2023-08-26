@@ -427,9 +427,10 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 	}
 	
-	public void cargarDatos() throws UsuarioNoExisteException {
+	public void cargarDatos() {
 		//Para las empresas
 		DefaultComboBoxModel<DataEmpresa> modelEmp = new DefaultComboBoxModel<>();
+		try {
 		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
 		for(DataEmpresa emp : empresas) {
 			modelEmp.addElement(emp);
@@ -443,7 +444,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 			modelPost.addElement(post);
 		}
 		comboBoxPost.setModel(modelPost);
-		
+		}catch(UsuarioNoExisteException e) {}
 	}
 	
 	private boolean verificarFormulario() {
