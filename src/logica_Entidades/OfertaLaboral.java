@@ -1,6 +1,7 @@
 package logica_Entidades;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Set;
 
 import logica_DataTypes.DataOferta;
@@ -42,6 +43,7 @@ public class OfertaLaboral {
 		this.departamento = departamento;
 		this.remuneracion = (int) remuneracion;
 		this.fechaDeAlta = (LocalDate) fecha;
+		this.palabrasClave = new HashSet<KeyWord>();
 	}
 	
 	public DataOferta getDataOferta() {

@@ -14,9 +14,6 @@ import logica_Manejadores.IManejadorUsuario;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
-
 import utils.Fabrica;
 
 public class cargarDatos {
@@ -25,6 +22,7 @@ public class cargarDatos {
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
 		IManejadorPyT mpyt = fabrica.getInManejadorPyT();
+				
 		
 		//------------------------------//
 		//Carga de usuarios
@@ -188,32 +186,37 @@ public class cargarDatos {
 		
 		
 		//Agrego Keyword a Oferta
-		//Creo los set de Keywords
-		Set<String> setk1 = new HashSet<>(Set.of(k1.getPalabraClave(),k2.getPalabraClave(),k3.getPalabraClave(),k4.getPalabraClave(),k5.getPalabraClave(),k6.getPalabraClave()));
-		Set<String> setk2 = new HashSet<>(Set.of(k5.getPalabraClave()));
-		Set<String> setk3 = new HashSet<>(Set.of(k2.getPalabraClave(),k3.getPalabraClave(),k6.getPalabraClave()));
-		Set<String> setk4 = new HashSet<>(Set.of(k2.getPalabraClave()));
-		Set<String> setk5 = new HashSet<>(Set.of(k4.getPalabraClave()));
-		Set<String> setk6 = new HashSet<>(Set.of(k1.getPalabraClave()));
+			
+		o1.agregarKeywordAOferta(k1);
+		o1.agregarKeywordAOferta(k2);
+		o1.agregarKeywordAOferta(k3);
+		o1.agregarKeywordAOferta(k4);
+		o1.agregarKeywordAOferta(k5);
+		o1.agregarKeywordAOferta(k6);
 		
-		//Linkeo Keywords con Oferta		
-		mo.linkearKeywords(setk1,o1);
-		mo.linkearKeywords(setk2,o2);
-		mo.linkearKeywords(setk3,o3);
-		mo.linkearKeywords(setk4,o4);
-		mo.linkearKeywords(setk5,o5);
-		mo.linkearKeywords(setk6,o6);
+		o2.agregarKeywordAOferta(k5);
+		
+		o3.agregarKeywordAOferta(k2);
+		o3.agregarKeywordAOferta(k3);
+		o3.agregarKeywordAOferta(k6);
+		
+		o4.agregarKeywordAOferta(k2);
+		
+		o5.agregarKeywordAOferta(k4);
+		
+		o6.agregarKeywordAOferta(k1);
+
 		
 		//Linkeo Tipo con Oferta ........... falta implementar
 
-		mo.linkearTipo(tp1,o1);
-		mo.linkearTipo(tp3,o2);
-		mo.linkearTipo(tp3,o3);
-		mo.linkearTipo(tp1,o4);
-		mo.linkearTipo(tp2,o5);
-		mo.linkearTipo(tp4,o6);
-		mo.linkearTipo(tp1,o7);
-		mo.linkearTipo(tp2,o8);
+		o1.setTipoPublicacion(tp1);
+		o2.setTipoPublicacion(tp3);
+		o3.setTipoPublicacion(tp3);
+		o4.setTipoPublicacion(tp1);
+		o5.setTipoPublicacion(tp2);
+		o6.setTipoPublicacion(tp4);
+		o7.setTipoPublicacion(tp1);
+		o8.setTipoPublicacion(tp2);
 
 		
 		//------------------------------//	

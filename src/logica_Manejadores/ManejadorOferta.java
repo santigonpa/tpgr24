@@ -21,7 +21,7 @@ public class ManejadorOferta implements IManejadorOferta{
 	private ManejadorOferta() {
 		this.ofertasLaborales = new HashMap<String, OfertaLaboral>();
 		this.keywordsTotales = new HashMap<String,KeyWord>();
-		
+		this.postulaciones = new HashSet<Postulacion>();
 	}
 	
 	public static ManejadorOferta getInstance() {
