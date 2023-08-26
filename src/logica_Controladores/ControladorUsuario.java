@@ -118,18 +118,22 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 }
 
 	@Override
-	public Set<DataEmpresa> getDataEmpresa() {
+	public Set<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		
 		Set<DataEmpresa> res = new HashSet<>();
 		Map<String, DataEmpresa> m = mu.getDataEmpresas();
-		for (Map.Entry<String, DataEmpresa> entry : m.entrySet()) {
-		    res.add(entry.getValue());
+		if(m != null) {
+			for (Map.Entry<String, DataEmpresa> entry : m.entrySet()) {
+			    res.add(entry.getValue());
+			}
+			return res;
 		}
-		return res;
-	}
-
+		else  {throw new UsuarioNoExisteException("No existen Empresas");}
+						
+}
+	
 	@Override
 	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
 		Fabrica fabrica = Fabrica.getInstance();

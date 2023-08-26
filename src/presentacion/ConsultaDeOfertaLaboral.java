@@ -2,14 +2,24 @@ package presentacion;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JInternalFrame;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
+
+import excepciones.NoTieneOfertasException;
+import excepciones.UsuarioNoExisteException;
+import logica_Controladores.IControladorOferta;
+import logica_Controladores.IControladorUsuario;
+
 import javax.swing.JTextArea;
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
@@ -21,17 +31,34 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
+import java.util.Set;
 import java.util.Calendar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
+import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataOferta;
+import logica_DataTypes.DataPostulante;
+import logica_DataTypes.DataUsuario;
+import utils.Fabrica;
+
+
+
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
-	private JTextField textField;
-	private JTextField textField_1;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField textFieldCiudad;
+	private JTextField textFieldDepartamento;
 	private JTextField textFieldRemuneracion;
 	private JTextField textFieldCosto;
+	private JComboBox<DataEmpresa> comboBoxEmpresas;
+	private JComboBox<DataOferta> comboBoxOfertas;
 
+	private  IControladorOferta ICO;
+	private  IControladorUsuario ICU;
 
 	/**
 	 * Launch the application.
@@ -40,7 +67,10 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ConsultaDeOfertaLaboral frame = new ConsultaDeOfertaLaboral();
+					Fabrica fabrica = Fabrica.getInstance();
+					IControladorUsuario ICU = fabrica.getInUser();
+					IControladorOferta ICO = fabrica.getInOfer();
+					ConsultaDeOfertaLaboral frame = new ConsultaDeOfertaLaboral(ICU, ICO);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +82,9 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaDeOfertaLaboral() {
+	public ConsultaDeOfertaLaboral(IControladorUsuario Icu,IControladorOferta Ico) {
+		ICU = Icu;
+		ICO = Ico;
 		setIconifiable(true);
 		setMaximizable(true);
 		setTitle("Consulta de oferta laboral");
@@ -64,19 +96,36 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		lblEmpresa.setBounds(10, 10, 65, 13);
 		getContentPane().add(lblEmpresa);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una empresa"}));
-		comboBox.setBounds(83, 6, 287, 21);
-		getContentPane().add(comboBox);
+		comboBoxEmpresas = new JComboBox<DataEmpresa>();
+		comboBoxEmpresas.setBounds(83, 6, 287, 21);
+		getContentPane().add(comboBoxEmpresas);
+		
+		comboBoxEmpresas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	DataEmpresa selectedEmpresa = (DataEmpresa)comboBoxEmpresas.getSelectedItem();
+            
+            	DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
+        		try {
+        		Set<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(selectedEmpresa.getNickName());
+        		
+        	    if (ofertas!= null) {
+	        	    for (DataOferta oferta : ofertas) {
+	        	        model.addElement(oferta);
+        	    }
+        	    comboBoxOfertas.setModel(model);}
+        	    else {throw new NoTieneOfertasException("No tiene ofertas laborales");}
+        		}catch(NoTieneOfertasException e22) {}
+            }
+		});
 		
 		JLabel lblOferta = new JLabel("Oferta:");
 		lblOferta.setBounds(10, 42, 65, 13);
 		getContentPane().add(lblOferta);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una oferta"}));
-		comboBox_1.setBounds(83, 38, 287, 21);
-		getContentPane().add(comboBox_1);
+		comboBoxOfertas = new JComboBox<DataOferta>();
+		comboBoxOfertas.setBounds(83, 38, 287, 21);
+		getContentPane().add(comboBoxOfertas);
 		
 		JLabel lblInfoOferta = new JLabel("Informacion de la oferta laboral");
 		lblInfoOferta.setBounds(146, 88, 208, 13);
@@ -90,9 +139,9 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		scrollPane.setBounds(104, 111, 266, 64);
 		getContentPane().add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		scrollPane.setViewportView(textArea);
+		JTextArea textAreaDescripcion = new JTextArea();
+		textAreaDescripcion.setEditable(false);
+		scrollPane.setViewportView(textAreaDescripcion);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
 		lblCiudad.setBounds(10, 194, 65, 13);
@@ -102,17 +151,17 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		lblDepartamento.setBounds(189, 194, 107, 13);
 		getContentPane().add(lblDepartamento);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(104, 191, 75, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		textFieldCiudad = new JTextField();
+		textFieldCiudad.setEditable(false);
+		textFieldCiudad.setBounds(104, 191, 75, 19);
+		getContentPane().add(textFieldCiudad);
+		textFieldCiudad.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(295, 191, 75, 19);
-		getContentPane().add(textField_1);
+		textFieldDepartamento = new JTextField();
+		textFieldDepartamento.setEditable(false);
+		textFieldDepartamento.setColumns(10);
+		textFieldDepartamento.setBounds(295, 191, 75, 19);
+		getContentPane().add(textFieldDepartamento);
 		
 		JLabel lblHoraInicio = new JLabel("Hora inicio:");
 		lblHoraInicio.setBounds(10, 232, 65, 13);
@@ -170,13 +219,13 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		spinnerFechaAlta.setBounds(104, 309, 75, 20);
 		getContentPane().add(spinnerFechaAlta);
 		
-		JLabel lblNewLabel = new JLabel("Postulaciones:");
-		lblNewLabel.setBounds(10, 355, 84, 13);
-		getContentPane().add(lblNewLabel);
+		JLabel lblPostulaciones = new JLabel("Postulaciones:");
+		lblPostulaciones.setBounds(10, 355, 84, 13);
+		getContentPane().add(lblPostulaciones);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(104, 351, 266, 21);
-		getContentPane().add(comboBox_2);
+		JComboBox comboBoxPostulaciones = new JComboBox();
+		comboBoxPostulaciones.setBounds(104, 351, 266, 21);
+		getContentPane().add(comboBoxPostulaciones);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(285, 396, 85, 21);
@@ -185,5 +234,21 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(189, 396, 85, 21);
 		getContentPane().add(btnAceptar);
+	}
+	
+	public void cargarEmpresas() {
+		DefaultComboBoxModel<DataEmpresa> model1 = new DefaultComboBoxModel<>();
+		try {
+		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+		
+	    
+	    // Agregar las empresas al modelo del JComboBox
+	    for (DataEmpresa empresa : empresas) {
+	        model1.addElement(empresa);
+	    }
+	    
+	    // Establecer el modelo en el JComboBox
+	    comboBoxEmpresas.setModel(model1);
+		}catch(UsuarioNoExisteException e) {}
 	}
 }

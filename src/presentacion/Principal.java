@@ -3,6 +3,7 @@ package presentacion;
 import java.awt.EventQueue;
 
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -134,7 +135,7 @@ public class Principal {
         trabajouy.getContentPane().add(modDatosUser);
         modDatosUser.getContentPane();
         
-		conOfertaLab = new ConsultaDeOfertaLaboral();
+		conOfertaLab = new ConsultaDeOfertaLaboral(ICU, ICO);
 		conOfertaLab.setBounds(100, 100, 392, 456);
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
@@ -233,15 +234,16 @@ public class Principal {
 		JMenu mnNewMenu_3 = new JMenu("Ofertas");
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Consulta de oferta laboral"); 
-						mntmNewMenuItem_6.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e2) {
-								conOfertaLab.setVisible(true);
-				            }
-						});
-						mnNewMenu_3.add(mntmNewMenuItem_6);
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e2) {
+				conOfertaLab.setVisible(true);
+				conOfertaLab.cargarEmpresas();
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_6);
 						
 		menuBar.add(mnNewMenu_3);
-		
+			
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Alta de Oferta Laboral");
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {

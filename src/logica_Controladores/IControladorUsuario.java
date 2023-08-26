@@ -16,7 +16,7 @@ import logica_Entidades.OfertaLaboral;
 
 public interface IControladorUsuario {
 
-	public abstract Set<DataEmpresa> getDataEmpresa();
+	public abstract Set<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException;
 
 	public abstract Set<DataTipoPublicacion> getDataTipoPublicacion();
 
