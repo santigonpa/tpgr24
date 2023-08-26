@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import excepciones.UsuarioNoExisteException;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -102,7 +101,7 @@ public class Principal {
         trabajouy.getContentPane().setLayout(null);
         
         PosAOferLab = new PostulacionAOfertaLaboral(ICU,ICO, IMU, IMO);
-        PosAOferLab.setBounds(10, 10, 710, 665);
+        PosAOferLab.setBounds(10, 10, 710, 680);
         trabajouy.getContentPane().add(PosAOferLab);
         
         Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
