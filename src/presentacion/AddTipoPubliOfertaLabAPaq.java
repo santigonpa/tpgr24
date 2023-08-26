@@ -21,6 +21,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class AddTipoPubliOfertaLabAPaq extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 
 	/**
