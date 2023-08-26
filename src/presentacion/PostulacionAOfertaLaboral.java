@@ -10,7 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
@@ -390,25 +393,26 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
-		LocalDate fecha = (LocalDate) spinner.getValue();
+		Date fechaD = (Date) spinner.getValue();
+		Instant instant = fechaD.toInstant();
+		LocalDate fechalocalDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
 		//String empr = (String) comboBoxEmp.getSelectedItem();
-		String ofer = (String) comboBoxOferta.getSelectedItem();
-		String post = (String) comboBoxPost.getSelectedItem();
-		
-		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer); 
+		DataOferta ofer =(DataOferta) comboBoxOferta.getSelectedItem();
+		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
+		if(verificarFormulario()) {
+		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre()); 
 				
-		if(oferta.existePostulacion(post)) { 
-			throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
+			if(oferta.existePostulacion(post.getNickName())) { 
+				throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
+			}
 		}
 	
-		if(verificarFormulario()) {
-			ICO.agregarPostulacion(post, ofer, cv, mot, fecha);
+			ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
 			limpiarFormulario();
 			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 			setVisible(false);
 		}
 		
-	}
 	
 	public void cargarDatos() {
 		//Para las empresas
@@ -433,11 +437,11 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private boolean verificarFormulario() {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
-		String empr = (String) comboBoxEmp.getSelectedItem();
-		String ofer = (String) comboBoxOferta.getSelectedItem();
-		String post = (String) comboBoxPost.getSelectedItem();
+		DataEmpresa empr = (DataEmpresa) comboBoxEmp.getSelectedItem();
+		DataOferta ofer = (DataOferta) comboBoxOferta.getSelectedItem();
+		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
 		
-		if(cv.isEmpty() || mot.isEmpty() || empr.isEmpty() || ofer.isEmpty() || post.isEmpty()) {
+		if(cv.isEmpty() || mot.isEmpty() || empr==null || ofer==null || post==null) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
             return false;

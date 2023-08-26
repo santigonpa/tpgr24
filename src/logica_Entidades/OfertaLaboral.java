@@ -44,6 +44,7 @@ public class OfertaLaboral {
 		this.remuneracion = (int) remuneracion2;
 		this.fechaDeAlta = (LocalDate) fecha;
 		this.palabrasClave = new HashSet<KeyWord>();
+		this.postulacionesSobreLaOferta = new HashSet<Postulacion>();
 	}
 	
 	public DataOferta getDataOferta() {
