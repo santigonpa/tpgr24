@@ -50,10 +50,6 @@ class controladorUsuarioTest {
 		mu.addUsuario(e2);
 		mu.addUsuario(p1);
 		mu.addUsuario(p2);
-		mu.addEmpresa(e1);
-		mu.addEmpresa(e2);
-		mu.addPostulante(p1);
-		mu.addPostulante(p2);
 	}
 
 	@Test
