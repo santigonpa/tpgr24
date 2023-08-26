@@ -1,5 +1,6 @@
 package logica_Controladores;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Set;
@@ -31,8 +32,8 @@ public class ControladorOferta implements IControladorOferta {
     }
 
 	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
-			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, float remuneracion, String ciudad,
-			String departamento, java.util.Date fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
+			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
+			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
@@ -49,12 +50,12 @@ public class ControladorOferta implements IControladorOferta {
 		TipoPublicacion tp = mpt.obtenerTipoPublicacion(tipoPubli);
 		
 		//pregunto si tiene costo asociado al paquete 
-		if(emp.tienePaqueteAsociado()){costoOfertaLaboral = (float) emp.costoPaqueteAsociado();}
-		else{costoOfertaLaboral = (float) tp.getCosto();}
+		if(emp.tienePaqueteAsociado()){costoOfertaLaboral = (int) emp.costoPaqueteAsociado();}
+		else{costoOfertaLaboral = (int) tp.getCosto();}
 		//se crea la nueva oferta
 		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
 				departamento,horarioInicio,horarioFin
-				, remuneracion , costoOfertaLaboral,  fecha);
+				, remuneracion , (int) costoOfertaLaboral,  fecha);
 		
 		nuevaOferta.setEmpresa(emp);
 		emp.linkearOfertaEmpresa(nuevaOferta,nombre);
@@ -65,7 +66,7 @@ public class ControladorOferta implements IControladorOferta {
 	}
 	
 	public void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
-			int costo, int duracion, Date fecha) throws NombreTipoPubliYaExisteException{
+			int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException{
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
@@ -77,7 +78,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorPyT.addTipoPublicacion(tp);
 	}		
 
-	public void agregarPostulacion(String post, String ofer, String cv, String mot, LocalTime fecha) {
+	public void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha) {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
@@ -96,6 +97,21 @@ public class ControladorOferta implements IControladorOferta {
 		IManejadorUsuario imu = fab.getInManejadorUsuario();
 		Postulante pos = imu.obtenerPostulante(post);
 		pos.agregarPostulacionAPostulante(nuevaPost);
+	}
+
+	@Override
+	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre, String descripcion,
+			LocalTime horarioInicio, LocalTime horarioFin, float remuneracion, String ciudad, String departamento,
+			LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion, int costo, int duracion,
+			Date fecha) throws NombreTipoPubliYaExisteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

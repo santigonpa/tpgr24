@@ -1,6 +1,7 @@
 package logica_Manejadores;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,11 +32,10 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		return res;
 	}
 
-	@SuppressWarnings("null")
 	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
 		
-		Set<DataTipoPublicacion> res = null;
-    	Set<TipoPublicacion> temp = null;
+		Set<DataTipoPublicacion> res = new HashSet<>();
+    	Set<TipoPublicacion> temp = new HashSet<>();
     	
     	// Obtener las claves del Map
         Set<String> clavesTipoPublicacion = this.tiposDePublicacion.keySet();

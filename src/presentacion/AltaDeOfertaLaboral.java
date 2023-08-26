@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Calendar;
@@ -88,13 +89,14 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		ICO = Ico;
 		ICU =Icu;
 		
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Alta de Oferta Laboral");
 		setBounds(100, 100, 561, 475);
 		getContentPane().setLayout(null);
 		
 		comboBoxEmpresa = new JComboBox<DataEmpresa>();
-		comboBoxEmpresa.setBounds(177, 7, 361, 21);
+		comboBoxEmpresa.setBounds(235, 9, 303, 21);
 		getContentPane().add(comboBoxEmpresa);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione la empresa");
@@ -104,11 +106,11 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione un tipo de oferta laboral");
 		lblNewLabel_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
-		lblNewLabel_1.setBounds(10, 38, 215, 13);
+		lblNewLabel_1.setBounds(10, 41, 215, 13);
 		getContentPane().add(lblNewLabel_1);
 		
 		comboBoxTipoPublicacion = new JComboBox<DataTipoPublicacion>();
-		comboBoxEmpresa.setBounds(235, 38, 303, 21);
+		comboBoxTipoPublicacion.setBounds(235, 38, 303, 21);
 		getContentPane().add(comboBoxTipoPublicacion);
 		
 		JLabel lblNewLabel_2 = new JLabel("Ingrese debajo los siguientes datos acerca de la oferta laboral :");
@@ -149,7 +151,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         getContentPane().add(lblNewLabel_7);
         
         //Configura el SpinnerDateModel solo para la parte de la hora
-        JSpinner spinnerInicio = new JSpinner();
+        spinnerInicio = new JSpinner();
         spinnerInicio.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
         spinnerInicio.setBounds(76, 168, 50, 20);
         getContentPane().add(spinnerInicio);
@@ -157,7 +159,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         spinnerInicio.setEditor(editor);
         
         //Configura el SpinnerDateModel solo para la parte de la hora
-        JSpinner spinnerFin = new JSpinner();
+        spinnerFin = new JSpinner();
         spinnerFin.setModel(new SpinnerDateModel(new Date(1692241200000L), null, null, Calendar.HOUR_OF_DAY));
         spinnerFin.setBounds(76, 191, 50, 20);
         getContentPane().add(spinnerFin);
@@ -227,11 +229,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         lblNewLabel_5_1.setBounds(177, 146, 243, 13);
         getContentPane().add(lblNewLabel_5_1);
         
-        JList<DataKeyWord> listaKeyWords = new JList<DataKeyWord>();
+        listaKeyWords = new JList<DataKeyWord>();
         listaKeyWords.setBounds(177, 171, 282, 62);
         getContentPane().add(listaKeyWords);
-        
-        
         
         
         JLabel lblNewLabel_5_2 = new JLabel("Fecha Del Alta : ");
@@ -239,7 +239,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         lblNewLabel_5_2.setBounds(142, 349, 131, 13);
         getContentPane().add(lblNewLabel_5_2);
         
-        JSpinner spinnerFecha = new JSpinner();
+        spinnerFecha = new JSpinner();
         spinnerFecha.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
         spinnerFecha.setBounds(290, 347, 105, 20);
         getContentPane().add(spinnerFecha);
@@ -282,10 +282,13 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		String descripcion = this.textAreaDescripcion.getText();
 		String departamento = this.textFieldDepartamento.getText();
 		String remuneracionTexto = textFieldRemuneracion.getText();
-		String empresa = (String) comboBoxEmpresa.getSelectedItem();
-		String tipoPubli = (String) comboBoxTipoPublicacion.getSelectedItem();
-		Date fecha = (Date) spinnerFecha.getValue();
-
+		DataEmpresa DTempresa = (DataEmpresa) comboBoxEmpresa.getSelectedItem();
+		String empresa = DTempresa.toString();
+		DataTipoPublicacion DTtipoPubli = (DataTipoPublicacion) comboBoxTipoPublicacion.getSelectedItem();
+		String tipoPubli = DTtipoPubli.toString();
+		Date fechaDate = (Date) spinnerFecha.getValue();
+		// Convertir el objeto Date a LocalDate
+        LocalDate fecha = fechaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		
 		// Obtener el valor seleccionado del spinner
 		Date horaSeleccionadaDate = (Date) spinnerInicio.getValue();
@@ -298,6 +301,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		// Convertir el valor a un objeto LocalTime
 		Instant instant2 = horaSeleccionadaDate2.toInstant();
 		LocalTime horarioFin = instant2.atZone(ZoneId.systemDefault()).toLocalTime();
+		
 		List<DataKeyWord> seleccionadosKeyword = listaKeyWords.getSelectedValuesList();
 		Set<String> seleccionados = new HashSet<>();
 		for(DataKeyWord value : seleccionadosKeyword) {
@@ -305,11 +309,11 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		}
 		
 		
-		float remuneracion = 0;
+		int remuneracion = 0;
 		
         //si el campo esta vacio
 		if(!remuneracionTexto.isEmpty()) {
-		remuneracion = (float)Integer.parseInt(remuneracionTexto);}
+		remuneracion = (int)Integer.parseInt(remuneracionTexto);}
 		//OBTENER DATOS DE LAS HORAS Y FECHAS
         
         
@@ -403,15 +407,15 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	
 	public void cargarTiposDePublicacion() {
 	    Set<DataTipoPublicacion> tiposDePublicacion = ICU.getDataTipoPublicacion();
-	    DefaultComboBoxModel<DataTipoPublicacion> model = new DefaultComboBoxModel<>();
+	    DefaultComboBoxModel<DataTipoPublicacion> model1 = new DefaultComboBoxModel<>();
 	    
 	    // Agregar los tipos de publicación al modelo del JComboBox
 	    for (DataTipoPublicacion tipoPublicacion : tiposDePublicacion) {
-	        model.addElement(tipoPublicacion);
+	        model1.addElement(tipoPublicacion);
 	    }
 	    
 	    // Establecer el modelo en el JComboBox
-	    comboBoxTipoPublicacion.setModel(model);
+	    comboBoxTipoPublicacion.setModel(model1);
 	}
 	
 	public void cargarKeywords() {

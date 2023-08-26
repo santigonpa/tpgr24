@@ -32,16 +32,16 @@ public class OfertaLaboral {
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horarioInicio, LocalTime horarioFin
-			, int remuneracion , int costoDeOfertaLaboral, LocalDate fecha)
+			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
-		this.costoDeOfertaLaboral = (int) costoDeOfertaLaboral;
+		this.costoDeOfertaLaboral = (int) costoOfertaLaboral;
 		this.horaFin = horarioFin;
 		this.horaInicio = horarioInicio;
 		this.departamento = departamento;
-		this.remuneracion = (int) remuneracion;
+		this.remuneracion = (int) remuneracion2;
 		this.fechaDeAlta = (LocalDate) fecha;
 		this.palabrasClave = new HashSet<KeyWord>();
 	}

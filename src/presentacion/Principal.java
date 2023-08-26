@@ -248,10 +248,10 @@ public class Principal {
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Alta de Oferta Laboral");
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
+				altOfLab.setVisible(true);
 				altOfLab.cargarEmpresas();
 				altOfLab.cargarTiposDePublicacion();
 				altOfLab.cargarKeywords();
-				altOfLab.setVisible(true);
 				altOfLab.limpiarFormulario();
             }
 		});
