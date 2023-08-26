@@ -7,7 +7,6 @@ import java.util.Set;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
-import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
 
 public interface IControladorOferta  {

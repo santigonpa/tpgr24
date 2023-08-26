@@ -9,18 +9,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JInternalFrame;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
 import excepciones.NombreTipoPubliYaExisteException;
 import logica_Controladores.IControladorOferta;
 
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import javax.swing.JSpinner;
@@ -33,19 +27,19 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import javax.swing.text.DocumentFilter.FilterBypass;
 import javax.swing.JTextArea;
-import javax.swing.JOptionPane;
 
 public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
 	private JTextField textFieldCosto;
 	private JTextField textFieldExposicion;
 	private JTextArea textoDescripcion;
 	private JSpinner fecha;
 	private JSpinner spinnerDuracion;
-	private JTextField txtFieldCosto;
-	
 	private static IControladorOferta ICO;
 
 	/**

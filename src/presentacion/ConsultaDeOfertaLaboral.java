@@ -4,43 +4,25 @@ import java.awt.EventQueue;
 
 
 import javax.swing.JInternalFrame;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-
 import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 
 import javax.swing.JTextArea;
-import java.awt.BorderLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
 import java.util.Set;
-import java.util.Calendar;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataOferta;
-import logica_DataTypes.DataPostulante;
-import logica_DataTypes.DataUsuario;
 import utils.Fabrica;
 
 
@@ -233,7 +215,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		lblPostulaciones.setBounds(10, 355, 84, 13);
 		getContentPane().add(lblPostulaciones);
 		
-		comboBoxPostulaciones = new JComboBox();
+		comboBoxPostulaciones = new JComboBox<>();
 		comboBoxPostulaciones.setBounds(104, 351, 266, 21);
 		getContentPane().add(comboBoxPostulaciones);
 		

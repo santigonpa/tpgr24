@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import excepciones.UsuarioNoExisteException;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;

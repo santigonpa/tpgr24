@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
@@ -13,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ConsultaDeTiposDePublicacionDeOfertasLaborales extends JInternalFrame {
 	/**
@@ -54,8 +52,8 @@ public class ConsultaDeTiposDePublicacionDeOfertasLaborales extends JInternalFra
 		JLabel lblNewLabel = new JLabel("Paquetes :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccione paquete..."}));
+		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione paquete..."}));
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -71,8 +69,8 @@ public class ConsultaDeTiposDePublicacionDeOfertasLaborales extends JInternalFra
 		JLabel lblNewLabel_1 = new JLabel("Tipos de publicacion :");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione tipo..."}));
+		JComboBox<String> comboBox_1 = new JComboBox<>();
+		comboBox_1.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione tipo..."}));
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
