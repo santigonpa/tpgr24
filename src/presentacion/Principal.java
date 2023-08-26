@@ -260,16 +260,7 @@ public class Principal {
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Postulacion a Oferta Laboral");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-<<<<<<< HEAD
-            	//try {
-					PosAOferLab.cargarDatos();
-				//} catch (UsuarioNoExisteException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-				//}
-=======
             	PosAOferLab.cargarDatos();
->>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
 				PosAOferLab.setVisible(true);
             }
 		});

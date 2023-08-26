@@ -24,7 +24,6 @@ import javax.swing.JTextArea;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
@@ -33,6 +32,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	
 	private JComboBox<DataUsuario> comboBoxUsuarios;
 	private IControladorUsuario ICU;
+	private IControladorOferta ICO;
 	private JComboBox<DataOferta> comboOferta;
 	private JLabel nombreLabel;
 	private JLabel nicknameLabel;
@@ -43,6 +43,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	private JLabel emailLabel;
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
+	private ConsultaDeOfertaLaboral conOfertaLab;
 	/**
 	 * 
 	 */
@@ -72,8 +73,20 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	 */
 	public ConsultaDeUsuario(IControladorUsuario Icu,IControladorOferta Ico) {
 		ICU =Icu;
+		ICO =Ico;
+		
+		
+		
 		setBounds(100, 100, 578, 332);
 		getContentPane().setLayout(null);
+		
+		
+		conOfertaLab = new ConsultaDeOfertaLaboral(ICU,ICO);
+		conOfertaLab.setBounds(112, 35, 392, 456);
+		conOfertaLab.setMaximizable(true);
+		conOfertaLab.setClosable(true);
+		conOfertaLab.setVisible(false);
+		getContentPane().add(conOfertaLab);
 		
 		JLabel lblNewLabel = new JLabel("Elija el Usuario que desea consultar:");
 		lblNewLabel.setBounds(192, 11, 178, 14);
@@ -115,7 +128,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
             	    comboOferta.setModel(model);}
             	    else {throw new NoTieneOfertasException("No tiene ofertas laborales");}
             		}catch(NoTieneOfertasException e22) {}
-                	
+
+            		//parte para hacer aparecer el caso de uso de consulta de ofertaLaboral
+            		
+            		
+            		
                 } else if (selectedOption instanceof DataPostulante) {
                 	textArea.setVisible(false);
                 	comboOferta.setVisible(false);
@@ -236,6 +253,15 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textArea.setEditable(false);
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
+        
+        JButton btnDesplegarConsulta = new JButton("Consultar Oferta");
+        btnDesplegarConsulta.setBounds(192, 279, 145, 21);
+        getContentPane().add(btnDesplegarConsulta);
+        btnDesplegarConsulta.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent e) {
+        		//conOfertaLab.
+        	}
+        });
 
 	}
 	
