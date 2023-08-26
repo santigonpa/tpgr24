@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import excepciones.UsuarioNoExisteException;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -259,7 +260,12 @@ public class Principal {
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Postulacion a Oferta Laboral");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-            	PosAOferLab.cargarDatos();
+            	try {
+					PosAOferLab.cargarDatos();
+				} catch (UsuarioNoExisteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				PosAOferLab.setVisible(true);
             }
 		});

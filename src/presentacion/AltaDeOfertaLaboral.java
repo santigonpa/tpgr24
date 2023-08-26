@@ -25,6 +25,7 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
+import excepciones.UsuarioNoExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
@@ -383,13 +384,18 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	}
 	
 	public void cargarEmpresas() {
-		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+		Set<DataEmpresa> empresas = new HashSet<>();
 		DefaultComboBoxModel<DataEmpresa> model = new DefaultComboBoxModel<>();
-	    
-	    // Agregar las empresas al modelo del JComboBox
-	    for (DataEmpresa empresa : empresas) {
-	        model.addElement(empresa);
-	    }
+		try {
+			empresas = ICU.getDataEmpresa();
+			// Agregar las empresas al modelo del JComboBox
+		    for (DataEmpresa empresa : empresas) {
+		        model.addElement(empresa);
+		    }
+		} catch (UsuarioNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    
 	    // Establecer el modelo en el JComboBox
 	    comboBoxEmpresa.setModel(model);
