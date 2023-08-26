@@ -14,11 +14,11 @@ import javax.swing.text.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import javax.swing.JOptionPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
+
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;

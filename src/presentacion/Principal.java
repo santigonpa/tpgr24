@@ -111,7 +111,7 @@ public class Principal {
         
         conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
         conUsrInternalFrame.setTitle("Consulta de Usuario");
-        conUsrInternalFrame.setBounds(100, 100, 578, 332);
+        conUsrInternalFrame.setBounds(100, 100, 578, 600);
         conUsrInternalFrame.setMaximizable(true);
         conUsrInternalFrame.setClosable(true);
         conUsrInternalFrame.setVisible(false);
@@ -239,6 +239,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e2) {
 				conOfertaLab.setVisible(true);
 				conOfertaLab.cargarEmpresas();
+				conOfertaLab.limpiarFormulario();
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_6);

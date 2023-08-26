@@ -233,7 +233,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		lblPostulaciones.setBounds(10, 355, 84, 13);
 		getContentPane().add(lblPostulaciones);
 		
-		comboBoxPostulaciones = new JComboBox();
+		comboBoxPostulaciones = new JComboBox<>();
 		comboBoxPostulaciones.setBounds(104, 351, 266, 21);
 		getContentPane().add(comboBoxPostulaciones);
 		
@@ -293,4 +293,32 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		textFieldFechaDeAlta.setText("");
 		comboBoxPostulaciones.setSelectedIndex(-1);
 	}
+	
+	public void asignarValoresConsultaDeUsuario(DataEmpresa emp, DataOferta of) {
+		comboBoxEmpresas.setSelectedItem(emp.getNickName()); // Establecer el valor deseado
+        comboBoxEmpresas.setEnabled(false); // Desactivar el JComboBox
+        comboBoxOfertas.setSelectedItem(of.getNombre());
+        comboBoxOfertas.setEnabled(false);
+        
+        textAreaDescripcion.setText(of.getDescripcion());
+    	textFieldCosto.setText(String.valueOf(of.getCostoDeOfertaLaboral()));
+    	textFieldRemuneracion.setText(String.valueOf(of.getRemuneracion()));
+    	textFieldCiudad.setText(of.getCiudad());
+    	textFieldDepartamento.setText(of.getDepartamento());
+
+    	textFieldHoraFin.setText(of.getHoraFinString());
+    	textFieldHoraInicio.setText(of.getHoraInicioString());
+    	textFieldFechaDeAlta.setText(of.getFechaAltaComoString());
+    	
+    	DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>();
+    	Set<String> postulantes = ICO.getPostulantesString(of.getNombre());
+    	for(String postulante : postulantes) {
+    		model3.addElement(postulante);	
+    	}
+    	comboBoxPostulaciones.setModel(model3);         	    	
+    }
+	
+        
+        
+	
 }
