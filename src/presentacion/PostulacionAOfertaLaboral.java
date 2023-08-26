@@ -198,7 +198,11 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				altaPostulacion(e);
+				try {
+					altaPostulacion(e);
+				} catch (yaExistePostulacionAOfertaException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -394,11 +398,10 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 
 		
 	}
-	protected void altaPostulacion(ActionEvent e) {
+	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
-		Instant instant =  spinner.toInstant();
-		LocalTime horarioInicio = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+		LocalTime fecha = (LocalTime) spinner.getValue();
 		String empr = (String) seleccionDeEmpresa.getSelectedItem();
 		String ofer = (String) seleccionDeOfertaLaboral.getSelectedItem();
 		String post = (String) Postulantes.getSelectedItem();
