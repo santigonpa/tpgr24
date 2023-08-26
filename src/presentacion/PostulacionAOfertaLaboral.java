@@ -111,18 +111,23 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		IMO = Imo;
 		setClosable(true);
 		setTitle("Postulacion a Oferta Laboral");
-		setBounds(100, 100, 710, 665);
+		setBounds(100, 100, 710, 680);
 		
 		txtEmpresa = new JLabel("Empresa:");
+		txtEmpresa.setBounds(12, 19, 55, 16);
 		//seleccionDeEmpresa.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione una empresa", "MCDonalds", "BurguerKing"}));
 		
 		txtOferta = new JLabel("Oferta laboral:");
+		txtOferta.setBounds(12, 50, 84, 16);
 		
 		comboBoxOferta = new JComboBox<DataOferta>();
+		comboBoxOferta.setBounds(158, 46, 533, 24);
 		
 		comboBoxEmp = new JComboBox<DataEmpresa>();
+		comboBoxEmp.setBounds(158, 15, 533, 24);
 		
 		comboBoxPost = new JComboBox<DataPostulante>();
+		comboBoxPost.setBounds(194, 355, 485, 24);
 
 		
 						
@@ -139,33 +144,47 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 			});
 				
 		txtDatosOferta = new JLabel("Datos de la oferta laboral");
+		txtDatosOferta.setBounds(292, 83, 145, 16);
 		
 		txtDescripcionOferta = new JLabel("Descripcion:");
+		txtDescripcionOferta.setBounds(63, 122, 70, 16);
 		
 		scrollPaneDescripcion = new JScrollPane();
+		scrollPaneDescripcion.setBounds(158, 122, 533, 85);
 		
 		txtCiudadOferta = new JLabel("Ciudad:");
+		txtCiudadOferta.setBounds(63, 234, 70, 16);
 		
 		txtDepartamentoOferta = new JLabel("Departamento:");
+		txtDepartamentoOferta.setBounds(348, 234, 109, 16);
 		
 		txtRemuneracion = new JLabel("Remuneracion:");
+		txtRemuneracion.setBounds(63, 274, 87, 16);
 		
 		txtFechaAlta = new JLabel("Fecha del alta de la oferta:");
+		txtFechaAlta.setBounds(348, 274, 155, 16);
 		
 		txtHorarios = new JLabel("Horarios:");
+		txtHorarios.setBounds(63, 311, 70, 16);
 		
 		txtPostulante = new JLabel("Postulante:");
+		txtPostulante.setBounds(63, 359, 64, 16);
 
 		
 		txtDatosPostulante = new JLabel("Ingreso de datos del postulante");
+		txtDatosPostulante.setBounds(292, 392, 180, 16);
 		
 		txtCVReducido = new JLabel("CV reducido:");
+		txtCVReducido.setBounds(65, 431, 74, 16);
 		
 		scrollPaneCVReducido = new JScrollPane();
+		scrollPaneCVReducido.setBounds(193, 431, 486, 85);
 		
 		txtMotivacion = new JLabel("Motivacion:");
+		txtMotivacion.setBounds(65, 533, 74, 16);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(573, 617, 118, 25);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarFormulario();
@@ -173,6 +192,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 			}
 		});
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(452, 617, 109, 25);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -185,30 +205,37 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		
 		ciudad = new JTextArea();
+		ciudad.setBounds(158, 231, 165, 22);
 		ciudad.setEnabled(false);
 		ciudad.setEditable(false);
 		
 		remuneracion = new JTextArea();
+		remuneracion.setBounds(158, 271, 165, 22);
 		remuneracion.setEnabled(false);
 		remuneracion.setEditable(false);
 		
 		departamento = new JTextArea();
+		departamento.setBounds(515, 231, 165, 22);
 		departamento.setEnabled(false);
 		departamento.setEditable(false);
 		
 		fechaAlta = new JTextArea();
+		fechaAlta.setBounds(515, 271, 165, 22);
 		fechaAlta.setEnabled(false);
 		fechaAlta.setEditable(false);
 		
 		
 		
 		JLabel fechaDePostulacion = new JLabel("Fecha de Inscripcion :");
+		fechaDePostulacion.setBounds(66, 591, 126, 16);
 		
 		spinner = new JSpinner();
+		spinner.setBounds(197, 588, 159, 22);
         spinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
 
 		
 		motTextArea = new JTextArea();
+		motTextArea.setBounds(193, 530, 486, 48);
 		
 		comboBoxEmp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -230,151 +257,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 			}
 		});
 		
-		
-		
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(txtDatosOferta))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addContainerGap()
-											.addComponent(txtOferta)
-											.addGap(62))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(63)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(txtDescripcionOferta)
-												.addComponent(txtCiudadOferta, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-												.addComponent(txtRemuneracion, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-												.addComponent(txtHorarios, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-											.addPreferredGap(ComponentPlacement.RELATED, 8, GroupLayout.PREFERRED_SIZE)))
-									.addGroup(groupLayout.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(txtPostulante)
-										.addPreferredGap(ComponentPlacement.RELATED)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(txtEmpresa)
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPaneDescripcion, GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-								.addComponent(comboBoxOferta, 0, 533, Short.MAX_VALUE)
-								.addComponent(comboBoxEmp, 0, 533, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBoxPost, GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(ciudad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(remuneracion, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-											.addGap(25)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(txtDepartamentoOferta, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-													.addGap(30)
-													.addComponent(departamento, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
-												.addGroup(groupLayout.createSequentialGroup()
-													.addComponent(txtFechaAlta)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(fechaAlta, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))))))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(txtDatosPostulante))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(65)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
-									.addComponent(btnAceptar)
-									.addGap(18)
-									.addComponent(btnCancelar))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtCVReducido)
-										.addComponent(txtMotivacion, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
-									.addGap(44)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(motTextArea, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-										.addComponent(scrollPaneCVReducido, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(motTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(fechaDePostulacion)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(15)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBoxEmp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtEmpresa))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtOferta)
-						.addComponent(comboBoxOferta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(txtDatosOferta)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtDescripcionOferta)
-						.addComponent(scrollPaneDescripcion, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
-					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtCiudadOferta)
-						.addComponent(ciudad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtDepartamentoOferta)
-						.addComponent(departamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtRemuneracion)
-						.addComponent(remuneracion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtFechaAlta)
-						.addComponent(fechaAlta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(txtHorarios)
-					.addGap(28)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtPostulante)
-						.addComponent(comboBoxPost, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(txtDatosPostulante)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtCVReducido)
-						.addComponent(scrollPaneCVReducido, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(14)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtMotivacion)
-								.addComponent(motTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(motTextArea, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fechaDePostulacion))
-					.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCancelar)
-						.addComponent(btnAceptar))
-					.addContainerGap())
-		);
-		
 		CVReducido = new JTextArea();
 		scrollPaneCVReducido.setViewportView(CVReducido);
 		
@@ -382,7 +264,34 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		Descripcion.setEditable(false);
 		Descripcion.setDoubleBuffered(true);
 		scrollPaneDescripcion.setViewportView(Descripcion);
-		getContentPane().setLayout(groupLayout);
+		getContentPane().setLayout(null);
+		getContentPane().add(txtDatosOferta);
+		getContentPane().add(txtOferta);
+		getContentPane().add(txtDescripcionOferta);
+		getContentPane().add(txtCiudadOferta);
+		getContentPane().add(txtRemuneracion);
+		getContentPane().add(txtHorarios);
+		getContentPane().add(txtPostulante);
+		getContentPane().add(txtEmpresa);
+		getContentPane().add(scrollPaneDescripcion);
+		getContentPane().add(comboBoxOferta);
+		getContentPane().add(comboBoxEmp);
+		getContentPane().add(comboBoxPost);
+		getContentPane().add(ciudad);
+		getContentPane().add(remuneracion);
+		getContentPane().add(txtDepartamentoOferta);
+		getContentPane().add(departamento);
+		getContentPane().add(txtFechaAlta);
+		getContentPane().add(fechaAlta);
+		getContentPane().add(txtDatosPostulante);
+		getContentPane().add(btnAceptar);
+		getContentPane().add(btnCancelar);
+		getContentPane().add(txtCVReducido);
+		getContentPane().add(txtMotivacion);
+		getContentPane().add(motTextArea);
+		getContentPane().add(scrollPaneCVReducido);
+		getContentPane().add(fechaDePostulacion);
+		getContentPane().add(spinner);
 		
 
 		

@@ -102,7 +102,7 @@ public class Principal {
         trabajouy.getContentPane().setLayout(null);
         
         PosAOferLab = new PostulacionAOfertaLaboral(ICU,ICO, IMU, IMO);
-        PosAOferLab.setBounds(10, 10, 710, 665);
+        PosAOferLab.setBounds(10, 10, 710, 680);
         trabajouy.getContentPane().add(PosAOferLab);
         
         Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
