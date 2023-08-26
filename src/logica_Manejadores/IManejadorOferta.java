@@ -5,6 +5,7 @@ import java.util.Set;
 import logica_DataTypes.DataKeyWord;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulacion;
 
 public interface IManejadorOferta {
 
@@ -19,5 +20,8 @@ public interface IManejadorOferta {
 
 
 	public abstract void addKeyword(KeyWord k);
+
+
+	public abstract void addPostulacion(Postulacion pos);
 
 }

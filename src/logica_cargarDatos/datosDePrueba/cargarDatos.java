@@ -11,12 +11,9 @@ import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -208,7 +205,7 @@ public class cargarDatos {
 		mo.linkearKeywords(setk6,o6);
 		
 		//Linkeo Tipo con Oferta ........... falta implementar
-		/*
+
 		mo.linkearTipo(tp1,o1);
 		mo.linkearTipo(tp3,o2);
 		mo.linkearTipo(tp3,o3);
@@ -217,7 +214,7 @@ public class cargarDatos {
 		mo.linkearTipo(tp4,o6);
 		mo.linkearTipo(tp1,o7);
 		mo.linkearTipo(tp2,o8);
-		*/
+
 		
 		//------------------------------//	
 		
@@ -237,6 +234,13 @@ public class cargarDatos {
 		Postulacion pos4 = new Postulacion(fPos4,"T´ecnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos el´ectricos.","Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades t´ecnicas y contribuir al mantenimiento eficiente.",(Postulante)p4,o3);
 		Postulacion pos5 = new Postulacion(fPos5,"M´usico profesional, experiencia en espect´aculos en vivo. Habilidades en canto y guitarra.","Me gustar´ıa combinar mi pasi´on por la m´usica con una oportunidad laboral que me permita seguir creciendo como artista.",(Postulante)p5,o2);
 		Postulacion pos6 = new Postulacion(fPos6,"Licenciada en Administraci´on, me considero genia, experiencia en gesti´on de equipos y proyectos. Conocimientos en Microsoft Office.","Estoy emocionada por la oportunidad de formar parte de un equipo din´amico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o2);
+		
+		mo.addPostulacion(pos1);
+		mo.addPostulacion(pos2);
+		mo.addPostulacion(pos3);
+		mo.addPostulacion(pos4);
+		mo.addPostulacion(pos5);
+		mo.addPostulacion(pos6);
 		
 		//------------------------------//	
 		//Falta todo lo de Paquete que es opcional, veremos si se hace.

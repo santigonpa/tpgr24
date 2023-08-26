@@ -8,6 +8,7 @@ import java.util.Set;
 import logica_DataTypes.DataKeyWord;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulacion;
 
 public class ManejadorOferta implements IManejadorOferta{
 	
@@ -15,6 +16,7 @@ public class ManejadorOferta implements IManejadorOferta{
 	private static ManejadorOferta instancia;
 	private Map<String,OfertaLaboral> ofertasLaborales;
 	private Map<String,KeyWord> keywordsTotales;
+	private	Set<Postulacion> postulaciones;
 	
 	private ManejadorOferta() {
 		this.ofertasLaborales = new HashMap<String, OfertaLaboral>();
@@ -74,6 +76,11 @@ public class ManejadorOferta implements IManejadorOferta{
 	public void addKeyword(KeyWord k) {
 		this.keywordsTotales.put(k.getPalabraClave(),k);
 	
+	}
+
+	@Override
+	public void addPostulacion(Postulacion pos) {
+		this.postulaciones.add(pos);
 	}
 
 
