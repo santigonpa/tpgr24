@@ -342,13 +342,13 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		DataEmpresa empr = (DataEmpresa) comboBoxEmp.getSelectedItem();
 		DataOferta ofer = (DataOferta) comboBoxOferta.getSelectedItem();
 		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
-		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre());
 		
 		if(cv.isEmpty() || mot.isEmpty() || empr==null || ofer==null || post==null) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
             return false;
 		}
+		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre());
         if (oferta.existePostulacion(post.getNickName())) {
         	JOptionPane.showMessageDialog(this, "El postulante ya se encuentra postulado a esta oferta", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
