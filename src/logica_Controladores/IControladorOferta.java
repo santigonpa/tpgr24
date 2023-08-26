@@ -13,7 +13,7 @@ import logica_Entidades.Postulacion;
 public interface IControladorOferta  {
 	
 	public abstract void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
-			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, float remuneracion, String ciudad,
+			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
 			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException;
 
 

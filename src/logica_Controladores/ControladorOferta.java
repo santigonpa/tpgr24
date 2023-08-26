@@ -99,13 +99,7 @@ public class ControladorOferta implements IControladorOferta {
 		pos.agregarPostulacionAPostulante(nuevaPost);
 	}
 
-	@Override
-	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre, String descripcion,
-			LocalTime horarioInicio, LocalTime horarioFin, float remuneracion, String ciudad, String departamento,
-			LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion, int costo, int duracion,

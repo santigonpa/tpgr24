@@ -1,6 +1,7 @@
 package logica_Entidades;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class KeyWord {
 	
@@ -9,6 +10,7 @@ public class KeyWord {
 	
 	public KeyWord(String palabra) {
 		this.palabraClave = palabra;
+		this.ofertas = new HashMap<>();
 	}
 	
 	public String getPalabraClave() {
