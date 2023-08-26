@@ -168,7 +168,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		
 		textFieldCiudad = new JTextField();
 		textFieldCiudad.setEditable(false);
-		textFieldCiudad.setBounds(104, 191, 75, 19);
+		textFieldCiudad.setBounds(72, 191, 107, 19);
 		getContentPane().add(textFieldCiudad);
 		textFieldCiudad.setColumns(10);
 		
@@ -277,10 +277,14 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	}
 	
 	public void asignarValoresConsultaDeUsuario(DataEmpresa emp, DataOferta of) {
-		comboBoxEmpresas.setSelectedItem(emp.getNickName()); // Establecer el valor deseado
-        comboBoxEmpresas.setEnabled(false); // Desactivar el JComboBox
+		DefaultComboBoxModel<DataEmpresa> model1 = new DefaultComboBoxModel<>();
+		model1.addElement(emp);
+		comboBoxEmpresas.setModel(model1);
+		
+		comboBoxEmpresas.setSelectedItem(emp); // Establecer el valor deseado
+       // comboBoxEmpresas.setEnabled(false); // Desactivar el JComboBox
         comboBoxOfertas.setSelectedItem(of.getNombre());
-        comboBoxOfertas.setEnabled(false);
+        //comboBoxOfertas.setEnabled(false);
         
         textAreaDescripcion.setText(of.getDescripcion());
     	textFieldCosto.setText(String.valueOf(of.getCostoDeOfertaLaboral()));

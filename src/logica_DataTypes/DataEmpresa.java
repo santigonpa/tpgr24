@@ -37,6 +37,6 @@ public class DataEmpresa extends DataUsuario{
 		}
 		//esto es para que se muestre el nombre de la empresa en los comboBox
 		public String toString() {
-	        return this.getNombre(); // Devuelve el nombre de la empresa
+	        return this.getNickName(); // Devuelve el nombre de la empresa
 	    }
 }

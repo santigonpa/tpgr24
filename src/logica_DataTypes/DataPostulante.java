@@ -46,6 +46,6 @@ public class DataPostulante extends DataUsuario {
 		}
 		//esto es para que se muestre el nombre del postulante en los comboBox
 				public String toString() {
-			        return this.getNombre(); // Devuelve el nombre del postulante
+			        return this.getNickName(); // Devuelve el nombre del postulante
 			    }
 }
