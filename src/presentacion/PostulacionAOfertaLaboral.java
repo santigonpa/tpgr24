@@ -166,7 +166,12 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		txtMotivacion = new JLabel("Motivacion:");
 		
 		btnCancelar = new JButton("Cancelar");
-		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -404,8 +409,8 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		}
 	
 			ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
-			limpiarFormulario();
 			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+			limpiarFormulario();
 			setVisible(false);
 		}
 		
@@ -448,8 +453,5 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	public void limpiarFormulario() {
 		this.CVReducido.setText("");
 		this.motTextArea.setText("");
-		this.comboBoxEmp.setSelectedItem(null);
-		this.comboBoxOferta.setSelectedItem(null);
-		this.comboBoxPost.setSelectedItem(null);
 	}
 }
