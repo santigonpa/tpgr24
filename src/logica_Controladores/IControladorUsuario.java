@@ -26,7 +26,7 @@ public interface IControladorUsuario {
 	public abstract Set<DataKeyWord> getDataKeyWord();
 
 	public abstract void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String web)throws NicknameYaExisteException;
+			String nacionalidad)throws NicknameYaExisteException;
 
 	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
 
