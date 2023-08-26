@@ -44,11 +44,8 @@ public class OfertaLaboral {
 		this.remuneracion = (int) remuneracion2;
 		this.fechaDeAlta = (LocalDate) fecha;
 		this.palabrasClave = new HashSet<KeyWord>();
-<<<<<<< HEAD
 		this.postulacionesSobreLaOferta = new HashSet<>();
-=======
 		this.postulacionesSobreLaOferta = new HashSet<Postulacion>();
->>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
 	}
 	
 	public DataOferta getDataOferta() {
