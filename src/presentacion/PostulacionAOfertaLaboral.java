@@ -21,6 +21,7 @@ import java.time.chrono.ChronoZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.swing.JComboBox;
@@ -37,16 +38,21 @@ import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataPostulante;
+import logica_DataTypes.DataOferta;
 import logica_Entidades.Empresa;
 import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
+import excepciones.NoTieneOfertasException;
+import excepciones.UsuarioNoExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
 import javax.swing.JScrollBar;
+
+
 
 public class PostulacionAOfertaLaboral extends JInternalFrame {
 
@@ -54,15 +60,13 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static IControladorUsuario ICU;
-	private static IControladorOferta ICO;
-	private static IManejadorUsuario IMU;
-	private static IManejadorOferta IMO;
-	
-	private JComboBox<String> seleccionDeEmpresa;
+	private IControladorUsuario ICU;
+	private IControladorOferta ICO;
+	private IManejadorUsuario IMU;
+	private IManejadorOferta IMO;
 	private JLabel txtEmpresa;
 	private JLabel txtOferta;
-	private JComboBox<String> seleccionDeOfertaLaboral;
+	private JComboBox<DataOferta> comboBoxOferta;
 	private JLabel txtDatosOferta;
 	private JLabel txtDescripcionOferta;
 	private JScrollPane scrollPaneDescripcion;
@@ -72,7 +76,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private JLabel txtFechaAlta;
 	private JLabel txtHorarios;
 	private JLabel txtPostulante;	
-	private JComboBox<String> Postulantes;
 	private JLabel txtDatosPostulante;
 	private JLabel txtCVReducido;
 	private JScrollPane scrollPaneCVReducido;
@@ -87,6 +90,8 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private JTextArea CVReducido;
 	private JTextArea Descripcion;
 	private JSpinner spinner;
+	private JComboBox<DataPostulante> comboBoxPost;
+	private JComboBox<DataEmpresa> comboBoxEmp;
 	
 	/**
 	 * Launch the application.
@@ -123,39 +128,27 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		setBounds(100, 100, 710, 665);
 		
 		txtEmpresa = new JLabel("Empresa:");
-		
-		seleccionDeEmpresa = new JComboBox<>();
-		seleccionDeEmpresa.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione una empresa", "MCDonalds", "BurguerKing"}));
+		//seleccionDeEmpresa.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione una empresa", "MCDonalds", "BurguerKing"}));
 		
 		txtOferta = new JLabel("Oferta laboral:");
 		
-		seleccionDeOfertaLaboral = new JComboBox<>();
+		comboBoxOferta = new JComboBox<DataOferta>();
 		
-		seleccionDeOfertaLaboral.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione una oferta laboral", "Oferta 1", "Oferta 2"}));
+		comboBoxEmp = new JComboBox<DataEmpresa>();
 		
-		//Dependiendo de que empresa selecciono que ofertas laborales se van a mostrar
-		seleccionDeEmpresa.addActionListener(new ActionListener() {
+		comboBoxPost = new JComboBox<DataPostulante>();
+
+		
+						
+		comboBoxOferta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					seleccionDeOfertaLaboral.removeAllItems();
-					String emp = (String) seleccionDeEmpresa.getSelectedItem();
-					DataEmpresa DtEmp = (DataEmpresa) IMU.getDataEmpresa(emp);
-					Map<String, OfertaLaboral> ofertas = ICU.obtenerOfertarDeEmpresa(DtEmp);
-					for(Map.Entry<String, OfertaLaboral> entry : ofertas.entrySet()) {
-					seleccionDeOfertaLaboral.addItem(entry.getKey());
-					}
-				}
-			});
-				
-		seleccionDeOfertaLaboral.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String ofer = (String) seleccionDeOfertaLaboral.getSelectedItem();
-					OfertaLaboral oferta = IMO.obtenerOferta(ofer);
+					DataOferta oferta = (DataOferta) comboBoxOferta.getSelectedItem();
 					Descripcion.setText(oferta.getDescripcion());
 					ciudad.setText(oferta.getCiudad());
 					departamento.setText(oferta.getDepartamento());
 					remuneracion.setText(oferta.getRemuneracion()+ "");
 					fechaAlta.setText(oferta.getFechaAltaComoString());
-					
+				
 				}
 			});
 				
@@ -176,14 +169,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		txtHorarios = new JLabel("Horarios:");
 		
 		txtPostulante = new JLabel("Postulante:");
-		
-		Postulantes = new JComboBox<>();
-		Postulantes.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione un/a postulante", "Juan", "Juana", "Juane", "Juani"}));
-		Map<String, DataPostulante> postulantes = IMU.getDataPostulantes();
-		for (Map.Entry<String, DataPostulante> entry : postulantes.entrySet()) {
-		    String key = entry.getKey();
-		    Postulantes.addItem(key);
-		}
+
 		
 		txtDatosPostulante = new JLabel("Ingreso de datos del postulante");
 		
@@ -234,6 +220,29 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 
 		
 		JTextArea textArea = new JTextArea();
+		
+		comboBoxEmp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
+				try {
+					DataEmpresa emp = (DataEmpresa) comboBoxEmp.getSelectedItem();
+					Set<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(emp.getNickName());
+				
+					if (ofertas!= null) {
+					// Agregar las empresas al modelo del JComboBox
+						for (DataOferta oferta : ofertas) {
+						model.addElement(oferta);
+			    }
+			    
+			    // Establecer el modelo en el JComboBox
+						comboBoxOferta.setModel(model);}
+						else {throw new NoTieneOfertasException("No tiene ofertas laborales");}
+				}catch(NoTieneOfertasException e22) {}
+			}
+		});
+		
+		
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -245,45 +254,49 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addContainerGap()
+											.addComponent(txtOferta)
+											.addGap(62))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(63)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(txtDescripcionOferta)
+												.addComponent(txtCiudadOferta, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+												.addComponent(txtRemuneracion, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+												.addComponent(txtHorarios, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+											.addPreferredGap(ComponentPlacement.RELATED, 8, GroupLayout.PREFERRED_SIZE)))
 									.addGroup(groupLayout.createSequentialGroup()
 										.addContainerGap()
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(txtEmpresa)
-											.addComponent(txtOferta))
-										.addGap(62))
-									.addGroup(groupLayout.createSequentialGroup()
-										.addGap(63)
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(txtDescripcionOferta)
-											.addComponent(txtCiudadOferta, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addComponent(txtRemuneracion, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-											.addComponent(txtHorarios, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(ComponentPlacement.RELATED, 8, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(txtPostulante)
+										.addPreferredGap(ComponentPlacement.RELATED)))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addContainerGap()
-									.addComponent(txtPostulante)
+									.addComponent(txtEmpresa)
 									.addPreferredGap(ComponentPlacement.RELATED)))
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(scrollPaneDescripcion, GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
-								.addComponent(seleccionDeOfertaLaboral, 0, 533, Short.MAX_VALUE)
-								.addComponent(seleccionDeEmpresa, 0, 533, Short.MAX_VALUE)
-								.addComponent(Postulantes, 0, 533, Short.MAX_VALUE)
+								.addComponent(comboBoxOferta, 0, 533, Short.MAX_VALUE)
+								.addComponent(comboBoxEmp, 0, 533, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(ciudad)
-										.addComponent(remuneracion, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-									.addGap(25)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(comboBoxPost, GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(txtDepartamentoOferta, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-											.addGap(30)
-											.addComponent(departamento, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(txtFechaAlta)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(fechaAlta, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))
-									.addGap(38))))
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+												.addComponent(ciudad)
+												.addComponent(remuneracion, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+											.addGap(25)
+											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addGroup(groupLayout.createSequentialGroup()
+													.addComponent(txtDepartamentoOferta, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+													.addGap(30)
+													.addComponent(departamento, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+												.addGroup(groupLayout.createSequentialGroup()
+													.addComponent(txtFechaAlta)
+													.addPreferredGap(ComponentPlacement.UNRELATED)
+													.addComponent(fechaAlta, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))))))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(txtDatosPostulante))
@@ -314,14 +327,14 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
+					.addGap(15)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtEmpresa)
-						.addComponent(seleccionDeEmpresa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+						.addComponent(comboBoxEmp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtEmpresa))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtOferta)
-						.addComponent(seleccionDeOfertaLaboral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxOferta, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(txtDatosOferta)
 					.addGap(18)
@@ -344,8 +357,8 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 					.addComponent(txtHorarios)
 					.addGap(28)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(Postulantes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtPostulante))
+						.addComponent(txtPostulante)
+						.addComponent(comboBoxPost, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(txtDatosPostulante)
 					.addGap(18)
@@ -363,7 +376,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnCancelar)
 								.addComponent(btnAceptar))
@@ -385,15 +398,8 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		getContentPane().setLayout(groupLayout);
 		
 
-		//Obtengo la interfaz del manejador 
 		
-		//Cargo el JComboBox de los nombre de las empresas
-		
-		Map<String, DataEmpresa> empresas = IMU.getDataEmpresas();
-		for (Map.Entry<String, DataEmpresa> entry : empresas.entrySet()) {
-		    String key = entry.getKey();
-		    seleccionDeEmpresa.addItem(key);
-		}
+
 		
 
 		
@@ -402,9 +408,9 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
 		LocalTime fecha = (LocalTime) spinner.getValue();
-		String empr = (String) seleccionDeEmpresa.getSelectedItem();
-		String ofer = (String) seleccionDeOfertaLaboral.getSelectedItem();
-		String post = (String) Postulantes.getSelectedItem();
+		//String empr = (String) comboBoxEmp.getSelectedItem();
+		String ofer = (String) comboBoxOferta.getSelectedItem();
+		String post = (String) comboBoxPost.getSelectedItem();
 		
 		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer); 
 				
@@ -414,10 +420,29 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	
 		if(verificarFormulario()) {
 			ICO.agregarPostulacion(post, ofer, cv, mot, fecha);
-			limpiarFormulario();
+			//limpiarFormulario();
 			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 			setVisible(false);
 		}
+		
+	}
+	
+	public void cargarDatos() {
+		//Para las empresas
+		DefaultComboBoxModel<DataEmpresa> modelEmp = new DefaultComboBoxModel<>();
+		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+		for(DataEmpresa emp : empresas) {
+			modelEmp.addElement(emp);
+		}
+		comboBoxEmp.setModel(modelEmp);
+		
+		//Para los postulantes
+		DefaultComboBoxModel<DataPostulante> modelPost = new DefaultComboBoxModel<>();
+		Set<DataPostulante> postulantes = ICU.getDataPostulante();
+		for(DataPostulante post : postulantes) {
+			modelPost.addElement(post);
+		}
+		comboBoxPost.setModel(modelPost);
 		
 	}
 	
@@ -425,11 +450,11 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
 		LocalTime fecha = (LocalTime) spinner.getValue();
-		String empr = (String) seleccionDeEmpresa.getSelectedItem();
-		String ofer = (String) seleccionDeOfertaLaboral.getSelectedItem();
-		String post = (String) Postulantes.getSelectedItem();
+		String empr = (String) comboBoxEmp.getSelectedItem();
+		String ofer = (String) comboBoxOferta.getSelectedItem();
+		String post = (String) comboBoxPost.getSelectedItem();
 		
-		if(cv.isEmpty() || mot.isEmpty() || fecha.equals(null) || empr.isEmpty() || ofer.isEmpty() || post.isEmpty()) {
+		if(cv.isEmpty() || mot.isEmpty() || empr.isEmpty() || ofer.isEmpty() || post.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
             return false;
@@ -437,13 +462,11 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		return true;
 	} 
 	
-	public void limpiarFormulario() {
-		this.CVReducido.setText("");
-		this.motivacion.setText("");
-		this.seleccionDeEmpresa.setSelectedItem(null);
-		this.seleccionDeOfertaLaboral.setSelectedItem(null);
-		this.Postulantes.setSelectedItem(null);
-	}
-		
-	
+	//public void limpiarFormulario() {
+		//this.CVReducido.setText("");
+		//this.motivacion.setText("");
+		//this.comboBoxEmp.setSelectedItem(null);
+		//this.comboBoxOferta.setSelectedItem(null);
+		//this.comboBoxPost.setSelectedItem(null);
+	//}
 }

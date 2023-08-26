@@ -1,5 +1,6 @@
 package logica_Controladores;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -9,6 +10,7 @@ import excepciones.UsuarioNoExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataOferta;
+import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.OfertaLaboral;
@@ -33,5 +35,7 @@ public interface IControladorUsuario {
 	public abstract Set<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException;
 
 	public abstract Set<DataOferta> getDataOfertasDeEmpresa(String nickName);
+
+	public abstract Set<DataPostulante> getDataPostulante();
 
 }

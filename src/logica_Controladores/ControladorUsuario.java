@@ -13,6 +13,7 @@ import excepciones.EmailYaExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataOferta;
+import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import utils.Fabrica;
@@ -166,9 +167,8 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 	}
 
-	@Override
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String web) throws NicknameYaExisteException {
+			String nacionalidad) throws NicknameYaExisteException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario postulante = mu.obtenerUsuario(nickname);
         Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
@@ -180,7 +180,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 
         // Convertir Instant a LocalDate
         LocalDate nacLD = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-        postulante = new Postulante(nickname, nombre, apellido, email, nacLD, web);
+        postulante = new Postulante(nickname, nombre, apellido, email, nacLD, nacionalidad);
         mu.addUsuario(postulante);
 		
 	}
@@ -199,12 +199,26 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		return res;
 	}else {throw new UsuarioNoExisteException("No existen Usuarios");}
 		}
+	
 
 	@Override
 	public Set<DataOferta> getDataOfertasDeEmpresa(String nickName) {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		Set<DataOferta> res = mu.obtenerOfertasDeUnaEmpresa(nickName);
+		return res;
+	}
+	
+	@Override
+	public Set<DataPostulante> getDataPostulante() {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		
+		Set<DataPostulante> res = new HashSet<>();
+		Map<String, DataPostulante> m = mu.getDataPostulantes();
+		for (Map.Entry<String, DataPostulante> entry : m.entrySet()) {
+		    res.add(entry.getValue());
+		}
 		return res;
 	}
 	

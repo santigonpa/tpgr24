@@ -9,6 +9,7 @@ import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
+import logica_Entidades.Empresa;
 
 public interface IManejadorUsuario {
 
@@ -32,4 +33,5 @@ public interface IManejadorUsuario {
 
 	public abstract Set<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName);
 
+	public abstract Empresa obtenerEmpresa(String emp);
 }
