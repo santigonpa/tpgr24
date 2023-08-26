@@ -88,7 +88,6 @@ public class ControladorOferta implements IControladorOferta {
 		Postulacion nuevaPost = new Postulacion(fecha, cv, mot, p, oferta);
 		
 		oferta.agregarPostulacionAOferta(nuevaPost);
-		IControladorUsuario icu = (IControladorUsuario) fabrica.getInUser();
 		this.agregarPostulacionApostulante(nuevaPost, post);
 		
 	}

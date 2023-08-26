@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
