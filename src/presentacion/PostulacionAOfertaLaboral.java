@@ -73,7 +73,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private JTextArea remuneracion;
 	private JTextArea departamento;
 	private JTextArea fechaAlta;
-	private JTextArea motivacion;
+	private JTextArea motTextArea;
 	private JTextArea CVReducido;
 	private JTextArea Descripcion;
 	private JSpinner spinner;
@@ -197,15 +197,13 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		
 		
-		motivacion = new JTextArea();
-		
 		JLabel fechaDePostulacion = new JLabel("Fecha de Inscripcion :");
 		
 		spinner = new JSpinner();
         spinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
 
 		
-		JTextArea textArea = new JTextArea();
+		motTextArea = new JTextArea();
 		
 		comboBoxEmp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -271,7 +269,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 										.addComponent(comboBoxPost, GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-												.addComponent(ciudad)
+												.addComponent(ciudad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 												.addComponent(remuneracion, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
 											.addGap(25)
 											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -300,14 +298,15 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 										.addComponent(txtMotivacion, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
 									.addGap(44)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(scrollPaneCVReducido, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-										.addComponent(textArea, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
+										.addComponent(motTextArea, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+										.addComponent(scrollPaneCVReducido, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(motivacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(fechaDePostulacion)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))))
+									.addComponent(motTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(fechaDePostulacion)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(spinner, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -356,22 +355,19 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 							.addGap(14)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(txtMotivacion)
-								.addComponent(motivacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(motTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnCancelar)
-								.addComponent(btnAceptar))
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(37)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(fechaDePostulacion)
-								.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+							.addComponent(motTextArea, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(fechaDePostulacion))
+					.addPreferredGap(ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancelar)
+						.addComponent(btnAceptar))
+					.addContainerGap())
 		);
 		
 		CVReducido = new JTextArea();
@@ -392,7 +388,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	}
 	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
 		String cv = CVReducido.getText();
-		String mot = motivacion.getText();
+		String mot = motTextArea.getText();
 		Date fechaD = (Date) spinner.getValue();
 		Instant instant = fechaD.toInstant();
 		LocalDate fechalocalDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
@@ -436,7 +432,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	
 	private boolean verificarFormulario() {
 		String cv = CVReducido.getText();
-		String mot = motivacion.getText();
+		String mot = motTextArea.getText();
 		DataEmpresa empr = (DataEmpresa) comboBoxEmp.getSelectedItem();
 		DataOferta ofer = (DataOferta) comboBoxOferta.getSelectedItem();
 		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
@@ -451,7 +447,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	
 	public void limpiarFormulario() {
 		this.CVReducido.setText("");
-		this.motivacion.setText("");
+		this.motTextArea.setText("");
 		this.comboBoxEmp.setSelectedItem(null);
 		this.comboBoxOferta.setSelectedItem(null);
 		this.comboBoxPost.setSelectedItem(null);
