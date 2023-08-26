@@ -11,18 +11,27 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JTextArea;
+import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 public class ConsultaDeOfertaLaboral extends JInternalFrame {
-	private final JTextField textField = new JTextField();
+	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField textFieldRemuneracion;
+	private JTextField textFieldCosto;
+
 
 	/**
 	 * Launch the application.
@@ -40,7 +49,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		});
 	}
 
-	/**
+	s/**
 	 * Create the frame.
 	 */
 	public ConsultaDeOfertaLaboral() {
@@ -48,107 +57,133 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		setMaximizable(true);
 		setTitle("Consulta de oferta laboral");
 		setClosable(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(50, 50, 392, 456);		
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Tipo de publicación");
-		lblNewLabel_1.setBounds(10, 7, 127, 13);
-		getContentPane().add(lblNewLabel_1);
+		JLabel lblEmpresa = new JLabel("Empresa:");
+		lblEmpresa.setBounds(10, 10, 65, 13);
+		getContentPane().add(lblEmpresa);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(163, 4, 86, 19);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una empresa"}));
+		comboBox.setBounds(83, 6, 287, 21);
+		getContentPane().add(comboBox);
 		
-		JLabel lblNewLabel = new JLabel("Empresa");
-		lblNewLabel.setBounds(259, 7, 66, 13);
-		getContentPane().add(lblNewLabel);
-		textField.setBounds(325, 4, 86, 19);
-		textField.setText("");
+		JLabel lblOferta = new JLabel("Oferta:");
+		lblOferta.setBounds(10, 42, 65, 13);
+		getContentPane().add(lblOferta);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una oferta"}));
+		comboBox_1.setBounds(83, 38, 287, 21);
+		getContentPane().add(comboBox_1);
+		
+		JLabel lblInfoOferta = new JLabel("Informacion de la oferta laboral");
+		lblInfoOferta.setBounds(146, 88, 208, 13);
+		getContentPane().add(lblInfoOferta);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setBounds(10, 111, 84, 13);
+		getContentPane().add(lblDescripcion);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(104, 111, 266, 64);
+		getContentPane().add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		scrollPane.setViewportView(textArea);
+		
+		JLabel lblCiudad = new JLabel("Ciudad:");
+		lblCiudad.setBounds(10, 194, 65, 13);
+		getContentPane().add(lblCiudad);
+		
+		JLabel lblDepartamento = new JLabel("Departamento:");
+		lblDepartamento.setBounds(189, 194, 107, 13);
+		getContentPane().add(lblDepartamento);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setBounds(104, 191, 75, 19);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nombre");
-		lblNewLabel_2.setBounds(10, 33, 149, 13);
-		getContentPane().add(lblNewLabel_2);
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(295, 191, 75, 19);
+		getContentPane().add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(163, 30, 86, 19);
-		getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		JLabel lblHoraInicio = new JLabel("Hora inicio:");
+		lblHoraInicio.setBounds(10, 232, 65, 13);
+		getContentPane().add(lblHoraInicio);
 		
-		JLabel lblNewLabel_3 = new JLabel("Horario");
-		lblNewLabel_3.setBounds(259, 33, 62, 13);
-		getContentPane().add(lblNewLabel_3);
+		JLabel lblHoraFin = new JLabel("Hora fin");
+		lblHoraFin.setBounds(189, 232, 89, 13);
+		getContentPane().add(lblHoraFin);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(325, 30, 86, 19);
-		getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		JSpinner spinnerHoraInicio = new JSpinner();
+		spinnerHoraInicio.setEnabled(false);
+		spinnerHoraInicio.setModel(new SpinnerDateModel(new Date(1693018800000L), null, null, Calendar.HOUR_OF_DAY));
+		JSpinner.DateEditor editor1 = new JSpinner.DateEditor(spinnerHoraInicio, "HH:mm");
+		spinnerHoraInicio.setEditor(editor1);
+		spinnerHoraInicio.setBounds(104, 229, 75, 20);
+		getContentPane().add(spinnerHoraInicio);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Remuneración UYU$");
-		lblNewLabel_1_1.setBounds(10, 58, 149, 13);
-		getContentPane().add(lblNewLabel_1_1);
+		JSpinner spinnerHoraFin = new JSpinner();
+		spinnerHoraFin.setEnabled(false);
+		spinnerHoraFin.setModel(new SpinnerDateModel(new Date(1693018800000L), null, null, Calendar.HOUR_OF_DAY));
+		JSpinner.DateEditor editor2 = new JSpinner.DateEditor(spinnerHoraFin, "HH:mm");
+		spinnerHoraFin.setEditor(editor2);
+		spinnerHoraFin.setBounds(295, 229, 75, 20);
+		getContentPane().add(spinnerHoraFin);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(163, 55, 86, 19);
-		textField_4.setColumns(10);
-		getContentPane().add(textField_4);
+		JLabel lblRemuneracion = new JLabel("Remuneracion:");
+		lblRemuneracion.setBounds(10, 273, 107, 13);
+		getContentPane().add(lblRemuneracion);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Ciudad");
-		lblNewLabel_1_2.setBounds(259, 58, 62, 13);
-		getContentPane().add(lblNewLabel_1_2);
+		JLabel lblCosto = new JLabel("Costo:");
+		lblCosto.setBounds(189, 273, 84, 13);
+		getContentPane().add(lblCosto);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(325, 55, 86, 19);
-		textField_5.setColumns(10);
-		getContentPane().add(textField_5);
+		textFieldRemuneracion = new JTextField();
+		textFieldRemuneracion.setEditable(false);
+		textFieldRemuneracion.setColumns(10);
+		textFieldRemuneracion.setBounds(104, 270, 75, 19);
+		getContentPane().add(textFieldRemuneracion);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Departamento");
-		lblNewLabel_2_1.setBounds(10, 83, 149, 13);
-		getContentPane().add(lblNewLabel_2_1);
+		textFieldCosto = new JTextField();
+		textFieldCosto.setEditable(false);
+		textFieldCosto.setColumns(10);
+		textFieldCosto.setBounds(295, 270, 75, 19);
+		getContentPane().add(textFieldCosto);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(163, 80, 86, 19);
-		textField_8.setColumns(10);
-		getContentPane().add(textField_8);
+		JLabel lblFechaDeAlta = new JLabel("Fecha de alta:");
+		lblFechaDeAlta.setBounds(10, 312, 84, 13);
+		getContentPane().add(lblFechaDeAlta);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Nombre");
-		lblNewLabel_2_2.setBounds(259, 83, 62, 13);
-		getContentPane().add(lblNewLabel_2_2);
+		JSpinner spinnerFechaAlta = new JSpinner();
+		spinnerFechaAlta.setEnabled(false);
+		spinnerFechaAlta.setModel(new SpinnerDateModel(new Date(1672542000000L), null, null, Calendar.DAY_OF_YEAR));
+		JSpinner.DateEditor editor3 = new JSpinner.DateEditor(spinnerFechaAlta, "dd/MM/yyyy");
+		spinnerFechaAlta.setEditor(editor3);
+		spinnerFechaAlta.setBounds(104, 309, 75, 20);
+		getContentPane().add(spinnerFechaAlta);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(325, 80, 86, 19);
-		textField_6.setColumns(10);
-		getContentPane().add(textField_6);
+		JLabel lblNewLabel = new JLabel("Postulaciones:");
+		lblNewLabel.setBounds(10, 355, 84, 13);
+		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_2_3 = new JLabel("Fecha de Alta");
-		lblNewLabel_2_3.setBounds(10, 108, 149, 13);
-		getContentPane().add(lblNewLabel_2_3);
+		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(104, 351, 266, 21);
+		getContentPane().add(comboBox_2);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(163, 105, 86, 19);
-		textField_9.setColumns(10);
-		getContentPane().add(textField_9);
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(285, 396, 85, 21);
+		getContentPane().add(btnCancelar);
 		
-		JLabel lblNewLabel_2_3_1 = new JLabel("Keywords");
-		lblNewLabel_2_3_1.setBounds(259, 108, 66, 13);
-		getContentPane().add(lblNewLabel_2_3_1);
-		
-		textField_7 = new JTextField();
-		textField_7.setBounds(325, 105, 86, 19);
-		textField_7.setColumns(10);
-		getContentPane().add(textField_7);
-		
-		JLabel lblNewLabel_4 = new JLabel("Descripción");
-		lblNewLabel_4.setBounds(49, 160, 110, 13);
-		getContentPane().add(lblNewLabel_4);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(49, 179, 226, 54);
-		textArea.setWrapStyleWord(true);
-		getContentPane().add(textArea);
-
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(189, 396, 85, 21);
+		getContentPane().add(btnAceptar);
 	}
-
 }
