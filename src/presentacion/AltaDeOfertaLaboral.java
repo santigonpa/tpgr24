@@ -19,6 +19,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -61,6 +62,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	private JSpinner spinnerFin;
 	private JSpinner spinnerFecha;
 	private JList<DataKeyWord> listaKeyWords;
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Launch the application.
@@ -128,13 +130,18 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
-		textAreaDescripcion = new JTextArea();
-		textAreaDescripcion.setBounds(10, 243, 528, 94);
-		getContentPane().add(textAreaDescripcion);
+		scrollPane = new JScrollPane();
+        scrollPane.setBounds(101, 247, 319, 92); // Misma posición y tamaño que el JTextArea
+        getContentPane().add(scrollPane);
+
+        textAreaDescripcion = new JTextArea();
+        textAreaDescripcion.setWrapStyleWord(true);
+        textAreaDescripcion.setLineWrap(true);
+        scrollPane.setViewportView(textAreaDescripcion);
 		
 		JLabel lblNewLabel_4 = new JLabel("Descripcion :");
 		lblNewLabel_4.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
-		lblNewLabel_4.setBounds(7, 221, 75, 12);
+		lblNewLabel_4.setBounds(7, 286, 75, 12);
 		getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Horario de trabajo : ");
@@ -229,9 +236,15 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         lblNewLabel_5_1.setBounds(177, 146, 243, 13);
         getContentPane().add(lblNewLabel_5_1);
         
-        listaKeyWords = new JList<DataKeyWord>();
-        listaKeyWords.setBounds(177, 171, 282, 62);
-        getContentPane().add(listaKeyWords);
+        listaKeyWords = new JList<>();
+        // Configura el modelo de lista y agrega elementos si es necesario
+        DefaultListModel<DataKeyWord> model = new DefaultListModel<>();
+        listaKeyWords.setModel(model);
+
+        JScrollPane scrollPane = new JScrollPane(listaKeyWords);
+        scrollPane.setBounds(177, 171, 282, 62); // Ajusta las coordenadas y el tamaño según tus necesidades
+
+        getContentPane().add(scrollPane);
         
         
         JLabel lblNewLabel_5_2 = new JLabel("Fecha Del Alta : ");
