@@ -287,14 +287,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		getContentPane().add(motTextArea);
 		getContentPane().add(scrollPaneCVReducido);
 		getContentPane().add(fechaDePostulacion);
-		getContentPane().add(spinner);
-		
-
-		
-
-		
-
-		
+		getContentPane().add(spinner);	
 	}
 	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
 		String cv = CVReducido.getText();
@@ -307,11 +300,13 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
 		if(verificarFormulario()) {
 		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre()); 
-				
-			if(oferta.existePostulacion(post.getNickName())) { 
-				throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
+			try {	
+				if(oferta.existePostulacion(post.getNickName())) { 
+					throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
+				}
+			}catch (yaExistePostulacionAOfertaException e5) {
+				JOptionPane.showMessageDialog(null, e5.getMessage(), "Error de Postulación", JOptionPane.ERROR_MESSAGE);
 			}
-		
 	
 			ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
 			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
@@ -347,12 +342,18 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		DataEmpresa empr = (DataEmpresa) comboBoxEmp.getSelectedItem();
 		DataOferta ofer = (DataOferta) comboBoxOferta.getSelectedItem();
 		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
+		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre());
 		
 		if(cv.isEmpty() || mot.isEmpty() || empr==null || ofer==null || post==null) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "ATENCION!!",
                     JOptionPane.ERROR_MESSAGE);
             return false;
 		}
+        if (oferta.existePostulacion(post.getNickName())) {
+        	JOptionPane.showMessageDialog(this, "El postulante ya se encuentra postulado a esta oferta", "ATENCION!!",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }       
 		return true;
 	} 
 	
