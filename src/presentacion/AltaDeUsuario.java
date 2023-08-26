@@ -17,6 +17,7 @@ import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
+import excepciones.campoInvalidoException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -247,7 +248,7 @@ public class AltaDeUsuario extends JInternalFrame{
     	            limpiarFormulario();
                     setVisible(false);
     	        }
-    	    } catch (NicknameYaExisteException |EmailYaExisteException e2) {
+    	    } catch (NicknameYaExisteException |EmailYaExisteException |campoInvalidoException e2) {
     	        // Manejar la excepción NicknameYaExisteException aquí
     	        JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Usuario", JOptionPane.ERROR_MESSAGE);
     	    }

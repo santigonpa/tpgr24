@@ -40,8 +40,8 @@ class controladorUsuarioTest {
 		Fabrica f = Fabrica.getInstance();
 		cu = f.getInUser();
 		mu = f.getInManejadorUsuario();
-		LocalDate f1 = LocalDate.of(01,01,1990);
-		LocalDate f2 = LocalDate.of(01,05,1990);
+		LocalDate f1 = LocalDate.of(1990,01,01);
+		LocalDate f2 = LocalDate.of(1990,05,01);
 		p1 = new Postulante("Pedro", "Herni", "pepi", "pepi@gmail.com", f1, "Uru");
 		p2 = new Postulante("Maria", "Lopes", "mari", "marilaosa@gmail.com", f2, "Esp");
 		e1 = new Empresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com");
