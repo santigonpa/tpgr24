@@ -4,31 +4,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JSpinner;
-import java.awt.BorderLayout;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JMenuBar;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
-import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JList;
 import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import javax.swing.JLabel;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
 
 public class ConsultarUsuario extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField nickname;
@@ -195,7 +190,7 @@ public class ConsultarUsuario extends JInternalFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("bartender");
 		mnOfertas.add(mntmNewMenuItem);
 		
-		JComboBox tipoDeUsuario = new JComboBox();
+		JComboBox<String> tipoDeUsuario = new JComboBox<String>();
 		tipoDeUsuario.setBounds(65, 10, 294, 22);
 		getContentPane().add(tipoDeUsuario);
 	   tipoDeUsuario.addActionListener(new ActionListener() {

@@ -16,6 +16,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ConsultaDeTiposDePublicacionDeOfertasLaborales extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTable table_1;
 

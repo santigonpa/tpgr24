@@ -71,5 +71,10 @@ public class ManejadorOferta implements IManejadorOferta{
     	return res;
 	}
 
+	public void addKeyword(KeyWord k) {
+		this.keywordsTotales.put(k.getPalabraClave(),k);
+	
+	}
+
 
 }

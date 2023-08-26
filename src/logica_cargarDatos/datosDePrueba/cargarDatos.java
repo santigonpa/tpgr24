@@ -102,12 +102,11 @@ public class cargarDatos {
 		
 		//Agrego Tipos
 		
-		/*no existe todavia la operacion
 		mpyt.addTipoPublicacion(tp1);
 		mpyt.addTipoPublicacion(tp2);
 		mpyt.addTipoPublicacion(tp3);
 		mpyt.addTipoPublicacion(tp4);
-		 */
+
 		
 		//Cargo Keywords
 		KeyWord k1 = new KeyWord("Tiempo completo");
@@ -122,7 +121,7 @@ public class cargarDatos {
 		KeyWord k10 = new KeyWord("Contabilidad");
 		
 		//Agrego Kewword
-		/*
+	
 		mo.addKeyword(k1);
 		mo.addKeyword(k2);
 		mo.addKeyword(k3);
@@ -133,7 +132,7 @@ public class cargarDatos {
 		mo.addKeyword(k8);
 		mo.addKeyword(k9);
 		mo.addKeyword(k10);
-		*/
+
 		
 		//Agrego Ofertas Laborales
 		
@@ -180,16 +179,16 @@ public class cargarDatos {
 		OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8);
 		
 		//Agrego Oferta .............. no esta la operacion
-		/*
-		mu.addOferta(o1);
-		mu.addOferta(o2);
-		mu.addOferta(o3);
-		mu.addOferta(o4);
-		mu.addOferta(o5);
-		mu.addOferta(o6);
-		mu.addOferta(o7);
-		mu.addOferta(o8);
-		*/
+	
+		mo.addOferta(o1);
+		mo.addOferta(o2);
+		mo.addOferta(o3);
+		mo.addOferta(o4);
+		mo.addOferta(o5);
+		mo.addOferta(o6);
+		mo.addOferta(o7);
+		mo.addOferta(o8);
+		
 		
 		//Agrego Keyword a Oferta
 		//Creo los set de Keywords
