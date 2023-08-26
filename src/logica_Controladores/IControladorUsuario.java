@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import logica_DataTypes.DataEmpresa;
@@ -22,12 +23,12 @@ public interface IControladorUsuario {
 	public abstract Set<DataTipoPublicacion> getDataTipoPublicacion();
 
 	public abstract void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String web)throws NicknameYaExisteException;
+			String web)throws NicknameYaExisteException, EmailYaExisteException;
 
 	public abstract Set<DataKeyWord> getDataKeyWord();
 
 	public abstract void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
-			String nacionalidad)throws NicknameYaExisteException;
+			String nacionalidad)throws NicknameYaExisteException, EmailYaExisteException;
 
 	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
 
