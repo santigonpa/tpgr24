@@ -3,16 +3,10 @@ package presentacion;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.GridBagLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
@@ -65,7 +59,7 @@ public class AddTipoPubliOfertaLabAPaq extends JInternalFrame {
 		gbc_lblNewLabel.gridy = 0;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<>();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 4;
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -82,7 +76,7 @@ public class AddTipoPubliOfertaLabAPaq extends JInternalFrame {
 		gbc_lblElijaElTipo.gridy = 1;
 		getContentPane().add(lblElijaElTipo, gbc_lblElijaElTipo);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<>();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.gridwidth = 4;
 		gbc_comboBox_1.fill = GridBagConstraints.BOTH;

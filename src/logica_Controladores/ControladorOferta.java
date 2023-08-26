@@ -3,7 +3,6 @@ package logica_Controladores;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
