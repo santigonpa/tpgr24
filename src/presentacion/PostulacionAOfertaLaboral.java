@@ -10,28 +10,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.chrono.ChronoZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerDateModel;
 
 import logica_Controladores.IControladorOferta;
@@ -39,7 +27,6 @@ import logica_Controladores.IControladorUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataOferta;
-import logica_Entidades.Empresa;
 import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
@@ -48,9 +35,7 @@ import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
 
-import javax.swing.AbstractListModel;
 import javax.swing.JSpinner;
-import javax.swing.JScrollBar;
 
 
 
@@ -62,7 +47,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario ICU;
 	private IControladorOferta ICO;
-	private IManejadorUsuario IMU;
 	private IManejadorOferta IMO;
 	private JLabel txtEmpresa;
 	private JLabel txtOferta;
@@ -121,7 +105,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		ICU = Icu;
 		ICO = Ico;
-		IMU = Imu;
 		IMO = Imo;
 		setClosable(true);
 		setTitle("Postulacion a Oferta Laboral");
@@ -407,7 +390,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
-		LocalTime fecha = (LocalTime) spinner.getValue();
+		LocalDate fecha = (LocalDate) spinner.getValue();
 		//String empr = (String) comboBoxEmp.getSelectedItem();
 		String ofer = (String) comboBoxOferta.getSelectedItem();
 		String post = (String) comboBoxPost.getSelectedItem();
@@ -450,7 +433,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private boolean verificarFormulario() {
 		String cv = CVReducido.getText();
 		String mot = motivacion.getText();
-		LocalTime fecha = (LocalTime) spinner.getValue();
 		String empr = (String) comboBoxEmp.getSelectedItem();
 		String ofer = (String) comboBoxOferta.getSelectedItem();
 		String post = (String) comboBoxPost.getSelectedItem();

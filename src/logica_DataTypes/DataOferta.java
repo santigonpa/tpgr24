@@ -108,6 +108,10 @@ public class DataOferta {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaDeAlta.format(formatter);
 	}
+	
+	public String toString() {
+        return this.getNombre(); // Devuelve el nombre de la oferta
+    }
 
 }
 
