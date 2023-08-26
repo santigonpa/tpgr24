@@ -21,7 +21,7 @@ import utils.Fabrica;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
 
 public class ConsultaDeUsuario extends JInternalFrame {
 	
@@ -35,7 +35,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	private JLabel apellidoLabel;
 	private JLabel nacionLabel;
 	private JLabel emailLabel;
-	private JTextPane descPane;
+	private JTextArea textArea;
+	private JScrollPane scrollPane;
 	/**
 	 * 
 	 */
@@ -88,7 +89,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	emailLabel.setText(selectedEmpresa.getEmail());
                 	linkLabel.setText(selectedEmpresa.getLinkWeb());
                 	apellidoLabel.setText(selectedEmpresa.getApellido());
-                	descPane.setText(selectedEmpresa.getDescripcion());
+                	
+                	
+                	textArea.setText(selectedEmpresa.getDescripcion());
                 	
                 	comboOferta.setVisible(true);
                 	DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
@@ -202,15 +205,16 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		linkLabel.setBounds(72, 142, 265, 14);
 		getContentPane().add(linkLabel);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(491, 179, -412, 51);
-		getContentPane().add(textArea);
 		
-		descPane = new JTextPane();
-		descPane.setEnabled(false);
-		descPane.setEditable(false);
-		descPane.setBounds(80, 167, 402, 73);
-		getContentPane().add(descPane);
+		textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+
+        scrollPane = new JScrollPane(textArea);
+        scrollPane.setBounds(80, 167, 402, 73); // Posición y tamaño del JScrollPane
+
+        getContentPane().add(scrollPane);
 
 	}
 	
@@ -237,7 +241,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
     	linkLabel.setText("");
     	apellidoLabel.setText("");
     	emailLabel.setText("");
-    	descPane.setText("");
+    	textArea.setText("");
     	nacionLabel.setText("");
     	fechaNacLabel.setText("");
 		

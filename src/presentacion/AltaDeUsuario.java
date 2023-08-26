@@ -20,6 +20,7 @@ import excepciones.NicknameYaExisteException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import java.awt.SystemColor;
 import java.util.Calendar;
@@ -45,6 +46,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	private JSpinner spinnerNacimiento;
 	private String[] arreglo;
 	private JTextArea textAreaDescripcion;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -111,9 +113,15 @@ public class AltaDeUsuario extends JInternalFrame{
 	    lblNewLabel_7.setBounds(0, 188, 96, 14);
 	    getContentPane().add(lblNewLabel_7);
 	    
-	    textAreaDescripcion = new JTextArea();
-	    textAreaDescripcion.setBounds(93, 183, 319, 92);
-	    getContentPane().add(textAreaDescripcion);
+	    scrollPane = new JScrollPane();
+        scrollPane.setBounds(93, 183, 319, 92); // Misma posición y tamaño que el JTextArea
+        getContentPane().add(scrollPane);
+
+        textAreaDescripcion = new JTextArea();
+        textAreaDescripcion.setWrapStyleWord(true);
+        textAreaDescripcion.setLineWrap(true);
+        scrollPane.setViewportView(textAreaDescripcion);
+
 	    
 	    JLabel lblNewLabel_8 = new JLabel("    Link :");
 	    lblNewLabel_8.setBounds(11, 289, 72, 14);
