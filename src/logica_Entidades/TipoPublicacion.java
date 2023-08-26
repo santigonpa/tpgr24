@@ -1,5 +1,6 @@
 package logica_Entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import logica_DataTypes.DataTipoPublicacion;
@@ -11,12 +12,12 @@ public class TipoPublicacion {
 	private int exposicion;
 	private int duracion;
 	private float costo;
-	private Date fecha;
+	private LocalDate fecha;
 	
 	
 	//Constructor
 	
-	public TipoPublicacion(String n, String d, int e, int du, float c, Date f) {
+	public TipoPublicacion(String n, String d, int e, int du, float c, LocalDate f) {
 		this.nombre = n;
 		this.descripcion = d;
 		this.exposicion = e;
@@ -48,7 +49,7 @@ public class TipoPublicacion {
 		return costo;
 	}
 	
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 	

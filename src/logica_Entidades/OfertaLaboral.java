@@ -1,14 +1,9 @@
 package logica_Entidades;
 import java.time.*;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
-import logica_DataTypes.DataHorario;
 import logica_DataTypes.DataOferta;
-import logica_Entidades.Empresa;
-import logica_Entidades.KeyWord;
-import logica_Entidades.Postulacion;
-import logica_Entidades.TipoPublicacion;
 
 public class OfertaLaboral {
 	
@@ -22,7 +17,7 @@ public class OfertaLaboral {
 	private LocalTime horaFin;
 	private int remuneracion;
 	private int costoDeOfertaLaboral; 
-	private java.sql.Date fechaDeAlta; // la del momento en el alta
+	private LocalDate fechaDeAlta; // la del momento en el alta
 	
 	//Links de oferta
 		
@@ -36,17 +31,17 @@ public class OfertaLaboral {
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horarioInicio, LocalTime horarioFin
-			, float remuneracion , float costoDeOfertaLaboral, java.util.Date fecha)
+			, int remuneracion , int costoDeOfertaLaboral, LocalDate fecha)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
-		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
+		this.costoDeOfertaLaboral = (int) costoDeOfertaLaboral;
 		this.horaFin = horarioFin;
 		this.horaInicio = horarioInicio;
 		this.departamento = departamento;
-		this.remuneracion = remuneracion;
-		this.fechaDeAlta = (java.sql.Date) fecha;
+		this.remuneracion = (int) remuneracion;
+		this.fechaDeAlta = (LocalDate) fecha;
 	}
 	
 	public DataOferta getDataOferta() {
@@ -59,7 +54,13 @@ public class OfertaLaboral {
 	public void setEmpresa(Empresa e) {
 		this.empresaAsociada = e; 
 	}
+	public TipoPublicacion getTipoDeOferta() {
+		return this.tipoDeOferta;
+	}
 	
+	public Empresa getEmpresa() {
+		return this.empresaAsociada;
+	}
 	public boolean existeLaPostulacion(String postulante) {
 		boolean condicion = false;
 		if (this.postulacionesSobreLaOferta != null) {
@@ -108,10 +109,9 @@ public class OfertaLaboral {
 	}
 
 	public String getFechaAltaComoString() {
-		Date fecha = this.fechaDeAlta;
-		String res = fecha.getDay() + "" + fecha.getMonth() + "" + fecha.getYear() + "";
-		return res;
-	}
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fechaDeAlta.format(formatter);
+    }
 	
 	public boolean existePostulacion(String post) {
 		for(Postulacion postulaciones : postulacionesSobreLaOferta) {
@@ -136,7 +136,7 @@ public LocalTime getHoraFin() {
 		return this.costoDeOfertaLaboral;
 	}
 
-	public java.sql.Date getFecha() {
+	public LocalDate getFecha() {
 		
 		return this.fechaDeAlta;
 	}

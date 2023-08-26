@@ -95,10 +95,10 @@ public class cargarDatos {
 		LocalDate at4 = LocalDate.parse("07-08-2023", dateFormatter);
 		
 		//Creo Tipos
-		TipoPublicacion tp1 = new TipoPublicacion("Premium","Obten maxima visibilidad.",1,30,4000);
-		TipoPublicacion tp2 = new TipoPublicacion("Destacada","Destaca tu anuncio",2,15,500);
-		TipoPublicacion tp3 = new TipoPublicacion("Estandar","Mejora la posicion de tu anuncio",3,20,150);
-		TipoPublicacion tp4 = new TipoPublicacion("Basica","Publica de forma sencilla en la lista de ofertas",4,7,50);
+		TipoPublicacion tp1 = new TipoPublicacion("Premium","Obten maxima visibilidad.",1,30,4000,at1);
+		TipoPublicacion tp2 = new TipoPublicacion("Destacada","Destaca tu anuncio",2,15,500,at2);
+		TipoPublicacion tp3 = new TipoPublicacion("Estandar","Mejora la posicion de tu anuncio",3,20,150,at3);
+		TipoPublicacion tp4 = new TipoPublicacion("Basica","Publica de forma sencilla en la lista de ofertas",4,7,50,at4);
 		
 		//Agrego Tipos
 		
@@ -159,28 +159,15 @@ public class cargarDatos {
 		
 		//Convierto las Fechas
 
-		Date ao1 = new Date();
-		Date ao2 = new Date();
-		Date ao3 = new Date();
-		Date ao4 = new Date();
-		Date ao5 = new Date();
-		Date ao6 = new Date();
-		Date ao7 = new Date();
-		Date ao8 = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			ao1 = sdf.parse("14-08-2023");
-			ao2 = sdf.parse("14-08-2023");
-			ao3 = sdf.parse("13-08-2023");
-			ao4 = sdf.parse("11-08-2023");
-			ao5 = sdf.parse("20-08-2023");
-			ao6 = sdf.parse("15-08-2023");
-			ao7 = sdf.parse("15-08-2023");
-			ao8 = sdf.parse("16-08-2023");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+		LocalDate ao1 = LocalDate.of(2023,8,14);
+		LocalDate ao2 = LocalDate.of(2023,8,14);
+		LocalDate ao3 = LocalDate.of(2023,8,13);
+		LocalDate ao4 = LocalDate.of(2023,8,11);
+		LocalDate ao5 = LocalDate.of(2023,8,20);
+		LocalDate ao6 = LocalDate.of(2023,8,15);
+		LocalDate ao7 = LocalDate.of(2023,8,15);
+		LocalDate ao8 = LocalDate.of(2023,8,16);
+		
 		
 		//Creo Oferta
 		OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1);

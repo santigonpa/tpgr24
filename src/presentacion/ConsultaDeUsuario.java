@@ -90,7 +90,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	linkLabel.setText(selectedEmpresa.getLinkWeb());
                 	apellidoLabel.setText(selectedEmpresa.getApellido());
                 	
-                	
+                	textArea.setVisible(true);
                 	textArea.setText(selectedEmpresa.getDescripcion());
                 	
                 	comboOferta.setVisible(true);
@@ -110,7 +110,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
             		}catch(NoTieneOfertasException e22) {}
                 	
                 } else if (selectedOption instanceof DataPostulante) {
-                	
+                	textArea.setVisible(false);
                 	comboOferta.setVisible(false);
                 	
                 	DataPostulante selectedPostulante = (DataPostulante) selectedOption;
@@ -120,6 +120,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	emailLabel.setText(selectedPostulante.getEmail());
                 	nacionLabel.setText(selectedPostulante.getNacionalidad());
                 	fechaNacLabel.setText(selectedPostulante.getFechaString());
+                	
+                	
                 	
                 	
                 }
