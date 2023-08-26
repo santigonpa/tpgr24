@@ -3,14 +3,10 @@ package presentacion;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -315,13 +311,14 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 			if(oferta.existePostulacion(post.getNickName())) { 
 				throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
 			}
-		}
+		
 	
 			ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
 			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 			limpiarFormulario();
 			setVisible(false);
 		}
+	}
 		
 	
 	public void cargarDatos() {
