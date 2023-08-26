@@ -192,11 +192,9 @@ public class cargarDatos {
 		o6.setEmpresa((Empresa)e6);
 		o7.setEmpresa((Empresa)e1);
 		o8.setEmpresa((Empresa)e3);
+
 		
-		
-		
-		
-		//Agrego Oferta .............. no esta la operacion
+		//Agrego Oferta 
 	
 		mo.addOferta(o1);
 		mo.addOferta(o2);
@@ -228,9 +226,28 @@ public class cargarDatos {
 		o5.agregarKeywordAOferta(k4);
 		
 		o6.agregarKeywordAOferta(k1);
-
 		
-		//Linkeo Tipo con Oferta ........... falta implementar
+		//Agrego oferta a KeyWord
+		k1.agregarOfertaAKeyWord(o1);
+		k2.agregarOfertaAKeyWord(o1);
+		k3.agregarOfertaAKeyWord(o1);
+		k4.agregarOfertaAKeyWord(o1);
+		k5.agregarOfertaAKeyWord(o1);
+		k6.agregarOfertaAKeyWord(o1);
+		
+		k5.agregarOfertaAKeyWord(o2);
+		
+		k2.agregarOfertaAKeyWord(o3);
+		k3.agregarOfertaAKeyWord(o3);
+		k6.agregarOfertaAKeyWord(o3);
+
+		k2.agregarOfertaAKeyWord(o4);
+		
+		k4.agregarOfertaAKeyWord(o5);
+		
+		k1.agregarOfertaAKeyWord(o6);
+		
+		//Linkeo Tipo con Oferta 
 
 		o1.setTipoPublicacion(tp1);
 		o2.setTipoPublicacion(tp3);
