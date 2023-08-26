@@ -20,11 +20,6 @@ import logica_cargarDatos.datosDePrueba.cargarDatos;
 import javax.swing.JMenu;
 import java.awt.Rectangle;
 import java.awt.GridBagLayout;
-import javax.swing.JInternalFrame;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
 
 
 public class Principal {
@@ -40,9 +35,6 @@ public class Principal {
 	private PostulacionAOfertaLaboral PosAOferLab;
 	private AltaDeTipoDePublicacionDeOfertaLaboral Altideof;
 	
-	private IControladorOferta ICO;
-	private IControladorUsuario ICU;
-	 
 	/**
 	 * Launch the application.
 	 */
