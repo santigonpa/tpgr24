@@ -96,7 +96,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		comboBoxEmpresa.setBounds(177, 7, 361, 21);
 		getContentPane().add(comboBoxEmpresa);
 		
-		JLabel lblNewLabel = new JLabel("Selecicone la empresa");
+		JLabel lblNewLabel = new JLabel("Seleccione la empresa");
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
 		lblNewLabel.setBounds(10, 10, 157, 13);
 		getContentPane().add(lblNewLabel);
