@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,9 @@ import excepciones.NicknameYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import logica_Controladores.IControladorUsuario;
+import logica_DataTypes.DataEmpresa;
+import logica_DataTypes.DataPostulante;
+import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
@@ -27,9 +31,9 @@ class controladorUsuarioTest {
 	private static IControladorUsuario cu;
 	private static IManejadorUsuario mu;
 	private static Postulante p1;
-	private Postulante p2;
-	private Empresa e1;
-	private Empresa e2;
+	private static Postulante p2;
+	private static Empresa e1;
+	private static Empresa e2;
 	
 	@BeforeAll
 	public static void setUpBeforeClass() {
@@ -40,7 +44,16 @@ class controladorUsuarioTest {
 		LocalDate f2 = LocalDate.of(01,05,1990);
 		p1 = new Postulante("Pedro", "Herni", "pepi", "pepi@gmail.com", f1, "Uru");
 		p2 = new Postulante("Maria", "Lopes", "mari", "marilaosa@gmail.com", f2, "Esp");
-		
+		e1 = new Empresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com");
+		e2 = new Empresa("LifeCinema", "vida", "cine", "noMirenCuevana@gmail.com", "Descuentos con tarjetas seleccionadas", "www.lifeCinemas.com");
+		mu.addUsuario(e1);
+		mu.addUsuario(e2);
+		mu.addUsuario(p1);
+		mu.addUsuario(p2);
+		mu.addEmpresa(e1);
+		mu.addEmpresa(e2);
+		mu.addPostulante(p1);
+		mu.addPostulante(p2);
 	}
 
 	@Test
@@ -216,4 +229,43 @@ class controladorUsuarioTest {
 			fail(e.getMessage());
 		}
 	}
+
+	@Test
+	void darAltaFechaInvalidaPost() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
+		try {
+	 	cu.altaUsuarioPostulante("prueba", "prueba", "fechaInv", "fechaIn@gmail.com", null, "Francia");
+		}catch(campoInvalidoException e) {
+			fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	void testListarUsuarios() throws UsuarioNoExisteException {
+		Set<DataUsuario> usuarios = cu.getDataUsuarios();
+		
+		assertTrue(usuarios.contains(e1));
+		assertTrue(usuarios.contains(e2));
+		assertTrue(usuarios.contains(p2));
+		assertTrue(usuarios.contains(p1));
+		
+	}
+
+	@Test
+	void testListarPostulantes() {
+		Set<DataPostulante> postulantes = cu.getDataPostulante();
+		
+		assertTrue(postulantes.contains(p1));
+		assertTrue(postulantes.contains(p2));
+	}
+	
+	@Test
+	void testListaEmpresas() throws UsuarioNoExisteException {
+		Set<DataEmpresa> empresas = cu.getDataEmpresa();
+		
+		assertTrue(empresas.contains(e1));
+		assertTrue(empresas.contains(e2));
+		
+	}
+
+
 }
