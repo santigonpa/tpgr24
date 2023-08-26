@@ -81,6 +81,7 @@ public class ManejadorOferta implements IManejadorOferta{
 	@Override
 	public void addPostulacion(Postulacion pos) {
 		this.postulaciones.add(pos);
+		
 	}
 
 

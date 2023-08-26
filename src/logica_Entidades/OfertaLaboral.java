@@ -44,6 +44,7 @@ public class OfertaLaboral {
 		this.remuneracion = (int) remuneracion2;
 		this.fechaDeAlta = (LocalDate) fecha;
 		this.palabrasClave = new HashSet<KeyWord>();
+		this.postulacionesSobreLaOferta = new HashSet<>();
 	}
 	
 	public DataOferta getDataOferta() {
@@ -130,10 +131,10 @@ public class OfertaLaboral {
 	}
 public LocalTime getHoraFin() {
 		
-		return this.horaInicio;
+		return this.horaFin;
 	}
 
-	public float getCosto() {
+	public int getCosto() {
 		// Auto-generated method stub
 		return this.costoDeOfertaLaboral;
 	}
@@ -141,6 +142,16 @@ public LocalTime getHoraFin() {
 	public LocalDate getFecha() {
 		
 		return this.fechaDeAlta;
+	}
+	
+	public Set<String> getPostulantesString(){
+		Set<String> res = new HashSet<>();
+		if(this.postulacionesSobreLaOferta != null){
+			for(Postulacion pos : postulacionesSobreLaOferta) {
+				res.add(pos.getNickPostulante());
+			}
+		}
+	return res;
 	}
 	
 }

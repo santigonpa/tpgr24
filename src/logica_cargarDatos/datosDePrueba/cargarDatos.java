@@ -268,6 +268,13 @@ public class cargarDatos {
 		mo.addPostulacion(pos5);
 		mo.addPostulacion(pos6);
 		
+		o1.agregarPostulacionAOferta(pos1);
+		o2.agregarPostulacionAOferta(pos2);
+		o1.agregarPostulacionAOferta(pos3);
+		o3.agregarPostulacionAOferta(pos4);
+		o2.agregarPostulacionAOferta(pos5);
+		o2.agregarPostulacionAOferta(pos1);
+		
 		//------------------------------//	
 		//Falta todo lo de Paquete que es opcional, veremos si se hace.
 

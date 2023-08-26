@@ -260,12 +260,12 @@ public class Principal {
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Postulacion a Oferta Laboral");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-            	try {
+            	//try {
 					PosAOferLab.cargarDatos();
-				} catch (UsuarioNoExisteException e) {
+				//} catch (UsuarioNoExisteException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					//e.printStackTrace();
+				//}
 				PosAOferLab.setVisible(true);
             }
 		});

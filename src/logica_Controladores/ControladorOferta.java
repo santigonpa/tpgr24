@@ -3,6 +3,7 @@ package logica_Controladores;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
@@ -113,4 +114,11 @@ public class ControladorOferta implements IControladorOferta {
 		
 	}
 
+	public Set<String> getPostulantesString(String oferta){
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorOferta imo = fab.getInManejadorOferta();
+		OfertaLaboral of = imo.obtenerOferta(oferta);
+		
+		return of.getPostulantesString();
+	}
 }

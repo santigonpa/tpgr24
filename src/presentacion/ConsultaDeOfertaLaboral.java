@@ -56,9 +56,16 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JComboBox<DataEmpresa> comboBoxEmpresas;
 	private JComboBox<DataOferta> comboBoxOfertas;
+	private JTextArea textAreaDescripcion;
+
 
 	private  IControladorOferta ICO;
 	private  IControladorUsuario ICU;
+	
+	private JTextField textFieldHoraInicio;
+	private JTextField textFieldHoraFin;
+	private JTextField textFieldFechaDeAlta;
+	private JComboBox<String> comboBoxPostulaciones;
 
 	/**
 	 * Launch the application.
@@ -119,13 +126,39 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             }
 		});
 		
-		JLabel lblOferta = new JLabel("Oferta:");
-		lblOferta.setBounds(10, 42, 65, 13);
-		getContentPane().add(lblOferta);
-		
 		comboBoxOfertas = new JComboBox<DataOferta>();
 		comboBoxOfertas.setBounds(83, 38, 287, 21);
 		getContentPane().add(comboBoxOfertas);
+			
+		comboBoxOfertas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e1) {
+            	DataOferta selectedOferta = (DataOferta)comboBoxOfertas.getSelectedItem();
+            	if (selectedOferta != null) {
+            	textAreaDescripcion.setText(selectedOferta.getDescripcion());
+            	textFieldCosto.setText(String.valueOf(selectedOferta.getCostoDeOfertaLaboral()));
+            	textFieldRemuneracion.setText(String.valueOf(selectedOferta.getRemuneracion()));
+            	textFieldCiudad.setText(selectedOferta.getCiudad());
+            	textFieldDepartamento.setText(selectedOferta.getDepartamento());
+
+            	textFieldHoraFin.setText(selectedOferta.getHoraFinString());
+            	textFieldHoraInicio.setText(selectedOferta.getHoraInicioString());
+            	textFieldFechaDeAlta.setText(selectedOferta.getFechaAltaComoString());
+            	
+            	DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>();
+            	Set<String> postulantes = ICO.getPostulantesString(selectedOferta.getNombre());
+            	for(String postulante : postulantes) {
+            		model3.addElement(postulante);	
+            	}
+            	comboBoxPostulaciones.setModel(model3);         	    	
+            	}
+            }
+		
+		});
+		
+		JLabel lblOferta = new JLabel("Oferta:");
+		lblOferta.setBounds(10, 42, 65, 13);
+		getContentPane().add(lblOferta);
 		
 		JLabel lblInfoOferta = new JLabel("Informacion de la oferta laboral");
 		lblInfoOferta.setBounds(146, 88, 208, 13);
@@ -139,7 +172,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		scrollPane.setBounds(104, 111, 266, 64);
 		getContentPane().add(scrollPane);
 		
-		JTextArea textAreaDescripcion = new JTextArea();
+		textAreaDescripcion = new JTextArea();
 		textAreaDescripcion.setEditable(false);
 		scrollPane.setViewportView(textAreaDescripcion);
 		
@@ -169,23 +202,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		
 		JLabel lblHoraFin = new JLabel("Hora fin");
 		lblHoraFin.setBounds(189, 232, 89, 13);
-		getContentPane().add(lblHoraFin);
-		
-		JSpinner spinnerHoraInicio = new JSpinner();
-		spinnerHoraInicio.setEnabled(false);
-		spinnerHoraInicio.setModel(new SpinnerDateModel(new Date(1693018800000L), null, null, Calendar.HOUR_OF_DAY));
-		JSpinner.DateEditor editor1 = new JSpinner.DateEditor(spinnerHoraInicio, "HH:mm");
-		spinnerHoraInicio.setEditor(editor1);
-		spinnerHoraInicio.setBounds(104, 229, 75, 20);
-		getContentPane().add(spinnerHoraInicio);
-		
-		JSpinner spinnerHoraFin = new JSpinner();
-		spinnerHoraFin.setEnabled(false);
-		spinnerHoraFin.setModel(new SpinnerDateModel(new Date(1693018800000L), null, null, Calendar.HOUR_OF_DAY));
-		JSpinner.DateEditor editor2 = new JSpinner.DateEditor(spinnerHoraFin, "HH:mm");
-		spinnerHoraFin.setEditor(editor2);
-		spinnerHoraFin.setBounds(295, 229, 75, 20);
-		getContentPane().add(spinnerHoraFin);
+		getContentPane().add(lblHoraFin);	
 		
 		JLabel lblRemuneracion = new JLabel("Remuneracion:");
 		lblRemuneracion.setBounds(10, 273, 107, 13);
@@ -211,29 +228,43 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		lblFechaDeAlta.setBounds(10, 312, 84, 13);
 		getContentPane().add(lblFechaDeAlta);
 		
-		JSpinner spinnerFechaAlta = new JSpinner();
-		spinnerFechaAlta.setEnabled(false);
-		spinnerFechaAlta.setModel(new SpinnerDateModel(new Date(1672542000000L), null, null, Calendar.DAY_OF_YEAR));
-		JSpinner.DateEditor editor3 = new JSpinner.DateEditor(spinnerFechaAlta, "dd/MM/yyyy");
-		spinnerFechaAlta.setEditor(editor3);
-		spinnerFechaAlta.setBounds(104, 309, 75, 20);
-		getContentPane().add(spinnerFechaAlta);
 		
 		JLabel lblPostulaciones = new JLabel("Postulaciones:");
 		lblPostulaciones.setBounds(10, 355, 84, 13);
 		getContentPane().add(lblPostulaciones);
 		
-		JComboBox comboBoxPostulaciones = new JComboBox();
+		comboBoxPostulaciones = new JComboBox();
 		comboBoxPostulaciones.setBounds(104, 351, 266, 21);
 		getContentPane().add(comboBoxPostulaciones);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(285, 396, 85, 21);
-		getContentPane().add(btnCancelar);
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarFormulario();
+				setVisible(false);
+			}
+		});
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(189, 396, 85, 21);
-		getContentPane().add(btnAceptar);
+		btnSalir.setBounds(285, 396, 85, 21);
+		getContentPane().add(btnSalir);
+		
+		textFieldHoraInicio = new JTextField();
+		textFieldHoraInicio.setEditable(false);
+		textFieldHoraInicio.setColumns(10);
+		textFieldHoraInicio.setBounds(104, 227, 75, 19);
+		getContentPane().add(textFieldHoraInicio);
+		
+		textFieldHoraFin = new JTextField();
+		textFieldHoraFin.setEditable(false);
+		textFieldHoraFin.setColumns(10);
+		textFieldHoraFin.setBounds(295, 227, 75, 19);
+		getContentPane().add(textFieldHoraFin);
+		
+		textFieldFechaDeAlta = new JTextField();
+		textFieldFechaDeAlta.setEditable(false);
+		textFieldFechaDeAlta.setColumns(10);
+		textFieldFechaDeAlta.setBounds(104, 307, 75, 19);
+		getContentPane().add(textFieldFechaDeAlta);
 	}
 	
 	public void cargarEmpresas() {
@@ -250,5 +281,16 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	    // Establecer el modelo en el JComboBox
 	    comboBoxEmpresas.setModel(model1);
 		}catch(UsuarioNoExisteException e) {}
+	}
+	public void limpiarFormulario() {
+		textAreaDescripcion.setText("");
+		textFieldCiudad.setText("");
+		textFieldDepartamento.setText("");
+		textFieldHoraInicio.setText("");
+		textFieldHoraFin.setText("");
+		textFieldRemuneracion.setText("");
+		textFieldCosto.setText("");
+		textFieldFechaDeAlta.setText("");
+		comboBoxPostulaciones.setSelectedIndex(-1);
 	}
 }

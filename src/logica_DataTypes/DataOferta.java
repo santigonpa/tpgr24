@@ -13,12 +13,12 @@ public class DataOferta {
 	private LocalTime horaInicio; //  horario de trbaajo asociado
 	private LocalTime horaFin;
 	private float remuneracion;
-	private float costoDeOfertaLaboral; 
+	private int costoDeOfertaLaboral; 
 	private LocalDate fechaDeAlta; //la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , float costoDeOfertaLaboral, LocalDate fechaDeAlta2)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -68,6 +68,11 @@ public class DataOferta {
 		return horaInicio;
 	}
 
+	public String getHoraInicioString() {
+		DateTimeFormatter formateo1 = DateTimeFormatter.ofPattern("hh:mm");
+	    return horaInicio.format(formateo1);
+	}
+	
 	public void setHoraInicio(LocalTime horaInicio) {
 		this.horaInicio = horaInicio;
 	}
@@ -75,7 +80,11 @@ public class DataOferta {
 	public LocalTime getHoraFin() {
 		return horaFin;
 	}
-
+	
+	public String getHoraFinString() {
+		DateTimeFormatter formateo2 = DateTimeFormatter.ofPattern("hh:mm");
+	    return horaFin.format(formateo2);
+	}
 	public void setHoraFin(LocalTime horaFin) {
 		this.horaFin = horaFin;
 	}
@@ -88,11 +97,11 @@ public class DataOferta {
 		this.remuneracion = remuneracion;
 	}
 
-	public float getCostoDeOfertaLaboral() {
+	public int getCostoDeOfertaLaboral() {
 		return costoDeOfertaLaboral;
 	}
 
-	public void setCostoDeOfertaLaboral(float costoDeOfertaLaboral) {
+	public void setCostoDeOfertaLaboral(int costoDeOfertaLaboral) {
 		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
 	}
 
