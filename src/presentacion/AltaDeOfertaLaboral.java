@@ -296,9 +296,9 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		String departamento = this.textFieldDepartamento.getText();
 		String remuneracionTexto = textFieldRemuneracion.getText();
 		DataEmpresa DTempresa = (DataEmpresa) comboBoxEmpresa.getSelectedItem();
-		String empresa = DTempresa.toString();
+		String empresa = DTempresa.getNickName();
 		DataTipoPublicacion DTtipoPubli = (DataTipoPublicacion) comboBoxTipoPublicacion.getSelectedItem();
-		String tipoPubli = DTtipoPubli.toString();
+		String tipoPubli = DTtipoPubli.getNombre();
 		Date fechaDate = (Date) spinnerFecha.getValue();
 		// Convertir el objeto Date a LocalDate
         LocalDate fecha = fechaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
