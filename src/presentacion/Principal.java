@@ -101,7 +101,7 @@ public class Principal {
         trabajouy.getContentPane().setLayout(null);
         
         PosAOferLab = new PostulacionAOfertaLaboral(ICU,ICO, IMU, IMO);
-        PosAOferLab.setBounds(10, 10, 710, 665);
+        PosAOferLab.setBounds(10, 10, 710, 680);
         trabajouy.getContentPane().add(PosAOferLab);
         
         Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
@@ -110,7 +110,7 @@ public class Principal {
         
         conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
         conUsrInternalFrame.setTitle("Consulta de Usuario");
-        conUsrInternalFrame.setBounds(100, 100, 578, 332);
+        conUsrInternalFrame.setBounds(100, 100, 578, 600);
         conUsrInternalFrame.setMaximizable(true);
         conUsrInternalFrame.setClosable(true);
         conUsrInternalFrame.setVisible(false);
@@ -238,6 +238,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e2) {
 				conOfertaLab.setVisible(true);
 				conOfertaLab.cargarEmpresas();
+				conOfertaLab.limpiarFormulario();
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_6);

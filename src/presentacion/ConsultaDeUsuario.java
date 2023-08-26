@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
@@ -77,12 +78,12 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		
 		
 		
-		setBounds(100, 100, 578, 332);
+		setBounds(100, 100, 578, 600);
 		getContentPane().setLayout(null);
 		
 		
 		conOfertaLab = new ConsultaDeOfertaLaboral(ICU,ICO);
-		conOfertaLab.setBounds(112, 35, 392, 456);
+		conOfertaLab.setBounds(89, 0, 392, 456);
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);
@@ -187,7 +188,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		getContentPane().add(nacionDesLabel);
 		
 		JLabel ofertasDesBox = new JLabel("Ofertas:");
-		ofertasDesBox.setBounds(79, 251, 64, 14);
+		ofertasDesBox.setBounds(76, 251, 64, 14);
 		getContentPane().add(ofertasDesBox);
 		
 		comboOferta = new JComboBox<DataOferta>();
@@ -235,7 +236,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
             }
         });
 		
-		btnNewButton.setBounds(473, 268, 89, 23);
+		btnNewButton.setBounds(449, 513, 89, 23);
 		getContentPane().add(btnNewButton);
 		
 		linkLabel = new JLabel("");
@@ -255,13 +256,27 @@ public class ConsultaDeUsuario extends JInternalFrame {
         textArea.setLineWrap(true);
         
         JButton btnDesplegarConsulta = new JButton("Consultar Oferta");
-        btnDesplegarConsulta.setBounds(192, 279, 145, 21);
+        btnDesplegarConsulta.setBounds(148, 514, 145, 21);
         getContentPane().add(btnDesplegarConsulta);
-        btnDesplegarConsulta.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent e) {
-        		//conOfertaLab.
-        	}
+        btnDesplegarConsulta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    DataUsuario selectedOption = (DataUsuario) comboBoxUsuarios.getSelectedItem();
+                    if (selectedOption instanceof DataEmpresa) {
+                        DataEmpresa emp = (DataEmpresa) selectedOption;
+                        DataOferta of = (DataOferta) comboOferta.getSelectedItem();
+                        conOfertaLab.asignarValoresConsultaDeUsuario(emp, of);
+                        conOfertaLab.setVisible(true);
+                        conOfertaLab.toFront();
+                    } else {
+                        throw new Exception("Debe estar seleccionada una empresa");
+                    }
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(ConsultaDeUsuario.this, e1.getMessage(), "Consulta de Usuario", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         });
+
 
 	}
 	
