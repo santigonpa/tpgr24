@@ -83,5 +83,9 @@ public class ManejadorOferta implements IManejadorOferta{
 		this.postulaciones.add(pos);
 	}
 
+	public boolean NombreRepetidoOferta(String nombre) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

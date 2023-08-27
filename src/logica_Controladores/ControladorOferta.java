@@ -6,9 +6,12 @@ import java.util.Date;
 import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.EmailYaExisteException;
+import excepciones.NicknameYaExisteException;
 import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
+import logica_Entidades.Usuario;
 import utils.Fabrica;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
@@ -30,6 +33,19 @@ public class ControladorOferta implements IControladorOferta {
         }
         return instancia;
     }
+	
+	public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta) throws NombreRepetidoOfertaException{
+		
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorOferta manejadorOferta = fabrica.getInManejadorOferta();
+		
+		if(manejadorOferta.NombreRepetidoOfertaException(nombre)) {
+			throw new NombreRepetidoOfertaException("Ya existe una oferta con este nombre");
+		}
+		
+		OfertaLaboral ofer = new OfertaLaboral(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
+		manejadorOferta.addOferta(ofer);
+		}
 
 	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
