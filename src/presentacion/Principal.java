@@ -110,7 +110,7 @@ public class Principal {
         
         conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
         conUsrInternalFrame.setTitle("Consulta de Usuario");
-        conUsrInternalFrame.setBounds(100, 100, 578, 600);
+        conUsrInternalFrame.setBounds(83, 10, 578, 600);
         conUsrInternalFrame.setMaximizable(true);
         conUsrInternalFrame.setClosable(true);
         conUsrInternalFrame.setVisible(false);

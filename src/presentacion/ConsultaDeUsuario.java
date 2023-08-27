@@ -83,7 +83,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		
 		
 		conOfertaLab = new ConsultaDeOfertaLaboral(ICU,ICO);
-		conOfertaLab.setBounds(89, 0, 392, 456);
+		conOfertaLab.setBounds(20, 11, 501, 456);
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);
