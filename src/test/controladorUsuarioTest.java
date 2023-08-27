@@ -324,5 +324,16 @@ class controladorUsuarioTest {
 		
 	}
 
+	@Test
+	void seAgregaPostulacion() {
+		LocalDate f = LocalDate.of(2023, 8, 10);
+		Postulante p = mu.obtenerPostulante("lgarcia");
+		Postulacion post = new Postulacion(f, "postularse", "postula", p, oL);
+		p.agregarPostulacionAPostulante(post);
+		Set<Postulacion> postulaciones = cu.obtenerPostulaciones("lgarcia");
+		
+		assertTrue(postulaciones.contains(post));
+	}
+
 
 }
