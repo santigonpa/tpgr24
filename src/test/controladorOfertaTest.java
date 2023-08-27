@@ -21,12 +21,16 @@ import logica_Controladores.IControladorOferta;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.KeyWord;
 import logica_Manejadores.IManejadorOferta;
+import logica_Manejadores.IManejadorPyT;
+import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 class controladorOfertaTest {
 
 	private static IControladorOferta co;
     private static IManejadorOferta mo;
+    private static IManejadorUsuario mu;
+    private static IManejadorPyT mpyt;
     LocalDate f1 = LocalDate.of(1990, 1, 1);
     LocalTime d2 = LocalTime.of(2023, 8, 6); 
     LocalTime d1 = LocalTime.of(2013, 5, 6); 
@@ -36,6 +40,9 @@ class controladorOfertaTest {
         Fabrica f = Fabrica.getInstance();
         co = f.getInOfer();
         mo = f.getInManejadorOferta();
+        mu = f.getInManejadorUsuario();
+        mpyt = f.getInManejadorPyT();
+       
     }
 
     @Test
