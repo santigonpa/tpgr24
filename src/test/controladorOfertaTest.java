@@ -20,6 +20,8 @@ import excepciones.NicknameYaExisteException;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import logica_Controladores.IControladorOferta;
+import logica_DataTypes.DataKeyWord;
+import logica_DataTypes.DataTipoPublicacion;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.TipoPublicacion;
 import logica_Entidades.KeyWord;
@@ -123,6 +125,10 @@ class controladorOfertaTest {
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
 		Set<String> palabrasClave1 = new HashSet<>();
+		Set<DataKeyWord> setdt = mo.getDataKeyWord();
+		for(DataKeyWord dtk : setdt) {
+			palabrasClave1.add(dtk.getPalabraClave());
+		}
 		
 		co.altaPublicacionOfertaLaboral("EcoTech", "Premium", "Nombre ofer", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1);
 		
@@ -151,5 +157,24 @@ class controladorOfertaTest {
 		});
 	}
 	
+	@Test
+	void agregoPostulacion(){
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		co.agregarPostulacion("matilo","Estrategia de Negocios","hombre","arania",fecha1);
+	}
+	
+	@Test
+	void testeoDeDataPubli() {
+		Set<DataTipoPublicacion> setDtPubli = mpyt.getDataTipoPublicacion();
+		String Publi = mpyt.obtenerTipoPublicacion("Premium").getNombre();
+		String comparacion = null;
+		for(DataTipoPublicacion dtp : setDtPubli) {
+			if("Premium" == dtp.getNombre()) {
+				comparacion = dtp.getNombre();
+				break;
+			}
+		}
+		assertEquals(Publi,comparacion);
+	}
 	
 }
