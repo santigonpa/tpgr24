@@ -1,7 +1,6 @@
 package logica_Controladores;
 
 import java.util.Set;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.time.*;
@@ -44,7 +43,7 @@ public class ControladorUsuario implements IControladorUsuario {
         }
         return instancia;
     }
-	
+	//
 	//alta postulante
 	public void darAltaUsuario(String nickname, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
 		
@@ -175,7 +174,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 	}
 
-	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
+	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
 			String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario postulante = mu.obtenerUsuario(nickname);
@@ -183,14 +182,10 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if (postulante != null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-     // Convertir Date a Instant
-        Instant instant = nacimiento.toInstant();
         if(nickname.equals(null) || nombre.equals(null) || apellido.equals(null) || email.equals(null) || nacimiento.equals(null)|| nacionalidad.equals(null)){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        // Convertir Instant a LocalDate
-        LocalDate nacLD = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-        postulante = new Postulante(nickname, nombre, apellido, email, nacLD, nacionalidad);
+        postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
         mu.addUsuario(postulante);
 		
 	}

@@ -20,13 +20,13 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	private Map<String, Usuario> usuarios;
 	private Map<String,Usuario> usuariosPorEmail; //los emails son unicos tambien
 	private Map<String, Usuario> empresas;
-	private Map<String,Usuario> postulantes;
+	private Map<String,Postulante> postulantes;
     private static ManejadorUsuario instancia = null;
 
     private ManejadorUsuario() {
         usuarios = new HashMap<String, Usuario>();
         empresas = new HashMap<String,Usuario>();
-        postulantes = new HashMap<String,Usuario>();
+        postulantes = new HashMap<String,Postulante>();
         usuariosPorEmail = new HashMap<String, Usuario>();
         
     }
@@ -47,7 +47,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
             this.usuariosPorEmail.put(email, usu);
         } else if (usu instanceof Postulante) {
         	String nick = usu.getNickName();
-            this.postulantes.put(nick, usu);
+            this.postulantes.put(nick, (Postulante)usu);
             this.usuarios.put(nick, usu);
             this.usuariosPorEmail.put(email, usu);
         }
@@ -94,24 +94,26 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		DataEmpresa res = emp.getDTEmpresa();
 		return res;
 	}
-	public Map<String, DataPostulante> getDataPostulantes(){
-		Map<String, DataPostulante> res = new HashMap<>();;
-    	Set<Postulante> temp = new HashSet<>();
-    	
-    	// Obtener las claves del Map
-        Set<String> clavesPostulantes = this.postulantes.keySet();
-        for(String nombrePostulante : clavesPostulantes) {
-        	Postulante empAct = ((Postulante) this.postulantes.get(nombrePostulante));
-        	temp.add(empAct);
-        }
-        for(Postulante empAct: temp) {
-        	DataPostulante nuevaDTPost = new DataPostulante(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct.getNacimineto(),empAct.getNacionalidad());
-        	res.put(empAct.getNickName(), nuevaDTPost);
-        }
-        
-    	return res;
+	public Map<String, DataPostulante> getDataPostulantes() {
+	    Map<String, DataPostulante> res = new HashMap<>();
+	    
+	    for (Postulante empAct : this.postulantes.values()) {
+	        DataPostulante nuevaDTPost = new DataPostulante(
+	            empAct.getNickName(),
+	            empAct.getNombre(),
+	            empAct.getApellido(),
+	            empAct.getEmail(),
+	            empAct.getNacimineto(),
+	            empAct.getNacionalidad()
+	        );
+	        res.put(empAct.getNickName(), nuevaDTPost);
+	    }
+	    
+	    return res;
 	}
 
+	
+	
 	public Postulante obtenerPostulante(String post) {
 		Postulante p = (Postulante) postulantes.get(post);
 		return p;

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -21,7 +20,6 @@ import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
-import logica_Entidades.Usuario;
 import logica_Entidades.Empresa;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
@@ -58,7 +56,7 @@ class controladorUsuarioTest {
 		String nickName = "Jofe";
 		String nombre = "Josefina";
 		String apellido = "Hernandez";
-		Date fechaNac = new Date(1987, 5, 2);
+		LocalDate fechaNac = LocalDate.of(01,05,1995);
 		String email = "holaComoEstas@gmail.com";
 		String nacionalidad = "Colombia";
 		
@@ -100,7 +98,7 @@ class controladorUsuarioTest {
 	@Test
 	
 	void postulanteRepetido() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		Date n1 = new Date(15,03,1985);
+		LocalDate n1 = LocalDate.of(01,05,1995);;
 		try {
 		cu.altaUsuarioPostulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya");
 		}catch(NicknameYaExisteException | EmailYaExisteException e) {
@@ -133,7 +131,7 @@ class controladorUsuarioTest {
 
 	@Test
 	void darDeAltaeNickInvalidoPost() throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		Date n1 = new Date(15,03,1985);
+		LocalDate n1 = LocalDate.of(01,05,1995);
 		try {
 			cu.altaUsuarioPostulante("", "prueba", "nickInv", "nickInva@gmail.com", n1, "PaisInv");
 		}catch(campoInvalidoException e){
@@ -143,7 +141,7 @@ class controladorUsuarioTest {
 	
 	@Test 
 	void darAltaNombreInvalidoPost()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		Date n1 = new Date(15,03,1985);
+		LocalDate n1 = LocalDate.of(01,05,1995);
 		try {
 			cu.altaUsuarioPostulante("prueba", "", "nombreInv", "nombreInva@gmail.com", n1, "PaisInv");
 		}catch(campoInvalidoException e){
@@ -162,7 +160,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void darAltaApellidoInvalidoPost()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		Date n1 = new Date(15,03,1985);
+		LocalDate n1 = LocalDate.of(01,05,1995);
 		try {
 			cu.altaUsuarioPostulante("prueba", "apellidoInt", "", "apellidoInva@gmail.com", n1, "PaisInv");
 		}catch(campoInvalidoException e){
@@ -181,7 +179,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void darAltaEmailInvalidoPost()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		Date n1 = new Date(15,03,1985);
+		LocalDate n1 = LocalDate.of(01,05,1995);
 		try {
 			cu.altaUsuarioPostulante("prueba", "prueba", "emailInv", "", n1, "PaisInv");
 		}catch(campoInvalidoException e){
@@ -209,7 +207,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void darAltaNacionalidadInvalido()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		Date n1 = new Date(15,03,1985);
+		LocalDate n1 = LocalDate.of(01,05,1995);
 		try {
 			cu.altaUsuarioPostulante("prueba", "prueba", "nacInv", "nacInv@gmail.com",n1 , "");
 		}catch(campoInvalidoException e){
@@ -238,11 +236,34 @@ class controladorUsuarioTest {
 	@Test
 	void testListarUsuarios() throws UsuarioNoExisteException {
 		Set<DataUsuario> usuarios = cu.getDataUsuarios();
+		String nickNameToSearch1 = p1.getNickName();
+		String nickNameToSearch2 = p2.getNickName();
+		String nickNameToSearch3 = e1.getNickName();
+		String nickNameToSearch4 = e2.getNickName();
+		boolean found1 = false;
+		boolean found2 = false;
+		boolean found3 = false;
+		boolean found4 = false;
 		
-		assertTrue(usuarios.contains(e1));
-		assertTrue(usuarios.contains(e2));
-		assertTrue(usuarios.contains(p2));
-		assertTrue(usuarios.contains(p1));
+		for (DataUsuario dataUser : usuarios) {
+		    if (dataUser.getNickName()==nickNameToSearch1) {
+		        found1 = true;
+		    }
+		    if (dataUser.getNickName().equals(nickNameToSearch2)) {
+		        found2 = true;
+		    }
+		    if (dataUser.getNickName()==nickNameToSearch3) {
+		        found3 = true;
+		    }
+		    if (dataUser.getNickName()==nickNameToSearch4) {
+		        found4 = true;
+		    }
+		}
+		
+		assertTrue(found1);
+		assertTrue(found2);
+		assertTrue(found3);
+		assertTrue(found4);
 		
 	}
 
@@ -250,16 +271,56 @@ class controladorUsuarioTest {
 	void testListarPostulantes() {
 		Set<DataPostulante> postulantes = cu.getDataPostulante();
 		
-		assertTrue(postulantes.contains(p1));
-		assertTrue(postulantes.contains(p2));
+		String nickNameToSearch1 = p1.getNickName();
+		String nickNameToSearch2 = p2.getNickName();
+		
+
+		boolean found1 = false;
+		boolean found2 = false;
+		
+		for (DataPostulante dataPostulante : postulantes) {
+		    if (dataPostulante.getNickName()==nickNameToSearch1) {
+		        found1 = true;
+		        break;
+		    }
+		}
+		for (DataPostulante dataPostulante : postulantes) {
+		    if (dataPostulante.getNickName().equals(nickNameToSearch2)) {
+		        found2 = true;
+		        break;
+		    }
+		}
+		
+		assertTrue(found1);
+		assertTrue(found2);
 	}
 	
 	@Test
 	void testListaEmpresas() throws UsuarioNoExisteException {
 		Set<DataEmpresa> empresas = cu.getDataEmpresa();
 		
-		assertTrue(empresas.contains(e1));
-		assertTrue(empresas.contains(e2));
+		String nickNameToSearch1 = e1.getNickName();
+		String nickNameToSearch2 = e2.getNickName();
+		
+
+		boolean found1 = false;
+		boolean found2 = false;
+		
+		for (DataEmpresa dataPostulante : empresas) {
+		    if (dataPostulante.getNickName()==nickNameToSearch1) {
+		        found1 = true;
+		        break;
+		    }
+		}
+		for (DataEmpresa dataPostulante : empresas) {
+		    if (dataPostulante.getNickName().equals(nickNameToSearch2)) {
+		        found2 = true;
+		        break;
+		    }
+		}
+		
+		assertTrue(found1);
+		assertTrue(found2);
 		
 	}
 

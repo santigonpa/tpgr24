@@ -1,6 +1,6 @@
 package logica_Controladores;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,7 +28,7 @@ public interface IControladorUsuario {
 
 	public abstract Set<DataKeyWord> getDataKeyWord();
 
-	public abstract void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, Date nacimiento,
+	public abstract void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
 			String nacionalidad)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException;
 
 	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
