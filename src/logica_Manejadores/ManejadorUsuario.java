@@ -82,13 +82,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
     }
 
 	public boolean nickNameYaExiste(String nickname) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.usuarios.containsKey(nickname);
 	}
 
 	public boolean emailYaExiste(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.usuariosPorEmail.containsKey(email);
 	}
 
 	public DataEmpresa getDataEmpresa(String empresa) {

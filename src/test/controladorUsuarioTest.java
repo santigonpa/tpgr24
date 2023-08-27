@@ -53,7 +53,7 @@ class controladorUsuarioTest {
 	}
 
 	@Test
-	void registroEsExitoso() throws NicknameYaExisteException, campoInvalidoException{
+	void registroEsExitoso() throws NicknameYaExisteException, campoInvalidoException, EmailYaExisteException{
 		//para un postulante
 		String nickName = "Jofe";
 		String nombre = "Josefina";
@@ -70,7 +70,7 @@ class controladorUsuarioTest {
 		String email2 = "luliGmez@gmail.com";
 		String descripcion = "contratamos gente";
 		
-		try {
+		
 			cu.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNac, nacionalidad);
 			cu.altaUsuarioEmpresa(nickName2, nombre2, apellido2, email2, descripcion, web);
 			Postulante p = mu.obtenerPostulante(nickName);
@@ -91,10 +91,9 @@ class controladorUsuarioTest {
 			assertEquals(web, e.getLinkWeb());
 			
 			
-		}catch(NicknameYaExisteException | EmailYaExisteException e){ 
-			fail(e.getMessage());
-			e.printStackTrace();
-		}
+	
+		
+	
 		
 	}
 	
@@ -122,6 +121,7 @@ class controladorUsuarioTest {
 		}
 	}
 	
+
 	@Test
 	void darDeAltaNickInvalidoEmp() throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
 		try {
