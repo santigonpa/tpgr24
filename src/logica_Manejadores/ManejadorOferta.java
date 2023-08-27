@@ -84,5 +84,9 @@ public class ManejadorOferta implements IManejadorOferta{
 		
 	}
 
+	public boolean NombreRepetidoOferta(String nombre) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
