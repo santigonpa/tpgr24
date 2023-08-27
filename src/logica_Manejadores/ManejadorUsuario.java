@@ -80,7 +80,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
         
     	return res;
     }
-
+/*
     public boolean nickNameYaExiste(String nickname) {
         for (String user : this.usuarios.keySet()) {
             if (user==nickname) {
@@ -98,7 +98,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	        }
 	    }
 	    return false;
-	}
+	}*/
 
 
 	public DataEmpresa getDataEmpresa(String empresa) {
