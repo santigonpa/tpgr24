@@ -1,6 +1,9 @@
 package test;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -20,16 +23,16 @@ import logica_Entidades.KeyWord;
 import logica_Manejadores.IManejadorOferta;
 import utils.Fabrica;
 
-class ControladorOfertaTest {
+class controladorOfertaTest {
 
-    private static IControladorOferta co;
+	private static IControladorOferta co;
     private static IManejadorOferta mo;
     LocalDate f1 = LocalDate.of(1990, 1, 1);
-    LocalTime d2 = LocalTime.of(12, 0); 
-    LocalTime d1 = LocalTime.of(13, 0); 
+    LocalTime d2 = LocalTime.of(2023, 8, 6); 
+    LocalTime d1 = LocalTime.of(2013, 5, 6); 
 
     @BeforeAll
-    static void setUpBeforeClass() throws Exception {
+    public static void setUpBeforeClass() throws Exception {
         Fabrica f = Fabrica.getInstance();
         co = f.getInOfer();
         mo = f.getInManejadorOferta();
@@ -48,7 +51,7 @@ class ControladorOfertaTest {
         LocalDate fechaDeAlta = f1;
         Set<KeyWord> palabrasClave = new HashSet<>();
 
-        try {
+        
             co.darAltaOferta(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
             OfertaLaboral o = mo.obtenerOferta(nombre);
 
@@ -62,23 +65,17 @@ class ControladorOfertaTest {
             assertEquals(fechaDeAlta, o.getFecha());
             assertEquals(costoDeOfertaLaboral, o.getCosto());
 
-        } catch (NombreRepetidoOfertaException e) {
-            fail(e.getMessage());
-            e.printStackTrace();
-        }
     }
     
     
 	@Test
 	void OfertaRepetida() throws NombreRepetidoOfertaException{
 	    LocalDate f1 = LocalDate.of(1990, 1, 1);
-	    LocalTime d2 = LocalTime.of(12, 0); 
-	    LocalTime d1 = LocalTime.of(13, 0); 
-		try {
-		co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1 );
-		}catch(NombreRepetidoOfertaException e)  {
-			fail(e.getMessage());
-			e.printStackTrace();
-		}
+	    LocalTime d2 = LocalTime.of(2023, 8, 6); 
+	    LocalTime d1 = LocalTime.of(2013, 5, 6); 
+
+	    assertThrows(NombreRepetidoOfertaException.class, () -> {
+	    	co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1);
+	    });	
 	}
 }
