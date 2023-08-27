@@ -32,8 +32,8 @@ class controladorOfertaTest {
     private static IManejadorUsuario mu;
     private static IManejadorPyT mpyt;
     LocalDate f1 = LocalDate.of(1990, 1, 1);
-    LocalTime d2 = LocalTime.of(2023, 8, 6); 
-    LocalTime d1 = LocalTime.of(2013, 5, 6); 
+    LocalTime d2 = LocalTime.of(8, 0); 
+    LocalTime d1 = LocalTime.of(17,0); 
 
     @BeforeAll
     public static void setUpBeforeClass() throws Exception {
@@ -78,8 +78,8 @@ class controladorOfertaTest {
 	@Test
 	void OfertaRepetida() throws NombreRepetidoOfertaException{
 	    LocalDate f1 = LocalDate.of(1990, 1, 1);
-	    LocalTime d2 = LocalTime.of(2023, 8, 6); 
-	    LocalTime d1 = LocalTime.of(2013, 5, 6); 
+	    LocalTime d2 = LocalTime.of(14, 0); 
+	    LocalTime d1 = LocalTime.of(19, 0); 
 
 	    assertThrows(NombreRepetidoOfertaException.class, () -> {
 	    	co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1);
