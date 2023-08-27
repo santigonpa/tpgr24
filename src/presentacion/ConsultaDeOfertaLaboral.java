@@ -291,7 +291,11 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
     	textFieldRemuneracion.setText(String.valueOf(of.getRemuneracion()));
     	textFieldCiudad.setText(of.getCiudad());
     	textFieldDepartamento.setText(of.getDepartamento());
+    	
+    	
+    	
 
+    	
     	textFieldHoraFin.setText(of.getHoraFinString());
     	textFieldHoraInicio.setText(of.getHoraInicioString());
     	textFieldFechaDeAlta.setText(of.getFechaAltaComoString());

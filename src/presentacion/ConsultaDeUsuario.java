@@ -278,7 +278,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
             }
         });
 
-
 	}
 	
 	public void cargarUsuarios() {

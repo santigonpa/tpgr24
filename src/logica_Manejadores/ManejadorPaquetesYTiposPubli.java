@@ -19,7 +19,6 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		new HashMap<String,Paquete>();
 		
 	}
-	
 	public static ManejadorPaquetesYTiposPubli getInstance() {
 		if (instancia == null)
 			instancia = new ManejadorPaquetesYTiposPubli();

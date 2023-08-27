@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -311,24 +310,28 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		// Convertir el objeto Date a LocalDate
         LocalDate fecha = fechaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		
-		// Obtener el valor seleccionado del spinner
-		Date horaSeleccionadaDate = (Date) spinnerInicio.getValue();
-		// Convertir el valor a un objeto LocalTime
-		Instant instant = horaSeleccionadaDate.toInstant();
-		LocalTime horarioInicio = instant.atZone(ZoneId.systemDefault()).toLocalTime();
+     // Obtener el valor seleccionado del spinner
+        Date horaSeleccionadaDate = (Date) spinnerInicio.getValue();
+
+        // Convertir el valor a un objeto LocalTime sin ajustes
+        LocalTime horarioInicio = horaSeleccionadaDate.toInstant()
+                                                  .atZone(ZoneId.systemDefault())
+                                                  .toLocalTime();
+
 		
-		// Obtener el valor seleccionado del spinner
-		Date horaSeleccionadaDate2 = (Date) spinnerFin.getValue();
-		// Convertir el valor a un objeto LocalTime
-		Instant instant2 = horaSeleccionadaDate2.toInstant();
-		LocalTime horarioFin = instant2.atZone(ZoneId.systemDefault()).toLocalTime();
+     // Obtener el valor seleccionado del spinner
+        Date horaSeleccionadaDate2 = (Date) spinnerFin.getValue();
+
+        // Convertir el valor a un objeto LocalTime sin ajustes
+        LocalTime horarioFin = horaSeleccionadaDate2.toInstant()
+                                                  .atZone(ZoneId.systemDefault())
+                                                  .toLocalTime();
 		
 		List<DataKeyWord> seleccionadosKeyword = listaKeyWords.getSelectedValuesList();
 		Set<String> seleccionados = new HashSet<>();
 		for(DataKeyWord value : seleccionadosKeyword) {
 			seleccionados.add(value.toString());
 		}
-		
 		
 		int remuneracion = 0;
 		

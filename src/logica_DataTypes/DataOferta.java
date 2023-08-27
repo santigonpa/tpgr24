@@ -69,7 +69,7 @@ public class DataOferta {
 	}
 
 	public String getHoraInicioString() {
-		DateTimeFormatter formateo1 = DateTimeFormatter.ofPattern("hh:mm");
+		DateTimeFormatter formateo1 = DateTimeFormatter.ofPattern("HH:mm");
 	    return horaInicio.format(formateo1);
 	}
 	
@@ -82,7 +82,7 @@ public class DataOferta {
 	}
 	
 	public String getHoraFinString() {
-		DateTimeFormatter formateo2 = DateTimeFormatter.ofPattern("hh:mm");
+		DateTimeFormatter formateo2 = DateTimeFormatter.ofPattern("HH:mm");
 	    return horaFin.format(formateo2);
 	}
 	public void setHoraFin(LocalTime horaFin) {
