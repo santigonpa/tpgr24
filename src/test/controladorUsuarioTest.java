@@ -58,7 +58,7 @@ class controladorUsuarioTest {
 		String nickName = "Jofe";
 		String nombre = "Josefina";
 		String apellido = "Hernandez";
-		Date fechaNac = new Date(2, 5, 1987);
+		Date fechaNac = new Date(1987, 5, 2);
 		String email = "holaComoEstas@gmail.com";
 		String nacionalidad = "Colombia";
 		

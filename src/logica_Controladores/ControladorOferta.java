@@ -2,7 +2,6 @@ package logica_Controladores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
@@ -98,14 +97,6 @@ public class ControladorOferta implements IControladorOferta {
 		pos.agregarPostulacionAPostulante(nuevaPost);
 	}
 
-
-
-	@Override
-	public void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion, int costo, int duracion,
-			Date fecha) throws NombreTipoPubliYaExisteException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public Set<String> getPostulantesString(String oferta){
 		Fabrica fab = Fabrica.getInstance();
