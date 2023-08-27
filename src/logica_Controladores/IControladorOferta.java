@@ -2,7 +2,6 @@ package logica_Controladores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Set;
 
 import excepciones.NombreRepetidoOfertaException;
@@ -19,7 +18,7 @@ public abstract void darAltaOferta(String nombre, String descripcion, String ciu
 
 
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
-		int costo, int duracion, Date fecha) throws NombreTipoPubliYaExisteException;
+		int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException;
 
 public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha);
 

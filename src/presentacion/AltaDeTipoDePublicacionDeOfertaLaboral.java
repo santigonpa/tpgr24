@@ -21,6 +21,8 @@ import javax.swing.JSpinner;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.text.AbstractDocument;
@@ -207,6 +209,8 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	        costo = Integer.parseInt(this.textFieldCosto.getText());
 	        duracion = (int) spinnerDuracion.getValue();
 	        fechaAlta = (Date) fecha.getValue();
+	     // Convertir java.util.Date a java.time.LocalDate
+	        //LocalDate fechaAlta1 = fechaAlta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	    } catch (NumberFormatException ex) {
 	        JOptionPane.showMessageDialog(this, "Por favor ingrese valores válidos.", "Error", JOptionPane.ERROR_MESSAGE);
 	        return; // Salir del método si ocurre una excepción
@@ -214,7 +218,8 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	    
 		if (verificarFormularioAlta()) {
 			try {
-				ICO.altaDeTipoDePubliDeOferLab(nombreTipoPubli, descripcion, expo, duracion, costo, fechaAlta);
+				LocalDate fechaAlta1 = fechaAlta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				ICO.altaDeTipoDePubliDeOferLab(nombreTipoPubli, descripcion, expo, duracion, costo,fechaAlta1);
 				JOptionPane.showMessageDialog(this, "El tipo de publicacion de oferta laboral fue dado de alta con exito.","Alta de Tipo de Publicacion de Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 	            limpiarFormulario();
 	            setVisible(false);
