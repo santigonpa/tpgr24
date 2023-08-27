@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -15,8 +14,6 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import excepciones.EmailYaExisteException;
-import excepciones.NicknameYaExisteException;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import logica_Controladores.IControladorOferta;
@@ -24,10 +21,8 @@ import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.TipoPublicacion;
-import logica_Entidades.KeyWord;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
-import logica_Manejadores.IManejadorUsuario;
 import logica_cargarDatos.datosDePrueba.cargarDatos;
 import utils.Fabrica;
 
@@ -35,7 +30,6 @@ class controladorOfertaTest {
 
 	private static IControladorOferta co;
     private static IManejadorOferta mo;
-    private static IManejadorUsuario mu;
     private static IManejadorPyT mpyt;
     LocalDate f1 = LocalDate.of(1990, 1, 1);
     LocalTime d2 = LocalTime.of(8, 0); 
@@ -46,7 +40,7 @@ class controladorOfertaTest {
         Fabrica f = Fabrica.getInstance();
         co = f.getInOfer();
         mo = f.getInManejadorOferta();
-        mu = f.getInManejadorUsuario();
+        f.getInManejadorUsuario();
         mpyt = f.getInManejadorPyT();
         cargarDatos cargador = new cargarDatos();
         cargador.cargar();
@@ -64,7 +58,7 @@ class controladorOfertaTest {
         String departamento = "Montevideo";
         int remuneracion = 2500;
         LocalDate fechaDeAlta = f1;
-        Set<KeyWord> palabrasClave = new HashSet<>();
+        new HashSet<>();
 
         
             co.darAltaOferta(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
