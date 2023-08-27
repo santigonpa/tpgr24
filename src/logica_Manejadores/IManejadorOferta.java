@@ -24,7 +24,5 @@ public interface IManejadorOferta {
 
 	public abstract void addPostulacion(Postulacion pos);
 
-
-	public abstract boolean NombreRepetidoOfertaException(String nombre);
-
+	public abstract boolean existeOferta(String s); 
 }
