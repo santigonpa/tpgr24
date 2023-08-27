@@ -35,7 +35,7 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorOferta manejadorOferta = fabrica.getInManejadorOferta();
 		
-		if(manejadorOferta.NombreRepetidoOfertaException(nombre)) {
+		if(manejadorOferta.existeOferta(nombre)) {
 			throw new NombreRepetidoOfertaException("Ya existe una oferta con este nombre");
 		}
 		
