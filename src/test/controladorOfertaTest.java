@@ -26,6 +26,7 @@ import logica_Entidades.KeyWord;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
+import logica_cargarDatos.datosDePrueba.cargarDatos;
 import utils.Fabrica;
 
 class controladorOfertaTest {
@@ -45,7 +46,9 @@ class controladorOfertaTest {
         mo = f.getInManejadorOferta();
         mu = f.getInManejadorUsuario();
         mpyt = f.getInManejadorPyT();
-       
+        cargarDatos cargador = new cargarDatos();
+        cargador.cargar();
+     
     }
 
     @Test
@@ -107,10 +110,46 @@ class controladorOfertaTest {
 	@Test
 	void tipoDePubliRepetida() throws NombreTipoPubliYaExisteException{
 		LocalDate fecha = LocalDate.of(1990, 1, 1);
-		co.altaDeTipoDePubliDeOferLab("Tipo oferta", "Descripcion prueba", 1, 10, 100, fecha);
+		co.altaDeTipoDePubliDeOferLab("Tipo oferta dos", "Descripcion prueba", 1, 10, 100, fecha);
 		
 		assertThrows(NombreTipoPubliYaExisteException.class, () -> {
-			co.altaDeTipoDePubliDeOferLab("Tipo oferta", "Descripcion prueba", 1, 10, 100, fecha);
+			co.altaDeTipoDePubliDeOferLab("Tipo oferta dos", "Descripcion prueba", 1, 10, 100, fecha);
 		});	
 	}
+	
+	@Test
+	void altaDePublicacionDeOferOk() throws NombreRepetidoOfertaException {
+		LocalTime hora1 = LocalTime.of(11, 30);
+		LocalTime hora2 = LocalTime.of(16, 0);
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		Set<String> palabrasClave1 = new HashSet<>();
+		
+		co.altaPublicacionOfertaLaboral("EcoTech", "Premium", "Nombre ofer", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1);
+		
+		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer");
+		assertEquals("EcoTech", publiOfer.getEmpresa().getNickName());
+		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
+		assertEquals("Nombre ofer", publiOfer.getNombreOferta());
+		assertEquals("San Carlos", publiOfer.getCiudad());
+		assertEquals("Maldonado", publiOfer.getDepartamento());
+		assertEquals(hora1, publiOfer.getHoraInicio());
+		assertEquals(hora2, publiOfer.getHoraFin());
+		assertEquals(fecha1, publiOfer.getFecha());
+		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
+	}
+	
+	@Test
+	void publicacionOfertaRepetida()throws NombreRepetidoOfertaException {
+		LocalTime hora1 = LocalTime.of(11, 30);
+		LocalTime hora2 = LocalTime.of(16, 0);
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		Set<String> palabrasClave1 = new HashSet<>();
+		co.altaPublicacionOfertaLaboral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1);
+		
+		assertThrows(NombreRepetidoOfertaException.class, () -> {
+			co.altaPublicacionOfertaLaboral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1);
+		});
+	}
+	
+	
 }

@@ -155,4 +155,12 @@ public LocalTime getHoraFin() {
 	return res;
 	}
 	
+	public Set<String> getKeyWordsString(){
+		Set<String> res = new HashSet<>();
+		
+		for (KeyWord kw: this.palabrasClave) {
+			res.add(kw.getPalabraClave());
+		}
+		return res;
+	}
 }
