@@ -15,6 +15,7 @@ public interface IControladorOferta  {
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
 			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException;
 
+public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta) throws NombreRepetidoOfertaException;
 
 
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
