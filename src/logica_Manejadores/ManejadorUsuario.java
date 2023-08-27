@@ -19,13 +19,13 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	
 	private Map<String, Usuario> usuarios;
 	private Map<String,Usuario> usuariosPorEmail; //los emails son unicos tambien
-	private Map<String, Usuario> empresas;
+	private Map<String, Empresa> empresas;
 	private Map<String,Postulante> postulantes;
     private static ManejadorUsuario instancia = null;
 
     private ManejadorUsuario() {
         usuarios = new HashMap<String, Usuario>();
-        empresas = new HashMap<String,Usuario>();
+        empresas = new HashMap<String,Empresa>();
         postulantes = new HashMap<String,Postulante>();
         usuariosPorEmail = new HashMap<String, Usuario>();
         
@@ -42,7 +42,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	if (usu instanceof Empresa) {
             // Es un objeto de tipo Empresa
     		String nick = usu.getNickName();
-            this.empresas.put(nick, usu);
+            this.empresas.put(nick,(Empresa) usu);
             this.usuarios.put(nick, usu);
             this.usuariosPorEmail.put(email, usu);
         } else if (usu instanceof Postulante) {
@@ -81,16 +81,28 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	return res;
     }
 
-	public boolean nickNameYaExiste(String nickname) {
-		return this.usuarios.containsKey(nickname);
-	}
+    public boolean nickNameYaExiste(String nickname) {
+        for (String user : this.usuarios.keySet()) {
+            if (user==nickname) {
+            	return true;
+            }
+        }
+        return false;
+    }
+
 
 	public boolean emailYaExiste(String email) {
-		return this.usuariosPorEmail.containsKey(email);
+	    for (String user : this.usuariosPorEmail.keySet()) {
+	        if (user.equals(email)) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 
+
 	public DataEmpresa getDataEmpresa(String empresa) {
-		Empresa emp = (Empresa) empresas.get(empresa);
+		Empresa emp =  empresas.get(empresa);
 		DataEmpresa res = emp.getDTEmpresa();
 		return res;
 	}

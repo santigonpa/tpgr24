@@ -10,6 +10,9 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import javax.swing.JLabel;
 import utils.Fabrica;
@@ -233,7 +236,8 @@ public class AltaDeUsuario extends JInternalFrame{
     	String web = this.textFieldLink.getText();
     	Date nacimiento = (Date) spinnerNacimiento.getValue();
     	String nacionalidad = this.textFieldNacionalidad.getText();
-        
+    	Instant instant = nacimiento.toInstant();
+    	LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
     	
     	if (verificarFormularioUsuario()) {
     	    try {
@@ -243,7 +247,7 @@ public class AltaDeUsuario extends JInternalFrame{
     	            limpiarFormulario();
                     setVisible(false);
     	        } else if (selectedOption.equals("Postulante")) {
-    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
+    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, localDate, nacionalidad);
     	            JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
     	            limpiarFormulario();
                     setVisible(false);

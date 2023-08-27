@@ -29,9 +29,7 @@ import logica_Entidades.OfertaLaboral;
 
 
 public class ControladorUsuario implements IControladorUsuario {
-	
 	//Atributos
-	
 	private static ControladorUsuario instancia;
 	
 	private ControladorUsuario(){
@@ -43,47 +41,7 @@ public class ControladorUsuario implements IControladorUsuario {
         }
         return instancia;
     }
-	//
-	//alta postulante
-	public void darAltaUsuario(String nickname, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		
-		Fabrica fabrica = Fabrica.getInstance();
-		IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
-		
-		if(manejadorUsuario.emailYaExiste(nickname)) {
-			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
-		}
-		if(manejadorUsuario.nickNameYaExiste(email)) {
-			throw new EmailYaExisteException("Ya existe un usuario con este email");
-		}
-		if(nickname.equals(null) || nombre.equals(null) || apellido.equals(null) || email.equals(null) || nacimiento.equals(null)|| nacionalidad.equals(null)){
-			throw new campoInvalidoException("No estan todos los campos rellenados"); 
-		}
-		
-		Usuario post = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
-		manejadorUsuario.addUsuario(post);
-		
-	}
- 
-	//alta empresa
-public void darAltaUsuario(String nickname, String nombre, String apellido, String email, String descripcion, String web) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		
-	Fabrica fabrica = Fabrica.getInstance();
-	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
-		
-		if(manejadorUsuario.nickNameYaExiste(nickname)) {
-			throw new NicknameYaExisteException("Ya existe un usuario con este nickName");
-		}
-		if(manejadorUsuario.emailYaExiste(email)) {
-			throw new EmailYaExisteException("Ya existe un usuasio con este email");
-		}
-		if(nickname.equals(null) || nombre.equals(null) || apellido.equals(null) || email.equals(null) || descripcion.equals(null)|| web.equals(null)){
-			throw new campoInvalidoException("No estan todos los campos rellenados"); 
-		}
-		Usuario emp = new Empresa(nickname, nombre, apellido, email, descripcion, web);
-		manejadorUsuario.addUsuario(emp);
-	}
-
+	
 public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws RegistroAPostulacionYaExisteException {
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
@@ -139,7 +97,6 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		else  {throw new UsuarioNoExisteException("No existen Empresas");}
 						
 }
-	
 	@Override
 	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
 		Fabrica fabrica = Fabrica.getInstance();
@@ -166,7 +123,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if ( empresa!= null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-        if(nickname.equals(null) || nombre.equals(null) || apellido.equals(null) || email.equals(null) || descripcion.equals(null)|| web.equals(null)){
+        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")|| web.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
         empresa = new Empresa(nickname,nombre,apellido,email,descripcion,web);
@@ -182,7 +139,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if (postulante != null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-        if(nickname.equals(null) || nombre.equals(null) || apellido.equals(null) || email.equals(null) || nacimiento.equals(null)|| nacionalidad.equals(null)){
+        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals("")|| nacionalidad.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
         postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);

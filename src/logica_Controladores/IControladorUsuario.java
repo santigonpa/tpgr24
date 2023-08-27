@@ -6,6 +6,7 @@ import java.util.Set;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
+import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import logica_DataTypes.DataEmpresa;
@@ -15,6 +16,7 @@ import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulacion;
 
 
 public interface IControladorUsuario {
@@ -38,5 +40,9 @@ public interface IControladorUsuario {
 	public abstract Set<DataOferta> getDataOfertasDeEmpresa(String nickName);
 
 	public abstract Set<DataPostulante> getDataPostulante();
+
+	public abstract void agregarPostulacionAPostulante(String nickName, Postulacion postulacion1) throws RegistroAPostulacionYaExisteException;
+
+	public abstract DataUsuario listarInfoUser(String nickName);
 
 }

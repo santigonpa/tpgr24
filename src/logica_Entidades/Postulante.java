@@ -69,7 +69,10 @@ public class Postulante extends Usuario{
 	}
 	
 	public boolean estaPostulado(Postulacion p) {
-		return this.postulaciones.contains(p);
+		if(this.postulaciones.isEmpty()) {
+			return false;
+		}else {
+		return this.postulaciones.contains(p);}
 	}
 	
 	public Set<Postulacion> obtenerPostulaciones(){

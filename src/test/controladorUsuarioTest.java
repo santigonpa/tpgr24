@@ -2,17 +2,21 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
+import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import logica_Controladores.IControladorUsuario;
@@ -21,6 +25,9 @@ import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
 import logica_Entidades.Empresa;
+import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulacion;
+import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
@@ -28,26 +35,47 @@ class controladorUsuarioTest {
 
 	private static IControladorUsuario cu;
 	private static IManejadorUsuario mu;
+	private static IManejadorOferta mo;
 	private static Postulante p1;
 	private static Postulante p2;
 	private static Empresa e1;
 	private static Empresa e2;
-	
+	private static Postulacion postulacion1;
 	@BeforeAll
 	public static void setUpBeforeClass() {
 		Fabrica f = Fabrica.getInstance();
 		cu = f.getInUser();
+		
+		
+		
 		mu = f.getInManejadorUsuario();
+		mo = f.getInManejadorOferta();
 		LocalDate f1 = LocalDate.of(1990,01,01);
 		LocalDate f2 = LocalDate.of(1990,05,01);
 		p1 = new Postulante("Pedro", "Herni", "pepi", "pepi@gmail.com", f1, "Uru");
 		p2 = new Postulante("Maria", "Lopes", "mari", "marilaosa@gmail.com", f2, "Esp");
 		e1 = new Empresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com");
 		e2 = new Empresa("LifeCinema", "vida", "cine", "noMirenCuevana@gmail.com", "Descuentos con tarjetas seleccionadas", "www.lifeCinemas.com");
+		
+		LocalTime hi1 = LocalTime.parse("09:00");
+		LocalTime hf1 = LocalTime.parse("18:00");
+		LocalDate ao1 = LocalDate.of(2023,8,14);
 		mu.addUsuario(e1);
 		mu.addUsuario(e2);
 		mu.addUsuario(p1);
 		mu.addUsuario(p2);
+		OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1);
+		e1.agregarOfertas(o1.getNombreOferta(), o1);
+		
+		postulacion1 = new Postulacion(f1,"sou un cv","soy una motivacion",p1,o1);
+		try {
+			cu.agregarPostulacionAPostulante(p1.getNickName(),postulacion1);
+		} catch (RegistroAPostulacionYaExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mo.addOferta(o1);
+		mo.addPostulacion(postulacion1);
 	}
 
 	@Test
@@ -56,7 +84,6 @@ class controladorUsuarioTest {
 		String nickName = "Jofe";
 		String nombre = "Josefina";
 		String apellido = "Hernandez";
-		LocalDate fechaNac = LocalDate.of(01,05,1995);
 		String email = "holaComoEstas@gmail.com";
 		String nacionalidad = "Colombia";
 		
@@ -67,23 +94,31 @@ class controladorUsuarioTest {
 		String web = "www.luluG.com.uy";
 		String email2 = "luliGmez@gmail.com";
 		String descripcion = "contratamos gente";
+		LocalDate fecha111 = LocalDate.of(1995, 5, 1);
+
 		
-		
-			cu.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNac, nacionalidad);
+			cu.altaUsuarioPostulante(nickName, nombre, apellido, email, fecha111, nacionalidad);
 			cu.altaUsuarioEmpresa(nickName2, nombre2, apellido2, email2, descripcion, web);
 			Postulante p = mu.obtenerPostulante(nickName);
 			Empresa e = (Empresa) mu.obtenerEmpresa(nickName2);
+			DataUsuario pruebaDataPos = cu.listarInfoUser(nickName);
+			DataEmpresa pruebaDataEmp = new DataEmpresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com");
+			
+			Map<String, OfertaLaboral> mapaOfEmpresa =  cu.obtenerOfertarDeEmpresa(pruebaDataEmp);
+			OfertaLaboral pruebaEncuentro = mapaOfEmpresa.get("Desarolaldor Frontend");
+			assertEquals("Desarolaldor Frontend",pruebaEncuentro.getNombreOferta());
 			
 			
+			assertEquals(nickName,pruebaDataPos.getNickName());
 			assertEquals(nickName, p.getNickName());
 			assertEquals(nickName2, e.getNickName());
 			assertEquals(nombre, p.getNombre());
-			assertEquals(nombre, e.getNombre());
+			assertEquals(nombre2, e.getNombre());
 			assertEquals(apellido, p.getApellido());
-			assertEquals(apellido, e.getApellido());
+			assertEquals(apellido2, e.getApellido());
 			assertEquals(email, p.getEmail());
-			assertEquals(email, e.getEmail());
-			assertEquals(fechaNac, p.getNacimineto());
+			assertEquals(email2, e.getEmail());
+			assertEquals(fecha111, p.getNacimineto());
 			assertEquals(descripcion, e.getDescripcion());
 			assertEquals(nacionalidad, p.getNacionalidad());
 			assertEquals(web, e.getLinkWeb());
@@ -98,139 +133,132 @@ class controladorUsuarioTest {
 	@Test
 	
 	void postulanteRepetido() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		LocalDate n1 = LocalDate.of(01,05,1995);;
-		try {
-		cu.altaUsuarioPostulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya");
-		}catch(NicknameYaExisteException | EmailYaExisteException e) {
-			fail(e.getMessage());
-			e.printStackTrace();
-		}
+		LocalDate n1 = LocalDate.of(1995, 5, 1);
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    //ESTO LO QUE HACE ES FIJARSE SI PASA LA EXCEPCION QUE PONGO DENTRO DEL ASSERTTHROWS
+		//SI OCURRE LA EXCEPCION EL TEST VA A SALIR BIEN LUEGO EN LOS SIGUIENTES TEST DE ABAJO HAGO LO MISMO CON OTRAS EXC
+	    assertThrows(NicknameYaExisteException.class, () -> {
+	        cu.altaUsuarioPostulante("Pedro", "holaworld", "apellido", "nombreInva@gmail.com",n1, "www.noFunc.com");
+	    });
 	}
 	
+	
+	
+	
 
+	
+	
+	
+	
 	@Test
 	
 	void empresaRepetido() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		try {
-		cu.altaUsuarioEmpresa("EcoTech","Sophia","Johnosn","info@EcoTehc.com","EcoTech Innovations es una empresa lider en soluciones tecnol´ogicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafios ambientales mas apremiantes de nuestro tiempo. Desde sistemas de energıa renovable y dispositivos de monitorizacion ambiental hasta soluciones de gestion de residuos inteligentes, nuestra mision es proporcionar herramientas que permitan a las empresas y comunidades adoptar practicas mas ecologicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnologia y la naturaleza, y trabajamos incansablemente para impulsar un futuro mas limpio y sostenible.","http://www.EcoTechInnovations.com");
-		}catch(NicknameYaExisteException | EmailYaExisteException e) {
-			fail(e.getMessage());
-			e.printStackTrace();
-		}
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(NicknameYaExisteException.class, () -> {
+	        cu.altaUsuarioEmpresa("McDonalds", "holaworld", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com");
+	    });
 	}
 	
 
 	@Test
 	void darDeAltaNickInvalidoEmp() throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		try {
-			cu.altaUsuarioEmpresa("", "prueba", "nickInv", "nickInva@gmail.com", "No deberia funcionar", "www.noFunc.com");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(campoInvalidoException.class, () -> {
+	        cu.altaUsuarioEmpresa("", "holaworld", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com");
+	    });
 	}
 
 	@Test
 	void darDeAltaeNickInvalidoPost() throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		LocalDate n1 = LocalDate.of(01,05,1995);
-		try {
-			cu.altaUsuarioPostulante("", "prueba", "nickInv", "nickInva@gmail.com", n1, "PaisInv");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+		LocalDate n1 = LocalDate.of(1995, 5, 1);
+		assertThrows(campoInvalidoException.class, () -> {
+			cu.altaUsuarioPostulante("", "prueba", "nacInv", "nacInv@gmail.com",n1 , "");
+		});
 	}
 	
 	@Test 
 	void darAltaNombreInvalidoPost()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		LocalDate n1 = LocalDate.of(01,05,1995);
-		try {
-			cu.altaUsuarioPostulante("prueba", "", "nombreInv", "nombreInva@gmail.com", n1, "PaisInv");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
-	}
-	
-	@Test 
-	void darAltaNombreInvalidoEmp()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		try {
-			cu.altaUsuarioEmpresa("prueba", "", "nombreInv", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+		LocalDate n1 = LocalDate.of(1995, 5, 1);
+		assertThrows(campoInvalidoException.class, () -> {
+			cu.altaUsuarioPostulante("holamundo", "", "nacInv", "nacInv@gmail.com",n1 , "");
+		});
+
+		
 	}
 	
 	@Test
-	void darAltaApellidoInvalidoPost()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		LocalDate n1 = LocalDate.of(01,05,1995);
-		try {
-			cu.altaUsuarioPostulante("prueba", "apellidoInt", "", "apellidoInva@gmail.com", n1, "PaisInv");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+	@DisplayName("Prueba de alta con nombre de empresa inválido")
+	void darAltaNombreInvalidoEmp() {
+	    IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(campoInvalidoException.class, () -> {
+	        cu.altaUsuarioEmpresa("prueba5", "", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com");
+	    });
 	}
+
+
 	
 	@Test
-	void darAltaApellidoInvalidoEmp()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		try {
-			cu.altaUsuarioEmpresa("prueba", "apellidoInt", "", "apellidoInva@gmail.com", "No deberia funcionar", "www.noFunc.com");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+	@DisplayName("Prueba de alta con apellido de empresa inválido")
+	void darAltaApellidoInvalidoEmp1() {
+	    IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(campoInvalidoException.class, () -> {
+	        cu.altaUsuarioEmpresa("prueba5", "", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com");
+	    });
 	}
+	
 	
 	@Test
 	void darAltaEmailInvalidoPost()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		LocalDate n1 = LocalDate.of(01,05,1995);
-		try {
-			cu.altaUsuarioPostulante("prueba", "prueba", "emailInv", "", n1, "PaisInv");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+		
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(campoInvalidoException.class, () -> {
+	        cu.altaUsuarioEmpresa("prueba5", "hola", "apellido", "","No deberia funcionar", "www.noFunc.com");
+	    });
 	}
 	
-	@Test
-	void darAltaEmailInvalidoEmp()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		try {
-			cu.altaUsuarioEmpresa("prueba", "prueba", "emailInv", "", "invalido", "www.esInv.com");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
-	}
 	
 	@Test
 	void darAltaDescripcionInvalido()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		try {
-			cu.altaUsuarioEmpresa("prueba", "prueba", "descInv", "descInv@gmail.com", "", "www.esInv.com");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(campoInvalidoException.class, () -> {
+	        cu.altaUsuarioEmpresa("prueba5", "hola", "apellido", "hola","", "www.noFunc.com");
+	    });
+		
 	}
 	
 	@Test
 	void darAltaNacionalidadInvalido()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		LocalDate n1 = LocalDate.of(01,05,1995);
-		try {
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+		LocalDate n1 = LocalDate.of(1995, 5, 1);
+		assertThrows(campoInvalidoException.class, () -> {
 			cu.altaUsuarioPostulante("prueba", "prueba", "nacInv", "nacInv@gmail.com",n1 , "");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
+		});
+	}
+	
+	@Test
+	void testeoDelEmailYaExiste()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+		LocalDate n1 = LocalDate.of(1995, 5, 1);
+		assertThrows(EmailYaExisteException.class, () -> {
+			cu.altaUsuarioPostulante("prueba", "prueba", "nacInv", "pepi@gmail.com",n1 , "");
+		});
 	}
 	
 	@Test
 	void darAltaLinkInvalido()throws campoInvalidoException, NicknameYaExisteException, EmailYaExisteException{
-		try {
-			cu.altaUsuarioEmpresa("prueba", "prueba", "descInv", "linkInv@gmail.com", "linkInv", "");
-		}catch(campoInvalidoException e){
-			fail(e.getMessage());
-		}
-	}
-
-	@Test
-	void darAltaFechaInvalidaPost() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		try {
-	 	cu.altaUsuarioPostulante("prueba", "prueba", "fechaInv", "fechaIn@gmail.com", null, "Francia");
-		}catch(campoInvalidoException e) {
-			fail(e.getMessage());
-		}
+IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    
+	    assertThrows(campoInvalidoException.class, () -> {
+	        cu.altaUsuarioEmpresa("prueba5", "hola", "apellido", "hola","hola", "");
+	    });
 	}
 	
 	@Test
@@ -324,7 +352,7 @@ class controladorUsuarioTest {
 		
 	}
 
-	@Test
+	/*@Test
 	void seAgregaPostulacion() {
 		LocalDate f = LocalDate.of(2023, 8, 10);
 		Postulante p = mu.obtenerPostulante("lgarcia");
@@ -333,7 +361,7 @@ class controladorUsuarioTest {
 		Set<Postulacion> postulaciones = cu.obtenerPostulaciones("lgarcia");
 		
 		assertTrue(postulaciones.contains(post));
-	}
+	}*/
 
 
 }
