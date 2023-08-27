@@ -9,6 +9,7 @@ import excepciones.NicknameYaExisteException;
 import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
+import excepciones.yaExistePostulacionAOfertaException;
 import excepciones.EmailYaExisteException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
@@ -42,13 +43,13 @@ public class ControladorUsuario implements IControladorUsuario {
         return instancia;
     }
 	
-public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws RegistroAPostulacionYaExisteException {
+public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws yaExistePostulacionAOfertaException {
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Postulante pos = (Postulante)  manejadorUsuario.obtenerUsuario(postulante);
 	if((pos).estaPostulado(postulacion)) {
-		throw new RegistroAPostulacionYaExisteException("El postulante ya se encuentra postulado a dicha postulacion");
+		throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a dicha postulacion");
 	}else {
 	pos.agregarPostulacionAPostulante(postulacion);
 	}

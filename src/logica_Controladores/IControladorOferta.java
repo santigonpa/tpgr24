@@ -6,6 +6,7 @@ import java.util.Set;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.yaExistePostulacionAOfertaException;
 import logica_Entidades.Postulacion;
 
 public interface IControladorOferta  {
@@ -20,7 +21,7 @@ public abstract void darAltaOferta(String nombre, String descripcion, String ciu
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
 		int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException;
 
-public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha);
+public abstract void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha) throws yaExistePostulacionAOfertaException;
 
 public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
 

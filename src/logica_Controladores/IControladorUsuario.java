@@ -1,6 +1,7 @@
 package logica_Controladores;
 
 import java.time.LocalDate;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import excepciones.NicknameYaExisteException;
 import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
+import excepciones.yaExistePostulacionAOfertaException;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataOferta;
@@ -41,7 +43,7 @@ public interface IControladorUsuario {
 
 	public abstract Set<DataPostulante> getDataPostulante();
 
-	public abstract void agregarPostulacionAPostulante(String nickName, Postulacion postulacion1) throws RegistroAPostulacionYaExisteException;
+	public abstract void agregarPostulacionAPostulante(String nickName, Postulacion postulacion1) throws yaExistePostulacionAOfertaException;
 
 	public abstract DataUsuario listarInfoUser(String nickName);
 

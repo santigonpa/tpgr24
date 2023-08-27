@@ -290,31 +290,33 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		getContentPane().add(spinner);	
 	}
 	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
-		String cv = CVReducido.getText();
-		String mot = motTextArea.getText();
-		Date fechaD = (Date) spinner.getValue();
-		Instant instant = fechaD.toInstant();
-		LocalDate fechalocalDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-		//String empr = (String) comboBoxEmp.getSelectedItem();
-		DataOferta ofer =(DataOferta) comboBoxOferta.getSelectedItem();
-		DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
-		if(verificarFormulario()) {
-		OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre()); 
-			try {	
-				if(oferta.existePostulacion(post.getNickName())) { 
-					throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
-				}
-			}catch (yaExistePostulacionAOfertaException e5) {
-				JOptionPane.showMessageDialog(null, e5.getMessage(), "Error de Postulación", JOptionPane.ERROR_MESSAGE);
-			}
-	
-			ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
-			JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
-			limpiarFormulario();
-			setVisible(false);
-		}
-	}
-		
+        String cv = CVReducido.getText();
+        String mot = motTextArea.getText();
+        Date fechaD = (Date) spinner.getValue();
+        Instant instant = fechaD.toInstant();
+        LocalDate fechalocalDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        //String empr = (String) comboBoxEmp.getSelectedItem();
+        DataOferta ofer =(DataOferta) comboBoxOferta.getSelectedItem();
+        DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
+        if(verificarFormulario()) {
+        OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre()); 
+            /*try {
+                if(oferta.existePostulacion(post.getNickName())) { 
+                    throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
+                }
+            }catch (yaExistePostulacionAOfertaException e5) {
+                JOptionPane.showMessageDialog(null, e5.getMessage(), "Error de Postulación", JOptionPane.ERROR_MESSAGE);
+            }*/
+        try {
+        	ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
+            JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
+            limpiarFormulario();
+            setVisible(false);
+        } catch (yaExistePostulacionAOfertaException e5) {
+        	JOptionPane.showMessageDialog(this, e5.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        	}
+        }   
+    }
 	
 	public void cargarDatos() {
 		//Para las empresas

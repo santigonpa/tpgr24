@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.yaExistePostulacionAOfertaException;
 import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
@@ -90,7 +91,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorPyT.addTipoPublicacion(tp);
 	}		
 
-	public void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha) {
+	public void agregarPostulacion(String post, String ofer, String cv, String mot, LocalDate fecha) throws yaExistePostulacionAOfertaException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
@@ -98,6 +99,10 @@ public class ControladorOferta implements IControladorOferta {
 		OfertaLaboral oferta = mo.obtenerOferta(ofer);
 		Postulante p = mu.obtenerPostulante(post);
 		Postulacion nuevaPost = new Postulacion(fecha, cv, mot, p, oferta);
+		
+		if(oferta.existePostulacion(p.getNickName())) {
+			throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esa oferta");
+		}
 		
 		oferta.agregarPostulacionAOferta(nuevaPost);
 		this.agregarPostulacionApostulante(nuevaPost, post);

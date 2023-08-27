@@ -19,6 +19,7 @@ import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.yaExistePostulacionAOfertaException;
 import logica_Controladores.IControladorOferta;
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataTipoPublicacion;
@@ -158,9 +159,17 @@ class controladorOfertaTest {
 	}
 	
 	@Test
-	void agregoPostulacion(){
+	void agregoPostulacion() throws yaExistePostulacionAOfertaException{
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		co.agregarPostulacion("matilo","Estrategia de Negocios","hombre","arania",fecha1);
+		co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1);
+	}
+	
+	@Test 
+	void agregoPostulacionRepetida() throws yaExistePostulacionAOfertaException{
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		assertThrows(yaExistePostulacionAOfertaException.class, () -> {
+			co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1);
+		});
 	}
 	
 	@Test

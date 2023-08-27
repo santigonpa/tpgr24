@@ -255,7 +255,7 @@ public class AltaDeUsuario extends JInternalFrame{
     	    } catch (NicknameYaExisteException |EmailYaExisteException |campoInvalidoException e2) {
     	        // Manejar la excepción NicknameYaExisteException aquí
     	        JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Usuario", JOptionPane.ERROR_MESSAGE);
-    	    }
+    	    } 
     	    }
     	}
 

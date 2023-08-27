@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -19,6 +20,7 @@ import excepciones.NicknameYaExisteException;
 import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
+import excepciones.yaExistePostulacionAOfertaException;
 import logica_Controladores.IControladorUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataPostulante;
@@ -70,7 +72,7 @@ class controladorUsuarioTest {
 		postulacion1 = new Postulacion(f1,"sou un cv","soy una motivacion",p1,o1);
 		try {
 			cu.agregarPostulacionAPostulante(p1.getNickName(),postulacion1);
-		} catch (RegistroAPostulacionYaExisteException e) {
+		} catch (yaExistePostulacionAOfertaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -353,15 +355,20 @@ IControladorUsuario cu = Fabrica.getInstance().getInUser();
 	}
 
 	/*@Test
-	void seAgregaPostulacion() {
+	void seAgregaPostulacion() throws yaExistePostulacionAOfertaException {
+		
 		LocalDate f = LocalDate.of(2023, 8, 10);
 		Postulante p = mu.obtenerPostulante("lgarcia");
-		Postulacion post = new Postulacion(f, "postularse", "postula", p, oL);
-		p.agregarPostulacionAPostulante(post);
-		Set<Postulacion> postulaciones = cu.obtenerPostulaciones("lgarcia");
+		
+		cu.
 		
 		assertTrue(postulaciones.contains(post));
 	}*/
-
+	
+	@Test
+	void usuarioNoExiste () throws UsuarioNoExisteException {
+		cu.getDataUsuarios();
+		//No podemos testearla porque tendriamos que borrar todos los usuarios para que se ejecute la excepcion, otra opcion es borrarla
+	}
 
 }
