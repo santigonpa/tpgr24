@@ -296,6 +296,14 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		String departamento = this.textFieldDepartamento.getText();
 		String remuneracionTexto = textFieldRemuneracion.getText();
 		DataEmpresa DTempresa = (DataEmpresa) comboBoxEmpresa.getSelectedItem();
+		
+		// Añado esto por las dudas, si no se cargan datos previamente DTempresa es null y se rompe
+	    if (DTempresa == null) {
+	        JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa válida", "Error",
+	                JOptionPane.ERROR_MESSAGE);
+	        return;
+	    }
+	    
 		String empresa = DTempresa.getNickName();
 		DataTipoPublicacion DTtipoPubli = (DataTipoPublicacion) comboBoxTipoPublicacion.getSelectedItem();
 		String tipoPubli = DTtipoPubli.getNombre();
