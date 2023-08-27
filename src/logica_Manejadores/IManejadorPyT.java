@@ -11,7 +11,7 @@ public interface IManejadorPyT {
 
 	public abstract TipoPublicacion obtenerTipoPublicacion(String tipoPubli);
 	
-	public abstract boolean nombreTipoPubliYaExisteException(String nombre);
+	public abstract boolean TipoPubliYaExiste(String nombre);
 	
 	public abstract void addTipoPublicacion(TipoPublicacion tp);
 

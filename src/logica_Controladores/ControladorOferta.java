@@ -35,7 +35,7 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorOferta manejadorOferta = fabrica.getInManejadorOferta();
 		
-		if(manejadorOferta.NombreRepetidoOfertaException(nombre)) {
+		if(manejadorOferta.existeOferta(nombre)) {
 			throw new NombreRepetidoOfertaException("Ya existe una oferta con este nombre");
 		}
 		
@@ -83,7 +83,7 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
-		if(manejadorPyT.nombreTipoPubliYaExisteException(nombre)) {
+		if(manejadorPyT.TipoPubliYaExiste(nombre)) {
 			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre.");
 		}
 		TipoPublicacion tp = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fecha);

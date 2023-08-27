@@ -88,6 +88,4 @@ public class ManejadorOferta implements IManejadorOferta{
 		OfertaLaboral of = this.obtenerOferta(nombre);
 		return (of != null);
 	}
-
-
 }

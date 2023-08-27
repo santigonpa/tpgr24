@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.assertThrows;
+//import static org.junit.Assert.assertThrows;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -17,8 +18,10 @@ import org.junit.jupiter.api.Test;
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
 import excepciones.NombreRepetidoOfertaException;
+import excepciones.NombreTipoPubliYaExisteException;
 import logica_Controladores.IControladorOferta;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.TipoPublicacion;
 import logica_Entidades.KeyWord;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
@@ -71,8 +74,7 @@ class controladorOfertaTest {
             assertEquals(remuneracion, o.getRemuneracion());
             assertEquals(fechaDeAlta, o.getFecha());
             assertEquals(costoDeOfertaLaboral, o.getCosto());
-
-    }
+       }
     
     
 	@Test
@@ -81,8 +83,34 @@ class controladorOfertaTest {
 	    LocalTime d2 = LocalTime.of(14, 0); 
 	    LocalTime d1 = LocalTime.of(19, 0); 
 
+	    co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1);
+	    
 	    assertThrows(NombreRepetidoOfertaException.class, () -> {
 	    	co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1);
 	    });	
+	}
+
+
+	@Test
+	void altaDeTipoDePubliDeOferOk() throws NombreTipoPubliYaExisteException{
+		LocalDate fecha = LocalDate.of(1990, 1, 1);;
+		co.altaDeTipoDePubliDeOferLab("Tipo oferta", "Descripcion prueba", 1, 10, 100, fecha);
+		TipoPublicacion publi = mpyt.obtenerTipoPublicacion("Tipo oferta");
+		assertEquals("Tipo oferta", publi.getNombre());
+		assertEquals("Descripcion prueba", publi.getDescripcion());
+		assertEquals(1, publi.getExposicion());
+		assertEquals(100, publi.getDuracion());
+		assertEquals(10, publi.getCosto());
+		assertEquals(fecha, publi.getFecha());
+	}
+	
+	@Test
+	void tipoDePubliRepetida() throws NombreTipoPubliYaExisteException{
+		LocalDate fecha = LocalDate.of(1990, 1, 1);
+		co.altaDeTipoDePubliDeOferLab("Tipo oferta", "Descripcion prueba", 1, 10, 100, fecha);
+		
+		assertThrows(NombreTipoPubliYaExisteException.class, () -> {
+			co.altaDeTipoDePubliDeOferLab("Tipo oferta", "Descripcion prueba", 1, 10, 100, fecha);
+		});	
 	}
 }
