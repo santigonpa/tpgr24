@@ -6,7 +6,6 @@ import java.util.Map;
 import java.time.*;
 
 import excepciones.NicknameYaExisteException;
-import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
@@ -155,12 +154,12 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 		Set<DataUsuario> res = new HashSet<>();
 		Map<String, DataUsuario> m = mu.getDataUsuario();
-		if(m!=null) {
-		for (Map.Entry<String, DataUsuario> entry : m.entrySet()) {
-		    res.add(entry.getValue());
-		}
-		return res;
-	}else {throw new UsuarioNoExisteException("No existen Usuarios");}
+		if(!m.isEmpty()) {
+			for (Map.Entry<String, DataUsuario> entry : m.entrySet()) {
+			    res.add(entry.getValue());
+			}
+			return res;
+		}else {throw new UsuarioNoExisteException("No existen Usuarios");}
 		}
 	
 

@@ -7,7 +7,6 @@ import java.util.Set;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
-import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;

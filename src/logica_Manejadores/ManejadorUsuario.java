@@ -138,7 +138,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 
 	@Override
 	public Map<String, DataUsuario> getDataUsuario() {
-		Map<String, DataUsuario> res = new HashMap<>();;
+		Map<String, DataUsuario> res = new HashMap<>();
     	Set<Usuario> temp = new HashSet<>();
     	
     	// Obtener las claves del Map

@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -103,8 +102,8 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	        	        model.addElement(oferta);
         	    }
         	    comboBoxOfertas.setModel(model);}
-        	    else {throw new NoTieneOfertasException("No tiene ofertas laborales");}
-        		}catch(NoTieneOfertasException e22) {}
+        	    else {throw new Exception("No tiene ofertas laborales");}
+        		}catch(Exception e22) {}
             }
 		});
 		

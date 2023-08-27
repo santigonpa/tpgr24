@@ -9,7 +9,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
-import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -128,8 +127,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
             	    
             	    // Establecer el modelo en el JComboBox
             	    comboOferta.setModel(model);}
-            	    else {throw new NoTieneOfertasException("No tiene ofertas laborales");}
-            		}catch(NoTieneOfertasException e22) {}
+            	    else {throw new Exception("No tiene ofertas laborales");}
+            		}catch(Exception e22) {}
 
             		//parte para hacer aparecer el caso de uso de consulta de ofertaLaboral
             		
@@ -266,11 +265,15 @@ public class ConsultaDeUsuario extends JInternalFrame {
                     if (selectedOption instanceof DataEmpresa) {
                         DataEmpresa emp = (DataEmpresa) selectedOption;
                         DataOferta of = (DataOferta) comboOferta.getSelectedItem();
+                        if(of != null) {
                         conOfertaLab.asignarValoresConsultaDeUsuario(emp, of);
                         conOfertaLab.setVisible(true);
                         conOfertaLab.toFront();
+                        }else {
+                        	 throw new Exception("La empresa debe tener una oferta laboral.");
+                        }
                     } else {
-                        throw new Exception("Debe estar seleccionada una empresa");
+                        throw new Exception("Debe estar seleccionada una empresa.");
                     }
                 } catch (Exception e1) {
                     JOptionPane.showMessageDialog(ConsultaDeUsuario.this, e1.getMessage(), "Consulta de Usuario", JOptionPane.ERROR_MESSAGE);

@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
-import excepciones.RegistroAPostulacionYaExisteException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
@@ -44,10 +43,14 @@ class controladorUsuarioTest {
 	private static Empresa e2;
 	private static Postulacion postulacion1;
 	@BeforeAll
-	public static void setUpBeforeClass() {
+	public static void setUpBeforeClass() throws UsuarioNoExisteException {
+		
 		Fabrica f = Fabrica.getInstance();
 		cu = f.getInUser();
 		
+		assertThrows(UsuarioNoExisteException.class, () -> {
+			cu.getDataUsuarios();
+	    });
 		
 		
 		mu = f.getInManejadorUsuario();

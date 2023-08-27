@@ -30,7 +30,6 @@ import logica_Entidades.OfertaLaboral;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
-import excepciones.NoTieneOfertasException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
 
@@ -248,8 +247,8 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 			    
 			    // Establecer el modelo en el JComboBox
 						comboBoxOferta.setModel(model);}
-						else {throw new NoTieneOfertasException("No tiene ofertas laborales");}
-				}catch(NoTieneOfertasException e22) {}
+						else {throw new Exception("No tiene ofertas laborales");}
+				}catch(Exception e22) {}
 			}
 		});
 		
@@ -299,7 +298,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
         DataOferta ofer =(DataOferta) comboBoxOferta.getSelectedItem();
         DataPostulante post = (DataPostulante) comboBoxPost.getSelectedItem();
         if(verificarFormulario()) {
-        OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre()); 
+        //OfertaLaboral oferta = (OfertaLaboral) IMO.obtenerOferta(ofer.getNombre()); 
             /*try {
                 if(oferta.existePostulacion(post.getNickName())) { 
                     throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esta oferta \n" + "Intente de nuevo reingresando alguno (o todos) de los siguientes: \n" + "-Empresa \n" + "-Oferta laboral \n" + "-Postulante \n"  );
