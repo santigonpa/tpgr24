@@ -85,6 +85,12 @@ public class ManejadorOferta implements IManejadorOferta{
 	}
 
 	public boolean NombreRepetidoOferta(String nombre) {
+		OfertaLaboral of = this.obtenerOferta(nombre);
+		return (of != null);
+	}
+
+	@Override
+	public boolean NombreRepetidoOfertaException(String nombre) {
 		// TODO Auto-generated method stub
 		return false;
 	}

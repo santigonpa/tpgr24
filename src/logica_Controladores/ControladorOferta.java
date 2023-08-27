@@ -97,7 +97,7 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
-
+ 
 		OfertaLaboral oferta = mo.obtenerOferta(ofer);
 		Postulante p = mu.obtenerPostulante(post);
 		Postulacion nuevaPost = new Postulacion(fecha, cv, mot, p, oferta);
