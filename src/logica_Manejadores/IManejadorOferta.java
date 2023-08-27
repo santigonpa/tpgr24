@@ -6,6 +6,7 @@ import logica_DataTypes.DataKeyWord;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
+import test.TipoPublicacion;
 
 public interface IManejadorOferta {
 
@@ -24,7 +25,5 @@ public interface IManejadorOferta {
 
 	public abstract void addPostulacion(Postulacion pos);
 
-
-	public abstract boolean NombreRepetidoOfertaException(String nombre);
-
+	public abstract boolean existeOferta(String s);
 }

@@ -83,7 +83,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		
 		
 		conOfertaLab = new ConsultaDeOfertaLaboral(ICU,ICO);
+<<<<<<< HEAD
 		conOfertaLab.setBounds(20, 11, 501, 456);
+=======
+		conOfertaLab.setBounds(42, 0, 496, 456);
+>>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);

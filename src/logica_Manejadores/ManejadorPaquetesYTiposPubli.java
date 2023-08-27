@@ -56,7 +56,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		this.tiposDePublicacion.put(nombre, tp);
 	}
 	
-	public boolean nombreTipoPubliYaExisteException(String nombre) {
+	public boolean TipoPubliYaExiste(String nombre) {
 		return tiposDePublicacion.containsKey(nombre);
 	}
 
