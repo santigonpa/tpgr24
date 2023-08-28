@@ -158,7 +158,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		scrollPane.setViewportView(textAreaDescripcion);
 		
 		JLabel lblCiudad = new JLabel("Ciudad:");
-		lblCiudad.setBounds(10, 194, 65, 13);
+		lblCiudad.setBounds(10, 194, 84, 13);
 		getContentPane().add(lblCiudad);
 		
 		JLabel lblDepartamento = new JLabel("Departamento:");
@@ -178,7 +178,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textFieldDepartamento);
 		
 		JLabel lblHoraInicio = new JLabel("Hora inicio:");
-		lblHoraInicio.setBounds(10, 232, 65, 13);
+		lblHoraInicio.setBounds(10, 232, 84, 13);
 		getContentPane().add(lblHoraInicio);
 		
 		JLabel lblHoraFin = new JLabel("Hora fin");
@@ -211,7 +211,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 		
 		
 		JLabel lblPostulaciones = new JLabel("Postulaciones:");
-		lblPostulaciones.setBounds(10, 355, 84, 13);
+		lblPostulaciones.setBounds(10, 355, 99, 13);
 		getContentPane().add(lblPostulaciones);
 		
 		comboBoxPostulaciones = new JComboBox<>();

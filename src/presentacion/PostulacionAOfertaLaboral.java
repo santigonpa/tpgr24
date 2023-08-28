@@ -113,7 +113,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		//seleccionDeEmpresa.setModel(new DefaultComboBoxModel<>(new String[] {"Seleccione una empresa", "MCDonalds", "BurguerKing"}));
 		
 		txtOferta = new JLabel("Oferta laboral:");
-		txtOferta.setBounds(12, 50, 84, 16);
+		txtOferta.setBounds(12, 50, 121, 16);
 		
 		comboBoxOferta = new JComboBox<DataOferta>();
 		comboBoxOferta.setBounds(158, 46, 533, 24);
@@ -142,7 +142,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		txtDatosOferta.setBounds(292, 83, 145, 16);
 		
 		txtDescripcionOferta = new JLabel("Descripcion:");
-		txtDescripcionOferta.setBounds(63, 122, 70, 16);
+		txtDescripcionOferta.setBounds(63, 122, 87, 16);
 		
 		scrollPaneDescripcion = new JScrollPane();
 		scrollPaneDescripcion.setBounds(158, 122, 533, 85);
@@ -154,23 +154,23 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		txtDepartamentoOferta.setBounds(348, 234, 109, 16);
 		
 		txtRemuneracion = new JLabel("Remuneracion:");
-		txtRemuneracion.setBounds(63, 274, 87, 16);
+		txtRemuneracion.setBounds(63, 274, 109, 16);
 		
 		txtFechaAlta = new JLabel("Fecha del alta de la oferta:");
-		txtFechaAlta.setBounds(348, 274, 155, 16);
+		txtFechaAlta.setBounds(348, 274, 165, 16);
 		
 		txtHorarios = new JLabel("Horarios:");
 		txtHorarios.setBounds(63, 311, 70, 16);
 		
 		txtPostulante = new JLabel("Postulante:");
-		txtPostulante.setBounds(63, 359, 64, 16);
+		txtPostulante.setBounds(63, 359, 113, 16);
 
 		
 		txtDatosPostulante = new JLabel("Ingreso de datos del postulante");
 		txtDatosPostulante.setBounds(292, 392, 180, 16);
 		
 		txtCVReducido = new JLabel("CV reducido:");
-		txtCVReducido.setBounds(65, 431, 74, 16);
+		txtCVReducido.setBounds(65, 431, 107, 16);
 		
 		scrollPaneCVReducido = new JScrollPane();
 		scrollPaneCVReducido.setBounds(193, 431, 486, 85);
@@ -201,31 +201,27 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		ciudad = new JTextArea();
 		ciudad.setBounds(158, 231, 165, 22);
-		ciudad.setEnabled(false);
 		ciudad.setEditable(false);
 		
 		remuneracion = new JTextArea();
 		remuneracion.setBounds(158, 271, 165, 22);
-		remuneracion.setEnabled(false);
 		remuneracion.setEditable(false);
 		
 		departamento = new JTextArea();
 		departamento.setBounds(515, 231, 165, 22);
-		departamento.setEnabled(false);
 		departamento.setEditable(false);
 		
 		fechaAlta = new JTextArea();
 		fechaAlta.setBounds(515, 271, 165, 22);
-		fechaAlta.setEnabled(false);
 		fechaAlta.setEditable(false);
 		
 		
 		
 		JLabel fechaDePostulacion = new JLabel("Fecha de Inscripcion :");
-		fechaDePostulacion.setBounds(66, 591, 126, 16);
+		fechaDePostulacion.setBounds(66, 591, 150, 16);
 		
 		spinner = new JSpinner();
-		spinner.setBounds(197, 588, 159, 22);
+		spinner.setBounds(234, 589, 159, 22);
         spinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
 
 		

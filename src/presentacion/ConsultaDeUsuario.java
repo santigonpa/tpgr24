@@ -225,6 +225,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        		limpiarFormulario();
+		        		conOfertaLab.limpiarFormulario();//cambio para que al salir desde el frame Consulta de usuario se vaya tmb consulta de oferta
+		        		conOfertaLab.setVisible(false);
 		                setVisible(false);
 			}
 		});
@@ -305,6 +307,5 @@ public class ConsultaDeUsuario extends JInternalFrame {
     	textArea.setText("");
     	nacionLabel.setText("");
     	fechaNacLabel.setText("");
-		
 	}
 }
