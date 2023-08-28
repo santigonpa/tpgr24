@@ -1,6 +1,7 @@
 package logica_Entidades;
 
 import java.util.Map;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import logica_DataTypes.DataEmpresa;
@@ -35,9 +36,23 @@ public class Empresa extends Usuario{
 		return compra;
 	}
 	
-	public Map<String, OfertaLaboral> getOfertas(){
-		return ofertas;
+	public Map<String, OfertaLaboral> getOfertas() {
+	    Map<String, OfertaLaboral> res = new HashMap<>();
+	        
+	    for (Map.Entry<String, OfertaLaboral> entry : this.ofertas.entrySet()) {
+	        LocalDate fechaO = entry.getValue().getFecha(); // FECHA ALTA
+	        int sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
+	        LocalDate fechaLimite = fechaO.plusDays(sumoDias);
+	        
+	        if (!fechaLimite.isBefore(LocalDate.now())) { // Verifica si la fecha límite no es antes de la fecha actual
+	            res.put(entry.getKey(), entry.getValue());
+	        }
+	    }
+	      
+	    return res;
 	}
+
+
 	
 	public OfertaLaboral getOferta(String nombreOfer) {
 		return this.ofertas.get(nombreOfer);

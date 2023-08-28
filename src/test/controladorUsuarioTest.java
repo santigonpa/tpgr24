@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
+import java.time.format.DateTimeFormatter;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
@@ -25,6 +26,7 @@ import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
+import logica_Entidades.TipoPublicacion;
 import logica_Entidades.Empresa;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
@@ -52,25 +54,28 @@ class controladorUsuarioTest {
 			cu.getDataUsuarios();
 	    });
 		
-		
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		mu = f.getInManejadorUsuario();
 		mo = f.getInManejadorOferta();
-		LocalDate f1 = LocalDate.of(1990,01,01);
-		LocalDate f2 = LocalDate.of(1990,05,01);
+		LocalDate f1 = LocalDate.of(2023, 9, 15);
+		LocalDate f2 = LocalDate.of(2023, 9, 15);
 		p1 = new Postulante("Pedro", "Herni", "pepi", "pepi@gmail.com", f1, "Uru");
 		p2 = new Postulante("Maria", "Lopes", "mari", "marilaosa@gmail.com", f2, "Esp");
 		e1 = new Empresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com");
 		e2 = new Empresa("LifeCinema", "vida", "cine", "noMirenCuevana@gmail.com", "Descuentos con tarjetas seleccionadas", "www.lifeCinemas.com");
-		
+		LocalDate at1 = LocalDate.parse("10-08-2023", dateFormatter);
 		LocalTime hi1 = LocalTime.parse("09:00");
 		LocalTime hf1 = LocalTime.parse("18:00");
-		LocalDate ao1 = LocalDate.of(2023,8,14);
+		LocalDate ao1 = LocalDate.of(2023, 9, 15);
+		TipoPublicacion tp1 = new TipoPublicacion("Premium","Obten maxima visibilidad.",1,30,4000,at1);
 		mu.addUsuario(e1);
 		mu.addUsuario(e2);
 		mu.addUsuario(p1);
 		mu.addUsuario(p2);
 		OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1);
 		e1.agregarOfertas(o1.getNombreOferta(), o1);
+		o1.setEmpresa((Empresa)e1);
+		o1.setTipoPublicacion(tp1);
 		
 		postulacion1 = new Postulacion(f1,"sou un cv","soy una motivacion",p1,o1);
 		try {
@@ -99,7 +104,7 @@ class controladorUsuarioTest {
 		String web = "www.luluG.com.uy";
 		String email2 = "luliGmez@gmail.com";
 		String descripcion = "contratamos gente";
-		LocalDate fecha111 = LocalDate.of(1995, 5, 1);
+		LocalDate fecha111 = LocalDate.of(2023, 9, 15);
 
 		
 			cu.altaUsuarioPostulante(nickName, nombre, apellido, email, fecha111, nacionalidad);

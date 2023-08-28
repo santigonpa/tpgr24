@@ -24,7 +24,6 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.awt.event.ActionEvent;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -41,11 +40,11 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	private JTextField textFieldExposicion;
 	private JTextArea textoDescripcion;
 	private JSpinner fecha;
-	private JSpinner spinnerDuracion;
 	private static IControladorOferta ICO;
+	private JTextField textFieldDuracion;
 
 	/**
-	 * Launch the application.
+	 * Launch the application.//
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -86,7 +85,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(labelExposicion);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Duracion de la publicacion: ");
-		lblNewLabel_1_2.setBounds(280, 127, 165, 24);
+		lblNewLabel_1_2.setBounds(280, 127, 131, 24);
 		getContentPane().add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Nombre del tipo de publicacion :");
@@ -96,11 +95,6 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Costo : $");
 		lblNewLabel_1_1_1_1.setBounds(10, 184, 70, 43);
 		getContentPane().add(lblNewLabel_1_1_1_1);
-		
-		spinnerDuracion = new JSpinner();
-		spinnerDuracion.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
-		spinnerDuracion.setBounds(446, 129, 30, 20);
-		getContentPane().add(spinnerDuracion);
 		
 		JLabel lblNewLabel = new JLabel("(en dias)");
 		lblNewLabel.setBounds(321, 154, 70, 14);
@@ -156,6 +150,11 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(textFieldExposicion);
 		textFieldExposicion.setColumns(10);
 		
+		textFieldDuracion = new JTextField();
+		textFieldDuracion.setColumns(10);
+		textFieldDuracion.setBounds(415, 130, 61, 19);
+		getContentPane().add(textFieldDuracion);
+		
 
 		
 		//ESTO ES PARA QUE COSTO SOLO RECIBA NUMEROS
@@ -193,6 +192,23 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
                 }
             }
         }); 
+        
+        AbstractDocument doc3 = (AbstractDocument) textFieldDuracion.getDocument();
+        doc3.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                if (text != null && text.matches("\\d+")) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text != null && text.matches("\\d+")) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
 	
 	}
 	protected void cmdAltaDeTipoDePublicacionDeOferta(ActionEvent e) {
@@ -207,7 +223,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	    try {
 	        expo = Integer.parseInt(this.textFieldExposicion.getText());
 	        costo = Integer.parseInt(this.textFieldCosto.getText());
-	        duracion = (int) spinnerDuracion.getValue();
+	        duracion =  Integer.parseInt(this.textFieldDuracion.getText());
 	        fechaAlta = (Date) fecha.getValue();
 	     // Convertir java.util.Date a java.time.LocalDate
 	        //LocalDate fechaAlta1 = fechaAlta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -219,7 +235,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		if (verificarFormularioAlta()) {
 			try {
 				LocalDate fechaAlta1 = fechaAlta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				ICO.altaDeTipoDePubliDeOferLab(nombreTipoPubli, descripcion, expo, duracion, costo,fechaAlta1);
+				ICO.altaDeTipoDePubliDeOferLab(nombreTipoPubli, descripcion, expo, costo, duracion,fechaAlta1);
 				JOptionPane.showMessageDialog(this, "El tipo de publicacion de oferta laboral fue dado de alta con exito.","Alta de Tipo de Publicacion de Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
 	            limpiarFormulario();
 	            setVisible(false);
@@ -246,15 +262,14 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		
 		return true;
 	}
-	
+	///
 	public void limpiarFormulario() {
 		this.txtNombre.setText("");
 		this.textoDescripcion.setText("");
 		this.textFieldExposicion.setText("0");
 		this.textFieldCosto.setText("0");
-		this.spinnerDuracion.setValue(1);
+		this.textFieldDuracion.setText("1");
 		
 	}
-	
 }
 
