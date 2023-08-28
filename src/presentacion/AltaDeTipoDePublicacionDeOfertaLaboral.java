@@ -72,7 +72,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(204, 13, 272, 20);
+		txtNombre.setBounds(210, 13, 266, 20);
 		getContentPane().add(txtNombre);
 		txtNombre.setColumns(10);
 		
@@ -81,7 +81,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		JLabel labelExposicion = new JLabel("Indique la exposicion:");
-		labelExposicion.setBounds(10, 124, 131, 31);
+		labelExposicion.setBounds(10, 124, 165, 31);
 		getContentPane().add(labelExposicion);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Duracion de la publicacion: ");
@@ -89,7 +89,7 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 		getContentPane().add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Nombre del tipo de publicacion :");
-		lblNewLabel_1_3.setBounds(10, 11, 185, 24);
+		lblNewLabel_1_3.setBounds(12, 11, 200, 24);
 		getContentPane().add(lblNewLabel_1_3);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Costo : $");
@@ -134,19 +134,19 @@ public class AltaDeTipoDePublicacionDeOfertaLaboral extends JInternalFrame {
 	    fecha.setEditor(de_fecha);
 		
 		textFieldCosto = new JTextField();
-		textFieldCosto.setBounds(204, 195, 61, 19);
+		textFieldCosto.setBounds(210, 196, 61, 19);
 		getContentPane().add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(204, 46, 272, 61);
+		scrollPane.setBounds(210, 46, 266, 61);
 		getContentPane().add(scrollPane);
 		
 		textoDescripcion = new JTextArea();
 		scrollPane.setViewportView(textoDescripcion);
 		
 		textFieldExposicion = new JTextField();
-		textFieldExposicion.setBounds(204, 128, 61, 22);
+		textFieldExposicion.setBounds(210, 129, 61, 22);
 		getContentPane().add(textFieldExposicion);
 		textFieldExposicion.setColumns(10);
 		

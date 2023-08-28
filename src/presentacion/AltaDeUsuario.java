@@ -31,6 +31,7 @@ import java.awt.SystemColor;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JTextArea;
+import java.awt.Color;
 
 
 public class AltaDeUsuario extends JInternalFrame{
@@ -87,11 +88,11 @@ public class AltaDeUsuario extends JInternalFrame{
 	    getContentPane().setLayout(null);
 	    
 	    JLabel lblNewLabel_5 = new JLabel("       Fecha de nacimiento :");
-	    lblNewLabel_5.setBounds(0, 117, 147, 14);
+	    lblNewLabel_5.setBounds(0, 117, 164, 14);
 	    getContentPane().add(lblNewLabel_5);
 	    
 	    JLabel lblNewLabel_6 = new JLabel("Nacionalidad :");
-	    lblNewLabel_6.setBounds(176, 117, 80, 14);
+	    lblNewLabel_6.setBounds(176, 117, 96, 14);
 	    getContentPane().add(lblNewLabel_6);
 	    
 	    textFieldNacionalidad = new JTextField();
@@ -176,7 +177,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	    textFieldNombre.setColumns(10);
 	    
 	    JLabel lblNewLabel_2 = new JLabel("Apellido :");
-	    lblNewLabel_2.setBounds(193, 49, 55, 14);
+	    lblNewLabel_2.setBounds(193, 49, 63, 14);
 	    getContentPane().add(lblNewLabel_2);
 	    
 	    textFieldApellido = new JTextField();
@@ -205,10 +206,11 @@ public class AltaDeUsuario extends JInternalFrame{
 	    
 	    JButton btnNewButton_1 = new JButton("Aceptar");
 	    btnNewButton_1.setBounds(222, 327, 84, 23);
-	    btnNewButton_1.setForeground(SystemColor.windowText);
+	    btnNewButton_1.setForeground(new Color(61, 56, 70));
 	    getContentPane().add(btnNewButton_1);
 	    
 	    JButton btnNewButton_2 = new JButton("Cancelar");
+	    btnNewButton_2.setForeground(new Color(61, 56, 70));
 	    btnNewButton_2.setBounds(316, 327, 96, 23);
 	    getContentPane().add(btnNewButton_2);
 	    

@@ -4,12 +4,14 @@ import java.awt.EventQueue;
 
 
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
@@ -19,15 +21,15 @@ import logica_Manejadores.IManejadorUsuario;
 import logica_cargarDatos.datosDePrueba.cargarDatos;
 
 import javax.swing.JMenu;
-import java.awt.Rectangle;
-import java.awt.GridBagLayout;
+//import java.awt.Rectangle;
+//import java.awt.GridBagLayout;
 
 
 public class Principal {
 
 	private JFrame trabajouy;
 	private ConsultaDeUsuario conUsrInternalFrame;
-	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
+//	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
 //	private ModificarDatosDeUsuario modDatosUser; MODIFICAR DATOS OCULTA
 	private AltaDeUsuario altaUser;
 	private ConsultaDeTiposDePublicacionDeOfertasLaborales conPaquetes;
@@ -118,7 +120,7 @@ public class Principal {
         trabajouy.getContentPane().add(conUsrInternalFrame);
         conUsrInternalFrame.getContentPane().setLayout(null);
         
-        addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
+        /*addTOfLabAPaqInternalFrame = new AddTipoPubliOfertaLabAPaq();
         addTOfLabAPaqInternalFrame.setNormalBounds(new Rectangle(100, 100, 500, 172));
         GridBagLayout gridBagLayout = (GridBagLayout) addTOfLabAPaqInternalFrame.getContentPane().getLayout();
         gridBagLayout.columnWidths = new int[]{9, 81, 0, 0, 0};
@@ -127,7 +129,7 @@ public class Principal {
         addTOfLabAPaqInternalFrame.setClosable(true);
         trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
         
-        /*modDatosUser = new ModificarDatosDeUsuario();
+        modDatosUser = new ModificarDatosDeUsuario();
         modDatosUser.setBounds(100, 100, 550, 300);
         modDatosUser.setMaximizable(true);
         modDatosUser.setClosable(true);
@@ -203,7 +205,17 @@ public class Principal {
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Agregar Tipo Oferta Laboral");
+		JFrame frame = new JFrame("");
+		
+		JMenuItem mntmProximamente = new JMenuItem("Proximamente");
+		mntmProximamente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eprox) {
+				JOptionPane.showMessageDialog(frame, "Disponible proximamente");
+			}
+		});
+		mnNewMenu_2.add(mntmProximamente);
+		
+		/*JMenuItem mntmNewMenuItem_3 = new JMenuItem("Agregar Tipo Oferta Laboral");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
 				addTOfLabAPaqInternalFrame.setVisible(true);
@@ -219,7 +231,7 @@ public class Principal {
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_4);
 		
-		
+		*/
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Alta de usuarios");
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
