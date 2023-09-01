@@ -283,7 +283,7 @@ public class ModificarDatosDeUsuario extends JInternalFrame {
 			    selectedUsuario.setApellido(apellido);
 			if (!email.equals(selectedUsuario.getEmail()))
 			    selectedUsuario.setEmail(email);
-
+			
 			if (selectedUsuario instanceof DataEmpresa) {
 			    DataEmpresa empresa = (DataEmpresa) selectedUsuario;
 			    if (!descripcion.equals(empresa.getDescripcion()))
