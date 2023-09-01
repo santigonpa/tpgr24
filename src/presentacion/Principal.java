@@ -30,7 +30,7 @@ public class Principal {
 	private JFrame trabajouy;
 	private ConsultaDeUsuario conUsrInternalFrame;
 //	private AddTipoPubliOfertaLabAPaq addTOfLabAPaqInternalFrame;
-//	private ModificarDatosDeUsuario modDatosUser; MODIFICAR DATOS OCULTA
+	private ModificarDatosDeUsuario modDatosUser;
 	private AltaDeUsuario altaUser;
 	private ConsultaDeTiposDePublicacionDeOfertasLaborales conPaquetes;
 	private ConsultaDeOfertaLaboral conOfertaLab;
@@ -128,15 +128,16 @@ public class Principal {
         addTOfLabAPaqInternalFrame.setBounds(79, 44, 456, 165);
         addTOfLabAPaqInternalFrame.setClosable(true);
         trabajouy.getContentPane().add(addTOfLabAPaqInternalFrame);
-        
-        modDatosUser = new ModificarDatosDeUsuario();
+        */
+        modDatosUser = new ModificarDatosDeUsuario(ICO,ICU);
         modDatosUser.setBounds(100, 100, 550, 300);
         modDatosUser.setMaximizable(true);
         modDatosUser.setClosable(true);
         modDatosUser.setVisible(false);
+        modDatosUser.cargarUsuarios();
         
         trabajouy.getContentPane().add(modDatosUser);
-        modDatosUser.getContentPane();*/
+        modDatosUser.getContentPane();
         
 		conOfertaLab = new ConsultaDeOfertaLaboral(ICU, ICO);
 		conOfertaLab.setBounds(100, 100, 500, 456);
@@ -194,14 +195,15 @@ public class Principal {
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		
 		
-		/*JMenuItem mntmNewMenuItem_2 = new JMenuItem("Modificar usuario"); OCULTÉ MODIFICAR USUARIO
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Modificar usuario");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	modDatosUser.cargarUsuarios();
             	modDatosUser.setVisible(true);
             }
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
-		*/ 
+		
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
 		
