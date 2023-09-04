@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 
+import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
@@ -26,6 +27,9 @@ public abstract void agregarPostulacion(String post, String ofer, String cv, Str
 public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
 
 public abstract Set<String> getPostulantesString(String oferta);
+
+public abstract void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion,
+		int validez, int descuento, LocalDate fechaDeAlta) throws NombrePaqueteYaExiste;
 
 
 }

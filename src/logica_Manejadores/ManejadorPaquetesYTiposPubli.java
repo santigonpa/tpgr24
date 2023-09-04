@@ -13,10 +13,11 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	
 	private static ManejadorPaquetesYTiposPubli instancia;
 	private Map<String,TipoPublicacion> tiposDePublicacion;
-	
+	private Map<String,Paquete> paquetes;
+
 	private ManejadorPaquetesYTiposPubli() {
 		this.tiposDePublicacion = new HashMap<String,TipoPublicacion>();
-		new HashMap<String,Paquete>();
+		this.paquetes = new HashMap<String,Paquete>();
 		
 	}
 	public static ManejadorPaquetesYTiposPubli getInstance() {
@@ -50,6 +51,12 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
     	return res;
 	}
 	
+	public void addPaquete(Paquete paq) {
+		String nombre = paq.getNombre();
+		this.paquetes.put(nombre, paq);
+	}
+
+	
 	public void addTipoPublicacion(TipoPublicacion tp) {
 		String nombre = tp.getNombre();
 		this.tiposDePublicacion.put(nombre, tp);
@@ -58,5 +65,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	public boolean TipoPubliYaExiste(String nombre) {
 		return tiposDePublicacion.containsKey(nombre);
 	}
-
+	public boolean NombrePaqueteYaExiste(String nombre) {
+		return paquetes.containsKey(nombre);
+	}
 }

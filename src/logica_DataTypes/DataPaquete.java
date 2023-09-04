@@ -1,24 +1,26 @@
 package logica_DataTypes;
 
+import java.time.LocalDate;
+
 public class DataPaquete {
 
 	//Atributo
 	private String nombre;
 	private String descripcion;
-	private int cantidadTipos;
 	private int validez;
 	private int descuento;
-	private float costo;
+	private LocalDate fechadealta;
 	
-	public DataPaquete(String nombre, String descripcion, int cantTipos, int validez, int descuento, float costo) {
+	public DataPaquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta) {
 		this.nombre = nombre;
 		this.setDescripcion(descripcion);
-		this.setCantidadTipos(cantTipos);
 		this.setValidez(validez);
 		this.setDescuento(descuento);
-		this.setCosto(costo);
+		this.setFechaDeAlta(fechadealta);
 	}
 	
+	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -31,13 +33,7 @@ public class DataPaquete {
 		this.descripcion = descripcion;
 	}
 
-	public int getCantidadTipos() {
-		return cantidadTipos;
-	}
 
-	public void setCantidadTipos(int cantidadTipos) {
-		this.cantidadTipos = cantidadTipos;
-	}
 
 	public int getValidez() {
 		return validez;
@@ -55,11 +51,12 @@ public class DataPaquete {
 		this.descuento = descuento;
 	}
 
-	public float getCosto() {
-		return costo;
+	public LocalDate getFechaDeAlta() {
+		return fechadealta;
+	}
+	public void setFechaDeAlta(LocalDate fechadealta) {
+		this.fechadealta = fechadealta;
 	}
 
-	public void setCosto(float costo) {
-		this.costo = costo;
-	}
+	
 }

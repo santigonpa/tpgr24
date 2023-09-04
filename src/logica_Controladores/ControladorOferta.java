@@ -6,10 +6,12 @@ import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
+import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
 import logica_Entidades.TipoPublicacion;
 import utils.Fabrica;
+import logica_Entidades.Paquete;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
@@ -43,6 +45,19 @@ public class ControladorOferta implements IControladorOferta {
 		OfertaLaboral ofer = new OfertaLaboral(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
 		manejadorOferta.addOferta(ofer);
 		}
+	
+	public void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta) throws NombrePaqueteYaExiste{
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
+		
+		if(manejadorPyT.NombrePaqueteYaExiste(nombre)) {
+			throw new NombrePaqueteYaExiste("Ya existe un paquete con este nombre");
+		}
+		
+		Paquete paq = new Paquete(nombre,descripcion,validez,descuento,fechadealta);
+		manejadorPyT.addPaquete(paq);
+		}
+
 
 	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
@@ -123,4 +138,5 @@ public class ControladorOferta implements IControladorOferta {
 		
 		return of.getPostulantesString();
 	}
+
 }

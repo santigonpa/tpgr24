@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import utils.Fabrica;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
@@ -26,7 +25,7 @@ public class Principal {
 	private AltaDeOfertaLaboral altOfLab;
 	private PostulacionAOfertaLaboral PosAOferLab;
 	private AltaDeTipoDePublicacionDeOfertaLaboral Altideof;
-	
+	private CrearPaqueteDeTipoDePublicacionDeOfertasLaborales crearpaqtipopublioferlab;
 	
 	/**
 	 * Launch the application.
@@ -66,6 +65,8 @@ trabajouy.getContentPane().setLayout(null);
 trabajouy.getContentPane().add(altaUser);
 altaUser.getContentPane();
 conPaquetes = new ConsultaDeTiposDePublicacionDeOfertasLaborales();
+crearpaqtipopublioferlab = new CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(ICO);
+trabajouy.getContentPane().add(crearpaqtipopublioferlab);
 conPaquetes.setBounds(100, 100, 550, 300);
 conPaquetes.setMaximizable(true);
 conPaquetes.setClosable(true);
@@ -180,12 +181,13 @@ public void actionPerformed(ActionEvent e) {
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
 		
-		JFrame frame = new JFrame("");
+		//JFrame frame = new JFrame("");
 		
-		JMenuItem mntmProximamente = new JMenuItem("Proximamente");
+		JMenuItem mntmProximamente = new JMenuItem("Crear Paquetes De Tipo De publicacion de Ofertas Laborales");
 		mntmProximamente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent eprox) {
-				JOptionPane.showMessageDialog(frame, "Disponible proximamente");
+				crearpaqtipopublioferlab.setVisible(true);
+				crearpaqtipopublioferlab.limpiarFormulario();
 			}
 		});
 		mnNewMenu_2.add(mntmProximamente);

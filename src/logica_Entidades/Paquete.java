@@ -1,6 +1,7 @@
 package logica_Entidades;
 
 import java.util.Map;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import logica_DataTypes.DataPaquete;
@@ -10,27 +11,26 @@ public class Paquete {
 	//Atributos
 	private String nombre;
 	private String descripcion;
-	private int cantidadDeTipos;
 	private int validez;
 	private int descuento;
-	private float costo;
+	private LocalDate fechadealta;
 	private Map<String, TipoPublicacion> tipoPublicaciones;
 	
 	
 	//Contructor
 	//solo llamar si el descuento esta entre 0 y 100
-	public Paquete(String nombre, String descripcion, int cantTipos, int validez, int desc, float costo) {
+	public Paquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.cantidadDeTipos = cantTipos;
 		this.validez = validez;
-		this.descuento = desc;
-		this.costo = costo;
+		this.descuento = descuento;
+		this.fechadealta = fechadealta;
 		this.tipoPublicaciones = new HashMap<>();
 	}
 	
 	//getters
 	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -39,8 +39,8 @@ public class Paquete {
 		return descripcion;
 	}
 	
-	public int getCantidadDeTipos() {
-		return cantidadDeTipos;
+	public LocalDate getFechaDeAlta() {
+		return fechadealta;
 	}
 	
 	public int getValidez() {
@@ -61,7 +61,7 @@ public class Paquete {
 	
 	//setters
 	
-	public void setCantidadTipos(int cant) {
+	/*public void setCantidadTipos(int cant) {
 		this.cantidadDeTipos = cant;
 	}
 	
@@ -72,9 +72,9 @@ public class Paquete {
 		this.cantidadDeTipos = this.cantidadDeTipos + cant;
 		
 	}
-	
+	*/
 	public DataPaquete getDTPaquete() {
-		DataPaquete DtPaq = new DataPaquete(this.nombre, this.descripcion, this.cantidadDeTipos, this.validez, this.descuento, this.costo);
+		DataPaquete DtPaq = new DataPaquete(this.nombre, this.descripcion, this.validez, this.descuento, this.fechadealta);
 		return DtPaq;
 	}
 

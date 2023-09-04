@@ -252,9 +252,13 @@ Instant instant = nacimiento.toInstant();
 LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
 Usuario user = IMU.obtenerUsuario(nickname);
 if (verificarFormularioUsuario()) {
-if (!nickname.equals(selectedUsuario.getNickName())) {
-			 selectedUsuario.setNickName(nickname);
-	user.setNickName(nickname);
+
+	
+	if (!nickname.equals(selectedUsuario.getNickName())) {
+		/*	 selectedUsuario.setNickName(nickname);
+	user.setNickName(nickname);*/
+		 JOptionPane.showMessageDialog(this, "No puede modificar el nickname", "Modificar Datos De Usuario", JOptionPane.INFORMATION_MESSAGE);
+
 }
 			if (!nombre.equals(selectedUsuario.getNombre())) {
 			 selectedUsuario.setNombre(nombre);
@@ -265,8 +269,10 @@ if (!nickname.equals(selectedUsuario.getNickName())) {
 				user.setApellido(apellido);
 			}
 			if (!email.equals(selectedUsuario.getEmail())) {
-			 selectedUsuario.setEmail(email);
-				user.setEmail(email);
+				 JOptionPane.showMessageDialog(this, "No puede modificar el email", "Modificar Datos De Usuario", JOptionPane.INFORMATION_MESSAGE);
+
+			 /*selectedUsuario.setEmail(email);
+				user.setEmail(email);*/
 			}
 			
 			if (selectedUsuario instanceof DataEmpresa && user instanceof Empresa) {
@@ -287,6 +293,7 @@ if (!nickname.equals(selectedUsuario.getNickName())) {
 			if (selectedUsuario instanceof DataPostulante && user instanceof Postulante) {
 			 DataPostulante postulante = (DataPostulante) selectedUsuario;
 			 Postulante post = (Postulante) user;
+			 
 			 if (!nacionalidad.equals(postulante.getNacionalidad())) {
 			 postulante.setNacionalidad(nacionalidad);
 			 post.setNacionalidad(nacionalidad);
