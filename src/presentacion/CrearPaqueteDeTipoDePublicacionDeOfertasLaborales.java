@@ -29,6 +29,7 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 	public CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(IControladorOferta Ico) {
 		ICO = Ico;
 		setTitle("Crear Paquete De Tipo De Publicacion De Ofertas Laborales");
+		setBounds(100, 100, 374, 313);
 		getContentPane().setLayout(null);
 		
 		JLabel nombrePaq = new JLabel("Nombre de paquete:");

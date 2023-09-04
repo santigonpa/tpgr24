@@ -65,8 +65,6 @@ trabajouy.getContentPane().setLayout(null);
 trabajouy.getContentPane().add(altaUser);
 altaUser.getContentPane();
 conPaquetes = new ConsultaDeTiposDePublicacionDeOfertasLaborales();
-crearpaqtipopublioferlab = new CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(ICO);
-trabajouy.getContentPane().add(crearpaqtipopublioferlab);
 conPaquetes.setBounds(100, 100, 550, 300);
 conPaquetes.setMaximizable(true);
 conPaquetes.setClosable(true);
@@ -115,12 +113,20 @@ modDatosUser.setVisible(false);
 modDatosUser.cargarUsuarios();
 trabajouy.getContentPane().add(modDatosUser);
 modDatosUser.getContentPane();
+
 		conOfertaLab = new ConsultaDeOfertaLaboral(ICU, ICO);
 		conOfertaLab.setBounds(100, 100, 500, 456);
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);
 		trabajouy.getContentPane().add(conOfertaLab);
+		
+		crearpaqtipopublioferlab = new CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(ICO);
+		crearpaqtipopublioferlab.setBounds(100, 100, 374, 313);
+		crearpaqtipopublioferlab.setMaximizable(true);
+		crearpaqtipopublioferlab.setClosable(true);
+		crearpaqtipopublioferlab.setVisible(false);
+		trabajouy.getContentPane().add(crearpaqtipopublioferlab);
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -182,6 +188,8 @@ public void actionPerformed(ActionEvent e) {
 		menuBar.add(mnNewMenu_2);
 		
 		//JFrame frame = new JFrame("");
+		
+		
 		
 		JMenuItem mntmProximamente = new JMenuItem("Crear Paquetes De Tipo De publicacion de Ofertas Laborales");
 		mntmProximamente.addActionListener(new ActionListener() {
