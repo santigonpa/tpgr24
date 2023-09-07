@@ -2,10 +2,6 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.Set;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
@@ -17,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import excepciones.UsuarioNoExisteException;
-import excepciones.campoInvalidoException;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import logica_Manejadores.IManejadorUsuario;
@@ -246,10 +241,10 @@ String email = this.email.getText();
 DataUsuario selectedUsuario = (DataUsuario) comboBoxUSUARIOS.getSelectedItem();
 String descripcion = this.descripcion.getText();
 String web = this.link.getText();
-Date nacimiento = (Date) dateSpinner.getValue();
+//Date nacimiento = (Date) dateSpinner.getValue(); no se usa no se por que
 String nacionalidad = this.nacionalidad.getText();
-Instant instant = nacimiento.toInstant();
-LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+//Instant instant = nacimiento.toInstant(); no se usa no se por que
+//LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate(); no se usa no se por que
 Usuario user = IMU.obtenerUsuario(nickname);
 if (verificarFormularioUsuario()) {
 

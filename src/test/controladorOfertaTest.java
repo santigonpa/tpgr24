@@ -13,8 +13,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
