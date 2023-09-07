@@ -131,6 +131,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
 			String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
