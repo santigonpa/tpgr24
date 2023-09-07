@@ -7,6 +7,8 @@ import javax.swing.SpinnerDateModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.ZoneId;
+
 import javax.swing.JLabel;
 import logica_Controladores.IControladorOferta;
 import excepciones.NombrePaqueteYaExiste;
@@ -69,7 +71,7 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 		descuento.setColumns(10);
 		
 		fechadealtaSpinner = new JSpinner();
-		fechadealtaSpinner.setModel(new SpinnerDateModel(new Date(1693623600000L), new Date(-1241209800000L), new Date(1693623600000L), Calendar.DAY_OF_MONTH));
+		fechadealtaSpinner.setModel((new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR)));
 		JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(fechadealtaSpinner, "dd/MM/yyyy");
 		fechadealtaSpinner.setEditor(dateEditor);
 		fechadealtaSpinner.setBounds(113, 204, 93, 20);
@@ -106,8 +108,8 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 		String descripcion = this.descripcionpaquete.getText();
 		int validez = Integer.parseInt(this.validez.getText());
     	int descuento = Integer.parseInt(this.descuento.getText());
-    	LocalDate fechaDeAlta = (LocalDate) fechadealtaSpinner.getValue();
-    	//try {
+    	 Date fechaDeAltaDate = (Date) fechadealtaSpinner.getValue();
+         LocalDate fechaDeAlta = fechaDeAltaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();    	//try {
     	ICO.CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta);
         JOptionPane.showMessageDialog(this, "El paquete se creo con exito", "Crear Paquete De Tipo De Publicacion De Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
     	limpiarFormulario();
