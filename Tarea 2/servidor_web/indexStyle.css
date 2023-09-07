@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap');
+body{
+    font-family: 'Roboto Slab', serif;
+}
+*{
+    margin: 0;
+    padding:0;
+}
+.navbar-brand .logotipo-trabajouy {
+    width: 80px; /* Establece el ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-right: -15px; /* Espacio entre la imagen y el texto */
+    margin-top : -10px;
+}
+
+
+/* Estilos para el texto "TRABAJO UY" */
+.navbar-brand .texto-trabajo-uy {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Peso de fuente (negrita) */
+    color: #071857; /* Color de texto (rojo como ejemplo) */
+    text-shadow: #ffffff;
+    /* Otros estilos que desees aplicar */
+}
+
+/* Estilos para centrar la barra de búsqueda y el botón */
+
+.cover{
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    height: 540px;
+    background-image: url(rsz_fabian-irsara-67l-qujb14w-unsplash.jpg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover;
+}
+
+.titulo-trabajouy{
+    text-shadow: #FFFF;
+}
+
+
+/* Personaliza el componente de navegación de Bootstrap */
+.navbar {
+    margin: 0; /* Elimina el margen superior */
+    padding: 0; /* Elimina el relleno */
+}
+
+
+
+/* Personaliza el margen inferior del componente de navegación (opcional) */
+.navbar {
+    margin-bottom: 0 !important;
+}
