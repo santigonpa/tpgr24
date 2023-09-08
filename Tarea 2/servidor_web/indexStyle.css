@@ -26,14 +26,6 @@ body{
 
 /* Estilos para centrar la barra de búsqueda y el botón */
 
-.cover{
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    height: 540px;
-    background-image: url(rsz_fabian-irsara-67l-qujb14w-unsplash.jpg);
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-size: cover;
-}
 
 .titulo-trabajouy{
     text-shadow: #FFFF;
@@ -66,21 +58,21 @@ body{
 }
 
 .trabajo-uy {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 900;
   letter-spacing: 2px;
   text-shadow: #FFFF;
-  font-size: 48px;
+  font-size: 100px;
   margin-bottom: 10px; /* Agrega espacio en la parte inferior */
   margin-top: 0; /* Elimina el espacio en la parte superior predeterminado */
 }
 
 .slogan-uy {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 500;
   text-shadow: #FFFF;
   letter-spacing: 2px;
-  font-size: 20px;
+  font-size: 30px;
   margin-top: 10px; /* Agrega espacio en la parte superior */
   margin-bottom: 0; /* Elimina el espacio en la parte inferior predeterminado */
 }
