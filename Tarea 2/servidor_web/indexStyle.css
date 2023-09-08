@@ -76,6 +76,11 @@ body{
   margin-top: 10px; /* Agrega espacio en la parte superior */
   margin-bottom: 0; /* Elimina el espacio en la parte inferior predeterminado */
 }
+.trabajo-uy,
+.slogan-uy {
+  position: relative; /* Asegura que los títulos se coloquen sobre las olas */
+  z-index: 1; /* Establece un índice Z mayor que 0 para que estén encima de las olas */
+}
 
 p{
   font-family: 'Lato', sans-serif;
@@ -85,10 +90,13 @@ p{
 }
 
 .header-ola {
-  position:relative;
-  text-align:center;
-  background: #212529;
-  color:white;
+  position: relative;
+  text-align: center;
+  background-image: url('img/fondoPrincipal.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  z-index: -1;
 }
 .logo {
   width:50px;
@@ -163,9 +171,11 @@ p{
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
   .waves {
-    height:40px;
-    min-height:40px;
-  }
+  position: absolute;
+  width: 100%;
+  height: 100%; /* Establece el alto al 100% para que cubra toda la sección */
+  z-index: 0; /* Establece un índice Z menor que 1 para que esté detrás de los títulos */
+}
   .content {
     height:30vh;
   }
