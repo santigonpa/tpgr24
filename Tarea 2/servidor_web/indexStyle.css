@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap');
 body{
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Fira Sans Condensed', serif;
 }
 *{
     margin: 0;
@@ -61,7 +61,7 @@ body{
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 900;
   letter-spacing: 2px;
-  text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: #ffffff;
   font-size: 100px;
   margin-bottom: 10px; /* Agrega espacio en la parte inferior */
   margin-top: 0; /* Elimina el espacio en la parte superior predeterminado */
@@ -69,9 +69,9 @@ body{
 
 .slogan-uy {
   font-family: 'Fira Sans Condensed', sans-serif;
-  font-weight: 300;
-  text-shadow: 4px 2px 4px rgba(0, 0, 0, 1);
-  letter-spacing: 2px;
+  font-weight: 500;
+  text-shadow: #ffffff;
+  letter-spacing: 0.2px;
   font-size: 35px;
   margin-top: 10px; /* Agrega espacio en la parte superior */
   margin-bottom: 0; /* Elimina el espacio en la parte inferior predeterminado */
@@ -92,7 +92,7 @@ p{
 .header-ola {
   position: relative;
   text-align: center;
-  background-image: url('img/fondoPrincipal.jpg');
+  background-image: url('img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -182,4 +182,13 @@ p{
   h1 {
     font-size:24px;
   }
+}
+
+.nav-link,
+.navbar-toggler-icon,
+.nav-link.disabled,
+.form-control,
+.navbar-parte-usuario {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 300;
 }
