@@ -222,3 +222,17 @@ p{
   width: 100%; /* Ajusta el ancho de las imágenes dentro del carrusel al 100% */
   height: 100%; /* Ajusta la altura de las imágenes dentro del carrusel al 100% */
 }
+
+.contenedor {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.contenedorPrincipal{
+  margin-top: 30px; /*ajusta la distancia del titulo a la barra */
+  text-align: center;
+ }
+
+.contenedorCards{
+	  margin-left: 90px;
+}
