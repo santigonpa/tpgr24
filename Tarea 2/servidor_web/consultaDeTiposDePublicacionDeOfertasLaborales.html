@@ -25,13 +25,25 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
+    
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+      <script>
+        jQuery(document).ready(function() {
+            jQuery('.collapse').on('show.bs.collapse', function() {
+                // Cerrar todos los elementos colapsables, excepto el que se está abriendo
+                jQuery('.collapse').not(jQuery(this)).collapse('hide');
+            });
+        });
+    </script>
+     
     <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <title>Oferta Laboral</title>
+    <title>Consulta de tipos de publicacion de oferta laboral</title>
   </head>
   <body>
     <header>
@@ -149,41 +161,115 @@
 
 	</header>
 		<div class="contenedor">
-  			<h2 class="-titulo-">Tipos de Publicacion de Ofertas Laborales</h2>
+  			<h2 class="-titulo-"><strong>Tipos de Publicacion de Ofertas Laborales</strong></h2>
 	</div>
 	
-	<div class="contenedor2">
-	    	<div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="./img/imagenTP3.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Basica</h5>
-                        <a href="consultaDeTiposDePublicacionDeOfertaLaboral.html" class="btn btn-outline-dark">Mas informacion</a>
-                        </div>
-                      </div>
-                    </div>
-                      <div class="col-md-4">
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="./img/imagenTP5.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Estandar</h5>
-                        <a href="consultaDeTiposDePublicacionDeOfertaLaboral.html" class="btn btn-outline-dark">Mas informacion</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="./img/imagenTP2.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">Premium</h5>
-                        <a href="consultaDeTiposDePublicacionDeOfertaLaboral.html" class="btn btn-outline-dark">Mas informacion</a>
-                        </div>
-                      </div>
-                    </div>
+	<div class="contenedor3">
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card" style="width: 25rem;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="./img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Basica</h5>
+                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoBasica" aria-expanded="false" aria-controls="multiCollapseExample">Mas informacion</button>
                 </div>
-	</div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card" style="width: 25rem;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="./img/imagenTP2.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Estandar</h5>
+                   <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoEstandar" aria-expanded="false" aria-controls="multiCollapseExample2">Mas informacion</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card" style="width: 25rem;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="./img/imagenTP5.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Premium</h5>
+                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoPremium" aria-expanded="false" aria-controls="multiCollapseExample3">Mas informacion</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card" style="width: 25rem;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="./img/imagenTP4.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Destacada</h5>
+                   <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoDestacada" aria-expanded="false" aria-controls="multiCollapseExample4">Mas informacion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 	
-
+	<div class="contenedor4">
+  		<div class="col">
+    		<div class="collapse multi-collapse" id="infoDestacada" >
+     		 <div class="card card-body">
+       <strong style="font-size: 18px;">DESTACADA: DESTACA TU ANUNCIO </strong><br>
+       <span style="font-size: 18px;">Exposcicion: 2 <br>
+       Duracion: 15 dias <br>
+       Costo: 500 <br>
+       Fecha de alta: 05/08/2023 <br>
+       </span>
+     	 		</div>
+   	 		</div>
+ 		 </div>
+ 		 
+  	<div class="col">
+    	<div class="collapse multi-collapse" id="infoBasica">
+      		<div class="card card-body">
+       	<strong style="font-size: 18px;">BASICA: PUBLICA DE FORMA SENCILLA EN LA LISTA DE OFERTAS </strong><br>
+       	<span style="font-size: 18px;">Exposcicion: 4 <br>
+      	Duracion: 7 dias <br>
+       	Costo: 50 <br>
+       	Fecha de alta: 07/08/2023 <br>
+       	</span>
+     			 </div>
+    		</div>
+  		</div>
+  		
+  	<div class="col">
+    	<div class="collapse multi-collapse" id="infoEstandar">
+      		<div class="card card-body">
+       	<strong style="font-size: 18px;">ESTANDAR: MEJORA LA POSICION DE TU ANUNCIO </strong><br>
+       	<span style="font-size: 18px;">Exposcicion: 3 <br>
+       	Duracion: 20 dias <br>
+       	Costo: 150 <br>
+       	Fecha de alta: 15/08/2023 <br>
+       	</span>
+     			 </div>
+    		</div>
+  		</div>
+  		
+  	<div class="col">
+    	<div class="collapse multi-collapse" id="infoPremium">
+      		<div class="card card-body">
+       	<strong style="font-size: 18px;">PREMIUM: OBTEN MAXIMA VISIBILIDAD </strong><br>
+        <span style="font-size: 18px;">Exposcicion: 1 <br>
+       	Duracion: 30 dias <br>
+       	Costo: 4000 <br>
+       	Fecha de alta: 10/08/2023 <br>
+       	</span>
+     			 </div>
+    		</div>
+  		</div>
+  		
+	</div>	
+  		
 </body>
 </html>
