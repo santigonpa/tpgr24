@@ -251,6 +251,15 @@ p{
   width: 90%; /* Puedes ajustar el ancho según tus necesidades */
 }
 
+.contenedor5 {
+  background-color: rgb(240, 240, 240);
+  padding-bottom: 30px;
+  padding-left: 10px; 
+  padding-right: 10px;
+ 
+  width: 100%; /* Puedes ajustar el ancho según tus necesidades */
+}
+
 
 .contenedorPrincipal{
   margin-top: 30px; /*ajusta la distancia del titulo a la barra */
@@ -307,4 +316,11 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
 	margin-right: 50px;
 	width : 120%;
 	height : 180%;
+}
+
+.alinearImg2{
+	margin-top: 50px;
+	margin-right: 50px;
+	width : 100%;
+	height : 100%;
 }
