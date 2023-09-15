@@ -256,10 +256,14 @@ p{
   padding-bottom: 30px;
   padding-left: 10px; 
   padding-right: 10px;
+  overflow: hidden;
  
   width: 100%; /* Puedes ajustar el ancho según tus necesidades */
 }
 
+i{
+	font-size: 25px;
+}
 
 .contenedorPrincipal{
   margin-top: 30px; /*ajusta la distancia del titulo a la barra */
