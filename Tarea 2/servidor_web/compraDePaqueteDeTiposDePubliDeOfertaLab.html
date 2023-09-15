@@ -1,144 +1,187 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap"
-    />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="indexStyle.css" />
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap" />
 
-    <link
-      rel="icon"
-      href="./img/logotipoTrabajoUy-transformed.png"
-      type="image/x-icon"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
-    />
-    <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-<title>Insert title here</title>
+<link rel="icon" href="./img/logotipoTrabajoUy-transformed.png"
+	type="image/x-icon" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous" />
+<!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+<title>Paquetes</title>
 </head>
 <body>
 	<header>
-		<nav class="navbar bg-dark px-5">
-    	<a class="navbar-brand" href="index.html">
-      		<img src="./img/logoNuevo.png" 
-      		alt="Logo" 
-      		width="42" 
-      		height="44">
-    	</a>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Usuarios
+		<nav class="navbar bg-dark px-5 ">
+			<a class="navbar-brand" href="index.html"> <img
+				src="./img/logoNuevo.png" alt="Logo" width="42" height="44">
+			</a>
 
-            </a>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
-              <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar perfil</a></li>
-              <li><hr class="dropdown-divider" /></li>
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Ofertas Laborales
+			<div class=button-grup>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					style="color: white">Usuarios </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+						<li><a class="dropdown-item"
+							href="modificarDatosDeUsuario.html">Modificar perfil</a></li>
+						<li><hr class="dropdown-divider" /></li>
+					</ul></li>
+			</div>
 
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              <li><a class="dropdown-item" href="postulacionAOfertaLaboral.html">Postularse a Oferta</a></li>
-              <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
-              <li><hr class="dropdown-divider" /></li>
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown" >
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Paquetes
+			<div class=button-grup>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					style="color: white">Ofertas Laborales </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear
+								Oferta Laboral</a></li>
+						<li><a class="dropdown-item"
+							href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
+						<li><a class="dropdown-item"
+							href="postulacionAOfertaLaboral.html">Postularse a Oferta</a></li>
+						<li><a class="dropdown-item"
+							href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos
+								de Publicaciones</a></li>
+						<li><hr class="dropdown-divider" /></li>
+					</ul></li>
+			</div>
 
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDePaqueteDeTiposDePubliDeOfertaLab.html">Ver Paquetes</a></li>
-              <li><a class="dropdown-item" href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Comprar Paquetes</a></li>
-              <li><hr class="dropdown-divider" /></li>
-            </ul>
-          </li>
-          </div>
-  	
-  		<div class = button-grup>
-  			<form class="d-flex" role="search">
-      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-    		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		width: 200px;
-    		</form>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="altaDeUsuario.html"
-              style="color: white"
-              >Registrarse</a
-            >
-          </li>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="inicioDeSesion.html"
-              style="color: white"
-              >Iniciar Sesion</a
-            >
-          </li>
-  		</div>
-  		
-	</nav>
+			<div class=button-grup>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					style="color: white">Paquetes </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item"
+							href="consultaDePaqueteDeTiposDePubliDeOfertaLab.html">Ver
+								Paquetes</a></li>
+						<li><a class="dropdown-item"
+							href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Comprar
+								Paquetes</a></li>
+						<li><hr class="dropdown-divider" /></li>
+					</ul></li>
+			</div>
+
+			<div class=button-grup>
+				<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Buscar"
+						aria-label="Buscar">
+					<button class="btn btn-secondary" type="submit">Buscar</button>
+					width: 200px;
+				</form>
+			</div>
+
+			<div class=button-grup>
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="altaDeUsuario.html" style="color: white">Registrarse</a>
+				</li>
+			</div>
+
+			<div class=button-grup>
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="inicioDeSesion.html" style="color: white">Iniciar
+						Sesión</a></li>
+			</div>
+
+		</nav>
 	</header>
+
+	<div class="contenedor">
+		<h2 class="-titulo-">¡Compra Paquetes de Tipos de Publicación de
+			Ofertas Laborales!</h2>
+	</div>
+
+	<div class="contenedor3">
+		<div class="row mt-4">
+			<div class="col-md-3">
+				<div class="card" style="width: 18rem;">
+					<div style="overflow: hidden; width: 100%; height: 15rem;">
+						<!-- Corta la imagen -->
+						<img class="card-img-top" src="./img/imagenPaquete1.jpg"
+							alt="Card image cap"
+							style="object-fit: cover; width: 100%; height: 100%;">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Básico</h5>
+						<a href="consultaPaqueteBasico.html" class="btn btn-outline-dark w-100">Más
+							informacion</a>
+						<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="card" style="width: 18rem;">
+					<div style="overflow: hidden; width: 100%; height: 15rem;">
+						<!-- Corta la imagen -->
+						<img class="card-img-top" src="./img/imagenPaquete2.jpg"
+							alt="Card image cap"
+							style="object-fit: cover; width: 100%; height: 100%;">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Destacado</h5>
+						<a href="consultaPaqueteDestacado.html"
+							class="btn btn-outline-dark w-100">Más informacion</a>
+
+						<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="card" style="width: 18rem;">
+					<div style="overflow: hidden; width: 100%; height: 15rem;">
+						<!-- Corta la imagen -->
+						<img class="card-img-top" src="./img/imagenDefaultPaquete2.jpg"
+							alt="Card image cap"
+							style="object-fit: cover; width: 100%; height: 100%;">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Premium</h5>
+						<a href="consultaPaqueteBasico.html" class="btn btn-outline-dark w-100">Más
+							informacion</a>
+						<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="card" style="width: 18rem;">
+					<div style="overflow: hidden; width: 100%; height: 15rem;">
+						<!-- Corta la imagen -->
+						<img class="card-img-top" src="./img/imagenDefaultPaquete2.jpg"
+							alt="Card image cap"
+							style="object-fit: cover; width: 100%; height: 100%;">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">Express</h5>
+						<a href="consultaPaqueteBasico.html" class="btn btn-outline-dark w-100">Más
+							informacion</a>
+						<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
