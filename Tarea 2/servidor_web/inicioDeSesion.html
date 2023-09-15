@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="indexStyle.css" />
@@ -17,7 +16,7 @@
 
     <link
       rel="icon"
-      href="./img/logotipoTrabajoUy-transformed.png"
+      href="./img/logoNuevo.png"
       type="image/x-icon"
     />
     <link
@@ -32,7 +31,20 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-<title>Insert title here</title>
+    <style>
+		body{
+			margin: 0; /* Elimina el margen predeterminado del body */
+			padding: 0; /* Elimina el relleno predeterminado del body */
+			background: linear-gradient(to bottom, #212529 35%, #eee 55% );
+			min-height: 50vh; /* Establece una altura mínima del viewport para main */
+		}
+		.bg{
+			background-image: url(./img/prueba.jpg);
+			background-position: center center;
+			background-size:cover;
+		}
+	</style>
+<title>Iniciar sesion</title>
 </head>
 <body>
 	<header> 
@@ -140,5 +152,148 @@
   		
 	</nav>
 	</header>
+	
+	<main>
+		<div class="container w-75 bg-white mt-5 mb-0 rounded shadow"  style="margin-bottom: 20px">
+			<div class="row align-items-strech">
+				<div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded ">
+					
+				</div>
+				<div class="col bg-white p-4 rounded-end">
+					<div class="text-end">
+						<img src="./img/logoNuevo.png" width="48" alt="">
+					</div>
+					<h2 class="fw-bold text-center">Bienvenido</h2>
+					<h5 class="fw-bold text-center">Inicio de sesión</h5>
+					
+					<!--Login-->
+					<form>
+						<div>
+							<label for="email" class="form-label" >Usuario</label>
+							<input type="text" class="form-control" name="email">
+						</div>
+						<div>
+							<label for="password" class="form-label">Contraseña</label>
+							<input type="password" class="form-control" name="password">
+						</div>
+						<div class="d-grid">
+							<button type="submit" class="btn btn-dark">Iniciar sesión</button>
+						</div>
+						<div class="my-3">
+							<span>¿No tienes cuenta? <a href="altaDeUsuario.html">Regístrate.</a></span> <br>
+							<span><a href="#">Recuperar contraseña.</a></span>
+						</div>
+					</form>
+					
+					
+				</div>
+			</div>
+		</div>
+		
+	</main>
+	<footer class="bs-light text-dark pt-5">
+		   <div class="contenedor5 text-center text-md-start">
+			   <div class ="row text-center text-md-start">
+	  
+				   <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+					   <h5 class="text-uppercase mb-4 font-weight-bold text-dark">Nosotros</h5>
+					   <hr class="mb-3">
+					  <p> 
+       				  Desde nuestra creación en 2023, hemos sido una plataforma dedicada a facilitar la conexión entre empresas y postulantes en busca de oportunidades laborales emocionantes. Ya seas una empresa en busca de un talento o un postulante en búsqueda de tu próximo desafío, estamos aquí para ayudarte a alcanzar tus metas.
+    				  </p>
+    				 <p>
+        			Nuestra misión es servir como el puente que une a empleadores y futuros empleados, ayudando a construir equipos exitosos y carreras sólidas. ¡Únete a nuestra comunidad y da el siguiente paso en tu camino profesional!
+    				</p>
+					</div>
+					   
+					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Déjanos ayudarte</h5> 
+							<hr class="mb-3">
+							<p>
+								<a href="inicioDeSesion.html" class="text-dark">Tu cuenta</a>
+							</p>
+							<p>
+								<a href="consultaDeOfertasLaborales.html" class="text-dark">Ofertas</a>
+							</p>
+							<p>
+								<a href="consultaDeTiposDePublicacionDeOfertasLaborales.html" class="text-dark">Tipos de publicación</a>
+							</p>
+							<p>
+								<a href="#" class="text-dark">Ayuda</a>
+							</p>
+					   </div>
+					   
+					    <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Contacto</h5> 
+							<hr class="mb-3">
+							<p>
+								<li class="fas fa-map me-3"></li>Av. Julio Herrera y Reissig 565
+							</p>
+							<p>
+								<li class="fas fa-envelope me-3"></li>trabajouy@jobs.com
+							</p>
+							<p>
+								<li class="fas fa-phone me-3"></li>2714 2714
+							</p>
+							<p>
+								<li class="fas fa-university me-3"></li>FING
+							</p>
+					   </div>
+					   
+					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+						<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Newsletter</h5> 
+						<hr class="mb-3">
+						
+						<form action="">
+                        	<div class="form-group">
+                            	<input type="email" class="form-control" placeholder="Email"
+                                 required="required"/>
+                        	</div>
+                        	<div>
+                            	<button class="btn btn-outline-dark" type="submit">Suscribirme</button>
+                        	</div>
+                    	</form>
+					   </div>
+					   
+				
+					   
+					<div class="text-center mb-2">
+					<p>	
+						© 2023 FRAGSESAMA & Cía. S.A.
+					</p>
+					<p>
+						Todos los derechos reservados.
+					</p>
+					</div>
+					
+					<div class="text-center">
+						<ul class="list-unstyled list-inline">
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-facebook"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-twitter"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-google-plus"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-linkedin-in"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-youtube"></i>
+								</a>
+							</li>
+						</ul>
+				    </div>
+				    
+        		</div>
+        	</div>
+ 
+	</footer>
 </body>
 </html>
