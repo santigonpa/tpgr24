@@ -322,9 +322,10 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
 	height : 180%;
 }
 
-.alinearImg2{
-	margin-top: 50px;
+.alinearImg3{
+	margin-top: 90px;
 	margin-right: 50px;
-	width : 100%;
+	width : 90%;
 	height : 100%;
 }
+
