@@ -63,10 +63,10 @@ body{
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 900;
   letter-spacing: 2px;
-  text-shadow: #ffffff;
   font-size: 100px;
-  margin-bottom: 10px; /* Agrega espacio en la parte inferior */
-  margin-top: 0; /* Elimina el espacio en la parte superior predeterminado */
+  margin-bottom: 10px;
+  margin-top: 0;
+  text-shadow: 3px 3px 0px black;
 }
 
 .slogan-uy {
@@ -94,12 +94,13 @@ p{
 .header-ola {
   position: relative;
   text-align: center;
-  background-image: url('img/prueba.jpg');
+  background-image: url('img/fotoUsuarios.jpg');
   background-size: cover;
   background-position: center;
   color: white;
   z-index: -1;
 }
+
 .logo {
   width:50px;
   fill:white;
@@ -374,4 +375,25 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
     color: #343a40; 
     text-shadow: #ffffff;
 }
+
+
+
+
+/* Estilos para el contenedor de la alerta */
+.alert {
+  text-align: center; /* Centra el texto horizontalmente */
+  padding: 20px; /* Agrega espaciado interno para el margen */
+  margin-top: 100px;	/* Agrega margen superior para separar del encabezado */
+  margin-bottom: 20px;/* Agrega margen inferior para separar del pie de página */
+}
+
+/* Estilos para el texto dentro de la alerta */
+.alert p {
+  font-size: 16px; /* Tamaño de fuente deseado */
+  margin: 5px 0; /* Margen superior e inferior para separar los párrafos */
+}
+
+
+
+
 
