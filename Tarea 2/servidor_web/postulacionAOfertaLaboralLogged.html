@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+ 
   <head>
-   <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
+    <link rel="stylesheet" href="postulacionAOfertaLaboralStyle.css" />
     <link rel="stylesheet" href="normalize.css" />
     <link
       rel="stylesheet"
@@ -16,7 +17,7 @@
 
     <link
       rel="icon"
-      href="./img/logotipoTrabajoUy-transformed.png"
+      href="./img/logoNuevo.png"
       type="image/x-icon"
     />
     <link
@@ -25,7 +26,7 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
     <script
@@ -33,8 +34,7 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-
-    <title>Ofertas Laborales</title>
+    <title>TrabajoUY</title>
   </head>
   <body>
     <header>
@@ -46,7 +46,7 @@
             
             -->
 
-      <nav class="navbar bg-dark px-5">
+	<nav class="navbar bg-dark px-5">
     	<a class="navbar-brand" href="index.html">
       		<img src="./img/logoNuevo.png"
       		alt="Logo" 
@@ -150,148 +150,131 @@
   		
 	</nav>
 
+
+      <div class="header-ola">
+        <!--Content before waves-->
+        <div
+          class="inner-header d-flex justify-content-center align-items-center flex-column"
+        >
+          <h1 class="trabajo-uy">Postular a una Oferta Laboral</h1>
+        </div>
+
+        <!--Waves Container-->
+        <div>
+          <svg
+            class="waves"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28"
+            preserveAspectRatio="none"
+            shape-rendering="auto"
+          >
+            <defs>
+              <path
+                id="gentle-wave"
+                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+              />
+            </defs>
+            <g class="parallax">
+              <use
+                xlink:href="#gentle-wave"
+                x="48"
+                y="0"
+                fill="rgba(255,255,255,0.7"
+              />
+              <use
+                xlink:href="#gentle-wave"
+                x="48"
+                y="3"
+                fill="rgba(255,255,255,0.5)"
+              />
+              <use
+                xlink:href="#gentle-wave"
+                x="48"
+                y="5"
+                fill="rgba(255,255,255,0.3)"
+              />
+              <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+          </svg>
+        </div>
+        <!--Waves end-->
+      </div>
+      <!--Header ends-->
+
+      <!--Content starts-->
+
+      <!--Content ends-->
     </header>
-	<div class="contenedor">
-  		<h2 class="titulo">Ofertas Laborales</h2>
-	</div>
-	<div class = "contenedorPrincipal">
-	<div class="container text-center">
-  		<div class="row">
-   		<div class="col">
-      		<select class="form-select" aria-label="Default select example">
-  				<option selected>Filtrar por empresa</option>
-  				<option value="1">EcoTech</option>
-			</select>
-    	</div>
-    	<div class="col">
-      		<select class="form-select" aria-label="Default select example">
-  				<option selected>Filtrar por keyword</option>
-  				<option value="k1">Tiempo completo</option>
-  				<option value="k2">Medio tiempo</option>
-  				<option value="k3">Remoto</option>
-  				<option value="k3">Freelance</option>
-  				<option value="k1">Temporal</option>
-  				<option value="k2">Permanente</option>
+    
+    
+    
+	    <main>
+	  		<div class="contenedor">
+        <h2 class="titulo">Ofertas Laborales</h2>
+    </div>
+    <div class="contenedorPrincipal">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Filtrar por empresa</option>
+                        <option value="1">EcoTech</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Filtrar por KeyWord</option>
+                        <option value="k1">Tiempo completo</option>
+                        <option value="k2">Medio tiempo</option>
+                        <option value="k3">Remoto</option>
+                        <option value="k4">Freelance</option>
+                        <option value="k5">Temporal</option>
+                        <option value="k6">Permanente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="contenedorCards">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://tinyurl.com/45nsf34m" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Desarrollador Frontend</h5>
+                            <p class="card-text">Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.</p>
+                            <a href="postularmeAOferta1.html" class="btn btn-outline-dark">Postularme</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://tinyurl.com/4n2vpurk" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Analista de Marketing Digital</h5>
+                            <p class="card-text">Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.</p>
+                            <a href="postularmeAOferta2.html" class="btn btn-outline-dark">Postularme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			</select>
-    	</div>
-  	</div>
-	</div>
-	<div class = "contenedorCards">
-		<div class = "row mt-4">
-			<div class="col-md-4">
-			<div class="card" style="width: 18rem;">
- 				 <img src="https://tinyurl.com/45nsf34m"https://tinyurl.com/45nsf34m"" class="card-img-top" alt="...">
-  				 <div class="card-body">
-    				<h5 class="card-title">Desarrollador Frontend</h5>
-    				<p class="card-text">Unete a nuestro equipo de desarrollo frontend y crea experiencia de usuario excepcionales.</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-		    </div>
-		   
-			
-			
-			<div class="col-md-4">
-			<div class="card" style="width: 18rem;">
- 				 <img src="https://tinyurl.com/4n2vpurk" class="card-img-top" alt="...">
-  				 <div class="card-body">
-    				<h5 class="card-title">A. de Marketing Digital</h5>
-    				<p class="card-text">Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.</p>
-   					 <a href="consultaOfertaLaboral2.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-			</div>
-			
-			<div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div style="overflow: hidden; width: 100%; height: 10rem;">
- 				 <img src="./img/fotoOfertas.jpeg" class="card-img-top" alt="...">
-				</div>
-  				 <div class="card-body">
-    				<h5 class="card-title">Estratega de Negocios</h5>
-    				<p class="card-text">Forma parte de nuestro equipo de estrategia contrubuye al crecimiento de las empresa...</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-			</div>
-			</div>
-		
-		<div class = "row mt-4">
-			<div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div style="overflow: hidden; width: 100%; height: 10rem;">
- 				 <img src="./img/fotoOfertas.jpeg" class="card-img-top" alt="...">
-				</div>
-  				 <div class="card-body">
-    				<h5 class="card-title">Diseñador UX/UI</h5>
-    				<p class="card-text"> Trabaja en colaboracion con nuestro talentoso equipo de diseño para crear soluciones impactantes.</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-		    </div>
-		    
-		    <div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div style="overflow: hidden; width: 100%; height: 10rem;">
- 				 <img src="./img/fotoOfertas.jpeg" class="card-img-top" alt="...">
-				</div>
-  				 <div class="card-body">
-    				<h5 class="card-title">Analista de Datos</h5>
-    				<p class="card-text">Ayuda a nstros clientes a tomar decisiones informadas basadas en analisis y visualizaciones de datos.</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-		    </div>
-		    
-		     <div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div style="overflow: hidden; width: 100%; height: 10rem;">
- 				 <img src="./img/fotoOfertas.jpeg" class="card-img-top" alt="...">
-				</div>
-  				 <div class="card-body">
-    				<h5 class="card-title">Content Manager</h5>
-    				<p class="card-text">Gestion y crea contenido persuasivo y relevante ara impulsar la presencia en linea de...</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-		    </div>
-		    
-		    
-		</div>
-		
-		<div class = "row mt-4">
-			<div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div style="overflow: hidden; width: 100%; height: 10rem;">
- 				 <img src="./img/fotoOfertas.jpeg" class="card-img-top" alt="...">
-				</div>
-  				 <div class="card-body">
-    				<h5 class="card-title">Soporte Tecnico</h5>
-    				<p class="card-text">Ofrece n excelente servicio de soporte tecnico a nuestros clientes, resolviendo problemas y brindando soluciones.</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-		    </div>
-		    
-		    <div class="col-md-4">
-			<div class="card" style="width: 18rem;">
-				<div style="overflow: hidden; width: 100%; height: 10rem;">
- 				 <img src="./img/fotoOfertas.jpeg" class="card-img-top" alt="...">
-				</div>
-  				 <div class="card-body">
-    				<h5 class="card-title">Contador Senior</h5>
-    				<p class="card-text">Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.</p>
-   					 <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-  				  </div>
-			</div>
-		    </div>
-		    
+            <div class="row mt-4">
+                <!-- Aquí puedes agregar más tarjetas según sea necesario -->
+            </div>
 
-	</div>
-	</div>
-	
-	<!--Footer-->
+            <div class="row mt-4">
+                <!-- Y aquí también puedes agregar más tarjetas según sea necesario -->
+            </div>
+        </div>
+    </div>
+		</main>
+    
+    
+    
+    
+    
+    <!--Footer-->
        <footer class="bs-light text-dark pt-5">
 		   <div class="contenedor5 text-center text-md-start">
 			   <div class ="row text-center text-md-start">
@@ -396,3 +379,8 @@
         	</div>
  
 	</footer>
+       
+       
+       
+  </body>
+</html>
