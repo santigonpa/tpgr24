@@ -2,141 +2,101 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap"
-    />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="indexStyle.css" />
+<link rel="stylesheet" href="normalize.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap" />
 
-	<link rel="icon" href="./img/logoNuevo.png" type="image/x-icon" />
+<link rel="icon" href="./img/logoNuevo.png" type="image/x-icon" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
-    />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
 <title>TrabajoUY</title>
 </head>
 <body>
 	<header>
 		<nav class="navbar bg-dark px-5 ">
-    	<a class="navbar-brand" href="index.html">
-      		<img src="./img/logoNuevo.png"
-      		alt="Logo" 
-      		width="42" 
-      		height="44">
-    	</a>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Usuarios
+			<a class="navbar-brand" href="index.html"> <img
+				src="./img/logoNuevo.png" alt="Logo" width="42" height="44">
+			</a>
 
-            </a>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
-              <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar perfil</a></li>
-              <li><hr class="dropdown-divider" /></li>
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Ofertas Laborales
+			<div class=button-grup>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					style="color: white">Usuarios </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+						<li><a class="dropdown-item"
+							href="modificarDatosDeUsuario.html">Modificar perfil</a></li>
+					</ul></li>
+			</div>
 
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              <li><a class="dropdown-item" href="postulacionAOfertaLaboral.html">Postularse a Oferta</a></li>
-              <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
-              <li><hr class="dropdown-divider" /></li>
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown" >
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Paquetes
+			<div class=button-grup>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					style="color: white">Ofertas Laborales </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear
+								Oferta Laboral</a></li>
+						<li><a class="dropdown-item"
+							href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
+						<li><a class="dropdown-item"
+							href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos
+								de Publicaciones</a></li>
+					</ul></li>
+			</div>
 
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDePaqueteDeTiposDePubliDeOfertaLab.html">Ver Paquetes</a></li>
-              <li><a class="dropdown-item" href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Comprar Paquetes</a></li>
-              <li><hr class="dropdown-divider" /></li>
-            </ul>
-          </li>
-          </div>
-  	
-  		<div class = button-grup>
-  			<form class="d-flex" role="search">
-      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-    		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		width: 200px;
-    		</form>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="altaDeUsuario.html"
-              style="color: white"
-              >Registrarse</a
-            >
-          </li>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="inicioDeSesion.html"
-              style="color: white"
-              >Iniciar Sesion</a
-            >
-          </li>
-  		</div>
-  		
-	</nav>
-	</header>	
+			<div class=button-grup>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"
+					style="color: white">Paquetes </a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item"
+							href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Ver
+								Paquetes</a></li>
+					</ul>
+				</li>
+			</div>
+
+			<div class=button-grup>
+				<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Buscar"
+						aria-label="Buscar">
+					<button class="btn btn-secondary" type="submit">Buscar</button>
+					width: 200px;
+				</form>
+			</div>
+
+			<div class=button-grup>
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="altaDeUsuario.html" style="color: white">Registrarse</a>
+				</li>
+			</div>
+
+			<div class=button-grup>
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="inicioDeSesion.html" style="color: white">Iniciar
+						Sesión</a></li>
+			</div>
+
+		</nav>
+	</header>
 	
 	<div class="contenedor4">
   		<h2 class="-titulo-"><strong>Paquete de Tipo de Publicacion de Ofertas Laborales</strong></h2>
