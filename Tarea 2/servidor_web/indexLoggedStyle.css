@@ -318,11 +318,34 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
     color: var(--bs-primary) !important;
 }
 
-.carousel-containerOfer{
-  width: 80%; /* Establece el ancho del contenedor */
-  height: 600px; /* Establece la altura del contenedor */
-  overflow: hidden; /* Oculta el contenido que exceda el contenedor */
-  background-size: cover;
+.container-galeria{
+	display : flex;
+	justify-content: center;
+	margin-top :25px;
+	width: 100%; /* Ocupa el 100% del ancho del contenedor */
+}
+
+.galeria{
+  display : flex;
+  box-shadow: 6px 6px 15px black;
+  height :430px;
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  
+}
+
+.galeria img {
+	width : 0px;
+	flex-grow : 1;
+	object-fit : cover;
+	opacity :.8;
+	transition : .5s ease;
+}
+
+section img:hover {
+	
+	width :300px;
+	opacity : 1;
+	filter : contrast  (120%);
 }
 
 .alinearImg{
