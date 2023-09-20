@@ -70,7 +70,6 @@
               <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
               <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar perfil</a></li>
-              <li><hr class="dropdown-divider" /></li>
             </ul>
           </li>
           </div>
@@ -90,9 +89,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
               <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              
               <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
-              <li><hr class="dropdown-divider" /></li>
             </ul>
           </li>
           </div>
@@ -110,9 +107,7 @@
 
             </a>
             <ul class="dropdown-menu">
-              
               <li><a class="dropdown-item" href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Ver Paquetes</a></li>
-              <li><hr class="dropdown-divider" /></li>
             </ul>
           </li>
           </div>
@@ -125,32 +120,23 @@
     		</form>
   		</div>
   		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="altaDeUsuario.html"
-              style="color: white"
-              >Registrarse</a
-            >
-          </li>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="inicioDeSesion.html"
-              style="color: white"
-              >Iniciar Sesion</a
-            >
-          </li>
-  		</div>
+  		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
+        <div class="nav-button"> <!-- Contenedor del botón -->
+            <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
+                <img src="https://imgv3.fotor.com/images/gallery/a-woman-linkedin-picture-with-grey-background-made-by-LinkedIn-Profile-Picture-Maker.jpg" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+                Mi Usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
+                <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
+                <!-- no se si meter ese js-->
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
   		
 	</nav>
-
 
       <div class="header-ola">
         <!--Content before waves-->

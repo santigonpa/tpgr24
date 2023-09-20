@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
+<html lang="es">
+ 
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
+    <link rel="stylesheet" href="indexLoggedStyle.css" />
     <link rel="stylesheet" href="normalize.css" />
     <link
       rel="stylesheet"
@@ -13,16 +14,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap"
     />
-    
-	<link
-      rel="icon"
-      href="./img/logoNuevo.png"
-      type="image/x-icon"
-    />
 
     <link
       rel="icon"
-      href="./img/logotipoTrabajoUy-transformed.png"
+      href="./img/logoNuevo.png"
       type="image/x-icon"
     />
     <link
@@ -31,18 +26,27 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-<title>TrabajoUY</title>
-</head>
-<body>
-	<header>
-		<nav class="navbar bg-dark px-5 ">
+    <title>TrabajoUY</title>
+  </head>
+  <body>
+    <header>
+      <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
+      <!-- esto se debe implementar mas adelante  
+            
+                <img class = "logotipo-trabajouy" src="logotipoTrabajoUy-transformed.png" alt="Logotipo de Mi Sitio">
+            
+            
+            -->
+
+	<nav class="navbar bg-dark px-5">
     	<a class="navbar-brand" href="index.html">
       		<img src="./img/logoNuevo.png"
       		alt="Logo" 
@@ -115,29 +119,21 @@
     		</form>
   		</div>
   		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="altaDeUsuario.html"
-              style="color: white"
-              >Registrarse</a
-            >
-          </li>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="inicioDeSesion.html"
-              style="color: white"
-              >Iniciar Sesión</a
-            >
-          </li>
-  		</div>
+  		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
+        <div class="nav-button"> <!-- Contenedor del botón -->
+            <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
+                <img src="https://imgv3.fotor.com/images/gallery/a-woman-linkedin-picture-with-grey-background-made-by-LinkedIn-Profile-Picture-Maker.jpg" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+                Mi Usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
+                <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
+                <!-- no se si meter ese js-->
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
   		
 	</nav>
 	</header>	
