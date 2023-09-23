@@ -1,4 +1,4 @@
-package Controllers;
+package com.controllers;
 
 public class altaDeUsuario {
 
