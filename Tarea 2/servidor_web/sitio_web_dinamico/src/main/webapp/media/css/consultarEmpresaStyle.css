@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.cartas-ofertas {
+  display: grid;
+  margin:20px ;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Crea columnas automáticas */
+  grid-gap: 110px; /* Espacio entre las cartas */
+}
+
+.card {
+  padding: 10px;
+  margin : 20px;
+  text-align: center;
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el div */
+  background-position: center; /* Centra la imagen en el div */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  /* Agrega otros estilos según tus preferencias */
+}
+
+.texto-of{
+	margin : 50px;
+}
