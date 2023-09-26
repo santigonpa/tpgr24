@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class Home
  */
-@WebServlet (description = "Servlet de inicio", urlPatterns = { "/TrabajoUY/home" })
+@WebServlet (description = "Servlet de inicio", urlPatterns = { "/home" })
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -35,7 +35,7 @@ public class Home extends HttpServlet {
     
     public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
-		return (EstadoSesion) request.getSession().getAttribute("estado_sesion");
+		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
     
     
@@ -51,7 +51,7 @@ public class Home extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciar.jsp"); //obtiene dispatcher construido con la ruta
 				dispatcher.forward(request, response);// envia los datos hacia la ruta con el request y response
 				break;
-			case SI_LOGEADO:
+		case SI_LOGEADO:
 				// hace que se ejecute el jsp sin cambiar la url
 				RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp"); //obtiene dispatcher construido con la ruta
 				dispatcher2.forward(request, response);// envia los datos hacia la ruta con el request y response

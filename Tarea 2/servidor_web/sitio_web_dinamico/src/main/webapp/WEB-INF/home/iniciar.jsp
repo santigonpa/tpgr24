@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/normalize.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -20,7 +20,7 @@
 
     <link
       rel="icon"
-      href="./img/logoNuevo.png"
+      href="media/img/logoNuevo.png"
       type="image/x-icon"
     />
     <link
@@ -51,12 +51,12 @@
       		
       		<div class="container-galeria">
 				  <section class = "galeria">
-				  		<img src = "/media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" >
-				  		<img src = "/img/of1.jpg" >
-				  		<img src = "/img/of2.jpg" >
-				  		<img src = "/img/of3.jpg" >
-				  		<img src = "/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" >
-				  		<img src = "/img/irina-2Q8bo_6lu1Y-unsplash.jpg" >
+				  		<img src = "media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" >
+				  		<img src = "media/img/of1.jpg" >
+				  		<img src = "media/img/of2.jpg" >
+				  		<img src = "media/img/of3.jpg" >
+				  		<img src = "media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" >
+				  		<img src = "media/img/irina-2Q8bo_6lu1Y-unsplash.jpg" >
 				  </section>
 				</div>
       		

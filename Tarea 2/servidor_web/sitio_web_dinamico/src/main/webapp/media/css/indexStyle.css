@@ -88,16 +88,6 @@ p{
   font-size:14px;
   color: #333333;
 }
-
-.header-ola {
-  position: relative;
-  text-align: center;
-  background-image: url('img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  z-index: -1;
-}
 .logo {
   width:50px;
   fill:white;

@@ -12,7 +12,7 @@
 
 	<nav class="navbar bg-dark px-5">
     	<a class="navbar-brand" href="index.html">
-      		<img src="./img/logoNuevo.png"
+      		<img src="media/img/logoNuevo.png"
       		alt="Logo" 
       		width="42" 
       		height="44">
@@ -110,7 +110,7 @@
 	</nav>
 
 
-      <div class="header-ola">
+      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
         <!--Content before waves-->
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
