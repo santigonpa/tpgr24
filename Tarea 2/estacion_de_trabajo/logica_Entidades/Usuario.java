@@ -9,6 +9,7 @@ public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private String email;
+	private String psw;
 
 	//Constructor
 	
@@ -60,5 +61,13 @@ public abstract class Usuario {
 	public DataUsuario getDTUsuario(){
 		DataUsuario DtUser = new DataUsuario(this.nickName, this.nombre, this.apellido, this.email);
 		return DtUser;
+	}
+
+	public String getPsw() {
+		return psw;
+	}
+
+	public void setPsw(String psw) {
+		this.psw = psw;
 	}
 }

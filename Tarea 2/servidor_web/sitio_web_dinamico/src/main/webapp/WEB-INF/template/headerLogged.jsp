@@ -1,12 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+    
+    <header>
+      <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
+      <!-- esto se debe implementar mas adelante  
+            
+                <img class = "logotipo-trabajouy" src="logotipoTrabajoUy-transformed.png" alt="Logotipo de Mi Sitio">
+            
+            
+            -->
 
-</body>
-</html>
+	<nav class="navbar bg-dark px-5">
+    	<a class="navbar-brand" href="index.html">
+      		<img src="./img/logoNuevo.png"
+      		alt="Logo" 
+      		width="42" 
+      		height="44">
+    	</a>
+          
+          <div class = button-grup>
+  	        <li class="nav-item dropdown">
+            	<a
+              	class="nav-link dropdown-toggle"
+              	href="#"
+              	role="button"
+              	data-bs-toggle="dropdown"
+              	aria-expanded="false"
+              	style="color: white"
+            	>Usuarios
+
+            </a>
+              <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+              
+            </ul>
+          </li>
+          </div>
+          
+          <div class = button-grup>
+  	        <li class="nav-item dropdown">
+            	<a
+              	class="nav-link dropdown-toggle"
+              	href="#"
+              	role="button"
+              	data-bs-toggle="dropdown"
+              	aria-expanded="false"
+              	style="color: white"
+            	>Ofertas Laborales
+
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
+              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
+              <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
+            </ul>
+          </li>
+          </div>
+          
+          <div class = button-grup>
+  	        <li class="nav-item dropdown" >
+            	<a
+              	class="nav-link dropdown-toggle"
+              	href="#"
+              	role="button"
+              	data-bs-toggle="dropdown"
+              	aria-expanded="false"
+              	style="color: white"
+            	>Paquetes
+
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Ver Paquetes</a></li>
+            </ul>
+          </li>
+          </div>
+  	
+  		<div class = button-grup>
+  			<form class="d-flex" role="search">
+      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+    		<button class="btn btn-secondary" type="submit">Buscar</button>
+    		width: 200px;
+    		</form>
+  		</div>
+  		
+  		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
+        <div class="nav-button"> <!-- Contenedor del botón -->
+            <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
+                <img src="https://imgv3.fotor.com/images/gallery/a-woman-linkedin-picture-with-grey-background-made-by-LinkedIn-Profile-Picture-Maker.jpg" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+                Mi Usuario
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
+                <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
+                <!-- no se si meter ese js-->
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+  		
+	</nav>
+	</header>
