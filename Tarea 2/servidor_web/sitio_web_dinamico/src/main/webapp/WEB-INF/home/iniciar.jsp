@@ -127,7 +127,7 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="altaDeUsuario.html"
+              href="/TrabajoUY/AltaUsuario"
               style="color: white"
               >Registrarse</a
             >

@@ -3,7 +3,7 @@
 
 <header> 
 		<nav class="navbar bg-dark px-5">
-    	<a class="navbar-brand" href="index.html">
+    	<a class="navbar-brand" href="/TrabajoUY/home">
       		<img src="media/img/logoNuevo.png"
       		alt="Logo" 
       		width="42" 
@@ -80,7 +80,7 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="altaDeUsuario.html"
+              href="/TrabajoUY/AltaUsuario"
               style="color: white"
               >Registrarse</a
             >
@@ -92,7 +92,7 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="inicioDeSesion.html"
+              href="/TrabajoUY/iniciarSesion"
               style="color: white"
               >Iniciar Sesion</a
             >

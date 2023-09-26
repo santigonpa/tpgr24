@@ -22,6 +22,8 @@ public interface IManejadorUsuario {
 	//public abstract boolean emailYaExiste(String email);
 
 	public abstract Usuario obtenerUsuario(String nickName);
+	
+	public abstract Usuario obtenerUsuarioPorEmail(String email);
 
 	public abstract DataEmpresa getDataEmpresa(String empresa);
 

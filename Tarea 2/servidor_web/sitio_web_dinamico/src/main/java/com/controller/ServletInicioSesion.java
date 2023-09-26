@@ -33,13 +33,16 @@ public class ServletInicioSesion extends HttpServlet {
     	String psw= request.getParameter("password");
     	EstadoSesion estado;
     	
-    	try {
     		Fabrica fabrica = Fabrica.getInstance();
     		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
     		Usuario usuario = mu.obtenerUsuario(usrOemail);
     		if(usuario == null) {
-    			throw new UsuarioNoExisteException("Puede que tu nombre de usuario o correo electronico sea incorrecto. Vuelva a intentarlo.");
+    			usuario = mu.obtenerUsuarioPorEmail(usrOemail);
     		}
+    		if(usuario == null) {
+    			estado = EstadoSesion.MAL_LOGEADO;
+    		}
+    		
 			if (!usuario.getPsw().equals(psw)) 
 				estado = EstadoSesion.MAL_LOGEADO;
 			else{
@@ -47,11 +50,13 @@ public class ServletInicioSesion extends HttpServlet {
 				// setea el usuario logueado
 				request.getSession().setAttribute("usuarioLogeado", usrOemail);
 			}
-    	} catch (UsuarioNoExisteException ex) {
-			estado = EstadoSesion.MAL_LOGEADO;
-		}
+    
 
 		if(estado == EstadoSesion.MAL_LOGEADO) {
+			sesion.setAttribute("estadoSesion", estado);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesionErroneo.jsp");
+			dispatcher.forward(request, response);
+		}else if(estado == EstadoSesion.NO_LOGEADO){
 			sesion.setAttribute("estadoSesion", estado);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesionErroneo.jsp");
 			dispatcher.forward(request, response);
