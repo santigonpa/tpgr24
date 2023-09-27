@@ -16,8 +16,8 @@ public class Postulante extends Usuario{
 	private Set<Postulacion> postulaciones;
 	//Constructores
 	
-	public Postulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad){
-		super(nickName, nombre, apellido, email);
+	public Postulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad,  byte[]imagen , String psw){
+		super(nickName, nombre, apellido, email, psw, imagen);
 		this.nacimiento = nacimiento;
 		this.nacionalidad = nacionalidad;
 		this.postulaciones = new HashSet<>();
@@ -44,7 +44,7 @@ public class Postulante extends Usuario{
 	}
 	
 	public DataPostulante getDTPostulante() {
-		DataPostulante DtPost = new DataPostulante(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.nacimiento, this.nacionalidad);
+		DataPostulante DtPost = new DataPostulante(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.nacimiento, this.nacionalidad, this.getImagen(),this.getPsw());
 		return DtPost;
 	}
 	

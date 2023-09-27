@@ -74,7 +74,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
         	temp.add(empAct);
         }
         for(Empresa empAct: temp) {
-        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct.getDescripcion(),empAct.getLinkWeb());
+        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct.getDescripcion(),empAct.getLinkWeb(),empAct.getImagen(),empAct.getPsw());
         	res.put(empAct.getNickName(), nuevaDTEmp);
         }
         
@@ -110,13 +110,16 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	    Map<String, DataPostulante> res = new HashMap<>();
 	    
 	    for (Postulante empAct : this.postulantes.values()) {
-	        DataPostulante nuevaDTPost = new DataPostulante(
+	        
+	    	DataPostulante nuevaDTPost = new DataPostulante(
 	            empAct.getNickName(),
 	            empAct.getNombre(),
 	            empAct.getApellido(),
 	            empAct.getEmail(),
 	            empAct.getNacimineto(),
-	            empAct.getNacionalidad()
+	            empAct.getNacionalidad(),
+	            empAct.getImagen(),
+	            empAct.getPsw()
 	        );
 	        res.put(empAct.getNickName(), nuevaDTPost);
 	    }
@@ -150,11 +153,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
         for(Usuario empAct: temp) {
         	if(empAct instanceof Empresa) {
         		Empresa empAct1 =(Empresa) empAct;
-        		DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct1.getDescripcion(),empAct1.getLinkWeb());
+        		DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct1.getDescripcion(),empAct1.getLinkWeb(),empAct1.getImagen(),empAct1.getPsw());
             	res.put(empAct.getNickName(), nuevaDTEmp);
         	}else if (empAct instanceof Postulante){
         		Postulante empAct1 =(Postulante) empAct;
-        		DataPostulante nuevaDTPost = new DataPostulante(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct1.getNacimineto(),empAct1.getNacionalidad());
+        		DataPostulante nuevaDTPost = new DataPostulante(empAct.getNickName(),empAct.getNombre(),empAct.getApellido(),empAct.getEmail(), empAct1.getNacimineto(),empAct1.getNacionalidad(),empAct1.getImagen(),empAct1.getPsw());
             	res.put(empAct.getNickName(), nuevaDTPost);
         	}
         }

@@ -27,12 +27,12 @@ public interface IControladorUsuario {
 	public abstract Set<DataTipoPublicacion> getDataTipoPublicacion();
 
 	public abstract void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String web)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException;
+			String web ,byte[]imagen , String psw)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException;
 
 	public abstract Set<DataKeyWord> getDataKeyWord();
 
 	public abstract void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
-			String nacionalidad)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException;
+			String nacionalidad, byte[]imagen , String psw)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException;
 
 	public abstract Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa);
 

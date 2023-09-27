@@ -12,13 +12,15 @@ public class Empresa extends Usuario{
 	private String web; 
 	private CompraPaquete compra;
 	private Map<String, OfertaLaboral> ofertas;
-
-	public Empresa(String nickName, String nombre, String apellido, String email, String descripcion, String web) {
-		super(nickName, nombre, apellido, email);
+	
+	
+	public Empresa(String nickName, String nombre, String apellido, String email, String descripcion, String web, byte[]imagen , String psw) {
+		super(nickName, nombre, apellido, email, psw, imagen);
 		this.descripcion = descripcion;
 		this.web = web; 
 		this.compra = null;
 		this.ofertas = new HashMap<>();
+		
 		
 	}
 	
@@ -92,7 +94,7 @@ public class Empresa extends Usuario{
 	}
 
 	public DataEmpresa getDTEmpresa() {
-		DataEmpresa DtEmp = new DataEmpresa(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDescripcion(), this.getLinkWeb());	
+		DataEmpresa DtEmp = new DataEmpresa(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDescripcion(), this.getLinkWeb(),this.getImagen(), this.getPsw());	
 		return DtEmp;
 	}
 	

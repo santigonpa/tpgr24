@@ -7,8 +7,8 @@ public class DataEmpresa extends DataUsuario{
 
 	//Contructores
 		
-		public DataEmpresa(String nickName, String nombre, String apellido, String email, String descripcion, String web) {
-			super(nickName, nombre, apellido, email);
+		public DataEmpresa(String nickName, String nombre, String apellido, String email, String descripcion, String web, byte[]imagen , String psw) {
+			super(nickName, nombre, apellido, email, psw , imagen);
 			this.descripcion = descripcion;
 			this.web = web; 
 			

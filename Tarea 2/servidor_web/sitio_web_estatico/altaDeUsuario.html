@@ -44,6 +44,32 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    <script>
+        function validarContraseñas() {
+  // Obtener los valores de las contraseñas
+  var contraseña1 = document.getElementById("password").value;
+  var contraseña2 = document.getElementById("confirmPassword").value;
+
+  // Comparar las contraseñas
+  if (contraseña1 !== contraseña2) {
+    // Si las contraseñas no coinciden, mostrar un mensaje de error
+    alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+    return false; // Evitar el envío del formulario
+  }
+  return true; // Envío del formulario si las contraseñas coinciden
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("alta-form");
+  form.addEventListener("submit", function (event) {
+    if (!validarContraseñas()) {
+      event.preventDefault(); // Evita que el formulario se envíe si las contraseñas no coinciden
+    }
+  });
+});
+
+	</script>
+    
   </head>
   <body>
     <header>
@@ -318,7 +344,7 @@
                   </div>
                 </div>
                 <div class="w-100 d-flex justify-content-center mt-3">
-                  <button type="submit" class="btn btn-dark btn-block w-50">
+                  <button type="submit" class="btn btn-dark btn-block w-50" >
                     Enviar
                   </button>
                 </div>

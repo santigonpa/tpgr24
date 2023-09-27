@@ -49,6 +49,25 @@
       crossorigin="anonymous"
     ></script>
     
+    <script>
+    function validarFormulario() {
+    	  // Obtener el valor del campo fechaNacimiento
+    	  var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+
+    	  // Verificar si el campo está vacío o no es una fecha válida
+    	  if (!fechaNacimiento) {
+    	    document.getElementById("fechaNacimientoError").innerHTML = "Debe seleccionar una fecha válida.";
+    	    return false; // Detener el envío del formulario
+    	  }
+
+    	  // Restablecer el mensaje de error si la fecha es válida
+    	  document.getElementById("fechaNacimientoError").innerHTML = "";
+    	  return true; // Permitir el envío del formulario si la fecha es válida
+    	}
+
+    </script>
+    
+    
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -56,17 +75,46 @@
     <script>
       // Lógica para mostrar u ocultar los formularios según la pestaña seleccionada
       $(document).ready(function () {
-        $("#postulante-tab").on("click", function () {
-          $("#postulante").show();
-          $("#empresa").hide();
-        });
+  $("#postulante-tab").on("click", function () {
+    $("#postulante").show();
+    $("#empresa").hide();
+    $("#tipoUsuario").val("postulante"); // Actualiza el valor del campo oculto
+  });
 
-        $("#empresa-tab").on("click", function () {
-          $("#postulante").hide();
-          $("#empresa").show();
-        });
-      });
+  $("#empresa-tab").on("click", function () {
+    $("#postulante").hide();
+    $("#empresa").show();
+    $("#tipoUsuario").val("empresa"); // Actualiza el valor del campo oculto
+  });
+});
+
     </script>
+    
+    <script>
+        function validarContraseñas() {
+  // Obtener los valores de las contraseñas
+  var contraseña1 = document.getElementById("password").value;
+  var contraseña2 = document.getElementById("confirmPassword").value;
+
+  // Comparar las contraseñas
+  if (contraseña1 !== contraseña2) {
+    // Si las contraseñas no coinciden, mostrar un mensaje de error
+    alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+    return false; // Evitar el envío del formulario
+  }
+  return true; // Envío del formulario si las contraseñas coinciden
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("alta-form");
+  form.addEventListener("submit", function (event) {
+    if (!validarContraseñas()) {
+      event.preventDefault(); // Evita que el formulario se envíe si las contraseñas no coinciden
+    }
+  });
+});
+
+	</script>
     
     
     
@@ -208,7 +256,12 @@
             
             
             
-            <form id="alta-form" action = "/TrabajoUY/ServletAltaUsuario" method = "POST">
+            <form id="alta-form" action = "/TrabajoUY/AltaUsuario" method = "POST" enctype="multipart/form-data">
+              
+              
+              <input type="hidden" id="tipoUsuario" name="tipoUsuario" value="postulante" />
+              
+              
               <div class="text-center position-relative">
                 <input
                   type="file"
@@ -235,6 +288,13 @@
                     placeholder="Ingrese su Nickname"
                     required
                   />
+                  
+                  <% if (request.getAttribute("errorRegistroNickname") != null) { %>
+				    <div class="alert alert-danger">
+				      <%= request.getAttribute("errorRegistroNickname") %>
+				    </div>
+				  <% } %>
+                  
                 </div>
                 <div class="form-group">
                   <label for="nombre">Nombre:</label>
@@ -280,6 +340,7 @@
                     required
                   />
                 </div>
+                
                 <div class="form-group">
                   <label for="correo">Correo:</label>
                   <input
@@ -290,6 +351,13 @@
                     placeholder="Ingrese su Correo"
                     required
                   />
+                  
+                  <% if (request.getAttribute("errorRegistroEmail") != null) { %>
+				    <div class="alert alert-danger">
+				      <%= request.getAttribute("errorRegistroEmail") %>
+				    </div>
+				  <% } %>
+				                  
                 </div>
     
                 <div class="tab-content">
@@ -305,6 +373,11 @@
                           name="fechaNacimiento"
                           placeholder="Ingrese su Fecha de Nacimiento"
                         />
+                        
+                        <div id="fechaNacimientoError" class="text-danger"></div>
+  						</div>
+                     
+                     
                       </div>
                       <div class="form-group">
                         <label for="nacionalidad">Nacionalidad:</label>

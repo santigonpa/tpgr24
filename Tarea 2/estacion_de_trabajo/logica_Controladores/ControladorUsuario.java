@@ -68,7 +68,7 @@ public DataUsuario listarInfoUser(String usuario) {
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Usuario user = manejadorUsuario.obtenerUsuario(usuario);
-	DataUsuario DtUser = new DataUsuario(user.getNickName(), user.getNombre(), user.getApellido(), user.getEmail());
+	DataUsuario DtUser = new DataUsuario(user.getNickName(), user.getNombre(), user.getApellido(), user.getEmail(), user.getPsw(), user.getImagen());
 	return DtUser;
 }
 
@@ -116,7 +116,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 
 	@Override
 	public void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String web) throws NicknameYaExisteException,EmailYaExisteException, campoInvalidoException {
+			String web,  byte[]imagen , String psw) throws NicknameYaExisteException,EmailYaExisteException, campoInvalidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario empresa = mu.obtenerUsuario(nickname);
         Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
@@ -126,14 +126,14 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")|| web.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        empresa = new Empresa(nickname,nombre,apellido,email,descripcion,web);
+        empresa = new Empresa(nickname,nombre,apellido,email,descripcion,web,imagen,psw);
         mu.addUsuario(empresa);
 		
 	}
 
 	@SuppressWarnings("unlikely-arg-type")
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
-			String nacionalidad) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
+			String nacionalidad, byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario postulante = mu.obtenerUsuario(nickname);
         Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
@@ -143,7 +143,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals("")|| nacionalidad.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad);
+        postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad,imagen,psw);
         mu.addUsuario(postulante);
 		
 	}

@@ -10,8 +10,8 @@ public class DataPostulante extends DataUsuario {
 		
 		//Constructores
 		
-		public DataPostulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad){
-			super(nickName, nombre, apellido, email);
+		public DataPostulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad, byte[]imagen , String psw){
+			super(nickName, nombre, apellido, email, psw , imagen);
 			this.nacimiento = nacimiento;
 			this.nacionalidad = nacionalidad;
 		}
