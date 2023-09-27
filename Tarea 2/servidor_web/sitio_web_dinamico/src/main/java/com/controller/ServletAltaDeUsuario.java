@@ -26,62 +26,67 @@ import jakarta.servlet.annotation.MultipartConfig;
 import utils.Fabrica;
 
 /**
- * Servlet implementation Alta Usuario
+ * Servlet implementation class ServletAltaDeUsuario
  */
-@WebServlet (description = "Servlet de alta de usuario", urlPatterns = { "/Alta" })
-@MultipartConfig //SI FALTA ESTO NO ANDA NADA PORFAVOR NO SE COMPLIQUEN COMO NOSOTROS xd
-public class ServletAltaUsuario extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-	
-	public ServletAltaUsuario () {
-		super();
-	}
 
+@WebServlet (description = "Servlet de alta de usuario", urlPatterns = { "/AltaUsuario" })
+@MultipartConfig //SI FALTA ESTO NO ANDA NADA PORFAVOR NO SE COMPLIQUEN COMO NOSOTROS xd
+
+
+public class ServletAltaDeUsuario extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	
 	private Fabrica fab = Fabrica.getInstance();
 	private IControladorUsuario ICU = fab.getInUser();
     
-    public static EstadoSesion getEstado(HttpServletRequest request)
+	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
+	// Función para verificar la extensión del archivo
+				private boolean isValidImageExtension(String fileName) {
+				    String[] allowedExtensions = { "jpg", "jpeg", "png", "gif" }; // Extensiones permitidas
+				    String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+				    return Arrays.asList(allowedExtensions).contains(fileExtension);
+				
+				}
+		
+				private byte[] readImageBytes(InputStream inputStream) throws IOException {
+				        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				        byte[] buffer = new byte[1024];
+				        int bytesRead;
+				        while ((bytesRead = inputStream.read(buffer)) != -1) {
+				            outputStream.write(buffer, 0, bytesRead);
+				        }
+				        return outputStream.toByteArray();
+				    }
 	
-	
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletAltaDeUsuario() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
-			request.getRequestDispatcher("/WEB-INF/usuarios/UsuarioSesionYaIniciada.jsp").forward(request,response);
+			request.getRequestDispatcher("/WEB-INF/usuarios/UsuarioSesionYaIniciada.jsp").forward(request, response);
+			System.out.println("entre al cabezon");
+		}else {
+			request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request,response);
 		}
-		
-		request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request,response);
-		
-		
 	}
-	
-	
-	// Función para verificar la extensión del archivo
-			private boolean isValidImageExtension(String fileName) {
-			    String[] allowedExtensions = { "jpg", "jpeg", "png", "gif" }; // Extensiones permitidas
-			    String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-			    return Arrays.asList(allowedExtensions).contains(fileExtension);
-			
-			}
-	
-			 private byte[] readImageBytes(InputStream inputStream) throws IOException {
-			        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			        byte[] buffer = new byte[1024];
-			        int bytesRead;
-			        while ((bytesRead = inputStream.read(buffer)) != -1) {
-			            outputStream.write(buffer, 0, bytesRead);
-			        }
-			        return outputStream.toByteArray();
-			    }
-			
+
 	/**
-	* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	*/		
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nickName = request.getParameter("nickname");
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
@@ -133,7 +138,7 @@ public class ServletAltaUsuario extends HttpServlet{
 		            // Intenta analizar la fecha en un objeto LocalDate
 		            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
 		            ICU.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimiento, email, imagenBytes, contrasenia);
-		            response.sendRedirect("/WEB-INF/usuarios/iniciarSesion.jsp");
+		            request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
 		        } catch (NicknameYaExisteException e) {
 		        	// Agregar un atributo a la solicitud con el mensaje de error
 		            request.setAttribute("errorRegistroNickname", "El nickname ya está en uso. Por favor, elige otro.");
@@ -166,7 +171,7 @@ public class ServletAltaUsuario extends HttpServlet{
 				    	String linkWeb = request.getParameter("linkSitio");
 				    try {
 				    	ICU.altaUsuarioEmpresa(nickName, nombre, apellido, email, descripcion, linkWeb, imagenBytes, tipoUsuario);
-			            request.getRequestDispatcher("/WEB-INF/usuarios/iniciarSesion.jsp").forward(request, response);
+			            response.sendRedirect("/TrabajoUY/iniciarSesion");
 			         
 			            
 			        } catch (NicknameYaExisteException e) {
@@ -192,7 +197,11 @@ public class ServletAltaUsuario extends HttpServlet{
 		    	
 		    }
 		
- 	}
+ 		}
+	}
+
+
+		
 	
-	
-}
+
+
