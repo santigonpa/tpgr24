@@ -26,7 +26,7 @@
 
 	<link
       rel="icon"
-      href="./img/logoNuevo.png"
+      href="media/img/logoNuevo.png"
       type="image/x-icon"
     />
 	
@@ -120,111 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
   </head>
   <body>
-    <header>
-      
-     
- 	<nav class="navbar bg-dark px-5 ">
-    	<a class="navbar-brand" href="index.html">
-      		<img src="media/img/logoNuevo.png"
-      		alt="Logo" 
-      		width="42" 
-      		height="44">
-    	</a>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Usuarios
-
-            </a>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
-              
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Ofertas Laborales
-
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown" >
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Paquetes
-
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Ver Paquetes</a></li>
-            </ul>
-          </li>
-          </div>
-  	
-  		<div class = button-grup>
-  			<form class="d-flex" role="search">
-      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-    		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		width: 200px;
-    		</form>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="/TrabajoUY/AltaUsuario"
-              style="color: white"
-              >Registrarse</a
-            >
-          </li>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="inicioDeSesion.html"
-              style="color: white"
-              >Iniciar Sesion</a
-            >
-          </li>
-  		</div>
-  		
-	</nav>
-	
-    </div>
-</div>
-    </header>
+    <jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
 	
 	<main>
       <div class="container mt-5">

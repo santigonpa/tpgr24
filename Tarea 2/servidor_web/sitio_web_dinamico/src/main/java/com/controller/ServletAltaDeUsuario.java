@@ -77,7 +77,6 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
 			request.getRequestDispatcher("/WEB-INF/usuarios/UsuarioSesionYaIniciada.jsp").forward(request, response);
-			System.out.println("entre al cabezon");
 		}else {
 			request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request,response);
 		}

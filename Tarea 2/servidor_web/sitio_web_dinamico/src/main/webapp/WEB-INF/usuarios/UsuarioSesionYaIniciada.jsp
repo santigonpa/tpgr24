@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import= "logica_Entidades.Usuario" %>
 <!DOCTYPE html>
 <html lang = "es">
 <head>
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/indexLoggedStyle.css" />
     <link rel="stylesheet" href="media/cssnormalize.css" />
     <link
       rel="stylesheet"
@@ -34,9 +35,6 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-
-	<title>TrabajoUY: Tu usuario ya está registrado</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<style>
 	    /* Estilos personalizados para centrar el mensaje verticalmente */
 	    main {
@@ -47,6 +45,7 @@
 	        margin: 0;
 	    }
 	</style>
+	<title>TrabajoUY: Tu usuario ya está registrado</title>
 </head>
 <body>
     <jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
@@ -56,17 +55,21 @@
         <% 
         
         HttpSession sessionIniciada = request.getSession(false);
-        String nombreUsuario =  (String) sessionIniciada.getAttribute("nombreUser");
+        Usuario usr =  (Usuario) sessionIniciada.getAttribute("usuario");
+       	String nombre = usr.getNombre();
+       	String apellido = usr.getApellido();
+       	
+        
         
         	
         %>
         
         <div class="alert alert-danger text-center" role="alert">
-            Ya estás registrado como: <strong><%= nombreUsuario %></strong>
+            Usted tiene una sesion iniciada como: <strong><%= nombre %></strong> <strong><%= apellido %></strong>
             <div class="mt-3">
                 <!-- Botones -->
-                <a href="/TuAplicacion/home" class="btn btn-danger">Cancelar</a>
-                <a href="/TuAplicacion/ServletCerrarSesion" class="btn btn-danger">Cerrar Sesión</a>
+                <a href="/TrabajoUY/home" class="btn btn-danger">Cancelar</a>
+                <a href="/TrabajoUY/ServletCerrarSesion" class="btn btn-danger">Cerrar Sesión</a>
 
             </div>
         </div>

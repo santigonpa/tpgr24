@@ -48,7 +48,9 @@ public class ServletInicioSesion extends HttpServlet {
 			else{
 				estado = EstadoSesion.SI_LOGEADO;
 				// setea el usuario logueado
-				request.getSession().setAttribute("usuarioLogeado", usrOemail);
+				Usuario usr = mu.obtenerUsuario(usrOemail);
+				request.getSession().setAttribute("usuario", usr);
+				request.getSession().setAttribute("nicknameUsuario", usrOemail);
 			}
     	} catch (UsuarioNoExisteException ex) {
 			estado = EstadoSesion.NO_LOGEADO;
@@ -60,17 +62,24 @@ public class ServletInicioSesion extends HttpServlet {
 			dispatcher.forward(request, response);
 		}else {
 			sesion.setAttribute("estadoSesion", estado);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sesion/iniciarLogged.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
+    
+    public static EstadoSesion getEstado(HttpServletRequest request)
+	{	//obtiene el tipo de la sesion
+		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
+	}
 
-    	
-    	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp");
-		dispatcher.forward(request, response);
+		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
+			request.getRequestDispatcher("/WEB-INF/usuarios/UsuarioSesionYaIniciada.jsp").forward(request, response);
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 

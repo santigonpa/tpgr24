@@ -29,4 +29,24 @@
     <servlet-name>ServletAltaDeUsuario</servlet-name>
     <url-pattern>/ServletAltaDeUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletCerrarSesion</display-name>
+    <servlet-name>ServletCerrarSesion</servlet-name>
+    <servlet-class>com.controller.ServletCerrarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCerrarSesion</servlet-name>
+    <url-pattern>/ServletCerrarSesion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletImagen</display-name>
+    <servlet-name>ServletImagen</servlet-name>
+    <servlet-class>com.controller.ServletImagen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletImagen</servlet-name>
+    <url-pattern>/ServletImagen</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import= "logica_Entidades.Usuario" %>
 <!DOCTYPE html>
 <html>
 
@@ -124,9 +125,13 @@
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
         <div class="nav-button"> <!-- Contenedor del botón -->
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
-                <img src="https://imgv3.fotor.com/images/gallery/a-woman-linkedin-picture-with-grey-background-made-by-LinkedIn-Profile-Picture-Maker.jpg" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
-                Mi Usuario
-            </a>
+			    <% 
+			    HttpSession sessionIniciada = request.getSession(false);
+			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    %>
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    Mi Usuario
+			</a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
@@ -143,13 +148,13 @@
 		function confirmarCerrarSesion() {
     	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
     	if (confirmacion) {
-			window.location.href = "index.html";
+			window.location.href = "/TrabajoUY/ServletCerrarSesion";
     		}
 		}
 	</script>
 
 
-      <div class="header-ola">
+      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
         <!--Content before waves-->
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
@@ -231,5 +236,5 @@
       </main>
       
       <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
-  
+</body>
 </html>
