@@ -12,7 +12,7 @@
 
 	<nav class="navbar bg-dark px-5">
     	<a class="navbar-brand" href="index.html">
-      		<img src="./img/logoNuevo.png"
+      		<img src="media/img/logoNuevo.png"
       		alt="Logo" 
       		width="42" 
       		height="44">
@@ -79,7 +79,6 @@
   			<form class="d-flex" role="search">
       		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
     		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		width: 200px;
     		</form>
   		</div>
   		
