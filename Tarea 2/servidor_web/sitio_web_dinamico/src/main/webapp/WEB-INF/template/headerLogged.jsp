@@ -12,7 +12,7 @@
             -->
 
 	<nav class="navbar bg-dark px-5">
-    	<a class="navbar-brand" href="index.html">
+    	<a class="navbar-brand" href="home">
       		<img src="media/img/logoNuevo.png"
       		alt="Logo" 
       		width="42" 
