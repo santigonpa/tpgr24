@@ -115,6 +115,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 	</script>
+	<script>
+    function validarFormulario() {
+        // Obtener el valor del campo fechaNacimiento
+        var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+
+        // Verificar si el campo está vacío o no es una fecha válida
+        if (!fechaNacimiento) {
+            document.getElementById("fechaNacimientoError").innerHTML = "Debe seleccionar una fecha válida.";
+            return false; // Detener el envío del formulario
+        }
+
+        // Restablecer el mensaje de error si la fecha es válida
+        document.getElementById("fechaNacimientoError").innerHTML = "";
+        return true; // Permitir el envío del formulario si la fecha es válida
+    }
+
+    // Agregar un evento de escucha al formulario para la validación
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("alta-form");
+        form.addEventListener("submit", function (event) {
+            if (!validarFormulario()) {
+                event.preventDefault(); // Evita que el formulario se envíe si la fecha no es válida
+            }
+        });
+    });
+</script>
     
     
     
@@ -318,11 +344,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     Enviar
                   </button>
                 </div>
+               </form>
               </div>
-            </form>
           </div>
         </div>
-      </div>
     </main>
     
     <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
