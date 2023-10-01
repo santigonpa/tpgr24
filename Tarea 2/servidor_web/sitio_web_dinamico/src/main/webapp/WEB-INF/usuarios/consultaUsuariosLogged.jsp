@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
+    <%@page import= "logica_Entidades.Usuario" %>
 <!DOCTYPE html>
-<html lang = "es">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link
       rel="stylesheet"
@@ -37,10 +39,15 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <title>TrabajoUY</title>
-  </head>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>TrabajoUY : Consulta Usuarios</title>
+</head>
 <body>
-	    <header>
+    
+    <header>
       <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
       <!-- esto se debe implementar mas adelante  
             
@@ -70,7 +77,8 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/TrabajoUY/ConsultarUsuario">Perfiles</a></li>
+              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+              
             </ul>
           </li>
           </div>
@@ -90,7 +98,6 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
               <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              
               <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
             </ul>
           </li>
@@ -118,45 +125,49 @@
   			<form class="d-flex" role="search">
       		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
     		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		width: 200px;
     		</form>
   		</div>
   		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="/TrabajoUY/AltaUsuario"
-              style="color: white"
-              >Registrarse</a
-            >
-          </li>
-  		</div>
-  		
-  		<div class = button-grup>
-  		  <li class="nav-item">
-            <a
-              class="nav-link active"
-              aria-current="page"
-              href="/TrabajoUY/iniciarSesion"
-              style="color: white"
-              >Iniciar Sesión</a
-            >
-          </li>
-  		</div>
+  		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
+        <div class="nav-button"> <!-- Contenedor del botón -->
+            <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
+			    <% 
+			    HttpSession sessionIniciada = request.getSession(false);
+			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    %>
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    Mi Usuario
+			</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
+                <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
+                <!-- no se si meter ese js-->
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
+            </ul> 
+        </div>
+    </div>
   		
 	</nav>
-
-
-      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
+		<script>
+		function confirmarCerrarSesion() {
+    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
+    	if (confirmacion) {
+			window.location.href = "/TrabajoUY/ServletCerrarSesion";
+    		}
+		}
+	</script>
+	
+	
+	
+	<div class="header-ola">
         <!--Content before waves-->
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
-          <h1 class="trabajo-uy">Trabajo UY</h1>
+          <h1 class="trabajo-uy">Consulta Usuarios</h1>
           <h2 class="slogan-uy">
-            Consigue el trabajo que buscas de la manera más fácil.
+            elige el usuario que quieras consultar.
           </h2>
         </div>
 
@@ -207,28 +218,23 @@
 
       <!--Content ends-->
     </header>
-	<main>
-    		
-    		<div class = "titulo3" style = "text-align : center; margin-top : 50px;padding:0; font-family: 'Fira Sans Condensed';">
-	    		<h3 class="galeria-titulo" style = "color : rgb(0, 0, 0); text-shadow : 6px 6px 15 black;">
-	            Algunos de nuestros clientes que ya consiguieron empleo con TrabajoUY.
-	          	</h3>
-    		</div>
-      		
-      		<div class="container-galeria">
-				  <section class = "galeria">
-				  		<img src = "media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" >
-				  		<img src = "media/img/of1.jpg" >
-				  		<img src = "media/img/of2.jpg" >
-				  		<img src = "media/img/of3.jpg" >
-				  		<img src = "media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" >
-				  		<img src = "media/img/irina-2Q8bo_6lu1Y-unsplash.jpg" >
-				  </section>
-				</div>
-      		
-      		
-      </main>
-      
-      <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+		
+		
+		
+		<main>
+			
+			
+			<div class= "cartas">
+				<p>prueba</p>
+			</div>
+		
+		</main>
+	
+	
+	
+	
+	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+
+    
 </body>
 </html>

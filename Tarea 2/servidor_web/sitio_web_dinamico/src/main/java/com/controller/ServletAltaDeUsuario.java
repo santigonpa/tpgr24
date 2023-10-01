@@ -169,7 +169,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 				    	String descripcion = request.getParameter("descripcion");
 				    	String linkWeb = request.getParameter("linkSitio");
 				    try {
-				    	ICU.altaUsuarioEmpresa(nickName, nombre, apellido, email, descripcion, linkWeb, imagenBytes, tipoUsuario);
+				    	ICU.altaUsuarioEmpresa(nickName, nombre, apellido, email, descripcion, linkWeb, imagenBytes, contrasenia);
 			            response.sendRedirect("/TrabajoUY/iniciarSesion");
 			         
 			            

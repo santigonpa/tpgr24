@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
+    
+    <%@page import= "logica_Entidades.Usuario" %>
+    
 <!DOCTYPE html>
-<html lang = "es">
+<html>
 <head>
-    <meta charset="UTF-8" />
+
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
+    
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link
       rel="stylesheet"
@@ -37,10 +40,16 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    <title>TrabajoUY</title>
-  </head>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+<title>TrabajoUY : Consultar Usuarios</title>
+</head>
 <body>
-	    <header>
+		<header>
       <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
       <!-- esto se debe implementar mas adelante  
             
@@ -50,7 +59,7 @@
             -->
 
 	<nav class="navbar bg-dark px-5">
-    	<a class="navbar-brand" href="home">
+    	<a class="navbar-brand" href="index.html">
       		<img src="media/img/logoNuevo.png"
       		alt="Logo" 
       		width="42" 
@@ -90,7 +99,6 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
               <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              
               <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
             </ul>
           </li>
@@ -139,9 +147,9 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="/TrabajoUY/iniciarSesion"
+              href="/TrabajoUY/IniciarSesion"
               style="color: white"
-              >Iniciar Sesión</a
+              >Iniciar Sesion</a
             >
           </li>
   		</div>
@@ -149,14 +157,14 @@
 	</nav>
 
 
-      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
+      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/fotoUsuarios2.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
         <!--Content before waves-->
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
-          <h1 class="trabajo-uy">Trabajo UY</h1>
+          <h1 class="trabajo-uy">Consulta Usuarios</h1>
           <h2 class="slogan-uy">
-            Consigue el trabajo que buscas de la manera más fácil.
+            elige el usuario que quieras consultar.
           </h2>
         </div>
 
@@ -207,28 +215,23 @@
 
       <!--Content ends-->
     </header>
-	<main>
-    		
-    		<div class = "titulo3" style = "text-align : center; margin-top : 50px;padding:0; font-family: 'Fira Sans Condensed';">
-	    		<h3 class="galeria-titulo" style = "color : rgb(0, 0, 0); text-shadow : 6px 6px 15 black;">
-	            Algunos de nuestros clientes que ya consiguieron empleo con TrabajoUY.
-	          	</h3>
-    		</div>
-      		
-      		<div class="container-galeria">
-				  <section class = "galeria">
-				  		<img src = "media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" >
-				  		<img src = "media/img/of1.jpg" >
-				  		<img src = "media/img/of2.jpg" >
-				  		<img src = "media/img/of3.jpg" >
-				  		<img src = "media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" >
-				  		<img src = "media/img/irina-2Q8bo_6lu1Y-unsplash.jpg" >
-				  </section>
-				</div>
-      		
-      		
-      </main>
-      
-      <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+		
+		
+		
+		<main>
+			
+			
+			<div class= "cartas">
+			
+			</div>
+		
+		</main>
+	
+	
+	
+	
+	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+
+    
 </body>
 </html>

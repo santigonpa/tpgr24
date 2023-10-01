@@ -117,12 +117,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	</script>
 	<script>
     function validarFormulario() {
-        // Obtener el valor del campo fechaNacimiento
+        
+    	// Obtener el valor del campo fechaNacimiento
         var fechaNacimiento = document.getElementById("fechaNacimiento").value;
 
-        // Verificar si el campo está vacío o no es una fecha válida
-        if (!fechaNacimiento) {
-            document.getElementById("fechaNacimientoError").innerHTML = "Debe seleccionar una fecha válida.";
+        // Expresión regular para verificar el formato de fecha (YYYY-MM-DD)
+        var regexFecha = /^\d{4}-\d{2}-\d{2}$/;
+
+        // Verificar si la fecha no está en blanco y cumple con el formato esperado
+        if (!fechaNacimiento.match(regexFecha) && document.getElementById("tipoUsuario").value === "postulante") {
+            document.getElementById("fechaNacimientoError").innerHTML = "Debe seleccionar una fecha válida en formato YYYY-MM-DD.";
             return false; // Detener el envío del formulario
         }
 
@@ -130,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("fechaNacimientoError").innerHTML = "";
         return true; // Permitir el envío del formulario si la fecha es válida
     }
-
+    
     // Agregar un evento de escucha al formulario para la validación
     document.addEventListener("DOMContentLoaded", function () {
         var form = document.getElementById("alta-form");
@@ -141,6 +145,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 </script>
+
+
+
+
+
+
+	
     
     
     
@@ -181,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <form id="alta-form" action = "/TrabajoUY/AltaUsuario" method = "POST" enctype="multipart/form-data">
               
               
-              <input type="hidden" id="tipoUsuario" name="tipoUsuario" value="postulante" />
+              <input type="hidden" id="tipoUsuario" name="tipoUsuario" value="<%= request.getParameter("tipoUsuario") != null ? request.getParameter("tipoUsuario") : "postulante" %>" />
               
               
               <div class="text-center position-relative">
@@ -208,6 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     id="nickname"
                     name="nickname"
                     placeholder="Ingrese su Nickname"
+                    value="<%= request.getParameter("nickname") != null ? request.getParameter("nickname") : "" %>"
                     required
                   />
                   
@@ -226,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     id="nombre"
                     name="nombre"
                     placeholder="Ingrese su Nombre"
+                    value="<%= request.getParameter("nombre") != null ? request.getParameter("nombre") : "" %>"
                     required
                   />
                 </div>
@@ -237,6 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     id="apellido"
                     name="apellido"
                     placeholder="Ingrese su Apellido"
+                    value="<%= request.getParameter("apellido") != null ? request.getParameter("apellido") : "" %>"
                     required
                   />
                 </div>
@@ -248,6 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     id="password"
                     name="password"
                     placeholder="Ingrese su Contraseña"
+                    value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>"
                     required
                   />
                 </div>
@@ -259,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     id="confirmPassword"
                     name="confirmPassword"
                     placeholder="Repita su Contraseña"
+                    value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>"
                     required
                   />
                 </div>
@@ -271,12 +287,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     id="correo"
                     name="correo"
                     placeholder="Ingrese su Correo"
+                    value="<%= request.getParameter("correo") != null ? request.getParameter("correo") : "" %>"
                     required
                   />
                   
                   <% if (request.getAttribute("errorRegistroEmail") != null) { %>
 				    <div class="alert alert-danger">
-				      <%= request.getAttribute("errorRegistroEmail") %>
+				      <p>El email que estas ingresando ya está registrado en la plataforma</p>
 				    </div>
 				  <% } %>
 				                  
@@ -294,6 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           id="fechaNacimiento"
                           name="fechaNacimiento"
                           placeholder="Ingrese su Fecha de Nacimiento"
+                          value="<%= request.getParameter("fechaNacimiento") != null ? request.getParameter("fechaNacimiento") : "" %>"
                         />
                         
                         <div id="fechaNacimientoError" class="text-danger"></div>
@@ -309,6 +327,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           id="nacionalidad"
                           name="nacionalidad"
                           placeholder="Ingrese su Nacionalidad"
+                          value="<%= request.getParameter("nacionalidad") != null ? request.getParameter("nacionalidad") : "" %>"
                         />
                       </div>
                     </div>
@@ -324,6 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           id="linkSitio"
                           name="linkSitio"
                           placeholder="Ingrese el Link a su Sitio Web"
+                          value="<%= request.getParameter("linkSitio") != null ? request.getParameter("linkSitio") : "" %>"
                         />
                       </div>
                       <div class="form-group">
@@ -334,6 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           name="descripcion"
                           rows="3"
                           placeholder="Ingrese una Descripción"
+                          value="<%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %>"
                         ></textarea>
                       </div>
                     </div>

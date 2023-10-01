@@ -168,7 +168,7 @@ p{
 .header-ola {
   position: relative;
   text-align: center;
-  background-image: url('img/fotoUsuarios2.jpg');
+  background-image: url('/sitio_web_dinamico/src/main/webapp/media/img/fotoUsuarios2.jpg');
   background-size: cover;
   background-position: center;
   color: white;

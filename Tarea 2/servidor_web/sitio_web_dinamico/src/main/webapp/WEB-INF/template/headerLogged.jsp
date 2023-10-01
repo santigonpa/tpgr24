@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import= "logica_Entidades.Usuario" %>
     
     <header>
@@ -84,21 +84,21 @@
   		</div>
   		
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del bot髇 -->
+        <div class="nav-button"> <!-- Contenedor del bot贸n -->
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
 			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
 			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Bot髇" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Bot贸n" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesi髇</a></li>-->
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesi贸n</a></li>-->
                 <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesi髇</a></li>
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesi贸n</a></li>
             </ul> 
         </div>
     </div>
@@ -106,7 +106,7 @@
 	</nav>
 		<script>
 		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("縀st醩 seguro de que deseas cerrar la sesi髇?");
+    	var confirmacion = confirm("驴Est谩s seguro de que deseas cerrar la sesi贸n?");
     	if (confirmacion) {
 			window.location.href = "/TrabajoUY/ServletCerrarSesion";
     		}

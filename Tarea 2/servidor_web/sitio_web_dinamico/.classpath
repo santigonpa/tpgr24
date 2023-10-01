@@ -15,5 +15,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/estacion_de_trabajo2"/>
+	<classpathentry kind="src" path="/estacion_de_trabajo"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

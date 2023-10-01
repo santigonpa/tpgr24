@@ -123,7 +123,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if ( empresa!= null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")|| web.equals("")){
+        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
         empresa = new Empresa(nickname,nombre,apellido,email,descripcion,web,imagen,psw);
@@ -131,7 +131,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
+	
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
 			String nacionalidad, byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
@@ -140,7 +140,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
         if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
         if (postulante != null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals("")|| nacionalidad.equals("")){
+        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals(null)|| nacionalidad.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
         postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad,imagen,psw);
