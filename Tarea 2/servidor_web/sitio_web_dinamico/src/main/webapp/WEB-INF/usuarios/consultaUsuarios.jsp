@@ -242,7 +242,7 @@
 						  <img src="<%= request.getContextPath() %>/ServletImagen" class="card-img-top" alt="imagen de usuario">
 						 <div class="card-body">
 						    <h5 class="card-title" style="color: #FFFF;"><%= nickUser %></h5>
-						    <p> </p>
+						    <br>
 						    <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
 						    <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
 						    <a href="consultarEmpresa.html" class="btn btn-secondary">Ver Perfil Completo</a>
