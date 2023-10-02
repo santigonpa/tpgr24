@@ -10,7 +10,9 @@ import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.model.EstadoSesion;
 
@@ -48,7 +50,12 @@ public class ServletConsultaUsuario extends HttpServlet {
 		}else {
 			//hace otra cosa dependiendo si el usuario no esta logeado
 			Map<String,DataUsuario> usuarios =  IMU.getDataUsuario();
-			request.setAttribute("coleccionDataUsuarios", usuarios);
+			Set<String> claves = usuarios.keySet();
+			Set<DataUsuario> usuariosColeccion = new HashSet<DataUsuario>();
+			for(String clave : claves ) {
+				usuariosColeccion.add(usuarios.get(clave));
+			}
+			request.setAttribute("coleccionDataUsuarios", usuariosColeccion);
 			request.getRequestDispatcher("/WEB-INF/usuarios/consultaUsuarios.jsp").forward(request,response);
 		}
 	}

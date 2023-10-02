@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@page import= "logica_Entidades.Usuario" %>
+    <%@page import= "logica_DataTypes.DataUsuario" %>
+    <%@page import="java.util.Set" %>
     
 <!DOCTYPE html>
 <html>
@@ -222,7 +223,34 @@
 			
 			
 			<div class= "cartas">
-			
+				<%
+					
+				String nickUser ;
+				String nombreUser ;
+				String apellidoUser;
+				
+				for(DataUsuario dataUser :  (Set<DataUsuario>) request.getAttribute("coleccionDataUsuarios")){
+						
+							nickUser = dataUser.getNickName();
+							nombreUser = dataUser.getNombre();
+							apellidoUser = dataUser.getApellido();
+							
+						%>
+						
+						
+						<div class="card bg-dark" style="width: 15rem;">
+						  <img src="<%= request.getContextPath() %>/ServletImagen" class="card-img-top" alt="imagen de usuario">
+						 <div class="card-body">
+						    <h5 class="card-title" style="color: #FFFF;"><%= nickUser %></h5>
+						    <p> </p>
+						    <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
+						    <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
+						    <a href="consultarEmpresa.html" class="btn btn-secondary">Ver Perfil Completo</a>
+						  </div>
+						</div>
+						<% 
+					}
+				%>
 			</div>
 		
 		</main>
