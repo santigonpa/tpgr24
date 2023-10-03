@@ -202,9 +202,16 @@ document.addEventListener("DOMContentLoaded", function () {
                   id="profile-pic"
                   class="position-absolute d-none"
                 />
+                
+                <div class="text-center position-relative">
+				    <label style="font-weight: bold; font-size: 18px;">Seleccione una imagen (opcional)</label>
+				</div>
+				<div class = "my-3"></div>
+                
+                
                 <label for="profile-pic" class="profile-pic-label">
                   <img
-                    src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
+                    src="media/img/userImage.jpg"
                     alt="Foto de perfil"
                     class="profile-pic rounded-circle"
                   />
