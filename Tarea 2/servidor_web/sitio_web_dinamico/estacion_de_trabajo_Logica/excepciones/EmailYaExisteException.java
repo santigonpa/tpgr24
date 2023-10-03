@@ -1,4 +1,4 @@
-package com.src.excepciones;
+package excepciones;
 
 public class EmailYaExisteException extends Exception {
 	/**
