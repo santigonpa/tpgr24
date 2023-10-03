@@ -8,6 +8,12 @@ import logica_DataTypes.DataOferta;
 
 public class OfertaLaboral {
 	
+	//estado de oferta
+	public enum EstadoOferta {
+        INGRESADA,
+        ACEPTADA,
+        RECHAZADA
+    }
 	 //atributos de la oferta laboral
 	
 	private String nombre;
@@ -19,6 +25,7 @@ public class OfertaLaboral {
 	private int remuneracion;
 	private int costoDeOfertaLaboral; 
 	private LocalDate fechaDeAlta; // la del momento en el alta
+	private EstadoOferta estado;
 	
 	//Links de oferta
 		
@@ -46,12 +53,13 @@ public class OfertaLaboral {
 		this.palabrasClave = new HashSet<KeyWord>();
 		//this.postulacionesSobreLaOferta = new HashSet<>();
 		this.postulacionesSobreLaOferta = new HashSet<Postulacion>();
+		this.estado = EstadoOferta.INGRESADA;
 	}
 	
 	public DataOferta getDataOferta() {
 		DataOferta DO = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
 				this.departamento,this.horaInicio, this.horaFin
-				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta);
+				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado);
 		return DO;
 	}
 	
@@ -164,5 +172,13 @@ public LocalTime getHoraFin() {
 			res.add(kw.getPalabraClave());
 		}
 		return res;
+	}
+
+	public EstadoOferta getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoOferta estado) {
+		this.estado = estado;
 	}
 }

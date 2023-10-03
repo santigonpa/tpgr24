@@ -4,8 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import logica_Entidades.OfertaLaboral.EstadoOferta;
+
 public class DataOferta {
-	
+
+		
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
@@ -14,11 +17,14 @@ public class DataOferta {
 	private LocalTime horaFin;
 	private float remuneracion;
 	private int costoDeOfertaLaboral; 
-	private LocalDate fechaDeAlta; //la del momento en el alta
+	private LocalDate fechaDeAlta;
+	private EstadoOferta estado;
+	
+	//la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -29,6 +35,7 @@ public class DataOferta {
 		this.setDepartamento(departamento);
 		this.setRemuneracion(remuneracion);
 		this.setFechaDeAlta(fechaDeAlta2);
+		this.setEstado(estado);
 		
 	}
 
@@ -121,6 +128,14 @@ public class DataOferta {
 	public String toString() {
         return this.getNombre(); // Devuelve el nombre de la oferta
     }
+
+	public EstadoOferta getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoOferta estado) {
+		this.estado = estado;
+	}
 
 }
 
