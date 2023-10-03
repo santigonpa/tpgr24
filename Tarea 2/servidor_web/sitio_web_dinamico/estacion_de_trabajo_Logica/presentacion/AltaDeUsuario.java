@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import utils.Fabrica;
+import excepciones.ContraseniaDiferenteException;
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
 import excepciones.campoInvalidoException;
@@ -31,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JTextArea;
 import java.awt.Color;
+import javax.swing.JPasswordField;
 
 
 public class AltaDeUsuario extends JInternalFrame{
@@ -43,7 +45,6 @@ public class AltaDeUsuario extends JInternalFrame{
 	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
-	private JTextField textFieldNickname;
 	private JTextField textFieldEmail;
 	private JTextField textFieldLink;
 	private JTextField textFieldNacionalidad;
@@ -52,6 +53,9 @@ public class AltaDeUsuario extends JInternalFrame{
 	private String[] arreglo;
 	private JTextArea textAreaDescripcion;
 	private JScrollPane scrollPane;
+	private JTextField textField;
+	private JPasswordField textFieldContra1;
+	private JPasswordField textFieldContra2;
 
 	/**
 	 * Launch the application.
@@ -87,11 +91,11 @@ public class AltaDeUsuario extends JInternalFrame{
 	    getContentPane().setLayout(null);
 	    
 	    JLabel lblNewLabel_5 = new JLabel("       Fecha de nacimiento :");
-	    lblNewLabel_5.setBounds(0, 117, 164, 14);
+	    lblNewLabel_5.setBounds(166, 149, 164, 14);
 	    getContentPane().add(lblNewLabel_5);
 	    
 	    JLabel lblNewLabel_6 = new JLabel("Nacionalidad :");
-	    lblNewLabel_6.setBounds(176, 117, 96, 14);
+	    lblNewLabel_6.setBounds(187, 117, 96, 14);
 	    getContentPane().add(lblNewLabel_6);
 	    
 	    textFieldNacionalidad = new JTextField();
@@ -103,7 +107,7 @@ public class AltaDeUsuario extends JInternalFrame{
 	    Date initialDate = Calendar.getInstance().getTime();
         SpinnerDateModel dateModel = new SpinnerDateModel(initialDate, null, null, Calendar.DAY_OF_MONTH);
 	    spinnerNacimiento = new JSpinner(dateModel);
-	    spinnerNacimiento.setBounds(36, 142, 80, 23);
+	    spinnerNacimiento.setBounds(332, 145, 80, 23);
 	    getContentPane().add(spinnerNacimiento);
 	 // Personalizar la apariencia del JSpinner para mostrar solo la fecha
 	    JSpinner.DateEditor de_spinnerNacimiento = new JSpinner.DateEditor(spinnerNacimiento, "dd/MM/yyyy");
@@ -188,11 +192,6 @@ public class AltaDeUsuario extends JInternalFrame{
 	    lblNewLabel_3.setBounds(19, 80, 77, 14);
 	    getContentPane().add(lblNewLabel_3);
 	    
-	    textFieldNickname = new JTextField();
-	    textFieldNickname.setBounds(93, 77, 79, 20);
-	    getContentPane().add(textFieldNickname);
-	    textFieldNickname.setColumns(10);
-	    
 	    JLabel lblNewLabel_4 = new JLabel("Email :");
 	    lblNewLabel_4.setBounds(193, 80, 49, 14);
 	    getContentPane().add(lblNewLabel_4);
@@ -213,6 +212,31 @@ public class AltaDeUsuario extends JInternalFrame{
 	    btnNewButton_2.setBounds(316, 327, 96, 23);
 	    getContentPane().add(btnNewButton_2);
 	    
+	    JLabel lblNewLabel_3_1 = new JLabel("Contraseña:");
+	    lblNewLabel_3_1.setBounds(19, 114, 77, 14);
+	    getContentPane().add(lblNewLabel_3_1);
+	    
+	    JLabel lblNewLabel_3_1_1 = new JLabel("Confirmar");
+	    lblNewLabel_3_1_1.setBounds(19, 139, 77, 14);
+	    getContentPane().add(lblNewLabel_3_1_1);
+	    
+	    JLabel lblNewLabel_3_1_2 = new JLabel("contraseña:");
+	    lblNewLabel_3_1_2.setBounds(19, 154, 77, 14);
+	    getContentPane().add(lblNewLabel_3_1_2);
+	    
+	    textField = new JTextField();
+	    textField.setColumns(10);
+	    textField.setBounds(93, 77, 79, 20);
+	    getContentPane().add(textField);
+	    
+	    textFieldContra1 = new JPasswordField();
+	    textFieldContra1.setBounds(93, 114, 79, 20);
+	    getContentPane().add(textFieldContra1);
+	    
+	    textFieldContra2 = new JPasswordField();
+	    textFieldContra2.setBounds(93, 146, 79, 20);
+	    getContentPane().add(textFieldContra2);
+	    
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cmdAltaDeUsuarioActionPerformed(e);
@@ -228,10 +252,14 @@ public class AltaDeUsuario extends JInternalFrame{
 		
 	}
 	protected void cmdAltaDeUsuarioActionPerformed(ActionEvent e) {
-		String nickname = this.textFieldNickname.getText();
+		String nickname = this.textField.getText();
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
 		String email = this.textFieldEmail.getText();
+		char[] contra1char = this.textFieldContra1.getPassword();
+		char[] contra2char = this.textFieldContra2.getPassword();
+		String contra1 = new String(contra1char);
+		String contra2 = new String(contra2char);
     	String selectedOption = (String) seleccionTipoUsuario.getSelectedItem();
     	String descripcion = this.textAreaDescripcion.getText();
     	String web = this.textFieldLink.getText();
@@ -242,18 +270,22 @@ public class AltaDeUsuario extends JInternalFrame{
     	
     	if (verificarFormularioUsuario()) {
     	    try {
-    	        if (selectedOption.equals("Empresa")) {
-    	            ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web,null,nickname);
-    	            JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
-    	            limpiarFormulario();
-                    setVisible(false);
-    	        } else if (selectedOption.equals("Postulante")) {
-    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, localDate, nacionalidad,null,nickname);
-    	            JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
-    	            limpiarFormulario();
-                    setVisible(false);
-    	        }
-    	    } catch (NicknameYaExisteException |EmailYaExisteException |campoInvalidoException e2) {
+    	    	if(contra1.equals(contra2)) {
+	    	        if (selectedOption.equals("Empresa")) {
+	    	            ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web,null,contra1);
+	    	            JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
+	    	            limpiarFormulario();
+	                    setVisible(false);
+	    	        } else if (selectedOption.equals("Postulante")) {
+	    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, localDate, nacionalidad,null,contra1);
+	    	            JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
+	    	            limpiarFormulario();
+	                    setVisible(false);
+	    	        }
+    	    	}else{
+    	    		throw new ContraseniaDiferenteException("Las contraseñas ingresadas no coinciden.");
+    	    	}
+    	    } catch (NicknameYaExisteException |EmailYaExisteException |campoInvalidoException |ContraseniaDiferenteException e2) {
     	        // Manejar la excepción NicknameYaExisteException aquí
     	        JOptionPane.showMessageDialog(this, e2.getMessage(), "Alta de Usuario", JOptionPane.ERROR_MESSAGE);
     	    } 
@@ -262,7 +294,7 @@ public class AltaDeUsuario extends JInternalFrame{
 
 	
 	private boolean verificarFormularioUsuario() {
-		String nickname = this.textFieldNickname.getText();
+		String nickname = this.textField.getText();
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
 		String email = this.textFieldEmail.getText();
@@ -296,13 +328,15 @@ public class AltaDeUsuario extends JInternalFrame{
 	
 	public void limpiarFormulario() {
 		this.seleccionTipoUsuario.setSelectedItem(arreglo[0]);
-		this.textFieldNickname.setText("");
+		this.textField.setText("");
+		this.textFieldContra1.setText("");
 		this.textFieldNombre.setText("");
 		this.textFieldApellido.setText("");
 		this.textFieldEmail.setText("");
+		this.textFieldContra1.setText("");
+		this.textFieldContra2.setText("");
     	this.textAreaDescripcion.setText("");
     	this.textFieldLink.setText("");
     	this.textFieldNacionalidad.setText("");
 	}
-	
 }

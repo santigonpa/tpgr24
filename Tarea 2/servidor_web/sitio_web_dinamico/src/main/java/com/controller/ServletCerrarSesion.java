@@ -28,7 +28,7 @@ public class ServletCerrarSesion extends HttpServlet {
 			EstadoSesion estado = EstadoSesion.NO_LOGEADO;
 			HttpSession sesion = request.getSession();
 			sesion.setAttribute("estadoSesion", estado);
-			request.getRequestDispatcher("/WEB-INF/home/iniciar.jsp").forward(request, response);
+			request.getRequestDispatcher("home").forward(request, response);
 		}
 	}
 
