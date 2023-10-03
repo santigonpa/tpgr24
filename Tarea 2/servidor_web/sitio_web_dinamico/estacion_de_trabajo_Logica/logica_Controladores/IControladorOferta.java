@@ -8,6 +8,7 @@ import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
+import logica_DataTypes.DataOferta;
 import logica_Entidades.Postulacion;
 
 public interface IControladorOferta  {
@@ -30,6 +31,10 @@ public abstract Set<String> getPostulantesString(String oferta);
 
 public abstract void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion,
 		int validez, int descuento, LocalDate fechaDeAlta) throws NombrePaqueteYaExiste;
+
+public abstract void aceptarOfertaLaboral(DataOferta dof);
+
+public abstract void rechazarOfertaLaboral(DataOferta dOf);
 
 
 }

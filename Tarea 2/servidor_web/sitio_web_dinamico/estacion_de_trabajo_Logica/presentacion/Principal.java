@@ -26,6 +26,7 @@ public class Principal {
 	private PostulacionAOfertaLaboral PosAOferLab;
 	private AltaDeTipoDePublicacionDeOfertaLaboral Altideof;
 	private CrearPaqueteDeTipoDePublicacionDeOfertasLaborales crearpaqtipopublioferlab;
+	private aceptarRechazarOferta aorOf;
 	
 	/**
 	 * Launch the application.
@@ -127,6 +128,14 @@ public class Principal {
 		crearpaqtipopublioferlab.setClosable(true);
 		crearpaqtipopublioferlab.setVisible(false);
 		trabajouy.getContentPane().add(crearpaqtipopublioferlab);
+		
+		aorOf = new aceptarRechazarOferta(ICO,ICU);
+		aorOf.setBounds(100, 100, 438, 261);
+		aorOf.setMaximizable(true);
+		aorOf.setClosable(true);
+		aorOf.setVisible(false);
+		trabajouy.getContentPane().add(aorOf);
+		
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -269,6 +278,16 @@ public void actionPerformed(ActionEvent e) {
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItemAltaDePubliDeTipoOferLab);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Aceptar o Rechazar Oferta Laboral");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				aorOf.setVisible(true);
+				aorOf.cargarEmpresas();
+				aorOf.limpiarFormulario();
+			}
+		});
+		mnNewMenu_3.add(mntmNewMenuItem_3);
 	
 	}
 }

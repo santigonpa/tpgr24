@@ -6,6 +6,7 @@ import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
+import logica_DataTypes.DataOferta;
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
@@ -13,6 +14,7 @@ import logica_Entidades.TipoPublicacion;
 import utils.Fabrica;
 import logica_Entidades.Paquete;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.OfertaLaboral.EstadoOferta;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
 import logica_Manejadores.IManejadorOferta;
@@ -137,6 +139,20 @@ public class ControladorOferta implements IControladorOferta {
 		OfertaLaboral of = imo.obtenerOferta(oferta);
 		
 		return of.getPostulantesString();
+	}
+	public void aceptarOfertaLaboral(DataOferta dof) {
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorOferta imo = fab.getInManejadorOferta();
+		OfertaLaboral of = imo.obtenerOferta(dof.getNombre());
+		of.setEstado(EstadoOferta.ACEPTADA);
+	}
+
+	public void rechazarOfertaLaboral(DataOferta dof) {
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorOferta imo = fab.getInManejadorOferta();
+		OfertaLaboral of = imo.obtenerOferta(dof.getNombre());
+		of.setEstado(EstadoOferta.RECHAZADA);
+		
 	}
 
 }
