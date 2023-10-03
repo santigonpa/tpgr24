@@ -29,7 +29,7 @@ public class estadoSesionHelper {
 	}
 
 	public static void setEstado(HttpServletRequest request, EstadoSesion estado) {
-		request.getSession().setAttribute("estaSesion", estado);
+		request.getSession().setAttribute("estadoSesion", estado);
 	}
 
 	public static boolean hayUsuarioLogueado(HttpServletRequest request) {
