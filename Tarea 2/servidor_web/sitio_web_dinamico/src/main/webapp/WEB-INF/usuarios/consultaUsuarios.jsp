@@ -5,6 +5,7 @@
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -236,12 +237,12 @@
 			            apellidoUser = dataUser.getApellido();
 			            imagenBytes = dataUser.getImagen();
 			
-			           	request.setAttribute("imagenAPoner", imagenBytes);
+			            String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
 			            
 			    %>
 			
 			    <div class="card bg-dark" style="width: 15rem;">
-			        <img src="<%= request.getContextPath() %>/ServletImagenSinSesion" class="card-img-top" alt="imagen de usuario">
+			        <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="imagen de usuario">
 			        <div class="card-body">
 			            <h5 class="card-title" style="color: #FFFF;"><%= nickUser %></h5>
 			            <br>
