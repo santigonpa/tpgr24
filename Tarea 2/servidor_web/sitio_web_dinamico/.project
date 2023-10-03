@@ -28,11 +28,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>estacion_de_trabajo</name>
-			<type>2</type>
-			<location>C:/Users/Usuario/git/tpgr24/Tarea 2/estacion_de_trabajo</location>
-		</link>
-	</linkedResources>
 </projectDescription>

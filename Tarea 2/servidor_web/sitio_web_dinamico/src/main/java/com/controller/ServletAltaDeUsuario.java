@@ -22,8 +22,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import logica_Controladores.IControladorUsuario;
-import jakarta.servlet.annotation.MultipartConfig;
 import utils.Fabrica;
+import jakarta.servlet.annotation.MultipartConfig;
 
 /**
  * Servlet implementation class ServletAltaDeUsuario
@@ -45,8 +45,9 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
 	// Función para verificar la extensión del archivo
+				
 				private boolean isValidImageExtension(String fileName) {
-				    String[] allowedExtensions = { "jpg", "jpeg", "png", "gif" }; // Extensiones permitidas
+				    String[] allowedExtensions = { "jpg", "jpeg", "png" }; // Extensiones permitidas
 				    String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
 				    return Arrays.asList(allowedExtensions).contains(fileExtension);
 				
@@ -109,7 +110,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 	            // Convierte el flujo de entrada de la imagen en un byte[]
 	             imagenBytes = readImageBytes(fileContent);
 	            }catch(Exception e) {}
-		    }
+		    
 		     
 		    
 		    }else{
@@ -118,9 +119,15 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
 		        Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
 		    	 imagenBytes = Files.readAllBytes(imagePath);
-		    }
-		
-		
+		    	}
+		}else {
+			
+			// FALTA CONFIGURAR LA IMG
+	    	// !!!!!!!!
+	    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
+	        Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
+	    	 imagenBytes = Files.readAllBytes(imagePath);
+		}
 	
 		    // Obtén el valor del campo oculto "tipoUsuario" del formulario
 		    String tipoUsuario = request.getParameter("tipoUsuario");
@@ -197,8 +204,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		    }
 		
  		}
-	}
-
+}
 
 		
 	

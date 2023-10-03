@@ -3,7 +3,9 @@
     
     <%@page import= "logica_DataTypes.DataUsuario" %>
     <%@page import="java.util.Set" %>
-    
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -222,36 +224,38 @@
 		<main>
 			
 			
-			<div class= "cartas">
-				<%
-					
-				String nickUser ;
-				String nombreUser ;
-				String apellidoUser;
-				
-				for(DataUsuario dataUser :  (Set<DataUsuario>) request.getAttribute("coleccionDataUsuarios")){
-						
-							nickUser = dataUser.getNickName();
-							nombreUser = dataUser.getNombre();
-							apellidoUser = dataUser.getApellido();
-							
-						%>
-						
-						
-						<div class="card bg-dark" style="width: 15rem;">
-						  <img src="<%= request.getContextPath() %>/ServletImagen" class="card-img-top" alt="imagen de usuario">
-						 <div class="card-body">
-						    <h5 class="card-title" style="color: #FFFF;"><%= nickUser %></h5>
-						    <br>
-						    <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
-						    <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
-						    <a href="consultarEmpresa.html" class="btn btn-secondary">Ver Perfil Completo</a>
-						  </div>
-						</div>
-						<% 
-					}
-				%>
+						<div class="cartas">
+			    <%
+			        String nickUser;
+			        String nombreUser;
+			        String apellidoUser;
+			        byte[] imagenBytes;
+			
+			        for (DataUsuario dataUser : (Set<DataUsuario>) request.getAttribute("coleccionDataUsuarios")) {
+			            nickUser = dataUser.getNickName();
+			            nombreUser = dataUser.getNombre();
+			            apellidoUser = dataUser.getApellido();
+			            imagenBytes = dataUser.getImagen();
+			
+			            String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+			            
+			    %>
+			
+			    <div class="card bg-dark" style="width: 15rem;">
+			        <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="imagen de usuario">
+			        <div class="card-body">
+			            <h5 class="card-title" style="color: #FFFF;"><%= nickUser %></h5>
+			            <br>
+			            <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
+			            <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
+			            <a href="consultarEmpresa.html" class="btn btn-secondary">Ver Perfil Completo</a>
+			        </div>
+			    </div>
+			    <%
+			        }
+			    %>
 			</div>
+
 		
 		</main>
 	

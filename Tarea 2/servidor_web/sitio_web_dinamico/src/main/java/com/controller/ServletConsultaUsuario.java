@@ -44,18 +44,26 @@ public class ServletConsultaUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Map<String,DataUsuario> usuarios =  IMU.getDataUsuario();
+		Set<String> claves = usuarios.keySet();
+		Set<DataUsuario> usuariosColeccion = new HashSet<DataUsuario>();
+		for(String clave : claves ) {
+			usuariosColeccion.add(usuarios.get(clave));
+		}
+		request.setAttribute("coleccionDataUsuarios", usuariosColeccion);
+		
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
 			//hace algo si el usuario esta correctamente logeado de una forma
+			
+			
 			request.getRequestDispatcher("/WEB-INF/usuarios/consultaUsuariosLogged.jsp").forward(request,response);
+		
+		
 		}else {
 			//hace otra cosa dependiendo si el usuario no esta logeado
-			Map<String,DataUsuario> usuarios =  IMU.getDataUsuario();
-			Set<String> claves = usuarios.keySet();
-			Set<DataUsuario> usuariosColeccion = new HashSet<DataUsuario>();
-			for(String clave : claves ) {
-				usuariosColeccion.add(usuarios.get(clave));
-			}
-			request.setAttribute("coleccionDataUsuarios", usuariosColeccion);
+			
+			
 			request.getRequestDispatcher("/WEB-INF/usuarios/consultaUsuarios.jsp").forward(request,response);
 		}
 	}

@@ -32,7 +32,7 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+              <li><a class="dropdown-item" href="ConsultarUsuario">Perfiles</a></li>
               
             </ul>
           </li>
