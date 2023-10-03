@@ -69,4 +69,24 @@
     <servlet-name>ServletImagenSinSesion</servlet-name>
     <url-pattern>/ServletImagenSinSesion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConsultarUsuariosLogged</display-name>
+    <servlet-name>ServletConsultarUsuariosLogged</servlet-name>
+    <servlet-class>com.controller.ServletConsultarUsuariosLogged</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConsultarUsuariosLogged</servlet-name>
+    <url-pattern>/ServletConsultarUsuariosLogged</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletVerPerfil</display-name>
+    <servlet-name>ServletVerPerfil</servlet-name>
+    <servlet-class>com.controller.ServletVerPerfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVerPerfil</servlet-name>
+    <url-pattern>/ServletVerPerfil</url-pattern>
+  </servlet-mapping>
 </web-app>

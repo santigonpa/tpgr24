@@ -196,12 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
               
               
               <div class="text-center position-relative">
-                <input
-                  type="file"
-                  name="profile-pic"
-                  id="profile-pic"
-                  class="position-absolute d-none"
-                />
                 
                 <div class="text-center position-relative">
 				    <label style="font-weight: bold; font-size: 18px;">Seleccione una imagen (opcional)</label>
@@ -216,7 +210,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     class="profile-pic rounded-circle"
                   />
                 </label>
+                
+               <div class = "my-4"></div>
+					
+					<div class="form-floating mb-3"> 
+					    <input name="profile-pic" type="file" class="form-control mx-0 px-0" id="floatingInput" accept="image/*">
+					</div>
+									
+                
               </div>
+              
               <div class="form-container">
                 <div class="form-group">
                   <label for="nickname">Nickname:</label>
