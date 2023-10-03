@@ -10,11 +10,11 @@ import logica_Entidades.Usuario;
 import java.io.IOException;
 
 
-public class ServletImagen extends HttpServlet {
+public class ServletImagenSinSesion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public ServletImagen() {
+    public ServletImagenSinSesion() {
         super();
 
     }
@@ -23,9 +23,9 @@ public class ServletImagen extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtén el arreglo de bytes de la imagen desde la sesión
-        HttpSession session = request.getSession(false);
-        Usuario usr = (Usuario) session.getAttribute("usuario");
-        byte[] imagenBytes = usr.getImagen();
+        
+        
+        byte[] imagenBytes = (byte[]) request.getAttribute("imagenAPoner");
         
         // Establece el tipo de contenido de la respuesta como una imagen
         response.setContentType("image/png"); // Cambia el tipo de contenido según el formato de tu imagen

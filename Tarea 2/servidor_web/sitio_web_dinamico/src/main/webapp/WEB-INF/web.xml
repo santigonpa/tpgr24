@@ -59,4 +59,14 @@
     <servlet-name>ServletConsultaUsuario</servlet-name>
     <url-pattern>/ServletConsultaUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletImagenSinSesion</display-name>
+    <servlet-name>ServletImagenSinSesion</servlet-name>
+    <servlet-class>com.controller.ServletImagenSinSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletImagenSinSesion</servlet-name>
+    <url-pattern>/ServletImagenSinSesion</url-pattern>
+  </servlet-mapping>
 </web-app>
