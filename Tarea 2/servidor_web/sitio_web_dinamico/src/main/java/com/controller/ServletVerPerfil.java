@@ -56,15 +56,15 @@ public class ServletVerPerfil extends HttpServlet {
 		
 		if(	(getEstado(request) == EstadoSesion.SI_LOGEADO)  ) {
 				
-			Usuario user = (Usuario) request.getAttribute("usuario");
+			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
 			if(user instanceof Postulante) {
 					
 				//Esta consultando su propio perfil
 				if(user.getNickName() == usuarioAConsultar) {
-					request.getRequestDispatcher("/WEB-INF/sesion/MiUsuarioPostulante.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioPostulante.jsp").forward(request, response);
 					
 				}else {
-						request.getRequestDispatcher("/WEB-INF/sesion/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
+						request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 					}
 					
 				
@@ -73,10 +73,10 @@ public class ServletVerPerfil extends HttpServlet {
 		
 					//Esta consultando su propio perfil
 					if(user.getNickName() == usuarioAConsultar) {	
-						request.getRequestDispatcher("/WEB-INF/sesion/MiUsuarioEmpresa.jsp").forward(request, response);
+						request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioEmpresa.jsp").forward(request, response);
 						
 						}else{
-							request.getRequestDispatcher("/WEB-INF/sesion/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
+							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 							
 						}
 					
