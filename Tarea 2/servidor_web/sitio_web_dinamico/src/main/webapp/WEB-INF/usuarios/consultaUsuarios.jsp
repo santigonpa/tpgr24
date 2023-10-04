@@ -248,7 +248,7 @@
 			            <br>
 			            <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
 			            <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
-			            <a href="VerPerfil" class="btn btn-secondary">Ver Perfil Completo</a>
+			            <a href="?VerPerfil=<%= nickUser  %>" class="btn btn-secondary">Ver Perfil Completo</a>
 			        </div>
 			    </div>
 			    <%
