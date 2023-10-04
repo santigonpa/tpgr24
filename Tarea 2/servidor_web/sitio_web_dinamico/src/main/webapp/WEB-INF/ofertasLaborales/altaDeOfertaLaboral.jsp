@@ -70,6 +70,16 @@
 		
 		return true; // Permite que el formulario se envíe si todas las validaciones pasan
 		}
+		
+		// Agregar un evento de escucha al formulario para la validación
+	    document.addEventListener("DOMContentLoaded", function () {
+	        var form = document.getElementById("alta-form");
+	        form.addEventListener("submit", function (event) {
+	            if (!validarFormulario()) {
+	                event.preventDefault();
+	            }
+	        });
+	    });
 	</script>
       
        
@@ -98,8 +108,7 @@
 	            <form id="alta-form" action = "/TrabajoUY/AltaDeOfertaLaboral" method = "POST" enctype="multipart/form-data">
 				
 	            <div class="form-floating mb-3">
-					<input type="text" class="form-control" id="nombre" placeholder=""  value="<%= request.getParameter("nombre") != null ? request.getParameter("nombre") : "" %>"
->
+					<input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<%= request.getParameter("nombre") != null ? request.getParameter("nombre") : "" %>">					
 					<label for="floatingInput">Nombre de la Oferta</label>
 					
 				</div>
@@ -108,33 +117,33 @@
 					<div class="my-3"></div>
 					
 					<div class="form-floating mb-">
-					<input type="text" class="form-control" id="descripcion" placeholder=""  value="<%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %>">
+					<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="" value="<%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %>">
 					<label for="floatingTextarea">Descripcón</label>
 				</div>
 					
 					<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="departamento" placeholder="" value="<%= request.getParameter("departamento") != null ? request.getParameter("departamento") : "" %>">
+					<input type="text" class="form-control" id="departamento" name ="departamento" placeholder="" value="<%= request.getParameter("departamento") != null ? request.getParameter("departamento") : "" %>">
 					<label for="floatingInput">Departamento</label>
 				</div>
 					
 					<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="ciudad" placeholder="" value="<%= request.getParameter("ciudad") != null ? request.getParameter("ciudad") : "" %>">
+					<input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="" value="<%= request.getParameter("ciudad") != null ? request.getParameter("ciudad") : "" %>">
 					<label for="floatingInput">Ciudad</label>
 				</div>
 					
 					<div class="form-floating mb-3">
-					<input type="time" class="form-control" id="horaDeInicio" placeholder="" value="<%= request.getParameter("horaDeInicio") != null ? request.getParameter("horaDeInicio") : "" %>">
+					<input type="time" class="form-control" id="horaDeInicio" name="horaDeInicio" placeholder="" value="<%= request.getParameter("horaDeInicio") != null ? request.getParameter("horaDeInicio") : "" %>">
 						<label for="floatingInput">Hora de Inicio</label>
 				</div>
 					
 					<div class="form-floating mb-3">
-					<input type="time" class="form-control" id="horaDeFin" placeholder="" value="<%= request.getParameter("horaDeFin") != null ? request.getParameter("horaDeFin") : "" %>">
+					<input type="time" class="form-control" id="horaDeFin" name ="horaDeFin"placeholder="" value="<%= request.getParameter("horaDeFin") != null ? request.getParameter("horaDeFin") : "" %>">
 						<label for="floatingInput">Hora de Fin</label>
 				</div>
 				
 				
 				<div class="form-floating mb-3">
-					<input type="number" class="form-control" id="remuneracion" placeholder="" value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>">
+					<input type="number" class="form-control" id="remuneracion" name="remuneracion" placeholder="" value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>">
 					<label for="floatingInput">Remuneración (En pesos uruguayos)</label>
 				</div>
 				
