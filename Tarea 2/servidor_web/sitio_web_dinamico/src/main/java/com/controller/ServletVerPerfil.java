@@ -40,7 +40,7 @@ public class ServletVerPerfil extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String usuarioAConsultar = request.getParameter("VerPerfil");
+		String usuarioAConsultar = (String) request.getAttribute("VerPerfil");
 		Map<String,DataUsuario> usuarios = IMU.getDataUsuario();
 		DataUsuario usuarioConsultar = usuarios.get(usuarioAConsultar);
 		String tipoUser;

@@ -183,4 +183,12 @@ public LocalTime getHoraFin() {
 	public void setEstado(EstadoOferta estado) {
 		this.estado = estado;
 	}
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] img) {
+		this.imagen = img;
+	}
 }
