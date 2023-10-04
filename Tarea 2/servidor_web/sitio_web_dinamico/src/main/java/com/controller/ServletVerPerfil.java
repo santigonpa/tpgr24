@@ -1,15 +1,18 @@
 package com.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
 
 import java.io.IOException;
 
 import com.model.EstadoSesion;
 
+@WebServlet (description = "Servlet de ver perfil de usuario", urlPatterns = { "/VerPerfil" })
 public class ServletVerPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +34,7 @@ public class ServletVerPerfil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario usr = (Usuario) request.getSession().getAttribute("estadoSesion");
-		if(getEstado(request) == EstadoSesion.SI_LOGEADO && usr instanceOf  ) {
+		if((getEstado(request) == EstadoSesion.SI_LOGEADO) && (usr instanceof Postulante) ) {
 			
 		}
 	}
