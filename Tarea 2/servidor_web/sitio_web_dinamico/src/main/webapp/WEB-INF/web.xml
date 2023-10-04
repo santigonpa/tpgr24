@@ -91,6 +91,7 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+<<<<<<< HEAD
     <display-name>ServletAltaOfertaLaboral</display-name>
     <servlet-name>ServletAltaOfertaLaboral</servlet-name>
     <servlet-class>com.controller.ServletAltaOfertaLaboral</servlet-class>
@@ -98,5 +99,14 @@
   <servlet-mapping>
     <servlet-name>ServletAltaOfertaLaboral</servlet-name>
     <url-pattern>/ServletAltaOfertaLaboral</url-pattern>
+=======
+    <display-name>ServletPostulacionAOferta</display-name>
+    <servlet-name>ServletPostulacionAOferta</servlet-name>
+    <servlet-class>com.controller.ServletPostulacionAOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletPostulacionAOferta</servlet-name>
+    <url-pattern>/ServletPostulacionAOferta</url-pattern>
+>>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
   </servlet-mapping>
 </web-app>

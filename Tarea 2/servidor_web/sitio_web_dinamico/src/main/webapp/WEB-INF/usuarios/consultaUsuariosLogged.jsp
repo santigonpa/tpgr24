@@ -158,7 +158,7 @@
 		function confirmarCerrarSesion() {
     	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
     	if (confirmacion) {
-			window.location.href = "/TrabajoUY/ServletCerrarSesion";
+			window.location.href = "/TrabajoUY/CerrarSesion";
     		}
 		}
 	</script>

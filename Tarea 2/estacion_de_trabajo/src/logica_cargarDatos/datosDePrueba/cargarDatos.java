@@ -10,10 +10,10 @@ import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 import utils.Fabrica;
 
 public class cargarDatos {
@@ -41,25 +41,26 @@ public class cargarDatos {
 		LocalDate n10 = LocalDate.parse("02-12-1986", dateFormatter);
 		
 		
+		
 		//Creo Postulantes
-		Usuario p1 = new Postulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya");
-		Usuario p2 = new Postulante("matilo","Matias","Lopez","matias.lopez90@hotmail.com",n2,"Argentina");
-		Usuario p3 = new Postulante("maro","Maria","Rodriguez","marrod@gmail.com",n3,"Uruguaya");
-		Usuario p4 = new Postulante("javierf","Javier","Fernandez","javierf93@yahoo.com",n4,"Mexicana");
-		Usuario p5 = new Postulante("valen25","Valentina","Martinez","vale87@gmail.com",n5,"Uruguaya");
-		Usuario p6 = new Postulante("andpel2","Andres","Perez","anpe92@hotmail.com",n6,"Chilena");
-		Usuario p7 = new Postulante("sicam","Camila","Silva","camisilva89@gmail.com",n7,"Uruguaya");
-		Usuario p8 = new Postulante("sebgon","Sebastian","Gonzalez","gonza95@yahoo.com",n8,"Colombiana");
-		Usuario p9 = new Postulante("isabel","Isabella","Lopez","loisa@gmail.com",n9,"Uruguaya");
-		Usuario p10 = new Postulante("marram02","Martin","Ramirez","marram@hotmail.com",n10,"Argentina");
+		Usuario p1 = new Postulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya",null,"awdrg543");
+		Usuario p2 = new Postulante("matilo","Matias","Lopez","matias.lopez90@hotmail.com",n2,"Argentina",null,"edrft543");
+		Usuario p3 = new Postulante("maro","Maria","Rodriguez","marrod@gmail.com",n3,"Uruguaya",null,"r5t6y7u8");
+		Usuario p4 = new Postulante("javierf","Javier","Fernandez","javierf93@yahoo.com",n4,"Mexicana",null,"45idgaf67");
+		Usuario p5 = new Postulante("valen25","Valentina","Martinez","vale87@gmail.com",n5,"Uruguaya",null,"poiuy987");
+		Usuario p6 = new Postulante("andpel2","Andres","Perez","anpe92@hotmail.com",n6,"Chilena",null,"xdrgb657");
+		Usuario p7 = new Postulante("sicam","Camila","Silva","camisilva89@gmail.com",n7,"Uruguaya",null,"mnjkiu89");
+		Usuario p8 = new Postulante("sebgon","Sebastian","Gonzalez","gonza95@yahoo.com",n8,"Colombiana",null,"ytrewq10");
+		Usuario p9 = new Postulante("isabel","Isabella","Lopez","loisa@gmail.com",n9,"Uruguaya",null,"sbsplol1");
+		Usuario p10 = new Postulante("marram02","Martin","Ramirez","marram@hotmail.com",n10,"Argentina",null,"okmnji98");
 		
 		//Creo Empresas
-		Empresa e1 = new Empresa("EcoTech","Sophia","Johnosn","info@EcoTehc.com","EcoTech Innovations es una empresa lider en soluciones tecnol´ogicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafios ambientales mas apremiantes de nuestro tiempo. Desde sistemas de energıa renovable y dispositivos de monitorizacion ambiental hasta soluciones de gestion de residuos inteligentes, nuestra mision es proporcionar herramientas que permitan a las empresas y comunidades adoptar practicas mas ecologicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnologia y la naturaleza, y trabajamos incansablemente para impulsar un futuro mas limpio y sostenible.","http://www.EcoTechInnovations.com");
-		Empresa e2 = new Empresa("FusionTech","William","Smith","contacto@FusionTech.net","FusionTech Dynamics es una empresa pionera en el ambito de la inteligencia artificial y la automatizacion avanzada. Nuestro equipo multidisciplinario de ingenieros, cientificos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimizacion de procesos industriales hasta la creacion de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnologia mejore y amplie nuestras capacidades innatas.","http://www.FusionTechDynamics.net");
-		Empresa e3 = new Empresa("GlobalHealth","Isabella","Brown","jobs@GlobalHelath.uy","GlobalHealth Dynamics es una empresa comprometida con el avance de la atencion medica a nivel mundial. Como lideres en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnosticos mas precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra vision es crear un ecosistema de salud conectado en el que los datos medicos se utilicen de manera etica y segura para mejorar la calidad de vida de las personas. A traves de la innovacion constante y la colaboracion con expertos medicos, estamos dando forma al futuro de la atencion medica, donde la tecnologia y la compasion se unen parasalvar vidas y mejorar el bienestar en todo el mundo.","http://www.globalhealthdynamics.uy/info");
-		Empresa e4 = new Empresa("ANTEL","Washington","Rocha","jarrington@ANTEL.com.uy","En Antel te brindamos servicios de vanguardia en tecnologia de comunicacion en Telefonia Movil, Fija, Banda Ancha y Datos","ANTEL.com.uy");
-		Empresa e5 = new Empresa("MIEM","Pablo","Bengoechea","eldiez@MIEM.org.uy","Balance Energetico Nacional (BEN). La Direccion Nacional de Energia (DNE) del Ministerio de Industria, Energia y Mineria (MIEM) presenta anualmente el BEN.","MIEM.com.uy");
-		Empresa e6 = new Empresa("TechSolutions","Mercedes","Venn","Mercedes@TechSolutions.com.uy", "”TechSolutions Inc.” es una empresa lider en el sector de tecnologia de la informacion y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamanos y sectores. Su enfoque se centra en la creacion de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.","TechSolutions.com");
+		Empresa e1 = new Empresa("EcoTech","Sophia","Johnosn","info@EcoTehc.com","EcoTech Innovations es una empresa lider en soluciones tecnol´ogicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafios ambientales mas apremiantes de nuestro tiempo. Desde sistemas de energıa renovable y dispositivos de monitorizacion ambiental hasta soluciones de gestion de residuos inteligentes, nuestra mision es proporcionar herramientas que permitan a las empresas y comunidades adoptar practicas mas ecologicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnologia y la naturaleza, y trabajamos incansablemente para impulsar un futuro mas limpio y sostenible.","http://www.EcoTechInnovations.com",null,"qsxcdw43");
+		Empresa e2 = new Empresa("FusionTech","William","Smith","contacto@FusionTech.net","FusionTech Dynamics es una empresa pionera en el ambito de la inteligencia artificial y la automatizacion avanzada. Nuestro equipo multidisciplinario de ingenieros, cientificos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimizacion de procesos industriales hasta la creacion de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnologia mejore y amplie nuestras capacidades innatas.","http://www.FusionTechDynamics.net",null,"qpwoei586");
+		Empresa e3 = new Empresa("GlobalHealth","Isabella","Brown","jobs@GlobalHelath.uy","GlobalHealth Dynamics es una empresa comprometida con el avance de la atencion medica a nivel mundial. Como lideres en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnosticos mas precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra vision es crear un ecosistema de salud conectado en el que los datos medicos se utilicen de manera etica y segura para mejorar la calidad de vida de las personas. A traves de la innovacion constante y la colaboracion con expertos medicos, estamos dando forma al futuro de la atencion medica, donde la tecnologia y la compasion se unen parasalvar vidas y mejorar el bienestar en todo el mundo.","http://www.globalhealthdynamics.uy/info",null,"asdfg654");
+		Empresa e4 = new Empresa("ANTEL","Washington","Rocha","jarrington@ANTEL.com.uy","En Antel te brindamos servicios de vanguardia en tecnologia de comunicacion en Telefonia Movil, Fija, Banda Ancha y Datos","ANTEL.com.uy",null,"2nru096");
+		Empresa e5 = new Empresa("MIEM","Pablo","Bengoechea","eldiez@MIEM.org.uy","Balance Energetico Nacional (BEN). La Direccion Nacional de Energia (DNE) del Ministerio de Industria, Energia y Mineria (MIEM) presenta anualmente el BEN.","MIEM.com.uy",null,"ibii4xo");
+		Empresa e6 = new Empresa("TechSolutions","Mercedes","Venn","Mercedes@TechSolutions.com.uy", "”TechSolutions Inc.” es una empresa lider en el sector de tecnologia de la informacion y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamanos y sectores. Su enfoque se centra en la creacion de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.","TechSolutions.com",null,"1ngs03p");
 		
 		//Agrego Usarios
 		mu.addUsuario(p1);
@@ -294,7 +295,10 @@ public class cargarDatos {
 		
 		//------------------------------//	
 		//Falta todo lo de Paquete que es opcional, veremos si se hace.
-
+		//.........//
+		
+		
 	}
+	
 
 }

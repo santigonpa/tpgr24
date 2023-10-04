@@ -1,40 +1,44 @@
 package com.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_Entidades.Usuario;
+
 import java.io.IOException;
 
-/**
- * Servlet implementation class ServletVerPerfil
- */
+import com.model.EstadoSesion;
+
 public class ServletVerPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public ServletVerPerfil() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+    	
+    }
+    
+    public static EstadoSesion getEstado(HttpServletRequest request)
+	{	//obtiene el tipo de la sesion
+		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Usuario usr = (Usuario) request.getSession().getAttribute("estadoSesion");
+		if(getEstado(request) == EstadoSesion.SI_LOGEADO && usr instanceOf  ) {
+			
+		}
+	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
 	}
 
 }
