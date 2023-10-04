@@ -82,7 +82,7 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+              <li><a class="dropdown-item" href="/ConsultarUsuario">Perfiles</a></li>
               
             </ul>
           </li>
@@ -229,16 +229,20 @@
 		<main>
 			
 			
-						<div class="cartas">
+				<div class="cartas">
 			    <%
+			    
+			    Set<DataUsuario> conjuntoDeUsers = (Set<DataUsuario>) request.getAttribute("coleccionDataUsuarios");
+			    
+			    if(!conjuntoDeUsers.isEmpty()){
+			    
 			        String nickUser;
 			        String nombreUser;
 			        String apellidoUser;
 			        byte[] imagenBytes;
 			
-			        for (DataUsuario dataUser : (Set<DataUsuario>) request.getAttribute("coleccionDataUsuarios")) {
-			            
-			        	nickUser = dataUser.getNickName();
+			        for (DataUsuario dataUser : conjuntoDeUsers) {
+			            nickUser = dataUser.getNickName();
 			            nombreUser = dataUser.getNombre();
 			            apellidoUser = dataUser.getApellido();
 			            imagenBytes = dataUser.getImagen();
@@ -254,13 +258,37 @@
 			            <br>
 			            <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
 			            <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
-			            <a href="consultarEmpresa.html" class="btn btn-secondary">Ver Perfil Completo</a>
+			            <a href="?VerPerfil=<%= nickUser  %>" class="btn btn-secondary">Ver Perfil Completo</a>
 			        </div>
 			    </div>
 			    <%
+			        	}
+			        
+			        %>  
+			    	
+			    	</div>
+			    
+			    <% 
+			    }else{
+			        	
+			        	%>
+			           
+			           
+			             
+						    <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay usuarios registrados en la página hasta el momento
+							            </div>
+							        </div>
+							    </div>
+							</div>
+			             
+			       <% 
 			        }
 			    %>
-			</div>
+			
 
 		
 		</main>
