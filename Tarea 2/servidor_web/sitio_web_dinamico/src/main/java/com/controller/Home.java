@@ -3,6 +3,7 @@ package com.controller;
 import java.io.IOException;
 
 import com.model.EstadoSesion;
+import logica_cargarDatos.datosDePrueba.*;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -23,6 +24,14 @@ public class Home extends HttpServlet {
 	
     public Home() {
         super();
+    }
+    private static boolean datosCargados = false; // Bandera para verificar si los datos ya se cargaron
+
+    public void init() throws ServletException {
+        if (!datosCargados) {
+            cargarDatos(); // Llama a la función cargarDatos() solo si los datos no se han cargado previamente
+            datosCargados = true; // Establece la bandera en true para indicar que los datos se han cargado
+        }
     }
     
     public static void iniciarLaSession(HttpServletRequest request) {
@@ -70,6 +79,11 @@ public class Home extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
+	private void cargarDatos() {
+        // Aquí llama a la función cargar() de la clase cargardatos para cargar tus datos hardcoded
+		cargarDatos miCargador = new cargarDatos();
+		miCargador.cargar();
+    }
 	
 	
 	

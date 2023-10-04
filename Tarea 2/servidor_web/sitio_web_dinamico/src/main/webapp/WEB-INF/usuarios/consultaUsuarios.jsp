@@ -150,7 +150,7 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="/TrabajoUY/IniciarSesion"
+              href="/TrabajoUY/iniciarSesion"
               style="color: white"
               >Iniciar Sesion</a
             >

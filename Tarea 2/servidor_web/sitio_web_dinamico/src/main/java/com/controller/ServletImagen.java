@@ -32,6 +32,7 @@ public class ServletImagen extends HttpServlet {
         
         // Escribe los bytes de la imagen en la respuesta
         response.getOutputStream().write(imagenBytes);
+        
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
