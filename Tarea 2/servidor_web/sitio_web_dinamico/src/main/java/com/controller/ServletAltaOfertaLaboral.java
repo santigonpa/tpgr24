@@ -135,16 +135,14 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		String horaDeInicioo = request.getParameter("horaDeInicio");
 		String horaDeFinn = request.getParameter("horaDeFin");
 		
-		//DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");
-		
-		
+		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
 	
-		//LocalTime horaDeInicio = LocalTime.parse(horaDeInicioo, formateo);
-		//LocalTime horaDeFin = LocalTime.parse(horaDeFinn, formateo);
+		LocalTime horaDeInicio = LocalTime.parse(horaDeInicioo, formateo);
+		LocalTime horaDeFin = LocalTime.parse(horaDeFinn, formateo);
 	
     	
 		String remuneracionn = request.getParameter("remuneracion");
-		int remuneracion = 0;//Integer.parseInt(remuneracionn);
+		int remuneracion = Integer.parseInt(remuneracionn);
 		
 		Part filePart = request.getPart("floatingInput");
 		byte[] imagenBytes = null;
@@ -188,7 +186,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		        
 		}
 		try {
-			ICO.darAltaOferta(nombre, descripcion, ciudad, departamento, t1, t2, remuneracion, costo, fechaActual, imagenBytes);
+			ICO.darAltaOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, costo, fechaActual, imagenBytes);
 			response.sendRedirect("/TrabajoUY/home");
 			
 		}catch (NombreRepetidoOfertaException e){
