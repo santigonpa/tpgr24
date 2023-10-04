@@ -5,17 +5,23 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_DataTypes.DataPostulante;
+import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
+import logica_Manejadores.IManejadorUsuario;
+import utils.Fabrica;
 
 import java.io.IOException;
+import java.util.Map;
 
 import com.model.EstadoSesion;
 
 @WebServlet (description = "Servlet de ver perfil de usuario", urlPatterns = { "/VerPerfil" })
 public class ServletVerPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static Fabrica fab = Fabrica.getInstance();
+    private static IManejadorUsuario IMU = fab.getInManejadorUsuario()  ; 
 
     public ServletVerPerfil() {
         super();
@@ -31,17 +37,60 @@ public class ServletVerPerfil extends HttpServlet {
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
 
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuario usr = (Usuario) request.getSession().getAttribute("estadoSesion");
-		if((getEstado(request) == EstadoSesion.SI_LOGEADO) && (usr instanceof Postulante) ) {
+		
+		String usuarioAConsultar = request.getParameter("VerPerfil");
+		Map<String,DataUsuario> usuarios = IMU.getDataUsuario();
+		DataUsuario usuarioConsultar = usuarios.get(usuarioAConsultar);
+		String tipoUser;
+		
+		if(usuarioConsultar instanceof DataPostulante) {
+			tipoUser = "Postulante";
+		}else {
+			tipoUser = "Empresa";
+		}
+		
+		//seteamos en el request el usuario a consultar
+		request.setAttribute("consultar", usuarioConsultar);
+		
+		if(	(getEstado(request) == EstadoSesion.SI_LOGEADO)  ) {
+				
+			Usuario user = (Usuario) request.getAttribute("usuario");
+			if(user instanceof Postulante) {
+					
+				//Esta consultando su propio perfil
+				if(user.getNickName() == usuarioAConsultar) {
+					request.getRequestDispatcher("/WEB-INF/sesion/MiUsuarioPostulante.jsp").forward(request, response);
+					
+				}else {
+						request.getRequestDispatcher("/WEB-INF/sesion/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
+					}
+					
+				
+				
+				}else {//es empresa
+		
+					//Esta consultando su propio perfil
+					if(user.getNickName() == usuarioAConsultar) {	
+						request.getRequestDispatcher("/WEB-INF/sesion/MiUsuarioEmpresa.jsp").forward(request, response);
+						
+						}else{
+							request.getRequestDispatcher("/WEB-INF/sesion/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
+							
+						}
+					
+				}
+		
+		}else { // LA SESION NO ESTA INICIADA
 			
+			request.getRequestDispatcher("/WEB-INF/sesion/Consulta"+tipoUser+".jsp").forward(request, response);
 		}
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doGet(request,response);
 	}
 
 }
