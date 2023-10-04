@@ -19,12 +19,13 @@ public class DataOferta {
 	private int costoDeOfertaLaboral; 
 	private LocalDate fechaDeAlta;
 	private EstadoOferta estado;
+	private byte[] imagen; // Nuevo atributo para la imagen de oferta
 	
 	//la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado, byte[]imagen)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -36,6 +37,7 @@ public class DataOferta {
 		this.setRemuneracion(remuneracion);
 		this.setFechaDeAlta(fechaDeAlta2);
 		this.setEstado(estado);
+		this.setImagen(imagen);
 		
 	}
 
@@ -120,6 +122,14 @@ public class DataOferta {
 		this.fechaDeAlta = fechaDeAlta;
 	}
 
+	public byte[] getImagen() {
+		return imagen;
+	}
+	
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
 	public String getFechaAltaComoString() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaDeAlta.format(formatter);

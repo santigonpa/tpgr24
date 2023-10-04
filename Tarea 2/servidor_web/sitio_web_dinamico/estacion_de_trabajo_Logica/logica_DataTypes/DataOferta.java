@@ -19,12 +19,13 @@ public class DataOferta {
 	private int costoDeOfertaLaboral; 
 	private LocalDate fechaDeAlta;
 	private EstadoOferta estado;
+	private byte[] imagen;
 	
 	//la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado, byte[]imagen)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -36,7 +37,16 @@ public class DataOferta {
 		this.setRemuneracion(remuneracion);
 		this.setFechaDeAlta(fechaDeAlta2);
 		this.setEstado(estado);
+		this.setImagen(imagen);
 		
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
+	public byte[] getImagen() {
+		return imagen;
 	}
 
 	public String getNombre() {

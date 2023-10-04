@@ -1,5 +1,12 @@
 package com.controller;
 
+import jakarta.servlet.ServletException;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
 
 
@@ -36,11 +43,18 @@ import com.model.EstadoSesion;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
 
-@WebServlet (description = "Servlet de alta de oferta laboral", urlPatterns = { "/AltaOfertaLaboral" })
+
+/**
+ * Servlet implementation class ServletAltaOfertaLaboral
+ */
+
+@WebServlet (description = "Servlet de alta de oferta laboral", urlPatterns = { "/AltaDeOfertaLaboral" })
 @MultipartConfig
 
-public class ServletAltaDeOfertaLaboral extends HttpServlet {
+
+public class ServletAltaOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+     
 	
 	private static Fabrica fab = Fabrica.getInstance();
 	private static IControladorOferta ICO = fab.getInOfer();
@@ -69,17 +83,18 @@ public class ServletAltaDeOfertaLaboral extends HttpServlet {
 	        return outputStream.toByteArray();
 	    }
 
-	/**
- 		* @see HttpServlet#HttpServlet()
-	*/
-	public ServletAltaDeOfertaLaboral() {
-		super();
-	// TODO Auto-generated constructor stub
-	}
+	
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletAltaOfertaLaboral() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
- 	* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	*/
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	// Obtén el valor del campo oculto "tipoUsuario" del formulario
 	    String tipoUsuario = request.getParameter("tipoUsuario");
@@ -94,10 +109,11 @@ public class ServletAltaDeOfertaLaboral extends HttpServlet {
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
     	}//	es un postulante
     	else {
-    		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralErroneo.jsp").forward(request, response);
+    		//request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralErroneo.jsp").forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
     	}
     }
-    
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -139,11 +155,8 @@ public class ServletAltaDeOfertaLaboral extends HttpServlet {
 	            InputStream fileContent = filePart.getInputStream();
 	            try {    
 	             imagenBytes = readImageBytes(fileContent);
-	            }catch(Exception e) {
-	            	
-	         }
-		   }
-		}
+	            }catch(Exception e) {}
+
 		  /*  }else{
 		    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
 		        Path imagePath = Paths.get("/webapp/media/img/imagenDefaultPaquete");
@@ -155,7 +168,6 @@ public class ServletAltaDeOfertaLaboral extends HttpServlet {
 	    	 imagenBytes = Files.readAllBytes(imagePath);
 		}
 		*/
-	            
 		String[] opcionesSeleccionadasTP = request.getParameterValues("tiposPubli");
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
 		
@@ -184,8 +196,10 @@ public class ServletAltaDeOfertaLaboral extends HttpServlet {
             request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
             
             // Redirigir de vuelta a tu formulario de registro
-            request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/usuarios/altaDeOfertaLaboral.jsp").forward(request, response);
 		}
-    }
-}
 
+    }
+	}
+}
+}

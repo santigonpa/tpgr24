@@ -15,9 +15,9 @@ public interface IControladorOferta  {
 	
 	public abstract void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException;
+			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen) throws NombreRepetidoOfertaException;
 
-public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta) throws NombreRepetidoOfertaException;
+public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen) throws NombreRepetidoOfertaException;
 
 
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,

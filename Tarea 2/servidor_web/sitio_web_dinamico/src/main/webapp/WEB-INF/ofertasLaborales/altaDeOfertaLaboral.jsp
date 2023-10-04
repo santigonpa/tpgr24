@@ -45,57 +45,40 @@
       crossorigin="anonymous"
     ></script>
     
-      <script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
       
       <script>
-      // Obtén el elemento <select> por su id
-      var selectElement = document.getElementById("opciones");
-
-      // Agrega un evento para escuchar cambios en la selección
-      selectElement.addEventListener("change", function () {
-          // Obtiene las opciones seleccionadas
-          var selectedOptions = [];
-          var options = selectElement.options;
-
-          for (var i = 0; i < options.length; i++) {
-              if (options[i].selected) {
-                  selectedOptions.push(options[i].text);
-              }
-          }
-
-      });
-  </script>
-  
-  <script>
-    var tarjetaSeleccionada = null;
-
-    function seleccionarTarjeta(indice) {
-        tarjetaSeleccionada = indice;
-        alert("Tarjeta " + indice + " seleccionada.");
-        // Puedes realizar acciones adicionales aquí, como resaltar la tarjeta seleccionada visualmente.
-    }
-
-    function guardarSeleccion() {
-        if (tarjetaSeleccionada !== null) {
-            // Envía la información de la tarjeta seleccionada al servidor (por ejemplo, usando una solicitud AJAX)
-            // Aquí puedes enviar tarjetaSeleccionada al servidor para su procesamiento o almacenamiento.
-            // Puedes utilizar AJAX para enviar la información al servidor sin recargar la página.
-        } else {
-            alert("No se ha seleccionado ninguna tarjeta.");
-        }
-    }
+		function validarFormulario() {
+		    var nombre = document.getElementById("nombre").value;
+		    var descripcion = document.getElementById("descripcion").value;
+		    var departamento = document.getElementById("departamento").value;
+		    var ciudad = document.getElementById("ciudad").value;
+		    var horaDeInicio = document.getElementById("horaDeInicio").value;
+		    var horaDeFin = document.getElementById("horaDeFin").value;
+		    var remuneracion = document.getElementById("remuneracion").value;
+			
+		    
+		
+		    if (nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
+		        alert("Todos los campos son obligatorios");
+		        return false; // Evita que el formulario se envíe si hay campos vacíos
+		    }
+		
+		    // Aquí puedes agregar más validaciones según tus requisitos
+		
+		return true; // Permite que el formulario se envíe si todas las validaciones pasan
+		}
 	</script>
-    
+      
+       
 </head>
+
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
 	<main>
 	<div class="my-5"></div>
-    
-	
 	
 	<div class="row justify-content-center">
 		<div class="col-md-6">
@@ -105,6 +88,7 @@
 					<div class="my-5">
 					</div>
 				</div>
+				
 				<div class="my-5">
 				</div>
 				<div class = "text-center"><i class="fa-solid fa-circle-info"></i>
@@ -148,6 +132,7 @@
 						<label for="floatingInput">Hora de Fin</label>
 				</div>
 				
+				
 				<div class="form-floating mb-3">
 					<input type="number" class="form-control" id="remuneracion" placeholder="" value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>">
 					<label for="floatingInput">Remuneración (En pesos uruguayos)</label>
@@ -164,7 +149,21 @@
 				<div class="my-5"></div>
 				
 				<div class="contenedor">
-				<h2 class="-titulo-"><strong>Ingrese las keywords que quiera asociar a la oferta</strong></h2>
+            		<h4 class="-titulo-"><strong>Seleccione un tipo de publicacion de Oferta Laboral</strong></h4>
+     			</div>
+     			
+     			<div class="contenedor">
+	     			<select class="form-select"aria-label="Default select example" name ="tiposPubli">
+	     				<option selected>Seleccione una opción</option>
+	     				<option value="1">Básico</option>
+	     				<option value="2">Destacado</option>
+	     				<option value="3">Premium</option>
+	     				<option value="4">Estándar</option>
+	     			</select>
+	     		</div>
+				
+				<div class="contenedor">
+				<h4 class="-titulo-"><strong>Ingrese las keywords que quiera asociar a la oferta</strong></h4>
 				<div class="my-5"></div>
 				</div>
 				
@@ -174,7 +173,7 @@
 				
 				
 				
-				<select class="form-select" multiple aria-label="Multiple select example">
+				<select class="form-select" multiple aria-label="Multiple select example" name ="keys">
 				  
 				  <option value="1">Tiempo Completo</option>
 				  <option value="2">Medio Tiempo</option>
@@ -183,6 +182,22 @@
 				  <option value="3">Temporal</option>
 				  <option value="3">Permanente</option>
 				</select>
+				
+				<div class="my-5"></div>
+				<div class="container text-center">
+					<div class="row">
+						<div class="col">
+							<button type="submit" class="btn btn-dark" name ="accion" value ="paquetes">Deseo pagar con alguno de mis paquetes</button>
+						</div>
+						<div class="col">
+							<button type="submit" class="btn btn-dark" name ="accion" value ="normal">Deseo pagar de forma normal (sin utilizar paquetes)</button>
+						</div>
+					</div>   	
+				</div>
+			</form>
 	</main>
+	
+	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+	
 </body>
 </html>

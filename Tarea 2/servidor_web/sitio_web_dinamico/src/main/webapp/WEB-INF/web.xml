@@ -89,4 +89,14 @@
     <servlet-name>ServletVerPerfil</servlet-name>
     <url-pattern>/ServletVerPerfil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletAltaOfertaLaboral</display-name>
+    <servlet-name>ServletAltaOfertaLaboral</servlet-name>
+    <servlet-class>com.controller.ServletAltaOfertaLaboral</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletAltaOfertaLaboral</servlet-name>
+    <url-pattern>/ServletAltaOfertaLaboral</url-pattern>
+  </servlet-mapping>
 </web-app>

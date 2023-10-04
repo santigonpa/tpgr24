@@ -26,6 +26,7 @@ public class OfertaLaboral {
 	private int costoDeOfertaLaboral; 
 	private LocalDate fechaDeAlta; // la del momento en el alta
 	private EstadoOferta estado;
+	private byte[] imagen;
 	
 	//Links de oferta
 		
@@ -39,7 +40,7 @@ public class OfertaLaboral {
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horarioInicio, LocalTime horarioFin
-			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha)
+			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha, byte[] imagen)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
@@ -54,12 +55,13 @@ public class OfertaLaboral {
 		//this.postulacionesSobreLaOferta = new HashSet<>();
 		this.postulacionesSobreLaOferta = new HashSet<Postulacion>();
 		this.estado = EstadoOferta.INGRESADA;
+		this.imagen = imagen;
 	}
 	
 	public DataOferta getDataOferta() {
 		DataOferta DO = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
 				this.departamento,this.horaInicio, this.horaFin
-				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado);
+				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.imagen);
 		return DO;
 	}
 	
@@ -180,5 +182,13 @@ public LocalTime getHoraFin() {
 
 	public void setEstado(EstadoOferta estado) {
 		this.estado = estado;
+	}
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
 	}
 }

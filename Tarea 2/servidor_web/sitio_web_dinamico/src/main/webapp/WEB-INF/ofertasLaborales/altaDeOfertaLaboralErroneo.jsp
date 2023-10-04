@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 <!DOCTYPE html>
-<html lang = "es">
-<head>
+<html lang="es">
+ 
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
-    <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="altOfLabStyle.css" />
+    <link rel="stylesheet" href="normalize.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -20,7 +19,7 @@
 
     <link
       rel="icon"
-      href="media/img/logoNuevo.png"
+      href="./img/logoNuevo.png"
       type="image/x-icon"
     />
     <link
@@ -39,8 +38,8 @@
     ></script>
     <title>TrabajoUY</title>
   </head>
-<body>
-	    <header>
+  <body>
+    <header>
       <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
       <!-- esto se debe implementar mas adelante  
             
@@ -50,8 +49,8 @@
             -->
 
 	<nav class="navbar bg-dark px-5">
-    	<a class="navbar-brand" href="home">
-      		<img src="media/img/logoNuevo.png"
+    	<a class="navbar-brand" href="index.html">
+      		<img src="./img/logoNuevo.png"
       		alt="Logo" 
       		width="42" 
       		height="44">
@@ -70,7 +69,8 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/TrabajoUY/ConsultarUsuario">Perfiles</a></li>
+              <li><a class="dropdown-item" href="consultaDeUsuario.html">Perfiles</a></li>
+              
             </ul>
           </li>
           </div>
@@ -87,10 +87,9 @@
             	>Ofertas Laborales
 
             </a>
-            <ul class="dropdown-menu">   
-              <li><a class="dropdown-item" href="/TrabajoUY/AltaDeOfertaLaboral">Crear Oferta Laboral</a></li>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
               <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              
               <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
             </ul>
           </li>
@@ -127,7 +126,7 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="/TrabajoUY/AltaUsuario"
+              href="altaDeUsuario.html"
               style="color: white"
               >Registrarse</a
             >
@@ -139,9 +138,9 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="/TrabajoUY/iniciarSesion"
+              href="inicioDeSesion.html"
               style="color: white"
-              >Iniciar Sesión</a
+              >Iniciar Sesion</a
             >
           </li>
   		</div>
@@ -149,15 +148,12 @@
 	</nav>
 
 
-      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
+      <div class="header-ola">
         <!--Content before waves-->
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
-          <h1 class="trabajo-uy">Trabajo UY</h1>
-          <h2 class="slogan-uy">
-            Consigue el trabajo que buscas de la manera más fácil.
-          </h2>
+          <h1 class="trabajo-uy"> Crea una Oferta Laboral</h1>
         </div>
 
         <!--Waves Container-->
@@ -207,28 +203,130 @@
 
       <!--Content ends-->
     </header>
-	<main>
-    		
-    		<div class = "titulo3" style = "text-align : center; margin-top : 50px;padding:0; font-family: 'Fira Sans Condensed';">
-	    		<h3 class="galeria-titulo" style = "color : rgb(0, 0, 0); text-shadow : 6px 6px 15 black;">
-	            Algunos de nuestros clientes que ya consiguieron empleo con TrabajoUY.
-	          	</h3>
-    		</div>
-      		
-      		<div class="container-galeria">
-				  <section class = "galeria">
-				  		<img src = "media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" >
-				  		<img src = "media/img/of1.jpg" >
-				  		<img src = "media/img/of2.jpg" >
-				  		<img src = "media/img/of3.jpg" >
-				  		<img src = "media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" >
-				  		<img src = "media/img/irina-2Q8bo_6lu1Y-unsplash.jpg" >
-				  </section>
-				</div>
-      		
-      		
-      </main>
-      
-      <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
-</body>
+    
+    
+    
+	    <main>
+	  		<div class="alert alert-danger" role="alert">
+  					CUIDADO - DEBES ESTAR REGISTRADO COMO UNA EMPRESA
+  					<br>
+  					<a href="inicioDeSesion.html" class="alert-link">Haz click aqui para iniciar sesion como una Empresa</a>
+  					<br>
+  					<a href="altaDeUsuario.html" class="alert-link">Haz click aqui para registrarte y crear un Usuario tipo Empresa</a>
+			</div>
+		</main>
+    
+    
+    
+    
+    
+    <!--Footer-->
+       <footer class="bs-light text-dark pt-5">
+		   <div class="contenedor5 text-center text-md-start">
+			   <div class ="row text-center text-md-start">
+	  
+				   <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+					   <h5 class="text-uppercase mb-4 font-weight-bold text-dark">Nosotros</h5>
+					   <hr class="mb-3">
+					  <p> 
+       				  Desde nuestra creación en 2023, hemos sido una plataforma dedicada a facilitar la conexión entre empresas y postulantes en busca de oportunidades laborales emocionantes. Ya seas una empresa en busca de un talento o un postulante en búsqueda de tu próximo desafío, estamos aquí para ayudarte a alcanzar tus metas.
+    				  </p>
+    				 <p>
+        			Nuestra misión es servir como el puente que une a empleadores y futuros empleados, ayudando a construir equipos exitosos y carreras sólidas. ¡Únete a nuestra comunidad y da el siguiente paso en tu camino profesional!
+    				</p>
+					</div>
+					   
+					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Déjanos ayudarte</h5> 
+							<hr class="mb-3">
+							<p>
+								<a href="inicioDeSesion.html" class="text-dark">Tu cuenta</a>
+							</p>
+							<p>
+								<a href="consultaDeOfertasLaborales.html" class="text-dark">Ofertas</a>
+							</p>
+							<p>
+								<a href="consultaDeTiposDePublicacionDeOfertasLaborales.html" class="text-dark">Tipos de publicación</a>
+							</p>
+							<p>
+								<a href="#" class="text-dark">Ayuda</a>
+							</p>
+					   </div>
+					   
+					    <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Contacto</h5> 
+							<hr class="mb-3">
+							<p>
+								<li class="fas fa-map me-3"></li>Av. Julio Herrera y Reissig 565
+							</p>
+							<p>
+								<li class="fas fa-envelope me-3"></li>trabajouy@jobs.com
+							</p>
+							<p>
+								<li class="fas fa-phone me-3"></li>2714 2714
+							</p>
+							<p>
+								<li class="fas fa-university me-3"></li>FING
+							</p>
+					   </div>
+					   
+					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+						<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Newsletter</h5> 
+						<hr class="mb-3">
+						
+						<form action="">
+                        	<div class="form-group">
+                            	<input type="email" class="form-control" placeholder="Email"
+                                 required="required"/>
+                        	</div>
+                        	<div>
+                            	<button class="btn btn-outline-dark" type="submit">Suscribirme</button>
+                        	</div>
+                    	</form>
+					   </div>
+					   
+				
+					   
+					<div class="text-center mb-2">
+					<p>	
+						© 2023 FRAGSESAMA & Cía. S.A.
+					</p>
+					<p>
+						Todos los derechos reservados.
+					</p>
+					</div>
+					
+					<div class="text-center">
+						<ul class="list-unstyled list-inline">
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-facebook"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-twitter"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-google-plus"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-linkedin-in"></i>
+								</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="#" class="text-dark"><i class = "fab fa-youtube"></i>
+								</a>
+							</li>
+						</ul>
+				    </div>
+				    
+        		</div>
+        	</div>
+ 
+	</footer>
+       
+       
+       
+  </body>
 </html>

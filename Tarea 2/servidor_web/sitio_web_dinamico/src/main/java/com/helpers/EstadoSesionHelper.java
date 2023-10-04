@@ -1,4 +1,4 @@
-package helpers;
+package com.helpers;
 
 import com.model.EstadoSesion;
 
@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletRequest;
 
 
-public class estadoSesionHelper {
+public class EstadoSesionHelper {
 	/**
 	 * inicializa la sesión si no estaba creada
 	 * 
