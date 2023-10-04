@@ -6,6 +6,7 @@ import com.model.EstadoSesion;
 import logica_cargarDatos.datosDePrueba.*;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,6 +32,8 @@ public class Home extends HttpServlet {
         if (!datosCargados) {
             cargarDatos(); // Llama a la función cargarDatos() solo si los datos no se han cargado previamente
             datosCargados = true; // Establece la bandera en true para indicar que los datos se han cargado
+            
+            
         }
     }
     
@@ -73,6 +76,7 @@ public class Home extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+		
 	}
 
 	

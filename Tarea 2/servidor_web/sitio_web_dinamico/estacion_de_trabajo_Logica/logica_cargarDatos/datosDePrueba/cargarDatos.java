@@ -10,8 +10,10 @@ import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
+import java.io.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
@@ -42,6 +44,10 @@ public class cargarDatos {
 		LocalDate n8 = LocalDate.parse("18-01-1995", dateFormatter);
 		LocalDate n9 = LocalDate.parse("07-07-1991", dateFormatter);
 		LocalDate n10 = LocalDate.parse("02-12-1986", dateFormatter);
+		
+		
+		
+		
 		
 		//Cambio de https a Byte
 		byte[] imagen1 = cargarImagenEnBytes("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\webapp\\media\\img\\U1.jpg");
@@ -325,6 +331,25 @@ public class cargarDatos {
         } catch (IOException e) {
             e.printStackTrace();
             return null; // Manejo de error: devuelve null o maneja el error de otra manera
+        }
+    }
+	
+	public static byte[] cargarImagenEnBytes2(String rutaRelativa) {
+        // Obtiene la ruta absoluta a partir de la ruta relativa
+        String rutaAbsoluta = new File(rutaRelativa).getAbsolutePath();
+
+        try (FileInputStream fis = new FileInputStream(rutaAbsoluta)) {
+            // Lee la imagen en bytes
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                bos.write(buffer, 0, bytesRead);
+            }
+            return bos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null; // Maneja el error apropiadamente en tu aplicación
         }
     }
 

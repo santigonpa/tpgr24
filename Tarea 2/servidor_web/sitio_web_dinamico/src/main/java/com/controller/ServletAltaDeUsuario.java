@@ -1,8 +1,11 @@
 package com.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,6 +18,7 @@ import com.model.EstadoSesion;
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
 import excepciones.campoInvalidoException;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -114,23 +118,75 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		     
 		    
 		    }else{
-		    	// FALTA CONFIGURAR LA IMG
 		    	// !!!!!!!!
-		    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
-		        Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
+		    	/*Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
 		    	 imagenBytes = Files.readAllBytes(imagePath);
-		    	}
+		    	}*/
+		    	
+		    	
+		    	// Obtiene el contexto del servlet
+		        ServletContext context = getServletContext();
+
+		        // Obtiene la ruta de ejecución del servlet
+		        String rutaEjecucion = context.getRealPath("media/img/userImage.jpg");
+		        Path imagePath = Paths.get(rutaEjecucion);
+		    	 imagenBytes = Files.readAllBytes(imagePath);
+		    }     
 		}else {
+			/*
+			//String urlBase = request.getRequestURL().toString();
+			// Construye la URL completa de la imagen en el servidor
+			String urlImagenServidor = "http://localhost:8086/TrabajoUY/media/img/userImage.jpg";
+
+			try {
+			    // Crea una URL a partir de la cadena de URL
+			    URL url = new URL(urlImagenServidor);
+			    
+			    // Abre una conexión HTTP
+			    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			    
+			    // Configura la solicitud HTTP
+			    conn.setRequestMethod("GET");
+			    
+			    // Lee los bytes de la imagen desde la conexión
+			    InputStream inputStream = conn.getInputStream();
+			    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			    int nRead;
+			    byte[] data = new byte[1024];
+			    
+			    while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+			        buffer.write(data, 0, nRead);
+			    }
+			    
+			    buffer.flush();
+			    
+			    // Obtiene los bytes de la imagen
+			    imagenBytes = buffer.toByteArray();
+			    
+			    // Cierra la conexión y el flujo de entrada
+			    inputStream.close();
+			    conn.disconnect();
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+
+	        */
 			
-			// FALTA CONFIGURAR LA IMG
-	    	// !!!!!!!!
-	    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
-	        Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
+			// Obtiene el contexto del servlet
+	        ServletContext context = getServletContext();
+
+	        // Obtiene la ruta de ejecución del servlet
+	        String rutaEjecucion = context.getRealPath("media/img/userImage.jpg");
+	        Path imagePath = Paths.get(rutaEjecucion);
 	    	 imagenBytes = Files.readAllBytes(imagePath);
+	        // Imprime la ruta de ejecución para verificarla
+	        System.out.println("Ruta de ejecución del servlet: " + rutaEjecucion);
+	        
 		}
 	
 		    // Obtén el valor del campo oculto "tipoUsuario" del formulario
 		    String tipoUsuario = request.getParameter("tipoUsuario");
+		    
 		    
 		    if ("postulante".equals(tipoUsuario)) {
 		        // El usuario seleccionó "Postulante"
