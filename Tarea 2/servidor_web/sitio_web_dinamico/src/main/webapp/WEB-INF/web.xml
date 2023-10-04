@@ -89,4 +89,14 @@
     <servlet-name>ServletVerPerfil</servlet-name>
     <url-pattern>/ServletVerPerfil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletPostulacionAOferta</display-name>
+    <servlet-name>ServletPostulacionAOferta</servlet-name>
+    <servlet-class>com.controller.ServletPostulacionAOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletPostulacionAOferta</servlet-name>
+    <url-pattern>/ServletPostulacionAOferta</url-pattern>
+  </servlet-mapping>
 </web-app>
