@@ -4,22 +4,22 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 
+import excepciones.NombrePaqueteYaExiste;
+import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_DataTypes.DataOferta;
-import excepciones.NombrePaqueteYaExiste;
-import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
-import logica_Entidades.TipoPublicacion;
-import utils.Fabrica;
-import logica_Entidades.Paquete;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.OfertaLaboral.EstadoOferta;
+import logica_Entidades.Paquete;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
+import logica_Entidades.TipoPublicacion;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
+import utils.Fabrica;
 
 
 public class ControladorOferta implements IControladorOferta {
@@ -154,5 +154,6 @@ public class ControladorOferta implements IControladorOferta {
 		of.setEstado(EstadoOferta.RECHAZADA);
 		
 	}
+	
 
 }

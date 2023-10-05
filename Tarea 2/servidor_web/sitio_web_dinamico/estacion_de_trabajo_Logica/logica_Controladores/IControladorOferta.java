@@ -36,5 +36,4 @@ public abstract void aceptarOfertaLaboral(DataOferta dof);
 
 public abstract void rechazarOfertaLaboral(DataOferta dOf);
 
-
 }

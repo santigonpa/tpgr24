@@ -201,7 +201,24 @@ document.addEventListener("DOMContentLoaded", function () {
 	</nav>
 	</header>	
 	<main>
-	<label for="profile-pic" class="profile-pic-label">
+			<div class="card">
+				<div class="card-header">
+					<ul class="nav nav-tabs card-header-tabs justify-content-center">
+						<li class="nav-item"><a
+							class="nav-link active text-muted fs-3" id="postulante-tab"
+							data-toggle="tab" href="#postulante">Modificar
+								Usuario</a></li>
+					</ul>
+				</div>
+				<div class="card-body">
+					<form id="alta-form">
+						 <div class="text-center position-relative">
+				    <label style="font-weight: bold; font-size: 18px;">Seleccione una imagen (opcional)</label>
+				</div>
+				<div class = "my-3"></div>
+                
+                
+                <label for="profile-pic" class="profile-pic-label">
                   <img
                     src="media/img/userImage.jpg"
                     alt="Foto de perfil"
@@ -214,26 +231,6 @@ document.addEventListener("DOMContentLoaded", function () {
 					<div class="form-floating mb-3"> 
 					    <input name="profile-pic" type="file" class="form-control mx-0 px-0" id="floatingInput" accept="image/*">
 					</div>
-		<div class="container mt-5">
-			<div class="card">
-				<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs justify-content-center">
-						<li class="nav-item"><a
-							class="nav-link active text-muted fs-3" id="postulante-tab"
-							data-toggle="tab" href="#postulante">Modificar
-								Usuario</a></li>
-					</ul>
-				</div>
-				<div class="card-body">
-					<form id="alta-form">
-						<div class="text-center position-relative">
-							<input type="file" name="profile-pic" id="profile-pic"
-								class="position-absolute d-none" /> <label
-								for="profile-pic" class="profile-pic-label"> <img
-								src="https://imgv3.fotor.com/images/gallery/a-woman-linkedin-picture-with-grey-background-made-by-LinkedIn-Profile-Picture-Maker.jpg" alt="Foto de perfil"
-								class="profile-pic rounded-circle" />
-							</label>
-						</div>
 						<div class="d-flex flex-column align-items-center mt-3">
 							<div>
 								<div class="d-flex align-items-center">
@@ -310,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
 										</div>
 										<div class="form-group">
 											<label for="descripcion" class="mb-3">Modificar
-												Descripci�n:</label>
+												Descripción:</label>
 											<textarea class="form-control" id="descripcion"
 												name="descripcion" rows="3"
 												placeholder="Ingrese una Descripci�n"

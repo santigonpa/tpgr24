@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import logica_DataTypes.DataKeyWord;
+import logica_DataTypes.DataOferta;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
@@ -88,4 +89,18 @@ public class ManejadorOferta implements IManejadorOferta{
 		OfertaLaboral of = this.obtenerOferta(nombre);
 		return (of != null);
 	}
-}
+	
+	public Set<DataOferta> getOfertas(){
+			
+			Set<DataOferta> res = new HashSet<>();
+			Map<String, OfertaLaboral> of = this.ofertasLaborales;
+			if(!of.isEmpty()) {
+				for (Map.Entry<String, OfertaLaboral> entry : of.entrySet()) {
+				    res.add(entry.getValue().getDataOferta());
+				}
+			}
+			return res;
+		}
+
+	} 
+

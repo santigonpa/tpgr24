@@ -5,22 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
+import excepciones.UsuarioNoExisteException;
 import logica_Controladores.IControladorOferta;
 import logica_Controladores.IControladorUsuario;
 import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataOferta;
 import logica_Entidades.OfertaLaboral.EstadoOferta;
 import utils.Fabrica;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import excepciones.NombreRepetidoOfertaException;
-import excepciones.UsuarioNoExisteException;
 
 public class aceptarRechazarOferta extends JInternalFrame {
 

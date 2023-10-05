@@ -52,7 +52,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
+              <li><a class="dropdown-item" href="/TrabajoUY/consultaDeOfertasLaborales">Ver Ofertas</a></li>
               <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
             </ul>
           </li>
