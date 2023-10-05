@@ -3,8 +3,8 @@ package logica_Entidades;
 import java.util.Map;
 import java.time.LocalDate;
 import java.util.HashMap;
-
 import logica_DataTypes.DataEmpresa;
+import logica_Entidades.OfertaLaboral.EstadoOferta;
 
 public class Empresa extends Usuario{
 	//Atributos
@@ -87,6 +87,30 @@ public class Empresa extends Usuario{
 	
 	public boolean tienePaqueteAsociado() {
 		return (this.compra != null);
+	}
+	
+	public Map<String,OfertaLaboral> getOfertasAprobadasDeEmpresa(){
+		Map<String, OfertaLaboral> res = new HashMap<>();
+        
+	    for (String ofertaNombre : this.ofertas.keySet()) {
+	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
+	    		if(oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    			res.put(ofertaNombre, oferta);
+	    		}
+	    }
+	    return res;
+	}
+	
+	public Map<String,OfertaLaboral> getOfertasRechazadasIngresadas(){
+		Map<String, OfertaLaboral> res = new HashMap<>();
+        
+	    for (String ofertaNombre : this.ofertas.keySet()) {
+	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
+	    		if(!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    			res.put(ofertaNombre, oferta);
+	    		}
+	    }
+	    return res;
 	}
 	
 	public boolean tieneOfertas() {

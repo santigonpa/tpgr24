@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.Postulante;
@@ -14,6 +15,7 @@ import utils.Fabrica;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 
 import com.model.EstadoSesion;
 
@@ -70,17 +72,14 @@ public class ServletVerPerfil extends HttpServlet {
 				
 				
 				}else {//es empresa
-					System.out.println(user.getNickName());
-					System.out.println(usuarioAConsultar);
-					System.out.println(user.getNickName().equals(usuarioAConsultar));
 					
 					//Esta consultando su propio perfil
 					if(user.getNickName().equals(usuarioAConsultar)) {	
 						System.out.println("entre para aca");
 						request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioEmpresa.jsp").forward(request, response);
 						
-						}else{
-							System.out.println("entre para el else");
+						}else{//Esta consultando el perfil de otro
+							
 							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 							
 						}
@@ -89,7 +88,12 @@ public class ServletVerPerfil extends HttpServlet {
 		
 		}else { // LA SESION NO ESTA INICIADA
 			
-			request.getRequestDispatcher("/WEB-INF/sesion/Consulta"+tipoUser+".jsp").forward(request, response);
+			if(tipoUser.equals("Empresa")) {
+				Set<DataOferta> ofertasConfi = IMU.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+				request.setAttribute("ofertasConfirmadas",ofertasConfi);
+			}
+			
+			request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+".jsp").forward(request, response);
 		}
 	}
 

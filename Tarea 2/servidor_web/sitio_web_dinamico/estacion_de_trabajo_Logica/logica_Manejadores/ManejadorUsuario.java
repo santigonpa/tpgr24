@@ -30,7 +30,9 @@ public class ManejadorUsuario implements IManejadorUsuario {
         usuariosPorEmail = new HashMap<String, Usuario>();
         
     }
-
+    
+    
+    
     public static ManejadorUsuario getinstance() {
         if (instancia == null)
             instancia = new ManejadorUsuario();
@@ -179,6 +181,30 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		return res;
 	}
 
+	public Set<DataOferta> obtenerOfertasConfirmadasDeEmpresa(String nickName){
+		Set<DataOferta> res = new HashSet<>();
+		Empresa emp = (Empresa) this.empresas.get(nickName);
+		Map<String,OfertaLaboral> mapaOfertas = emp.getOfertasAprobadasDeEmpresa();
+		Set<String> claves = mapaOfertas.keySet();
+		for(String clave : claves) {
+			OfertaLaboral of = mapaOfertas.get(clave);
+			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(),of.getImagen());
+			res.add(ofert);
+		}
+		return res;
+	} 
 	
+	public Set<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName){
+		Set<DataOferta> res = new HashSet<>();
+		Empresa emp = (Empresa) this.empresas.get(nickName);
+		Map<String,OfertaLaboral> mapaOfertas = emp.getOfertasAprobadasDeEmpresa();
+		Set<String> claves = mapaOfertas.keySet();
+		for(String clave : claves) {
+			OfertaLaboral of = mapaOfertas.get(clave);
+			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(),of.getImagen());
+			res.add(ofert);
+		}
+		return res;
+	} 
 
 }
