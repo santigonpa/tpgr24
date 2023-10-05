@@ -3,7 +3,9 @@ package logica_DataTypes;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
+import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral.EstadoOferta;
 
 public class DataOferta {
@@ -22,11 +24,14 @@ public class DataOferta {
 	private String empresa;
 	private byte[] imagen;
 	
+	private Set<KeyWord> palabrasClave;
+
+	
 	//la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado, String empresa, byte[]imagen)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -40,11 +45,17 @@ public class DataOferta {
 		this.setEstado(estado);
 		this.setEmpresa(empresa);
 		this.setImagen(imagen);
-		
+		this.palabrasClave = palabrasClave;
 	}
+
+
 
 	public void setEmpresa(String emp) {
 		this.empresa = emp;
+	}
+	
+	public Set<KeyWord> getKeyWords() {
+		return this.palabrasClave;
 	}
 	
 	public String getEmpresa() {
