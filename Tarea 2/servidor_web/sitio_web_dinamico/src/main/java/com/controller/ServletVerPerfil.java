@@ -73,17 +73,19 @@ public class ServletVerPerfil extends HttpServlet {
 				
 				}else {//es empresa
 					
-					//Esta consultando su propio perfil
+						Set<DataOferta> ofertasConfi = IMU.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+						request.setAttribute("ofertasConfirmadas",ofertasConfi);
+						Set<DataOferta> ofertasRech = IMU.obtenerOfertasRechazadasIngresadas(usuarioAConsultar);
+						request.setAttribute("ofertasRyI",ofertasRech);
+					
+						
 					if(user.getNickName().equals(usuarioAConsultar)) {	
-						System.out.println("entre para aca");
+						//Esta consultando su propio perfil
 						request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioEmpresa.jsp").forward(request, response);
 						
 						}else{//Esta consultando el perfil de otro
 							
-							if(tipoUser.equals("Empresa")) {
-								Set<DataOferta> ofertasConfi = IMU.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
-								request.setAttribute("ofertasConfirmadas",ofertasConfi);
-							}
+							
 							
 							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 							

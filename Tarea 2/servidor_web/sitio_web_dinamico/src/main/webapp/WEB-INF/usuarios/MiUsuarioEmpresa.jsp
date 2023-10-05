@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import= "logica_Entidades.Usuario" %>
     <%@page import= "logica_DataTypes.DataEmpresa" %>
+    <%@page import= "logica_DataTypes.DataOferta" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
@@ -270,42 +271,120 @@
 	     
 	     
 	     <div class = "texto-of">
-	     <h2>Consultar Ofertas Confirmadas De La Empresa</h2>
-	     </div> 
+	     <h2>Consultar Ofertas Confirmadas De la Empresa</h2>
+	      
 	     
-	     
+	     <%	
+	     	Set<DataOferta> oferConfirmadas = (Set<DataOferta>) request.getAttribute("ofertasConfirmadas");
+	     	//si hay ofertas confirmadas las muestro si no no
+	     	if(!oferConfirmadas.isEmpty()){
+	     %>
 	     
 	      <div class= "cartas-ofertas">
 				
 				
-				<div class="card bg-light" style="width: 15rem;">
-			  <img src="https://tinyurl.com/45nsf34m" class="card-img-top" alt="imagen de usuario">
-			  <div class="card-body">
-			    <h5 class="card-title" style="color: black;">Desarrollador Frontend</h5>
-			    <p> </p>
-			    
-			    <p class="card-text" style="color: black;">Unete a nuestro equipo de desarrollo frontend y crea experiencia de usuario excepcionales.</p>
-			    <a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">Ver más de la oferta</a>
-			  </div>
-			</div>
+				<%  //initfor
+				String nombreOferta;
+		        String nombreUser;
+		        String descripcion;
+		        byte[] imagenBytesOferta;
+		
+		        for (DataOferta ofertaActual : oferConfirmadas) {
+		            nombreOferta = ofertaActual.getNombre();
+					imagenBytesOferta = ofertaActual.getImagen();
+					descripcion = ofertaActual.getDescripcion();
+					imagenBytesOferta = ofertaActual.getImagen();
+		            String base64ImageOferta = Base64.getEncoder().encodeToString(imagenBytesOferta);
+					
+				%>
+				
+				
 			
 			<div class="card bg-light" style="width: 15rem;">
-			  <img src="https://tinyurl.com/4n2vpurk" class="card-img-top" alt="imagen de usuario">
+			  <img src="data:image/jpeg;base64, <%= base64ImageOferta %>" class="card-img-top" alt="imagen de usuario">
 			  <div class="card-body">
-			     <h5 class="card-title" style="color: black;">A. de Marketing Digital</h5>
+			     <h5 class="card-title" style="color: black;"><%= nombreOferta %></h5>
 			    <p> </p>
 			    
-			    <p class="card-text" style="color: black;">Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.</p>
-			    <a href="consultaOfertaLaboral2.html" class="btn btn-outline-dark">Ver más de la oferta</a>
+			    <p class="card-text" style="color: black;"><%= descripcion %></p>
+			    <a href="#" class="btn btn-dark">Ver más de la oferta</a>
 			  </div>
 			</div>
 			
+			<% //endfor
+					}
+				%>
 			</div>
 	      
+	      <%
+	     	} else {
+	      %>
+	      
+	      <p>Actualmente no posee ofertas en este estado</p>
+	      
+	      
+	      <% 
+	     	}
+	      %>
+	      </div>
+	      
 	      	<div class = "texto-of">
-	     <h2>Consultar Ofertas En estado de "Rechazada" o "Ingresada"</h2>
-	     <p>Actualmente no posee ofertas en este estado</p>
-	     </div> 
+	     <h2>Consultar Ofertas Rechazadas o en estado Ingresada De la Empresa</h2>
+	      
+	     
+	     <%	
+	     	Set<DataOferta> oferRechazadasIngresadas = (Set<DataOferta>) request.getAttribute("ofertasRyI");
+	     	//si hay ofertas confirmadas las muestro si no no
+	     	if(!oferRechazadasIngresadas.isEmpty()){
+	     %>
+	     
+	      <div class= "cartas-ofertas">
+				
+				
+				<%  //initfor
+				String nombreOferta2;
+		        String nombreUser2;
+		        String descripcion2;
+		        byte[] imagenBytesOferta2;
+		
+		        for (DataOferta ofertaActual2 : oferConfirmadas) {
+		            nombreOferta2 = ofertaActual2.getNombre();
+					imagenBytesOferta2 = ofertaActual2.getImagen();
+					descripcion2 = ofertaActual2.getDescripcion();
+					imagenBytesOferta2 = ofertaActual2.getImagen();
+		            String base64ImageOferta2 = Base64.getEncoder().encodeToString(imagenBytesOferta2);
+					
+				%>
+				
+				
+			
+			<div class="card bg-light" style="width: 15rem;">
+			  <img src="data:image/jpeg;base64, <%= base64ImageOferta2 %>" class="card-img-top" alt="imagen de usuario">
+			  <div class="card-body">
+			     <h5 class="card-title" style="color: black;"><%= nombreOferta2 %></h5>
+			    <p> </p>
+			    
+			    <p class="card-text" style="color: black;"><%= descripcion2 %></p>
+			    <a href="#" class="btn btn-dark">Ver más de la oferta</a>
+			  </div>
+			</div>
+			
+			<% //endfor
+					}
+				%>
+			</div>
+	      
+	      <%
+	     	} else {
+	      %>
+	      
+	      <p>Actualmente no posee ofertas en este estado</p>
+	      
+	      
+	      <% 
+	     	}
+	      %>
+	      </div> 
 	     
 	     
 	     

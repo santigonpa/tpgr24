@@ -274,7 +274,8 @@
 		            nombreOferta = ofertaActual.getNombre();
 					imagenBytes = ofertaActual.getImagen();
 					descripcion = ofertaActual.getDescripcion();
-		            String base64ImageOferta = Base64.getEncoder().encodeToString(imagenBytes);
+					imagenBytesOferta = ofertaActual.getImagen();
+		            String base64ImageOferta = Base64.getEncoder().encodeToString(imagenBytesOferta);
 					
 				%>
 				
