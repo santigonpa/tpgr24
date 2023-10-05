@@ -2,11 +2,15 @@ package logica_Controladores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.UsuarioNoExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_DataTypes.DataOferta;
+import logica_DataTypes.DataUsuario;
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import logica_Entidades.Empresa;
@@ -154,5 +158,6 @@ public class ControladorOferta implements IControladorOferta {
 		of.setEstado(EstadoOferta.RECHAZADA);
 		
 	}
+	
 
 }

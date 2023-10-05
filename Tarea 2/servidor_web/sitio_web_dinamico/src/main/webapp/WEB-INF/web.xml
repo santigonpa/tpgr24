@@ -99,4 +99,14 @@
     <servlet-name>ServletAltaOfertaLaboral</servlet-name>
     <url-pattern>/ServletAltaOfertaLaboral</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConsultaDeOfertaLaboral</display-name>
+    <servlet-name>ServletConsultaDeOfertaLaboral</servlet-name>
+    <servlet-class>com.controller.ServletConsultaDeOfertaLaboral</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConsultaDeOfertaLaboral</servlet-name>
+    <url-pattern>/ServletConsultaDeOfertaLaboral</url-pattern>
+  </servlet-mapping>
 </web-app>
