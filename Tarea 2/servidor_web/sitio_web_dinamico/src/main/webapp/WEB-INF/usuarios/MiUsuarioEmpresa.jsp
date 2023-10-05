@@ -271,7 +271,7 @@
 	     
 	     
 	     <div class = "texto-of">
-	     <h2>Consultar Ofertas Confirmadas De la Empresa</h2>
+	     <h2>Ofertas Confirmadas De la Empresa</h2>
 	      
 	     
 	     <%	
@@ -329,7 +329,7 @@
 	      </div>
 	      
 	      	<div class = "texto-of">
-	     <h2>Consultar Ofertas Rechazadas o en estado Ingresada De la Empresa</h2>
+	     <h2>Ofertas Rechazadas o Ingresadas De la Empresa</h2>
 	      
 	     
 	     <%	
@@ -389,7 +389,7 @@
 	     
 	     
 	     <div class="contenedor">
-  		<h2 class="-titulo-">Paquetes de Tipos de Publicación de Ofertas Laborales Adquiridos</h2>
+  		<h2 class="-titulo-">Paquetes de Tipos de Publicación Adquiridos</h2>
 		</div>
 	
 		<div class = "cartas-ofertas">

@@ -287,47 +287,6 @@
 	      
 	   
 	      </form>
-	      
-	      
-	      <div class = "texto-of">
-	    		<h2>Consulta Postulaciones del Usuario</h2>
-	    		</div> 
-	      
-	      
-	      
-	      <div class= "cartas-ofertas">
-				<%
-			        String nombreOf;
-			        byte[] imagenOfByte;
-	            	Fabrica fab = Fabrica.getInstance();
-	            	IManejadorUsuario imu = fab.getInManejadorUsuario();
-	            	Postulante usr = (Postulante) imu.obtenerUsuario(nickUser);
-	            	Set<Postulacion> postulaciones = usr.obtenerPostulaciones();
-			
-			        for (Postulacion postulacion: postulaciones) {
-			        	OfertaLaboral oferta = postulacion.getOferta();
-			            nombreOf = oferta.getNombreOferta();
-			            imagenOfByte = oferta.getImagen();
-			
-			            String base64ImagenOf = Base64.getEncoder().encodeToString(imagenOfByte);
-			            
-			    %>
-				
-				<div class="card bg-light" style="width: 15rem;">
-			  <img src="data:image/jpeg;base64, <%= base64ImagenOf %>" class="card-img-top" alt="imagen de usuario">
-			  <div class="card-body">
-			    <h5 class="card-title" style="color: black;"><%= nombreOf %></h5>
-			    <p> </p>
-			    
-			    <a href="consultaPostulacionPostulante.html" class="btn btn-dark">Ver más de la postulación</a>
-			  </div>
-			</div>
-			<% } %>
-			
-			</div>
-	      
-	      
-	      
 	    </div>
 	  
 

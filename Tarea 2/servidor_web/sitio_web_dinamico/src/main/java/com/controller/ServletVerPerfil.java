@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_DataTypes.DataEmpresa;
 import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulante;
 import logica_DataTypes.DataUsuario;
@@ -62,36 +63,45 @@ public class ServletVerPerfil extends HttpServlet {
 			if(user instanceof Postulante) {
 				System.out.println("que hago en postulante xd");
 					//Esta consultando su propio perfil
+				
 					if(user.getNickName().equals(usuarioAConsultar)) {
 						request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioPostulante.jsp").forward(request, response);
 						
 					}else {
+						if(usuarioConsultar instanceof DataEmpresa) {
+							Set<DataOferta> ofertasConfi = IMU.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+							request.setAttribute("ofertasConfirmadas",ofertasConfi);
+							Set<DataOferta> ofertasRech = IMU.obtenerOfertasRechazadasIngresadas(usuarioAConsultar);
+							request.setAttribute("ofertasRyI",ofertasRech);
+							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
+						}else {
 							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 						}
+					}
 						
 				
 				
 				}else {//es empresa
 					
+					if(usuarioConsultar instanceof DataEmpresa) {
 						Set<DataOferta> ofertasConfi = IMU.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
 						request.setAttribute("ofertasConfirmadas",ofertasConfi);
 						Set<DataOferta> ofertasRech = IMU.obtenerOfertasRechazadasIngresadas(usuarioAConsultar);
 						request.setAttribute("ofertasRyI",ofertasRech);
-					
+						if(user.getNickName().equals(usuarioAConsultar)) {	
 						
-					if(user.getNickName().equals(usuarioAConsultar)) {	
 						//Esta consultando su propio perfil
 						request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioEmpresa.jsp").forward(request, response);
 						
 						}else{//Esta consultando el perfil de otro
-							
-							
-							
-							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
+							request.getRequestDispatcher("/WEB-INF/usuarios/ConsultaEmpresaLogged.jsp").forward(request, response);
 							
 						}
-					
+					}else{
+							request.getRequestDispatcher("/WEB-INF/usuarios/ConsultaPostulanteLogged.jsp").forward(request, response);	
+					}
 				}
+					
 		
 		}else { // LA SESION NO ESTA INICIADA
 			
