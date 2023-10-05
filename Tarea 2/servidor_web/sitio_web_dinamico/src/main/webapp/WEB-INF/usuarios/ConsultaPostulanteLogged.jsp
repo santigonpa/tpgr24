@@ -248,6 +248,7 @@
         imagenBytes = dataUser.getImagen();
         nac= dataUser.getNacimineto();
         nacionalidad = dataUser.getNacionalidad();
+        
         String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
         
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

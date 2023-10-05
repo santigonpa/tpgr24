@@ -165,7 +165,8 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	        Path imagePath = Paths.get("/webapp/media/img/imagenDefaultPaquete");
 	    	 imagenBytes = Files.readAllBytes(imagePath);
 		}
-		*/
+		*/}
+		}
 		String[] opcionesSeleccionadasTP = request.getParameterValues("tiposPubli");
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
 		
@@ -187,17 +188,16 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}
 		try {
 			ICO.darAltaOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, costo, fechaActual, imagenBytes);
-			response.sendRedirect("/TrabajoUY/home");
-			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException e){
         	// Agregar un atributo a la solicitud con el mensaje de error
             request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
             
             // Redirigir de vuelta a tu formulario de registro
-            request.getRequestDispatcher("/WEB-INF/usuarios/altaDeOfertaLaboral.jsp").forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+			dispatcher.forward(request, response);
 		}
 
-    }
-	}
-}
+    }	
 }

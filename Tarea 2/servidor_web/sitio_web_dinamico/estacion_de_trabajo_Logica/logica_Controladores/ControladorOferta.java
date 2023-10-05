@@ -39,7 +39,7 @@ public class ControladorOferta implements IControladorOferta {
         return instancia;
     }
 	
-	public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta) throws NombreRepetidoOfertaException{
+	public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen) throws NombreRepetidoOfertaException{
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorOferta manejadorOferta = fabrica.getInManejadorOferta();
@@ -48,7 +48,7 @@ public class ControladorOferta implements IControladorOferta {
 			throw new NombreRepetidoOfertaException("Ya existe una oferta con este nombre");
 		}
 		
-		OfertaLaboral ofer = new OfertaLaboral(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta);
+		OfertaLaboral ofer = new OfertaLaboral(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta, imagen);
 		manejadorOferta.addOferta(ofer);
 		}
 	
@@ -67,7 +67,7 @@ public class ControladorOferta implements IControladorOferta {
 
 	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec) throws NombreRepetidoOfertaException {
+			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen) throws NombreRepetidoOfertaException {
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
@@ -89,7 +89,7 @@ public class ControladorOferta implements IControladorOferta {
 		//se crea la nueva oferta
 		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
 				departamento,horarioInicio,horarioFin
-				, remuneracion , (int) costoOfertaLaboral,  fecha);
+				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen);
 		
 		nuevaOferta.setEmpresa(emp);
 		emp.linkearOfertaEmpresa(nuevaOferta,nombre);
