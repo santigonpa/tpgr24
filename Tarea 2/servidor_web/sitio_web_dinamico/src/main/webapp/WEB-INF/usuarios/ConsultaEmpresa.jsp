@@ -312,5 +312,6 @@
 	    </div>
 	  </div>
     	</main>
+    	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>

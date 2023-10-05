@@ -80,6 +80,11 @@ public class ServletVerPerfil extends HttpServlet {
 						
 						}else{//Esta consultando el perfil de otro
 							
+							if(tipoUser.equals("Empresa")) {
+								Set<DataOferta> ofertasConfi = IMU.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+								request.setAttribute("ofertasConfirmadas",ofertasConfi);
+							}
+							
 							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 							
 						}

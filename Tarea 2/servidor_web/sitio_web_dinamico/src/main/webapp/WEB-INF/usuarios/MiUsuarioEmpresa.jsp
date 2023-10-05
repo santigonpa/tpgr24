@@ -242,7 +242,7 @@
 	    
 	    
 	    <div class="contenedor-form">
-	      <form>
+	      
 	        <fieldset disabled>
 	          <legend class= "nombre-user"><%=miEmpresa.getNickName()%></legend>
 	          <div class="mb-3">
@@ -265,7 +265,7 @@
 	        
 	         
 	        	
-	      </form>
+	      
 	     
 	     
 	     
