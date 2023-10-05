@@ -252,7 +252,7 @@
 	     
 	     
 	     <div class = "texto-of">
-	     <h2>Consultar Ofertas Confirmadas De la Empresa</h2>
+	     <h2>Ofertas de la Empresa</h2>
 	      
 	     
 	     <%	
