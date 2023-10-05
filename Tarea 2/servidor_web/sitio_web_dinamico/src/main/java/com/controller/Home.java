@@ -54,8 +54,8 @@ public class Home extends HttpServlet {
 		}
 	}
     
-    public static EstadoSesion getEstado(HttpServletRequest request)
-	{	//obtiene el tipo de la sesion
+    public static EstadoSesion getEstado(HttpServletRequest request){	
+    	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
     
@@ -65,17 +65,17 @@ public class Home extends HttpServlet {
     	
     	iniciarLaSession(request); // inicializa la sesion, le pone el atributo donde va (ver codigo arriba)
 		
-		switch(getEstado(request)){
+		switch (getEstado(request)){
 			
 		case NO_LOGEADO:
 				// hace que se ejecute el jsp sin cambiar la url
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciar.jsp"); //obtiene dispatcher construido con la ruta
-				dispatcher.forward(request, response);// envia los datos hacia la ruta con el request y response
+				dispatcher.forward(request, response); // envia los datos hacia la ruta con el request y response
 				break;
 		case SI_LOGEADO:
 				// hace que se ejecute el jsp sin cambiar la url
 				RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp"); //obtiene dispatcher construido con la ruta
-				dispatcher2.forward(request, response);// envia los datos hacia la ruta con el request y response
+				dispatcher2.forward(request, response); // envia los datos hacia la ruta con el request y response
 				break;
 		default:
 			break;
@@ -139,7 +139,7 @@ public class Home extends HttpServlet {
 			byte[] imagen16 = cargarImagenEnBytes(rutaEjecucion + "U16.jpg");
 			
 			//Creo Postulantes
-			Usuario p1 = new Postulante("lgarcia","Lucia","Garcia","lgarcia85@gmail.com",n1,"Uruguaya",imagen1,"awdrg543");
+			Usuario p1 = new Postulante("lgarcia", "Lucia", "Garcia", "lgarcia85@gmail.com", n1, "Uruguaya", imagen1, "awdrg543");
 			Usuario p2 = new Postulante("matilo","Matias","Lopez","matias.lopez90@hotmail.com",n2,"Argentina",imagen2,"edrft543");
 			Usuario p3 = new Postulante("maro","Maria","Rodriguez","marrod@gmail.com",n3,"Uruguaya",imagen3,"r5t6y7u8");
 			Usuario p4 = new Postulante("javierf","Javier","Fernandez","javierf93@yahoo.com",n4,"Mexicana",imagen4,"45idgaf67");
