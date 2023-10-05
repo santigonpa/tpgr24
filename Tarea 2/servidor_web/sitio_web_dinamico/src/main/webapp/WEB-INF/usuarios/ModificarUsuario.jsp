@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/modificarUsuarioStyle.css" />
 
     <!-- Bootstrap -->
     <link
@@ -215,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						 <div class="text-center position-relative">
 				    <label style="font-weight: bold; font-size: 18px;">Seleccione una imagen (opcional)</label>
 				</div>
-				<div class = "my-3"></div>
+				<div class = "profile-container"></div>
                 
                 
                 <label for="profile-pic" class="profile-pic-label">
@@ -226,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   />
                 </label>
                 
-               <div class = "my-4"></div>
+               <div class = "my-4">
 					
 					<div class="form-floating mb-3"> 
 					    <input name="profile-pic" type="file" class="form-control mx-0 px-0" id="floatingInput" accept="image/*">
@@ -246,6 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
 									  value="<%= request.getParameter("correo") != null ? request.getParameter("correo") : "" %>"  disabled/>
 								</div>
 							</div>
+						</div>
 						</div>
 						<div class="form-container">
 							<div class="form-group">
