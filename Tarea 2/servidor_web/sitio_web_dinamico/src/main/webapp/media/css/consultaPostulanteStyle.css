@@ -15,6 +15,16 @@ body{
     margin-top : -10px;
 }
 
+.cerrar-sesion {
+    color: rgb(0, 0, 0) !important; /* Color de texto predeterminado (blanco) */
+    background-color: transparent !important; /* Fondo predeterminado (transparente) */
+    transition: background-color 0.3s, color 0.3s !important; /* Transición suave de color y fondo */
+}
+
+.cerrar-sesion:hover {
+    color: white !important; /* Cambia el color de texto a blanco al hacer hover */
+    background-color: red !important; /* Cambia el fondo a rojo al hacer hover */
+}
 
 /* Estilos para el texto "TRABAJO UY" */
 .navbar-brand .texto-trabajo-uy {

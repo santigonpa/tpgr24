@@ -86,7 +86,7 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/TrabajoUY/ConsultarUsuario">Perfiles</a></li>
+              <li><a class="dropdown-item" href="ConsultarUsuario">Perfiles</a></li>
             </ul>
           </li>
           </div>

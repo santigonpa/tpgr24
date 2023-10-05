@@ -1,20 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@page import= "logica_Entidades.Usuario" %>
-    <%@page import= "logica_DataTypes.DataUsuario" %>
-    <%@page import="java.util.Set" %>
-    <%@page import = "java.io.FileOutputStream" %>
-    <%@page import  = "java.io.IOException" %>
-    <%@page import ="java.util.Base64" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import= "logica_Entidades.Usuario" %>
+<%@page import= "utils.Fabrica" %>
+<%@page import= "logica_Manejadores.IManejadorUsuario" %>
+<%@page import= "logica_Entidades.Usuario" %>
+<%@page import= "logica_DataTypes.DataEmpresa" %>
+<%@page import="java.util.Map" %>
+
 <!DOCTYPE html>
-<html>
-<head>
-
-<meta charset="UTF-8">
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
+<html lang="es">
+ 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="media/css/indexLoggedStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link
       rel="stylesheet"
@@ -44,14 +43,9 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>TrabajoUY : Consulta Usuarios</title>
-</head>
-<body>
-    
+    <title>TrabajoUY: Postulacion a Oferta</title>
+  </head>
+  <body>
     <header>
       <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
       <!-- esto se debe implementar mas adelante  
@@ -101,9 +95,9 @@
 
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
+              <li><a class="dropdown-item" href="AltaOfertaLaboral">Crear Oferta Laboral</a></li>
+              <li><a class="dropdown-item" href="ConsultaDeOfertaLaboral">Ver Ofertas</a></li>
+              <li><a class="dropdown-item" href="ConsultaDeTipoDePublicacionDeOfertaLaboral">Tipos de Publicaciones</a></li>
             </ul>
           </li>
           </div>
@@ -130,25 +124,26 @@
   			<form class="d-flex" role="search">
       		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
     		<button class="btn btn-secondary" type="submit">Buscar</button>
+    		width: 200px;
     		</form>
   		</div>
   		
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del botÃ³n -->
+        <div class="nav-button"> <!-- Contenedor del botón -->
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
 			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
 			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="BotÃ³n" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesiÃ³n</a></li>-->
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
                 <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesiÃ³n</a></li>
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
             </ul> 
         </div>
     </div>
@@ -156,24 +151,22 @@
 	</nav>
 		<script>
 		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("Â¿EstÃ¡s seguro de que deseas cerrar la sesiÃ³n?");
+    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
     	if (confirmacion) {
 			window.location.href = "/TrabajoUY/CerrarSesion";
     		}
 		}
 	</script>
-	
-	
-	
-	<div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/fotoUsuarios2.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
+  		
+	</nav>
+
+
+      <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/jobApplication.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
         <!--Content before waves-->
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
-          <h1 class="trabajo-uy">Consulta Usuarios</h1>
-          <h2 class="slogan-uy">
-            elige el usuario que quieras consultar.
-          </h2>
+          <h1 class="trabajo-uy">Postular a una Oferta Laboral</h1>
         </div>
 
         <!--Waves Container-->
@@ -223,81 +216,79 @@
 
       <!--Content ends-->
     </header>
-		
-		
-		
-		<main>
-			
-			
-				<div class="cartas">
-			    <%
-			    
-			    Set<DataUsuario> conjuntoDeUsers = (Set<DataUsuario>) request.getAttribute("coleccionDataUsuarios");
-			    
-			    if(!conjuntoDeUsers.isEmpty()){
-			    
-			        String nickUser;
-			        String nombreUser;
-			        String apellidoUser;
-			        byte[] imagenBytes;
-			
-			        for (DataUsuario dataUser : conjuntoDeUsers) {
-			            nickUser = dataUser.getNickName();
-			            nombreUser = dataUser.getNombre();
-			            apellidoUser = dataUser.getApellido();
-			            imagenBytes = dataUser.getImagen();
-			
-			            String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-			            
-			    %>
-			
-			    <div class="card bg-dark" style="width: 15rem;">
-			        <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="imagen de usuario">
-			        <div class="card-body">
-			            <h5 class="card-title" style="color: #FFFF;"><%= nickUser %></h5>
-			            <br>
-			            <p class="card-text" style="color: #FFFF;">NOMBRE : <%= nombreUser %></p>
-			            <p class="card-text" style="color: #FFFF;">APELLIDO : <%= apellidoUser %></p>
-			            <a href="?VerPerfil=<%= nickUser  %>" class="btn btn-secondary">Ver Perfil Completo</a>
-			        </div>
-			    </div>
-			    <%
-			        	}
-			        
-			        %>  
-			    	
-			    	</div>
-			    
-			    <% 
-			    }else{
-			        	
-			        	%>
-			           
-			           
-			             
-						    <div class="container">
-							    <div class="row">
-							        <div class="col text-center">
-							            <div class="alert alert-danger" role="alert">
-							                No hay usuarios registrados en la pÃ¡gina hasta el momento
-							            </div>
-							        </div>
-							    </div>
-							</div>
-			             
-			       <% 
-			        }
-			    %>
-			
-
-		
-		</main>
-	
-	
-	
-	
-	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
-
     
-</body>
+    
+    
+	    <main>
+	  		<div class="contenedor">
+        <h2 class="titulo">Ofertas Laborales</h2>
+    </div>
+    <div class="contenedorPrincipal">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Filtrar por empresa</option>
+                        <%
+                        Fabrica fab = Fabrica.getInstance();
+                    	IManejadorUsuario imu = fab.getInManejadorUsuario();
+                        Map<String, DataEmpresa> dataEmpresas = imu.getDataEmpresas();
+                        for(DataEmpresa dEmpr : dataEmpresas.values()){
+                        	String nombreEmpresa = dEmpr.getNombre();
+                        %>
+                        <option value="1"><%= nombreEmpresa %></option>
+                        <%}%>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Filtrar por KeyWord</option>
+                        <option value="k1">Tiempo completo</option>
+                        <option value="k2">Medio tiempo</option>
+                        <option value="k3">Remoto</option>
+                        <option value="k4">Freelance</option>
+                        <option value="k5">Temporal</option>
+                        <option value="k6">Permanente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="contenedorCards">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://tinyurl.com/45nsf34m" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Desarrollador Frontend</h5>
+                            <p class="card-text">Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.</p>
+                            <a href="postularmeAOferta1.html" class="btn btn-outline-dark">Postularme</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://tinyurl.com/4n2vpurk" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Analista de Marketing Digital</h5>
+                            <p class="card-text">Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.</p>
+                            <a href="postularmeAOferta2.html" class="btn btn-outline-dark">Postularme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <!-- Aquí puedes agregar más tarjetas según sea necesario -->
+            </div>
+
+            <div class="row mt-4">
+                <!-- Y aquí también puedes agregar más tarjetas según sea necesario -->
+            </div>
+        </div>
+    </div>
+		</main>
+    
+   <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+     
+  </body>
 </html>

@@ -12,6 +12,16 @@ body {
 main {
     flex-grow: 1; /* Permite que el contenido principal crezca y llene el espacio restante */
 }
+.cerrar-sesion {
+    color: rgb(0, 0, 0) !important; /* Color de texto predeterminado (blanco) */
+    background-color: transparent !important; /* Fondo predeterminado (transparente) */
+    transition: background-color 0.3s, color 0.3s !important; /* Transición suave de color y fondo */
+}
+
+.cerrar-sesion:hover {
+    color: white !important; /* Cambia el color de texto a blanco al hacer hover */
+    background-color: red !important; /* Cambia el fondo a rojo al hacer hover */
+}
 
 .titulo-users{
     display: flex;

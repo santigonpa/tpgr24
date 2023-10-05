@@ -14,7 +14,16 @@ body{
     margin-right: -15px; /* Espacio entre la imagen y el texto */
     margin-top : -10px;
 }
+.cerrar-sesion {
+    color: rgb(0, 0, 0) !important; /* Color de texto predeterminado (blanco) */
+    background-color: transparent !important; /* Fondo predeterminado (transparente) */
+    transition: background-color 0.3s, color 0.3s !important; /* Transición suave de color y fondo */
+}
 
+.cerrar-sesion:hover {
+    color: white !important; /* Cambia el color de texto a blanco al hacer hover */
+    background-color: red !important; /* Cambia el fondo a rojo al hacer hover */
+}
 
 /* Estilos para el texto "TRABAJO UY" */
 .navbar-brand .texto-trabajo-uy {
@@ -90,17 +99,6 @@ p{
   font-size:14px;
   color: #333333;
 }
-
-.header-ola {
-  position: relative;
-  text-align: center;
-  background-image: url('img/jobApplication.jpg');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  z-index: -1;
-}
-
 .logo {
   width:50px;
   fill:white;
