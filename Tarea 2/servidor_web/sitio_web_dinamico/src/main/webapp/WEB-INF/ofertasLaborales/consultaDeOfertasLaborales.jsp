@@ -55,6 +55,9 @@
 	<main>
 				<div class="contenedor4">
 			  		<h2 class="titulo"><strong>Ofertas Laborales</strong></h2>
+			  		<p>
+			  		<hr>
+			  		</p>
 				</div>
 				<div class = "contenedorPrincipal">
 				<div class="contenedor4">
@@ -113,8 +116,7 @@
 			        <div class="card-body">
     						<h5 class="card-title"><%= nombreOfer %></h5>
     						<p class="card-text"><%= descripcion %></p>
-   							<a href="consultaOfertaLaboral.html" class="btn btn-outline-dark">+info</a>
-					</div>
+							<a href="ServletDetalleOferta?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
 		    	</div>
 			    
 			    <%

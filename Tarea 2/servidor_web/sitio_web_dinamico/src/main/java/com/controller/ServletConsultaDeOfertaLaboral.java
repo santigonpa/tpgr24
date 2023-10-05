@@ -49,7 +49,17 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			
 			request.setAttribute("coleccionDataOfertas", coleccionOfer);
 			
-			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+			if(getEstado(request) == EstadoSesion.SI_LOGEADO) {				
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesLogged.jsp").forward(request,response);
+			
+			
+			}else {
+				//hace otra cosa dependiendo si el usuario no esta logeado
+				
+				
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+			}
+			
 
     }
 	/**

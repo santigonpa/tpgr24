@@ -101,6 +101,11 @@ public class ManejadorOferta implements IManejadorOferta{
 			}
 			return res;
 		}
+	
+	public DataOferta getDataOferta(String nombre) {
+		DataOferta res = this.obtenerOferta(nombre).getDataOferta();
+		return res;
+	}
 
 	} 
 

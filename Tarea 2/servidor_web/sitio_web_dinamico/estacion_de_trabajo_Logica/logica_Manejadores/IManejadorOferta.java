@@ -15,6 +15,8 @@ public interface IManejadorOferta {
 	public abstract Set<DataOferta> getOfertas();
 	
 	public abstract Set<DataKeyWord> getDataKeyWord();
+	
+	public abstract DataOferta getDataOferta(String nombre);
 
 	public abstract void linkearKeywords(Set<String> palabrasClaveSelec, OfertaLaboral nuevaOferta);
 

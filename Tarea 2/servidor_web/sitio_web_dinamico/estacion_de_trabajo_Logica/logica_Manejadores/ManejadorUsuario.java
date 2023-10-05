@@ -175,7 +175,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		Set<String> claves = mapaOfertas.keySet();
 		for(String clave : claves) {
 			OfertaLaboral of = mapaOfertas.get(clave);
-			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(),of.getImagen());
+			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(), of.getEmpresa().getNickName(), of.getImagen());
 			res.add(ofert);
 		}
 		return res;
@@ -188,7 +188,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		Set<String> claves = mapaOfertas.keySet();
 		for(String clave : claves) {
 			OfertaLaboral of = mapaOfertas.get(clave);
-			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(),of.getImagen());
+			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(), of.getEmpresa().getNickName() ,of.getImagen());
 			res.add(ofert);
 		}
 		return res;
@@ -201,7 +201,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		Set<String> claves = mapaOfertas.keySet();
 		for(String clave : claves) {
 			OfertaLaboral of = mapaOfertas.get(clave);
-			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(),of.getImagen());
+			DataOferta ofert = new DataOferta(of.getNombreOferta(),of.getDescripcion(),of.getCiudad(),of.getDepartamento(),of.getHoraInicio(),of.getHoraFin(),of.getRemuneracion(),of.getCosto(),of.getFecha(),of.getEstado(),of.getEmpresa().getNickName(), of.getImagen());
 			res.add(ofert);
 		}
 		return res;

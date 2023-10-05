@@ -128,4 +128,14 @@
     <servlet-name>ServletConsultaTipoPubliOferLab</servlet-name>
     <url-pattern>/ServletConsultaTipoPubliOferLab</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDetalleOferta</display-name>
+    <servlet-name>ServletDetalleOferta</servlet-name>
+    <servlet-class>com.controller.ServletDetalleOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDetalleOferta</servlet-name>
+    <url-pattern>/ServletDetalleOferta</url-pattern>
+  </servlet-mapping>
 </web-app>
