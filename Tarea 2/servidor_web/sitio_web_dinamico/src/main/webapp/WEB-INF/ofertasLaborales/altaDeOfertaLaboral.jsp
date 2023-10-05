@@ -85,8 +85,10 @@
        
 </head>
 
+
+
 <body>
-	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	<main>
 	<div class="my-5"></div>
 	
