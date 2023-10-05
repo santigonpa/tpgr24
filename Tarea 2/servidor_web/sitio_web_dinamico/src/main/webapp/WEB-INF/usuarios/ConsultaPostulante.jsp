@@ -59,13 +59,6 @@
   </head>
   <body>
     <header>
-      <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
-      <!-- esto se debe implementar mas adelante  
-            
-                <img class = "logotipo-trabajouy" src="logotipoTrabajoUy-transformed.png" alt="Logotipo de Mi Sitio">
-            
-            
-            -->
 
 	<nav class="navbar bg-dark px-5">
     	<a class="navbar-brand" href="home">
@@ -88,8 +81,7 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="ConsultarUsuario">Perfiles</a></li>
-              
+              <li><a class="dropdown-item" href="/TrabajoUY/ConsultarUsuario">Perfiles</a></li>
             </ul>
           </li>
           </div>
@@ -106,10 +98,11 @@
             	>Ofertas Laborales
 
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="altaDeOfertaLaboral.html">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="consultaDeOfertasLaborales.html">Ver Ofertas</a></li>
-              <li><a class="dropdown-item" href="consultaDeTiposDePublicacionDeOfertasLaborales.html">Tipos de Publicaciones</a></li>
+            <ul class="dropdown-menu">   
+              
+              <li><a class="dropdown-item" href="ConsultaDeOfertaLaboral">Ver Ofertas</a></li>
+              
+              <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral">Tipos de Publicaciones</a></li>
             </ul>
           </li>
           </div>
@@ -140,35 +133,32 @@
     		</form>
   		</div>
   		
-  		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del botón -->
-            <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
-                <% 
-			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usuar = (Usuario) sessionIniciada.getAttribute("usuario");
-			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
-			    Mi Usuario
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
-                <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
-                <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
-            </ul>
-        </div>
-    </div>
+  		<div class = button-grup>
+  		  <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="/TrabajoUY/AltaUsuario"
+              style="color: white"
+              >Registrarse</a
+            >
+          </li>
+  		</div>
+  		
+  		<div class = button-grup>
+  		  <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="/TrabajoUY/iniciarSesion"
+              style="color: white"
+              >Iniciar Sesión</a
+            >
+          </li>
+  		</div>
   		
 	</nav>
-	<script>
-		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
-    	if (confirmacion) {
-			window.location.href = "/TrabajoUY/CerrarSesion";
-    		}
-		}
-	</script>
+
 
       <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/prueba.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
         <!--Content before waves-->
@@ -176,6 +166,9 @@
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
           <h1 class="trabajo-uy">Usuario</h1>
+          <h2 class="slogan-uy">
+            Estas consultando una empresa
+          </h2>
         </div>
 
         <!--Waves Container-->
@@ -225,7 +218,6 @@
 
       <!--Content ends-->
     </header>
-    
     
     
 	    <main>
