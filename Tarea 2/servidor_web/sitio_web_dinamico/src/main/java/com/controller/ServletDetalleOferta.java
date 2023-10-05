@@ -28,15 +28,22 @@ public class ServletDetalleOferta extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    protected void cargarPlat(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			
+    	String nombreOfer = request.getParameter("id");
+		DataOferta ofer = IMO.getDataOferta(nombreOfer);
+		request.setAttribute("ofer", ofer);
+		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOferta.jsp").forward(request, response);
+			}
+			
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nombreOfer = request.getParameter("id");
-		DataOferta ofer = IMO.getDataOferta(nombreOfer);
-		request.setAttribute("ofer", ofer);
-		request.getRequestDispatcher("ofertasLaborales/detalleOferta.jsp").forward(request, response);
+		cargarPlat(request, response);
 	}
 
 	/**
