@@ -271,7 +271,7 @@
 	     
 	     
 	     <div class = "texto-of">
-	     <h2>Ofertas Confirmadas De la Empresa</h2>
+	     <h2>Ofertas Confirmadas de mi Empresa</h2>
 	      
 	     
 	     <%	
@@ -329,7 +329,7 @@
 	      </div>
 	      
 	      	<div class = "texto-of">
-	     <h2>Ofertas Rechazadas o Ingresadas De la Empresa</h2>
+	     <h2>Ofertas Ingresadas o Rechazadas De la Empresa</h2>
 	      
 	     
 	     <%	
