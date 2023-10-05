@@ -39,7 +39,8 @@
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    
+    <%@ page import="logica_Entidades.KeyWord" %>
+	<%@ page import="java.util.Set" %>
     
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -61,7 +62,7 @@
 	 	LocalTime horaI = oferta.getHoraInicio();
 	 	LocalTime horaF = oferta.getHoraFin();
 	 	float remuneracion = oferta.getRemuneracion();
-	 	LocalDate alta = oferta.getFechaDeAlta();
+	 	LocalDate alta = oferta.getFechaDeAlta(); 
 	 	EstadoOferta est = oferta.getEstado();
 	 	String emp = oferta.getEmpresa();
         byte[] imagenBytes = oferta.getImagen();
@@ -69,6 +70,7 @@
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);
         }
+        Set<KeyWord> keys = oferta.getKeyWords();
 
     %>
 	
@@ -179,34 +181,26 @@
   		 	</div>
   		 	<hr>
   		  </div>
-
+  		  
+  		  <%
+  		  	Set<KeyWord> palabras = oferta.getKeyWords();
+  		  
+  		  %>
 			<div class = "contenedorPrincipal">
 			<div class="container">
   				<h5 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
   				<div class = "contenedorPrincipal">
   				<div class="container">
-					<a>
-      						<button type="button" class="btn btn-outline-secondary">Tiempo completo</button>
-					</a>
-					<a>
-      						<button type="button" class="btn btn-outline-secondary">Medio tiempo</button>
-					</a>
-					<a>
-      						<button type="button" class="btn btn-outline-secondary">Remoto</button>
-					</a>
-					<a>
-      						<button type="button" class="btn btn-outline-secondary">Freelance</button>
-					</a>
-					<a>
-      						<button type="button" class="btn btn-outline-secondary">Temportal</button>
-					</a>
-					<a>
-      						<button type="button" class="btn btn-outline-secondary">Permanente</button>
-					</a>
+					<% for (KeyWord key : palabras) { %>
+						<a>
+      						<button type="button" class="btn btn-outline-secondary"><%= key.getPalabraClave() %></button>
+						</a>
+					<% } %>
 				</div>
 				</div>
 			</div>
 			</div>
+			
   		</div>
   		</div>
 	</div>

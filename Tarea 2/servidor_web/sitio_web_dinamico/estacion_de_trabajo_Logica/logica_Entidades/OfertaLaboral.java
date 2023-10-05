@@ -61,7 +61,7 @@ public class OfertaLaboral {
 	public DataOferta getDataOferta() {
 		DataOferta DO = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
 				this.departamento,this.horaInicio, this.horaFin
-				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.empresaAsociada.getNickName(), this.imagen);
+				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.empresaAsociada.getNickName(), this.imagen, this.palabrasClave);
 		return DO;
 	}
 	
