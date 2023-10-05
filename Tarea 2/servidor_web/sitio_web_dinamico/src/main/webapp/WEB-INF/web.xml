@@ -138,4 +138,14 @@
     <servlet-name>ServletDetalleOferta</servlet-name>
     <url-pattern>/ServletDetalleOferta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConsultaDePaqDeTipoPubliDeOferLab</display-name>
+    <servlet-name>ServletConsultaDePaqDeTipoPubliDeOferLab</servlet-name>
+    <servlet-class>com.controller.ServletConsultaDePaqDeTipoPubliDeOferLab</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConsultaDePaqDeTipoPubliDeOferLab</servlet-name>
+    <url-pattern>/ServletConsultaDePaqDeTipoPubliDeOferLab</url-pattern>
+  </servlet-mapping>
 </web-app>

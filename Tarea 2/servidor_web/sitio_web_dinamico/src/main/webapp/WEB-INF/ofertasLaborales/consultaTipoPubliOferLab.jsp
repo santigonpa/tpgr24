@@ -5,7 +5,6 @@
 <head>
  	<meta charset="UTF-8">
 	<!-- Estilos -->
-    <link rel="stylesheet" href="media/css/altOfLabStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/indexStyle.css" />
 
@@ -57,5 +56,121 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	<main>
+	<div class="contenedor4">
+  			<h2 class="-titulo-"><strong>Tipos de Publicación de Ofertas Laborales</strong></h2>
+  			<p>
+  			<hr>
+  			</p>
+		</div>
+	
+	<div class="contenedor3">
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card" style="width: auto;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Básica</h5>
+                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoBasica" aria-expanded="false" aria-controls="multiCollapseExample">Más informacion</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card" style="width: auto;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="media/img/imagenTP2.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Estándar</h5>
+                   <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoEstandar" aria-expanded="false" aria-controls="multiCollapseExample2">Más informacion</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card" style="width: auto;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="media/img/imagenTP5.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Premium</h5>
+                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoPremium" aria-expanded="false" aria-controls="multiCollapseExample3">Más informacion</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card" style="width: auto;">
+                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 		<img class="card-img-top" src="media/img/imagenTP4.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        		</div>
+                <div class="card-body">
+                    <h5 class="card-title">Destacada</h5>
+                   <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoDestacada" aria-expanded="false" aria-controls="multiCollapseExample4">Más informacion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	
+	<div class="contenedor4">
+  		<div class="col">
+    		<div class="collapse multi-collapse" id="infoDestacada" >
+     		 <div class="card card-body">
+       <strong style="font-size: 18px;">DESTACADA: DESTACA TU ANUNCIO </strong><br>
+       <span style="font-size: 18px;">Exposición: 2 <br>
+       Duración: 15 días <br>
+       Costo: 500 <br>
+       Fecha de alta: 05/08/2023 <br>
+       </span>
+     	 		</div>
+   	 		</div>
+ 		 </div>
+ 		 
+  	<div class="col">
+    	<div class="collapse multi-collapse" id="infoBasica">
+      		<div class="card card-body">
+       	<strong style="font-size: 18px;">BÁSICA: PUBLICA DE FORMA SENCILLA EN LA LISTA DE OFERTAS </strong><br>
+       	<span style="font-size: 18px;">Exposición: 4 <br>
+      	Duración: 7 días <br>
+       	Costo: 50 <br>
+       	Fecha de alta: 07/08/2023 <br>
+       	</span>
+     			 </div>
+    		</div>
+  		</div>
+  		
+  	<div class="col">
+    	<div class="collapse multi-collapse" id="infoEstandar">
+      		<div class="card card-body">
+       	<strong style="font-size: 18px;">ESTÁNDAR: MEJORA LA POSICION DE TU ANUNCIO </strong><br>
+       	<span style="font-size: 18px;">Exposición: 3 <br>
+       	Duración: 20 días <br>
+       	Costo: 150 <br>
+       	Fecha de alta: 15/08/2023 <br>
+       	</span>
+     			 </div>
+    		</div>
+  		</div>
+  		
+  	<div class="col">
+    	<div class="collapse multi-collapse" id="infoPremium">
+      		<div class="card card-body">
+       	<strong style="font-size: 18px;">PREMIUM: OBTÉN MÁXIMA VISIBILIDAD </strong><br>
+        <span style="font-size: 18px;">Exposición: 1 <br>
+       	Duración: 30 días <br>
+       	Costo: 4000 <br>
+       	Fecha de alta: 10/08/2023 <br>
+       	</span>
+     			 </div>
+    		</div>
+  		</div>
+  		
+	</div>	
+	</main>
+	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>
