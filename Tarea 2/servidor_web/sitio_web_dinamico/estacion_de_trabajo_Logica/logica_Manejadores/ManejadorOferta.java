@@ -103,10 +103,5 @@ public class ManejadorOferta implements IManejadorOferta{
 			return res;
 		}
 
-	@Override
-	public Set<DataKeyWord> getDataKsseyWord() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	} 
 
