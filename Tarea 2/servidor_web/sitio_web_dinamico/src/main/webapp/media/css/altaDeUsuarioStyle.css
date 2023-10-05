@@ -10,6 +10,16 @@ body {
     object-fit: cover;
     border: 1px solid black
 }
+.cerrar-sesion {
+    color: rgb(0, 0, 0) !important; /* Color de texto predeterminado (blanco) */
+    background-color: transparent !important; /* Fondo predeterminado (transparente) */
+    transition: background-color 0.3s, color 0.3s !important; /* Transición suave de color y fondo */
+}
+
+.cerrar-sesion:hover {
+    color: white !important; /* Cambia el color de texto a blanco al hacer hover */
+    background-color: red !important; /* Cambia el fondo a rojo al hacer hover */
+}
 
 input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"], input[type="tel"], input[type="url"], select, textarea {
     margin-top: 20px;

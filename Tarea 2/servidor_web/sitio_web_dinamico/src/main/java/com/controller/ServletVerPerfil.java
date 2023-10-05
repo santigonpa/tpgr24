@@ -60,8 +60,7 @@ public class ServletVerPerfil extends HttpServlet {
 		if(	(getEstado(request) == EstadoSesion.SI_LOGEADO)  ) {
 				
 			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			if(user instanceof Postulante) {
-				System.out.println("que hago en postulante xd");
+			if(user instanceof Postulante) {		
 					//Esta consultando su propio perfil
 				
 					if(user.getNickName().equals(usuarioAConsultar)) {
