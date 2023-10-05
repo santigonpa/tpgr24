@@ -10,7 +10,6 @@ import logica_DataTypes.DataOferta;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
-import utils.Fabrica;
 
 public class ManejadorOferta implements IManejadorOferta{
 	
