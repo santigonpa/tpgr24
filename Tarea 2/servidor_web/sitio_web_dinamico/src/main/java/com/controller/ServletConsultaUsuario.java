@@ -1,21 +1,20 @@
 package com.controller;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import logica_DataTypes.DataUsuario;
-import logica_Entidades.Usuario;
-import logica_Manejadores.IManejadorUsuario;
-import utils.Fabrica;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import com.model.EstadoSesion;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import logica_DataTypes.DataUsuario;
+import logica_Manejadores.IManejadorUsuario;
+import utils.Fabrica;
 
 /**
  * Servlet implementation class ServletConsultaUsuario
