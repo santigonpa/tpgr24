@@ -5,9 +5,12 @@
  
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="altOfLabStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
+    <!-- Estilos -->
+    <link rel="stylesheet" href="media/css/altOfLabStyle.css" />
+    <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
+
+    <!-- Bootstrap -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -17,9 +20,15 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap"
     />
 
+	<link
+      rel="icon"
+      href="media/img/logoNuevo.png"
+      type="image/x-icon"
+    />
+	
     <link
       rel="icon"
-      href="./img/logoNuevo.png"
+      href="C:/Users/Usuario/git/tpgr24/Tarea 2/servidor_web/img/logoNuevo.png"
       type="image/x-icon"
     />
     <link
@@ -28,139 +37,35 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
     <title>TrabajoUY</title>
   </head>
   <body>
-    <jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	    <main>
+	    <div class = "contenedor2">
 	  		<div class="alert alert-danger" role="alert">
-  					CUIDADO - DEBES ESTAR REGISTRADO COMO UNA EMPRESA
+  					PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UNA EMPRESA
   					<br>
-  					<a href="/TrabajoUY/iniciarSesion" class="alert-link">Haz click aqui para iniciar sesion</a>
+  					<a href="/TrabajoUY/iniciarSesion" class="alert-link">Haz click aquí para iniciar sesión con un Usuario de tipo Empresa</a>
   					<br>
-  					<a href="/TrabajoUY/AltaUsuario" class="alert-link">Haz click aqui para registrarte y crear un Usuario tipo Empresa</a>
+  					<a href="/TrabajoUY/AltaUsuario" class="alert-link">Haz click aquí para registrarte y crear un Usuario tipo Empresa</a>
+			</div>
 			</div>
 		</main>
-    
-    
-    
-    
-    
+
     <!--Footer-->
-       <footer class="bs-light text-dark pt-5">
-		   <div class="contenedor5 text-center text-md-start">
-			   <div class ="row text-center text-md-start">
-	  
-				   <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-					   <h5 class="text-uppercase mb-4 font-weight-bold text-dark">Nosotros</h5>
-					   <hr class="mb-3">
-					  <p> 
-       				  Desde nuestra creación en 2023, hemos sido una plataforma dedicada a facilitar la conexión entre empresas y postulantes en busca de oportunidades laborales emocionantes. Ya seas una empresa en busca de un talento o un postulante en búsqueda de tu próximo desafío, estamos aquí para ayudarte a alcanzar tus metas.
-    				  </p>
-    				 <p>
-        			Nuestra misión es servir como el puente que une a empleadores y futuros empleados, ayudando a construir equipos exitosos y carreras sólidas. ¡Únete a nuestra comunidad y da el siguiente paso en tu camino profesional!
-    				</p>
-					</div>
-					   
-					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Déjanos ayudarte</h5> 
-							<hr class="mb-3">
-							<p>
-								<a href="inicioDeSesion.html" class="text-dark">Tu cuenta</a>
-							</p>
-							<p>
-								<a href="consultaDeOfertasLaborales.html" class="text-dark">Ofertas</a>
-							</p>
-							<p>
-								<a href="consultaDeTiposDePublicacionDeOfertasLaborales.html" class="text-dark">Tipos de publicación</a>
-							</p>
-							<p>
-								<a href="#" class="text-dark">Ayuda</a>
-							</p>
-					   </div>
-					   
-					    <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Contacto</h5> 
-							<hr class="mb-3">
-							<p>
-								<li class="fas fa-map me-3"></li>Av. Julio Herrera y Reissig 565
-							</p>
-							<p>
-								<li class="fas fa-envelope me-3"></li>trabajouy@jobs.com
-							</p>
-							<p>
-								<li class="fas fa-phone me-3"></li>2714 2714
-							</p>
-							<p>
-								<li class="fas fa-university me-3"></li>FING
-							</p>
-					   </div>
-					   
-					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-						<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Newsletter</h5> 
-						<hr class="mb-3">
-						
-						<form action="">
-                        	<div class="form-group">
-                            	<input type="email" class="form-control" placeholder="Email"
-                                 required="required"/>
-                        	</div>
-                        	<div>
-                            	<button class="btn btn-outline-dark" type="submit">Suscribirme</button>
-                        	</div>
-                    	</form>
-					   </div>
-					   
-				
-					   
-					<div class="text-center mb-2">
-					<p>	
-						© 2023 FRAGSESAMA & Cía. S.A.
-					</p>
-					<p>
-						Todos los derechos reservados.
-					</p>
-					</div>
-					
-					<div class="text-center">
-						<ul class="list-unstyled list-inline">
-							<li class="list-inline-item">
-								<a href="#" class="text-dark"><i class = "fab fa-facebook"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="text-dark"><i class = "fab fa-twitter"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="text-dark"><i class = "fab fa-google-plus"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="text-dark"><i class = "fab fa-linkedin-in"></i>
-								</a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#" class="text-dark"><i class = "fab fa-youtube"></i>
-								</a>
-							</li>
-						</ul>
-				    </div>
-				    
-        		</div>
-        	</div>
- 
-	</footer>
-       
-       
-       
+    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+     
   </body>
 </html>

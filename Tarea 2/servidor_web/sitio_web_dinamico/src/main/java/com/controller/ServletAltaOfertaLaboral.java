@@ -1,47 +1,31 @@
 package com.controller;
 
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
-
-
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica_Controladores.IControladorOferta;
 import logica_DataTypes.DataTipoPublicacion;
+import logica_Entidades.Empresa;
 import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
-
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Set;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-import com.helpers.EstadoSesionHelper;
 import com.model.EstadoSesion;
-
 import excepciones.NombreRepetidoOfertaException;
-import excepciones.UsuarioNoExisteException;
+
 
 
 /**
@@ -58,12 +42,12 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	
 	private static Fabrica fab = Fabrica.getInstance();
 	private static IControladorOferta ICO = fab.getInOfer();
+
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
 	}
-	
 	
 	// Función para verificar la extensión del archivo
 	private boolean isValidImageExtension(String fileName) {
@@ -96,14 +80,13 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	// Obtén el valor del campo oculto "tipoUsuario" del formulario
-	    String tipoUsuario = request.getParameter("tipoUsuario");
-    	
+    	Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
     		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
     	} //es una empresa todo ok
-    	else if ("empresa".equals(tipoUsuario)) {
+    	else if (user instanceof Empresa) {
     		Set<DataTipoPublicacion> tiposPubli = fab.getInManejadorPyT().getDataTipoPublicacion();
     		request.setAttribute("tiposPubli", tiposPubli);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
@@ -118,14 +101,13 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+    	
     	HttpSession sesion = request.getSession();
     	String nick = request.getParameter("nickName");
-    	EstadoSesion estado;
     	
     	Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
-		Usuario usuario = mu.obtenerUsuario(nick);
-		
 		IControladorOferta ico = fabrica.getInOfer();
 		
 		String nombre = request.getParameter("nombre");

@@ -91,22 +91,25 @@
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	<main>
 	<div class="my-5"></div>
-	
+
 	<div class="row justify-content-center">
 		<div class="col-md-6">
+		<div align="center">
+    	<h2><strong>Alta de Oferta Laboral</strong></h2>
+		</div>
+
+		<hr>
+		<h3 class="-titulo-">Ingrese los datos</h3>
 			<div class="form-container justify-content-center">			
 				<div class="contenedor">
-					<h2 class="-titulo-"><strong>Ingrese Los Datos</strong></h2>
+					
 					<div class="my-5">
 					</div>
 				</div>
 				
 				<div class="my-5">
 				</div>
-				<div class = "text-center"><i class="fa-solid fa-circle-info"></i>
-				</div>
-				<div class="my-5">
-				</div>
+				
 	            <form id="alta-form" action = "/TrabajoUY/AltaDeOfertaLaboral" method = "POST" enctype="multipart/form-data">
 				
 	            <div class="form-floating mb-3">
@@ -206,6 +209,10 @@
 					</div>   	
 				</div>
 			</form>
+		</div>
+	</div>
+</div>
+			
 	</main>
 	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
