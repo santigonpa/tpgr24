@@ -167,7 +167,7 @@
         >
           <h1 class="trabajo-uy">Usuario</h1>
           <h2 class="slogan-uy">
-            Estas consultando una empresa
+            Estas consultando un Postulante
           </h2>
         </div>
 
