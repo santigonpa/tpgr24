@@ -50,7 +50,7 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			request.setAttribute("coleccionDataOfertas", coleccionOfer);
 			
 			if(getEstado(request) == EstadoSesion.SI_LOGEADO) {				
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesLogged.jsp").forward(request,response);
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
 			
 			
 			}else {
