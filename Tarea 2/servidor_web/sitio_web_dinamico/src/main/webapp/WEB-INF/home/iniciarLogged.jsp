@@ -109,7 +109,7 @@
 
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="compraDePaqueteDeTiposDePubliDeOfertaLab.html">Ver Paquetes</a></li>
+              <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDePaquetes">Comprar Paquetes</a></li>
             </ul>
           </li>
           </div>
