@@ -7,6 +7,7 @@
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
     
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,7 +138,7 @@
 							    <div class="row">
 							        <div class="col text-center">
 							            <div class="alert alert-danger" role="alert">
-							                No hay ofertas registradas en la página hasta el momento
+							                No hay ofertas registradas en la pï¿½gina hasta el momento
 							            </div>
 							        </div>
 							    </div>
