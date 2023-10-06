@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import= "logica_DataTypes.DataTipoPublicacion" %>
+    <%@page import="java.util.Set" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,7 @@
 <!-- Estilos -->
     <link rel="stylesheet" href="media/css/altOfLabStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
     <%@page import= "logica_DataTypes.DataOferta" %>
     
 
@@ -50,6 +52,20 @@
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+      
+      <script>
+	    $(document).ready(function () {
+	        // Abrir Modal 1 al hacer clic en el botón "Abrir Modal 1"
+	        $("#botonModal1").click(function () {
+	            $("#modal1").modal("show");
+	        });
+	
+	        // Abrir Modal 2 al hacer clic en el botón "Abrir Modal 2"
+	        $("#botonModal2").click(function () {
+	            $("#modal2").modal("show");
+	        });
+	    });
+	</script>
       
       <script>
 		function validarFormulario() {
@@ -124,61 +140,49 @@
 		</div>
 	</div>	
 	
-		<div class="contenedor3">
-	            <div class="row mt-4">
-	            <div class="contenedor">
-            		<h4 class="-titulo-">Seleccione un tipo de publicacion de Oferta Laboral</h4>
-     			</div>
-	                <div class="col-md-3">
-	                    <div class="card" style="width: auto;">
-	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-	                            <img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-	                        </div>
-	                        <div class="card-body">
-	                            <h5 class="card-title">Básica</h5>
-	                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-         					    <label class="btn btn-outline-dark" for="btnradio1">Seleccionar</label>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-md-3">
-	                    <div class="card" style="width: auto;">
-	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-	                            <img class="card-img-top" src="media/img/imagenTP2.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-	                        </div>
-	                        <div class="card-body">
-	                            <h5 class="card-title">Estándar</h5>
-	                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-					             <label class="btn btn-outline-dark" for="btnradio2">Seleccionar</label>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-md-3">
-	                    <div class="card" style="width: auto;">
-	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-	                            <img class="card-img-top" src="media/img/imagenTP5.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-	                        </div>
-	                        <div class="card-body">
-	                            <h5 class="card-title">Premium</h5>
-	                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-					            <label class="btn btn-outline-dark" for="btnradio3">Seleccionar</label>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col-md-3">
-	                    <div class="card" style="width: auto;">
-	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-	                            <img class="card-img-top" src="media/img/imagenTP4.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-	                        </div>
-	                        <div class="card-body">
-	                            <h5 class="card-title">Destacada</h5>
-	                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-					            <label class="btn btn-outline-dark" for="btnradio4">Seleccionar</label>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+	<div class="cartas">
+
+				<%
+			    
+				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+			    
+			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
+			    
+			        String nombrePaquete;
+			        String descripcion;
+			        int exp;
+			        int duracion;
+			        float costo;
+			        String fecha;
+			
+			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
+			        	nombrePaquete = dataTP.getNombre();
+			        	descripcion = dataTP.getDescripcion();
+			        	exp = dataTP.getExposicion();
+			        	duracion = dataTP.getDuracion();
+			        	
+			        	fecha = dataTP.getFechaString();
+			    %>
+				
+			    <div class="card" style="width: 20rem;">
+			   		<div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 			<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        			</div>
+        			
+			        <div class="card-body">
+    						<h5 class="card-title"><strong><%= nombrePaquete %></strong></h5>
+    						<p class="card-text"><%= descripcion %></p>
+    				 		<input type="radio" class="btn-check" name ="btnradio" id="<%= nombrePaquete %>" autocomplete="off">
+    				 		<label class="btn btn-outline-dark" for="<%= nombrePaquete %>">Seleccionar</label>			
+					</div>
+		    	</div>
+			    
+			    <%
+			        	}
+			        
+			        %>  
+			    	
+			    	</div>
 
 		<div class="row justify-content-center">
 		<div class="col-md-6">
@@ -271,28 +275,71 @@
 				
 			 <%
 			 	String costoConPaquete = request.getParameter("costoConPaquete");
-			    String costo = request.getParameter("costo");
+			    String costoo = request.getParameter("costo");
 				DataOferta dtOferta = (DataOferta) request.getAttribute("dtOfer");
 
 			 %>
 				
-			<div class="my-5"></div>
-		    <div class="container text-center">
-		        <div class="row">
-		            <div class="col">
-		                <!-- Definir un atributo data-valor con el valor numérico deseado -->
-		                <a href="ServletPago?id=<%= costoConPaquete %>&dtOferta=<%= dtOferta %>forma=<%="ConPaquete" %>" type="button" class="btn btn-dark">Deseo pagar con un paquete</a>		
-		            </div>
-		            <div class="col">
-		                <!-- Definir un atributo data-valor con el valor numérico deseado -->
-		                <a href="ServletPago?id=<%= costo %>&dtOferta=<%= dtOferta %>forma=<%= "General" %>" type="button" class="btn btn-dark">Deseo pagar de forma normal (sin utilizar paquetes)</a>
-		            </div>
-		        </div>   
-		    </div>
-			</form>
-		</div>
-	</div>
-</div>
+		<button type="button" class="btn btn-dark" id="botonModal1">Pagar de manera general</button>
+			<button type="button" class="btn btn-dark" id="botonModal2">Pagar por medio de un paquete</button>
+			
+			<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
+			    <div class="modal-dialog" role="document">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h5 class="modal-title" id="modal1Label">Confirmacion de pago</h5>
+			                    <span aria-hidden="true">&times;</span>
+			                </button>
+			            </div>
+			            <div class="modal-body">
+			                El monto a pagar es : 
+			            </div>
+			            <div class="modal-footer">
+					            <label class="btn btn-dark" for="btnradio4">Cancelar</label>
+					            <label href = "Home" class="btn btn-dark" for="btnradio4">Aceptar</label>
+					            
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			
+			<!-- Modal 2 -->
+			<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2Label" aria-hidden="true">
+			    <div class="modal-dialog" role="document">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <h5 class="modal-title" id="modal2Label">Confirmacion de pago</h5>
+			                    <span aria-hidden="true">&times;</span>
+			                </button>
+			            </div>
+			            <div class="modal-body">
+			                El monto a pagar es : <%= costoConPaquete %>
+			            </div>
+			            <div class="modal-footer">
+					            <label class="btn btn-dark" for="btnradio4">Cancelar</label>
+					            <label href = "Home" class="btn btn-dark" for="btnradio4">Aceptar</label>
+					           
+			            </div>
+			        </div>
+			    </div>
+			</div>
+			
+			<% 
+			    }else{ 	
+			        	%>
+						    <div class="contendor2">	 
+						    <div class="carta" style="width: 98vw;">       
+							            <div class="alert alert-danger" role="alert">
+							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+							            	<hr>
+							                Hasta el momento no hay tipos de publicación registrados en el sistema
+							            </div>
+							        </div>
+						</div>
+			       <% 
+			        }
+			    %>
+	
 			
 	</main>
 	

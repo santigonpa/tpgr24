@@ -43,10 +43,8 @@ import excepciones.NombreRepetidoOfertaException;
 
 public class ServletAltaOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-	
 	private static Fabrica fab = Fabrica.getInstance();
-	private static IControladorOferta ICO = fab.getInOfer();
+	private IManejadorPyT IPYT = fab.getInManejadorPyT();   
 
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
@@ -61,7 +59,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	    return Arrays.asList(allowedExtensions).contains(fileExtension);
 	
 	}
-
+	
 	private byte[] readImageBytes(InputStream inputStream) throws IOException {
 	        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 	        byte[] buffer = new byte[1024];
@@ -85,6 +83,11 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Set<DataTipoPublicacion> coleccionPTP = IPYT.getDataTipoPublicacion();
+		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
+		
+		
+    	
     	Usuario user = (Usuario) request.getSession().getAttribute("usuario");
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
@@ -210,6 +213,6 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
             //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			//dispatcher.forward(request, response);
 		//}
-
+		doGet(request, response);
     }	
 }
