@@ -343,7 +343,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         if (verificarFormulario()) {
             try {
                 //ESTA OPERACION DA EL ALTA
-            	ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha,seleccionados, null);
+            	ICO.altaPublicacionOfertaLaboralGeneral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha,seleccionados, null);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La oferta se ha creado con exito", "Alta de Oferta Laboral",

@@ -49,7 +49,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorOferta.addOferta(ofer);
 		}
 	
-	public void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta) throws NombrePaqueteYaExiste{
+	public void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) throws NombrePaqueteYaExiste{
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
@@ -57,7 +57,7 @@ public class ControladorOferta implements IControladorOferta {
 			throw new NombrePaqueteYaExiste("Ya existe un paquete con este nombre");
 		}
 		
-		Paquete paq = new Paquete(nombre,descripcion,validez,descuento,fechadealta);
+		Paquete paq = new Paquete(nombre,descripcion,validez,descuento,fechadealta, costo, imagen);
 		manejadorPyT.addPaquete(paq);
 		}
 

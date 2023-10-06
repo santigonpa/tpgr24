@@ -110,7 +110,7 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
     	int descuento = Integer.parseInt(this.descuento.getText());
     	 Date fechaDeAltaDate = (Date) fechadealtaSpinner.getValue();
          LocalDate fechaDeAlta = fechaDeAltaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();    	//try {
-    	ICO.CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta);
+    	ICO.CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta, 0, null);
         JOptionPane.showMessageDialog(this, "El paquete se creo con exito", "Crear Paquete De Tipo De Publicacion De Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
     	limpiarFormulario();
     	//}catch(NombrePaqueteYaExiste e1){

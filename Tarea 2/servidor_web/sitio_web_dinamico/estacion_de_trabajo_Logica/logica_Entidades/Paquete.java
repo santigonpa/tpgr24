@@ -13,18 +13,21 @@ public class Paquete {
 	private String descripcion;
 	private int validez;
 	private int descuento;
+	private int costo; //nuevo para la tarea2
 	private LocalDate fechadealta;
 	private Map<String, TipoPublicacion> tipoPublicaciones;
-	
+	private byte[] imagen; // Nuevo atributo para la imagen del paquete
 	
 	//Contructor
 	//solo llamar si el descuento esta entre 0 y 100
-	public Paquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta) {
+	public Paquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.validez = validez;
 		this.descuento = descuento;
 		this.fechadealta = fechadealta;
+		this.costo = costo;
+		this.imagen = imagen;
 		this.tipoPublicaciones = new HashMap<>();
 	}
 	
@@ -51,6 +54,14 @@ public class Paquete {
 		return descuento;
 	}
 	
+	public int getCosto() {
+		return costo;
+	}
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+	
 	public Map<String, TipoPublicacion> getTipoPublicacions(){
 		return tipoPublicaciones;
 	}
@@ -74,7 +85,7 @@ public class Paquete {
 	}
 	*/
 	public DataPaquete getDTPaquete() {
-		DataPaquete DtPaq = new DataPaquete(this.nombre, this.descripcion, this.validez, this.descuento, this.fechadealta);
+		DataPaquete DtPaq = new DataPaquete(this.nombre, this.descripcion, this.validez, this.descuento, this.fechadealta, this.costo, this.imagen);
 		return DtPaq;
 	}
 

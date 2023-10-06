@@ -62,9 +62,28 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		if(paquetito == null) {
 			return null;
 		}else {
-			DataPaquete resultado = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta());
+			DataPaquete resultado = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
 			return resultado;
 		}
+	}
+	
+		public Set<DataPaquete> getDataPaquete() {
+		
+		Set<DataPaquete> res = new HashSet<>();
+    	Set<Paquete> temp = new HashSet<>();
+    	
+    	// Obtener las claves del Map
+        Set<String> clavesPaquete = this.paquetes.keySet();
+        for(String nombreTipoPublicacion : clavesPaquete) {
+        	Paquete tipoAct = ((Paquete) this.paquetes.get(nombreTipoPublicacion));
+        	temp.add(tipoAct);
+        }
+        for(Paquete paquetito: temp) {
+        	DataPaquete nuevaDTP = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
+        	res.add(nuevaDTP);
+        }
+        
+    	return res;
 	}
 	
 	public void addTipoPublicacion(TipoPublicacion tp) {

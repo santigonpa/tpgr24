@@ -9,18 +9,37 @@ public class DataPaquete {
 	private String descripcion;
 	private int validez;
 	private int descuento;
+	private int costo;
+	private byte[] imagen;
 	private LocalDate fechadealta;
 	
-	public DataPaquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta) {
+	public DataPaquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo,byte[] imagen) {
 		this.nombre = nombre;
 		this.setDescripcion(descripcion);
 		this.setValidez(validez);
 		this.setDescuento(descuento);
 		this.setFechaDeAlta(fechadealta);
+		this.setImagen(imagen);
+		this.setCosto(costo);
 	}
 	
 	
-
+	public void setCosto(int costo){
+		this.costo = costo;
+	}
+	
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
+	public int getCosto(int costo){
+		return this.costo;
+	}
+	
+	public byte[] getImagen(byte[] imagen) {
+		return this.imagen;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

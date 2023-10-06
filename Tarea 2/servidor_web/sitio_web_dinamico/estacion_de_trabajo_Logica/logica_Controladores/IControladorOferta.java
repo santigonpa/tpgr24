@@ -35,7 +35,7 @@ public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String
 public abstract Set<String> getPostulantesString(String oferta);
 
 public abstract void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion,
-		int validez, int descuento, LocalDate fechaDeAlta) throws NombrePaqueteYaExiste;
+		int validez, int descuento, LocalDate fechaDeAlta, int costo, byte[] imagen) throws NombrePaqueteYaExiste;
 
 public abstract void aceptarOfertaLaboral(DataOferta dof);
 

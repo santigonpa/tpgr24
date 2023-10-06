@@ -10,6 +10,8 @@ import logica_Entidades.TipoPublicacion;
 public interface IManejadorPyT {
 
 	public abstract Set<DataTipoPublicacion> getDataTipoPublicacion();
+	
+	public abstract Set<DataPaquete> getDataPaquete();
 
 	public abstract TipoPublicacion obtenerTipoPublicacion(String tipoPubli);
 	
