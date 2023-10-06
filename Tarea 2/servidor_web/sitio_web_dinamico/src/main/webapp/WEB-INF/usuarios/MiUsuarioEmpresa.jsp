@@ -238,53 +238,62 @@
     
     	
     	 	<main>
-	  <div class="contenedor-principal">
-	    
-	    <%
-	    	DataEmpresa miEmpresa =  (DataEmpresa) request.getAttribute("consultar");
-	    	
-	    %>
-	    
+    	
+    	
+    		<%
+    			DataEmpresa empresaConsultada = (DataEmpresa)  request.getAttribute("consultar");
+    			byte[] imagenBytes = empresaConsultada.getImagen();
+    			String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+    		%>
+    	
+    		<div class="contenedor-principal">
 	    <div class="card" style="width: 18rem;">
-	      <img src="<%= request.getContextPath() %>/ServletImagen" class="card-img-top" alt="imagen de usuario">
-	      <b>DESCRIPCIÓN</b>
+	      <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="imagen de usuario">
+	      <div class="card-body">
+	        <b>DESCRIPCIÓN</b>
 	        <div class = "my-2"></div>
-	        <p class="card-text" style = "text-align : left;"> <%= miEmpresa.getDescripcion() %>
-			</p>
+	        <p class="card-text" style = "text-align : left;"><%= empresaConsultada.getDescripcion() %></p>
 	      </div>
-	    
-	    
+	    </div>
 	    <div class="contenedor-form">
 	      
 	        <fieldset disabled>
-	          <legend class= "nombre-user"><%=miEmpresa.getNickName()%></legend>
+	          <legend class= "nombre-user"><%= empresaConsultada.getNickName() %></legend>
 	          <div class="mb-3">
 	            <label for="disabledTextInput" class="form-label">NOMBRE</label>
-	            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%= miEmpresa.getNombre() %>">
+	            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%= empresaConsultada.getNombre() %>">
 	          </div>
 	          <div class="mb-3">
 	            <label for="disabledTextInput" class="form-label">APELLIDO</label>
-	            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%= miEmpresa.getApellido() %>">
+	            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%= empresaConsultada.getApellido() %>">
 	          </div>
 	          <div class="mb-3">
 	            <label for="disabledTextInput" class="form-label">EMAIL</label>
-	            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%= miEmpresa.getEmail() %>">
+	            <input type="text" id="disabledTextInput" class="form-control" placeholder="<%= empresaConsultada.getEmail() %>">
 	          </div>
 	          <div class="mb-3">
 	            <label for="disabledTextInput" class="form-label">SITIO WEB</label>
 	          </div>
 	        </fieldset>
-	        <a href="<%= miEmpresa.getLinkWeb() %>"><%= miEmpresa.getLinkWeb() %></a>
+	        <a href="<%= empresaConsultada.getLinkWeb() %>"><%= empresaConsultada.getLinkWeb() %></a>
 	        
 	         
 	        	
 	      
 	     
 	     
-	     
-	     <div class = "texto-of" style = "margin : 50px;">
-	     <h2>Ofertas Confirmadas de mi Empresa</h2>
 	      
+	      
+	      
+	    </div>
+	  </div>
+    	</main>
+    	
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	     <h2>Ofertas Confirmadas de tu Empresa</h2>
+	      </div>
 	     
 	     <%	
 	     	Set<DataOferta> oferConfirmadas = (Set<DataOferta>) request.getAttribute("ofertasConfirmadas");
@@ -292,7 +301,8 @@
 	     	if(!oferConfirmadas.isEmpty()){
 	     %>
 	     
-	      <div class= "cartas-ofertas">
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
 				
 				
 				<%  //initfor
@@ -309,48 +319,63 @@
 		            String base64ImageOferta = Base64.getEncoder().encodeToString(imagenBytesOferta);
 					
 				%>
-				
-				
-			
-			<div class="carta-oferta card bg-light" style="width: 15rem;">
-			  <img src="data:image/jpeg;base64, <%= base64ImageOferta %>" class="card-img-top" alt="imagen de usuario">
-			  <div class="card-body">
-			     <h5 class="card-title" style="color: black;"><%= nombreOferta %></h5>
-			    <p> </p>
+			  
+			  
 			    
-			    <p class="card-text" style="color: black;"><%= descripcion %></p>
-			    <a href="#" class="btn btn-dark">Ver más de la oferta</a>
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 18rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageOferta %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nombreOferta %></h5>
+			          <p class="card-text"><%= descripcion %></p>
+			          <a href="#" class="btn btn-outline-dark">Consultar datos de la oferta</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			  
 			  </div>
+			
 			</div>
 			
-			<% //endfor
-					}
-				%>
-			</div>
-	      
-	      <%
-	     	} else {
-	      %>
-	      
-	      <p>Actualmente no posee ofertas en este estado</p>
-	      
-	      
-	      <% 
-	     	}
-	      %>
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas confirmadas para esta empresa
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+    	
+    	</div>
+    	
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	     <h2>Ofertas Ingresadas o Rechazadas de tu Empresa</h2>
 	      </div>
-	      
-	      	<div class = "texto-of">
-	     <h2>Ofertas Ingresadas o Rechazadas De la Empresa</h2>
-	      
 	     
 	     <%	
-	     	Set<DataOferta> oferRechazadasIngresadas = (Set<DataOferta>) request.getAttribute("ofertasRyI");
+	     	Set<DataOferta> oferRechazadas = (Set<DataOferta>) request.getAttribute("ofertasRyI");
 	     	//si hay ofertas confirmadas las muestro si no no
-	     	if(!oferRechazadasIngresadas.isEmpty()){
+	     	if(!oferRechazadas.isEmpty()){
 	     %>
 	     
-	      <div class= "cartas-ofertas">
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
 				
 				
 				<%  //initfor
@@ -359,7 +384,7 @@
 		        String descripcion2;
 		        byte[] imagenBytesOferta2;
 		
-		        for (DataOferta ofertaActual2 : oferRechazadasIngresadas ) {//initfor
+		        for (DataOferta ofertaActual2 : oferRechazadas) {
 		            nombreOferta2 = ofertaActual2.getNombre();
 					imagenBytesOferta2 = ofertaActual2.getImagen();
 					descripcion2 = ofertaActual2.getDescripcion();
@@ -367,81 +392,48 @@
 		            String base64ImageOferta2 = Base64.getEncoder().encodeToString(imagenBytesOferta2);
 					
 				%>
-				
-				
-			
-			<div class="carta-oferta card bg-light" style="width: 15rem;">
-			  <img src="data:image/jpeg;base64, <%= base64ImageOferta2 %>" class="card-img-top" alt="imagen de usuario">
-			  <div class="card-body">
-			     <h5 class="card-title" style="color: black;"><%= nombreOferta2 %></h5>
-			    <p> </p>
+			  
+			  
 			    
-			    <p class="card-text" style="color: black;"><%= descripcion2 %></p>
-			    <a href="#" class="btn btn-dark">Ver más de la oferta</a>
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 18rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageOferta2 %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nombreOferta2 %></h5>
+			          <p class="card-text"><%= descripcion2 %></p>
+			          <a href="#" class="btn btn-outline-dark">Consultar datos de la oferta</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			  
 			  </div>
+			
 			</div>
 			
-			<% //endfor
-					}
-				%>
-			</div>
-	      
-	      <%
-	     	} else {
-	      %>
-	      
-	      <p>Actualmente no posee ofertas en este estado</p>
-	      
-	      
-	      <% 
-	     	}
-	      %>
-	      </div> 
-	     
-	     
-	     
-	     <div class="contenedor">
-  		<h2 class="-titulo-">Paquetes de Tipos de Publicación Adquiridos</h2>
-		</div>
-	
-		<div class = "cartas-ofertas">
-		
-				<div class="card" style="width: auto;">
-  					<div style="overflow: hidden; width: 100%; height: 15rem;"> <!-- Corta la imagen -->
-           	 			<img class="card-img-top" src="./img/imagenPaquete1.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        			</div>
- 					<div class="card-body">
-    				<h5 class="card-title">Básico</h5>
-    				<a href="consultaPaqueteBasico.html" class="btn btn-outline-dark">Más informacion</a>
-  					</div>
-				</div>
-				
-				<div class="card" style="width: auto;">
-					<div style="overflow: hidden; width: 100%; height: 15rem;"> <!-- Corta la imagen -->
-           	 			<img class="card-img-top" src="./img/imagenPaquete2.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        			</div>
-					<div class="card-body">
-   					<h5 class="card-title">Destacado</h5>
-   					<a href="consultaPaqueteDestacado.html" class="btn btn-outline-dark">Más informacion</a>
-  					</div>
-				</div>
-		
-		
-				</div>
-		
-			</div>
-	     
-	     </div>
-        	
-			
-			
-			
-			
-	      
-	    
-	  
-	  
-	</main>
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas Ingresadas o Rechazadas para esta empresa
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+    	
+    	</div>
     	
     	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
     

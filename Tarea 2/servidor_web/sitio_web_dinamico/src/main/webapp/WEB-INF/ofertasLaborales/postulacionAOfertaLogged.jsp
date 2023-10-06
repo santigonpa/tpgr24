@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import= "logica_Entidades.Usuario" %>
 <%@page import= "utils.Fabrica" %>
 <%@page import= "logica_Manejadores.IManejadorUsuario" %>
 <%@page import= "logica_Entidades.Usuario" %>
 <%@page import= "logica_DataTypes.DataEmpresa" %>
+<%@page import= "logica_DataTypes.DataOferta" %>
 <%@page import="java.util.Map" %>
+<%@page import="java.util.Set" %>
+<%@page import ="java.util.Base64" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,7 +16,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexLoggedStyle.css" />
+     <link rel="stylesheet" href="media/css/indexLoggedStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link
       rel="stylesheet"
@@ -43,18 +46,24 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    
+    
+    
+   
+    <style>
+    
+.row {
+--bs-gutter-x: 0rem !important;
+}
+    
+    </style>
+    
+    
     <title>TrabajoUY: Postulacion a Oferta</title>
   </head>
   <body>
     <header>
-      <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
-      <!-- esto se debe implementar mas adelante  
-            
-                <img class = "logotipo-trabajouy" src="logotipoTrabajoUy-transformed.png" alt="Logotipo de Mi Sitio">
-            
-            
-            -->
-
+    
 	<nav class="navbar bg-dark px-5">
     	<a class="navbar-brand" href="home">
       		<img src="media/img/logoNuevo.png"
@@ -124,26 +133,25 @@
   			<form class="d-flex" role="search">
       		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
     		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		width: 200px;
     		</form>
   		</div>
   		
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del botón -->
+        <div class="nav-button"> <!-- Contenedor del botÃ³n -->
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
 			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
 			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="BotÃ³n" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesiÃ³n</a></li>-->
                 <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesiÃ³n</a></li>
             </ul> 
         </div>
     </div>
@@ -151,7 +159,7 @@
 	</nav>
 		<script>
 		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
+    	var confirmacion = confirm("Â¿EstÃ¡s seguro de que deseas cerrar la sesiÃ³n?");
     	if (confirmacion) {
 			window.location.href = "/TrabajoUY/CerrarSesion";
     		}
@@ -219,26 +227,31 @@
     
     
     
-	    <main>
-	  		<div class="contenedor">
-        <h2 class="titulo">Ofertas Laborales</h2>
-    </div>
-    <div class="contenedorPrincipal">
+<main>
+	  	<div class="contenedor">
+        	<h2 class="titulo">Ofertas Laborales</h2>
+    	</div>
+    		
+    		
+    		
+    		<div class="contenedorPrincipal">
+       
         <div class="container text-center">
             <div class="row">
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Filtrar por empresa</option>
-                        <%
-                        Fabrica fab = Fabrica.getInstance();
-                    	IManejadorUsuario imu = fab.getInManejadorUsuario();
-                        Map<String, DataEmpresa> dataEmpresas = imu.getDataEmpresas();
-                        for(DataEmpresa dEmpr : dataEmpresas.values()){
-                        	String nombreEmpresa = dEmpr.getNombre();
-                        %>
-                        <option value="1"><%= nombreEmpresa %></option>
-                        <%}%>
-                    </select>
+                    <form id="empresaForm" action="/TrabajoUY/PostulacionAOferta" method="get"> 
+					  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
+					    <option selected disabled>Filtrar por empresa</option>
+					    <% Fabrica fab = Fabrica.getInstance();
+					       IManejadorUsuario imu = fab.getInManejadorUsuario();
+					       Map<String, DataEmpresa> dataEmpresas = imu.getDataEmpresas();
+					       for(DataEmpresa dEmpr : dataEmpresas.values()){
+					         String nickEmpresa = dEmpr.getNickName();
+					    %>
+					    <option value="<%= nickEmpresa %>"><%= nickEmpresa %></option>
+					    <% } %>
+					  </select>
+					</form>
                 </div>
                 <div class="col">
                     <select class="form-select" aria-label="Default select example">
@@ -253,42 +266,129 @@
                 </div>
             </div>
         </div>
-        <div class="contenedorCards">
-            <div class="row mt-4">
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://tinyurl.com/45nsf34m" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Desarrollador Frontend</h5>
-                            <p class="card-text">Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.</p>
-                            <a href="postularmeAOferta1.html" class="btn btn-outline-dark">Postularme</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://tinyurl.com/4n2vpurk" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Analista de Marketing Digital</h5>
-                            <p class="card-text">Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.</p>
-                            <a href="postularmeAOferta2.html" class="btn btn-outline-dark">Postularme</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			  
+			  <%
+			  
+			  if (request.getAttribute("coleccionOfertasPostulacion") != null) {
+				 
+				 
+				  %>
+				 
+				 <div class="contenedor">
+       	 					<h2 class="titulo">Ofertas de <%= request.getParameter("empresa") %></h2>
+    					</div>
+				 
+				  <div class="contenedorCards">
+				 		<div class="row mt-4">
+				 		
+				 <%
+				 
+				 String nombreOferta;
+				 String descripcionOferta;
+				 byte[] imagenBytes;
+				 
+				 Set<DataOferta> ofertas = (Set<DataOferta>) request.getAttribute("coleccionOfertasPostulacion");
+				 
+				 if(!ofertas.isEmpty()){
+				 
+				 for (DataOferta ofertaActual : ofertas ){
+					  nombreOferta = ofertaActual.getNombre();
+					  descripcionOferta = ofertaActual.getDescripcion();
+					  imagenBytes = ofertaActual.getImagen();
+					  
+					  String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+				  
+			  %>
+			  
+			  
+			    
+			    <div class="col-md-4 mb-4">
+			   
+			      <div class="card" style="width: 16rem;">
+			        <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nombreOferta %></h5>
+			          <p class="card-text"><%= descripcionOferta %></p>
+			          <a href="#" class="btn btn-outline-dark">Postularme</a>
+			        </div>
+			      </div>
+			      </div>
+			      
+			      
+			<%
+				 } //endfor
+				 
+				 %>
+				  
+				  </div>
+				
+				</div>
+				
+				<%
+				 
+				 }else {
+					 %>
+					 
+					 <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas registradas en la empresa
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					 
+					 <%
+				 }
+			%>
+			  
+			 
+			
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas registradas en la empresa o no ha seleccionado una empresa aÃºn
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
 
-            <div class="row mt-4">
-                <!-- Aquí puedes agregar más tarjetas según sea necesario -->
-            </div>
-
-            <div class="row mt-4">
-                <!-- Y aquí también puedes agregar más tarjetas según sea necesario -->
-            </div>
-        </div>
     </div>
+		
+		
 		</main>
     
    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
      
   </body>
+  
+   <!-- SCRIPTS DEL CASO DE USO PARA MOSTRAR LAS COSAS -->
+  
+
+ <!-- Esto redirige al servlet cuando selecciona una empresa -->
+<script>
+  // ObtÃ©n el elemento <select> por su ID
+  var selectElement = document.getElementById("empresaSelect");
+
+  // Agrega un event listener para el evento "change"
+  selectElement.addEventListener("change", function() {
+    // ObtÃ©n el formulario por su ID
+    var formElement = document.getElementById("empresaForm");
+
+    formElement.submit();
+  });
+</script>
+
 </html>

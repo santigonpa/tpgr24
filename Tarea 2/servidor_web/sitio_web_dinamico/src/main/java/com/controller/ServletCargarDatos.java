@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.OfertaLaboral.EstadoOferta;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
 import logica_Entidades.TipoPublicacion;
@@ -314,7 +315,7 @@ public class ServletCargarDatos extends HttpServlet {
 			e6.agregarOfertas(o6.getNombreOferta(),o6);
 			e1.agregarOfertas(o7.getNombreOferta(),o7);
 			e3.agregarOfertas(o8.getNombreOferta(),o8);
-			e4.agregarOfertas(o9.getNombreOferta(), o9);
+			e4.agregarOfertas(o9.getNombreOferta(),o9);
 			
 			//Agrego Empresa a Oferta
 			o1.setEmpresa((Empresa)e1);
@@ -327,8 +328,20 @@ public class ServletCargarDatos extends HttpServlet {
 			o8.setEmpresa((Empresa)e3);
 			o9.setEmpresa((Empresa)e4);
 			
-			//Agrego Oferta 
-		
+			 
+			
+			//estado oferta 
+			o1.setEstado(EstadoOferta.ACEPTADA);
+			o2.setEstado(EstadoOferta.ACEPTADA);
+			o3.setEstado(EstadoOferta.ACEPTADA);
+			o4.setEstado(EstadoOferta.INGRESADA);
+			o5.setEstado(EstadoOferta.INGRESADA);
+			o6.setEstado(EstadoOferta.ACEPTADA);
+			o7.setEstado(EstadoOferta.ACEPTADA);
+			o8.setEstado(EstadoOferta.RECHAZADA);
+			o9.setEstado(EstadoOferta.ACEPTADA);
+			
+			//Agrego Oferta
 			mo.addOferta(o1);
 			mo.addOferta(o2);
 			mo.addOferta(o3);

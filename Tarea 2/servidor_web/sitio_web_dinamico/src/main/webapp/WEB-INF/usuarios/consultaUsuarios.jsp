@@ -274,15 +274,16 @@
 			           
 			           
 			             
-						    <div class="container">
-							    <div class="row">
-							        <div class="col text-center">
-							            <div class="alert alert-danger" role="alert">
-							                No hay usuarios registrados en la página hasta el momento
-							            </div>
-							        </div>
-							    </div>
-							</div>
+						   <div class = "my-5"></div>
+					  			<div class="container">
+							    	<div class="row">
+							        	<div class="col text-center">
+							            	<div class="alert alert-danger" role="alert">
+							                No hay Usuarios registrados hasta el momento
+							            	</div>
+							        	</div>
+							    	</div>
+								</div>
 			             
 			       <% 
 			        }

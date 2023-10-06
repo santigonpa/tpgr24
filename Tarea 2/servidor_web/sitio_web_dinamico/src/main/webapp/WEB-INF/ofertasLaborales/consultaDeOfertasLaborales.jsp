@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
           
     <%@page import= "logica_DataTypes.DataOferta" %>
     <%@page import="java.util.Set" %>
@@ -9,13 +9,13 @@
     
     
 <!DOCTYPE html>
-<html>
+<html lang = "es">
 <head>
-<meta charset="ISO-8859-1">
+
 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
     <link
       rel="stylesheet"
@@ -49,10 +49,15 @@
       crossorigin="anonymous"
     ></script>
 
+
+
+
+
     <title>Ofertas Laborales</title>
 	</head>
 <body>
 	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	
 	<main>
 				<div class="contenedor4">
 			  		<h2 class="titulo"><strong>Ofertas Laborales</strong></h2>

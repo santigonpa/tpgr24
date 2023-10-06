@@ -251,9 +251,18 @@
 	      
 	     
 	     
-	     <div class = "texto-of">
-	     <h2>Ofertas de la Empresa</h2>
 	      
+	      
+	      
+	    </div>
+	  </div>
+    	</main>
+    	
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	     <h2>Ofertas de la Empresa</h2>
+	      </div>
 	     
 	     <%	
 	     	Set<DataOferta> oferConfirmadas = (Set<DataOferta>) request.getAttribute("ofertasConfirmadas");
@@ -261,7 +270,8 @@
 	     	if(!oferConfirmadas.isEmpty()){
 	     %>
 	     
-	      <div class= "cartas-ofertas">
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
 				
 				
 				<%  //initfor
@@ -272,47 +282,54 @@
 		
 		        for (DataOferta ofertaActual : oferConfirmadas) {
 		            nombreOferta = ofertaActual.getNombre();
-					imagenBytes = ofertaActual.getImagen();
+					imagenBytesOferta = ofertaActual.getImagen();
 					descripcion = ofertaActual.getDescripcion();
 					imagenBytesOferta = ofertaActual.getImagen();
 		            String base64ImageOferta = Base64.getEncoder().encodeToString(imagenBytesOferta);
 					
 				%>
-				
-				
-			
-			<div class="card bg-light" style="width: 15rem;">
-			  <img src="data:image/jpeg;base64, <%= base64ImageOferta %>" class="card-img-top" alt="imagen de usuario">
-			  <div class="card-body">
-			     <h5 class="card-title" style="color: black;"><%= nombreOferta %></h5>
-			    <p> </p>
+			  
+			  
 			    
-			    <p class="card-text" style="color: black;"><%= descripcion %></p>
-			    <a href="#" class="btn btn-dark">Ver más de la oferta</a>
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 18rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageOferta %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nombreOferta %></h5>
+			          <p class="card-text"><%= descripcion %></p>
+			          <a href="#" class="btn btn-outline-dark">Postularme</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			  
 			  </div>
+			
 			</div>
 			
-			<% //endfor
-					}
-				%>
-			</div>
-	      
-	      <%
-	     	} else {
-	      %>
-	      
-	      <p>Actualmente no posee ofertas en este estado</p>
-	      
-	      
-	      <% 
-	     	}
-	      %>
-	      </div> 
-	      
-	      
-	    </div>
-	  </div>
-    	</main>
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas confirmadas para esta empresa
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+    	
+    	</div>
     	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>
