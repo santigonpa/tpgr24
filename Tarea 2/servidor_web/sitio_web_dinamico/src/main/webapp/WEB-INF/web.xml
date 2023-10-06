@@ -168,4 +168,34 @@
     <servlet-name>ServletPago</servlet-name>
     <url-pattern>/ServletPago</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>servletDetallePaquete</display-name>
+    <servlet-name>servletDetallePaquete</servlet-name>
+    <servlet-class>com.controller.servletDetallePaquete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletDetallePaquete</servlet-name>
+    <url-pattern>/servletDetallePaquete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDetallePaquete</display-name>
+    <servlet-name>ServletDetallePaquete</servlet-name>
+    <servlet-class>com.controller.ServletDetallePaquete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDetallePaquete</servlet-name>
+    <url-pattern>/ServletDetallePaquete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletPaqueteDetallado</display-name>
+    <servlet-name>ServletPaqueteDetallado</servlet-name>
+    <servlet-class>com.controller.ServletPaqueteDetallado</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletPaqueteDetallado</servlet-name>
+    <url-pattern>/ServletPaqueteDetallado</url-pattern>
+  </servlet-mapping>
 </web-app>

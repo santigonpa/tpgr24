@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import logica_DataTypes.DataPaquete;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Entidades.Paquete;
 import logica_Entidades.TipoPublicacion;
@@ -55,7 +56,16 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		String nombre = paq.getNombre();
 		this.paquetes.put(nombre, paq);
 	}
-
+	
+	public DataPaquete getDataPaquete(String nombre) {
+		Paquete paquetito = this.paquetes.get(nombre);
+		if(paquetito == null) {
+			return null;
+		}else {
+			DataPaquete resultado = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta());
+			return resultado;
+		}
+	}
 	
 	public void addTipoPublicacion(TipoPublicacion tp) {
 		String nombre = tp.getNombre();
