@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>TrabajoUY</title>
 <!-- Estilos -->
-    <link rel="stylesheet" href="media/css/altOfLabStyle.css" />
+    <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
     <%@page import= "logica_DataTypes.DataOferta" %>
@@ -53,19 +53,23 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
       
-      <script>
-	    $(document).ready(function () {
-	        // Abrir Modal 1 al hacer clic en el botón "Abrir Modal 1"
-	        $("#botonModal1").click(function () {
-	            $("#modal1").modal("show");
-	        });
-	
-	        // Abrir Modal 2 al hacer clic en el botón "Abrir Modal 2"
-	        $("#botonModal2").click(function () {
-	            $("#modal2").modal("show");
-	        });
-	    });
-	</script>
+	    <script>
+      // Lógica para mostrar u ocultar los formularios según la pestaña seleccionada
+      $(document).ready(function () {
+  		$("#pagoGen-tab").on("click", function () {
+   		$("#pagoGeneral").show();
+    	$("#pagoConPaquete").hide();
+    	$("#tipoPago").val("pagoPaquete"); // Actualiza el valor del campo oculto
+  });
+
+  		$("#pagoPaq-tab").on("click", function () {
+    	$("#pagoConPaquete").hide();
+    	$("#pagoConPaquete").show();
+    	$("#tipoPago").val("pagoConPaquete"); // Actualiza el valor del campo oculto
+  });
+});
+
+    </script>
       
       <script>
 		function validarFormulario() {
@@ -121,7 +125,17 @@
     });
 	</script>
 	
-       
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("alta-form");
+        form.addEventListener("submit", function (event) {
+            if (!validarFormulario()) {
+                event.preventDefault(); // Evita que el formulario se envíe si la fecha no es válida
+            }
+        });
+    });
+	</script>
+	  
 </head>
 
 
@@ -129,6 +143,7 @@
 <body>
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	<main>
+	
 	<div class="my-5"></div>
 
 	<div class="row justify-content-center">
@@ -140,7 +155,31 @@
 		</div>
 	</div>	
 	
-	<div class="cartas">
+	<div class="container mt-5">
+        <div class="card">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs justify-content-center">
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-muted fs-3"
+                  id="pagoGen-tab"
+                  data-toggle="tab"
+                  href="#pagoGeneral"
+                  >Pago General</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-muted fs-3"
+                  id="pagoPaq-tab"
+                  data-toggle="tab"
+                  href="#pagoConPaquete"
+                  >Pago con Paquete</a
+                >
+              </li>
+            </ul>
+          </div>
+            <div class="cartas">
 
 				<%
 			    
@@ -163,6 +202,8 @@
 			        	
 			        	fecha = dataTP.getFechaString();
 			    %>
+				
+				
 				
 			    <div class="card" style="width: 20rem;">
 			   		<div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
@@ -198,7 +239,10 @@
 				<div class="my-5">
 				</div>
 				
+				
 	            <form id="alta-form" action = "/TrabajoUY/AltaDeOfertaLaboral" method = "POST" enctype="multipart/form-data">
+				
+				<input type="hidden" id="tipoPago" name="tipoPago" value="<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoGeneral" %>" />
 				
 	            <div class="form-floating mb-3">
 					<input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<%= request.getParameter("nombre") != null ? request.getParameter("nombre") : "" %>">					
@@ -272,63 +316,20 @@
 				  <option value="3">Temporal</option>
 				  <option value="3">Permanente</option>
 				</select>
-				
-			 <%
-			 	String costoConPaquete = request.getParameter("costoConPaquete");
-			    String costoo = request.getParameter("costo");
-				DataOferta dtOferta = (DataOferta) request.getAttribute("dtOfer");
-
-			 %>
-				
-		<button type="button" class="btn btn-dark" id="botonModal1">Pagar de manera general</button>
-			<button type="button" class="btn btn-dark" id="botonModal2">Pagar por medio de un paquete</button>
 			
-			<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
-			    <div class="modal-dialog" role="document">
-			        <div class="modal-content">
-			            <div class="modal-header">
-			                <h5 class="modal-title" id="modal1Label">Confirmacion de pago</h5>
-			                    <span aria-hidden="true">&times;</span>
-			                </button>
-			            </div>
-			            <div class="modal-body">
-			                El monto a pagar es : 
-			            </div>
-			            <div class="modal-footer">
-					            <label class="btn btn-dark" for="btnradio4">Cancelar</label>
-					            <label href = "Home" class="btn btn-dark" for="btnradio4">Aceptar</label>
-					            
-			            </div>
-			        </div>
-			    </div>
+			<div iv class="w-100 d-flex justify-content-center mt-3">	 
+				
+				<button type="submit" class="btn btn-dark" id="botonModal1">Realizar compra</button>
+				
 			</div>
 			
-			<!-- Modal 2 -->
-			<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2Label" aria-hidden="true">
-			    <div class="modal-dialog" role="document">
-			        <div class="modal-content">
-			            <div class="modal-header">
-			                <h5 class="modal-title" id="modal2Label">Confirmacion de pago</h5>
-			                    <span aria-hidden="true">&times;</span>
-			                </button>
-			            </div>
-			            <div class="modal-body">
-			                El monto a pagar es : <%= costoConPaquete %>
-			            </div>
-			            <div class="modal-footer">
-					            <label class="btn btn-dark" for="btnradio4">Cancelar</label>
-					            <label href = "Home" class="btn btn-dark" for="btnradio4">Aceptar</label>
-					           
-			            </div>
-			        </div>
-			    </div>
-			</div>
+			</form>	
 			
 			<% 
 			    }else{ 	
 			        	%>
 						    <div class="contendor2">	 
-						    <div class="carta" style="width: 98vw;">       
+						    <div class="carta" style="width: 62vw;">       
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>
@@ -339,6 +340,16 @@
 			       <% 
 			        }
 			    %>
+            
+            
+            
+            
+              </div>
+          </div>
+        </div>
+	
+	
+	
 	
 			
 	</main>

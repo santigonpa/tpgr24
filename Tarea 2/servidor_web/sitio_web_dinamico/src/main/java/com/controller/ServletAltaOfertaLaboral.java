@@ -30,6 +30,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import com.model.EstadoSesion;
 import excepciones.NombreRepetidoOfertaException;
+import excepciones.noExistePublicacionException;
 
 
 
@@ -44,7 +45,8 @@ import excepciones.NombreRepetidoOfertaException;
 public class ServletAltaOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Fabrica fab = Fabrica.getInstance();
-	private IManejadorPyT IPYT = fab.getInManejadorPyT();   
+	private IManejadorPyT IPYT = fab.getInManejadorPyT();
+	private static IControladorOferta ICO = fab.getInOfer();
 
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
@@ -181,38 +183,37 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		
 		String accion = request.getParameter("accion");
 		
-		TipoPublicacion tipo = ipt.obtenerTipoPublicacion(opcionSeleccionadaTP);
-		int costo = (int) tipo.getCosto();
-		int costoConPaquete;
-		Empresa emp = (Empresa) usuario;
-		if(emp.getCompra() == null) {
-			costoConPaquete = -1;
-		}else {
-			if(emp.getCompra().existeTipoPubli(opcionSeleccionadaTP)) {
-				costoConPaquete = (int) (tipo.getCosto() - ((emp.getCompra().getPaquete().getDescuento() /100 ) * tipo.getCosto()));
-			}
-			else {
-				costoConPaquete = -1;
-			}
-		}
-		
-		
+		String tipoPago = request.getParameter("tipoPago");
 		
 		LocalDate fechaActual = LocalDate.now();
-		DataOferta dtOfer = new DataOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, 0, fechaActual, null, nickName,  imagenBytes, keys);
 		
-		//*try {
-			//ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			//dispatcher.forward(request, response);
-		//}catch (NombreRepetidoOfertaException e){
-        	// Agregar un atributo a la solicitud con el mensaje de error
-            //request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
+		
+		if(tipoPago.equals("pagoGeneral")) {
+			try {
+				ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+				dispatcher.forward(request, response);
+			}catch (NombreRepetidoOfertaException e){
+	           request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
+	            
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+				dispatcher.forward(request, response);
+			} catch (noExistePublicacionException e) {
+		        request.setAttribute("errorNombreOferta", "El tipo de publicacion ingresada no se encunetra disponible");
+			}
+		}else {
+		try {
+			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+			dispatcher.forward(request, response);
+		}catch (NombreRepetidoOfertaException e){
+            request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
             
-            // Redirigir de vuelta a tu formulario de registro
-            //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			//dispatcher.forward(request, response);
-		//}
-		doGet(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+			dispatcher.forward(request, response);
+		} catch (noExistePublicacionException e) {
+	        request.setAttribute("errorNombreOferta", "El tipo de publicacion ingresada no se encunetra disponible");
+		}
+		}
     }	
 }
