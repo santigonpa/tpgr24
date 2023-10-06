@@ -29,11 +29,11 @@
 		crossorigin="anonymous"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 <main>	
 	<div class="contenedor4">
   		<h2 class="-titulo-"><strong>Compra Paquetes de Tipos de Publicación de Ofertas Laborales</strong></h2>
-  		
+  		<hr>
 	</div>
 
 		<div class="contenedor3">
@@ -42,7 +42,7 @@
 					<div class="card" style="width: auto;">
 						<div style="overflow: hidden; width: 100%; height: 20rem;">
 							<!-- Corta la imagen -->
-							<img class="card-img-top" src="./img/imagenPaquete1.jpg"
+							<img class="card-img-top" src="media/img/imagenPaquete1.jpg"
 								alt="Card image cap"
 								style="object-fit: cover; width: 100%; height: 100%;">
 						</div>
@@ -59,7 +59,7 @@
 					<div class="card" style="width: auto;">
 						<div style="overflow: hidden; width: 100%; height: 20rem;">
 							<!-- Corta la imagen -->
-							<img class="card-img-top" src="./img/imagenPaquete2.jpg"
+							<img class="card-img-top" src="media/img/imagenPaquete2.jpg"
 								alt="Card image cap"
 								style="object-fit: cover; width: 100%; height: 100%;">
 						</div>
@@ -77,7 +77,7 @@
 					<div class="card" style="width: auto;">
 						<div style="overflow: hidden; width: 100%; height: 20rem;">
 							<!-- Corta la imagen -->
-							<img class="card-img-top" src="./img/imagenDefaultPaquete2.jpg"
+							<img class="card-img-top" src="media/img/imagenDefaultPaquete2.jpg"
 								alt="Card image cap"
 								style="object-fit: cover; width: 100%; height: 100%;">
 						</div>
@@ -95,7 +95,7 @@
 					<div class="card" style="width: auto;">
 						<div style="overflow: hidden; width: 100%; height: 20rem;">
 							<!-- Corta la imagen -->
-							<img class="card-img-top" src="./img/imagenDefaultPaquete2.jpg"
+							<img class="card-img-top" src="media/img/imagenDefaultPaquete2.jpg"
 								alt="Card image cap"
 								style="object-fit: cover; width: 100%; height: 100%;">
 						</div>
@@ -110,6 +110,7 @@
 				</div>
 			</div>
 		</div>
-</main>
+	</main>
+	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>
