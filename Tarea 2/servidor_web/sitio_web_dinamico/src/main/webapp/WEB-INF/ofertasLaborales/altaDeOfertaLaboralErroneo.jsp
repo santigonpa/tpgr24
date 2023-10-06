@@ -55,11 +55,12 @@
 	    <main>
 	    <div class = "contenedor2">
 	  		<div class="alert alert-danger" role="alert">
-  					PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UNA EMPRESA
+  					<div class = "text-center"><i class="fa fa-user-times" aria-hidden="true"></i></div>
+	  				<hr>
+  					<strong>PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UNA EMPRESA</strong>
   					<br>
-  					<a href="/TrabajoUY/iniciarSesion" class="alert-link">Haz click aquí para iniciar sesión con un Usuario de tipo Empresa</a>
   					<br>
-  					<a href="/TrabajoUY/AltaUsuario" class="alert-link">Haz click aquí para registrarte y crear un Usuario tipo Empresa</a>
+  					<a href="/TrabajoUY/home" class="alert-link">Haz click aquí para volver al inicio</a>
 			</div>
 			</div>
 		</main>

@@ -55,8 +55,12 @@
 	    <main>
 	    <div class = "contenedor2">
 	  		<div class="alert alert-danger" role="alert">
-	  				<div class = "text-center"><i class="fa-solid fa-circle-info"></i></div>
-  					PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UNA EMPRESA
+	  				<div class = "text-center"><i class="fa fa-user-times" aria-hidden="true"></i></div>
+	  				<hr>
+  					<strong>PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UNA EMPRESA</strong>
+  					<br>
+  					<br>
+  					<a href="/TrabajoUY/home" class="alert-link">Haz click aquí para volver al inicio</a>
 			</div>
 			</div>
 		</main>
