@@ -144,7 +144,7 @@
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="consultaPostulante.html">Usuario</a></li>
+                <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
                 <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
                 <!-- no se si meter ese js-->
