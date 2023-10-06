@@ -82,6 +82,26 @@
 	    });
 	</script>
       
+    <script>
+    // Función para obtener el botón seleccionado
+    document.getElementById("obtenerSeleccion").addEventListener("click", function() {
+        var botonesRadio = document.getElementsByName("btnradio");
+        var botonSeleccionado = null;
+
+        for (var i = 0; i < botonesRadio.length; i++) {
+            if (botonesRadio[i].checked) {
+                botonSeleccionado = botonesRadio[i].id;
+                break; // Sale del bucle si se encuentra un botón seleccionado
+            }
+        }
+
+        if (botonSeleccionado !== null) {
+            alert("Botón seleccionado: " + botonSeleccionado);
+        } else {
+            alert("Ningún botón seleccionado.");
+        }
+    });
+	</script>
        
 </head>
 
@@ -96,9 +116,70 @@
 		<div class="col-md-6">
 		<div align="center">
     	<h2><strong>Alta de Oferta Laboral</strong></h2>
+    	<hr>
 		</div>
+		</div>
+	</div>	
+	
+		<div class="contenedor3">
+	            <div class="row mt-4">
+	            <div class="contenedor">
+            		<h4 class="-titulo-">Seleccione un tipo de publicacion de Oferta Laboral</h4>
+     			</div>
+	                <div class="col-md-3">
+	                    <div class="card" style="width: auto;">
+	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+	                            <img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+	                        </div>
+	                        <div class="card-body">
+	                            <h5 class="card-title">Básica</h5>
+	                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+         					    <label class="btn btn-outline-dark" for="btnradio1">Seleccionar</label>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-md-3">
+	                    <div class="card" style="width: auto;">
+	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+	                            <img class="card-img-top" src="media/img/imagenTP2.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+	                        </div>
+	                        <div class="card-body">
+	                            <h5 class="card-title">Estándar</h5>
+	                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+					             <label class="btn btn-outline-dark" for="btnradio2">Seleccionar</label>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-md-3">
+	                    <div class="card" style="width: auto;">
+	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+	                            <img class="card-img-top" src="media/img/imagenTP5.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+	                        </div>
+	                        <div class="card-body">
+	                            <h5 class="card-title">Premium</h5>
+	                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+					            <label class="btn btn-outline-dark" for="btnradio3">Seleccionar</label>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="col-md-3">
+	                    <div class="card" style="width: auto;">
+	                        <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+	                            <img class="card-img-top" src="media/img/imagenTP4.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+	                        </div>
+	                        <div class="card-body">
+	                            <h5 class="card-title">Destacada</h5>
+	                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+					            <label class="btn btn-outline-dark" for="btnradio4">Seleccionar</label>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
 
-		<hr>
+		<div class="row justify-content-center">
+		<div class="col-md-6">
+		<div align="center">
 		<h3 class="-titulo-">Ingrese los datos</h3>
 			<div class="form-container justify-content-center">			
 				<div class="contenedor">
@@ -162,22 +243,10 @@
 				
 				<div class="my-5"></div>
 				
-				<div class="contenedor">
-            		<h4 class="-titulo-"><strong>Seleccione un tipo de publicacion de Oferta Laboral</strong></h4>
-     			</div>
      			
-     			<div class="contenedor">
-	     			<select class="form-select"aria-label="Default select example" name ="tiposPubli">
-	     				<option selected>Seleccione una opción</option>
-	     				<option value="1">Básico</option>
-	     				<option value="2">Destacado</option>
-	     				<option value="3">Premium</option>
-	     				<option value="4">Estándar</option>
-	     			</select>
-	     		</div>
 				
 				<div class="contenedor">
-				<h4 class="-titulo-"><strong>Ingrese las keywords que quiera asociar a la oferta</strong></h4>
+				<h4 class="-titulo-">Ingrese las keywords que quiera asociar a la oferta</h4>
 				<div class="my-5"></div>
 				</div>
 				
