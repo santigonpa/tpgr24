@@ -211,6 +211,12 @@ document.addEventListener("DOMContentLoaded", function () {
                   />
                 </label>
                 
+                <% if (request.getAttribute("campoInvalido") != null) { %>
+				    <div class="alert alert-danger">
+				      <%= request.getAttribute("campoInvalido") %>
+				    </div>
+				  <% } %>
+                
                <div class = "my-4"></div>
 					
 					<div class="form-floating mb-3"> 

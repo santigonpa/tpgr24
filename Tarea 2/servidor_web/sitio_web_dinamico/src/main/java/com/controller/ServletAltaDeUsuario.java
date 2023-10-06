@@ -234,24 +234,27 @@ public class ServletAltaDeUsuario extends HttpServlet {
 			         
 			            
 			        } catch (NicknameYaExisteException e) {
-			        	// Agregar un atributo a la solicitud con el mensaje de error
+			        	
 			            request.setAttribute("errorRegistroNickname", "El nickname ya está en uso. Por favor, elige otro.");
 			            
-			            // Redirigir de vuelta a tu formulario de registro
+			            
 			            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 			            return;
 			        }
 			        catch (EmailYaExisteException e) {
 						
-			        	// Agregar un atributo a la solicitud con el mensaje de error
+			        	
 			            request.setAttribute("errorRegistroEmail", "El nickname ya está en uso. Por favor, elige otro.");
 			            
 			            // Redirigir de vuelta a tu formulario de registro
 			            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 			            return;
 					} catch (campoInvalidoException e) {
-						//ESTO NO DEBERIA HACER NADA
-						e.printStackTrace();
+						
+			            request.setAttribute("campoInvalido", "Existe un campo sin rellenar. Por favor verifique, si estaba creando una empresa vuelva a seleccionar EMPRESA arriba.");
+			            
+			            // Redirigir de vuelta a tu formulario de registro
+			            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 					}
 		    	
 		    }
