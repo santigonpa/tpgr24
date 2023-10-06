@@ -238,6 +238,11 @@ public class ServletCargarDatos extends HttpServlet {
 			LocalTime hi6 = LocalTime.parse("09:00");
 			LocalTime hi7 = LocalTime.parse("10:00");
 			LocalTime hi8 = LocalTime.parse("08:30");
+			LocalTime hi9 = LocalTime.parse("09:00");
+			//LocalTime hi10 = LocalTime.parse("09:00");
+			//LocalTime hi11 = LocalTime.parse("04:00");
+			//LocalTime hi12 = LocalTime.parse("04:00");
+			//LocalTime hi13 = LocalTime.parse("14:00");
 			//HoraFinal
 			LocalTime hf1 = LocalTime.parse("18:00");
 			LocalTime hf2 = LocalTime.parse("17:00");
@@ -247,28 +252,58 @@ public class ServletCargarDatos extends HttpServlet {
 			LocalTime hf6 = LocalTime.parse("18:00");
 			LocalTime hf7 = LocalTime.parse("19:00");
 			LocalTime hf8 = LocalTime.parse("17:30");
+			LocalTime hf9 = LocalTime.parse("17:00");
+			LocalTime hf10 = LocalTime.parse("16:00");
+			LocalTime hf11 = LocalTime.parse("13:00");
+			LocalTime hf12 = LocalTime.parse("12:00");
+			LocalTime hf13 = LocalTime.parse("18:00");
+			
 			
 			//Convierto las Fechas
 	
-			LocalDate ao1 = LocalDate.of(2023,8,14);
-			LocalDate ao2 = LocalDate.of(2023,8,14);
-			LocalDate ao3 = LocalDate.of(2023,8,13);
-			LocalDate ao4 = LocalDate.of(2023,8,11);
-			LocalDate ao5 = LocalDate.of(2023,8,20);
-			LocalDate ao6 = LocalDate.of(2023,8,15);
-			LocalDate ao7 = LocalDate.of(2023,8,15);
-			LocalDate ao8 = LocalDate.of(2023,8,16);
+			LocalDate ao1 = LocalDate.of(2023,9,30);
+			LocalDate ao2 = LocalDate.of(2023,9,29);
+			LocalDate ao3 = LocalDate.of(2023,9,29);
+			LocalDate ao4 = LocalDate.of(2023,9,19);
+			LocalDate ao5 = LocalDate.of(2023,10,2);
+			LocalDate ao6 = LocalDate.of(2023,9,21);
+			LocalDate ao7 = LocalDate.of(2023,10,2);
+			LocalDate ao8 = LocalDate.of(2023,9,29);
+			LocalDate ao9 = LocalDate.of(2023,9,29);
+			LocalDate ao10 = LocalDate.of(2023,10,2);
+			LocalDate ao11 = LocalDate.of(2023,9,25);
+			LocalDate ao12 = LocalDate.of(2023,10,2);
+			LocalDate ao13 = LocalDate.of(2023,10,1);
 			
 			
-			//Creo Oferta
-			OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1,null);
-			OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2,null);
-			OfertaLaboral o3 = new OfertaLaboral("Disenador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,null);
-			OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4,null);
-			OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5,null);
-			OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6,null);
-			OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7,null);
-			OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8,null);
+			//imagenes de ofertas laborales
+			//Cambio de https a Byte
+			byte[] imagen01 = cargarImagenEnBytes(rutaEjecucion + "O1.jpg");
+			byte[] imagen22 = cargarImagenEnBytes(rutaEjecucion + "O2.jpg");
+			byte[] imagen33 = cargarImagenEnBytes(rutaEjecucion + "O3.jpg");
+			byte[] imagen44 = cargarImagenEnBytes(rutaEjecucion + "O4.jpg");
+			byte[] imagen55 = cargarImagenEnBytes(rutaEjecucion + "O5.jpg");
+			byte[] imagen66 = cargarImagenEnBytes(rutaEjecucion + "O6.jpg");
+			byte[] imagen77 = cargarImagenEnBytes(rutaEjecucion + "O7.jpg");
+			byte[] imagen88 = cargarImagenEnBytes(rutaEjecucion + "O8.jpg");
+			byte[] imagen99 = cargarImagenEnBytes(rutaEjecucion + "O9.jpg");
+			//byte[] imagen100= cargarImagenEnBytes(rutaEjecucion + "O10.jpg");
+			//byte[] imagen111 = cargarImagenEnBytes(rutaEjecucion + "O11.jpg");
+			//byte[] imagen122 = cargarImagenEnBytes(rutaEjecucion + "O12.jpg");
+			//byte[] imagen133 = cargarImagenEnBytes(rutaEjecucion + "O13.jpg");
+			
+			
+			
+			//Creo Oferta   // FALTAN OFERTAS 
+			OfertaLaboral o1 = new OfertaLaboral("Desarrollador Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1,imagen01);
+			OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2,imagen22);
+			OfertaLaboral o3 = new OfertaLaboral("Disenador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,imagen33);
+			OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4,imagen44);
+			OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5,imagen55);
+			OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6,imagen66);
+			OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7,imagen77);
+			OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8,imagen88);
+			OfertaLaboral o9 = new OfertaLaboral("Técnico/a Básico Red","RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).","Paysandú","Paysandú",hi9,hf9,40000,500,ao9,imagen99);
 			
 			//Agrego oferta a Empresa
 			e1.agregarOfertas(o1.getNombreOferta(),o1);
@@ -279,6 +314,7 @@ public class ServletCargarDatos extends HttpServlet {
 			e6.agregarOfertas(o6.getNombreOferta(),o6);
 			e1.agregarOfertas(o7.getNombreOferta(),o7);
 			e3.agregarOfertas(o8.getNombreOferta(),o8);
+			e4.agregarOfertas(o9.getNombreOferta(), o9);
 			
 			//Agrego Empresa a Oferta
 			o1.setEmpresa((Empresa)e1);
@@ -289,7 +325,7 @@ public class ServletCargarDatos extends HttpServlet {
 			o6.setEmpresa((Empresa)e6);
 			o7.setEmpresa((Empresa)e1);
 			o8.setEmpresa((Empresa)e3);
-	
+			o9.setEmpresa((Empresa)e4);
 			
 			//Agrego Oferta 
 		

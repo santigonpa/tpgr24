@@ -16,7 +16,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="media/css/consultaPostulanteStyle.css" />
-    <link rel="stylesheet" href="media/css/consultarEmpresaStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link
       rel="stylesheet"
@@ -50,6 +49,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+		    .carta-oferta {
+    width: calc(50% - 10px); /* Ajusta el ancho para que se muestren dos cartas por fila */
+    margin-right: 20px; /* Espacio entre las cartas */
+    display: inline-block; /* Alinea las cartas en línea */
+    vertical-align: top; /* Alinea las cartas en la parte superior de la fila */
+}
+    
+    </style>
+    
+    
 <title>TrabajoUY : MI USUARIO</title>
 </head>
 <body>
@@ -83,7 +94,7 @@
 
             </a>
               <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/ConsultarUsuario">Perfiles</a></li>
+              <li><a class="dropdown-item" href="/TrabajoUY/ConsultarUsuario">Perfiles</a></li>
               
             </ul>
           </li>
@@ -231,7 +242,7 @@
 	    
 	    <%
 	    	DataEmpresa miEmpresa =  (DataEmpresa) request.getAttribute("consultar");
-	    	System.out.println("anduvo la empresa");
+	    	
 	    %>
 	    
 	    <div class="card" style="width: 18rem;">
@@ -267,18 +278,17 @@
 	        
 	         
 	        	
-	      <%System.out.println("sali de los datos de la empresa"); %>
+	      
 	     
 	     
 	     
-	     <div class = "texto-of">
+	     <div class = "texto-of" style = "margin : 50px;">
 	     <h2>Ofertas Confirmadas de mi Empresa</h2>
 	      
 	     
 	     <%	
 	     	Set<DataOferta> oferConfirmadas = (Set<DataOferta>) request.getAttribute("ofertasConfirmadas");
 	     	//si hay ofertas confirmadas las muestro si no no
-	     	System.out.println("ando por aca");
 	     	if(!oferConfirmadas.isEmpty()){
 	     %>
 	     
@@ -302,7 +312,7 @@
 				
 				
 			
-			<div class="card bg-light" style="width: 15rem;">
+			<div class="carta-oferta card bg-light" style="width: 15rem;">
 			  <img src="data:image/jpeg;base64, <%= base64ImageOferta %>" class="card-img-top" alt="imagen de usuario">
 			  <div class="card-body">
 			     <h5 class="card-title" style="color: black;"><%= nombreOferta %></h5>
@@ -360,7 +370,7 @@
 				
 				
 			
-			<div class="card bg-light" style="width: 15rem;">
+			<div class="carta-oferta card bg-light" style="width: 15rem;">
 			  <img src="data:image/jpeg;base64, <%= base64ImageOferta2 %>" class="card-img-top" alt="imagen de usuario">
 			  <div class="card-body">
 			     <h5 class="card-title" style="color: black;"><%= nombreOferta2 %></h5>
