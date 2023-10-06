@@ -21,16 +21,16 @@
 							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Déjanos ayudarte</h5> 
 							<hr class="mb-3">
 							<p>
-								<a href="inicioDeSesion.html" class="text-dark">Tu cuenta</a>
+								<a href="/TrabajoUY/iniciarSesion" class="text-dark">Tu cuenta</a>
 							</p>
 							<p>
-								<a href="consultaDeOfertasLaborales.html" class="text-dark">Ofertas</a>
+								<a href="/TrabajoUY/ConsultaDeOfertaLaboral" class="text-dark">Ofertas</a>
 							</p>
 							<p>
-								<a href="consultaDeTiposDePublicacionDeOfertasLaborales.html" class="text-dark">Tipos de publicación</a>
+								<a href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral" class="text-dark">Tipos de publicación</a>
 							</p>
 							<p>
-								<a href="#" class="text-dark">Ayuda</a>
+								<a href="/TrabajoUY/CargarDatos" class="text-dark">Ayuda</a>
 							</p>
 					   </div>
 					   

@@ -129,7 +129,7 @@
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>
-							                Hasta el momento no hay paquetes registrados en el sistema
+							                Hasta el momento no hay tipos de publicación registrados en el sistema
 							            </div>
 							        </div>
 						</div>
