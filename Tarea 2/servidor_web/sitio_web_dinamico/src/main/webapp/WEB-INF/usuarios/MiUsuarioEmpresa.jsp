@@ -231,6 +231,7 @@
 	    
 	    <%
 	    	DataEmpresa miEmpresa =  (DataEmpresa) request.getAttribute("consultar");
+	    	System.out.println("anduvo la empresa");
 	    %>
 	    
 	    <div class="card" style="width: 18rem;">
@@ -266,7 +267,7 @@
 	        
 	         
 	        	
-	      
+	      <%System.out.println("sali de los datos de la empresa"); %>
 	     
 	     
 	     
@@ -277,6 +278,7 @@
 	     <%	
 	     	Set<DataOferta> oferConfirmadas = (Set<DataOferta>) request.getAttribute("ofertasConfirmadas");
 	     	//si hay ofertas confirmadas las muestro si no no
+	     	System.out.println("ando por aca");
 	     	if(!oferConfirmadas.isEmpty()){
 	     %>
 	     
@@ -347,7 +349,7 @@
 		        String descripcion2;
 		        byte[] imagenBytesOferta2;
 		
-		        for (DataOferta ofertaActual2 : oferConfirmadas) {
+		        for (DataOferta ofertaActual2 : oferRechazadasIngresadas ) {//initfor
 		            nombreOferta2 = ofertaActual2.getNombre();
 					imagenBytesOferta2 = ofertaActual2.getImagen();
 					descripcion2 = ofertaActual2.getDescripcion();

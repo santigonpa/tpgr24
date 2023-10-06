@@ -148,4 +148,14 @@
     <servlet-name>ServletConsultaDePaqDeTipoPubliDeOferLab</servlet-name>
     <url-pattern>/ServletConsultaDePaqDeTipoPubliDeOferLab</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletCargarDatos</display-name>
+    <servlet-name>ServletCargarDatos</servlet-name>
+    <servlet-class>com.controller.ServletCargarDatos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCargarDatos</servlet-name>
+    <url-pattern>/ServletCargarDatos</url-pattern>
+  </servlet-mapping>
 </web-app>

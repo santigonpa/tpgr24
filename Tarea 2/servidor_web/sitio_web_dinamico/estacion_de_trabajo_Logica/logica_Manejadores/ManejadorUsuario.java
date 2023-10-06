@@ -197,7 +197,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	public Set<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName){
 		Set<DataOferta> res = new HashSet<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
-		Map<String,OfertaLaboral> mapaOfertas = emp.getOfertasAprobadasDeEmpresa();
+		Map<String,OfertaLaboral> mapaOfertas = emp.getOfertasRechazadasIngresadas();
 		Set<String> claves = mapaOfertas.keySet();
 		for(String clave : claves) {
 			OfertaLaboral of = mapaOfertas.get(clave);
