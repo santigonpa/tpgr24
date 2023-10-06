@@ -1,13 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+          
+    <%@page import= "logica_DataTypes.DataTipoPublicacion" %>
+    <%@page import="java.util.Set" %>
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="media/css/indexStyle.css" />
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="indexStyle.css" />
+<link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
 	<link rel="stylesheet" href="normalize.css" />
+	<link rel="stylesheet" href="media/css/indexStyle.css" />
+	
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap" />
 	<link rel="stylesheet"
@@ -87,6 +96,53 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="cartas">
+
+				<%
+			    
+				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+			    
+			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
+			    
+			        String nombreOfer;
+			        String descripcion;
+			        byte[] imagenBytes;
+			
+			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
+			            nombreOfer = dataTP.getNombre();        
+			    %>
+				
+			    <div class="card" style="width: 20rem;">
+			        <div class="card-body">
+    						<h5 class="card-title"><%= nombreOfer %></h5>
+							<a href="ServletDetalleOferta?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>					</div>
+		    	</div>
+			    
+			    <%
+			        	}
+			        
+			        %>  
+			    	
+			    	</div>
+			    
+			    <% 
+			    }else{ 	
+			        	%>
+						    <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas registradas en la página hasta el momento
+							            </div>
+							        </div>
+							    </div>
+							</div>
+			             
+			       <% 
+			        }
+			    %>
+		
 	</main>
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
