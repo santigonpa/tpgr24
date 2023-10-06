@@ -55,8 +55,8 @@
 	    <main>
 	    <div class = "contenedor2">
 	  		<div class="alert alert-danger" role="alert">
+	  				<div class = "text-center"><i class="fa-solid fa-circle-info"></i></div>
   					PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UNA EMPRESA
-  					<div class = "text-center"><i class="fa-solid fa-circle-info"></i></div>
 			</div>
 			</div>
 		</main>
