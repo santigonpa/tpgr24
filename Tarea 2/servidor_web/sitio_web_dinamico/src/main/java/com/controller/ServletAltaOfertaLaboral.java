@@ -11,9 +11,13 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica_Controladores.IControladorOferta;
+import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Entidades.Empresa;
+import logica_Entidades.KeyWord;
+import logica_Entidades.TipoPublicacion;
 import logica_Entidades.Usuario;
+import logica_Manejadores.IManejadorPyT;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 import java.io.ByteArrayOutputStream;
@@ -106,10 +110,12 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     	
     	HttpSession sesion = request.getSession();
     	String nick = request.getParameter("nickName");
+    	String nickName = usuario.getNickName();
     	
     	Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 		IControladorOferta ico = fabrica.getInOfer();
+		IManejadorPyT ipt = fabrica.getInManejadorPyT();
 		
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
@@ -165,35 +171,45 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	    
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
 		Set<String> conjuntoOpciones = new HashSet<>(Arrays.asList(opcionesSeleccionadasKey));
-
+		Set<KeyWord> keys = new HashSet<>();
+		for(String iter : conjuntoOpciones) {
+			keys.add(new KeyWord(iter));
+		}
 		
-	
 		String accion = request.getParameter("accion");
 		
-		int costo = 0;
+		TipoPublicacion tipo = ipt.obtenerTipoPublicacion(opcionSeleccionadaTP);
+		int costo = (int) tipo.getCosto();
+		int costoConPaquete;
+		Empresa emp = (Empresa) usuario;
+		if(emp.getCompra() == null) {
+			costoConPaquete = -1;
+		}else {
+			if(emp.getCompra().existeTipoPubli(opcionSeleccionadaTP)) {
+				costoConPaquete = (int) (tipo.getCosto() - ((emp.getCompra().getPaquete().getDescuento() /100 ) * tipo.getCosto()));
+			}
+			else {
+				costoConPaquete = -1;
+			}
+		}
+		
+		
 		
 		LocalDate fechaActual = LocalDate.now();
-
+		DataOferta dtOfer = new DataOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, 0, fechaActual, null, nickName,  imagenBytes, keys);
 		
-		if ("paquetes".equals(accion)) {
-			// El botón "Deseo pagar con alguno de mis paquetes" fue presionado
-		        
-		} else if ("normal".equals(accion)) {
-		    // El botón "Deseo pagar de forma normal (sin utilizar paquetes)" fue presionado
-		        
-		}
-		try {
-			ICO.altaPublicacionOfertaLaboral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			dispatcher.forward(request, response);
-		}catch (NombreRepetidoOfertaException e){
+		//*try {
+			//ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+			//dispatcher.forward(request, response);
+		//}catch (NombreRepetidoOfertaException e){
         	// Agregar un atributo a la solicitud con el mensaje de error
-            request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
+            //request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
             
             // Redirigir de vuelta a tu formulario de registro
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			dispatcher.forward(request, response);
-		}
+            //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
+			//dispatcher.forward(request, response);
+		//}
 
     }	
 }

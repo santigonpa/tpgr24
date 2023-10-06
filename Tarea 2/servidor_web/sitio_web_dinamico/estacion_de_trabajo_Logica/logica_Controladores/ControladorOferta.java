@@ -7,6 +7,7 @@ import java.util.Set;
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.noExistePublicacionException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_DataTypes.DataOferta;
 import logica_Entidades.Empresa;
@@ -61,7 +62,49 @@ public class ControladorOferta implements IControladorOferta {
 		}
 
 
-	public void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
+	public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
+			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
+			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen) throws NombreRepetidoOfertaException, noExistePublicacionException{
+		
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		IManejadorOferta mo = fabrica.getInManejadorOferta();
+		IManejadorPyT mpt = fabrica.getInManejadorPyT();
+		
+
+		OfertaLaboral nuevaOferta = mo.obtenerOferta(nombre);
+		if(nuevaOferta != null){throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); }
+
+		//busco Empresa
+		Empresa emp = (Empresa) mu.obtenerUsuario(empresa);
+		
+		//busco tipo de publicacion
+		TipoPublicacion tp = mpt.obtenerTipoPublicacion(tipoPubli);
+		
+		float costoOfertaLaboral = (int) tp.getCosto();
+		
+		if(emp.tienePaqueteAsociado()) {
+			if(emp.getCompra().existeTipoPubli(tipoPubli)) {
+				costoOfertaLaboral = (int) (tp.getCosto() - ((emp.getCompra().getPaquete().getDescuento() /100 ) * tp.getCosto()));
+				emp.getCompra().yaSeUsoTipoPubli(tipoPubli);
+			}else {
+				throw new noExistePublicacionException("No puede realizar el pago de esta manera. Intente de forma general");
+			}
+		}
+		
+		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
+				departamento,horarioInicio,horarioFin
+				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen);
+		
+		nuevaOferta.setEmpresa(emp);
+		emp.linkearOfertaEmpresa(nuevaOferta,nombre);
+		nuevaOferta.setTipoPublicacion(tp);
+		mo.linkearKeywords(palabrasClaveSelec,nuevaOferta); //linkea la coleccion de keywords a la oferta
+		mo.addOferta(nuevaOferta);
+			
+	}
+	
+	public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
 			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen) throws NombreRepetidoOfertaException {
 		
@@ -79,10 +122,10 @@ public class ControladorOferta implements IControladorOferta {
 		//busco tipo de publicacion
 		TipoPublicacion tp = mpt.obtenerTipoPublicacion(tipoPubli);
 		
-		//pregunto si tiene costo asociado al paquete 
-		if(emp.tienePaqueteAsociado()){costoOfertaLaboral = (int) emp.costoPaqueteAsociado();}
-		else{costoOfertaLaboral = (int) tp.getCosto();}
-		//se crea la nueva oferta
+		
+		costoOfertaLaboral = (int) tp.getCosto();
+		
+		
 		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
 				departamento,horarioInicio,horarioFin
 				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen);

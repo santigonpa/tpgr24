@@ -206,11 +206,11 @@
 	</div>
 	
 	
-	
-	<a href = "postularmeAOferta1.html" class="d-grid gap-2 py-5"style="text-decoration: none;">
-  			<button class="btn btn-outline-danger" type="button">Postularme</button>
+	<div class = "contenedor text-center mt-3">
+	<a href = "postularmeAOferta1.html" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
+  			<button class="btn btn-dark" type="button">Postularme</button>
 		</a>
-		
+	</div>	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>

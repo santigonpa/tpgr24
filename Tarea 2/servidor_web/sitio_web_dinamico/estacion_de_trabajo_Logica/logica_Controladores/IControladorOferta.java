@@ -7,16 +7,21 @@ import java.util.Set;
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.noExistePublicacionException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_DataTypes.DataOferta;
 import logica_Entidades.Postulacion;
 
 public interface IControladorOferta  {
 	
-	public abstract void altaPublicacionOfertaLaboral(String empresa, String tipoPubli, String nombre,
+	public abstract void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
+			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
+			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen) throws NombreRepetidoOfertaException, noExistePublicacionException;
+
+	public abstract void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
 			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen) throws NombreRepetidoOfertaException;
-
+	
 public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen) throws NombreRepetidoOfertaException;
 
 

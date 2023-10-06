@@ -31,7 +31,7 @@ public class DataOferta {
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta estado, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -42,7 +42,7 @@ public class DataOferta {
 		this.setDepartamento(departamento);
 		this.setRemuneracion(remuneracion);
 		this.setFechaDeAlta(fechaDeAlta2);
-		this.setEstado(estado);
+		this.setEstado(string);
 		this.setEmpresa(empresa);
 		this.setImagen(imagen);
 		this.palabrasClave = palabrasClave;

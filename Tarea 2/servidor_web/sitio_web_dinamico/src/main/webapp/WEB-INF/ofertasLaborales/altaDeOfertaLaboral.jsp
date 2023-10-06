@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="media/css/altOfLabStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <%@page import= "logica_DataTypes.DataOferta" %>
+    
 
     <!-- Bootstrap -->
     <link
@@ -102,6 +104,7 @@
         }
     });
 	</script>
+	
        
 </head>
 
@@ -266,17 +269,26 @@
 				  <option value="3">Permanente</option>
 				</select>
 				
-				<div class="my-5"></div>
-				<div class="container text-center">
-					<div class="row">
-						<div class="col">
-							<button type="submit" class="btn btn-dark" name ="accion" value ="paquetes">Deseo pagar con alguno de mis paquetes</button>
-						</div>
-						<div class="col">
-							<button type="submit" class="btn btn-dark" name ="accion" value ="normal">Deseo pagar de forma normal (sin utilizar paquetes)</button>
-						</div>
-					</div>   	
-				</div>
+			 <%
+			 	String costoConPaquete = request.getParameter("costoConPaquete");
+			    String costo = request.getParameter("costo");
+				DataOferta dtOferta = (DataOferta) request.getAttribute("dtOfer");
+
+			 %>
+				
+			<div class="my-5"></div>
+		    <div class="container text-center">
+		        <div class="row">
+		            <div class="col">
+		                <!-- Definir un atributo data-valor con el valor numérico deseado -->
+		                <a href="ServletPago?id=<%= costoConPaquete %>&dtOferta=<%= dtOferta %>forma=<%="ConPaquete" %>" type="button" class="btn btn-dark">Deseo pagar con un paquete</a>		
+		            </div>
+		            <div class="col">
+		                <!-- Definir un atributo data-valor con el valor numérico deseado -->
+		                <a href="ServletPago?id=<%= costo %>&dtOferta=<%= dtOferta %>forma=<%= "General" %>" type="button" class="btn btn-dark">Deseo pagar de forma normal (sin utilizar paquetes)</a>
+		            </div>
+		        </div>   
+		    </div>
 			</form>
 		</div>
 	</div>
