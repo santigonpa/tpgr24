@@ -19,6 +19,7 @@ import utils.Fabrica;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -149,8 +150,22 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}
 		*/}
 		}
-		String[] opcionesSeleccionadasTP = request.getParameterValues("tiposPubli");
+		String opcionSeleccionadaTP;
+		String botonSeleccionado = request.getParameter("btnradio");
+
+	    if ("basica".equals(botonSeleccionado)) {
+	        opcionSeleccionadaTP = "Básica";
+	    } else if ("estandar".equals(botonSeleccionado)) {
+	        opcionSeleccionadaTP = "Estándar";
+	    } else if ("premium".equals(botonSeleccionado)) {
+	    	opcionSeleccionadaTP =  "Premium";
+	    } else {
+	    	opcionSeleccionadaTP = "Destacada";
+	    }
+	    
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
+		Set<String> conjuntoOpciones = new HashSet<>(Arrays.asList(opcionesSeleccionadasKey));
+
 		
 	
 		String accion = request.getParameter("accion");
@@ -158,8 +173,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		int costo = 0;
 		
 		LocalDate fechaActual = LocalDate.now();
-		LocalTime t1 = LocalTime.of(13,00);
-		LocalTime t2 = LocalTime.of(20,00);
+
 		
 		if ("paquetes".equals(accion)) {
 			// El botón "Deseo pagar con alguno de mis paquetes" fue presionado
@@ -169,7 +183,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		        
 		}
 		try {
-			ICO.darAltaOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, costo, fechaActual, imagenBytes);
+			ICO.altaPublicacionOfertaLaboral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException e){
