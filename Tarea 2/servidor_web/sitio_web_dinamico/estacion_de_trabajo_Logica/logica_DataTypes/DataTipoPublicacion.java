@@ -1,6 +1,7 @@
 package logica_DataTypes;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DataTipoPublicacion {
 	//Atributos
@@ -66,5 +67,12 @@ public class DataTipoPublicacion {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public String getFechaString() {
+		LocalDate fechaa = this.fecha;
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	    String fechaFormateada = fechaa.format(formatter);
+	    return fechaFormateada;
 	}
 }

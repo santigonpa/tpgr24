@@ -6,7 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_DataTypes.DataTipoPublicacion;
+import logica_Entidades.Empresa;
+import logica_Entidades.Usuario;
+import logica_Manejadores.IManejadorPyT;
+import utils.Fabrica;
+
 import java.io.IOException;
+import java.util.Set;
 
 import com.model.EstadoSesion;
 
@@ -19,7 +26,8 @@ import com.model.EstadoSesion;
 
 public class ServletConsultaTipoPubliOferLab extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private Fabrica fab = Fabrica.getInstance();
+	private IManejadorPyT IPYT = fab.getInManejadorPyT();   
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
@@ -37,12 +45,16 @@ public class ServletConsultaTipoPubliOferLab extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//visitante
-		if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
+		Set<DataTipoPublicacion> coleccionPTP = IPYT.getDataTipoPublicacion() ;
+		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
+		
+    	//es visitante accede igual
+    	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaTipoPubliOferLab.jsp").forward(request, response);
-    	}else
+    	} else {
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaTipoPubliOferLabLogged.jsp").forward(request, response);
-	}
+    	}
+    }	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

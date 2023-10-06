@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page import= "logica_DataTypes.DataTipoPublicacion" %>
+    <%@page import="java.util.Set" %>
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
  	<meta charset="UTF-8">
 	<!-- Estilos -->
     <link rel="stylesheet" href="media/css/normalize.css" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
 
     <!-- Bootstrap -->
     <link
@@ -62,114 +69,74 @@
   			<p>
   			<hr>
   			</p>
-		</div>
+		</div>	
 	
-	<div class="contenedor3">
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <div class="card" style="width: auto;">
-                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-           	 		<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        		</div>
-                <div class="card-body">
-                    <h5 class="card-title">Básica</h5>
-                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoBasica" aria-expanded="false" aria-controls="multiCollapseExample">Más informacion</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3">
-            <div class="card" style="width: auto;">
-                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-           	 		<img class="card-img-top" src="media/img/imagenTP2.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        		</div>
-                <div class="card-body">
-                    <h5 class="card-title">Estándar</h5>
-                   <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoEstandar" aria-expanded="false" aria-controls="multiCollapseExample2">Más informacion</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3">
-            <div class="card" style="width: auto;">
-                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-           	 		<img class="card-img-top" src="media/img/imagenTP5.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        		</div>
-                <div class="card-body">
-                    <h5 class="card-title">Premium</h5>
-                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoPremium" aria-expanded="false" aria-controls="multiCollapseExample3">Más informacion</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3">
-            <div class="card" style="width: auto;">
-                <div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-           	 		<img class="card-img-top" src="media/img/imagenTP4.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        		</div>
-                <div class="card-body">
-                    <h5 class="card-title">Destacada</h5>
-                   <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#infoDestacada" aria-expanded="false" aria-controls="multiCollapseExample4">Más informacion</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="cartas">
+
+				<%
+			    
+				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+			    
+			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
+			    
+			        String nombrePaquete;
+			        String descripcion;
+			        int exp;
+			        int duracion;
+			        float costo;
+			        String fecha;
+			
+			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
+			        	nombrePaquete = dataTP.getNombre();
+			        	descripcion = dataTP.getDescripcion();
+			        	exp = dataTP.getExposicion();
+			        	duracion = dataTP.getDuracion();
+			        	costo = dataTP.getCosto();
+			        	fecha = dataTP.getFechaString();
+			    %>
+				
+			    <div class="card" style="width: 20rem;">
+			   		<div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 			<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        			</div>
+        			
+			        <div class="card-body">
+    						<h5 class="card-title"><strong><%= nombrePaquete %></strong></h5>
+    						<p class="card-text"><%= descripcion %></p>
+    						<hr>
+    						<p class="card-text">Exposición: <%= exp %></p>
+    						<p class="card-text">Duración: <%= duracion %></p>   						
+    						<p class="card-text">Duración: <%= duracion %></p>
+    						<p class="card-text">Costo: $<%= costo %></p>
+    						<p class="card-text">Fecha de alta: <%= fecha %></p>
+    						
+    						
+					</div>
+		    	</div>
+			    
+			    <%
+			        	}
+			        
+			        %>  
+			    	
+			    	</div>
+			    
+			    <% 
+			    }else{ 	
+			        	%>
+						    <div class="contendor2">	 
+						    <div class="carta" style="width: 98vw;">       
+							            <div class="alert alert-danger" role="alert">
+							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+							            	<hr>
+							                Hasta el momento no hay paquetes registrados en el sistema
+							            </div>
+							        </div>
+						</div>
+			       <% 
+			        }
+			    %>
 	
-	<div class="contenedor4">
-  		<div class="col">
-    		<div class="collapse multi-collapse" id="infoDestacada" >
-     		 <div class="card card-body">
-       <strong style="font-size: 18px;">DESTACADA: DESTACA TU ANUNCIO </strong><br>
-       <span style="font-size: 18px;">Exposición: 2 <br>
-       Duración: 15 días <br>
-       Costo: 500 <br>
-       Fecha de alta: 05/08/2023 <br>
-       </span>
-     	 		</div>
-   	 		</div>
- 		 </div>
- 		 
-  	<div class="col">
-    	<div class="collapse multi-collapse" id="infoBasica">
-      		<div class="card card-body">
-       	<strong style="font-size: 18px;">BÁSICA: PUBLICA DE FORMA SENCILLA EN LA LISTA DE OFERTAS </strong><br>
-       	<span style="font-size: 18px;">Exposición: 4 <br>
-      	Duración: 7 días <br>
-       	Costo: 50 <br>
-       	Fecha de alta: 07/08/2023 <br>
-       	</span>
-     			 </div>
-    		</div>
-  		</div>
-  		
-  	<div class="col">
-    	<div class="collapse multi-collapse" id="infoEstandar">
-      		<div class="card card-body">
-       	<strong style="font-size: 18px;">ESTÁNDAR: MEJORA LA POSICION DE TU ANUNCIO </strong><br>
-       	<span style="font-size: 18px;">Exposición: 3 <br>
-       	Duración: 20 días <br>
-       	Costo: 150 <br>
-       	Fecha de alta: 15/08/2023 <br>
-       	</span>
-     			 </div>
-    		</div>
-  		</div>
-  		
-  	<div class="col">
-    	<div class="collapse multi-collapse" id="infoPremium">
-      		<div class="card card-body">
-       	<strong style="font-size: 18px;">PREMIUM: OBTÉN MÁXIMA VISIBILIDAD </strong><br>
-        <span style="font-size: 18px;">Exposición: 1 <br>
-       	Duración: 30 días <br>
-       	Costo: 4000 <br>
-       	Fecha de alta: 10/08/2023 <br>
-       	</span>
-     			 </div>
-    		</div>
-  		</div>
-  		
-	</div>	
 	</main>
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
