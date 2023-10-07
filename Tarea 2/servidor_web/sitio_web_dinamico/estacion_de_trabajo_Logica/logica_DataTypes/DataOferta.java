@@ -23,6 +23,7 @@ public class DataOferta {
 	private EstadoOferta estado;
 	private String empresa;
 	private byte[] imagen;
+	private String tipoDePago;
 	
 	private Set<KeyWord> palabrasClave;
 
@@ -31,7 +32,7 @@ public class DataOferta {
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave)
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave, String tipoDePago)
 	{
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
@@ -46,6 +47,7 @@ public class DataOferta {
 		this.setEmpresa(empresa);
 		this.setImagen(imagen);
 		this.palabrasClave = palabrasClave;
+		this.tipoDePago = tipoDePago;
 	}
 
 
@@ -168,5 +170,8 @@ public class DataOferta {
 		this.estado = estado;
 	}
 
+	public String getTipoDePago() {
+		return this.tipoDePago;
+	}
 }
 

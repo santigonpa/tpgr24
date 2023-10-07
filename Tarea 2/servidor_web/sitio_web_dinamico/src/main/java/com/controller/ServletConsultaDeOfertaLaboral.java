@@ -60,7 +60,7 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 				if(empresaSeleccionada != null) {
 			    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
 					request.setAttribute("coleccionOfertas", coleccionOfer);
-					request.getRequestDispatcher("/WEB-INF/oferttasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
 
 				}else if(keywordSeleccionada != null){
 					Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);

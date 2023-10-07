@@ -69,7 +69,9 @@ public class ServletDetalleOferta extends HttpServlet {
 	    		if(estaPost){
 	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaPost.jsp").forward(request, response);
 	    		}else {
-	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOferta.jsp").forward(request, response);
+	    			String queEs = "Postulante";
+					request.setAttribute("queEs", queEs);
+	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaLogged.jsp").forward(request, response);
 	    		}
 			}
 			if(banderaSesion && !banderaPostulante){
@@ -84,7 +86,9 @@ public class ServletDetalleOferta extends HttpServlet {
 	    		if(esSuOferta){
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaEmp.jsp").forward(request, response);
 	    		}else {
-	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOferta.jsp").forward(request, response);
+	    			String queEs = "Empresa";
+					request.setAttribute("queEs", queEs);
+	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaLogged.jsp").forward(request, response);
 	    		}
 
 			}	

@@ -79,12 +79,14 @@ public class Postulante extends Usuario{
 	}	
 	
 	public DataPostulacion obtenerPostulacion(String nombreOfer) {
-		for (Postulacion postulacion : postulaciones) {
-	        if (postulacion.getNombreOfer().equals(nombreOfer)) {
-	    		DataPostulacion res = postulacion.getDTPostulacion();
-	        	return res; // Devuelve la primera Postulacion con el nombre buscado
-	        }
-	    }
-		return null;
+		DataPostulacion res = null;
+		for(Postulacion post : this.obtenerPostulaciones()) {
+			if(post.getOferta().getNombreOferta().equals(nombreOfer)) {
+				res = post.getDTPostulacion();
+
+			}
+			
+		}
+		return res;
 	}
 }

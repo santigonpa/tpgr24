@@ -210,7 +210,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		
 		if(tipoPago.equals("pagoGeneral")) {
 			try {
-				ICO.altaPublicacionOfertaLaboralGeneral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
+				ICO.altaPublicacionOfertaLaboralGeneral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, "Sin paquete");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 				dispatcher.forward(request, response);
 			}catch (NombreRepetidoOfertaException e){	
@@ -220,7 +220,9 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	        }
 		}else {
 		try {
-			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
+			Empresa empr = (Empresa) mu.obtenerEmpresa(usuario.getNickName());
+			String nombrePaq = empr.getCompra().getPaquete().getNombre();
+			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException e){

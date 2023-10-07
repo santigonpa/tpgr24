@@ -27,6 +27,7 @@ public class OfertaLaboral {
 	private LocalDate fechaDeAlta; // la del momento en el alta
 	private EstadoOferta estado;
 	private byte[] imagen;
+	private String tipoDePago;
 	
 	//Links de oferta
 		
@@ -40,7 +41,7 @@ public class OfertaLaboral {
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
 			String departamento,LocalTime horarioInicio, LocalTime horarioFin
-			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha, byte[]imagen)
+			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha, byte[]imagen, String tipoDePago)
 	{
 		this.nombre = nombre;
 		this.ciudad = ciudad;
@@ -56,12 +57,13 @@ public class OfertaLaboral {
 		this.postulacionesSobreLaOferta = new HashSet<Postulacion>();
 		this.estado = EstadoOferta.INGRESADA;
 		this.imagen = imagen;
+		this.tipoDePago = tipoDePago;
 	}
 	
 	public DataOferta getDataOferta() {
 		DataOferta DO = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
 				this.departamento,this.horaInicio, this.horaFin
-				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.empresaAsociada.getNickName(), this.imagen, this.palabrasClave);
+				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.empresaAsociada.getNickName(), this.imagen, this.palabrasClave, this.tipoDePago);
 		return DO;
 	}
 	
@@ -190,5 +192,9 @@ public LocalTime getHoraFin() {
 
 	public void setImagen(byte[] img) {
 		this.imagen = img;
+	}
+
+	public String getTipoDePago() {
+		return this.tipoDePago;
 	}
 }

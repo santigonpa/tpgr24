@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="consultaPostulanteStyle.css" />
     <link rel="stylesheet" href="consultarEmpresaStyle.css" />
     <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -180,17 +182,16 @@
 						</a>    		 	</div>
   		 	</div>
   		 	<hr>
-  		  </div>
   		  
   		  <%
   		  	Set<KeyWord> palabras = oferta.getKeyWords();
   		  
   		  %>
-			<div class = "contenedorPrincipal">
-			<div class="container">
-  				<h5 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
-  				<div class = "contenedorPrincipal">
-  				<div class="container">
+			<div class="row">
+    			<div class="col">
+  					<h4 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
+  				</div>
+  				<div class="col">
 					<% for (KeyWord key : palabras) { %>
 						<a>
       						<button type="button" class="btn btn-outline-secondary"><%= key.getPalabraClave() %></button>

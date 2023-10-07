@@ -294,15 +294,15 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			
 			//Creo Oferta   // FALTAN OFERTAS 
-			OfertaLaboral o1 = new OfertaLaboral("Desarrollador Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1,imagen01);
-			OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2,imagen22);
-			OfertaLaboral o3 = new OfertaLaboral("Disenador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,imagen33);
-			OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4,imagen44);
-			OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5,imagen55);
-			OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6,imagen66);
-			OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7,imagen77);
-			OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8,imagen88);
-			OfertaLaboral o9 = new OfertaLaboral("Técnico/a Básico Red","RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).","Paysandú","Paysandú",hi9,hf9,40000,500,ao9,imagen99);
+			OfertaLaboral o1 = new OfertaLaboral("Desarrollador Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1,imagen01, "Basico");
+			OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2,imagen22, "Sin paquete");
+			OfertaLaboral o3 = new OfertaLaboral("Disenador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,imagen33, "Sin paquete");
+			OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4,imagen44, "Sin paquete");
+			OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5,imagen55, "Sin paquete");
+			OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6,imagen66, "Destacado");
+			OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7,imagen77, "Sin paquete");
+			OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8,imagen88, "Sin paquete");
+			OfertaLaboral o9 = new OfertaLaboral("Técnico/a Básico Red","RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).","Paysandú","Paysandú",hi9,hf9,40000,500,ao9,imagen99, "Sin paquete");
 			
 			//Agrego oferta a Empresa
 			e1.agregarOfertas(o1.getNombreOferta(),o1);

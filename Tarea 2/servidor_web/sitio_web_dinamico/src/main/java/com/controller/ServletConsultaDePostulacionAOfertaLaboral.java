@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulacion;
 import logica_DataTypes.DataPostulante;
+import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorOferta;
@@ -41,18 +42,23 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
 
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	String nombreOfer = request.getParameter("id");
+    	String nombreOfer = request.getParameter("nombre");
 		DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 
-		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
     	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
     	
     	if(banderaPostulante) {
     		Postulante post = (Postulante) IMU.obtenerPostulante(usuario.getNickName());
-    		DataPostulacion dtPost = post.obtenerPostulacion(nombreOfer);
-    		request.setAttribute("dtPost", dtPost);
-    		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+    		Set<Postulacion> dtPost = post.obtenerPostulaciones();
+    		if (dtPost != null) {
+    			request.setAttribute("dtPost", dtPost);
+        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+    		} else {
+        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
+    		}
+
+    		
     	}else{
     		Set<String> postS= IMO.obtenerOferta(nombreOfer).getPostulantesString();
     		Set<DataPostulante> post = new HashSet<>();

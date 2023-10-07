@@ -6,9 +6,9 @@
 <meta charset="ISO-8859-1">
  <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="consultaPostulanteStyle.css" />
-    <link rel="stylesheet" href="consultarEmpresaStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
+   <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -64,7 +64,7 @@
 	 	float remuneracion = oferta.getRemuneracion();
 	 	LocalDate alta = oferta.getFechaDeAlta(); 
 	 	EstadoOferta est = oferta.getEstado();
-	 	String emp = oferta.getEmpresa();
+	 	String pago = oferta.getTipoDePago();
         byte[] imagenBytes = oferta.getImagen();
         String base64Image = "";
         if (imagenBytes != null) {
@@ -172,25 +172,25 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Empresa:</h4>
+      					<h4 class = "fs-5 fw=normal">-Tipo de pago:</h4>
    				 </div>
     			<div class="col">
 						<a>
-      						<button type="button" class="btn btn-outline-secondary"><%= emp %></button>
+      						<button type="button" class="btn btn-outline-secondary"><%= pago %></button>
 						</a>    		 	</div>
   		 	</div>
   		 	<hr>
-  		  </div>
+  		  
   		  
   		  <%
   		  	Set<KeyWord> palabras = oferta.getKeyWords();
   		  
   		  %>
-			<div class = "contenedorPrincipal">
-			<div class="container">
-  				<h5 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
-  				<div class = "contenedorPrincipal">
-  				<div class="container">
+			<div class="row">
+    			<div class="col">
+  					<h4 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
+  				</div>
+  				<div class="col">
 					<% for (KeyWord key : palabras) { %>
 						<a>
       						<button type="button" class="btn btn-outline-secondary"><%= key.getPalabraClave() %></button>
@@ -210,9 +210,16 @@
 		<a href = "/TrabajoUY/PostulantesAOferta" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
   			<button href = "/TrabajoUY/PostulantesAOferta" class="btn btn-dark" type="button">Ver detalles postulantes</button>
 		</a>
-		<a href = "/TrabajoUY/DetalleDePaquete" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
-  			<button href = "/TrabajoUY/DetalleDePaquete" class="btn btn-dark" type="button">Ver detalles pago con paquete</button>
-		</a>
+		
+		<% 
+		if (!"Sin paquete".equals(pago)) { %>
+		    <a href="/TrabajoUY/DetalleDePaquete" class="gap-2 py-5" align="centre" style="text-decoration: none;">
+		        <button class="btn btn-dark" type="button">Ver detalles pago con paquete</button>
+		    </a>
+		<% 
+		} 
+		%>
+		
 	</div>	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>

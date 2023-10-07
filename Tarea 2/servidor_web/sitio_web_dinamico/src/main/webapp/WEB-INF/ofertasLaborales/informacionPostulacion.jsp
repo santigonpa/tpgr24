@@ -48,20 +48,26 @@
 	   
 	   <%
 	   	DataPostulacion dtP = (DataPostulacion) request.getAttribute("dtPost");
+	   	if(dtP != null){
 	   	String nombre = dtP.getNombre();
 	   	String apellido = dtP.getApellido();
 	   	String cvCompleto = dtP.getCv();
 	   	String motivacion = dtP.getMotivacion();
 	   	LocalDate fechaPost = dtP.getFecha();
+	   	}else{
+	   		String nombre = "hola";
+		   	String apellido = "hola";
+		   	String cvCompleto = "hola";
+		   	String motivacion = "hola";
+		   	String fechaPost = "hola";
+	   	}
 	   %>
 	    
 			<div class="row">
 		<div class="col-6 col-md-4">
-			<div class = "alinearImg3">
-           
-  				<img src="https://imgv3.fotor.com/images/gallery/a-woman-linkedin-picture-with-grey-background-made-by-LinkedIn-Profile-Picture-Maker.jpg"   class="img-thumbnail shadow" alt="..." style="margin-left : 50px;">
-		
-			</div>
+			<div class="card" style="width: 18rem;">
+		      <img src="data:image/jpeg;base64, " class="card-img-top" alt="imagen de usuario">
+		    </div>
 		</div>
     	<div class="col-md-8">
 			<div class="contenedor4">
@@ -74,7 +80,7 @@
       					<h4 class = "fs-5 fw=normal">-Nombre:</h4>
    				 </div>
     		<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%= nombre %> <%=apellido %></h4>
+      					<h4 class = "fs-5 fw-lighter"></h4>
     		 </div>
   			</div>
   			<hr>
@@ -84,7 +90,7 @@
       					<h4 class = "fs-5 fw=normal">-CV:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%=cvCompleto %></h4>
+      					<h4 class = "fs-5 fw-lighter"></h4>
     		 	</div>
   		 	</div>
   		 	<hr>
@@ -94,7 +100,7 @@
       					<h4 class = "fs-5 fw=normal">-Motivación:</h4>
    				 </div>
     		<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%= motivacion %> </h4>
+      					<h4 class = "fs-5 fw-lighter"></h4>
     		 </div>
   			</div>
   			<hr>
@@ -104,7 +110,7 @@
       					<h4 class = "fs-5 fw=normal">-Fecha de postulacion:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%= fechaPost %></h4>
+      					<h4 class = "fs-5 fw-lighter"></h4>
     		 	</div>
   		 	</div>
   		 	<hr>
