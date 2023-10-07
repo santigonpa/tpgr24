@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+          
+    <%@page import= "logica_DataTypes.DataPaquete" %>
+    <%@page import="java.util.Set" %>
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="media/css/indexStyle.css" />
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="indexStyle.css" />
+	<link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
 	<link rel="stylesheet" href="normalize.css" />
+	
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap" />
 	<link rel="stylesheet"
@@ -29,87 +37,70 @@
 		crossorigin="anonymous"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
-<main>	
+	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+	<main>
 	<div class="contenedor4">
-  		<h2 class="-titulo-"><strong>Compra Paquetes de Tipos de Publicación de Ofertas Laborales</strong></h2>
-  		<hr>
-	</div>
-
-		<div class="contenedor3">
-			<div class="row mt-4">
-				<div class="col-md-3">
-					<div class="card" style="width: auto;">
-						<div style="overflow: hidden; width: 100%; height: 20rem;">
-							<!-- Corta la imagen -->
-							<img class="card-img-top" src="media/img/imagenPaquete1.jpg"
-								alt="Card image cap"
-								style="object-fit: cover; width: 100%; height: 100%;">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Básico</h5>
-							<a href="consultaPaqueteBasico.html"
-								class="btn btn-outline-dark w-100">Más informacion</a>
-							<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="card" style="width: auto;">
-						<div style="overflow: hidden; width: 100%; height: 20rem;">
-							<!-- Corta la imagen -->
-							<img class="card-img-top" src="media/img/imagenPaquete2.jpg"
-								alt="Card image cap"
-								style="object-fit: cover; width: 100%; height: 100%;">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Destacado</h5>
-							<a href="consultaPaqueteDestacado.html"
-								class="btn btn-outline-dark w-100">Más informacion</a>
-
-							<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="card" style="width: auto;">
-						<div style="overflow: hidden; width: 100%; height: 20rem;">
-							<!-- Corta la imagen -->
-							<img class="card-img-top" src="media/img/imagenDefaultPaquete2.jpg"
-								alt="Card image cap"
-								style="object-fit: cover; width: 100%; height: 100%;">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Premium</h5>
-							<a href="consultaPaqueteBasico.html"
-								class="btn btn-outline-dark w-100">Más informacion</a>
-							<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="card" style="width: auto;">
-						<div style="overflow: hidden; width: 100%; height: 20rem;">
-							<!-- Corta la imagen -->
-							<img class="card-img-top" src="media/img/imagenDefaultPaquete2.jpg"
-								alt="Card image cap"
-								style="object-fit: cover; width: 100%; height: 100%;">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">Express</h5>
-							<a href="consultaPaqueteBasico.html"
-								class="btn btn-outline-dark w-100">Más informacion</a>
-							<button type="button" class="btn btn-dark w-100 mt-2">Comprar</button>
-
-						</div>
-					</div>
-				</div>
-			</div>
+	  		<h2 class="-titulo-"><strong>Paquetes de Tipos de Publicación de Ofertas Laborales</strong></h2>
+	  		<hr>
 		</div>
+
+		<div class="cartas">
+
+				<%
+			    
+				Set<DataPaquete> conjuntoDePaquetes = (Set<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
+			    
+			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
+			    
+			        String nombreOfer;
+			        String descripcion;
+			        byte[] imagenBytes;
+			
+			        for (DataPaquete dataTP : conjuntoDePaquetes) {
+			            nombreOfer = dataTP.getNombre();    
+			            imagenBytes = dataTP.getImagen();
+			            
+			            String base64Image = "";
+			            if (imagenBytes != null) {
+			                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+			            }else{
+			            	//aca va la imagen default
+			            }
+			    %>
+				
+			    <div class="card" style="width: 20rem;">				
+			    <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de paquete" style="object-fit: cover; width: 100%; height: 100%;">
+			        <div class="card-body">
+    						<h5 class="card-title"><strong><%= nombreOfer %></strong></h5>
+    						<hr>
+							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>
+							<br>
+							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-dark mt-2">Comprar</a>
+							</div>
+		    	</div>
+			    
+			    <%
+			        	}
+			        
+			        %>  
+			    	
+			    	</div>
+			    
+			    <% 
+			    }else{ 	
+			        	%>
+						    <div class="contendor2">	 
+						    <div class="carta" style="width: 98vw;">       
+							            <div class="alert alert-danger" role="alert">
+							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+							            	<hr>
+							                Hasta el momento no hay paquetes registrados en el sistema
+							            </div>
+							        </div>
+						</div>
+			       <% 
+			        }
+			    %>
 	</main>
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>

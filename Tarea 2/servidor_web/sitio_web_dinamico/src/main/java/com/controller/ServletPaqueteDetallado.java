@@ -7,10 +7,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica_DataTypes.DataPaquete;
+import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorPyT;
 import utils.Fabrica;
 
 import java.io.IOException;
+
+import com.model.EstadoSesion;
 
 @WebServlet (description = "Servlet de detalle de paquete", urlPatterns = { "/DetalleDePaquete" })
 @MultipartConfig
@@ -31,15 +34,24 @@ public class ServletPaqueteDetallado extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    public static EstadoSesion getEstado(HttpServletRequest request)
+	{	//obtiene el tipo de la sesion
+		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
+	}
+    
     protected void cargarPa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			
+    	
     	String nombrePaquete = request.getParameter("id");
 		DataPaquete paquete = IPYT.getDataPaquete(nombrePaquete);
 		request.setAttribute("paquete", paquete);
-		request.getRequestDispatcher("/WEB-INF/paquetes/detallePaquete.jsp").forward(request, response);
-			}
-    
+		
+		if(getEstado(request) == EstadoSesion.NO_LOGEADO) {	
+			request.getRequestDispatcher("/WEB-INF/paquetes/detallePaquete.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/WEB-INF/paquetes/detallePaqueteLogged.jsp").forward(request, response);
+		}
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
