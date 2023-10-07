@@ -71,7 +71,7 @@
 			    <div class="card" style="width: 20rem;">				
 			    <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de paquete" style="object-fit: cover; width: 100%; height: 100%;">
 			        <div class="card-body">
-    						<h5 class="card-title"><%= nombreOfer %></h5>
+    						<h5 class="card-title"><strong><%= nombreOfer %></strong></h5>
     						<hr>
 							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>
 							<br>
