@@ -118,7 +118,7 @@
 			    %>
 				
 			    <div class="card" style="width: 20rem;">
-			        <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="imagen de usuario">
+			        <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de usuario" style="object-fit: cover; width: 100%; height: 100%;">
 			        <div class="card-body">
     						<h5 class="card-title"><%= nombreOfer %></h5>
     						<p class="card-text"><%= descripcion %></p>

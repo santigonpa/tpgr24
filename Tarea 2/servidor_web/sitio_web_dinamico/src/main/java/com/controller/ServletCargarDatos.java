@@ -441,6 +441,13 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			//Creo un paquete(ojala no se rompa todo)
 			
+			//Imagenes de paquetes
+			
+			byte[] imagen111 = cargarImagenEnBytes(rutaEjecucion + "imagenPaquete1.jpg");
+			byte[] imagen222 = cargarImagenEnBytes(rutaEjecucion + "imagenPaquete2.jpg");
+			byte[] imagen333 = cargarImagenEnBytes(rutaEjecucion + "imagenPaquete3.jpg");
+			byte[] imagen444 = cargarImagenEnBytes(rutaEjecucion + "imagenPaquete4.jpg");
+			
 			//Fechas para paquetes
 			
 			LocalDate fhp1 = LocalDate.parse("16-08-2023", dateFormatter);
@@ -451,17 +458,17 @@ public class ServletCargarDatos extends HttpServlet {
 			//Creo los paquetes
 			
 			Paquete paq1 = new Paquete("Básico", "Publica ofertas laborales en nuestra\n"
-					+ "plataforma por un período de 30 d´ıas", 30, 20, fhp1, 3720, null);
+					+ "plataforma por un período de 30 días", 30, 20, fhp1, 3720, imagen111);
 			Paquete paq2 = new Paquete("Destacado", "Publica ofertas laborales destacadas\n"
-					+ "que se mostrar´a en la parte superior de\n"
-					+ "los resultados de búsqueda por 45 días", 45, 10, fhp2, 315, null);
+					+ "que se mostrará en la parte superior de\n"
+					+ "los resultados de búsqueda por 45 días", 45, 10, fhp2, 315, imagen222);
 			Paquete paq3 = new Paquete("Premium", "Publica ofertas laborales premium que\n"
-					+ "incluye promoción en nuestras redes so-\n"
-					+ "ciales y listado en la sección destacada\n"
-					+ "por 60 días", 60, 15, fhp3, 7055, null);
-			Paquete paq4 = new Paquete("Express", "Publica ofertas laborales urgentes re-\n"
-					+ "saltada en color y se mostrará en la\n"
-					+ "sección de urgente por 15 días.", 15, 5, fhp4, 950, null);
+					+ "incluye promoción en nuestras redes\n"
+					+ "sociales y listado en la sección destacada\n"
+					+ "por 60 días", 60, 15, fhp3, 7055, imagen333);
+			Paquete paq4 = new Paquete("Express", "Publica ofertas laborales urgentes \n"
+					+ "resaltada en color y se mostrará en la\n"
+					+ "sección de urgente por 15 días.", 15, 5, fhp4, 950, imagen444);
 			
 			//Los añado al manejador
 			

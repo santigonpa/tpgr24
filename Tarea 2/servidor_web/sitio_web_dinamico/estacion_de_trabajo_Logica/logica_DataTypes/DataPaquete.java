@@ -32,11 +32,11 @@ public class DataPaquete {
 		this.imagen = imagen;
 	}
 	
-	public int getCosto(int costo){
+	public int getCosto(){
 		return this.costo;
 	}
 	
-	public byte[] getImagen(byte[] imagen) {
+	public byte[] getImagen() {
 		return this.imagen;
 	}
 	

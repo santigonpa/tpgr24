@@ -57,13 +57,22 @@
 			        byte[] imagenBytes;
 			
 			        for (DataPaquete dataTP : conjuntoDePaquetes) {
-			            nombreOfer = dataTP.getNombre();        
+			            nombreOfer = dataTP.getNombre();    
+			            imagenBytes = dataTP.getImagen();
+			            
+			            String base64Image = "";
+			            if (imagenBytes != null) {
+			                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+			            }else{
+			            	//aca va la imagen default
+			            }
 			    %>
 				
-			    <div class="card" style="width: 20rem;">
+			    <div class="card" style="width: 20rem;">				
+			    <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de paquete" style="object-fit: cover; width: 100%; height: 100%;">
 			        <div class="card-body">
     						<h5 class="card-title"><%= nombreOfer %></h5>
-							<a href="ServletPaqueteDetallado" class="btn btn-outline-dark">Más información</a>					</div>
+							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>					</div>
 		    	</div>
 			    
 			    <%
