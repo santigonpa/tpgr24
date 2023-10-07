@@ -167,9 +167,6 @@
     		}
 		}
 	</script>
-  		
-	</nav>
-
 
       <div class="header-ola" style="position: relative; text-align: center; background-image: url('media/img/jobApplication.jpg'); background-size: cover; background-position: center; color: white; z-index: -1;">
         <!--Content before waves-->
@@ -414,7 +411,7 @@
 							    <div class="row">
 							        <div class="col text-center">
 							            <div class="alert alert-success" role="alert">
-							                Por favor selecciona una Palabra Clave o una Empresa para filtrar las ofertas de esta manera
+							                Selecciona una Empresa o una Keyword.
 							            </div>
 							        </div>
 							    </div>

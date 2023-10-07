@@ -309,7 +309,7 @@
 								    <div class="row">
 								        <div class="col text-center">
 								            <div class="alert alert-success" role="alert">
-								                Por favor selecciona una Palabra Clave o una Empresa para filtrar las ofertas de esta manera
+								                Selecciona una Empresa o una Keyword.
 								            </div>
 								        </div>
 								    </div>

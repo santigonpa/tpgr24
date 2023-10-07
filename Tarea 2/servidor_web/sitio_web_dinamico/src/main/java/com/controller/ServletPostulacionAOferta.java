@@ -31,8 +31,7 @@ public class ServletPostulacionAOferta extends HttpServlet {
         super();
     }
     
-    public static EstadoSesion getEstado(HttpServletRequest request)
-   	{	//obtiene el tipo de la sesion
+    public static EstadoSesion getEstado(HttpServletRequest request){	//obtiene el tipo de la sesion
    		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
    	}
     
@@ -42,15 +41,15 @@ public class ServletPostulacionAOferta extends HttpServlet {
 		String empresaSeleccionada = request.getParameter("empresa");
 		String keywordSeleccionada = request.getParameter("keyword");
 		//me fijo si esta la sesion iniciada y su vez si es postulante
-		if(banderaSesion && banderaPostulante) {
-			if(empresaSeleccionada != null) {
+		if (banderaSesion && banderaPostulante) {
+			if (empresaSeleccionada != null) {
 				
 				// cambio el campo del select empresa
 				Set<DataOferta> ofertasConfirmadas = manejadorUser.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
 			
-			}else if(keywordSeleccionada != null){
+			}else if (keywordSeleccionada != null){
 				// cambio el campo del select keyword
 				Set<DataOferta> ofertasConfirmadas = manejadorOfer.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
