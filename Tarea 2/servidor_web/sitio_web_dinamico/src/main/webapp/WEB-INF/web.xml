@@ -198,4 +198,24 @@
     <servlet-name>ServletPaqueteDetallado</servlet-name>
     <url-pattern>/ServletPaqueteDetallado</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConsultaDePostulacionAOfertaLaboral</display-name>
+    <servlet-name>ServletConsultaDePostulacionAOfertaLaboral</servlet-name>
+    <servlet-class>com.controller.ServletConsultaDePostulacionAOfertaLaboral</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConsultaDePostulacionAOfertaLaboral</servlet-name>
+    <url-pattern>/ServletConsultaDePostulacionAOfertaLaboral</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletPostulantesAOferta</display-name>
+    <servlet-name>ServletPostulantesAOferta</servlet-name>
+    <servlet-class>com.controller.ServletPostulantesAOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletPostulantesAOferta</servlet-name>
+    <url-pattern>/ServletPostulantesAOferta</url-pattern>
+  </servlet-mapping>
 </web-app>

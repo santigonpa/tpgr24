@@ -207,8 +207,11 @@
 	
 	
 	<div class = "contenedor text-center mt-3">
-	<a href = "/TrabajoUY/PostulacionAOferta" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
-  			<button href = "/TrabajoUY/PostulacionAOferta" class="btn btn-dark" type="button">Postularme</button>
+		<a href = "/TrabajoUY/PostulantesAOferta" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
+  			<button href = "/TrabajoUY/PostulantesAOferta" class="btn btn-dark" type="button">Ver detalles postulantes</button>
+		</a>
+		<a href = "/TrabajoUY/DetalleDePaquete" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
+  			<button href = "/TrabajoUY/DetalleDePaquete" class="btn btn-dark" type="button">Ver detalles pago con paquete</button>
 		</a>
 	</div>	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>

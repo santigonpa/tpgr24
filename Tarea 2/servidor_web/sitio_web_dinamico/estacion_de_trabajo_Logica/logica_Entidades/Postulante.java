@@ -4,8 +4,7 @@ import java.time.*;
 import java.util.Set;
 import java.util.HashSet;
 
-
-
+import logica_DataTypes.DataPostulacion;
 import logica_DataTypes.DataPostulante;
 
 public class Postulante extends Usuario{
@@ -79,4 +78,13 @@ public class Postulante extends Usuario{
 		return this.postulaciones;
 	}	
 	
+	public DataPostulacion obtenerPostulacion(String nombreOfer) {
+		for (Postulacion postulacion : postulaciones) {
+	        if (postulacion.getNombreOfer().equals(nombreOfer)) {
+	    		DataPostulacion res = postulacion.getDTPostulacion();
+	        	return res; // Devuelve la primera Postulacion con el nombre buscado
+	        }
+	    }
+		return null;
+	}
 }
