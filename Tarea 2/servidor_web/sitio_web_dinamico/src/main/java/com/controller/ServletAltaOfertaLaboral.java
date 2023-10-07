@@ -210,29 +210,27 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		
 		if(tipoPago.equals("pagoGeneral")) {
 			try {
-				ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
+				ICO.altaPublicacionOfertaLaboralGeneral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 				dispatcher.forward(request, response);
-			}catch (NombreRepetidoOfertaException e){
+			}catch (NombreRepetidoOfertaException e){	
 	           request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
-	            
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-				dispatcher.forward(request, response);
-			} catch (noExistePublicacionException e) {
-		        request.setAttribute("errorNombreOferta", "El tipo de publicacion ingresada no se encunetra disponible");
-			}
+	           request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
+	            return;
+	        }
 		}else {
 		try {
 			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException e){
-            request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
-            
+				request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
+	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		} catch (noExistePublicacionException e) {
-	        request.setAttribute("errorNombreOferta", "El tipo de publicacion ingresada no se encunetra disponible");
+	        	request.setAttribute("errorTipoPubli", "El tipo de publicacion ingresada no se encunetra disponible");
+	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 		}
 		}
     }	

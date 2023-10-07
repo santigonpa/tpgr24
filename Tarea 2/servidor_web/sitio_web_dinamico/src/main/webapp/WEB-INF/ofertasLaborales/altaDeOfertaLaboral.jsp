@@ -154,6 +154,29 @@
 		</div>
 	</div>	
 	
+	<div class="container mt-5"> 
+        <div class="card">
+	 <% if (request.getAttribute("errorNombreOferta") != null) { %>
+				    <div class="alert alert-danger">
+				    <div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+					<hr>
+				      <%= request.getAttribute("errorNombreOferta") %>
+				      <br>
+				      <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
+				    </div>
+				  <% } %>
+				  
+	<% if (request.getAttribute("errorTipoPubli") != null) { %>
+				    <div class="alert alert-danger">
+				    <div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+					<hr>
+				      <%= request.getAttribute("errorNombreOferta") %>
+				      <br>
+				      <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
+				    </div>
+				  <% } %>
+		</div>			  	
+	</div>	
 	
 	
 	<div class="container mt-5"> 
@@ -250,6 +273,8 @@
 					
 				</div>
 					
+					
+					
 					<div id="nombreHelp" class="form-text">El Nombre debe ser único en nuestra plataforma.</div>
 					<div class="my-3"></div>
 					
@@ -344,8 +369,6 @@
               </div>
        </div>
 	</div>
-	
-	
 	
 			
 	</main>
