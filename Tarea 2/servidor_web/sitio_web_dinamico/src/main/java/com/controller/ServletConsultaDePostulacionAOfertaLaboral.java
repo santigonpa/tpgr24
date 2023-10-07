@@ -8,18 +8,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulacion;
+import logica_DataTypes.DataPostulante;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
 import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import java.io.IOException;
+
 
 /**
  * Servlet implementation class ServletConsultaDePostulacionAOfertaLaboral
  */
-@WebServlet (description = "Servlet de Consulta de Postulacion A Oferta Laboral", urlPatterns = { "/PostulacionAOferta" })
+@WebServlet (description = "Servlet de Consulta de Postulacion A Oferta Laboral", urlPatterns = { "/ConsultaDePostulacionAOferta" })
 @MultipartConfig
 public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,11 +44,24 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     	String nombreOfer = request.getParameter("id");
 		DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
-		Postulante post = (Postulante) IMU.obtenerPostulante(usuario.getNickName());
-		DataPostulacion dtPost = post.obtenerPostulacion(nombreOfer);
-		request.setAttribute("dtPost", dtPost);
-		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
 
+		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
+    	
+    	if(banderaPostulante) {
+    		Postulante post = (Postulante) IMU.obtenerPostulante(usuario.getNickName());
+    		DataPostulacion dtPost = post.obtenerPostulacion(nombreOfer);
+    		request.setAttribute("dtPost", dtPost);
+    		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+    	}else{
+    		Set<String> postS= IMO.obtenerOferta(nombreOfer).getPostulantesString();
+    		Set<DataPostulante> post = new HashSet<>();
+    		for(DataPostulante dtPos : post) {
+    			post.add(IMU.getDataPostulante(usuario.getNickName()));
+    		}
+    		request.setAttribute("dtPos", post);
+    		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
+    	}
 	    
     }
 	/**

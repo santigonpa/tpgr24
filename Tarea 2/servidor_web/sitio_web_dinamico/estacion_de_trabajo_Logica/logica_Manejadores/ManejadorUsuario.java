@@ -108,6 +108,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		DataEmpresa res = emp.getDTEmpresa();
 		return res;
 	}
+	
 	public Map<String, DataPostulante> getDataPostulantes() {
 	    Map<String, DataPostulante> res = new HashMap<>();
 	    
@@ -129,7 +130,10 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	    return res;
 	}
 
-	
+	public DataPostulante getDataPostulante(String postulante) {
+	    DataPostulante res = this.getDataPostulantes().get(postulante);
+	    return res;
+	}
 	
 	public Postulante obtenerPostulante(String post) {
 		Postulante p = (Postulante) postulantes.get(post);

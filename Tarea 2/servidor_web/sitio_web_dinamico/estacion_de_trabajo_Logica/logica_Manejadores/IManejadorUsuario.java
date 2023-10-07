@@ -28,6 +28,9 @@ public interface IManejadorUsuario {
 	public abstract DataEmpresa getDataEmpresa(String empresa);
 
 	public abstract Map<String, DataPostulante> getDataPostulantes();
+	
+	public abstract DataPostulante getDataPostulante(String postulante);
+
 
 	public abstract Map<String, DataUsuario> getDataUsuario();
 
