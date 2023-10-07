@@ -62,6 +62,7 @@ public class ServletPostulacionAOferta extends HttpServlet {
 		
 		// NO DEBERIA PODER POSTULARSE
 		}else {
+			
 			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/errorPostulacionAOferta.jsp").forward(request, response);
 		}
 	}

@@ -413,8 +413,8 @@
 					  <div class="container">
 							    <div class="row">
 							        <div class="col text-center">
-							            <div class="alert alert-danger" role="alert">
-							                No hay ofertas registradas en la empresa o no ha seleccionado una empresa aún o una palabra clave
+							            <div class="alert alert-success" role="alert">
+							                Por favor selecciona una Palabra Clave o una Empresa para filtrar las ofertas de esta manera
 							            </div>
 							        </div>
 							    </div>
