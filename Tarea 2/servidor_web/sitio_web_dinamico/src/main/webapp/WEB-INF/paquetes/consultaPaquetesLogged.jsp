@@ -37,7 +37,7 @@
 		crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	<main>
 	<div class="contenedor4">
 	  		<h2 class="-titulo-"><strong>Paquetes de Tipos de Publicación de Ofertas Laborales</strong></h2>
