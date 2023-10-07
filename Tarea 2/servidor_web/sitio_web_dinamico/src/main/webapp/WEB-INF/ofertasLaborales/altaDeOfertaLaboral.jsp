@@ -149,13 +149,14 @@
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 		<div align="center">
-    	<h2><strong>Alta de Oferta Laboral</strong></h2>
-    	<hr>
+    	<h2><strong>Alta de Oferta Laboral</strong></h2>	
 		</div>
 		</div>
 	</div>	
 	
-	<div class="container mt-5">
+	
+	
+	<div class="container mt-5"> 
         <div class="card">
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs justify-content-center">
@@ -179,6 +180,7 @@
               </li>
             </ul>
           </div>
+         
             <div class="cartas">
 
 				<%
@@ -225,19 +227,17 @@
 			    	
 			    	</div>
 
-		<div class="row justify-content-center">
-		<div class="col-md-6">
-		<div align="center">
+		<div class="card-body">
+		
 		<h3 class="-titulo-">Ingrese los datos</h3>
 			<div class="form-container justify-content-center">			
 				<div class="contenedor">
 					
-					<div class="my-5">
+					<div class="my-5"></div>
 					</div>
 				</div>
 				
-				<div class="my-5">
-				</div>
+				<div class="my-5"></div>
 				
 				
 	            <form id="alta-form" action = "/TrabajoUY/AltaDeOfertaLaboral" method = "POST" enctype="multipart/form-data">
@@ -283,29 +283,29 @@
 					<input type="number" class="form-control" id="remuneracion" name="remuneracion" placeholder="" value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>">
 					<label for="floatingInput">Remuneración (En pesos uruguayos)</label>
 				</div>
-				
-				
-				<label>Seleccione una imágen para su oferta (Este campo es opcional)</label>
-				<div class="form-floating mb-3">
-					<!-- ESTO LE DEJA SOLO ELEGIR UNA FOTO PERO SI SACA EL FILTRO EN EL BUSCADOR DE ARCHIVOS PUEDE METER CUALQUIER COSA CUIDADO -->
-					<input type="file" class="form-control" id="floatingInput" accept="image/*" >
 
-				</div>
+				<div class = "my-3"></div>
+					
+					<div class="form-floating mb-3"> 
+					    <input name="profile-pic" type="file" class="form-control mx-0 px-0" id="floatingInput" accept="image/*">
+					</div>
+					
+				<div class = "my-4"></div>
+               
+				<div id="nombreHelp" class="form-text">Si lo desea puede seleccionar una imagen.</div>
+					
+									
+                
+              
 				
 				<div class="my-5"></div>
 				
      			
 				
 				<div class="contenedor">
-				<h4 class="-titulo-">Ingrese las keywords que quiera asociar a la oferta</h4>
+				<h4 class="-titulo-">Seleccione las keywords que desee asociar a la oferta</h4>
 				<div class="my-5"></div>
 				</div>
-				
-				<div class="my-5"></div>
-				<div class = "text-center"><i class="fa-solid fa-search"></i></div>
-				<div class="my-5"></div>
-				
-				
 				
 				<select class="form-select" multiple aria-label="Multiple select example" name ="keys">
 				  
@@ -317,9 +317,9 @@
 				  <option value="3">Permanente</option>
 				</select>
 			
-			<div iv class="w-100 d-flex justify-content-center mt-3">	 
+			<div class="w-100 d-flex justify-content-center mt-3">	 
 				
-				<button type="submit" class="btn btn-dark" id="botonModal1">Realizar compra</button>
+				<button type="submit" class="btn btn-dark btn-lg" id="botonModal1">Dar de alta</button>
 				
 			</div>
 			
@@ -340,14 +340,10 @@
 			       <% 
 			        }
 			    %>
-            
-            
-            
-            
+
               </div>
-          </div>
-        </div>
-	
+       </div>
+	</div>
 	
 	
 	

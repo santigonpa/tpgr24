@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
@@ -22,6 +23,9 @@ import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -138,29 +142,45 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		String remuneracionn = request.getParameter("remuneracion");
 		int remuneracion = Integer.parseInt(remuneracionn);
 		
-		Part filePart = request.getPart("floatingInput");
-		byte[] imagenBytes = null;
-		
-		if (filePart != null && filePart.getSize() > 0) {
-		    String fileName = filePart.getSubmittedFileName();
-		    if (isValidImageExtension(fileName)) {
-	            InputStream fileContent = filePart.getInputStream();
-	            try {    
-	             imagenBytes = readImageBytes(fileContent);
-	            }catch(Exception e) {}
+		//FOTO
+				Part filePart = request.getPart("profile-pic");
+				byte[] imagenBytes = null;
+				
+				if (filePart != null && filePart.getSize() > 0) {
+				    // Obtén el nombre del archivo
+				    String fileName = filePart.getSubmittedFileName();
+				    // Verifica si el nombre del archivo tiene una extensión de imagen válida
+				    if (isValidImageExtension(fileName)) {
+				        // Procede a procesar y adjuntar la imagen al usuario
+				        /// Lee el flujo de entrada de la imagen
+			            InputStream fileContent = filePart.getInputStream();
+			            try {
+			            // Convierte el flujo de entrada de la imagen en un byte[]
+			             imagenBytes = readImageBytes(fileContent);
+			            }catch(Exception e) {}
+				    }else{
+				    	// Obtiene el contexto del servlet
+				        ServletContext context = getServletContext();
 
-		  /*  }else{
-		    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
-		        Path imagePath = Paths.get("/webapp/media/img/imagenDefaultPaquete");
-		    	 imagenBytes = Files.readAllBytes(imagePath);
-		    	}
-		}else {
-	    	String rutaImagen = getServletContext().getRealPath("/userImage.jpg");
-	        Path imagePath = Paths.get("/webapp/media/img/imagenDefaultPaquete");
-	    	 imagenBytes = Files.readAllBytes(imagePath);
-		}
-		*/}
-		}
+				        // Obtiene la ruta de ejecución del servlet
+				        String rutaEjecucion = context.getRealPath("media/img/imgagenDefaultOferta");
+				        Path imagePath = Paths.get(rutaEjecucion);
+				    	 imagenBytes = Files.readAllBytes(imagePath);
+				    }     
+				}else {
+					// Obtiene el contexto del servlet
+			        ServletContext context = getServletContext();
+
+			        // Obtiene la ruta de ejecución del servlet
+			        String rutaEjecucion = context.getRealPath("media/img/imgagenDefaultOferta.jpg");
+			        Path imagePath = Paths.get(rutaEjecucion);
+			    	 imagenBytes = Files.readAllBytes(imagePath);
+			        // Imprime la ruta de ejecución para verificarla
+			        System.out.println("Ruta de ejecución del servlet: " + rutaEjecucion);
+			        
+				}
+		
+    
 		String opcionSeleccionadaTP;
 		String botonSeleccionado = request.getParameter("btnradio");
 
