@@ -4,7 +4,7 @@
 <html>
 <head>
 
-	<%@ page import="logica_DataTypes.DataPostulacion" %>
+	<%@ page import="logica_Entidades.Postulante" %>
 	<%@ page import="java.time.LocalDate" %>
 	
     <meta charset="UTF-8" />
@@ -47,20 +47,14 @@
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	   
 	   <%
-	   	DataPostulacion dtP = (DataPostulacion) request.getAttribute("dtPost");
-	   	if(dtP != null){
-	   	String nombre = dtP.getNombre();
-	   	String apellido = dtP.getApellido();
-	   	String cvCompleto = dtP.getCv();
-	   	String motivacion = dtP.getMotivacion();
-	   	LocalDate fechaPost = dtP.getFecha();
-	   	}else{
-	   		String nombre = "hola";
-		   	String apellido = "hola";
-		   	String cvCompleto = "hola";
-		   	String motivacion = "hola";
-		   	String fechaPost = "hola";
-	   	}
+	   	Postulante post = (Postulante) request.getAttribute("dtPost");
+	   	
+	   	String nombre = post.getNombre();
+	   	String apellido = post.getApellido();
+	   	String cvCompleto = post.getEmail();
+	   	String motivacion = post.getNickName();
+	   	LocalDate fechaPost = post.getNacimineto();
+	   	
 	   %>
 	    
 			<div class="row">
@@ -80,7 +74,7 @@
       					<h4 class = "fs-5 fw=normal">-Nombre:</h4>
    				 </div>
     		<div class="col">
-      					<h4 class = "fs-5 fw-lighter"></h4>
+      					<h4 class = "fs-5 fw-lighter"><%=nombre %> <%=apellido %> </h4>
     		 </div>
   			</div>
   			<hr>
@@ -90,7 +84,7 @@
       					<h4 class = "fs-5 fw=normal">-CV:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"></h4>
+      					<h4 class = "fs-5 fw-lighter"> <%= cvCompleto %></h4>
     		 	</div>
   		 	</div>
   		 	<hr>
@@ -100,7 +94,7 @@
       					<h4 class = "fs-5 fw=normal">-Motivación:</h4>
    				 </div>
     		<div class="col">
-      					<h4 class = "fs-5 fw-lighter"></h4>
+      					<h4 class = "fs-5 fw-lighter"><%= motivacion %></h4>
     		 </div>
   			</div>
   			<hr>
@@ -110,7 +104,7 @@
       					<h4 class = "fs-5 fw=normal">-Fecha de postulacion:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"></h4>
+      					<h4 class = "fs-5 fw-lighter"> <%= fechaPost %></h4>
     		 	</div>
   		 	</div>
   		 	<hr>

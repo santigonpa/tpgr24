@@ -45,19 +45,26 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     	String nombreOfer = request.getParameter("nombre");
 		DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
-
+		String user = request.getParameter("user");
+		
     	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
     	
-    	if(banderaPostulante) {
+    	if(banderaPostulante || (!user.equals("noUsuario"))) {
+    		if(banderaPostulante) {
     		Postulante post = (Postulante) IMU.obtenerPostulante(usuario.getNickName());
-    		Set<Postulacion> dtPost = post.obtenerPostulaciones();
+    		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
     		if (dtPost != null) {
     			request.setAttribute("dtPost", dtPost);
         		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
-    		} else {
-        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
+    		} 
+    		}else {
+    			Postulante post = (Postulante) IMU.obtenerPostulante(user);
+        		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
+        		if (dtPost != null) {
+        			request.setAttribute("dtPost", dtPost);
+            		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+        		}
     		}
-
     		
     	}else{
     		Set<String> postS= IMO.obtenerOferta(nombreOfer).getPostulantesString();

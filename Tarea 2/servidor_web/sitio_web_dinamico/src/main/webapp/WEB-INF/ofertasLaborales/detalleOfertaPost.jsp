@@ -208,7 +208,7 @@
 	</div>
 	
 	<div class="contenedor text-center mt-3">
-	    <a href="/TrabajoUY/ConsultaDePostulacionAOferta?nombre=<%= nombre %>" class="gap-2 py-5" align="center" style="text-decoration: none;">
+	    <a href="/TrabajoUY/ConsultaDePostulacionAOferta?nombre=<%= nombre %>user=<%="NoUsuario" %>" class="gap-2 py-5" align="center" style="text-decoration: none;">
 	        <button class="btn btn-dark" type="button">Ver detalles de la postulación</button>
 	    </a>
 	</div>

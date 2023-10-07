@@ -24,6 +24,18 @@ public class Postulacion {
 	}
 	
 	//getters
+		public String getCV() {
+			return this.cv;
+		}
+	
+		public String getMotivacion() {
+			return this.motivacion;
+		}
+		
+		public LocalDate getFecha() {
+			return this.fecha;
+		}
+		
 		public Postulante getPostulante() {
 			return post;
 		}
@@ -33,7 +45,7 @@ public class Postulacion {
 		}
 		
 		public OfertaLaboral getOferta() {
-			return ofer;
+			return this.ofer;
 		}
 		
 		public String getNombreOfer() {
