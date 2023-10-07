@@ -80,7 +80,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
         }
         for(Paquete paquetito: temp) {
         	DataPaquete nuevaDTP = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
-        	res.add(nuevaDTP);
+        	res.add(nuevaDTP); 
         }
         
     	return res;

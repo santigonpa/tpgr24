@@ -21,6 +21,7 @@ import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.OfertaLaboral.EstadoOferta;
+import logica_Entidades.Paquete;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
 import logica_Entidades.TipoPublicacion;
@@ -111,9 +112,6 @@ public class ServletCargarDatos extends HttpServlet {
 			LocalDate n8 = LocalDate.parse("18-01-1995", dateFormatter);
 			LocalDate n9 = LocalDate.parse("07-07-1991", dateFormatter);
 			LocalDate n10 = LocalDate.parse("02-12-1986", dateFormatter);
-			
-			
-			
 			
 			ServletContext context = getServletContext();
 	
@@ -440,8 +438,37 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			//------------------------------//	
 			//Falta todo lo de Paquete que es opcional, veremos si se hace.
-			//.........//
-		
+			
+			//Creo un paquete(ojala no se rompa todo)
+			
+			//Fechas para paquetes
+			
+			LocalDate fhp1 = LocalDate.parse("16-08-2023", dateFormatter);
+			LocalDate fhp2 = LocalDate.parse("15-08-2023", dateFormatter);
+			LocalDate fhp3 = LocalDate.parse("14-08-2023", dateFormatter);
+			LocalDate fhp4 = LocalDate.parse("13-08-2023", dateFormatter);
+			
+			//Creo los paquetes
+			
+			Paquete paq1 = new Paquete("Básico", "Publica ofertas laborales en nuestra\n"
+					+ "plataforma por un período de 30 d´ıas", 30, 20, fhp1, 3720, null);
+			Paquete paq2 = new Paquete("Destacado", "Publica ofertas laborales destacadas\n"
+					+ "que se mostrar´a en la parte superior de\n"
+					+ "los resultados de búsqueda por 45 días", 45, 10, fhp2, 315, null);
+			Paquete paq3 = new Paquete("Premium", "Publica ofertas laborales premium que\n"
+					+ "incluye promoción en nuestras redes so-\n"
+					+ "ciales y listado en la sección destacada\n"
+					+ "por 60 días", 60, 15, fhp3, 7055, null);
+			Paquete paq4 = new Paquete("Express", "Publica ofertas laborales urgentes re-\n"
+					+ "saltada en color y se mostrará en la\n"
+					+ "sección de urgente por 15 días.", 15, 5, fhp4, 950, null);
+			
+			//Los añado al manejador
+			
+			mpyt.addPaquete(paq1);
+			mpyt.addPaquete(paq2);
+			mpyt.addPaquete(paq3);
+			mpyt.addPaquete(paq4);
 		}
 	}
 	private byte[] cargarImagenEnBytes(String rutaImagen) {

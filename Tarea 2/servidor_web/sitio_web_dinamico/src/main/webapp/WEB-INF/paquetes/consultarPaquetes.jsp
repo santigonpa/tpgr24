@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
           
-    <%@page import= "logica_DataTypes.DataTipoPublicacion" %>
+    <%@page import= "logica_DataTypes.DataPaquete" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
@@ -48,7 +48,7 @@
 
 				<%
 			    
-				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+				Set<DataPaquete> conjuntoDePaquetes = (Set<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
 			    
 			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
 			    
@@ -56,7 +56,7 @@
 			        String descripcion;
 			        byte[] imagenBytes;
 			
-			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
+			        for (DataPaquete dataTP : conjuntoDePaquetes) {
 			            nombreOfer = dataTP.getNombre();        
 			    %>
 				

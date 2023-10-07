@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_DataTypes.DataPaquete;
 import logica_DataTypes.DataTipoPublicacion;
 import logica_Entidades.Empresa;
 import logica_Entidades.Usuario;
@@ -49,9 +50,9 @@ public static EstadoSesion getEstado(HttpServletRequest request)
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
 		
-		Set<DataTipoPublicacion> coleccionPTP = IPYT.getDataTipoPublicacion() ;
+		Set<DataPaquete> coleccionPaquetes = IPYT.getDataPaquete() ;
 		
-		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
+		request.setAttribute("coleccionDataPaquetes", coleccionPaquetes);
 		
     	//es visitante accede igual
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
