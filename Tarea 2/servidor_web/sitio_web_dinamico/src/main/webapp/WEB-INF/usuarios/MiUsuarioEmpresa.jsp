@@ -371,7 +371,7 @@
 	     <%	
 	     	Set<DataOferta> oferRechazadas = (Set<DataOferta>) request.getAttribute("ofertasRyI");
 	     	//si hay ofertas confirmadas las muestro si no no
-	     	if(!oferRechazadas.isEmpty()){
+	     	if(!oferRechazadas.isEmpty() || oferRechazadas == null){
 	     %>
 	     
 	       <div class="contenedorCards">
