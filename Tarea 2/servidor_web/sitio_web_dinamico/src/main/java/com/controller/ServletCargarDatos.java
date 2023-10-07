@@ -348,7 +348,7 @@ public class ServletCargarDatos extends HttpServlet {
 			mo.addOferta(o6);
 			mo.addOferta(o7);
 			mo.addOferta(o8);
-			
+			mo.addOferta(o9); 
 			
 			//Agrego Keyword a Oferta
 				
@@ -371,6 +371,8 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			o6.agregarKeywordAOferta(k1);
 			
+			o9.agregarKeywordAOferta(k5);
+			
 			//Agrego oferta a KeyWord
 			k1.agregarOfertaAKeyWord(o1);
 			k2.agregarOfertaAKeyWord(o1);
@@ -380,6 +382,7 @@ public class ServletCargarDatos extends HttpServlet {
 			k6.agregarOfertaAKeyWord(o1);
 			
 			k5.agregarOfertaAKeyWord(o2);
+			k5.agregarOfertaAKeyWord(o9);
 			
 			k2.agregarOfertaAKeyWord(o3);
 			k3.agregarOfertaAKeyWord(o3);
@@ -401,7 +404,7 @@ public class ServletCargarDatos extends HttpServlet {
 			o6.setTipoPublicacion(tp4);
 			o7.setTipoPublicacion(tp1);
 			o8.setTipoPublicacion(tp2);
-	
+			o9.setTipoPublicacion(tp1);
 			
 			//------------------------------//	
 			
