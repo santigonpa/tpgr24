@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica_DataTypes.DataOferta;
 import logica_Entidades.Postulante;
+import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
@@ -23,6 +24,7 @@ public class ServletPostulacionAOferta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Fabrica fab = Fabrica.getInstance();
 	private static IManejadorUsuario manejadorUser = fab.getInManejadorUsuario();
+	private static IManejadorOferta manejadorOfer = fab.getInManejadorOferta();
 	
 	
 	public ServletPostulacionAOferta() {
@@ -38,16 +40,23 @@ public class ServletPostulacionAOferta extends HttpServlet {
 		boolean banderaSesion = getEstado(request).equals(EstadoSesion.SI_LOGEADO);
 		boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
 		String empresaSeleccionada = request.getParameter("empresa");
-		
+		String keywordSeleccionada = request.getParameter("keyword");
 		//me fijo si esta la sesion iniciada y su vez si es postulante
 		if(banderaSesion && banderaPostulante) {
-			if(empresaSeleccionada == null) {
+			if(empresaSeleccionada != null) {
 				
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
-			
-			}else {// cambio el campo del select
+				// cambio el campo del select empresa
 				Set<DataOferta> ofertasConfirmadas = manejadorUser.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
+			
+			}else if(keywordSeleccionada != null){
+				// cambio el campo del select keyword
+				Set<DataOferta> ofertasConfirmadas = manejadorOfer.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
+			
+			}else {
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
 			}
 		

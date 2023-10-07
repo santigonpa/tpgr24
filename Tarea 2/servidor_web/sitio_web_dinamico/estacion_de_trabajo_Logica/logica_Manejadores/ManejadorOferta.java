@@ -9,6 +9,7 @@ import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataOferta;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.OfertaLaboral.EstadoOferta;
 import logica_Entidades.Postulacion;
 
 public class ManejadorOferta implements IManejadorOferta{
@@ -104,6 +105,19 @@ public class ManejadorOferta implements IManejadorOferta{
 	
 	public DataOferta getDataOferta(String nombre) {
 		DataOferta res = this.obtenerOferta(nombre).getDataOferta();
+		return res;
+	}
+
+	
+	public Set<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada) {
+		Set<DataOferta> res = new HashSet<>();
+		for(String ofertaNombre : this.ofertasLaborales.keySet() ) {
+			OfertaLaboral ofertaReal = this.ofertasLaborales.get(ofertaNombre);
+			DataOferta oferta = this.ofertasLaborales.get(ofertaNombre).getDataOferta();
+			if(ofertaReal.getKeyWordsString().contains(keywordSeleccionada) && ofertaReal.getEstado().equals(EstadoOferta.ACEPTADA)) {
+				res.add(oferta);
+			}
+		}
 		return res;
 	}
 

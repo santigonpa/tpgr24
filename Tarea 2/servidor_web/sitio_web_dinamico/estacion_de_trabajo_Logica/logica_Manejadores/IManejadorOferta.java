@@ -29,4 +29,6 @@ public interface IManejadorOferta {
 	public abstract void addPostulacion(Postulacion pos);
 
 	public abstract boolean existeOferta(String s);
+
+	public abstract Set<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada);
 }

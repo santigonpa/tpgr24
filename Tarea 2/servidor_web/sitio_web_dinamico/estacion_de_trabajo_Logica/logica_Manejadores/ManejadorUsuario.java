@@ -205,6 +205,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 			res.add(ofert);
 		}
 		return res;
-	} 
+	}
+
 
 }

@@ -3,9 +3,11 @@
 <%@page import= "logica_Entidades.Usuario" %>
 <%@page import= "utils.Fabrica" %>
 <%@page import= "logica_Manejadores.IManejadorUsuario" %>
+<%@page import= "logica_Manejadores.IManejadorOferta" %>
 <%@page import= "logica_Entidades.Usuario" %>
 <%@page import= "logica_DataTypes.DataEmpresa" %>
 <%@page import= "logica_DataTypes.DataOferta" %>
+<%@page import= "logica_DataTypes.DataKeyWord" %>
 <%@page import="java.util.Map" %>
 <%@page import="java.util.Set" %>
 <%@page import ="java.util.Base64" %>
@@ -254,15 +256,19 @@
 					</form>
                 </div>
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Filtrar por KeyWord</option>
-                        <option value="k1">Tiempo completo</option>
-                        <option value="k2">Medio tiempo</option>
-                        <option value="k3">Remoto</option>
-                        <option value="k4">Freelance</option>
-                        <option value="k5">Temporal</option>
-                        <option value="k6">Permanente</option>
-                    </select>
+                    <form id="keywordForm" action="/TrabajoUY/PostulacionAOferta" method="get"> 
+					  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
+					    <option selected disabled>Filtrar por KeyWord</option>
+					    <% 
+					       IManejadorOferta imo = fab.getInManejadorOferta();
+					       Set<DataKeyWord> dataKeywords = imo.getDataKeyWord();
+					       for(DataKeyWord dataKW : dataKeywords){
+					         String palabra = dataKW.getPalabraClave();
+					    %>
+					    <option value="<%= palabra %>"><%= palabra %></option>
+					    <% } %>
+					  </select>
+					</form>
                 </div>
             </div>
         </div>
@@ -271,7 +277,9 @@
 			  
 			  if (request.getAttribute("coleccionOfertasPostulacion") != null) {
 				 
-				 
+				  
+				  
+				 if(request.getParameter("empresa") != null) {
 				  %>
 				 
 				 <div class="contenedor">
@@ -283,6 +291,25 @@
 				 		
 				 <%
 				 
+				 }else{
+					 
+					 %>
+					 
+					 <div class="contenedor">
+	       	 					<h2 class="titulo">Ofertas Relacionadas con la palabra clave "<%= request.getParameter("keyword") %>"</h2>
+	    					</div>
+					 
+					  <div class="contenedorCards">
+					 		<div class="row mt-4">
+					 		
+					 <%
+				 
+				 }
+				  
+				  
+					  %>
+				 
+				 <% 
 				 String nombreOferta;
 				 String descripcionOferta;
 				 byte[] imagenBytes;
@@ -317,7 +344,8 @@
 			      
 			<%
 				 } //endfor
-				 
+				
+				 }else{ 
 				 %>
 				  
 				  </div>
@@ -326,7 +354,8 @@
 				
 				<%
 				 
-				 }else {
+				if(request.getParameter("empresa") == null){
+					 
 					 %>
 					 
 					 <div class = "my-5"></div>
@@ -334,22 +363,34 @@
 							    <div class="row">
 							        <div class="col text-center">
 							            <div class="alert alert-danger" role="alert">
-							                No hay ofertas registradas en la empresa
+							                No hay ofertas registradas con esa palabra clave
 							            </div>
 							        </div>
 							    </div>
 							</div>
 					 
 					 <%
-				 }
+				 }else if(request.getParameter("keyword") == null){
 			%>
 			  
-			 
+			 	<div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas registradas en la empresa
+							              
+							            </div>
+							        </div>
+							    </div>
+							</div>
 			
 			<%
 				  }else{
-					  
+				 
+				  
 					  %>
+					  
 					  <div class = "my-5"></div>
 					  <div class="container">
 							    <div class="row">
@@ -362,7 +403,27 @@
 							</div>
 					  
 					  <%
-				  }
+						}
+				 	}				 
+				 }else{ 
+					 
+					 %>
+					  
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas registradas en la empresa o no ha seleccionado una empresa aún o una palabra clave
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+					 
+				 }
+				 
 			%>
 
     </div>
@@ -388,6 +449,20 @@
     var formElement = document.getElementById("empresaForm");
 
     formElement.submit();
+  });
+</script>
+
+
+<script>
+  // Obtén el elemento <select> por su ID
+  var selectElement2 = document.getElementById("keywordSelect");
+
+  // Agrega un event listener para el evento "change"
+  selectElement2.addEventListener("change", function() {
+    // Obtén el formulario por su ID
+    var formElement2 = document.getElementById("keywordForm");
+
+    formElement2.submit();
   });
 </script>
 

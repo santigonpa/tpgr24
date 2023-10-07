@@ -40,4 +40,6 @@ public interface IManejadorUsuario {
 	public abstract Set<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName);
 	
 	public abstract Empresa obtenerEmpresa(String emp);
+
+	
 }
