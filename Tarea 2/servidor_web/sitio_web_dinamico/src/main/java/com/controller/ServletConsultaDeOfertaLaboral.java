@@ -9,7 +9,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataUsuario;
 import logica_Entidades.OfertaLaboral;
+import logica_Entidades.Postulante;
 import logica_Manejadores.IManejadorOferta;
+import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 import java.io.IOException;
@@ -44,24 +46,70 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+    		boolean banderaSesion;
+    		if(getEstado(request) != null) {
+    			banderaSesion = getEstado(request).equals(EstadoSesion.SI_LOGEADO);
+    		}else {
+    			banderaSesion = false;
+    		}
+			boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
+			String empresaSeleccionada = request.getParameter("empresa");
+			String keywordSeleccionada = request.getParameter("keyword");
+			
+			if(banderaSesion && banderaPostulante) {
+				if(empresaSeleccionada != null) {
+			    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					request.setAttribute("coleccionOfertas", coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/oferttasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
 
-	    	Set<DataOferta> coleccionOfer = IMO.getOfertas();
+				}else if(keywordSeleccionada != null){
+					Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+					request.setAttribute("coleccionOfertas", coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
+
 			
-			request.setAttribute("coleccionDataOfertas", coleccionOfer);
-			
-			if(getEstado(request) == EstadoSesion.SI_LOGEADO) {				
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
-			
-			
-			}else {
-				//hace otra cosa dependiendo si el usuario no esta logeado
+				}else {
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
+				}
+			}
+			if(banderaSesion && !banderaPostulante){
+					if(empresaSeleccionada != null) {
+				    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+						request.setAttribute("coleccionOfertas", coleccionOfer);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+
+					}else if(keywordSeleccionada != null){
+						Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+						request.setAttribute("coleccionOfertas", coleccionOfer);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+
 				
+					}else {
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+					}
+			}	
+			
+			if(!banderaSesion) {
+				if(empresaSeleccionada != null) {
+			    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					request.setAttribute("coleccionOfertas", coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+
+				}else if(keywordSeleccionada != null){
+					Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+					request.setAttribute("coleccionOfertas", coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+
 				
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+				}else {
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+				}
 			}
 			
-
+			
     }
+
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -77,7 +125,6 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

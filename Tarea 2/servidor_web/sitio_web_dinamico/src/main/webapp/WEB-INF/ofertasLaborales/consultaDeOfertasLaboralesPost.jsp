@@ -115,7 +115,7 @@
     <title>Ofertas Laborales</title>
 	</head>
 <body>
-	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	
 	<main>
 				<div class="contenedor4">
@@ -202,7 +202,7 @@
 					 <% 
 					 	Set<DataOferta> conjDeOfer = (Set<DataOferta>) request.getAttribute("coleccionOfertas");
 					    
-					    if(conjDeOfer != null && !conjDeOfer.isEmpty()){
+					    if(!conjDeOfer.isEmpty()){
 					    
 					        String nombreOfer;
 					        String descripcion;
@@ -321,8 +321,7 @@
 					 
 				%>
 	
-	    </div>
-		</main>
+	    		</main>
     
    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
      

@@ -115,7 +115,7 @@
     <title>Ofertas Laborales</title>
 	</head>
 <body>
-	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	
 	<main>
 				<div class="contenedor4">
@@ -322,15 +322,16 @@
 				%>
 	
 	    </div>
-		</main>
+		
+	</main>
     
-   <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
-     
-  </body>
-  
-   <!-- SCRIPTS DEL CASO DE USO PARA MOSTRAR LAS COSAS -->
-  
-
+	 <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+	     
+	  </body>
+	  
+	   <!-- SCRIPTS DEL CASO DE USO PARA MOSTRAR LAS COSAS -->
+	  
+	
 	 <!-- Esto redirige al servlet cuando selecciona una empresa -->
 	<script>
 	  // Obtén el elemento <select> por su ID
