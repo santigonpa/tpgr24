@@ -36,16 +36,16 @@ public class ControladorOferta implements IControladorOferta {
         return instancia;
     }
 	
-	public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException{
+	public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento, LocalTime horaInicio, LocalTime horaFin, int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException{
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorOferta manejadorOferta = fabrica.getInManejadorOferta();
 		
-		if(manejadorOferta.existeOferta(nombre)) {
+		if (manejadorOferta.existeOferta(nombre)) {
 			throw new NombreRepetidoOfertaException("Ya existe una oferta con este nombre");
 		}
 		
-		OfertaLaboral ofer = new OfertaLaboral(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta, imagen, tipoDePago);
+		OfertaLaboral ofer = new OfertaLaboral(nombre, descripcion, ciudad, departamento, horaInicio, horaFin, remuneracion, costoDeOfertaLaboral, fechaDeAlta, imagen, tipoDePago);
 		manejadorOferta.addOferta(ofer);
 		}
 	
@@ -53,11 +53,11 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
-		if(manejadorPyT.NombrePaqueteYaExiste(nombre)) {
+		if (manejadorPyT.NombrePaqueteYaExiste(nombre)) {
 			throw new NombrePaqueteYaExiste("Ya existe un paquete con este nombre");
 		}
 		
-		Paquete paq = new Paquete(nombre,descripcion,validez,descuento,fechadealta, costo, imagen);
+		Paquete paq = new Paquete(nombre, descripcion, validez, descuento, fechadealta, costo, imagen);
 		manejadorPyT.addPaquete(paq);
 		}
 
@@ -73,7 +73,9 @@ public class ControladorOferta implements IControladorOferta {
 		
 
 		OfertaLaboral nuevaOferta = mo.obtenerOferta(nombre);
-		if(nuevaOferta != null){throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); }
+		if (nuevaOferta != null){
+			throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); 
+		}
 
 		//busco Empresa
 		Empresa emp = (Empresa) mu.obtenerUsuario(empresa);
@@ -83,8 +85,8 @@ public class ControladorOferta implements IControladorOferta {
 		
 		float costoOfertaLaboral = (int) tp.getCosto();
 		
-		if(emp.tienePaqueteAsociado()) {
-			if(emp.getCompra().existeTipoPubli(tipoPubli)) {
+		if (emp.tienePaqueteAsociado()) {
+			if (emp.getCompra().existeTipoPubli(tipoPubli)) {
 				costoOfertaLaboral = (int) (tp.getCosto() - ((emp.getCompra().getPaquete().getDescuento() /100 ) * tp.getCosto()));
 				emp.getCompra().yaSeUsoTipoPubli(tipoPubli);
 			}else {
@@ -92,14 +94,14 @@ public class ControladorOferta implements IControladorOferta {
 			}
 		}
 		
-		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
-				departamento,horarioInicio,horarioFin
+		nuevaOferta = new OfertaLaboral(nombre, descripcion, ciudad, 
+				departamento, horarioInicio, horarioFin
 				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen, tipoDePago);
 		
 		nuevaOferta.setEmpresa(emp);
-		emp.linkearOfertaEmpresa(nuevaOferta,nombre);
+		emp.linkearOfertaEmpresa(nuevaOferta, nombre);
 		nuevaOferta.setTipoPublicacion(tp);
-		mo.linkearKeywords(palabrasClaveSelec,nuevaOferta); //linkea la coleccion de keywords a la oferta
+		mo.linkearKeywords(palabrasClaveSelec, nuevaOferta); //linkea la coleccion de keywords a la oferta
 		mo.addOferta(nuevaOferta);
 			
 	}
@@ -114,7 +116,9 @@ public class ControladorOferta implements IControladorOferta {
 		IManejadorPyT mpt = fabrica.getInManejadorPyT();
 		
 		OfertaLaboral nuevaOferta = mo.obtenerOferta(nombre);
-		if(nuevaOferta != null){throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); }
+		if (nuevaOferta != null){
+			throw new NombreRepetidoOfertaException("El nombre " + nombre + " ya esta registrado como una oferta"); 
+			}
 		float costoOfertaLaboral;
 		//busco Empresa
 		Empresa emp = (Empresa) mu.obtenerUsuario(empresa);
@@ -126,14 +130,14 @@ public class ControladorOferta implements IControladorOferta {
 		costoOfertaLaboral = (int) tp.getCosto();
 		
 		
-		nuevaOferta = new OfertaLaboral(nombre,descripcion,ciudad, 
-				departamento,horarioInicio,horarioFin
+		nuevaOferta = new OfertaLaboral(nombre, descripcion, ciudad, 
+				departamento, horarioInicio, horarioFin
 				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen, tipoDePago);
 		
 		nuevaOferta.setEmpresa(emp);
-		emp.linkearOfertaEmpresa(nuevaOferta,nombre);
+		emp.linkearOfertaEmpresa(nuevaOferta, nombre);
 		nuevaOferta.setTipoPublicacion(tp);
-		mo.linkearKeywords(palabrasClaveSelec,nuevaOferta); //linkea la coleccion de keywords a la oferta
+		mo.linkearKeywords(palabrasClaveSelec, nuevaOferta); //linkea la coleccion de keywords a la oferta
 		mo.addOferta(nuevaOferta);
 			
 	}
@@ -144,7 +148,7 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
-		if(manejadorPyT.TipoPubliYaExiste(nombre)) {
+		if (manejadorPyT.TipoPubliYaExiste(nombre)) {
 			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre.");
 		}
 		TipoPublicacion tp = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fecha);
@@ -160,7 +164,7 @@ public class ControladorOferta implements IControladorOferta {
 		Postulante p = mu.obtenerPostulante(post);
 		Postulacion nuevaPost = new Postulacion(fecha, cv, mot, p, oferta);
 		
-		if(oferta.existePostulacion(p.getNickName())) {
+		if (oferta.existePostulacion(p.getNickName())) {
 			throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esa oferta");
 		}
 		

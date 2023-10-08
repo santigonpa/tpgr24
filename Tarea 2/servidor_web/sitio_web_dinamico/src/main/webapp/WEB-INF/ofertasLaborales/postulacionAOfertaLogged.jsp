@@ -333,7 +333,7 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta %></h5>
 			          <p class="card-text"><%= descripcionOferta %></p>
-			          <a href="#" class="btn btn-outline-dark">Postularme</a>
+			          <a href="/TrabajoUY/PostulacionDesdeVerOferta?ofer=<%= nombreOferta %>" class="btn btn-outline-dark">Postularme</a>
 			        </div>
 			      </div>
 			      </div>
