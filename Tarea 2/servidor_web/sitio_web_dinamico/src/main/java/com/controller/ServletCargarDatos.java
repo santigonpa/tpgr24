@@ -200,7 +200,6 @@ public class ServletCargarDatos extends HttpServlet {
 			mpyt.addTipoPublicacion(tp2);
 			mpyt.addTipoPublicacion(tp3);
 			mpyt.addTipoPublicacion(tp4);
-	
 			
 			//Cargo Keywords
 			KeyWord k1 = new KeyWord("Tiempo completo");
@@ -496,7 +495,16 @@ public class ServletCargarDatos extends HttpServlet {
 			mpyt.addPaquete(paq2);
 			mpyt.addPaquete(paq3);
 			mpyt.addPaquete(paq4);
+			 
+			//Asocio paquetes comprados a las empresas
+			e1.agregarPaquetes(paq1.getNombre(), paq1);
+			e2.agregarPaquetes(paq2.getNombre(), paq2);
+			e6.agregarPaquetes(paq2.getNombre(), paq2);
+			e1.agregarPaquetes(paq3.getNombre(), paq3);
+			e1.agregarPaquetes(paq4.getNombre(), paq4);
+			
 		}
+		
 	}
 	private byte[] cargarImagenEnBytes(String rutaImagen) {
         try {

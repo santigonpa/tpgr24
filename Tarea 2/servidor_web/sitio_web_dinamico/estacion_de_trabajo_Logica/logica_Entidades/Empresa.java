@@ -12,7 +12,8 @@ public class Empresa extends Usuario{
 	private String web; 
 	private CompraPaquete compra;
 	private Map<String, OfertaLaboral> ofertas;
-	
+	private Map<String, Paquete> paquetes;
+
 	
 	public Empresa(String nickName, String nombre, String apellido, String email, String descripcion, String web, byte[]imagen , String psw) {
 		super(nickName, nombre, apellido, email, psw, imagen);
@@ -79,6 +80,10 @@ public class Empresa extends Usuario{
 		this.ofertas.put(nombreOf, of);
 	}
 	
+	public void agregarPaquetes (String nombrePaq, Paquete paq ) {
+		this.paquetes.put(nombrePaq, paq);
+	}
+
 	//obtener info
 	
 	public int costoPaqueteAsociado() {
