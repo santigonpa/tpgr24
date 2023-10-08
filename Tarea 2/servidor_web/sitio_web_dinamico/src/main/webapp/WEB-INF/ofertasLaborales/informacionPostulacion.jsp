@@ -62,7 +62,7 @@
 	   	LocalDate fecha = post.getFecha();
 	   	String nombrePostulante = post.getNombrePostulante();
 	   	
-	   	byte[] imagenBytes = ofertaLaboral.getImagen();
+	   	byte[] imagenBytes = post.getPostulante().getImagen();
         String base64Image = "";
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);
