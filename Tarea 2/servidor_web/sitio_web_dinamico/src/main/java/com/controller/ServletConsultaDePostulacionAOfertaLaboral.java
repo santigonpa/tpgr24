@@ -6,10 +6,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_DataTypes.DataOferta;
-import logica_DataTypes.DataPostulacion;
-import logica_DataTypes.DataPostulante;
-import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
@@ -17,7 +13,6 @@ import logica_Manejadores.IManejadorOferta;
 import logica_Manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import java.io.IOException;
@@ -27,7 +22,7 @@ import java.io.IOException;
  * Servlet implementation class ServletConsultaDePostulacionAOfertaLaboral
  */
 @WebServlet (description = "Servlet de Consulta de Postulacion A Oferta Laboral", urlPatterns = { "/ConsultaDePostulacionAOferta" })
-@MultipartConfig
+@MultipartConfig 
 public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static Fabrica fab = Fabrica.getInstance();
