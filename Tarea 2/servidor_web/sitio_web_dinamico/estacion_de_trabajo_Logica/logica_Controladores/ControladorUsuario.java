@@ -42,7 +42,7 @@ public class ControladorUsuario implements IControladorUsuario {
         return instancia;
     }
 	
-public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws yaExistePostulacionAOfertaException {
+	public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws yaExistePostulacionAOfertaException {
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	

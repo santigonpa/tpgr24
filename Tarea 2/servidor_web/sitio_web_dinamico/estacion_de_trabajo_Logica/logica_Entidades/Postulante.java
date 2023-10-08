@@ -63,7 +63,7 @@ public class Postulante extends Usuario{
 		this.setNacionalidad(nacionalidad);
 	}
 
-		public void agregarPostulacionAPostulante(Postulacion postulacion) {
+	public void agregarPostulacionAPostulante(Postulacion postulacion) {
 		this.postulaciones.add(postulacion);
 	}
 	

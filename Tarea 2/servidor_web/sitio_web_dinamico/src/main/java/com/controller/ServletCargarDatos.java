@@ -8,6 +8,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import com.model.EstadoSesion;
+
+import excepciones.yaExistePostulacionAOfertaException;
 import utils.Fabrica;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
@@ -17,6 +19,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import logica_Controladores.IControladorUsuario;
 import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
@@ -95,7 +98,7 @@ public class ServletCargarDatos extends HttpServlet {
 			IManejadorUsuario mu = fabrica.getInManejadorUsuario();
 			IManejadorOferta mo = fabrica.getInManejadorOferta();
 			IManejadorPyT mpyt = fabrica.getInManejadorPyT();
-					
+			IControladorUsuario cu = fabrica.getInUser();	
 			
 			//------------------------------//
 			//Carga de usuarios
@@ -438,6 +441,20 @@ public class ServletCargarDatos extends HttpServlet {
 			o3.agregarPostulacionAOferta(pos4);
 			o2.agregarPostulacionAOferta(pos5);
 			o2.agregarPostulacionAOferta(pos1);
+			
+			
+			try {
+				cu.agregarPostulacionAPostulante(p1.getNickName() , pos1);
+				cu.agregarPostulacionAPostulante(p2.getNickName(), pos2);
+				cu.agregarPostulacionAPostulante(p3.getNickName(), pos3);
+				cu.agregarPostulacionAPostulante(p4.getNickName(), pos4);
+				cu.agregarPostulacionAPostulante(p5.getNickName(), pos5);
+				cu.agregarPostulacionAPostulante(p6.getNickName(), pos6);
+			} catch (yaExistePostulacionAOfertaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 			//------------------------------//	
 			//Falta todo lo de Paquete que es opcional, veremos si se hace.
