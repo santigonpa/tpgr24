@@ -13,12 +13,12 @@ import logica_Entidades.TipoPublicacion;
 public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	
 	private static ManejadorPaquetesYTiposPubli instancia;
-	private Map<String,TipoPublicacion> tiposDePublicacion;
-	private Map<String,Paquete> paquetes;
+	private Map<String, TipoPublicacion> tiposDePublicacion;
+	private Map<String, Paquete> paquetes;
 
 	private ManejadorPaquetesYTiposPubli() {
-		this.tiposDePublicacion = new HashMap<String,TipoPublicacion>();
-		this.paquetes = new HashMap<String,Paquete>();
+		this.tiposDePublicacion = new HashMap<String, TipoPublicacion>();
+		this.paquetes = new HashMap<String, Paquete>();
 		
 	}
 	public static ManejadorPaquetesYTiposPubli getInstance() {
@@ -29,7 +29,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	}
 
 	public TipoPublicacion obtenerTipoPublicacion(String tipoPubli) {
-		TipoPublicacion res = ((TipoPublicacion) this.tiposDePublicacion.get(tipoPubli));
+		TipoPublicacion res = (TipoPublicacion) this.tiposDePublicacion.get(tipoPubli);
 		return res;
 	}
 
@@ -40,12 +40,12 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
     	
     	// Obtener las claves del Map
         Set<String> clavesTipoPublicacion = this.tiposDePublicacion.keySet();
-        for(String nombreTipoPublicacion : clavesTipoPublicacion) {
-        	TipoPublicacion tipoAct = ((TipoPublicacion) this.tiposDePublicacion.get(nombreTipoPublicacion));
+        for (String nombreTipoPublicacion : clavesTipoPublicacion) {
+        	TipoPublicacion tipoAct = (TipoPublicacion) this.tiposDePublicacion.get(nombreTipoPublicacion);
         	temp.add(tipoAct);
         }
-        for(TipoPublicacion tipoActual: temp) {
-        	DataTipoPublicacion nuevaDTP = new DataTipoPublicacion(tipoActual.getNombre(),tipoActual.getDescripcion(),tipoActual.getExposicion(),tipoActual.getDuracion(),tipoActual.getCosto(),tipoActual.getFecha());
+        for (TipoPublicacion tipoActual: temp) {
+        	DataTipoPublicacion nuevaDTP = new DataTipoPublicacion(tipoActual.getNombre(), tipoActual.getDescripcion(), tipoActual.getExposicion(), tipoActual.getDuracion(), tipoActual.getCosto(), tipoActual.getFecha());
         	res.add(nuevaDTP);
         }
         
@@ -59,7 +59,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	
 	public DataPaquete getDataPaquete(String nombre) {
 		Paquete paquetito = this.paquetes.get(nombre);
-		if(paquetito == null) {
+		if (paquetito == null) {
 			return null;
 		}else {
 			DataPaquete resultado = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
@@ -74,11 +74,11 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
     	
     	// Obtener las claves del Map
         Set<String> clavesPaquete = this.paquetes.keySet();
-        for(String nombreTipoPublicacion : clavesPaquete) {
-        	Paquete tipoAct = ((Paquete) this.paquetes.get(nombreTipoPublicacion));
+        for (String nombreTipoPublicacion : clavesPaquete) {
+        	Paquete tipoAct = (Paquete) this.paquetes.get(nombreTipoPublicacion);
         	temp.add(tipoAct);
         }
-        for(Paquete paquetito: temp) {
+        for (Paquete paquetito: temp) {
         	DataPaquete nuevaDTP = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
         	res.add(nuevaDTP); 
         }
@@ -91,10 +91,10 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		this.tiposDePublicacion.put(nombre, tp);
 	}
 	
-	public boolean TipoPubliYaExiste(String nombre) {
+	public boolean tipoPubliYaExiste(String nombre) {
 		return tiposDePublicacion.containsKey(nombre);
 	}
-	public boolean NombrePaqueteYaExiste(String nombre) {
+	public boolean nombrePaqueteYaExiste(String nombre) {
 		return paquetes.containsKey(nombre);
 	}
 }

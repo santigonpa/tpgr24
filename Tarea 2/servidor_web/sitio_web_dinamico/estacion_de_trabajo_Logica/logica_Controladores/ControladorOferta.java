@@ -49,11 +49,11 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorOferta.addOferta(ofer);
 		}
 	
-	public void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) throws NombrePaqueteYaExiste{
+	public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) throws NombrePaqueteYaExiste{
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
-		if (manejadorPyT.NombrePaqueteYaExiste(nombre)) {
+		if (manejadorPyT.nombrePaqueteYaExiste(nombre)) {
 			throw new NombrePaqueteYaExiste("Ya existe un paquete con este nombre");
 		}
 		
@@ -148,7 +148,7 @@ public class ControladorOferta implements IControladorOferta {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
 		
-		if (manejadorPyT.TipoPubliYaExiste(nombre)) {
+		if (manejadorPyT.tipoPubliYaExiste(nombre)) {
 			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre.");
 		}
 		TipoPublicacion tp = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fecha);

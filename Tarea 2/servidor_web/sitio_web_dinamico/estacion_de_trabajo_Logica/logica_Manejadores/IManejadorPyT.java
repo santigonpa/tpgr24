@@ -15,11 +15,11 @@ public interface IManejadorPyT {
 
 	public abstract TipoPublicacion obtenerTipoPublicacion(String tipoPubli);
 	
-	public abstract boolean TipoPubliYaExiste(String nombre);
+	public abstract boolean tipoPubliYaExiste(String nombre);
 	
 	public abstract void addTipoPublicacion(TipoPublicacion tp);
 
-	public abstract boolean NombrePaqueteYaExiste(String nombre);
+	public abstract boolean nombrePaqueteYaExiste(String nombre);
 
 	public abstract void addPaquete(Paquete paq);
 

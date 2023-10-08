@@ -1,5 +1,7 @@
 package logica_Entidades;
-import java.time.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,9 +42,8 @@ public class OfertaLaboral {
 	// Operaciones
 	
 	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
-			String departamento,LocalTime horarioInicio, LocalTime horarioFin
-			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha, byte[]imagen, String tipoDePago)
-	{
+			String departamento, LocalTime horarioInicio, LocalTime horarioFin
+			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha, byte[]imagen, String tipoDePago){
 		this.nombre = nombre;
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
@@ -62,7 +63,7 @@ public class OfertaLaboral {
 	
 	public DataOferta getDataOferta() {
 		DataOferta DO = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
-				this.departamento,this.horaInicio, this.horaFin
+				this.departamento, this.horaInicio, this.horaFin
 				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.empresaAsociada.getNickName(), this.imagen, this.palabrasClave, this.tipoDePago);
 		return DO;
 	}
@@ -80,8 +81,8 @@ public class OfertaLaboral {
 	public boolean existeLaPostulacion(String postulante) {
 		boolean condicion = false;
 		if (this.postulacionesSobreLaOferta != null) {
-			for(Postulacion pos : this.postulacionesSobreLaOferta) {
-				if(pos.getNickPostulante().equals(postulante)) { //para comparar strings usamos equals
+			for (Postulacion pos : this.postulacionesSobreLaOferta) {
+				if (pos.getNickPostulante().equals(postulante)) { //para comparar strings usamos equals
 					condicion = true;
 					break;
 				}
@@ -120,7 +121,6 @@ public class OfertaLaboral {
 	}
 
 	public int getRemuneracion() {
-		// TODO Auto-generated method stub
 		return this.remuneracion;
 	}
 
@@ -130,9 +130,9 @@ public class OfertaLaboral {
     }
 	
 	public boolean existePostulacion(String post) {
-		if(postulacionesSobreLaOferta != null) {
-			for(Postulacion postulaciones : postulacionesSobreLaOferta) {
-				if(postulaciones.getNickPostulante().equals(post)) {
+		if (postulacionesSobreLaOferta != null) {
+			for (Postulacion postulaciones : postulacionesSobreLaOferta) {
+				if (postulaciones.getNickPostulante().equals(post)) {
 					return true;
 				}
 			}
@@ -161,8 +161,8 @@ public LocalTime getHoraFin() {
 	
 	public Set<String> getPostulantesString(){
 		Set<String> res = new HashSet<>();
-		if(this.postulacionesSobreLaOferta != null){
-			for(Postulacion pos : postulacionesSobreLaOferta) {
+		if (this.postulacionesSobreLaOferta != null){
+			for (Postulacion pos : postulacionesSobreLaOferta) {
 				res.add(pos.getNickPostulante());
 			}
 		}

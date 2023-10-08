@@ -1,6 +1,6 @@
 package logica_DataTypes;
 
-import java.time.*;
+import java.time.LocalDate;
 
 public class DataCompraPaquete {
 	//Atributos

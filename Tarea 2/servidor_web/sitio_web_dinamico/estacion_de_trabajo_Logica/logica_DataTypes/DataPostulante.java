@@ -1,6 +1,7 @@
 package logica_DataTypes;
 
-import java.time.*;
+
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DataPostulante extends DataUsuario {

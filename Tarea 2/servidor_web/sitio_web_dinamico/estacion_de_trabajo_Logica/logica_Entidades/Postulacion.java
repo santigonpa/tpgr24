@@ -1,6 +1,7 @@
 package logica_Entidades;
 
-import java.time.*;
+
+import java.time.LocalDate;
 import java.util.Objects;
 
 import logica_DataTypes.DataPostulacion;

@@ -1,9 +1,10 @@
 package logica_Controladores;
 
 import java.util.Set;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Map;
-import java.time.*;
+
 
 import excepciones.NicknameYaExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -47,7 +48,7 @@ public class ControladorUsuario implements IControladorUsuario {
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Postulante pos = (Postulante)  manejadorUsuario.obtenerUsuario(postulante);
-	if((pos).estaPostulado(postulacion)) {
+	if (pos.estaPostulado(postulacion)) {
 		throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a dicha postulacion");
 	}else {
 	pos.agregarPostulacionAPostulante(postulacion);
@@ -76,7 +77,7 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
-	Postulante post = (Postulante)manejadorUsuario.obtenerUsuario(usuario);
+	Postulante post = (Postulante) manejadorUsuario.obtenerUsuario(usuario);
 	Set<Postulacion> res = post.obtenerPostulaciones();
 	return res;
 }
@@ -88,13 +89,15 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 		Set<DataEmpresa> res = new HashSet<>();
 		Map<String, DataEmpresa> m = mu.getDataEmpresas();
-		if(m != null) {
+		if (m != null) {
 			for (Map.Entry<String, DataEmpresa> entry : m.entrySet()) {
 			    res.add(entry.getValue());
 			}
 			return res;
 		}
-		else  {throw new UsuarioNoExisteException("No existen Empresas");}
+		else {
+			throw new UsuarioNoExisteException("No existen Empresas");
+		}
 						
 }
 	@Override
@@ -116,17 +119,19 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 
 	@Override
 	public void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
-			String web,  byte[]imagen , String psw) throws NicknameYaExisteException,EmailYaExisteException, campoInvalidoException {
+			String web,  byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException,  campoInvalidoException {
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario empresa = mu.obtenerUsuario(nickname);
         Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
-        if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
+        if (emailEnUso != null) {
+        	throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");
+        }
         if ( empresa!= null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")){
+        if (nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        empresa = new Empresa(nickname,nombre,apellido,email,descripcion,web,imagen,psw);
+        empresa = new Empresa(nickname, nombre, apellido, email, descripcion, web, imagen, psw);
         mu.addUsuario(empresa);
 		
 	}
@@ -137,13 +142,15 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		ManejadorUsuario mu = ManejadorUsuario.getinstance();
         Usuario postulante = mu.obtenerUsuario(nickname);
         Usuario emailEnUso = mu.obtenerUsuarioPorEmail(email);
-        if(emailEnUso != null) {throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");}
+        if (emailEnUso != null) {
+        	throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");
+        }
         if (postulante != null)
             throw new NicknameYaExisteException("El usuario " + nickname + " ya esta registrado");
-        if(nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals(null)|| nacionalidad.equals("")){
+        if (nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals(null)|| nacionalidad.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad,imagen,psw);
+        postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad, imagen, psw);
         mu.addUsuario(postulante);
 		
 	}
@@ -155,12 +162,14 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		
 		Set<DataUsuario> res = new HashSet<>();
 		Map<String, DataUsuario> m = mu.getDataUsuario();
-		if(!m.isEmpty()) {
+		if (!m.isEmpty()) {
 			for (Map.Entry<String, DataUsuario> entry : m.entrySet()) {
 			    res.add(entry.getValue());
 			}
 			return res;
-		}else {throw new UsuarioNoExisteException("No existen Usuarios");}
+		}else {
+			throw new UsuarioNoExisteException("No existen Usuarios");
+			}
 		}
 	
 

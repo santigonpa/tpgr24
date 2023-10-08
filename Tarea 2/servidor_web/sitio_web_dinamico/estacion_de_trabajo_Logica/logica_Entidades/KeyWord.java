@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class KeyWord {
 	
 	private String palabraClave;
-	private Map<String,OfertaLaboral> ofertas; 
+	private Map<String, OfertaLaboral> ofertas; 
 	
 	public KeyWord(String palabra) {
 		this.palabraClave = palabra;

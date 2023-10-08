@@ -13,7 +13,7 @@ public class DataPaquete {
 	private byte[] imagen;
 	private LocalDate fechadealta;
 	
-	public DataPaquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo,byte[] imagen) {
+	public DataPaquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) {
 		this.nombre = nombre;
 		this.setDescripcion(descripcion);
 		this.setValidez(validez);

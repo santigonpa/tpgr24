@@ -22,7 +22,7 @@ public interface IControladorOferta  {
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
 			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
 	
-public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento,LocalTime horaInicio, LocalTime horaFin,int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
+public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento, LocalTime horaInicio, LocalTime horaFin, int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
 
 
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
@@ -34,7 +34,7 @@ public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String
 
 public abstract Set<String> getPostulantesString(String oferta);
 
-public abstract void CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion,
+public abstract void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion,
 		int validez, int descuento, LocalDate fechaDeAlta, int costo, byte[] imagen) throws NombrePaqueteYaExiste;
 
 public abstract void aceptarOfertaLaboral(DataOferta dof);

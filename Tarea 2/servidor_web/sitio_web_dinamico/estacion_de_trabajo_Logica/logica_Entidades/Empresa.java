@@ -81,7 +81,7 @@ public class Empresa extends Usuario{
 		this.ofertas.put(nombreOf, of);
 	}
 	
-	public void agregarPaquetes (String nombrePaq, Paquete paq ) {
+	public void agregarPaquetes(String nombrePaq, Paquete paq){
 		this.paquetes.put(nombrePaq, paq);
 	}
 
@@ -92,27 +92,27 @@ public class Empresa extends Usuario{
 	} 
 	
 	public boolean tienePaqueteAsociado() {
-		return (this.compra != null);
+		return this.compra != null;
 	}
 	
-	public Map<String,OfertaLaboral> getOfertasAprobadasDeEmpresa(){
+	public Map<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
 		Map<String, OfertaLaboral> res = new HashMap<>();
         
 	    for (String ofertaNombre : this.ofertas.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
-	    		if(oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
 	    			res.put(ofertaNombre, oferta);
 	    		}
 	    }
 	    return res;
 	}
 	
-	public Map<String,OfertaLaboral> getOfertasRechazadasIngresadas(){
+	public Map<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
 		Map<String, OfertaLaboral> res = new HashMap<>();
         
 	    for (String ofertaNombre : this.ofertas.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
-	    		if(!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    		if (!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
 	    			res.put(ofertaNombre, oferta);
 	    		}
 	    }
@@ -124,7 +124,7 @@ public class Empresa extends Usuario{
 	}
 
 	public DataEmpresa getDTEmpresa() {
-		DataEmpresa DtEmp = new DataEmpresa(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDescripcion(), this.getLinkWeb(),this.getImagen(), this.getPsw());	
+		DataEmpresa DtEmp = new DataEmpresa(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDescripcion(), this.getLinkWeb(), this.getImagen(), this.getPsw());	
 		return DtEmp;
 	}
 	
@@ -140,7 +140,7 @@ public class Empresa extends Usuario{
 		this.setLinkWeb(link);
 	}
 
-	public void linkearOfertaEmpresa(OfertaLaboral nuevaOferta,String nombreOferta) {
+	public void linkearOfertaEmpresa(OfertaLaboral nuevaOferta, String nombreOferta) {
 		this.ofertas.put(nombreOferta, nuevaOferta);
 	}
 

@@ -31,9 +31,8 @@ public class DataOferta {
 	//la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
-			String departamento,LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave, String tipoDePago)
-	{
+			String departamento, LocalTime horaInicio2, LocalTime horaFin2
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave, String tipoDePago){
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
 		this.setDescripcion(descripcion);

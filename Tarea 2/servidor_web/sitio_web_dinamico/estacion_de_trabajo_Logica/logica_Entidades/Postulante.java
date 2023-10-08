@@ -1,10 +1,10 @@
 package logica_Entidades;
 
-import java.time.*;
+
 import java.util.Set;
+import java.time.LocalDate;
 import java.util.HashSet;
 
-import logica_DataTypes.DataPostulacion;
 import logica_DataTypes.DataPostulante;
 
 public class Postulante extends Usuario{
@@ -43,7 +43,7 @@ public class Postulante extends Usuario{
 	}
 	
 	public DataPostulante getDTPostulante() {
-		DataPostulante DtPost = new DataPostulante(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.nacimiento, this.nacionalidad, this.getImagen(),this.getPsw());
+		DataPostulante DtPost = new DataPostulante(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.nacimiento, this.nacionalidad, this.getImagen(), this.getPsw());
 		return DtPost;
 	}
 	
@@ -54,7 +54,7 @@ public class Postulante extends Usuario{
 	
 	public void modificarPos(String nombre, String apellido, int dia, int mes, int anio, String nacionalidad) {
 		LocalDate fechaIn = LocalDate.of(dia,  mes, anio);
-		if(this.nacimiento.isEqual(fechaIn)){
+		if (this.nacimiento.isEqual(fechaIn)){
 		}else {
 			this.setNacimiento(fechaIn);
 		}
@@ -68,10 +68,11 @@ public class Postulante extends Usuario{
 	}
 	
 	public boolean estaPostulado(Postulacion p) {
-		if(this.postulaciones.isEmpty()) {
+		if (this.postulaciones.isEmpty()) {
 			return false;
 		}else {
-		return this.postulaciones.contains(p);}
+		return this.postulaciones.contains(p);
+		}
 	}
 	
 	public Set<Postulacion> obtenerPostulaciones(){

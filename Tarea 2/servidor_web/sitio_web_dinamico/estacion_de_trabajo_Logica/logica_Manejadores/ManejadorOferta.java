@@ -7,7 +7,6 @@ import java.util.Set;
 
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataOferta;
-import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.OfertaLaboral.EstadoOferta;
@@ -18,13 +17,13 @@ public class ManejadorOferta implements IManejadorOferta{
 	
 
 	private static ManejadorOferta instancia;
-	private Map<String,OfertaLaboral> ofertasLaborales;
-	private Map<String,KeyWord> keywordsTotales;
+	private Map<String, OfertaLaboral> ofertasLaborales;
+	private Map<String, KeyWord> keywordsTotales;
 	private	Set<Postulacion> postulaciones;
 	
 	private ManejadorOferta() {
 		this.ofertasLaborales = new HashMap<String, OfertaLaboral>();
-		this.keywordsTotales = new HashMap<String,KeyWord>();
+		this.keywordsTotales = new HashMap<String, KeyWord>();
 		this.postulaciones = new HashSet<Postulacion>();
 	}
 	
@@ -41,13 +40,13 @@ public class ManejadorOferta implements IManejadorOferta{
     }
 
 	public OfertaLaboral obtenerOferta(String nombre) {
-		return ((OfertaLaboral)this.ofertasLaborales.get(nombre));
+		return (OfertaLaboral) this.ofertasLaborales.get(nombre);
 	}
 
 	public void linkearKeywords(Set<String> palabrasClaveSelec , OfertaLaboral nuevaOfertaLaboral) {
 		for (String kw : palabrasClaveSelec) {
-			KeyWord palabra = ((KeyWord)this.keywordsTotales.get(kw));
-			if(palabra != null) {
+			KeyWord palabra = (KeyWord) this.keywordsTotales.get(kw);
+			if (palabra != null) {
 				nuevaOfertaLaboral.agregarKeywordAOferta(palabra);
 				palabra.agregarOfertaAKeyWord(nuevaOfertaLaboral);
 			}
@@ -65,11 +64,11 @@ public class ManejadorOferta implements IManejadorOferta{
     	
     	// Obtener las claves del Map
         Set<String> clavesKeyWord = this.keywordsTotales.keySet();
-        for(String nombreKeyword : clavesKeyWord) {
-        	KeyWord keyAct = ((KeyWord) this.keywordsTotales.get(nombreKeyword));
+        for (String nombreKeyword : clavesKeyWord) {
+        	KeyWord keyAct = (KeyWord) this.keywordsTotales.get(nombreKeyword);
         	temp.add(keyAct);
         }
-        for(KeyWord keyAct: temp) {
+        for (KeyWord keyAct: temp) {
         	DataKeyWord nuevaDTKey = new DataKeyWord(keyAct.getPalabraClave());
         	res.add(nuevaDTKey);
         }
@@ -77,8 +76,8 @@ public class ManejadorOferta implements IManejadorOferta{
     	return res;
 	}
 
-	public void addKeyword(KeyWord k) {
-		this.keywordsTotales.put(k.getPalabraClave(),k);
+	public void addKeyword(KeyWord key) {
+		this.keywordsTotales.put(key.getPalabraClave(), key);
 	
 	}
 
@@ -90,14 +89,14 @@ public class ManejadorOferta implements IManejadorOferta{
 
 	public boolean existeOferta(String nombre) {
 		OfertaLaboral of = this.obtenerOferta(nombre);
-		return (of != null);
+		return of != null;
 	}
 	
 	public Set<DataOferta> getOfertas(){
 			
 			Set<DataOferta> res = new HashSet<>();
 			Map<String, OfertaLaboral> of = this.ofertasLaborales;
-			if(!of.isEmpty()) {
+			if (!of.isEmpty()) {
 				for (Map.Entry<String, OfertaLaboral> entry : of.entrySet()) {
 				    res.add(entry.getValue().getDataOferta());
 				}
@@ -113,10 +112,10 @@ public class ManejadorOferta implements IManejadorOferta{
 	
 	public Set<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada) {
 		Set<DataOferta> res = new HashSet<>();
-		for(String ofertaNombre : this.ofertasLaborales.keySet() ) {
+		for (String ofertaNombre : this.ofertasLaborales.keySet() ) {
 			OfertaLaboral ofertaReal = this.ofertasLaborales.get(ofertaNombre);
 			DataOferta oferta = this.ofertasLaborales.get(ofertaNombre).getDataOferta();
-			if(ofertaReal.getKeyWordsString().contains(keywordSeleccionada) && ofertaReal.getEstado().equals(EstadoOferta.ACEPTADA)) {
+			if (ofertaReal.getKeyWordsString().contains(keywordSeleccionada) && ofertaReal.getEstado().equals(EstadoOferta.ACEPTADA)) {
 				res.add(oferta);
 			}
 		}
