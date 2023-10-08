@@ -44,6 +44,10 @@ public class Postulacion {
 			return post.getNickName();
 		}
 		
+		public String getNombrePostulante() {
+			return post.getNombre();
+		}
+		
 		public OfertaLaboral getOferta() {
 			return this.ofer;
 		}

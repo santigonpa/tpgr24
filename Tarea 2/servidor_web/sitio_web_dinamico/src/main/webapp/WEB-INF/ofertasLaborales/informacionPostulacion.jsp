@@ -4,8 +4,11 @@
 <html>
 <head>
 
-	<%@ page import="logica_Entidades.Postulante" %>
+	<%@ page import="logica_Entidades.Postulacion" %>
+	<%@ page import="logica_Entidades.OfertaLaboral" %>
+	<%@ page import="logica_DataTypes.DataPostulacion" %>
 	<%@ page import="java.time.LocalDate" %>
+	<%@page import ="java.util.Base64" %>
 	
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,21 +50,33 @@
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	   
 	   <%
-	   	Postulante post = (Postulante) request.getAttribute("dtPost");
+	   	Postulacion post = (Postulacion) request.getAttribute("dtPost");
+	   	String nombreO = post.getNombreOfer();
 	   	
-	   	String nombre = post.getNombre();
-	   	String apellido = post.getApellido();
-	   	String cvCompleto = post.getEmail();
-	   	String motivacion = post.getNickName();
-	   	LocalDate fechaPost = post.getNacimineto();
+	   	OfertaLaboral ofertaLaboral = post.getOferta();
 	   	
+	   	
+	   	String apellido = post.getNombreOfer();
+	   	String cvBreve = post.getCV();
+	   	String motivacion = post.getMotivacion();
+	   	LocalDate fecha = post.getFecha();
+	   	String nombrePostulante = post.getNombrePostulante();
+	   	
+	   	byte[] imagenBytes = ofertaLaboral.getImagen();
+        String base64Image = "";
+        if (imagenBytes != null) {
+            base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+        }
+	   
 	   %>
 	    
 			<div class="row">
 		<div class="col-6 col-md-4">
-			<div class="card" style="width: 18rem;">
-		      <img src="data:image/jpeg;base64, " class="card-img-top" alt="imagen de usuario">
-		    </div>
+			<div class = "alinearImg3">
+           
+  				<img src="data:image/jpeg;base64, <%= base64Image %>" align = "absmiddle" class="img-thumbnail shadow" alt="...">
+		
+			</div>
 		</div>
     	<div class="col-md-8">
 			<div class="contenedor4">
@@ -71,27 +86,37 @@
 		  <div class = "contenedor4">
 		  	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Nombre:</h4>
+      					<h4 class = "fs-5 fw=normal">Nombre de la oferta:</h4>
    				 </div>
     		<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%=nombre %> <%=apellido %> </h4>
+      					<h4 class = "fs-5 fw-lighter"><%= nombreO %></h4>
     		 </div>
   			</div>
   			<hr>
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-CV:</h4>
+      					<h4 class = "fs-5 fw=normal">Nombre del postulante:</h4>
+   				 </div>
+    		<div class="col">
+      					<h4 class = "fs-5 fw-lighter"><%= nombrePostulante %></h4>
+    		 </div>
+  			</div>
+  			<hr>
+  			
+  			<div class="row">
+    			<div class="col">
+      					<h4 class = "fs-5 fw=normal">CV:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"> <%= cvCompleto %></h4>
+      					<h4 class = "fs-5 fw-lighter"> <%= cvBreve %></h4>
     		 	</div>
   		 	</div>
   		 	<hr>
   		 	
 		  	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Motivación:</h4>
+      					<h4 class = "fs-5 fw=normal">Motivación:</h4>
    				 </div>
     		<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= motivacion %></h4>
@@ -101,10 +126,10 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Fecha de postulacion:</h4>
+      					<h4 class = "fs-5 fw=normal">Fecha de postulación:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"> <%= fechaPost %></h4>
+      					<h4 class = "fs-5 fw-lighter"><%= fecha %></h4>
     		 	</div>
   		 	</div>
   		 	<hr>

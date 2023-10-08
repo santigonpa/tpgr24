@@ -42,8 +42,10 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
 
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	String nombreOfer = request.getParameter("nombre");
-		DataOferta ofer = IMO.getDataOferta(nombreOfer);
+    	
+    	String nombreOfer = request.getParameter("id");
+    	
+		//DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 		String user = request.getParameter("user");
 		

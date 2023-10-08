@@ -321,14 +321,14 @@
 				    <h5 class="card-title" style="color: black;"><%= nombreOf %></h5>
 				    <p> </p>
 				    
-				    <a href="consultaPostulacionPostulante.html" class="btn btn-dark">Ver más de la postulación</a>
+				    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOf %>" class="btn btn-dark">Ver más de la postulación</a>
 				  </div>
 				</div>
 				<% } %>
 			
 				</div>
 		<% }else{ %>
-			<p>Actualmente no se postulo a ninguna oferta.</p>
+			<p>Actualmente no se postuló a ninguna oferta.</p>
 		<%} %>
 	    </div>
 	  
