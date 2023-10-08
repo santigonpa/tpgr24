@@ -12,8 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_DataTypes.DataUsuario;
-import logica_Manejadores.IManejadorUsuario;
+import logica_datatypes.DataUsuario;
+import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 /**

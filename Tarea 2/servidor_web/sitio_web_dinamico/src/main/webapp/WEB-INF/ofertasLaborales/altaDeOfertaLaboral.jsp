@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import= "logica_DataTypes.DataTipoPublicacion" %>
+    <%@page import= "logica_datatypes.DataTipoPublicacion" %>
     <%@page import="java.util.Set" %>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
-    <%@page import= "logica_DataTypes.DataOferta" %>
+    <%@page import= "logica_datatypes.DataOferta" %>
     
 
     <!-- Bootstrap -->

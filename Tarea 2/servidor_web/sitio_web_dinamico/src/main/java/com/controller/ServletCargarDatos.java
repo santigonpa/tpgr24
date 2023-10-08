@@ -19,19 +19,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica_Controladores.IControladorUsuario;
-import logica_Entidades.Empresa;
-import logica_Entidades.KeyWord;
-import logica_Entidades.OfertaLaboral;
-import logica_Entidades.OfertaLaboral.EstadoOferta;
-import logica_Entidades.Paquete;
-import logica_Entidades.Postulacion;
-import logica_Entidades.Postulante;
-import logica_Entidades.TipoPublicacion;
-import logica_Entidades.Usuario;
-import logica_Manejadores.IManejadorOferta;
-import logica_Manejadores.IManejadorPyT;
-import logica_Manejadores.IManejadorUsuario;
+import logica_controladores.IControladorUsuario;
+import logica_entidades.Empresa;
+import logica_entidades.KeyWord;
+import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
+import logica_entidades.Postulacion;
+import logica_entidades.Postulante;
+import logica_entidades.TipoPublicacion;
+import logica_entidades.Usuario;
+import logica_entidades.OfertaLaboral.EstadoOferta;
+import logica_manejadores.IManejadorOferta;
+import logica_manejadores.IManejadorPyT;
+import logica_manejadores.IManejadorUsuario;
 
 
 

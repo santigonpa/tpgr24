@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "logica_Entidades.Usuario" %>
+<%@page import= "logica_entidades.Usuario" %>
     
     <header>
       <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->

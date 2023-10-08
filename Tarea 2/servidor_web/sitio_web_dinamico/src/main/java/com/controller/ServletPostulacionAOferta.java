@@ -10,10 +10,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_DataTypes.DataOferta;
-import logica_Entidades.Postulante;
-import logica_Manejadores.IManejadorOferta;
-import logica_Manejadores.IManejadorUsuario;
+import logica_datatypes.DataOferta;
+import logica_entidades.Postulante;
+import logica_manejadores.IManejadorOferta;
+import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 /**

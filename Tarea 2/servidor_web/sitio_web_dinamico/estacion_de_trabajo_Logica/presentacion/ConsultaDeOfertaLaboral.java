@@ -10,8 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import excepciones.UsuarioNoExisteException;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
 
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -20,8 +18,10 @@ import javax.swing.JScrollPane;
 import java.util.Set;
 import javax.swing.JButton;
 
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataOferta;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataOferta;
 import utils.Fabrica;
 
 

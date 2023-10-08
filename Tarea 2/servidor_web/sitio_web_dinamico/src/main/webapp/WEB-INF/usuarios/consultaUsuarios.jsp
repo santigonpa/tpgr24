@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@page import= "logica_DataTypes.DataUsuario" %>
+    <%@page import= "logica_datatypes.DataUsuario" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>

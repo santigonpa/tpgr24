@@ -2,11 +2,10 @@ package com.helpers;
 
 import com.model.EstadoSesion;
 
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataPostulante;
-import logica_DataTypes.DataUsuario;
-
 import jakarta.servlet.http.HttpSession;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataPostulante;
+import logica_datatypes.DataUsuario;
 import jakarta.servlet.http.HttpServletRequest;
 
 

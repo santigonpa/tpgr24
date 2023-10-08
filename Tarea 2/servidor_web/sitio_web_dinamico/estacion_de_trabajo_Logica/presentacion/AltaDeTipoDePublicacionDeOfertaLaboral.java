@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import excepciones.NombreTipoPubliYaExisteException;
-import logica_Controladores.IControladorOferta;
+import logica_controladores.IControladorOferta;
 
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;

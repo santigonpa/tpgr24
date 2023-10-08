@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%@page import= "logica_Entidades.Postulacion" %>
+    <%@page import= "logica_entidades.Postulacion" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>

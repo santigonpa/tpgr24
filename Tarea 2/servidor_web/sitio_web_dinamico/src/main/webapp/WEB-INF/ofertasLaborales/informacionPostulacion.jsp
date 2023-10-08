@@ -4,9 +4,9 @@
 <html>
 <head>
 
-	<%@ page import="logica_Entidades.Postulacion" %>
-	<%@ page import="logica_Entidades.OfertaLaboral" %>
-	<%@ page import="logica_DataTypes.DataPostulacion" %>
+	<%@ page import="logica_entidades.Postulacion" %>
+	<%@ page import="logica_entidades.OfertaLaboral" %>
+	<%@ page import="logica_datatypes.DataPostulacion" %>
 	<%@ page import="java.time.LocalDate" %>
 	<%@page import ="java.util.Base64" %>
 	

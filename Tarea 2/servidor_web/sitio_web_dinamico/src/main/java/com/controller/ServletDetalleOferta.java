@@ -7,12 +7,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica_Controladores.IControladorUsuario;
-import logica_DataTypes.DataOferta;
-import logica_Entidades.Postulante;
-import logica_Entidades.Usuario;
-import logica_Manejadores.IManejadorOferta;
-import logica_Manejadores.IManejadorUsuario;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataOferta;
+import logica_entidades.Postulante;
+import logica_entidades.Usuario;
+import logica_manejadores.IManejadorOferta;
+import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 import java.io.IOException;

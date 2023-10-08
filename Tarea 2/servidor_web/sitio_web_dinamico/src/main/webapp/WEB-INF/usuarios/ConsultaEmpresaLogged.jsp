@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import= "logica_DataTypes.DataEmpresa" %>
+<%@page import= "logica_datatypes.DataEmpresa" %>
  <%@page import ="java.util.Base64" %>
  <%@page import="java.util.Set" %>
- <%@page import= "logica_DataTypes.DataOferta" %>
-  <%@page import= "logica_Entidades.Usuario" %>
+ <%@page import= "logica_datatypes.DataOferta" %>
+  <%@page import= "logica_entidades.Usuario" %>
 
 <!DOCTYPE html>
 <html>

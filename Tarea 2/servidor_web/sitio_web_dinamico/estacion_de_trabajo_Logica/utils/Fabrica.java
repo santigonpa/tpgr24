@@ -1,15 +1,15 @@
 package utils;
 
-import logica_Controladores.ControladorOferta;
-import logica_Controladores.ControladorUsuario;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
-import logica_Manejadores.IManejadorOferta;
-import logica_Manejadores.IManejadorPyT;
-import logica_Manejadores.IManejadorUsuario;
-import logica_Manejadores.ManejadorOferta;
-import logica_Manejadores.ManejadorPaquetesYTiposPubli;
-import logica_Manejadores.ManejadorUsuario;
+import logica_controladores.ControladorOferta;
+import logica_controladores.ControladorUsuario;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_manejadores.IManejadorOferta;
+import logica_manejadores.IManejadorPyT;
+import logica_manejadores.IManejadorUsuario;
+import logica_manejadores.ManejadorOferta;
+import logica_manejadores.ManejadorPaquetesYTiposPubli;
+import logica_manejadores.ManejadorUsuario;
 
 
 	public class Fabrica {
@@ -27,25 +27,25 @@ import logica_Manejadores.ManejadorUsuario;
     }
 
     public IControladorOferta getInOfer() {
-        return ControladorOferta.getInstance();
+        return (IControladorOferta) ControladorOferta.getInstance();
     }
     
     public IControladorUsuario getInUser() {
-        return ControladorUsuario.getInstance();
+        return (IControladorUsuario) ControladorUsuario.getInstance();
     }
     
     // ---------------------------------------------
 
     public IManejadorOferta getInManejadorOferta() {
-    	return ManejadorOferta.getInstance();
+    	return (IManejadorOferta) ManejadorOferta.getInstance();
     }
 
 	public IManejadorUsuario getInManejadorUsuario() {
-		return ManejadorUsuario.getinstance();
+		return (IManejadorUsuario) ManejadorUsuario.getinstance();
 	}
 
 	public IManejadorPyT getInManejadorPyT() {
-		return ManejadorPaquetesYTiposPubli.getInstance();
+		return (IManejadorPyT) ManejadorPaquetesYTiposPubli.getInstance();
 	}
 
 }

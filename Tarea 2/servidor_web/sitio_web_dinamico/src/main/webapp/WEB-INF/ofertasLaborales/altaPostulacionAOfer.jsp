@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="logica_DataTypes.DataOferta" %>
+    <%@ page import="logica_datatypes.DataOferta" %>
     <%@ page import="java.time.LocalTime" %>
     <%@ page import="java.time.LocalDate" %>
-    <%@ page import="logica_Entidades.OfertaLaboral.EstadoOferta" %>
+    <%@ page import="logica_entidades.OfertaLaboral.EstadoOferta" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@ page import="logica_Entidades.KeyWord" %>
+    <%@ page import="logica_entidades.KeyWord" %>
     <%@ page import="java.util.Set" %>
-    <%@ page import="logica_Entidades.Usuario" %>
+    <%@ page import="logica_entidades.Usuario" %>
     <%@ page import="java.time.format.DateTimeFormatter" %>
     
 

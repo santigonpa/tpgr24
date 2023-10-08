@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "logica_Entidades.Usuario" %>
+<%@page import= "logica_entidades.Usuario" %>
 <%@page import= "utils.Fabrica" %>
-<%@page import= "logica_Manejadores.IManejadorUsuario" %>
-<%@page import= "logica_Manejadores.IManejadorOferta" %>
-<%@page import= "logica_Entidades.Usuario" %>
-<%@page import= "logica_DataTypes.DataEmpresa" %>
-<%@page import= "logica_DataTypes.DataOferta" %>
-<%@page import= "logica_DataTypes.DataKeyWord" %>
+<%@page import= "logica_manejadores.IManejadorUsuario" %>
+<%@page import= "logica_manejadores.IManejadorOferta" %>
+<%@page import= "logica_entidades.Usuario" %>
+<%@page import= "logica_datatypes.DataEmpresa" %>
+<%@page import= "logica_datatypes.DataOferta" %>
+<%@page import= "logica_datatypes.DataKeyWord" %>
 <%@page import="java.util.Map" %>
 <%@page import="java.util.Set" %>
 <%@page import ="java.util.Base64" %>

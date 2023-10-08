@@ -27,12 +27,12 @@ import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataKeyWord;
-import logica_DataTypes.DataTipoPublicacion;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataKeyWord;
+import logica_datatypes.DataTipoPublicacion;
 import utils.Fabrica;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;

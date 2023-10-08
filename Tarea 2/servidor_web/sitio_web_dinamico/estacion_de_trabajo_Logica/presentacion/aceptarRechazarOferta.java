@@ -13,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import excepciones.UsuarioNoExisteException;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataOferta;
-import logica_Entidades.OfertaLaboral.EstadoOferta;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataOferta;
+import logica_entidades.OfertaLaboral.EstadoOferta;
 import utils.Fabrica;
 
 public class aceptarRechazarOferta extends JInternalFrame {

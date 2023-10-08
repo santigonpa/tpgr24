@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_DataTypes.DataPaquete;
-import logica_Entidades.Usuario;
-import logica_Manejadores.IManejadorPyT;
+import logica_datatypes.DataPaquete;
+import logica_entidades.Usuario;
+import logica_manejadores.IManejadorPyT;
 import utils.Fabrica;
 
 import java.io.IOException;

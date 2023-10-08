@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica_Entidades.Usuario;
-import logica_Manejadores.IManejadorUsuario;
+import logica_entidades.Usuario;
+import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 import java.io.IOException;

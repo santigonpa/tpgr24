@@ -10,12 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import excepciones.UsuarioNoExisteException;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataOferta;
-import logica_DataTypes.DataPostulante;
-import logica_DataTypes.DataUsuario;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataOferta;
+import logica_datatypes.DataPostulante;
+import logica_datatypes.DataUsuario;
 import utils.Fabrica;
 
 import javax.swing.DefaultComboBoxModel;

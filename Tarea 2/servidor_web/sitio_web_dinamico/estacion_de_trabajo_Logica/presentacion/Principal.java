@@ -6,11 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import utils.Fabrica;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
-import logica_Manejadores.IManejadorOferta;
-import logica_Manejadores.IManejadorUsuario;
-import logica_cargarDatos.datosDePrueba.cargarDatos;
+import logica_cargar_datos.datos_de_prueba.cargarDatos;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_manejadores.IManejadorOferta;
+import logica_manejadores.IManejadorUsuario;
+
 import javax.swing.JMenu;
 //import java.awt.Rectangle;
 //import java.awt.GridBagLayout;

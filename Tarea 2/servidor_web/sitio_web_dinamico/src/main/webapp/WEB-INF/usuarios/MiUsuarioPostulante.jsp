@@ -4,17 +4,17 @@
  <%@page import= "java.time.LocalTime" %> 
  <%@page import= "java.time.format.DateTimeFormatter" %> 
  <%@page import= "java.time.format.DateTimeFormatter" %> 
- <%@page import= "logica_DataTypes.DataPostulante" %>
+ <%@page import= "logica_datatypes.DataPostulante" %>
  <%@page import="java.util.Set" %>
  <%@page import = "java.io.FileOutputStream" %>
  <%@page import  = "java.io.IOException" %>
  <%@page import ="java.util.Base64" %>
- <%@page import= "logica_Entidades.Postulacion" %>
- <%@page import= "logica_Entidades.OfertaLaboral" %>
- <%@page import= "logica_Entidades.Postulante" %>
+ <%@page import= "logica_entidades.Postulacion" %>
+ <%@page import= "logica_entidades.OfertaLaboral" %>
+ <%@page import= "logica_entidades.Postulante" %>
  <%@page import= "utils.Fabrica" %>
- <%@page import= "logica_Manejadores.IManejadorUsuario" %>
- <%@page import= "logica_Entidades.Usuario" %>
+ <%@page import= "logica_manejadores.IManejadorUsuario" %>
+ <%@page import= "logica_entidades.Usuario" %>
 
  
  

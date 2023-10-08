@@ -31,14 +31,14 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <%@ page import="logica_DataTypes.DataPaquete" %>
+    <%@ page import="logica_datatypes.DataPaquete" %>
     <%@ page import="java.time.LocalTime" %>
     <%@ page import="java.time.LocalDate" %>
-    <%@ page import="logica_Entidades.OfertaLaboral.EstadoOferta" %>
+    <%@ page import="logica_entidades.OfertaLaboral.EstadoOferta" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@ page import="logica_Entidades.KeyWord" %>
+    <%@ page import="logica_entidades.KeyWord" %>
 	<%@ page import="java.util.Set" %>
     
     <script
