@@ -21,6 +21,7 @@ public class Empresa extends Usuario{
 		this.web = web; 
 		this.compra = null;
 		this.ofertas = new HashMap<>();
+		this.paquetes = new HashMap<>();
 		
 		
 	}
