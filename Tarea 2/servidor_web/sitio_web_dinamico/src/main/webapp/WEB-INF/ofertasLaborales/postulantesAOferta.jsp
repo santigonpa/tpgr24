@@ -82,7 +82,7 @@
 	  				 <div class="card-body">
 	    				<h5 class="card-title"><%=nombreUser %> <%=apellidoUser %></h5>
 	    				<p class="card-text"><%= motivacion %></p>
-	   					 <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %> user=<%= nombreUser %>>" class="btn btn-outline-dark" >Informacion postulacion</a>
+						<a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %>&user=<%= nombreUser %>" class="btn btn-outline-dark">Informacion postulacion</a>
 	  				 </div>
 				</div>
 				

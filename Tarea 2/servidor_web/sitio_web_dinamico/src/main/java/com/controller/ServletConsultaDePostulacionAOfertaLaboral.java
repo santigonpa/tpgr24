@@ -45,10 +45,10 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     	
     	
     	String nombreOfer = request.getParameter("id");
-    	
+    	String user = request.getParameter("user");
+
 		//DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
-		String user = request.getParameter("user");
 		
     	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
     	
@@ -65,12 +65,14 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     		request.setAttribute("postulantes", postulantes);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
     	}else if(!banderaPostulante && (user != null)) {
-    		Postulante pos = IMU.obtenerPostulante(user);
+    		Postulante pos = (Postulante) IMU.obtenerPostulante(user);
     		Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
-    		if (dtPost != null) {
-    			request.setAttribute("dtPost", dtPost);
-        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
-    		}
+	    	if (dtPost != null) {
+	    			request.setAttribute("dtPost", dtPost);
+	        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
+	    	}
+    		
+    		
     	}
     
 	    
