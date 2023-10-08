@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +41,7 @@
     <%@page import ="java.util.Base64" %>
     <%@ page import="logica_Entidades.KeyWord" %>
 	<%@ page import="java.util.Set" %>
+	<%@ page import="java.time.format.DateTimeFormatter" %>
     
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -62,7 +63,9 @@
 	 	LocalTime horaI = oferta.getHoraInicio();
 	 	LocalTime horaF = oferta.getHoraFin();
 	 	float remuneracion = oferta.getRemuneracion();
-	 	LocalDate alta = oferta.getFechaDeAlta(); 
+	 	LocalDate alta = oferta.getFechaDeAlta();
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    String formattedDate = alta.format(dateFormatter);
 	 	EstadoOferta est = oferta.getEstado();
 	 	String emp = oferta.getEmpresa();
         byte[] imagenBytes = oferta.getImagen();
@@ -87,7 +90,7 @@
 		</div>
     	<div class="col-md-8">
 			<div class="contenedor4">
-				<h2 class="text-uppercase fs-4 fw-bolder">Información de la oferta</h2>
+				<h2 class="text-uppercase fs-4 fw-bolder">InformaciÃ³n de la oferta</h2>
 			</div>
 			<!--cargo datos-->
 		  <div class = "contenedor4">
@@ -103,7 +106,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Descripción:</h4>
+      					<h4 class = "fs-5 fw=normal">-DescripciÃ³n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= desc %></h4>
@@ -143,7 +146,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Remuneración:</h4>
+      					<h4 class = "fs-5 fw=normal">-RemuneraciÃ³n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= remuneracion %></h4>
@@ -156,7 +159,7 @@
       					<h4 class = "fs-5 fw=normal">-Fecha:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%= alta %></h4>
+      					<h4 class = "fs-5 fw-lighter"><%= formattedDate %></h4>
     		 	</div>
   		 	</div>
   		 	<hr>
@@ -201,22 +204,22 @@
 				</div>
 			</div>
 			</div>
-			
+			<div class="contenedorPrincipal">
+							    
   		</div>
   		</div>
 	</div>
 		
 		<% 
 		if ("Postulante".equals(es)) { %>
-		    <div class = "contenedor text-center mt-3">
-				<a href = "/TrabajoUY/PostulacionAOferta" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
-			  			<button href = "/TrabajoUY/PostulacionAOferta" class="btn btn-dark" type="button">Postularme</button>
-					</a>
-				</div>	
+		    <div class="contenedor text-center mt-5">
+			    <a href="/TrabajoUY/PostulacionDesdeVerOferta?ofer=<%= nombre %>" style="text-decoration: none;">
+				    <button class="btn btn-dark" type="button" style="margin-top: 40px;">Postularme</button>
+				</a>
+			</div>
 		<% 
 		} 
 		%>
-	
 	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>

@@ -38,8 +38,7 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public static EstadoSesion getEstado(HttpServletRequest request)
-  	{	//obtiene el tipo de la sesion
+    public static EstadoSesion getEstado(HttpServletRequest request){	//obtiene el tipo de la sesion
   		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
   		
   	}
@@ -47,7 +46,7 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
     		boolean banderaSesion;
-    		if(getEstado(request) != null) {
+    		if (getEstado(request) != null) {
     			banderaSesion = getEstado(request).equals(EstadoSesion.SI_LOGEADO);
     		}else {
     			banderaSesion = false;

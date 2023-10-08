@@ -13,7 +13,9 @@ body{
     margin-top : -10px;
 }
 
-
+.mi-boton {
+    margin-top: 100px !important; /* Ajusta este valor según tus necesidades */
+}
 /* Estilos para el texto "TRABAJO UY" */
 .navbar-brand .texto-trabajo-uy {
     font-family: 'Fira Sans Condensed', sans-serif;

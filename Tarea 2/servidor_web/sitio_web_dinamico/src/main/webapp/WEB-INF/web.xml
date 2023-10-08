@@ -218,4 +218,14 @@
     <servlet-name>ServletPostulantesAOferta</servlet-name>
     <url-pattern>/ServletPostulantesAOferta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostulareseDesdeVerOferta</display-name>
+    <servlet-name>PostulareseDesdeVerOferta</servlet-name>
+    <servlet-class>com.controller.PostulareseDesdeVerOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostulareseDesdeVerOferta</servlet-name>
+    <url-pattern>/PostulareseDesdeVerOferta</url-pattern>
+  </servlet-mapping>
 </web-app>

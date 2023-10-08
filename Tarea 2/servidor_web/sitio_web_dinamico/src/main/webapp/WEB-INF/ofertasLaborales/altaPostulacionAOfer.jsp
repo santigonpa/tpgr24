@@ -1,6 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@page import= "logica_Entidades.Usuario" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import="logica_DataTypes.DataOferta" %>
+    <%@ page import="java.time.LocalTime" %>
+    <%@ page import="java.time.LocalDate" %>
+    <%@ page import="logica_Entidades.OfertaLaboral.EstadoOferta" %>
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
+    <%@ page import="logica_Entidades.KeyWord" %>
+    <%@ page import="java.util.Set" %>
+    <%@ page import="logica_Entidades.Usuario" %>
+    <%@ page import="java.time.format.DateTimeFormatter" %>
+    
 
     
 <!DOCTYPE html>
@@ -129,21 +140,21 @@
   		</div>
   		
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del bot髇 -->
+        <div class="nav-button"> <!-- Contenedor del bot贸n -->
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
 			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
 			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Bot髇" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Bot贸n" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesi髇</a></li>-->
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesi贸n</a></li>-->
                 <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesi髇</a></li>
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesi贸n</a></li>
             </ul> 
         </div>
     </div>
@@ -151,7 +162,7 @@
 	</nav>
 		<script>
 		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("縀st醩 seguro de que deseas cerrar la sesi髇?");
+    	var confirmacion = confirm("驴Est谩s seguro de que deseas cerrar la sesi贸n?");
     	if (confirmacion) {
 			window.location.href = "/TrabajoUY/CerrarSesion";
     		}
@@ -214,100 +225,123 @@
 
       <!--Content ends-->
     </header>
+    <%
+        // Recupera la ofertaSeleccionada de la solicitud
+        DataOferta oferta = (DataOferta) request.getSession().getAttribute("dataOfertaPos");
+	 	String nombre = oferta.getNombre();
+	 	String desc = oferta.getDescripcion();
+	 	String ciudad = oferta.getCiudad();
+	 	String dep = oferta.getDepartamento();
+	 	LocalTime horaI = oferta.getHoraInicio();
+	 	LocalTime horaF = oferta.getHoraFin();
+	 	float remuneracion = oferta.getRemuneracion();
+	 	LocalDate alta = oferta.getFechaDeAlta();
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    String formattedDate = alta.format(dateFormatter);
+	 	EstadoOferta est = oferta.getEstado();
+	 	String emp = oferta.getEmpresa();
+        byte[] imagenBytes = oferta.getImagen();
+        String base64Image = "";
+        if (imagenBytes != null) {
+            base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+        }
+        Set<KeyWord> keys = oferta.getKeyWords();
+
+    %>
     
 			   <main>
 			    <div class="contenedor4">
 			        <div class="row justify-content-center">
 			            <div class="col-6 col-md-4">
 			                <div class="alinearImg3">
-			                    <img src="https://tinyurl.com/45nsf34m" class="img-thumbnail shadow" alt="...">
+			                    <img src="data:image/jpeg;base64, <%= base64Image %>" class="img-thumbnail shadow" alt="...">
 			                </div>
 			            </div>
 			            <div class="col-md-8">
 			                <div class="contenedor4">
-			                    <h2 class="text-uppercase fs-4 fw-bolder">Informaci髇 de la oferta</h2>
+			                    <h2 class="text-uppercase fs-4 fw-bolder">Informaci贸n de la oferta</h2>
 			                </div>
 			                <!-- Cargar datos -->
 			                <div class="contenedor4">
 			                    <div class="row">
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Nombre:</h4>
+			                            <h4 class="fs-5 fw-normal">Nombre:</h4>
 			                        </div>
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">Desarrollador Frontend</h4>
-			                        </div>
-			                    </div>
-			                    <hr>
-			                    <div class="row">
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Descripci髇:</h4>
-			                        </div>
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">趎ete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.</h4>
+			                            <h4 class="fs-5 fw-lighter"><%= nombre %></h4>
 			                        </div>
 			                    </div>
 			                    <hr>
 			                    <div class="row">
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Ciudad:</h4>
+			                            <h4 class="fs-5 fw-normal">Descripci贸n:</h4>
 			                        </div>
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">Montevideo</h4>
-			                        </div>
-			                    </div>
-			                    <hr>
-			                    <div class="row">
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Departamento:</h4>
-			                        </div>
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">Montevideo</h4>
+			                            <h4 class="fs-5 fw-lighter"><%= desc %></h4>
 			                        </div>
 			                    </div>
 			                    <hr>
 			                    <div class="row">
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Horario:</h4>
+			                            <h4 class="fs-5 fw-normal">Ciudad:</h4>
 			                        </div>
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">09:00 - 18:00</h4>
-			                        </div>
-			                    </div>
-			                    <hr>
-			                    <div class="row">
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Remuneraci髇:</h4>
-			                        </div>
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">$90000</h4>
+			                            <h4 class="fs-5 fw-lighter"><%= ciudad %></h4>
 			                        </div>
 			                    </div>
 			                    <hr>
 			                    <div class="row">
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Fecha:</h4>
+			                            <h4 class="fs-5 fw-normal">Departamento:</h4>
 			                        </div>
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">14/08/2023</h4>
-			                        </div>
-			                    </div>
-			                    <hr>
-			                    <div class="row">
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Estado:</h4>
-			                        </div>
-			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter">Activa</h4>
+			                            <h4 class="fs-5 fw-lighter"><%= dep %></h4>
 			                        </div>
 			                    </div>
 			                    <hr>
 			                    <div class="row">
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-normal">- Empresa:</h4>
+			                            <h4 class="fs-5 fw-normal">Horario:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= horaI %> - <%= horaF %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Remuneraci贸n:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter">$<%= remuneracion %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Fecha:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= formattedDate %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Estado:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= est %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Empresa:</h4>
 			                        </div>
 			                        <div class="col">
 			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-secondary">EcoTech</button>
+			                                <button type="button" class="btn btn-outline-secondary"><%= emp %></button>
 			                            </a>
 			                        </div>
 			                    </div>
@@ -325,29 +359,25 @@
 			            <div class="form-container justify-content-center">
 			                
 			                <div class="contenedorPrincipal">
-			                    <div class="container">
-			                        <h5 class="text-uppercase fs-5 fw-bolder">KeyWords Asociadas</h5>
-			                        <div class="container">
-			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-dark">Tiempo completo</button>
-			                            </a>
-			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-secondary">Medio tiempo</button>
-			                            </a>
-			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-secondary">Remoto</button>
-			                            </a>
-			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-secondary">Freelance</button>
-			                            </a>
-			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-secondary">Temporal</button>
-			                            </a>
-			                            <a href="#">
-			                                <button type="button" class="btn btn-outline-secondary">Permanente</button>
-			                            </a>
-			                        </div>
-			                    </div>
+							    <div class="container">
+							        <h5 class="text-uppercase fs-5 fw-bolder">Keywords Asociadas</h5>
+							        <div class="container">
+							            <p class="fs-6 fw-lighter">
+							                <%
+							                    Set<KeyWord> keywords = oferta.getKeyWords();
+							                    boolean firstKeyword = true;
+							                    for (KeyWord keyword : keywords) {
+							                        if (!firstKeyword) {
+							                            out.print("<span style='margin-right: 5px;'>,</span>"); // Agregar coma y espacio entre las keywords, excepto la primera
+							                        }
+							                        out.print("<span>" + keyword.getPalabraClave() + "</span>"); // Mostrar el nombre de la keyword
+							                        firstKeyword = false;
+							                    }
+							                %>
+							            </p>
+							        </div>
+							    </div>
+							</div>
 			                </div>
 			                <div class="my-5"></div>
 			                <div class="contenedor">
@@ -358,14 +388,14 @@
 			                <div class="text-center"><i class="fa-solid fa-circle-info"></i></div>
 			                <div class="my-5"></div>
 			
-			                <form>
+			                <form action = "/TrabajoUY/PostulacionDesdeVerOferta" method = "POST">
 			                    <div class="form-floating mb-3">
-			                        <input type="text" class="form-control" id="floatingInput" placeholder="">
-			                        <label for="floatingInput">Motivaci髇 de la Postulaci髇</label>
+			                        <input type="text" class="form-control" id="motiv" name="motiv" placeholder="" required>
+			                        <label for="floatingInput">Motivaci贸n de la Postulaci贸n</label>
 			                    </div>
 			
 			                    <div class="form-floating">
-			                        <textarea class="form-control" placeholder="" id="floatingTextarea" style="height: 250px"></textarea>
+			                        <textarea class="form-control" placeholder="" id="curriculum" name="curriculum" style="height: 250px" required></textarea>
 			                        <label for="floatingTextarea">Escriba un CV breve</label>
 			                    </div>
 			
@@ -378,7 +408,6 @@
 			            </div>
 			        </div>
 			    </div>
-			</div>
 		</main>
 			
    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
