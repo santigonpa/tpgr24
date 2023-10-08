@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import logica_DataTypes.DataOferta;
 import logica_DataTypes.DataPostulacion;
 import logica_DataTypes.DataPostulante;
+import logica_Entidades.OfertaLaboral;
 import logica_Entidades.Postulacion;
 import logica_Entidades.Postulante;
 import logica_Entidades.Usuario;
@@ -51,32 +52,27 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
 		
     	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
     	
-    	if(banderaPostulante || (!user.equals("noUsuario"))) {
-    		if(banderaPostulante) {
+    	if(banderaPostulante) {
     		Postulante post = (Postulante) IMU.obtenerPostulante(usuario.getNickName());
     		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
     		if (dtPost != null) {
     			request.setAttribute("dtPost", dtPost);
-        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
-    		} 
-    		}else {
-    			Postulante post = (Postulante) IMU.obtenerPostulante(user);
-        		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
-        		if (dtPost != null) {
-        			request.setAttribute("dtPost", dtPost);
-            		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
-        		}
+        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
     		}
     		
-    	}else{
-    		Set<String> postS= IMO.obtenerOferta(nombreOfer).getPostulantesString();
-    		Set<DataPostulante> post = new HashSet<>();
-    		for(DataPostulante dtPos : post) {
-    			post.add(IMU.getDataPostulante(usuario.getNickName()));
-    		}
-    		request.setAttribute("dtPos", post);
+    	}else if(!banderaPostulante && (user == null)){
+    		Set<Postulacion> postulantes = (Set<Postulacion>) IMO.obtenerOferta(nombreOfer).getPostulaciones();
+    		request.setAttribute("postulantes", postulantes);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
+    	}else if(!banderaPostulante && (user != null)) {
+    		Postulante pos = IMU.obtenerPostulante(user);
+    		Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
+    		if (dtPost != null) {
+    			request.setAttribute("dtPost", dtPost);
+        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
+    		}
     	}
+    
 	    
     }
 	/**

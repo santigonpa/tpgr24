@@ -328,7 +328,7 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta %></h5>
 			          <p class="card-text"><%= descripcion %></p>
-			          <a href="#" class="btn btn-outline-dark">Consultar datos de la oferta</a>
+			          <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOferta %>" class="btn btn-outline-dark">Consultar datos de la oferta</a>
 			        </div>
 			      </div>
 			    </div>

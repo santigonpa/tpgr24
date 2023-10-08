@@ -197,4 +197,8 @@ public LocalTime getHoraFin() {
 	public String getTipoDePago() {
 		return this.tipoDePago;
 	}
+	
+	public Set<Postulacion> getPostulaciones(){
+		return this.postulacionesSobreLaOferta;
+	}
 }

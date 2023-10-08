@@ -5,11 +5,17 @@
 <head>
 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%@page import= "logica_DataTypes.DataPostulante" %>
-    <%@page import="java.util.Set" %>    
+    <%@page import= "logica_Entidades.Postulacion" %>
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
+    <%@page import="java.util.Set" %>  
+      
     <link rel="stylesheet" href="consultaPostulanteStyle.css" />
-    <link rel="stylesheet" href="consultarEmpresaStyle.css" />
-    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
+    <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
+    
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -47,40 +53,69 @@
 	  		<h2 class="titulo">Información postulantes</h2>
 		</div>
 		
-		<%
+		<div class="cartas">
+			    <%
+			    
+			    Set<Postulacion> conjuntoDePost = (Set<Postulacion>) request.getAttribute("postulantes");
+			    
+			    if(!conjuntoDePost.isEmpty()){
+			    
+			        String motivacion;
+			        String nombreUser;
+			        String apellidoUser;
+			        String nombreOfer;
+			        byte[] imagenBytes;
 			
-		 	Set<DataPostulacion> postulates = (Set<DataPostulacion>) request.getAttribute("dtPos");
-		    
-		    if(postulacion != null && !postulacion.isEmpty()){
-		    
-		        String nombre;
-		        String descripcion;
-		        byte[] imagenBytes;
-		
-		        for (DataPostulante post : potulantes) {
-		            nombre = post.getPostulante().getNombre();
-					motivacion = post.getMotivacion();
-		            imagenBytes = dataOfer.getImagen();
-		            
-		            String base64Image = "";
-		            if (imagenBytes != null) {
-		                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-		            }else{
-		            	//aca va la imagen default
-		            }
-		            
-		  
-	  %>
-  
-  
-    
-      
-
-	 } //endfor
-	
-	 }
+			        for (Postulacion post : conjuntoDePost) {
+			            motivacion = post.getMotivacion();
+			            nombreUser = post.getNombrePostulante();
+			            apellidoUser = post.getPostulante().getApellido();
+			            imagenBytes = post.getPostulante().getImagen();
+						nombreOfer = post.getNombreOfer();
+			            String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+			            
+			    %>
+			
+			    
+			    <div class="card" style="width: 18rem;">
+  					<img src="data:image/jpeg;base64, <%= base64Image %>" align = "absmiddle" class="img-thumbnail shadow" alt="...">
+	  				 <div class="card-body">
+	    				<h5 class="card-title"><%=nombreUser %> <%=apellidoUser %></h5>
+	    				<p class="card-text"><%= motivacion %></p>
+	   					 <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %> user=<%= nombreUser %>>" class="btn btn-outline-dark" >Informacion postulacion</a>
+	  				 </div>
+				</div>
 				
-			}
+			    <%
+			        	}
+			        
+			        %>  
+			    	
+			    	</div>
+			    
+			    <% 
+			    }else{
+			        	
+			        	%>
+			           
+			           
+			             
+						   <div class = "my-5"></div>
+					  			<div class="container">
+							    	<div class="row">
+							        	<div class="col text-center">
+							            	<div class="alert alert-danger" role="alert">
+							                No hay nadie postulado aun.
+							            	</div>
+							        	</div>
+							    	</div>
+								</div>
+			             
+			       <% 
+			        }
+			    %>
+			
+			<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 		
 </body>
 </html>

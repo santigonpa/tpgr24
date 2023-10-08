@@ -207,8 +207,8 @@
 	
 	
 	<div class = "contenedor text-center mt-3">
-		<a href = "/TrabajoUY/PostulantesAOferta" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
-  			<button href = "/TrabajoUY/PostulantesAOferta?user=<%="noUsuario" %>" class="btn btn-dark" type="button">Ver detalles postulantes</button>
+		<a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>" class="gap-2 py-5" align = "centre"style="text-decoration: none;">
+  			<button class="btn btn-dark" type="button">Ver detalles postulantes</button>
 		</a>
 		
 		<% 

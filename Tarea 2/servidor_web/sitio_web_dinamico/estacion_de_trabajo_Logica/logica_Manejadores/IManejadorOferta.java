@@ -27,6 +27,8 @@ public interface IManejadorOferta {
 
 
 	public abstract void addPostulacion(Postulacion pos);
+	
+	public abstract Set<Postulacion> obtenerPostulaciones(String oferta, String empresa);
 
 	public abstract boolean existeOferta(String s);
 

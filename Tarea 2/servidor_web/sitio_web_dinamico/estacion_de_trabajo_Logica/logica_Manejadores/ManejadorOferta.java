@@ -7,9 +7,11 @@ import java.util.Set;
 
 import logica_DataTypes.DataKeyWord;
 import logica_DataTypes.DataOferta;
+import logica_Entidades.Empresa;
 import logica_Entidades.KeyWord;
 import logica_Entidades.OfertaLaboral;
 import logica_Entidades.OfertaLaboral.EstadoOferta;
+import utils.Fabrica;
 import logica_Entidades.Postulacion;
 
 public class ManejadorOferta implements IManejadorOferta{
@@ -120,6 +122,15 @@ public class ManejadorOferta implements IManejadorOferta{
 		}
 		return res;
 	}
+	
+	public Set<Postulacion> obtenerPostulaciones(String oferta, String empresa) {
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorOferta imo = (IManejadorOferta) fab.getInManejadorOferta();
+		OfertaLaboral ofertaLab = imo.obtenerOferta(oferta); 
+		Set<Postulacion> postulaciones = ofertaLab.getPostulaciones();
+		return postulaciones;		
+	}
+
 
 	} 
 
