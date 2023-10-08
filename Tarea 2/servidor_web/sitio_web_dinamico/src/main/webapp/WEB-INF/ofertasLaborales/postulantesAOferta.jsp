@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%@page import= "logica_DataTypes.DataPostulante" %>
+    <%@page import="java.util.Set" %>    
     <link rel="stylesheet" href="consultaPostulanteStyle.css" />
     <link rel="stylesheet" href="consultarEmpresaStyle.css" />
     <link rel="stylesheet" href="normalize.css" />
@@ -39,6 +41,46 @@
     <title>TrabajoUY</title>
 </head>
 <body>
+		<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+		
+		<div class="contenedor">
+	  		<h2 class="titulo">Información postulantes</h2>
+		</div>
+		
+		<%
+			
+		 	Set<DataPostulacion> postulates = (Set<DataPostulacion>) request.getAttribute("dtPos");
+		    
+		    if(postulacion != null && !postulacion.isEmpty()){
+		    
+		        String nombre;
+		        String descripcion;
+		        byte[] imagenBytes;
+		
+		        for (DataPostulante post : potulantes) {
+		            nombre = post.getPostulante().getNombre();
+					motivacion = post.getMotivacion();
+		            imagenBytes = dataOfer.getImagen();
+		            
+		            String base64Image = "";
+		            if (imagenBytes != null) {
+		                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+		            }else{
+		            	//aca va la imagen default
+		            }
+		            
+		  
+	  %>
+  
+  
+    
+      
 
+	 } //endfor
+	
+	 }
+				
+			}
+		
 </body>
 </html>

@@ -4,7 +4,7 @@
 <html>
 <head>
 
-	<%@ page import="logica_Entidades.Postulante" %>
+	<%@ page import="logica_Entidades.Postulacion" %>
 	<%@ page import="java.time.LocalDate" %>
 	
     <meta charset="UTF-8" />
@@ -47,13 +47,13 @@
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	   
 	   <%
-	   	Postulante post = (Postulante) request.getAttribute("dtPost");
+	   	Postulacion post = (Postulacion) request.getAttribute("dtPost");
 	   	
-	   	String nombre = post.getNombre();
-	   	String apellido = post.getApellido();
-	   	String cvCompleto = post.getEmail();
-	   	String motivacion = post.getNickName();
-	   	LocalDate fechaPost = post.getNacimineto();
+	   	String nombre = post.getPostulante().getNombre();
+	   	String apellido = post.getPostulante().getApellido();
+	   	String cvCompleto = post.getCV();
+	   	String motivacion = post.getMotivacion();
+	   	LocalDate fechaPost = post.getFecha();
 	   	
 	   %>
 	    

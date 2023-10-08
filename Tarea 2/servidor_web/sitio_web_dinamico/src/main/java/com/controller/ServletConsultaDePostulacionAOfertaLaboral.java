@@ -43,7 +43,6 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	String nombreOfer = request.getParameter("nombre");
-		DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 		String user = request.getParameter("user");
 		
@@ -53,24 +52,21 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     		if(banderaPostulante) {
     		Postulante post = (Postulante) IMU.obtenerPostulante(usuario.getNickName());
     		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
-    		if (dtPost != null) {
-    			request.setAttribute("dtPost", dtPost);
-        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+    		request.setAttribute("dtPost", dtPost);
+        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+        		
     		} 
-    		}else {
+    		else {
     			Postulante post = (Postulante) IMU.obtenerPostulante(user);
         		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
-        		if (dtPost != null) {
-        			request.setAttribute("dtPost", dtPost);
-            		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
+    			request.setAttribute("dtPost", dtPost);
+        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response);
         		}
-    		}
-    		
-    	}else{
+    		}else{
     		Set<String> postS= IMO.obtenerOferta(nombreOfer).getPostulantesString();
     		Set<DataPostulante> post = new HashSet<>();
     		for(DataPostulante dtPos : post) {
-    			post.add(IMU.getDataPostulante(usuario.getNickName()));
+    			//dtPos.add(IMU.getDataPostulante(usuario.getNickName()));
     		}
     		request.setAttribute("dtPos", post);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
