@@ -55,6 +55,14 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    
+    <style>
+    
+.row {
+--bs-gutter-x: 0rem !important;
+}
+    
+    </style>
     <title>TrabajoUY: Consulta Postulante</title>
   </head>
   <body>

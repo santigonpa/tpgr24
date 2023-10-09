@@ -46,6 +46,13 @@ body{
     margin-bottom: 0 !important;
 }
 
+    
+.row {
+--bs-gutter-x: 0rem !important;
+}
+    
+
+
 
 
 

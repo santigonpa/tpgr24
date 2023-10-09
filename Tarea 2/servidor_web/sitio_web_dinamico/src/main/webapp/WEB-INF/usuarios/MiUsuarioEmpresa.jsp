@@ -63,6 +63,13 @@
 }
     
     </style>
+    <style>
+    
+		.row {
+		--bs-gutter-x: 0rem !important;
+		}
+    
+    </style>
     
     
 <title>TrabajoUY : MI USUARIO</title>

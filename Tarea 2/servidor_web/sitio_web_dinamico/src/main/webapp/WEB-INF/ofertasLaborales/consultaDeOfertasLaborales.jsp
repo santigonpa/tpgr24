@@ -110,7 +110,10 @@
   });
 	</script>
 
+	<style>
+    
 
+    </style>
 
     <title>Ofertas Laborales</title>
 	</head>

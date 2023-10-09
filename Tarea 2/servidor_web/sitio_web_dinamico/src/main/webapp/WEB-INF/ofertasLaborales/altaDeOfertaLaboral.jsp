@@ -142,7 +142,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 	</script>
 	
-
+<style>
+    
+.row {
+--bs-gutter-x: 0rem !important;
+}
+    
+    </style>
 	  
 </head>
 

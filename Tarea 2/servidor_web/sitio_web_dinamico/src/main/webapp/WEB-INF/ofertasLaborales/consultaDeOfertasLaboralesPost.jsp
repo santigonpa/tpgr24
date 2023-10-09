@@ -111,7 +111,13 @@
 	</script>
 
 
-
+<style>
+    
+.row {
+--bs-gutter-x: 0rem !important;
+}
+    
+    </style>
     <title>Ofertas Laborales</title>
 	</head>
 <body>
