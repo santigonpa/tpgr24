@@ -96,7 +96,7 @@
 		  <div class = "contenedor4">
 		  	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Nombre:</h4>
+      					<h4 class = "fs-5 fw=normal">Nombre:</h4>
    				 </div>
     		<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%=nombre %> </h4>
@@ -106,7 +106,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Descripción:</h4>
+      					<h4 class = "fs-5 fw=normal">Descripción:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= desc %></h4>
@@ -116,7 +116,7 @@
   		 	
 		  	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Ciudad:</h4>
+      					<h4 class = "fs-5 fw=normal">Ciudad:</h4>
    				 </div>
     		<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= ciudad %></h4>
@@ -126,7 +126,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Departamento:</h4>
+      					<h4 class = "fs-5 fw=normal">Departamento:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= dep %></h4>
@@ -136,7 +136,7 @@
   		 	
   		 	<div class="row">
     		<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Horario:</h4>
+      					<h4 class = "fs-5 fw=normal">Horario:</h4>
    				 </div>
     		<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= horaI %> - <%= horaF %> </h4>
@@ -146,7 +146,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Remuneración:</h4>
+      					<h4 class = "fs-5 fw=normal">Remuneración:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= remuneracion %></h4>
@@ -156,7 +156,7 @@
   		 	
   		 	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Fecha:</h4>
+      					<h4 class = "fs-5 fw=normal">Fecha:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= formattedDate %></h4>
@@ -166,7 +166,7 @@
   		 	
   		 	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Estado:</h4>
+      					<h4 class = "fs-5 fw=normal">Estado:</h4>
    				 </div>
     		<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= est %> </h4>
@@ -176,7 +176,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">-Empresa:</h4>
+      					<h4 class = "fs-5 fw=normal">Empresa:</h4>
    				 </div>
     			<div class="col">
 						<a>
