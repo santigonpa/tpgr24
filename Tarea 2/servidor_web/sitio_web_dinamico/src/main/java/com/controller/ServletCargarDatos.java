@@ -298,7 +298,7 @@ public class ServletCargarDatos extends HttpServlet {
 			//Creo Oferta   // FALTAN OFERTAS 
 			OfertaLaboral o1 = new OfertaLaboral("Desarrollador Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1,imagen01, "Basico");
 			OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2,imagen22, "Sin paquete");
-			OfertaLaboral o3 = new OfertaLaboral("Disenador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,imagen33, "Sin paquete");
+			OfertaLaboral o3 = new OfertaLaboral("Diseñador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,imagen33, "Sin paquete");
 			OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4,imagen44, "Sin paquete");
 			OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5,imagen55, "Sin paquete");
 			OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6,imagen66, "Destacado");
@@ -482,11 +482,11 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			//Creo Postulaciones
 			Postulacion pos1 = new Postulacion(fPos1,"Licenciada en Administracion, experiencia en gestion de equipos y proyectos. Conocimientos en Office.","Estoy emocionada por la oportunidad de formar parte de un equipo dinamico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o1);
-			Postulacion pos2 = new Postulacion(fPos2,"Estudiante de Comunicacion, habilidades en redacci´on y manejo de redes sociales. Experiencia en practicas en medios locales","Me encantaria formar parte de un equipo que me permita desarrollar mis habilidades en comunicacion y marketing.",(Postulante)p2,o2);
-			Postulacion pos3 = new Postulacion(fPos3,"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones moviles. Conocimientos en JavaScript y React.","Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnolog´ıa.",(Postulante)p3,o1);
-			Postulacion pos4 = new Postulacion(fPos4,"T´ecnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos el´ectricos.","Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades t´ecnicas y contribuir al mantenimiento eficiente.",(Postulante)p4,o3);
-			Postulacion pos5 = new Postulacion(fPos5,"M´usico profesional, experiencia en espect´aculos en vivo. Habilidades en canto y guitarra.","Me gustar´ıa combinar mi pasi´on por la m´usica con una oportunidad laboral que me permita seguir creciendo como artista.",(Postulante)p5,o2);
-			Postulacion pos6 = new Postulacion(fPos6,"Licenciada en Administraci´on, me considero genia, experiencia en gesti´on de equipos y proyectos. Conocimientos en Microsoft Office.","Estoy emocionada por la oportunidad de formar parte de un equipo din´amico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o2);
+			Postulacion pos2 = new Postulacion(fPos2,"Estudiante de Comunicacion, habilidades en redaccion y manejo de redes sociales. Experiencia en practicas en medios locales","Me encantaria formar parte de un equipo que me permita desarrollar mis habilidades en comunicacion y marketing.",(Postulante)p2,o2);
+			Postulacion pos3 = new Postulacion(fPos3,"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones moviles. Conocimientos en JavaScript y React.","Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnologia.",(Postulante)p3,o1);
+			Postulacion pos4 = new Postulacion(fPos4,"Tecnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos electricos.","Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades tecnicas y contribuir al mantenimiento eficiente.",(Postulante)p4,o3);
+			Postulacion pos5 = new Postulacion(fPos5,"Musico profesional, experiencia en espectaculos en vivo. Habilidades en canto y guitarra.","Me gustaria combinar mi pasion por la musica con una oportunidad laboral que me permita seguir creciendo como artista.",(Postulante)p5,o2);
+			Postulacion pos6 = new Postulacion(fPos6,"Licenciada en Administracion, me considero genia, experiencia en gestion de equipos y proyectos. Conocimientos en Microsoft Office.","Estoy emocionada por la oportunidad de formar parte de un equipo dinamico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o2);
 			
 			mo.addPostulacion(pos1);
 			mo.addPostulacion(pos2);
@@ -537,18 +537,10 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			//Creo los paquetes
 			
-			Paquete paq1 = new Paquete("Básico", "Publica ofertas laborales en nuestra\n"
-					+ "plataforma por un período de 30 días", 30, 20, fhp1, 3720, imagen111);
-			Paquete paq2 = new Paquete("Destacado", "Publica ofertas laborales destacadas\n"
-					+ "que se mostrará en la parte superior de\n"
-					+ "los resultados de búsqueda por 45 días", 45, 10, fhp2, 315, imagen222);
-			Paquete paq3 = new Paquete("Premium", "Publica ofertas laborales premium que\n"
-					+ "incluye promoción en nuestras redes\n"
-					+ "sociales y listado en la sección destacada\n"
-					+ "por 60 días", 60, 15, fhp3, 7055, imagen333);
-			Paquete paq4 = new Paquete("Express", "Publica ofertas laborales urgentes \n"
-					+ "resaltada en color y se mostrará en la\n"
-					+ "sección de urgente por 15 días.", 15, 5, fhp4, 950, imagen444);
+			Paquete paq1 = new Paquete("Básico", "Publica ofertas laborales en nuestra plataforma por un período de 30 días.", 30, 20, fhp1, 3720, imagen111);
+			Paquete paq2 = new Paquete("Destacado", "Publica ofertas laborales destacadas que se mostrará en la parte superior de los resultados de búsqueda por 45 días.", 45, 10, fhp2, 315, imagen222);
+			Paquete paq3 = new Paquete("Premium", "Publica ofertas laborales premium que incluye promoción en nuestras redes sociales y listado en la sección destacada por 60 días.", 60, 15, fhp3, 7055, imagen333);
+			Paquete paq4 = new Paquete("Express", "Publica ofertas laborales urgentes resaltada en color y se mostrará en la sección de urgente por 15 días.", 15, 5, fhp4, 950, imagen444);
 			
 			//Los añado al manejador
 			
