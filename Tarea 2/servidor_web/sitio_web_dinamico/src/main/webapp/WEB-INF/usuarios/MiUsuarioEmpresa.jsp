@@ -339,7 +339,7 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta %></h5>
 			          <p class="card-text"><%= descripcion %></p>
-			          <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOferta %>" class="btn btn-outline-dark">Consultar datos de la oferta</a>
+			          <a href="ServletDetalleOferta?id=<%= nombreOferta %>" class="btn btn-outline-dark">Consultar datos de la oferta</a>
 			        </div>
 			      </div>
 			    </div>
@@ -412,7 +412,7 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta2 %></h5>
 			          <p class="card-text"><%= descripcion2 %></p>
-			          <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOferta2 %>" class="btn btn-outline-dark">Consultar datos de la oferta</a>
+			          <a href="ServletDetalleOferta?id=<%= nombreOferta2 %>" class="btn btn-outline-dark">Consultar datos de la oferta</a>
 			        </div>
 			      </div>
 			    </div>
