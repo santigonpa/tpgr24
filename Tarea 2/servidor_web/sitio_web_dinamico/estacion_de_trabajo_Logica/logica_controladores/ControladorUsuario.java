@@ -193,5 +193,35 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 		}
 		return res;
 	}
+
+	@Override
+	public void modificarDatosPostulante(String nickname, String nombre, String apellido, String email,
+			LocalDate nacimiento, String nacionalidad, byte[] imagen, String psw) {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+		
+		Postulante postulanteAModificar = manejadorUsuario.obtenerPostulante(nickname);
+		postulanteAModificar.setNombre(nombre);
+		postulanteAModificar.setApellido(apellido);
+		postulanteAModificar.setNacimiento(nacimiento);
+		postulanteAModificar.setImagen(imagen);
+		postulanteAModificar.setNacionalidad(nacionalidad);
+		postulanteAModificar.setPsw(psw);
+	}
+
+	@Override
+	public void modificarDatosEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
+			String web, byte[] imagen, String psw) {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+		
+		Empresa EmpresaAModificar = manejadorUsuario.obtenerEmpresa(nickname);
+		EmpresaAModificar.setNombre(nombre);
+		EmpresaAModificar.setApellido(apellido);
+		EmpresaAModificar.setDescripcion(descripcion);
+		EmpresaAModificar.setImagen(imagen);
+		EmpresaAModificar.setPsw(psw);
+		EmpresaAModificar.setLinkWeb(web);
+	}
 	
 }

@@ -12,17 +12,17 @@ import java.util.Arrays;
 
 import com.model.EstadoSesion;
 
-import excepciones.EmailYaExisteException;
-import excepciones.NicknameYaExisteException;
-import excepciones.campoInvalidoException;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica_controladores.IControladorUsuario;
+import logica_entidades.Postulante;
+import logica_entidades.Usuario;
 import utils.Fabrica;
 import jakarta.servlet.annotation.MultipartConfig;
 
@@ -40,7 +40,6 @@ public class ServletModificarUsuario extends HttpServlet {
        
     private Fabrica fab = Fabrica.getInstance();
     private IControladorUsuario ICU = fab.getInUser();
-    
     public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
@@ -73,9 +72,18 @@ public class ServletModificarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
-			request.getRequestDispatcher("/WEB-INF/usuarios/UsuarioSesionYaIniciada.jsp").forward(request, response);
+			HttpSession sessionIniciada = request.getSession(false);
+		    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+		    
+		    if(usr instanceof Postulante) {
+		    	request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuarioPostulante.jsp").forward(request, response);
+		    }else {
+		    	request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuarioEmpresa.jsp").forward(request, response);
+		    }
+		    
+			
 		}else {
-			request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuario.jsp").forward(request,response);
+			request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuarioError.jsp").forward(request,response);
 		}	
 		}
 
@@ -83,11 +91,14 @@ public class ServletModificarUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nickName = request.getParameter("nickname");
+		
+		HttpSession sessionIniciada = request.getSession(false);
+	    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+	    
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String contrasenia = request.getParameter("password");
-		String email = request.getParameter("correo");
+		
 		
 		
 		//FOTO
@@ -110,133 +121,51 @@ public class ServletModificarUsuario extends HttpServlet {
 		     
 		    
 		    }else{
-		    	// !!!!!!!!
-		    	/*Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
-		    	 imagenBytes = Files.readAllBytes(imagePath);
-		    	}*/
 		    	
-		    	
-		    	// Obtiene el contexto del servlet
-		        ServletContext context = getServletContext();
-
-		        // Obtiene la ruta de ejecución del servlet
-		        String rutaEjecucion = context.getRealPath("media/img/userImage.jpg");
-		        Path imagePath = Paths.get(rutaEjecucion);
-		    	 imagenBytes = Files.readAllBytes(imagePath);
+		    	imagenBytes = usr.getImagen();
 		    }     
 		}else {
-			/*
-			//String urlBase = request.getRequestURL().toString();
-			// Construye la URL completa de la imagen en el servidor
-			String urlImagenServidor = "http://localhost:8086/TrabajoUY/media/img/userImage.jpg";
-
-			try {
-			    // Crea una URL a partir de la cadena de URL
-			    URL url = new URL(urlImagenServidor);
-			    
-			    // Abre una conexión HTTP
-			    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			    
-			    // Configura la solicitud HTTP
-			    conn.setRequestMethod("GET");
-			    
-			    // Lee los bytes de la imagen desde la conexión
-			    InputStream inputStream = conn.getInputStream();
-			    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			    int nRead;
-			    byte[] data = new byte[1024];
-			    
-			    while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
-			        buffer.write(data, 0, nRead);
-			    }
-			    
-			    buffer.flush();
-			    
-			    // Obtiene los bytes de la imagen
-			    imagenBytes = buffer.toByteArray();
-			    
-			    // Cierra la conexión y el flujo de entrada
-			    inputStream.close();
-			    conn.disconnect();
-			} catch (IOException e) {
-			    e.printStackTrace();
-			}
-
-	        */
 			
-			// Obtiene el contexto del servlet
-	        ServletContext context = getServletContext();
-
-	        // Obtiene la ruta de ejecución del servlet
-	        String rutaEjecucion = context.getRealPath("media/img/userImage.jpg");
-	        Path imagePath = Paths.get(rutaEjecucion);
-	    	 imagenBytes = Files.readAllBytes(imagePath);
-	        // Imprime la ruta de ejecución para verificarla
-	        System.out.println("Ruta de ejecución del servlet: " + rutaEjecucion);
+			imagenBytes = usr.getImagen();
 	        
 		}
-		        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
-		        // Crea un formateador para el patrón de fecha (yyyy-MM-dd)
-		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		        
-		        try {
-		            // Intenta analizar la fecha en un objeto LocalDate
-		            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
-		            ICU.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimiento, email, imagenBytes, contrasenia);
-		            request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
-		        } catch (NicknameYaExisteException e) {
-		        	// Agregar un atributo a la solicitud con el mensaje de error
-		            request.setAttribute("errorRegistroNickname", "El nickname ya está en uso. Por favor, elige otro.");
-		            
-		            request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuario.jsp").forward(request, response);
-		            return;
-		        }
-		        catch (EmailYaExisteException e) {
-		        	
-
-		        	// Agregar un atributo a la solicitud con el mensaje de error
-		            request.setAttribute("errorRegistroEmail", "El nickname ya está en uso. Por favor, elige otro.");
-		            
-		            // Redirigir de vuelta a tu formulario de registro
-		            request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuario.jsp").forward(request, response);
-		            return;
-				} catch (campoInvalidoException e) {
-					//ESTO NO DEBERIA HACER NADA
-					e.printStackTrace();
-					
-
-				}
-				    	
-				    	String descripcion = request.getParameter("descripcion");
-				    	String linkWeb = request.getParameter("linkSitio");
-				    try {
-				    	ICU.altaUsuarioEmpresa(nickName, nombre, apellido, email, descripcion, linkWeb, imagenBytes, contrasenia);
-			            response.sendRedirect("/TrabajoUY/iniciarSesion");
-			         
-			            
-			        } catch (NicknameYaExisteException e) {
-			        	// Agregar un atributo a la solicitud con el mensaje de error
-			            request.setAttribute("errorRegistroNickname", "El nickname ya está en uso. Por favor, elige otro.");
-			            
-			            // Redirigir de vuelta a tu formulario de registro
-			            request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuario.jsp").forward(request, response);
-			            return;
-			        }
-			        catch (EmailYaExisteException e) {
-						
-			        	// Agregar un atributo a la solicitud con el mensaje de error
-			            request.setAttribute("errorRegistroEmail", "El nickname ya está en uso. Por favor, elige otro.");
-			            
-			            // Redirigir de vuelta a tu formulario de registro
-			            request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuario.jsp").forward(request, response);
-			            return;
-					} catch (campoInvalidoException e) {
-						//ESTO NO DEBERIA HACER NADA
-						e.printStackTrace();
-					}
-		    	
-		    }
 		
- 		}
+		if (usr instanceof Postulante) {
+	        // El usuario seleccionó "Postulante"
+	        // Realiza las acciones para registrar un postulante
+	    	// Obtén el valor del campo de fecha de nacimiento desde la solicitud
+	        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
+	        // Crea un formateador para el patrón de fecha (yyyy-MM-dd)
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        String nacionalidad = request.getParameter("nacionalidad");
+	         
+	        
+	       
+	            // Intenta analizar la fecha en un objeto LocalDate
+	            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
+	            ICU.modificarDatosPostulante(usr.getNickName(), nombre, apellido, usr.getEmail(), fechaNacimiento, nacionalidad, imagenBytes, contrasenia);
+	            //le cierro la sesion porque cambio la contrasenia
+	            
+	            request.getRequestDispatcher("/CerrarSesion").forward(request, response);
+	       
+	    	
+	    } else  {
+			        // El usuario seleccionó "Empresa"
+			        // Realiza las acciones para registrar una empresa
+			    	
+			    	String descripcion = request.getParameter("descripcion");
+			    	String linkWeb = request.getParameter("linkSitio");
+			    
+			    	ICU.modificarDatosEmpresa(usr.getNickName() , nombre, apellido, usr.getEmail(), descripcion, linkWeb, imagenBytes, contrasenia);
+			    	//le cierro la sesion porque cambio la contrasenia
+			    	request.getRequestDispatcher("/CerrarSesion").forward(request, response);
+		         
+		            
+		        
+	    	
+	    }
+	}
+		
+ }
 
 
