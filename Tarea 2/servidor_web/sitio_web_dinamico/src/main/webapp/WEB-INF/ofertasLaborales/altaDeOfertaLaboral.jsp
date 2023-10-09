@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
     <%@page import= "logica_datatypes.DataOferta" %>
-    
+    <%@page import= "logica_datatypes.DataKeyWord" %>
 
     <!-- Bootstrap -->
     <link
@@ -59,14 +59,16 @@
   		$("#pagoGen-tab").on("click", function () {
    		$("#pagoGeneral").show();
     	$("#pagoConPaquete").hide();
-    	$("#tipoPago").val("pagoPaquete"); // Actualiza el valor del campo oculto
+    	$("#tipoPago").val("pagoGeneral"); // Actualiza el valor del campo oculto
   });
 
   		$("#pagoPaq-tab").on("click", function () {
     	$("#pagoConPaquete").hide();
     	$("#pagoConPaquete").show();
-    	$("#tipoPago").val("pagoConPaquete"); // Actualiza el valor del campo oculto
-  });
+    	$("#tipoPago").val("pagoPaquete"); // Actualiza el valor del campo oculto
+    	
+    	 $("#valorCampoOculto").text($("#tipoPago").val());
+  });		
 });
 
     </script>
@@ -105,8 +107,12 @@
 	</script>
       
     <script>
-    // Función para obtener el botón seleccionado
-    document.getElementById("obtenerSeleccion").addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    // Obtenemos el formulario por su ID
+    var formulario = document.getElementById("alta-form");
+
+    // Agregamos un evento al formulario para verificar la selección
+    formulario.addEventListener("submit", function (event) {
         var botonesRadio = document.getElementsByName("btnradio");
         var botonSeleccionado = null;
 
@@ -117,13 +123,13 @@
             }
         }
 
-        if (botonSeleccionado !== null) {
-            alert("Botón seleccionado: " + botonSeleccionado);
-        } else {
-            alert("Ningún botón seleccionado.");
+        if (botonSeleccionado === null) {
+            alert("Debes seleccionar una opción de tipo de publicación antes de enviar el formulario.");
+            event.preventDefault(); // Evita el envío del formulario si no hay selección
         }
     });
-	</script>
+});
+</script>
 	
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
@@ -135,6 +141,8 @@
         });
     });
 	</script>
+	
+
 	  
 </head>
 
@@ -209,7 +217,9 @@
 				<%
 			    
 				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
-			    
+				Set<DataKeyWord> keys = (Set<DataKeyWord>) request.getAttribute("keys");
+				
+				
 			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
 			    
 			        String nombrePaquete;
@@ -305,9 +315,12 @@
 				
 				
 				<div class="form-floating mb-3">
-					<input type="number" class="form-control" id="remuneracion" name="remuneracion" placeholder="" value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>">
-					<label for="floatingInput">Remuneración (En pesos uruguayos)</label>
+	    			<input type="number" class="form-control" id="remuneracion" name="remuneracion" placeholder=""
+		           		value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>"
+		          		 min="0">
+	    			<label for="floatingInput">Remuneración (En pesos uruguayos)</label>
 				</div>
+
 
 				<div class = "my-3"></div>
 					
@@ -332,14 +345,18 @@
 				<div class="my-5"></div>
 				</div>
 				
-				<select class="form-select" multiple aria-label="Multiple select example" name ="keys">
-				  
-				  <option value="1">Tiempo Completo</option>
-				  <option value="2">Medio Tiempo</option>
-				  <option value="3">Remoto</option>
-				  <option value="3">FreeLance</option>
-				  <option value="3">Temporal</option>
-				  <option value="3">Permanente</option>
+				
+				
+				<select class="form-select" multiple aria-label="Multiple select example" name="keys">
+				    <%
+				    if (keys != null && !keys.isEmpty()) {
+				        for (DataKeyWord key : keys) {
+				    %>
+				    <option value="<%= key.getPalabraClave() %>"><%= key.getPalabraClave() %></option>
+				    <%
+				        }
+				    }
+				    %>
 				</select>
 			
 			<div class="w-100 d-flex justify-content-center mt-3">	 
@@ -374,6 +391,6 @@
 	</main>
 	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
-	
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.controller;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,15 +10,14 @@ import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import logica_controladores.IControladorOferta;
-import logica_datatypes.DataOferta;
+import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Empresa;
 import logica_entidades.KeyWord;
-import logica_entidades.TipoPublicacion;
 import logica_entidades.Usuario;
+import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -51,7 +52,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	private static Fabrica fab = Fabrica.getInstance();
 	private IManejadorPyT IPYT = fab.getInManejadorPyT();
 	private static IControladorOferta ICO = fab.getInOfer();
-
+	private static IManejadorOferta IMO = fab.getInManejadorOferta();
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
@@ -90,6 +91,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Set<DataTipoPublicacion> coleccionPTP = IPYT.getDataTipoPublicacion();
+    	Set<DataKeyWord> coleccionKeys = IMO.getDataKeyWord();
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
 		
 		
@@ -102,6 +104,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     	} //es una empresa todo ok
     	else if (user instanceof Empresa) {
     		Set<DataTipoPublicacion> tiposPubli = fab.getInManejadorPyT().getDataTipoPublicacion();
+    		request.setAttribute("keys", coleccionKeys);
     		request.setAttribute("tiposPubli", tiposPubli);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
     	}//	es un postulante
@@ -117,14 +120,9 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
     	
-    	HttpSession sesion = request.getSession();
-    	String nick = request.getParameter("nickName");
-    	String nickName = usuario.getNickName();
     	
     	Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
-		IControladorOferta ico = fabrica.getInOfer();
-		IManejadorPyT ipt = fabrica.getInManejadorPyT();
 		
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
@@ -195,18 +193,25 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	    }
 	    
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
-		Set<String> conjuntoOpciones = new HashSet<>(Arrays.asList(opcionesSeleccionadasKey));
-		Set<KeyWord> keys = new HashSet<>();
-		for(String iter : conjuntoOpciones) {
-			keys.add(new KeyWord(iter));
+		Set<String> conjuntoOpciones = new HashSet<>();
+
+		if (opcionesSeleccionadasKey != null) {
+		    conjuntoOpciones = new HashSet<>(Arrays.asList(opcionesSeleccionadasKey));
 		}
+
+		Set<KeyWord> keys = new HashSet<>();
+		for (String iter : conjuntoOpciones) {
+		    keys.add(new KeyWord(iter));
+		}
+
 		
-		String accion = request.getParameter("accion");
+		
 		
 		String tipoPago = request.getParameter("tipoPago");
 		
 		LocalDate fechaActual = LocalDate.now();
 		
+		System.out.println("El" + tipoPago);
 		
 		if(tipoPago.equals("pagoGeneral")) {
 			try {
@@ -219,9 +224,16 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	            return;
 	        }
 		}else {
+			String nombrePaq;
 		try {
 			Empresa empr = (Empresa) mu.obtenerEmpresa(usuario.getNickName());
-			String nombrePaq = empr.getCompra().getPaquete().getNombre();
+			
+			if(empr.getCompra() != null) {
+				nombrePaq = empr.getCompra().getPaquete().getNombre();
+			}else {
+				nombrePaq = "Servlet";
+			}
+			
 			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
