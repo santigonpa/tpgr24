@@ -45,5 +45,12 @@ public interface IControladorUsuario {
 	public abstract void agregarPostulacionAPostulante(String nickName, Postulacion postulacion1) throws yaExistePostulacionAOfertaException;
 
 	public abstract DataUsuario listarInfoUser(String nickName);
+	
+	public abstract void modificarDatosPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
+			String nacionalidad, byte[]imagen , String psw);
+	
+	public abstract void modificarDatosEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
+			String web , byte[]imagen , String psw);
+	
 
 }

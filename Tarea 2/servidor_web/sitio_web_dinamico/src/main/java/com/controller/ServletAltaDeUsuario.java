@@ -95,6 +95,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		String email = request.getParameter("correo");
 		
 		
+		
 		//FOTO
 		Part filePart = request.getPart("profile-pic");
 		byte[] imagenBytes = null;
@@ -185,6 +186,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		    String tipoUsuario = request.getParameter("tipoUsuario");
 		    
 		    
+		    
 		    if ("postulante".equals(tipoUsuario)) {
 		        // El usuario seleccionó "Postulante"
 		        // Realiza las acciones para registrar un postulante
@@ -192,11 +194,12 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
 		        // Crea un formateador para el patrón de fecha (yyyy-MM-dd)
 		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		        String nacionalidad = request.getParameter("nacionalidad");
 		        
 		        try {
 		            // Intenta analizar la fecha en un objeto LocalDate
 		            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
-		            ICU.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimiento, email, imagenBytes, contrasenia);
+		            ICU.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimiento, nacionalidad, imagenBytes, contrasenia);
 		            request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
 		        } catch (NicknameYaExisteException e) {
 		        	// Agregar un atributo a la solicitud con el mensaje de error

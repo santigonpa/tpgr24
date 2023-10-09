@@ -115,6 +115,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 	</script>
+	
+	
+	
+	
+	
+	
 	<script>
     function validarFormulario() {
         
@@ -348,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="empresa">
+                  <div class="tab-pane fade show active" id="empresa">
                     <!-- Campos específicos para empresas -->
                     <div class="form-container">
                       <div class="form-group">
@@ -365,13 +371,13 @@ document.addEventListener("DOMContentLoaded", function () {
                       <div class="form-group">
                         <label for="descripcion" class="mb-3">Descripción:</label>
                         <textarea
-                          class="form-control"
-                          id="descripcion"
-                          name="descripcion"
-                          rows="3"
-                          placeholder="Ingrese una Descripción"
-                          value="<%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %>"
-                        ></textarea>
+						  class="form-control"
+						  id="descripcion"
+						  name="descripcion"
+						  rows="3"
+						  placeholder="Ingrese una Descripción"
+						><%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %></textarea>
+
                       </div>
                     </div>
                   </div>
@@ -386,6 +392,21 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         </div>
     </main>
+    
+    <script>
+  // Obtener el valor de tipoUsuario
+  
+  var tipoUsuario = "<%= request.getParameter("tipoUsuario") != null ? request.getParameter("tipoUsuario") : "postulante" %>";
+
+  // Verificar el valor y seleccionar la pestaña correspondiente
+  if (tipoUsuario === "empresa") {
+    // Selecciona la pestaña de Empresa
+    $("#empresa-tab").tab("show");
+  } else {
+    // Selecciona la pestaña de Postulante (predeterminado)
+    $("#postulante-tab").tab("show");
+  }
+</script>
     
     <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
