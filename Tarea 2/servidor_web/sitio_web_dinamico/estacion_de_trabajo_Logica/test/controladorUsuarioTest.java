@@ -19,8 +19,10 @@ import java.time.format.DateTimeFormatter;
 import excepciones.UsuarioNoExisteException;
 import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
+import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorUsuario;
 import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataOferta;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_entidades.Empresa;
@@ -52,7 +54,11 @@ class controladorUsuarioTest {
 			cu.getDataUsuarios();
 	    });
 		
+		cargarDatos cargador = new cargarDatos();
+        cargador.cargar();
+		
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		
 		mu = f.getInManejadorUsuario();
 		mo = f.getInManejadorOferta();
 		LocalDate f1 = LocalDate.of(2023, 9, 15);
@@ -369,4 +375,51 @@ class controladorUsuarioTest {
 		//No podemos testearla porque tendriamos que borrar todos los usuarios para que se ejecute la excepcion, otra opcion es borrarla
 	}
 
+	
+	@Test
+	void testObtenerOfertasConfirmadasEmpresa() {
+		Set<DataOferta> ofertas = mu.obtenerOfertasConfirmadasDeEmpresa("EcoTech");
+		boolean found = false;
+		for (DataOferta ofer : ofertas) {
+		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
+		    	found = true;
+		    	break;
+		    }
+		}
+		assertTrue(found);
+	}
+	
+	@Test
+	void testObtenerOfertasEmpresa() {
+		Set<DataOferta> ofertas = mu.obtenerOfertasDeUnaEmpresa("EcoTech");
+		boolean found = false;
+		for (DataOferta ofer : ofertas) {
+		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
+		    	found = true;
+		    	break;
+		    }
+		}
+		assertTrue(found);
+	}
+	
+	@Test
+	void testeoModificarPostulante() {
+		LocalDate fecha111 = LocalDate.of(2023, 9, 15);
+		cu.modificarDatosPostulante("lgarcia", "luchi", "garcia sosa","lgarcia85@gmail.com" , fecha111, "hola", null, "ola");
+		
+		assertEquals(mu.getDataPostulante("lgarcia").getNombre(),"luchi");
+	}
+	
+	@Test
+	void testeoModificarEmpresa() {
+		
+		cu.modificarDatosEmpresa("EcoTech", "piter", "pereira", "info@EcoTech.com", "poner", "algo", null, "ejemplo");
+		
+		assertEquals(mu.getDataEmpresa("EcoTech").getNombre(),"piter");
+	}
+	
+	@Test
+	void testeoEntidadesUsuario() {
+		
+	}
 }
