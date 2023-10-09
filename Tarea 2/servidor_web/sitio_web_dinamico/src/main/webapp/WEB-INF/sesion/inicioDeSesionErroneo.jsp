@@ -73,7 +73,7 @@
 					<!--Login-->
 					<form action="iniciarSesion" method="POST">
 						<div>
-							<label for="email" class="form-label" >Uruario o Correo electrónico</label>
+							<label for="email" class="form-label" >Usuario o Correo electrónico</label>
 							<input type="text" class="form-control" name="email" required="required">
 						</div>
 						<div>
