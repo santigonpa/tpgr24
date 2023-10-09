@@ -14,17 +14,26 @@ import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.noExistePublicacionException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
 import logica_datatypes.DataKeyWord;
+import logica_datatypes.DataOferta;
+import logica_datatypes.DataPaquete;
+import logica_datatypes.DataPostulante;
 import logica_datatypes.DataTipoPublicacion;
+import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Postulacion;
 import logica_entidades.TipoPublicacion;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
+import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 class controladorOfertaTest {
@@ -32,6 +41,7 @@ class controladorOfertaTest {
 	private static IControladorOferta co;
     private static IManejadorOferta mo;
     private static IManejadorPyT mpyt;
+    private static IManejadorUsuario mu;
     LocalDate f1 = LocalDate.of( 1990, 1, 1);
     LocalTime d2 = LocalTime.of( 8, 0); 
     LocalTime d1 = LocalTime.of( 17, 0); 
@@ -41,6 +51,7 @@ class controladorOfertaTest {
         Fabrica f = Fabrica.getInstance();
         co = f.getInOfer();
         mo = f.getInManejadorOferta();
+        mu = f.getInManejadorUsuario();
         f.getInManejadorUsuario();
         mpyt = f.getInManejadorPyT();
         cargarDatos cargador = new cargarDatos();
@@ -64,6 +75,9 @@ class controladorOfertaTest {
         
             co.darAltaOferta(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta, null, null);
             OfertaLaboral o = mo.obtenerOferta(nombre);
+            Empresa emp = mu.obtenerEmpresa("EcoTech");
+            o.setEmpresa(emp);
+            emp.agregarOfertas(nombre, o);
 
             assertEquals(nombre, o.getNombreOferta());
             assertEquals(descripcion, o.getDescripcion());
@@ -84,7 +98,7 @@ class controladorOfertaTest {
 	    LocalTime d1 = LocalTime.of(19, 0); 
 
 	    co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
-	    
+        
 	    assertThrows(NombreRepetidoOfertaException.class, () -> {
 	    	co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
 	    });	
@@ -178,6 +192,110 @@ class controladorOfertaTest {
 			}
 		}
 		assertEquals(Publi,comparacion);
+	}
+
+	
+	@Test
+	void testeoGetOfertasPorKeys() {
+		String key = "Tiempo completo";
+		Set<DataOferta> dataOfers = mo.obtenerOfertasConfirmadasPorKey(key);
+		String ofer = "Desarrollador Frontend";
+		String comparacion = null;
+		for(DataOferta dto : dataOfers) {
+			if(ofer == dto.getNombre()) {
+				comparacion = dto.getNombre();
+				break;
+			}
+		}
+		assertEquals(ofer,comparacion);
+	}
+	
+	@Test
+	void testeoobtenerPos() {
+		String ofer = "Soporte Tecnico";
+		String empre = "EcoTech";
+		Set<Postulacion> postulaciones = mo.obtenerPostulaciones(ofer,empre);
+	}
+	
+	@Test
+	void testeoAltaPubliOferConPaquete() throws NombreRepetidoOfertaException, noExistePublicacionException{
+		LocalTime hora1 = LocalTime.of(11, 30);
+		LocalTime hora2 = LocalTime.of(16, 0);
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		Set<String> palabrasClave1 = new HashSet<>();
+		Set<DataKeyWord> setdt = mo.getDataKeyWord();
+		for(DataKeyWord dtk : setdt) {
+			palabrasClave1.add(dtk.getPalabraClave());
+		}
+		
+		co.altaPublicacionOfertaLaboralConPaquete("FusionTech", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
+		
+		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer3");
+		assertEquals("FusionTech", publiOfer.getEmpresa().getNickName());
+		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
+		assertEquals("Nombre ofer3", publiOfer.getNombreOferta());
+		assertEquals("San Carlos", publiOfer.getCiudad());
+		assertEquals("Maldonado", publiOfer.getDepartamento());
+		assertEquals(hora1, publiOfer.getHoraInicio());
+		assertEquals(hora2, publiOfer.getHoraFin());
+		assertEquals(fecha1, publiOfer.getFecha());
+		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
+	}
+	
+	@Test
+	void crearPaqueteDeTipoPubliDeOfertasLaboralesTest() throws NombrePaqueteYaExiste {
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		co.crearPaqueteDeTipoDePublicacionDeOfertasLaborales("Paquete Pro", "descripcion", 30, 20, fecha1, 3720, null);
+		
+		DataPaquete dpaq = mpyt.getDataPaquete("Paquete Pro");
+		assertEquals("Paquete Pro",dpaq.getNombre());
+		assertEquals("descripcion", dpaq.getDescripcion());
+		assertEquals(30,dpaq.getValidez());
+		assertEquals(20,dpaq.getDescuento());
+		assertEquals(fecha1,dpaq.getFechaDeAlta());
+		assertEquals(3720, dpaq.getCosto());
+		assertEquals(null, dpaq.getImagen());
+		
+	}
+	
+	@Test
+	void crearPaqueteDeTipoPubliDeOfertasLaboralesInvalido() throws NombrePaqueteYaExiste {
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		co.crearPaqueteDeTipoDePublicacionDeOfertasLaborales("Paquete Pro2", "descripcion", 30, 20, fecha1, 3720, null);
+		
+		assertThrows(NombrePaqueteYaExiste.class, () -> {
+			co.crearPaqueteDeTipoDePublicacionDeOfertasLaborales("Paquete Pro2", "descripcion", 30, 20, fecha1, 3720, null);
+		});
+	}
+	
+	@Test
+	void getPostulantesStringTest() {
+		String ofer = "Desarrollador Frontend";
+		Set<String> postu = co.getPostulantesString(ofer);
+		String pos = "lgarcia";
+		String comparacion = null;
+		for(String dpos : postu) {
+			if(pos == dpos) {
+				comparacion = dpos;
+				break;
+			}
+		}
+		assertEquals(pos,comparacion);
+	}
+	
+	@Test 
+	void getDataPaqueteTest() {
+		String paq = "Destacado";
+		Set<DataPaquete> paquetes = mpyt.getDataPaquete();
+		String comparacion = null;
+		for(DataPaquete paqs : paquetes) {
+			if(paq == paqs.getNombre()) {
+				comparacion = paqs.getNombre();
+				break;
+			}
+		}
+		assertEquals(paq,comparacion);
+		
 	}
 	
 }
