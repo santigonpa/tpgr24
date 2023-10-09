@@ -90,7 +90,7 @@ public class Principal {
 		Altideof = new AltaDeTipoDePublicacionDeOfertaLaboral(ICO);
 		trabajouy.getContentPane().add(Altideof);
 		Altideof.getContentPane();
-		conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO);
+		conUsrInternalFrame = new ConsultaDeUsuario(ICU,ICO,IMU);
 		conUsrInternalFrame.setTitle("Consulta de Usuario");
 		conUsrInternalFrame.setBounds(83, 10, 578, 600);
 		conUsrInternalFrame.setMaximizable(true);
