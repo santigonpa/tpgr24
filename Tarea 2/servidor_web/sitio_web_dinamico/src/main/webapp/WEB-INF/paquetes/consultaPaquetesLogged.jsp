@@ -75,7 +75,6 @@
     						<hr>
 							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>
 							<br>
-							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-dark mt-2">Comprar</a>
 							</div>
 		    	</div>
 			    
