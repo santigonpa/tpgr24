@@ -240,10 +240,10 @@ public class ServletCargarDatos extends HttpServlet {
 			LocalTime hi7 = LocalTime.parse("10:00");
 			LocalTime hi8 = LocalTime.parse("08:30");
 			LocalTime hi9 = LocalTime.parse("09:00");
-			//LocalTime hi10 = LocalTime.parse("09:00");
-			//LocalTime hi11 = LocalTime.parse("04:00");
-			//LocalTime hi12 = LocalTime.parse("04:00");
-			//LocalTime hi13 = LocalTime.parse("14:00");
+			LocalTime hi10 = LocalTime.parse("09:00");
+			LocalTime hi11 = LocalTime.parse("04:00");
+			LocalTime hi12 = LocalTime.parse("04:00");
+			LocalTime hi13 = LocalTime.parse("14:00");
 			//HoraFinal
 			LocalTime hf1 = LocalTime.parse("18:00");
 			LocalTime hf2 = LocalTime.parse("17:00");
@@ -288,10 +288,10 @@ public class ServletCargarDatos extends HttpServlet {
 			byte[] imagen77 = cargarImagenEnBytes(rutaEjecucion + "O7.jpg");
 			byte[] imagen88 = cargarImagenEnBytes(rutaEjecucion + "O8.jpg");
 			byte[] imagen99 = cargarImagenEnBytes(rutaEjecucion + "O9.jpg");
-			//byte[] imagen100= cargarImagenEnBytes(rutaEjecucion + "O10.jpg");
-			//byte[] imagen111 = cargarImagenEnBytes(rutaEjecucion + "O11.jpg");
-			//byte[] imagen122 = cargarImagenEnBytes(rutaEjecucion + "O12.jpg");
-			//byte[] imagen133 = cargarImagenEnBytes(rutaEjecucion + "O13.jpg");
+			byte[] imagen100= cargarImagenEnBytes(rutaEjecucion + "O10.jpg");
+			byte[] imagen1111 = cargarImagenEnBytes(rutaEjecucion + "O11.jpg");
+			byte[] imagen1222 = cargarImagenEnBytes(rutaEjecucion + "O12.jpg");
+			byte[] imagen1333 = cargarImagenEnBytes(rutaEjecucion + "O13.jpg");
 			
 			
 			
@@ -305,6 +305,11 @@ public class ServletCargarDatos extends HttpServlet {
 			OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7,imagen77, "Sin paquete");
 			OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8,imagen88, "Sin paquete");
 			OfertaLaboral o9 = new OfertaLaboral("Técnico/a Básico Red","RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).","Paysandú","Paysandú",hi9,hf9,40000,500,ao9,imagen99, "Sin paquete");
+			OfertaLaboral o10 = new OfertaLaboral("Desarrollador de Software Senior","Únete a nuestro equipo y lidera proyectos de desarrollo de software sostenible y ecológico. Impulsa la innovación y contribuye a un futuro más verde.", "Montevideo","Montevideo", hi10, hf10,123000,500, ao10,imagen100,"Destacada");
+			OfertaLaboral o11 = new OfertaLaboral("Desarrollador de Software Full Stack", "Únete a nuestro equipo para crear soluciones de software personalizadas de extremo a extremo. Colabora en proyectos emocionantes y desafiantes.", "Río Negro", "Fray Bentos", hi11,hf11, 135000, 4000, ao11, imagen1111,"Premium");
+			OfertaLaboral o12 = new OfertaLaboral("Gerente de Proyecto", "Únete a nuestro equipo de gestión de proyectos y lidera la entrega exitosa de soluciones de software personalizadas. Colabora con equipos multidisciplinarios y clientes exigentes.", "Montevideo", "Montevideo",hi12,hf12, 230000, 500, ao12, imagen1222, "Destacada");
+			OfertaLaboral o13 = new OfertaLaboral("Ingeniero de Calidad de Software", "Asegura la calidad de nuestros productos de software sostenibles. Únete a nosotros para garantizar un impacto positivo en el medio ambiente.", "Montevideo", "Montevideo", hi13, hf13, 60000, 4000, ao13, imagen1333, "Premium");
+			
 			
 			//Agrego oferta a Empresa
 			e1.agregarOfertas(o1.getNombreOferta(),o1);
@@ -316,6 +321,11 @@ public class ServletCargarDatos extends HttpServlet {
 			e1.agregarOfertas(o7.getNombreOferta(),o7);
 			e3.agregarOfertas(o8.getNombreOferta(),o8);
 			e4.agregarOfertas(o9.getNombreOferta(),o9);
+			e1.agregarOfertas(o9.getNombreOferta(),o10);
+			e6.agregarOfertas(o9.getNombreOferta(),o11);
+			e6.agregarOfertas(o9.getNombreOferta(),o12);
+			e1.agregarOfertas(o9.getNombreOferta(),o13);
+			
 			
 			//Agrego Empresa a Oferta
 			o1.setEmpresa((Empresa)e1);
@@ -327,6 +337,10 @@ public class ServletCargarDatos extends HttpServlet {
 			o7.setEmpresa((Empresa)e1);
 			o8.setEmpresa((Empresa)e3);
 			o9.setEmpresa((Empresa)e4);
+			o10.setEmpresa((Empresa)e1);
+			o11.setEmpresa((Empresa)e6);
+			o12.setEmpresa((Empresa)e6);
+			o13.setEmpresa((Empresa)e1);
 			
 			 
 			
@@ -340,6 +354,10 @@ public class ServletCargarDatos extends HttpServlet {
 			o7.setEstado(EstadoOferta.ACEPTADA);
 			o8.setEstado(EstadoOferta.RECHAZADA);
 			o9.setEstado(EstadoOferta.ACEPTADA);
+			o10.setEstado(EstadoOferta.INGRESADA);
+			o11.setEstado(EstadoOferta.INGRESADA);
+			o12.setEstado(EstadoOferta.ACEPTADA);
+			o13.setEstado(EstadoOferta.INGRESADA);
 			
 			//Agrego Oferta
 			mo.addOferta(o1);
@@ -351,6 +369,10 @@ public class ServletCargarDatos extends HttpServlet {
 			mo.addOferta(o7);
 			mo.addOferta(o8);
 			mo.addOferta(o9); 
+			mo.addOferta(o10);
+			mo.addOferta(o11);
+			mo.addOferta(o12);
+			mo.addOferta(o13);
 			
 			//Agrego Keyword a Oferta
 				
@@ -373,7 +395,23 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			o6.agregarKeywordAOferta(k1);
 			
+			o7.agregarKeywordAOferta(k4);
+			
+			o8.agregarKeywordAOferta(k1);
+			
 			o9.agregarKeywordAOferta(k5);
+			
+			o10.agregarKeywordAOferta(k1);
+			o10.agregarKeywordAOferta(k6);
+			o10.agregarKeywordAOferta(k9);
+			
+			o11.agregarKeywordAOferta(k3);
+			
+			o12.agregarKeywordAOferta(k3);
+			o12.agregarKeywordAOferta(k6);
+			
+			o13.agregarKeywordAOferta(k1);
+			o13.agregarKeywordAOferta(k10);
 			
 			//Agrego oferta a KeyWord
 			k1.agregarOfertaAKeyWord(o1);
@@ -396,6 +434,24 @@ public class ServletCargarDatos extends HttpServlet {
 			
 			k1.agregarOfertaAKeyWord(o6);
 			
+			k4.agregarOfertaAKeyWord(o7);
+			
+			k1.agregarOfertaAKeyWord(o8);
+			
+			k5.agregarOfertaAKeyWord(o9);
+			
+			k1.agregarOfertaAKeyWord(o10);
+			k6.agregarOfertaAKeyWord(o10);
+			k9.agregarOfertaAKeyWord(o10);
+			
+			k3.agregarOfertaAKeyWord(o11);
+			
+			k3.agregarOfertaAKeyWord(o12);
+			k6.agregarOfertaAKeyWord(o12);
+			
+			k1.agregarOfertaAKeyWord(o13);
+			k10.agregarOfertaAKeyWord(o13);
+			
 			//Linkeo Tipo con Oferta 
 	
 			o1.setTipoPublicacion(tp1);
@@ -407,6 +463,11 @@ public class ServletCargarDatos extends HttpServlet {
 			o7.setTipoPublicacion(tp1);
 			o8.setTipoPublicacion(tp2);
 			o9.setTipoPublicacion(tp1);
+			o10.setTipoPublicacion(tp2);
+			o11.setTipoPublicacion(tp1);
+			o12.setTipoPublicacion(tp2);
+			o13.setTipoPublicacion(tp1);
+			
 			
 			//------------------------------//	
 			
