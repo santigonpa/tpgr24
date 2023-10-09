@@ -59,6 +59,16 @@
             });
         });
     </script>
+    
+    <style>
+    
+.row {
+--bs-gutter-x: 0rem !important;
+}
+    
+    </style>
+    
+    
 <title>TrabajoUY</title>
 </head>
 <body>
