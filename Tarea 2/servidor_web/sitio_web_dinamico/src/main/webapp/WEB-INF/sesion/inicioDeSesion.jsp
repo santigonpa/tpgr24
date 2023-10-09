@@ -82,7 +82,7 @@
 							<button  type="submit" class="btn btn-dark">Iniciar sesión</button>
 						</div>
 						<div class="my-3">
-							<span>¿No tienes cuenta? <a href="altaDeUsuario.html">Regístrate.</a></span> <br>
+							<span>¿No tienes cuenta? <a href="AltaUsuario">Regístrate.</a></span> <br>
 							<span><a href="#">Recuperar contraseña.</a></span>
 						</div>
 					</form>
