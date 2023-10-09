@@ -47,8 +47,9 @@
     <title>TrabajoUY</title>
 </head>
 <body>
+
 		<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
-		
+	<main>	
 		<div class="contenedor">
 	  		<h2 class="titulo">Información postulantes</h2>
 		</div>
@@ -114,7 +115,7 @@
 			       <% 
 			        }
 			    %>
-			
+			</main>
 			<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 		
 </body>
