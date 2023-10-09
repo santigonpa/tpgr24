@@ -54,7 +54,7 @@ public class Postulante extends Usuario{
 	//}
 	
 	public void modificarPos(String nombre, String apellido, int dia, int mes, int anio, String nacionalidad) {
-		LocalDate fechaIn = LocalDate.of(dia,  mes, anio);
+		LocalDate fechaIn = LocalDate.of(anio,  mes, dia);
 		if (this.nacimiento.isEqual(fechaIn)){
 		}else {
 			this.setNacimiento(fechaIn);
@@ -81,12 +81,13 @@ public class Postulante extends Usuario{
 	}	
 	
 	public Postulacion encontrarPostulacionPorNombreOferta(String nombreOfer) {
-	    for (Postulacion postulacion : postulaciones) {
+	    Postulacion pos = null;
+		for (Postulacion postulacion : postulaciones) {
 	        if (postulacion.getOferta().getNombreOferta().equals(nombreOfer)) {
-	            return postulacion; 
+	            pos = postulacion; 
 	        }
 	    }
-	    return null; 
+	    return pos; 
 	}
 
 }

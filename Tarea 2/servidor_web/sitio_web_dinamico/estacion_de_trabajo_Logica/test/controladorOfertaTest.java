@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -296,6 +297,22 @@ class controladorOfertaTest {
 		}
 		assertEquals(paq,comparacion);
 		
+		}
+		@Test 
+		void testeoDataTipoPubli() {
+			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			LocalDate at1 = LocalDate.parse("10-08-2023", dateFormatter);
+			LocalTime hi13 = LocalTime.parse("14:00");
+			LocalTime hf13 = LocalTime.parse("18:00");
+			LocalDate ao13 = LocalDate.of(2023,10,1);
+			OfertaLaboral o134 = new OfertaLaboral("Ingeniero ", "Asegura la calidad.", "Montevideo", "Montevideo", hi13, hf13, 60000, 4000, ao13, null, "Premium");
+			TipoPublicacion tp1 = new TipoPublicacion("Premium+","Obten maxima visibilidad+.",1,30,4000,at1);
+			o134.setTipoPublicacion(tp1);
+			TipoPublicacion datos = o134.getTipoDeOferta();
+			DataTipoPublicacion data = datos.getDTTipoPublicacion();
+			assertEquals(data.getCosto(),datos.getCosto());
+			
+		}
+		
 	}
 	
-}

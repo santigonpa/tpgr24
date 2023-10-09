@@ -1,6 +1,8 @@
 package test;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,6 +25,7 @@ import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorUsuario;
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
+import logica_datatypes.DataPostulacion;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_entidades.Empresa;
@@ -30,6 +33,7 @@ import logica_entidades.OfertaLaboral;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
+import logica_entidades.Usuario;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
@@ -158,7 +162,17 @@ class controladorUsuarioTest {
 	
 	
 	
+@Test
 	
+	void contraseniaDiferenteTest() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
+		LocalDate n1 = LocalDate.of(1995, 5, 1);
+		IControladorUsuario cu = Fabrica.getInstance().getInUser();
+	    //ESTO LO QUE HACE ES FIJARSE SI PASA LA EXCEPCION QUE PONGO DENTRO DEL ASSERTTHROWS
+		//SI OCURRE LA EXCEPCION EL TEST VA A SALIR BIEN LUEGO EN LOS SIGUIENTES TEST DE ABAJO HAGO LO MISMO CON OTRAS EXC
+	    assertThrows(NicknameYaExisteException.class, () -> {
+	        cu.altaUsuarioPostulante("Pedro", "holaworld", "apellido", "nombreInva@gmail.com",n1, "www.noFunc.com", null, );
+	    });
+	}
 
 	
 	
@@ -420,6 +434,36 @@ class controladorUsuarioTest {
 	
 	@Test
 	void testeoEntidadesUsuario() {
+		Postulante lgarcia = mu.obtenerPostulante("lgarcia");
+		Postulacion postu = lgarcia.encontrarPostulacionPorNombreOferta("Desarrollador Frontend");
+		Postulacion postu2 = lgarcia.encontrarPostulacionPorNombreOferta("Estratega de Negocios");
+		boolean verIgualdad = (postu.equals(postu2));
+		String cvPostu = postu.getCV();
+		String motiPostu =postu.getMotivacion();
+		String nombrePostulante = postu.getNombrePostulante();
+		String nombreOfert = postu.getNombreOfer();
+		assertEquals(nombrePostulante, postu.getNombrePostulante());
+		assertEquals(nombreOfert, postu.getNombreOfer());
+
+		assertEquals(cvPostu,postu.getCV());
+		assertEquals(motiPostu,postu.getMotivacion());
+		DataPostulacion dataPos = postu.getDTPostulacion();
+		assertNull(dataPos.getApellido(),postu.getPostulante().getApellido());
+		assertFalse(verIgualdad);
+		DataPostulante postulant = lgarcia.getDTPostulante();
+		assertEquals(postulant.getNickName(),"lgarcia");
+		Empresa eco = mu.obtenerEmpresa("EcoTech");
+		eco.modificarEm("hola", "nuevos", "datos", "empresa");
+		lgarcia.modificarPos("apellido", "nuevo", 3,12, 2000, "Uruguay");
+		assertEquals(mu.getDataEmpresa("EcoTech").getNombre(),"hola");
+		assertEquals(mu.getDataPostulante("lgarcia").getNombre(),"apellido");
+		DataUsuario lgarciaData = ((Usuario) lgarcia).getDTUsuario();
+		assertEquals(lgarciaData.getNombre(),"apellido");
+		assertEquals(postu.getNickPostulante(),"lgarcia");
+		Map<String, OfertaLaboral> mapa = eco.getOfertasRechazadasIngresadas();
+		
+		assertNull(mapa.get("Desarrollador Frontend"));
+	
 		
 	}
 }
