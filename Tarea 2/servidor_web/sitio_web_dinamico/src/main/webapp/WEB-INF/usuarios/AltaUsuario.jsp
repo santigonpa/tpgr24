@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <ul class="nav nav-tabs card-header-tabs justify-content-center">
               <li class="nav-item">
                 <a
-                  class="nav-link active text-muted fs-3"
+                  class="nav-link text-muted fs-3"
                   id="postulante-tab"
                   data-toggle="tab"
                   href="#postulante"
@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
     
                 <div class="tab-content">
-                  <div class="tab-pane fade show active" id="postulante">
+                  <div class="tab-pane fade" id="postulante">
                     <!-- Campos específicos para personas -->
                     <div class="form-container">
                       <div class="form-group">
@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade show active" id="empresa">
+                  <div class="tab-pane fade" id="empresa">
                     <!-- Campos específicos para empresas -->
                     <div class="form-container">
                       <div class="form-group">
