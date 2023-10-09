@@ -48,7 +48,7 @@
 <meta charset="ISO-8859-1">
 <body>
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
-	   
+	 <main>  
 	   <%
 	   	Postulacion post = (Postulacion) request.getAttribute("dtPost");
 	   	String nombreO = post.getNombreOfer();
@@ -143,6 +143,7 @@
   		</div>
   		</div>
 	</div>
-	    
+	    </main>
+		<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>
