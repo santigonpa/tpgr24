@@ -61,7 +61,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
     }
     
     public Usuario obtenerUsuarioPorEmail(String email) {
-        return  usuariosPorEmail.getOrDefault(email, null); //si no existe deberia retornar null
+    	return  usuariosPorEmail.getOrDefault(email, null); //si no existe deberia retornar null
     }
     
     public Map<String, DataEmpresa> getDataEmpresas() {

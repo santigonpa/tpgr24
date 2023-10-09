@@ -36,7 +36,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 
 public class ServletAltaDeUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+  
 	
 	private Fabrica fab = Fabrica.getInstance();
 	private IControladorUsuario ICU = fab.getInUser();

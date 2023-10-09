@@ -19,8 +19,6 @@ public interface IManejadorUsuario {
 
 	public abstract void addUsuario(Usuario post);
 
-	//public abstract boolean emailYaExiste(String email);
-
 	public abstract Usuario obtenerUsuario(String nickName);
 	
 	public abstract Usuario obtenerUsuarioPorEmail(String email);
@@ -30,7 +28,6 @@ public interface IManejadorUsuario {
 	public abstract Map<String, DataPostulante> getDataPostulantes();
 	
 	public abstract DataPostulante getDataPostulante(String postulante);
-
 
 	public abstract Map<String, DataUsuario> getDataUsuario();
 
