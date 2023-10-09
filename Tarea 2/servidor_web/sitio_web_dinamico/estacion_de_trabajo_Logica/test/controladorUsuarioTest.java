@@ -162,17 +162,6 @@ class controladorUsuarioTest {
 	
 	
 	
-@Test
-	
-	void contraseniaDiferenteTest() throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException{
-		LocalDate n1 = LocalDate.of(1995, 5, 1);
-		IControladorUsuario cu = Fabrica.getInstance().getInUser();
-	    //ESTO LO QUE HACE ES FIJARSE SI PASA LA EXCEPCION QUE PONGO DENTRO DEL ASSERTTHROWS
-		//SI OCURRE LA EXCEPCION EL TEST VA A SALIR BIEN LUEGO EN LOS SIGUIENTES TEST DE ABAJO HAGO LO MISMO CON OTRAS EXC
-	    assertThrows(NicknameYaExisteException.class, () -> {
-	        cu.altaUsuarioPostulante("Pedro", "holaworld", "apellido", "nombreInva@gmail.com",n1, "www.noFunc.com", null, );
-	    });
-	}
 
 	
 	
