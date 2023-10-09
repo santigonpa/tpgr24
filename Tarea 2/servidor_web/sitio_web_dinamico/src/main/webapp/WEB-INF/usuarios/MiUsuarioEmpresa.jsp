@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import= "logica_entidades.Usuario" %>
+    <%@page import= "logica_entidades.Paquete" %>
+    <%@page import= "logica_entidades.Empresa" %>
     <%@page import= "logica_datatypes.DataEmpresa" %>
     <%@page import= "logica_datatypes.DataOferta" %>
+    <%@page import= "logica_datatypes.DataPaquete" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
+    <%@page import= "java.util.Map" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -409,6 +413,8 @@
 			<%
 				  }
 			%>
+			
+			
 			  
 			  </div>
 			
@@ -434,6 +440,79 @@
 			%>
     	
     	</div>
+    	
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	      <h2>Paquetes comprados por la empresa.</h2>
+	    </div>
+	      
+    	<%	
+    		Empresa emp = (Empresa) usr;
+    		Map<String, Paquete> paquetes = emp.getPaquetes();
+    	
+    		if(!paquetes.isEmpty() || paquetes == null){
+	     %>
+	     
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
+				
+				
+				<%  //initfor
+				String nombrePaq;
+		        String descPaq;
+		        byte[] imagenBytesPaquete;
+		
+		        for (Paquete paqAct : paquetes.values()) {
+		        	nombrePaq = paqAct.getNombre();
+					imagenBytesPaquete = paqAct.getImagen();
+					descPaq = paqAct.getDescripcion();
+		            String base64ImageOferta2 = Base64.getEncoder().encodeToString(imagenBytesPaquete);
+					
+				%>
+			  
+			  
+			    
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 18rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageOferta2 %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nombrePaq %></h5>
+			          <p class="card-text"><%= descPaq %></p>
+			          <a href="DetalleDePaquete?id=<%= nombrePaq %>" class="btn btn-outline-dark">Consultar datos del Paquete</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			
+			
+			  
+			  </div>
+			
+			</div>
+			
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No tiene paquetes adquiridos.
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+	</div>
     	
     	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
     

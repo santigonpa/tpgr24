@@ -144,5 +144,9 @@ public class Empresa extends Usuario{
 	public void linkearOfertaEmpresa(OfertaLaboral nuevaOferta, String nombreOferta) {
 		this.ofertas.put(nombreOferta, nuevaOferta);
 	}
+	
+	public Map<String, Paquete> getPaquetes(){
+		return this.paquetes;
+	}
 
 }
