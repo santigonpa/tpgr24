@@ -44,6 +44,8 @@ public class ServletCompraPaquete extends HttpServlet {
   		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
   		
   	}
+    
+  
 
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -70,6 +72,11 @@ public class ServletCompraPaquete extends HttpServlet {
 			
 			
     }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        cargarDatos(request, response);
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
