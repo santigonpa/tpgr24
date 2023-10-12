@@ -1,10 +1,12 @@
 package com.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_datatypes.DataEmpresa;
 import logica_entidades.Empresa;
 import logica_entidades.Usuario;
 import logica_entidades.Paquete;
@@ -18,8 +20,8 @@ import java.io.IOException;
 
 import com.model.EstadoSesion;
 
-@WebServlet (description = "Servlet para comprar paquete", urlPatterns = { "/ServletCompraPaquete" })
-
+@WebServlet (description = "Servlet para comprar paquete", urlPatterns = { "/CompraPaquete" })
+@MultipartConfig
 /**
  * Servlet implementation class ServletCompraPaquete
  */
@@ -56,16 +58,18 @@ public class ServletCompraPaquete extends HttpServlet {
     		}
 			
 			if(banderaSesion) {
-			String paq = (String)request.getAttribute("id");
+				String paq = (String)request.getParameter("id");
 			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			Empresa emp = (Empresa) user;
+			Empresa emp = (Empresa) fab.getInManejadorUsuario().obtenerEmpresa(user.getNickName());
 			Paquete paquete=fab.getInManejadorPyT().getPaquete(paq);
-			fab.getInManejadorUsuario().CompraPaquete(paquete, user.getNombre());
-			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/miUsuarioEmpresa.jsp").forward(request, response);
+			fab.getInManejadorUsuario().CompraPaquete(paquete, emp.getNickName());
+			DataEmpresa DTemp = emp.getDTEmpresa();
+			request.setAttribute("consultar", DTemp);
+			request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioEmpresa.jsp").forward(request, response);
 			}			
 			
 			if(!banderaSesion) {
-			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/inicioDeSesion.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
 			
 			}
 			
