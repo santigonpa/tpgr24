@@ -1,11 +1,14 @@
 package logica_entidades;
 
 import java.util.Map;
+import java.util.Set;
 
 import logica_datatypes.DataPaquete;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.HashSet;
+
 
 public class Paquete {
 
@@ -16,7 +19,7 @@ public class Paquete {
 	private int descuento;
 	private int costo; //nuevo para la tarea2
 	private LocalDate fechadealta;
-	private Map<String, TipoPublicacion> tipoPublicaciones;
+	private Set<TipoPublicacion> tipoPublicaciones;
 	private byte[] imagen; // Nuevo atributo para la imagen del paquete
 	
 	//Contructor
@@ -29,11 +32,10 @@ public class Paquete {
 		this.fechadealta = fechadealta;
 		this.costo = costo;
 		this.imagen = imagen;
-		this.tipoPublicaciones = new HashMap<>();
+		this.tipoPublicaciones = new HashSet<>();
 	}
 	
 	//getters
-	
 
 	public String getNombre() {
 		return nombre;
@@ -63,14 +65,31 @@ public class Paquete {
 		return imagen;
 	}
 	
-	public Map<String, TipoPublicacion> getTipoPublicacions(){
+	public Set<TipoPublicacion> getTipoPublicacions(){
 		return tipoPublicaciones;
 	}
 	
 	public TipoPublicacion getTipoPubli(String tipoP) {
-		return this.tipoPublicaciones.get(tipoP);
+		for (TipoPublicacion tipo : this.tipoPublicaciones) {
+			if(tipo.getNombre() .equals(tipoP)) {
+				return tipo;
+			}
+		}
+		return null;
 	}
 	
+	public boolean ExisteTipoPubli(String tipoP) {
+		for (TipoPublicacion tipo : this.tipoPublicaciones) {
+			if(tipo.getNombre() .equals(tipoP)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void setPublicaciones(TipoPublicacion publi, int cantidad) {
+		(this.tipoPublicaciones).add(publi);
+	}
 	//setters
 	
 	/*public void setCantidadTipos(int cant) {

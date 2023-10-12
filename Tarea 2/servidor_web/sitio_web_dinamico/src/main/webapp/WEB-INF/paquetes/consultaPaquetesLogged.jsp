@@ -74,6 +74,8 @@
     						<h5 class="card-title"><strong><%= nombreOfer %></strong></h5>
     						<hr>
 							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>
+							<a href="ServletCompraPaquete?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Comprar</a>
+							
 							<br>
 							</div>
 		    	</div>

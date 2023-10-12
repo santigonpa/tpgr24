@@ -2,6 +2,7 @@ package logica_entidades;
 
 
 import java.util.Map;
+import java.util.Set;
 
 import logica_datatypes.DataCompraPaquete;
 
@@ -13,14 +14,13 @@ public class CompraPaquete {
 	private LocalDate fechaCompra;
 	private LocalDate fechaVenc;
 	private Paquete paqCompr;
-	private Map<String, TipoPublicacion> tipoPublicaciones;
-	
-	//constructor
-	public CompraPaquete(LocalDate fechaCom, LocalDate fechaVen) {
+	private Set<TipoPublicacion> tipoPublicaciones;
+		
+	public CompraPaquete(int costo, LocalDate fechaVen, LocalDate fechaCom, Paquete paqCompr) {
 		this.fechaCompra = fechaCom;
 		this.fechaVenc = fechaVen;
-		this.paqCompr = null;
-		this.tipoPublicaciones = new HashMap<>();
+		this.tipoPublicaciones = paqCompr.getTipoPublicacions();
+		this.paqCompr = paqCompr;
 	}
 	
 	//getters
@@ -37,26 +37,32 @@ public class CompraPaquete {
 		return paqCompr;
 	}
 	
-	public Map<String, TipoPublicacion> getTipoDePublicacionesDisp(){
+	public Set<TipoPublicacion> getTipoDePublicacionesDisp(){
 		return tipoPublicaciones;
 	}
 	
 	public TipoPublicacion getTipoPubli(String nombreTipo) {
-		return this.tipoPublicaciones.get(nombreTipo);
+		return this.paqCompr.getTipoPubli(nombreTipo);
 	}
 	
 	//operaciones 
 	
 	public boolean existeTipoPubli(String nombreTipo) {
-		return this.tipoPublicaciones.containsKey(nombreTipo);
+		return this.paqCompr.ExisteTipoPubli(nombreTipo);
 	}
 	
 	public int cantTipoPubli() {
 		return this.tipoPublicaciones.size();
 	}
 	
-	public void yaSeUsoTipoPubli(String nombreTipo) {
-		this.tipoPublicaciones.remove(nombreTipo);
+	public boolean yaSeUsoTipoPubli(String nombreTipo) {
+		for (TipoPublicacion publi : this.tipoPublicaciones) {
+			if (nombreTipo .equals(publi.getNombre())) {
+				tipoPublicaciones.remove(publi);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public DataCompraPaquete getDTCompraPaquete() {
@@ -65,7 +71,6 @@ public class CompraPaquete {
 	}
 
 	public int getCosto() {
-		// TODO Auto-generated method stub
-		return 0;
+		return paqCompr.getCosto();
 	}
 }
