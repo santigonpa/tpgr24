@@ -232,7 +232,7 @@
     <description></description>
     <display-name>ServletCompraPaquete</display-name>
     <servlet-name>ServletCompraPaquete</servlet-name>
-    <servlet-class>ServletCompraPaquete</servlet-class>
+    <servlet-class>com.controller.ServletCompraPaquete</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletCompraPaquete</servlet-name>
