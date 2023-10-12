@@ -1,5 +1,6 @@
 package logica_manejadores;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,8 +12,10 @@ import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
+import utils.Fabrica;
 
 public class ManejadorUsuario implements IManejadorUsuario {
 	
@@ -55,6 +58,15 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	
     }
     
+	public void CompraPaquete(Paquete paq, String empresa) {
+		Empresa emp =(Empresa) this.empresas.get(empresa);
+	    LocalDate fechaActual = LocalDate.now();
+	    LocalDate fechaDealta= fechaActual;
+	    LocalDate fechVencimiento = fechaActual.plusDays(paq.getValidez());
+	    int costo = paq.getCosto();
+	    emp.comprarPaquete(paq, fechVencimiento, fechaDealta, costo);
+	}
+
 
     public Usuario obtenerUsuario(String nick) {
         return  usuarios.getOrDefault(nick, null); //si no existe deberia retornar null

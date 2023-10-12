@@ -57,6 +57,10 @@ public class Empresa extends Usuario{
 	    return res;
 	}
 
+	public void comprarPaquete(Paquete paq, LocalDate fechaVenc,LocalDate fechaDeAlta, int Costo) {
+		CompraPaquete compraPaq = new CompraPaquete(Costo,fechaDeAlta,fechaVenc,paq);
+		this.compra=compraPaq;
+	}
 
 	
 	public OfertaLaboral getOferta(String nombreOfer) {

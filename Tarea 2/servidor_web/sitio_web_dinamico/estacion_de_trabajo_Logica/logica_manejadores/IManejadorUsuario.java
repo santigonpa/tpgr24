@@ -8,6 +8,7 @@ import logica_datatypes.DataOferta;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_entidades.Empresa;
+import logica_entidades.Paquete;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
 
@@ -40,6 +41,9 @@ public interface IManejadorUsuario {
 	public abstract Set<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName);
 	
 	public abstract Empresa obtenerEmpresa(String emp);
+	
+	public abstract void CompraPaquete(Paquete paq, String empresa);
+
 
 	
 }

@@ -32,6 +32,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		TipoPublicacion res = (TipoPublicacion) this.tiposDePublicacion.get(tipoPubli);
 		return res;
 	}
+	
 
 	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
 		
@@ -66,7 +67,9 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 			return resultado;
 		}
 	}
-	
+	public Paquete getPaquete(String nombre) {
+					return this.paquetes.get(nombre);
+	}
 		public Set<DataPaquete> getDataPaquete() {
 		
 		Set<DataPaquete> res = new HashSet<>();

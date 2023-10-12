@@ -24,4 +24,7 @@ public interface IManejadorPyT {
 	public abstract void addPaquete(Paquete paq);
 
 	public abstract DataPaquete getDataPaquete(String nombrePaquete);
-}
+	
+	public abstract Paquete getPaquete(String nombre); 
+
+	}
