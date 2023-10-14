@@ -65,6 +65,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	    LocalDate fechVencimiento = fechaActual.plusDays(paq.getValidez());
 	    int costo = paq.getCosto();
 	    emp.comprarPaquete(paq, fechVencimiento, fechaDealta, costo);
+	    emp.agregarPaquetes(paq.getNombre(), paq);
 	}
 
 
