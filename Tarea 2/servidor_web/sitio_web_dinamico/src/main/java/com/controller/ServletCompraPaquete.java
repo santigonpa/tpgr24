@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataPaquete;
+
 import logica_entidades.Empresa;
 import logica_entidades.Usuario;
 import logica_entidades.Paquete;
@@ -62,10 +64,11 @@ public class ServletCompraPaquete extends HttpServlet {
 			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
 			Empresa emp = (Empresa) fab.getInManejadorUsuario().obtenerEmpresa(user.getNickName());
 			Paquete paquete=fab.getInManejadorPyT().getPaquete(paq);
+			DataPaquete dtpaq = paquete.getDTPaquete();
 			fab.getInManejadorUsuario().CompraPaquete(paquete, emp.getNickName());
 			DataEmpresa DTemp = emp.getDTEmpresa();
-			request.setAttribute("consultar", DTemp);
-			request.getRequestDispatcher("/WEB-INF/usuarios/MiUsuarioEmpresa.jsp").forward(request, response);
+			request.setAttribute("paquete", dtpaq);
+			request.getRequestDispatcher("/WEB-INF/paquetes/CompraPaquete.jsp").forward(request, response);
 			}			
 			
 			if(!banderaSesion) {
