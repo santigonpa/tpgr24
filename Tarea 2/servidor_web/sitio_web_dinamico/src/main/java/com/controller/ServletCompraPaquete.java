@@ -68,7 +68,7 @@ public class ServletCompraPaquete extends HttpServlet {
 			fab.getInManejadorUsuario().CompraPaquete(paquete, emp.getNickName());
 			DataEmpresa DTemp = emp.getDTEmpresa();
 			request.setAttribute("paquete", dtpaq);
-			request.getRequestDispatcher("/WEB-INF/paquetes/iniciarLogged.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 			}			
 			
 			if(!banderaSesion) {
