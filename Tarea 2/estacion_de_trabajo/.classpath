@@ -11,5 +11,29 @@
 	<classpathentry kind="lib" path="/tpgr24/lib/miglayout15-swing.jar"/>
 	<classpathentry kind="lib" path="/tpgr24/lib/miglayout-src.zip"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jakarta.activation-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jakarta.annotation-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jakarta.xml.bind-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jakarta.xml.soap-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jakarta.xml.ws-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jaxb-jxc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jaxws-tools.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/saaj-impl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/stax2-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/woodstox-core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/angus-activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/angus-mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/FastInfoset.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/gmbal-api-only.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/ha-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jakarta.mail-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jaxb-core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/jaxws-rt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/management-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/mimepull.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/stax-ex.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/streambuffer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
