@@ -57,6 +57,27 @@ public class Empresa extends Usuario{
 	    return res;
 	}
 
+	public Map<String, OfertaLaboral> getOfertasVigentesYConfirmadas() {
+	    Map<String, OfertaLaboral> res = new HashMap<>();
+	    
+	    for (Map.Entry<String, OfertaLaboral> entry : this.ofertas.entrySet()) {
+	        OfertaLaboral oferta = entry.getValue();
+	        
+	        if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) { // Confirmada
+	            LocalDate fechaO = oferta.getFecha(); // FECHA ALTA
+	            int sumoDias = oferta.getTipoDeOferta().getDuracion();
+	            LocalDate fechaLimite = fechaO.plusDays(sumoDias);
+	            
+	            if (!fechaLimite.isBefore(LocalDate.now())) { // Vigente
+	                res.put(entry.getKey(), oferta);
+	            }
+	        }
+	    }
+	      
+	    return res;
+	}
+
+	
 	public void comprarPaquete(Paquete paq, LocalDate fechaVenc,LocalDate fechaDeAlta, int Costo) {
 		CompraPaquete compraPaq = new CompraPaquete(Costo,fechaDeAlta,fechaVenc,paq);
 		this.compra=compraPaq;
