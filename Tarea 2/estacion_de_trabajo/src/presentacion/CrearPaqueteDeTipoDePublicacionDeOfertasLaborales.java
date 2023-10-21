@@ -10,8 +10,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import javax.swing.JLabel;
-import logica_Controladores.IControladorOferta;
+
 import excepciones.NombrePaqueteYaExiste;
+import logica_controladores.IControladorOferta;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -110,7 +112,7 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
     	int descuento = Integer.parseInt(this.descuento.getText());
     	 Date fechaDeAltaDate = (Date) fechadealtaSpinner.getValue();
          LocalDate fechaDeAlta = fechaDeAltaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();    	//try {
-    	ICO.CrearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta);
+    	ICO.crearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta, 0, null);
         JOptionPane.showMessageDialog(this, "El paquete se creo con exito", "Crear Paquete De Tipo De Publicacion De Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
     	limpiarFormulario();
     	//}catch(NombrePaqueteYaExiste e1){

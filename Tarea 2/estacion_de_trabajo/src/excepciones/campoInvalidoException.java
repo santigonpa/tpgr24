@@ -6,8 +6,8 @@ public class campoInvalidoException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public campoInvalidoException(String s) {
-		super(s);
+	public campoInvalidoException(String string) {
+		super(string);
 	}
 
 }

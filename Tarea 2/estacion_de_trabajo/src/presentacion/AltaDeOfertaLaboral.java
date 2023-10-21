@@ -27,12 +27,12 @@ import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataKeyWord;
-import logica_DataTypes.DataTipoPublicacion;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataKeyWord;
+import logica_datatypes.DataTipoPublicacion;
 import utils.Fabrica;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -340,11 +340,10 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 		remuneracion = (int)Integer.parseInt(remuneracionTexto);}
 		//OBTENER DATOS DE LAS HORAS Y FECHAS
         
-        
         if (verificarFormulario()) {
             try {
                 //ESTA OPERACION DA EL ALTA
-            	ICO.altaPublicacionOfertaLaboral(empresa,tipoPubli, nombre, descripcion, horarioInicio,horarioFin, remuneracion, ciudad, departamento, fecha,seleccionados, null);
+            	ICO.altaPublicacionOfertaLaboralGeneral(empresa, tipoPubli,  nombre, descripcion, horarioInicio, horarioFin, remuneracion, ciudad, departamento, fecha, seleccionados, null, tipoPubli);
 
                 // Muestro éxito de la operación
                 JOptionPane.showMessageDialog(this, "La oferta se ha creado con exito", "Alta de Oferta Laboral",

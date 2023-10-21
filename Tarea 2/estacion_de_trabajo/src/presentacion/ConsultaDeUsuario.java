@@ -10,12 +10,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import excepciones.UsuarioNoExisteException;
-import logica_Controladores.IControladorOferta;
-import logica_Controladores.IControladorUsuario;
-import logica_DataTypes.DataEmpresa;
-import logica_DataTypes.DataOferta;
-import logica_DataTypes.DataPostulante;
-import logica_DataTypes.DataUsuario;
+import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataOferta;
+import logica_datatypes.DataPostulacion;
+import logica_datatypes.DataPostulante;
+import logica_datatypes.DataUsuario;
+import logica_entidades.Postulacion;
+import logica_entidades.Postulante;
+import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
 
 import javax.swing.DefaultComboBoxModel;
@@ -33,7 +37,9 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	private JComboBox<DataUsuario> comboBoxUsuarios;
 	private IControladorUsuario ICU;
 	private IControladorOferta ICO;
+	private IManejadorUsuario IMU;
 	private JComboBox<DataOferta> comboOferta;
+	private JComboBox<String> comboPostul;
 	private JLabel nombreLabel;
 	private JLabel nicknameLabel;
 	private JLabel fechaNacLabel;
@@ -59,7 +65,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
 					Fabrica fabrica = Fabrica.getInstance();
 					IControladorUsuario ICU = fabrica.getInUser();
 					IControladorOferta ICO = fabrica.getInOfer();
-					ConsultaDeUsuario frame = new ConsultaDeUsuario(ICU,ICO);
+					IManejadorUsuario IMU = fabrica.getInManejadorUsuario();
+					ConsultaDeUsuario frame = new ConsultaDeUsuario(ICU,ICO,IMU);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,9 +78,10 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaDeUsuario(IControladorUsuario Icu,IControladorOferta Ico) {
+	public ConsultaDeUsuario(IControladorUsuario Icu,IControladorOferta Ico, IManejadorUsuario Imu) {
 		ICU =Icu;
 		ICO =Ico;
+		IMU = Imu;
 		
 		
 		
@@ -82,12 +90,13 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		
 		
 		conOfertaLab = new ConsultaDeOfertaLaboral(ICU,ICO);
-		conOfertaLab.setBounds(20, 11, 501, 456);
+		conOfertaLab.setBounds(20, 22, 501, 456);
 		//conOfertaLab.setBounds(42, 0, 496, 456);
 		conOfertaLab.setMaximizable(true);
 		conOfertaLab.setClosable(true);
 		conOfertaLab.setVisible(false);
 		getContentPane().add(conOfertaLab);
+		
 		
 		JLabel lblNewLabel = new JLabel("Elija el Usuario que desea consultar:");
 		lblNewLabel.setBounds(192, 11, 178, 14);
@@ -115,6 +124,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	textArea.setText(selectedEmpresa.getDescripcion());
                 	
                 	comboOferta.setVisible(true);
+                	comboPostul.setVisible(false);
                 	DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
             		try {
             		Set<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(selectedEmpresa.getNickName());
@@ -126,8 +136,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
             	    }
             	    
             	    // Establecer el modelo en el JComboBox
-            	    comboOferta.setModel(model);}
-            	    else {throw new Exception("No tiene ofertas laborales");}
+            	    comboOferta.setModel(model);
+            	    }else {throw new Exception("No tiene ofertas laborales");}
             		}catch(Exception e22) {}
 
             		//parte para hacer aparecer el caso de uso de consulta de ofertaLaboral
@@ -135,11 +145,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
             		
             		
                 } else if (selectedOption instanceof DataPostulante) {
-                	textArea.setVisible(false);
-                	comboOferta.setVisible(false);
-                	
-
-                	
                 	DataPostulante selectedPostulante = (DataPostulante) selectedOption;
                 	nombreLabel.setText(selectedPostulante.getNombre());
                 	nicknameLabel.setText(selectedPostulante.getNickName());
@@ -147,10 +152,25 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	emailLabel.setText(selectedPostulante.getEmail());
                 	nacionLabel.setText(selectedPostulante.getNacionalidad());
                 	fechaNacLabel.setText(selectedPostulante.getFechaString());
+     
+                	comboOferta.setVisible(false);
+                	comboPostul.setVisible(true);
                 	
-                	
-                	
-                	
+                	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+            		Postulante pos = IMU.obtenerPostulante(selectedPostulante.getNickName());
+            		
+            		Set<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
+            		
+            	    if (postulaciones!= null) {
+            	    // Agregar las empresas al modelo del JComboBox
+            	    for (Postulacion postu : postulaciones) {
+            	    	String oferta = postu.getOferta().getNombreOferta();
+            	        model.addElement(oferta);
+            	    }
+            	    
+            	    // Establecer el modelo en el JComboBox
+            	    comboPostul.setModel(model);
+            	    }
                 }
             }
         });
@@ -188,11 +208,11 @@ public class ConsultaDeUsuario extends JInternalFrame {
 		getContentPane().add(nacionDesLabel);
 		
 		JLabel ofertasDesBox = new JLabel("Ofertas:");
-		ofertasDesBox.setBounds(76, 251, 64, 14);
+		ofertasDesBox.setBounds(76, 284, 64, 14);
 		getContentPane().add(ofertasDesBox);
 		
 		comboOferta = new JComboBox<DataOferta>();
-		comboOferta.setBounds(148, 247, 265, 22);
+		comboOferta.setBounds(148, 280, 265, 22);
 		comboOferta.setVisible(false);
 		getContentPane().add(comboOferta);
 		
@@ -260,6 +280,17 @@ public class ConsultaDeUsuario extends JInternalFrame {
         JButton btnDesplegarConsulta = new JButton("Consultar Oferta");
         btnDesplegarConsulta.setBounds(148, 514, 145, 21);
         getContentPane().add(btnDesplegarConsulta);
+        
+        JLabel postulacionesBox = new JLabel("Postulaciones:");
+        postulacionesBox.setHorizontalAlignment(SwingConstants.LEFT);
+        postulacionesBox.setBounds(53, 336, 89, 14);
+        getContentPane().add(postulacionesBox);
+        
+        comboPostul = new JComboBox<String>();
+        comboPostul.setBounds(148, 332, 265, 22);
+        comboPostul.setVisible(false);
+		getContentPane().add(comboPostul);
+        
         btnDesplegarConsulta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -307,5 +338,6 @@ public class ConsultaDeUsuario extends JInternalFrame {
     	textArea.setText("");
     	nacionLabel.setText("");
     	fechaNacLabel.setText("");
+    	comboPostul.setSelectedIndex(-1);
 	}
 }

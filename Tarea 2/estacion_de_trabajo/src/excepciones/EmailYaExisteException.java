@@ -6,7 +6,7 @@ public class EmailYaExisteException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public EmailYaExisteException(String s) {
-		super(s);
+	public EmailYaExisteException(String string) {
+		super(string);
 	}
 }
