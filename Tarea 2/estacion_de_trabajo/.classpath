@@ -35,5 +35,6 @@
 	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/mimepull.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/stax-ex.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Maite/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib/streambuffer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Serrana/Downloads/jaxws-ri-4.0.0/jaxws-ri/lib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
