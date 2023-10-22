@@ -1,15 +1,16 @@
-package webservices;
+package controladores.publicar;
 
 import java.time.LocalDate;
+
 import java.time.LocalTime;
 import java.util.Set;
 
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
-import javax.jws.soap.SOAPBinding.ParameterStyle;
-import javax.xml.ws.Endpoint;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
+import jakarta.jws.soap.SOAPBinding;
+import jakarta.jws.soap.SOAPBinding.Style;
+import jakarta.jws.soap.SOAPBinding.ParameterStyle;
+import jakarta.xml.ws.Endpoint;
 
 import excepciones.*;
 import logica_controladores.ControladorOferta;
@@ -18,7 +19,7 @@ import logica_datatypes.DataOferta;
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 
-public class PublicadorControladorOferta {
+public class PublicadorControladorOfertas {
 
     private Endpoint endpoint = null;
 
@@ -26,9 +27,9 @@ public class PublicadorControladorOferta {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = ConfigHelper.getWebServiceBaseURL() + "/ControladorOferta";
-        System.out.println("Publicando servicio de ControladorOferta en " + url);
-        endpoint = Endpoint.publish(url, this);
+//        String url = ConfigHelper.getWebServiceBaseURL() + "/ControladorOferta"; nosotros no tenemos un config helper
+ //       System.out.println("Publicando servicio de ControladorOferta en " + url);
+ //       endpoint = Endpoint.publish(url, this);
     }
 
     @WebMethod(exclude = true)

@@ -20,5 +20,33 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/tpgr24/lib/angus-activation.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/angus-mail.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/FastInfoset.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/gmbal-api-only.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/ha-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jakarta.activation-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jakarta.annotation-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jakarta.mail-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jakarta.xml.bind-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jakarta.xml.soap-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jakarta.xml.ws-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jaxb-core.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jaxb-jxc.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jaxws-rt.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jaxws-tools.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/management-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/miglayout-src.zip"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/mimepull.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/saaj-impl.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/stax2-api.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/stax-ex.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/streambuffer.jar"/>
+	<classpathentry kind="lib" path="/tpgr24/lib/woodstox-core.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
