@@ -21,15 +21,8 @@ public class Empresa extends Usuario{
 	private HashMap<String, Paquete> paquetes;
 
 	
-	public Empresa(String nickName, String nombre, String apellido, String email, String descripcion, String web, byte[]imagen , String psw) {
-		super(nickName, nombre, apellido, email, psw, imagen);
-		this.descripcion = descripcion;
-		this.web = web; 
-		this.compra = null;
-		this.ofertas = new HashMap<>();
-		this.paquetes = new HashMap<>();
-		
-		
+	public Empresa() {
+		super();
 	}
 	
 	//getters
@@ -61,18 +54,54 @@ public class Empresa extends Usuario{
 	      
 	    return res;
 	}
-
-	public void comprarPaquete(Paquete paq, LocalDate fechaVenc,LocalDate fechaDeAlta, int Costo) {
-		CompraPaquete compraPaq = new CompraPaquete(Costo,fechaDeAlta,fechaVenc,paq);
-		this.compra=compraPaq;
-	}
-
 	
 	public OfertaLaboral getOferta(String nombreOfer) {
 		return this.ofertas.get(nombreOfer);
 	}
 	
+	
+	public HashMap<String, Paquete> getPaquetes(){
+		return this.paquetes;
+	}
 
+
+	public DataEmpresa getDTEmpresa() {
+		DataEmpresa DtEmp = new DataEmpresa();
+		DtEmp.setApellido(this.getApellido());
+		DtEmp.setDescripcion(this.descripcion);
+		DtEmp.setEmail(this.getEmail());
+		DtEmp.setImagen(this.getImagen());
+		DtEmp.setLinkWeb(this.getLinkWeb());
+		DtEmp.setNickName(this.getNickName());
+		DtEmp.setNombre(this.getNombre());
+		DtEmp.setPsw(this.getPsw());
+		return DtEmp;
+	}
+	
+	public HashMap<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
+		HashMap<String, OfertaLaboral> res = new HashMap<>();
+        
+	    for (String ofertaNombre : this.ofertas.keySet()) {
+	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
+	    		if (!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    			res.put(ofertaNombre, oferta);
+	    		}
+	    }
+	    return res;
+	}
+	
+	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
+		HashMap<String, OfertaLaboral> res = new HashMap<>();
+        
+	    for (String ofertaNombre : this.ofertas.keySet()) {
+	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
+	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    			res.put(ofertaNombre, oferta);
+	    		}
+	    }
+	    return res;
+	}
+	
 	//setters
 	
 	public void setDescripcion(String desc) {
@@ -87,8 +116,12 @@ public class Empresa extends Usuario{
 		this.compra = compra;
 	}
 	
-	public void agregarOfertas(String nombreOf, OfertaLaboral ofer) {
-		this.ofertas.put(nombreOf, ofer);
+	public void setOfertas(HashMap<String, OfertaLaboral> ofer) {
+		this.ofertas = ofer;
+	}
+	
+	public void setPaquetes(HashMap<String, Paquete> paq) {
+		this.paquetes = paq;
 	}
 	
 	public void agregarPaquetes(String nombrePaq, Paquete paq){
@@ -105,38 +138,11 @@ public class Empresa extends Usuario{
 		return this.compra != null;
 	}
 	
-	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
-		HashMap<String, OfertaLaboral> res = new HashMap<>();
-        
-	    for (String ofertaNombre : this.ofertas.keySet()) {
-	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
-	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
-	    			res.put(ofertaNombre, oferta);
-	    		}
-	    }
-	    return res;
-	}
-	
-	public HashMap<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
-		HashMap<String, OfertaLaboral> res = new HashMap<>();
-        
-	    for (String ofertaNombre : this.ofertas.keySet()) {
-	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
-	    		if (!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
-	    			res.put(ofertaNombre, oferta);
-	    		}
-	    }
-	    return res;
-	}
 	
 	public boolean tieneOfertas() {
 		return !(ofertas.isEmpty());
 	}
 
-	public DataEmpresa getDTEmpresa() {
-		DataEmpresa DtEmp = new DataEmpresa(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDescripcion(), this.getLinkWeb(), this.getImagen(), this.getPsw());	
-		return DtEmp;
-	}
 	
 //	public void linkearOfertaEmpresa(OfertaLaboral of) {
 //		this.ofertas.put(of.getNombre(), of);
@@ -153,9 +159,17 @@ public class Empresa extends Usuario{
 	public void linkearOfertaEmpresa(OfertaLaboral nuevaOferta, String nombreOferta) {
 		this.ofertas.put(nombreOferta, nuevaOferta);
 	}
-	
-	public HashMap<String, Paquete> getPaquetes(){
-		return this.paquetes;
-	}
 
+	
+	
+	public void comprarPaquete(Paquete paq, LocalDate fechaVenc,LocalDate fechaDeAlta, int Costo) {
+		CompraPaquete compraPaq = new CompraPaquete();
+		compraPaq.setFechaCompr(fechaDeAlta);
+		compraPaq.setFechaVenc(fechaVenc);
+		compraPaq.setPaquete(paq);
+		this.compra=compraPaq;
+	}
+	public void agregarOfertas(String nombreOf, OfertaLaboral ofer) {
+		this.ofertas.put(nombreOf, ofer);
+	}
 }

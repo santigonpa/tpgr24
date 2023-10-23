@@ -18,12 +18,28 @@ public class CompraPaquete {
 	private Paquete paqCompr;
 	private ArrayList<TipoPublicacion> tipoPublicaciones;
 		
-	public CompraPaquete(int costo, LocalDate fechaVen, LocalDate fechaCom, Paquete paqCompr) {
-		this.fechaCompra = fechaCom;
-		this.fechaVenc = fechaVen;
-		this.tipoPublicaciones = paqCompr.getTipoPublicacions();
-		this.paqCompr = paqCompr;
+	public CompraPaquete() {
 	}
+	
+	//setters
+	
+	
+	public void setFechaCompr(LocalDate fecha) {
+		this.fechaCompra = fecha;
+	}
+	
+	public void setFechaVenc(LocalDate fecha) {
+		this.fechaVenc = fecha;
+	}
+	
+	public void setPaquete(Paquete paq) {
+		this.paqCompr = paq;
+	}
+	
+	public void setTipoPubli(ArrayList<TipoPublicacion> tipospu) {
+		this.tipoPublicaciones = tipospu;
+	}
+	
 	
 	//getters
 	
@@ -42,9 +58,21 @@ public class CompraPaquete {
 	public ArrayList<TipoPublicacion> getTipoDePublicacionesDisp(){
 		return tipoPublicaciones;
 	}
+
 	
 	public TipoPublicacion getTipoPubli(String nombreTipo) {
 		return this.paqCompr.getTipoPubli(nombreTipo);
+	}
+	
+	public DataCompraPaquete getDTCompraPaquete() {
+		DataCompraPaquete DtCompraPaq = new DataCompraPaquete();
+		DtCompraPaq.setFechaCompra(this.fechaCompra);
+		DtCompraPaq.setFechaVenc(this.getFechaVencimiento());
+		return DtCompraPaq;
+	}
+
+	public int getCosto() {
+		return paqCompr.getCosto();
 	}
 	
 	//operaciones 
@@ -67,12 +95,5 @@ public class CompraPaquete {
 		return false;
 	}
 
-	public DataCompraPaquete getDTCompraPaquete() {
-		DataCompraPaquete DtCompraPaq = new DataCompraPaquete(this.fechaCompra, this.fechaVenc);
-		return DtCompraPaq;
-	}
 
-	public int getCosto() {
-		return paqCompr.getCosto();
-	}
 }

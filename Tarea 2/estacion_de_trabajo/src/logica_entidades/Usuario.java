@@ -19,13 +19,8 @@ public class Usuario {
 
 	//Constructor
 	
-	public Usuario(String nickName, String nombre, String apellido, String email , String psw, byte[] imagen) {
-		this.nickName = nickName;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.imagen = imagen;
-		this.psw = psw;
+	public Usuario() {
+
 	}
 	
 	//Getters
@@ -46,6 +41,14 @@ public class Usuario {
 		return email;
 	}
 
+	public String getPsw() {
+		return psw;
+	}
+	
+	public byte[] getImagen() {
+		return imagen;
+	}
+
 	//setters
 	
 	public void setNickName(String nickname) {
@@ -64,26 +67,26 @@ public class Usuario {
 		this.email = email;
 	}
 
-	//obtener dataTypes
-	
-	public DataUsuario getDTUsuario(){
-		DataUsuario DtUser = new DataUsuario(this.nickName, this.nombre, this.apellido, this.email, this.psw, this.imagen);
-		return DtUser;
-	}
-
-	public String getPsw() {
-		return psw;
-	}
-
 	public void setPsw(String psw) {
 		this.psw = psw;
 	}
 
-	public byte[] getImagen() {
-		return imagen;
-	}
 
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
+	//obtener dataTypes
+	public DataUsuario getDTUsuario(){
+		DataUsuario DtUser = new DataUsuario();
+		DtUser.setApellido(this.apellido);
+		DtUser.setEmail(this.email);
+		DtUser.setImagen(this.imagen);
+		DtUser.setNickName(this.nickName);
+		DtUser.setNombre(this.nombre);
+		DtUser.setPsw(this.psw);
+		return DtUser;
+	}
+
+
+
 }

@@ -35,6 +35,48 @@ public class Paquete {
 		this.tipoPublicaciones = new ArrayList<>();
 	}
 	
+	//setters
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public void setDescripcion(String desc) {
+		this.descripcion = desc;
+	} 
+	
+	public void setValidez(int val) {
+		this.validez = val;
+	}
+	
+	public void setDescuento(int desc) {
+		this.descuento = desc;
+	}
+	
+	public void setFechaAlta(LocalDate fecha) {
+		this.fechadealta = fecha;
+	}
+	
+	public void setCosto(int costo) {
+		this.costo = costo;
+	}
+	
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
+	public void setTipoPublicaciones(ArrayList<TipoPublicacion> tipos) {
+		this.tipoPublicaciones = tipos;
+	}
+	
+	public void setPublicaciones(TipoPublicacion publi, int cantidad) {
+		for(int i=1; i <= cantidad ; i++) {
+			(this.tipoPublicaciones).add(publi);
+		}
+	}
+	
+	
+	
 	//getters
 
 	public String getNombre() {
@@ -87,9 +129,7 @@ public class Paquete {
 		return false;
 	}
 	
-	public void setPublicaciones(TipoPublicacion publi, int cantidad) {
-		(this.tipoPublicaciones).add(publi);
-	}
+
 	//setters
 	
 	/*public void setCantidadTipos(int cant) {
@@ -105,7 +145,14 @@ public class Paquete {
 	}
 	*/
 	public DataPaquete getDTPaquete() {
-		DataPaquete DtPaq = new DataPaquete(this.nombre, this.descripcion, this.validez, this.descuento, this.fechadealta, this.costo, this.imagen);
+		DataPaquete DtPaq = new DataPaquete();
+		DtPaq.setCosto(this.costo);
+		DtPaq.setDescripcion(this.descripcion);
+		DtPaq.setDescuento(this.descuento);
+		DtPaq.setFechaDeAlta(this.fechadealta);
+		DtPaq.setImagen(this.imagen);
+		DtPaq.setValidez(this.validez);
+		DtPaq.setNombre(this.nombre);
 		return DtPaq;
 	}
 

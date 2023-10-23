@@ -44,36 +44,97 @@ public class OfertaLaboral {
 	
 	// Operaciones
 	
-	public OfertaLaboral(String nombre, String descripcion, String ciudad, 
-			String departamento, LocalTime horarioInicio, LocalTime horarioFin
-			, int remuneracion2 , int costoOfertaLaboral, LocalDate fecha, byte[]imagen, String tipoDePago){
-		this.nombre = nombre;
-		this.ciudad = ciudad;
-		this.descripcion = descripcion;
-		this.costoDeOfertaLaboral = (int) costoOfertaLaboral;
-		this.horaFin = horarioFin;
-		this.horaInicio = horarioInicio;
-		this.departamento = departamento;
-		this.remuneracion = (int) remuneracion2;
-		this.fechaDeAlta = (LocalDate) fecha;
-		this.palabrasClave = new ArrayList<KeyWord>();
-		//this.postulacionesSobreLaOferta = new HashSet<>();
-		this.postulacionesSobreLaOferta = new ArrayList<Postulacion>();
-		this.estado = EstadoOferta.INGRESADA;
-		this.imagen = imagen;
-		this.tipoDePago = tipoDePago;
+	public OfertaLaboral() {
 	}
 	
 	public DataOferta getDataOferta() {
-		DataOferta dataOfer = new DataOferta(this.nombre, this.descripcion, this.ciudad, 
-				this.departamento, this.horaInicio, this.horaFin
-				, this.remuneracion , this.costoDeOfertaLaboral, this.fechaDeAlta, this.estado, this.empresaAsociada.getNickName(), this.imagen, this.palabrasClave, this.tipoDePago);
+		DataOferta dataOfer = new DataOferta();
+		dataOfer.setCiudad(this.ciudad);
+		dataOfer.setCostoDeOfertaLaboral(this.costoDeOfertaLaboral);
+		dataOfer.setDepartamento(this.departamento);
+		dataOfer.setDescripcion(this.descripcion);
+		dataOfer.setEmpresa(this.empresaAsociada.getNickName());
+		dataOfer.setEstado(this.estado);
+		dataOfer.setFechaDeAlta(this.fechaDeAlta);
+		dataOfer.setHoraFin(this.horaFin);
+		dataOfer.setHoraInicio(this.horaInicio);
+		dataOfer.setImagen(this.imagen);
+		dataOfer.setTipoDePago(this.tipoDePago);
+		dataOfer.setRemuneracion(this.remuneracion);
+		dataOfer.setNombre(this.nombre);
+		dataOfer.setKeyWords(this.palabrasClave);
 		return dataOfer;
 	}
+	
+	//setters
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public void setDescripcion(String desc) {
+		this.descripcion = desc;
+	}
+	
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	
+	public void setDepartamento(String dep) {
+		this.departamento = dep;
+	}
+	
+	public void setHorarioIni(LocalTime horaini) {
+		this.horaInicio = horaini;
+	}
+	
+	public void setHorarioFin(LocalTime horafin) {
+		this.horaFin = horafin;
+	}
+	
+	public void setRemuneracion(int rem) {
+		this.remuneracion = rem;
+	}
+	
+	public void setCostoOfer(int costo) {
+		this.costoDeOfertaLaboral = costo;
+	}
+		
+	public void setFechaAlta(LocalDate fecha) {
+		this.fechaDeAlta = fecha;
+	}
+	
+	public void setPostulaciones(ArrayList<Postulacion> post) {
+		this.postulacionesSobreLaOferta = post;
+	}
+	
+	public void setTipoPub(TipoPublicacion publi) {
+		this.tipoDeOferta = publi;
+	}
+	
+	public void setPalabrasClav(ArrayList<KeyWord> keys) {
+		this.palabrasClave = keys;
+	}
+	
+	public void setImagen(byte[] img) {
+		this.imagen = img;
+	}
+
 	
 	public void setEmpresa(Empresa emp) {
 		this.empresaAsociada = emp; 
 	}
+	
+	public void setTipoPublicacion(TipoPublicacion tipo){
+		this.tipoDeOferta = tipo;
+	}
+
+	public void setEstado(EstadoOferta estado) {
+		this.estado = estado;
+	}
+	
+	//getters
+	
 	public TipoPublicacion getTipoDeOferta() {
 		return this.tipoDeOferta;
 	}
@@ -81,32 +142,7 @@ public class OfertaLaboral {
 	public Empresa getEmpresa() {
 		return this.empresaAsociada;
 	}
-	public boolean existeLaPostulacion(String postulante) {
-		boolean condicion = false;
-		if (this.postulacionesSobreLaOferta != null) {
-			for (Postulacion pos : this.postulacionesSobreLaOferta) {
-				if (pos.getNickPostulante().equals(postulante)) { //para comparar strings usamos equals
-					condicion = true;
-					break;
-				}
-					
-			}
-		}
-		return condicion;
-	}
 	
-	public void agregarKeywordAOferta(KeyWord key) {
-		this.palabrasClave.add(key);
-	}
-	
-	public void agregarPostulacionAOferta(Postulacion postulacion) {
-		this.postulacionesSobreLaOferta.add(postulacion);
-	}
-	
-	public void setTipoPublicacion(TipoPublicacion tipo){
-		this.tipoDeOferta = tipo;
-	}
-
 	public String getNombreOferta() {
 		return this.nombre;
 	}
@@ -132,22 +168,10 @@ public class OfertaLaboral {
         return fechaDeAlta.format(formatter);
     }
 	
-	public boolean existePostulacion(String post) {
-		if (postulacionesSobreLaOferta != null) {
-			for (Postulacion postulaciones : postulacionesSobreLaOferta) {
-				if (postulaciones.getNickPostulante().equals(post)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	public LocalTime getHoraInicio() {
-		
+	public LocalTime getHoraInicio() {		
 		return this.horaInicio;
 	}
-public LocalTime getHoraFin() {
+	public LocalTime getHoraFin() {
 		
 		return this.horaFin;
 	}
@@ -185,16 +209,8 @@ public LocalTime getHoraFin() {
 		return estado;
 	}
 
-	public void setEstado(EstadoOferta estado) {
-		this.estado = estado;
-	}
-	
 	public byte[] getImagen() {
 		return imagen;
-	}
-
-	public void setImagen(byte[] img) {
-		this.imagen = img;
 	}
 
 	public String getTipoDePago() {
@@ -207,4 +223,41 @@ public LocalTime getHoraFin() {
 	public ArrayList<Postulacion> getPostulaciones(){
 		return this.postulacionesSobreLaOferta;
 	}
+	
+	public boolean existeLaPostulacion(String postulante) {
+		boolean condicion = false;
+		if (this.postulacionesSobreLaOferta != null) {
+			for (Postulacion pos : this.postulacionesSobreLaOferta) {
+				if (pos.getNickPostulante().equals(postulante)) { //para comparar strings usamos equals
+					condicion = true;
+					break;
+				}
+					
+			}
+		}
+		return condicion;
+	}
+	
+	public void agregarKeywordAOferta(KeyWord key) {
+		this.palabrasClave.add(key);
+	}
+	
+	public void agregarPostulacionAOferta(Postulacion postulacion) {
+		this.postulacionesSobreLaOferta.add(postulacion);
+	}
+	
+
+	
+	public boolean existePostulacion(String post) {
+		if (postulacionesSobreLaOferta != null) {
+			for (Postulacion postulaciones : postulacionesSobreLaOferta) {
+				if (postulaciones.getNickPostulante().equals(post)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	
 }

@@ -12,13 +12,28 @@ public class KeyWord {
 	private String palabraClave;
 	private HashMap<String, OfertaLaboral> ofertas; 
 	
-	public KeyWord(String palabra) {
-		this.palabraClave = palabra;
-		this.ofertas = new HashMap<>();
+	public KeyWord() {
+
 	}
+	
+	//setters
+	
+	public void setPalabra(String pal) {
+		this.palabraClave = pal;
+	}
+	
+	public void setOfertas(HashMap<String, OfertaLaboral> ofertas) {
+		this.ofertas = ofertas;
+	}
+	
+	//getters
 	
 	public String getPalabraClave() {
 		return this.palabraClave;
+	}
+	
+	public HashMap<String, OfertaLaboral>getOfertas() {
+		return this.ofertas;
 	}
 	
 	public void agregarOfertaAKeyWord(OfertaLaboral nuevaOfertaLaboral) {

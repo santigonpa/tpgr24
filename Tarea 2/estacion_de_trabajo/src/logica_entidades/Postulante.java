@@ -18,14 +18,16 @@ public class Postulante extends Usuario{
 	private ArrayList<Postulacion> postulaciones;
 	//Constructores
 	
-	public Postulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad,  byte[]imagen , String psw){
-		super(nickName, nombre, apellido, email, psw, imagen);
-		this.nacimiento = nacimiento;
-		this.nacionalidad = nacionalidad;
-		this.postulaciones = new ArrayList<>();
+	public Postulante(){
+		super();
+		
 	}
 	
 	//getters
+	
+	public ArrayList<Postulacion> getPostulaciones(){
+		return this.postulaciones;
+	}
 	
 	public LocalDate getNacimineto() {
 		return nacimiento;
@@ -46,7 +48,15 @@ public class Postulante extends Usuario{
 	}
 	
 	public DataPostulante getDTPostulante() {
-		DataPostulante DtPost = new DataPostulante(this.getNickName(), this.getNombre(), this.getApellido(), this.getEmail(), this.nacimiento, this.nacionalidad, this.getImagen(), this.getPsw());
+		DataPostulante DtPost = new DataPostulante();
+		DtPost.setNickName(this.getNickName());
+		DtPost.setNombre(this.getNombre());
+		DtPost.setApellido(this.getApellido());
+		DtPost.setEmail(this.getEmail());
+		DtPost.setNacimiento(nacimiento);
+		DtPost.setNacionalidad(nacionalidad);
+		DtPost.setPsw(this.getPsw());
+		DtPost.setImagen(this.getImagen());
 		return DtPost;
 	}
 	

@@ -20,14 +20,30 @@ public class Postulacion {
 	private OfertaLaboral ofer;
 	
 	//Constructor
-	public Postulacion(LocalDate fPos5, String curriculum, String motiv, Postulante postu, OfertaLaboral ofer) {
-		this.fecha = fPos5;
-		this.curri = curriculum;
-		this.motivacion = motiv;
-		this.post = postu;
-		this.ofer = ofer;
+	public Postulacion() {
 	}
 	
+	//setters
+	
+	public void setFecha(LocalDate fPos5) {
+		this.fecha = fPos5;
+	}
+	
+	public void setMotivacion(String motiv) {
+		this.motivacion = motiv;
+	}
+	
+	public void setCv(String curriculum) {
+		this.curri = curriculum;
+	}
+	
+	public void setPost(Postulante postu) {
+		this.post = postu;
+	}
+	
+	public void setOfer(OfertaLaboral ofer) {
+		this.ofer = ofer;
+	}
 	//getters
 		public String getCV() {
 			return this.curri;
@@ -62,7 +78,11 @@ public class Postulacion {
 		}
 		
 		public DataPostulacion getDTPostulacion() {
-			DataPostulacion DtPost = new DataPostulacion(this.fecha, this.curri, this.motivacion, this.post.getNickName());
+			DataPostulacion DtPost = new DataPostulacion();
+			DtPost.setCv(this.curri);
+			DtPost.setMotivacion(this.motivacion);
+			DtPost.setFecha(this.fecha);
+			DtPost.setNickName(this.post.getNickName());
 			return DtPost;
 		}
 		

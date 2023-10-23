@@ -20,14 +20,34 @@ public class TipoPublicacion {
 	
 	//Constructor
 	
-	public TipoPublicacion(String nomb, String desc, int expo, int dura, float cost, LocalDate fecha) {
-		this.nombre = nomb;
-		this.descripcion = desc;
-		this.exposicion = expo;
-		this.duracion = dura;
-		this.costo = cost;
-		this.fecha = fecha;
+	public TipoPublicacion() {
 
+	}
+	
+	//setters
+	
+	public void setNombre(String nomb) {
+		this.nombre = nomb;
+	}
+	
+	public void setDescripcion(String desc) {
+		this.descripcion = desc;
+	}
+	
+	public void setDuracion(int dura) {
+		this.duracion = dura;
+	}
+	
+	public void setExposicion(int expo) {
+		this.exposicion = expo;
+	}
+	
+	public void setCosto( float cost) {
+		this.costo = cost;
+	}
+	
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
 	}
 	
 	//getters
@@ -60,7 +80,13 @@ public class TipoPublicacion {
 	//operaciones
 	
 	public DataTipoPublicacion getDTTipoPublicacion() {
-		DataTipoPublicacion DtTipoPub = new DataTipoPublicacion(this.nombre, this.descripcion, this.exposicion, this.duracion, this.costo, this.fecha);
+		DataTipoPublicacion DtTipoPub = new DataTipoPublicacion();
+		DtTipoPub.setCosto(this.costo);
+		DtTipoPub.setDescripcion(this.descripcion);
+		DtTipoPub.setDuracion(this.duracion);
+		DtTipoPub.setExposicion(this.exposicion);
+		DtTipoPub.setFecha(this.fecha);
+		DtTipoPub.setNombres(this.nombre);
 		return DtTipoPub;
 	}
 }
