@@ -2,7 +2,7 @@ package logica_controladores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.ArrayList;
 
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
@@ -16,11 +16,11 @@ public interface IControladorOferta  {
 	
 	public abstract void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException;
+			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException;
 
 	public abstract void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
+			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
 	
 public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento, LocalTime horaInicio, LocalTime horaFin, int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
 
@@ -32,7 +32,7 @@ public abstract void agregarPostulacion(String post, String ofer, String curricu
 
 public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
 
-public abstract Set<String> getPostulantesString(String oferta);
+public abstract ArrayList<String> getPostulantesString(String oferta);
 
 public abstract void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion,
 		int validez, int descuento, LocalDate fechaDeAlta, int costo, byte[] imagen) throws NombrePaqueteYaExiste;

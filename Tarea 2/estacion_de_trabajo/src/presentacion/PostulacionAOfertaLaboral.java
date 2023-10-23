@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Set;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -233,7 +233,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 				DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
 				try {
 					DataEmpresa emp = (DataEmpresa) comboBoxEmp.getSelectedItem();
-					Set<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(emp.getNickName());
+					ArrayList<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(emp.getNickName());
 				
 					if (ofertas!= null) {
 					// Agregar las empresas al modelo del JComboBox
@@ -317,7 +317,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		//Para las empresas
 		DefaultComboBoxModel<DataEmpresa> modelEmp = new DefaultComboBoxModel<>();
 		try {
-		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+			ArrayList<DataEmpresa> empresas = ICU.getDataEmpresa();
 		for(DataEmpresa emp : empresas) {
 			modelEmp.addElement(emp);
 		}
@@ -325,7 +325,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		//Para los postulantes
 		DefaultComboBoxModel<DataPostulante> modelPost = new DefaultComboBoxModel<>();
-		Set<DataPostulante> postulantes = ICU.getDataPostulante();
+		ArrayList<DataPostulante> postulantes = ICU.getDataPostulante();
 		for(DataPostulante post : postulantes) {
 			modelPost.addElement(post);
 		}

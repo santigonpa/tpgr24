@@ -1,13 +1,10 @@
 package logica_entidades;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
 
 import logica_datatypes.DataPaquete;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.HashSet;
 
 
 public class Paquete {
@@ -19,7 +16,7 @@ public class Paquete {
 	private int descuento;
 	private int costo; //nuevo para la tarea2
 	private LocalDate fechadealta;
-	private Set<TipoPublicacion> tipoPublicaciones;
+	private ArrayList<TipoPublicacion> tipoPublicaciones;
 	private byte[] imagen; // Nuevo atributo para la imagen del paquete
 	
 	//Contructor
@@ -32,7 +29,7 @@ public class Paquete {
 		this.fechadealta = fechadealta;
 		this.costo = costo;
 		this.imagen = imagen;
-		this.tipoPublicaciones = new HashSet<>();
+		this.tipoPublicaciones = new ArrayList<>();
 	}
 	
 	//getters
@@ -65,7 +62,7 @@ public class Paquete {
 		return imagen;
 	}
 	
-	public Set<TipoPublicacion> getTipoPublicacions(){
+	public ArrayList<TipoPublicacion> getTipoPublicacions(){
 		return tipoPublicaciones;
 	}
 	

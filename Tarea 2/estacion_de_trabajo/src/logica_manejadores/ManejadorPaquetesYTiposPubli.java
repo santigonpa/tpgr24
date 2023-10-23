@@ -1,9 +1,8 @@
 package logica_manejadores;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+
 
 import logica_datatypes.DataPaquete;
 import logica_datatypes.DataTipoPublicacion;
@@ -13,8 +12,8 @@ import logica_entidades.TipoPublicacion;
 public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	
 	private static ManejadorPaquetesYTiposPubli instancia;
-	private Map<String, TipoPublicacion> tiposDePublicacion;
-	private Map<String, Paquete> paquetes;
+	private HashMap<String, TipoPublicacion> tiposDePublicacion;
+	private HashMap<String, Paquete> paquetes;
 
 	private ManejadorPaquetesYTiposPubli() {
 		this.tiposDePublicacion = new HashMap<String, TipoPublicacion>();
@@ -34,13 +33,13 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	}
 	
 
-	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
+	public ArrayList<DataTipoPublicacion> getDataTipoPublicacion() {
 		
-		Set<DataTipoPublicacion> res = new HashSet<>();
-    	Set<TipoPublicacion> temp = new HashSet<>();
+		ArrayList<DataTipoPublicacion> res = new ArrayList<>();
+		ArrayList<TipoPublicacion> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-        Set<String> clavesTipoPublicacion = this.tiposDePublicacion.keySet();
+		ArrayList<String> clavesTipoPublicacion = new ArrayList<> (this.tiposDePublicacion.keySet());
         for (String nombreTipoPublicacion : clavesTipoPublicacion) {
         	TipoPublicacion tipoAct = (TipoPublicacion) this.tiposDePublicacion.get(nombreTipoPublicacion);
         	temp.add(tipoAct);
@@ -70,13 +69,13 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 	public Paquete getPaquete(String nombre) {
 					return this.paquetes.get(nombre);
 	}
-		public Set<DataPaquete> getDataPaquete() {
+		public ArrayList<DataPaquete> getDataPaquete() {
 		
-		Set<DataPaquete> res = new HashSet<>();
-    	Set<Paquete> temp = new HashSet<>();
+			ArrayList<DataPaquete> res = new ArrayList<>();
+			ArrayList<Paquete> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-        Set<String> clavesPaquete = this.paquetes.keySet();
+			ArrayList<String> clavesPaquete = new ArrayList<> (this.paquetes.keySet());
         for (String nombreTipoPublicacion : clavesPaquete) {
         	Paquete tipoAct = (Paquete) this.paquetes.get(nombreTipoPublicacion);
         	temp.add(tipoAct);

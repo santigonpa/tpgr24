@@ -1,6 +1,6 @@
 package logica_manejadores;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import logica_datatypes.DataPaquete;
 import logica_datatypes.DataTipoPublicacion;
@@ -9,9 +9,9 @@ import logica_entidades.TipoPublicacion;
 
 public interface IManejadorPyT {
 
-	public abstract Set<DataTipoPublicacion> getDataTipoPublicacion();
+	public abstract ArrayList<DataTipoPublicacion> getDataTipoPublicacion();
 	
-	public abstract Set<DataPaquete> getDataPaquete();
+	public abstract ArrayList<DataPaquete> getDataPaquete();
 
 	public abstract TipoPublicacion obtenerTipoPublicacion(String tipoPubli);
 	

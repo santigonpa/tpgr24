@@ -3,8 +3,7 @@ package logica_entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 import logica_datatypes.DataOferta;
 
@@ -33,10 +32,10 @@ public class OfertaLaboral {
 	
 	//Links de oferta
 		
-	private Set<Postulacion> postulacionesSobreLaOferta;
+	private ArrayList<Postulacion> postulacionesSobreLaOferta;
 	private Empresa empresaAsociada;
 	private TipoPublicacion tipoDeOferta;
-	private Set<KeyWord> palabrasClave;
+	private ArrayList<KeyWord> palabrasClave;
 	//private DataOferta dataOferta;
 	
 	// Operaciones
@@ -53,9 +52,9 @@ public class OfertaLaboral {
 		this.departamento = departamento;
 		this.remuneracion = (int) remuneracion2;
 		this.fechaDeAlta = (LocalDate) fecha;
-		this.palabrasClave = new HashSet<KeyWord>();
+		this.palabrasClave = new ArrayList<KeyWord>();
 		//this.postulacionesSobreLaOferta = new HashSet<>();
-		this.postulacionesSobreLaOferta = new HashSet<Postulacion>();
+		this.postulacionesSobreLaOferta = new ArrayList<Postulacion>();
 		this.estado = EstadoOferta.INGRESADA;
 		this.imagen = imagen;
 		this.tipoDePago = tipoDePago;
@@ -159,8 +158,8 @@ public LocalTime getHoraFin() {
 		return this.fechaDeAlta;
 	}
 	
-	public Set<String> getPostulantesString(){
-		Set<String> res = new HashSet<>();
+	public ArrayList<String> getPostulantesString(){
+		ArrayList<String> res = new ArrayList<>();
 		if (this.postulacionesSobreLaOferta != null){
 			for (Postulacion pos : postulacionesSobreLaOferta) {
 				res.add(pos.getNickPostulante());
@@ -169,8 +168,8 @@ public LocalTime getHoraFin() {
 	return res;
 	}
 	
-	public Set<String> getKeyWordsString(){
-		Set<String> res = new HashSet<>();
+	public ArrayList<String> getKeyWordsString(){
+		ArrayList<String> res = new ArrayList<>();
 		
 		for (KeyWord kw: this.palabrasClave) {
 			res.add(kw.getPalabraClave());
@@ -201,7 +200,7 @@ public LocalTime getHoraFin() {
 		return this.tipoDeOferta;
 	}
 	
-	public Set<Postulacion> getPostulaciones(){
+	public ArrayList<Postulacion> getPostulaciones(){
 		return this.postulacionesSobreLaOferta;
 	}
 }

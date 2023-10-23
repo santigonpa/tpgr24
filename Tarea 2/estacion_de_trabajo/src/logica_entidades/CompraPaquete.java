@@ -1,20 +1,18 @@
 package logica_entidades;
 
 
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
 
 import logica_datatypes.DataCompraPaquete;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 
 public class CompraPaquete {
 	//Atributos
 	private LocalDate fechaCompra;
 	private LocalDate fechaVenc;
 	private Paquete paqCompr;
-	private Set<TipoPublicacion> tipoPublicaciones;
+	private ArrayList<TipoPublicacion> tipoPublicaciones;
 		
 	public CompraPaquete(int costo, LocalDate fechaVen, LocalDate fechaCom, Paquete paqCompr) {
 		this.fechaCompra = fechaCom;
@@ -37,7 +35,7 @@ public class CompraPaquete {
 		return paqCompr;
 	}
 	
-	public Set<TipoPublicacion> getTipoDePublicacionesDisp(){
+	public ArrayList<TipoPublicacion> getTipoDePublicacionesDisp(){
 		return tipoPublicaciones;
 	}
 	

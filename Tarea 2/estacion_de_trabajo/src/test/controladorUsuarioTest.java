@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -122,7 +122,7 @@ class controladorUsuarioTest {
 			DataUsuario pruebaDataPos = cu.listarInfoUser(nickName);
 			DataEmpresa pruebaDataEmp = new DataEmpresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com", null, null);
 			
-			Map<String, OfertaLaboral> mapaOfEmpresa =  cu.obtenerOfertarDeEmpresa(pruebaDataEmp);
+			HashMap<String, OfertaLaboral> mapaOfEmpresa =  cu.obtenerOfertarDeEmpresa(pruebaDataEmp);
 			OfertaLaboral pruebaEncuentro = mapaOfEmpresa.get("Desarolaldor Frontend");
 			assertEquals("Desarolaldor Frontend",pruebaEncuentro.getNombreOferta());
 			
@@ -272,7 +272,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void testListarUsuarios() throws UsuarioNoExisteException {
-		Set<DataUsuario> usuarios = cu.getDataUsuarios();
+		ArrayList<DataUsuario> usuarios = cu.getDataUsuarios();
 		String nickNameToSearch1 = p1.getNickName();
 		String nickNameToSearch2 = p2.getNickName();
 		String nickNameToSearch3 = e1.getNickName();
@@ -306,7 +306,7 @@ class controladorUsuarioTest {
 
 	@Test
 	void testListarPostulantes() {
-		Set<DataPostulante> postulantes = cu.getDataPostulante();
+		ArrayList<DataPostulante> postulantes = cu.getDataPostulante();
 		
 		String nickNameToSearch1 = p1.getNickName();
 		String nickNameToSearch2 = p2.getNickName();
@@ -334,7 +334,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void testListaEmpresas() throws UsuarioNoExisteException {
-		Set<DataEmpresa> empresas = cu.getDataEmpresa();
+		ArrayList<DataEmpresa> empresas = cu.getDataEmpresa();
 		
 		String nickNameToSearch1 = e1.getNickName();
 		String nickNameToSearch2 = e2.getNickName();
@@ -381,7 +381,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void testObtenerOfertasConfirmadasEmpresa() {
-		Set<DataOferta> ofertas = mu.obtenerOfertasConfirmadasDeEmpresa("EcoTech");
+		ArrayList<DataOferta> ofertas = mu.obtenerOfertasConfirmadasDeEmpresa("EcoTech");
 		boolean found = false;
 		for (DataOferta ofer : ofertas) {
 		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
@@ -394,7 +394,7 @@ class controladorUsuarioTest {
 	
 	@Test
 	void testObtenerOfertasEmpresa() {
-		Set<DataOferta> ofertas = mu.obtenerOfertasDeUnaEmpresa("EcoTech");
+		ArrayList<DataOferta> ofertas = mu.obtenerOfertasDeUnaEmpresa("EcoTech");
 		boolean found = false;
 		for (DataOferta ofer : ofertas) {
 		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
@@ -449,7 +449,7 @@ class controladorUsuarioTest {
 		DataUsuario lgarciaData = ((Usuario) lgarcia).getDTUsuario();
 		assertEquals(lgarciaData.getNombre(),"apellido");
 		assertEquals(postu.getNickPostulante(),"lgarcia");
-		Map<String, OfertaLaboral> mapa = eco.getOfertasRechazadasIngresadas();
+		HashMap<String, OfertaLaboral> mapa = eco.getOfertasRechazadasIngresadas();
 		
 		assertNull(mapa.get("Desarrollador Frontend"));
 	

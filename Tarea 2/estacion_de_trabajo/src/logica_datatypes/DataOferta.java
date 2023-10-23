@@ -3,7 +3,7 @@ package logica_datatypes;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
+import java.util.ArrayList;
 
 import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral.EstadoOferta;
@@ -25,14 +25,14 @@ public class DataOferta {
 	private byte[] imagen;
 	private String tipoDePago;
 	
-	private Set<KeyWord> palabrasClave;
+	private ArrayList<KeyWord> palabrasClave;
 
 	
 	//la del momento en el alta
 	
 	public DataOferta(String nombre, String descripcion, String ciudad, 
 			String departamento, LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  Set<KeyWord> palabrasClave, String tipoDePago){
+			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  ArrayList<KeyWord> palabrasClave, String tipoDePago){
 		this.setNombre(nombre);
 		this.setCiudad(ciudad);
 		this.setDescripcion(descripcion);
@@ -55,7 +55,7 @@ public class DataOferta {
 		this.empresa = emp;
 	}
 	
-	public Set<KeyWord> getKeyWords() {
+	public ArrayList<KeyWord> getKeyWords() {
 		return this.palabrasClave;
 	}
 	

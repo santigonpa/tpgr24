@@ -1,26 +1,28 @@
 package logica_entidades;
 
 
-import java.util.Set;
-
 import logica_datatypes.DataPostulante;
-
 import java.time.LocalDate;
-import java.util.HashSet;
+
+import java.util.ArrayList;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Postulante extends Usuario{
 	
 	//Atributos
 	private LocalDate nacimiento;
 	private String nacionalidad;
-	private Set<Postulacion> postulaciones;
+	private ArrayList<Postulacion> postulaciones;
 	//Constructores
 	
 	public Postulante(String nickName, String nombre, String apellido, String email, LocalDate nacimiento, String nacionalidad,  byte[]imagen , String psw){
 		super(nickName, nombre, apellido, email, psw, imagen);
 		this.nacimiento = nacimiento;
 		this.nacionalidad = nacionalidad;
-		this.postulaciones = new HashSet<>();
+		this.postulaciones = new ArrayList<>();
 	}
 	
 	//getters
@@ -76,7 +78,7 @@ public class Postulante extends Usuario{
 		}
 	}
 	
-	public Set<Postulacion> obtenerPostulaciones(){
+	public ArrayList<Postulacion> obtenerPostulaciones(){
 		return this.postulaciones;
 	}	
 	

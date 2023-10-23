@@ -1,6 +1,6 @@
 package logica_manejadores;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
@@ -12,13 +12,13 @@ public interface IManejadorOferta {
 
 	public abstract OfertaLaboral obtenerOferta(String nombre);
 	
-	public abstract Set<DataOferta> getOfertas();
+	public abstract ArrayList<DataOferta> getOfertas();
 	
-	public abstract Set<DataKeyWord> getDataKeyWord();
+	public abstract ArrayList<DataKeyWord> getDataKeyWord();
 	
 	public abstract DataOferta getDataOferta(String nombre);
 
-	public abstract void linkearKeywords(Set<String> palabrasClaveSelec, OfertaLaboral nuevaOferta);
+	public abstract void linkearKeywords(ArrayList<String> palabrasClaveSelec, OfertaLaboral nuevaOferta);
 
 	public abstract void addOferta(OfertaLaboral nuevaOferta);
 
@@ -28,9 +28,9 @@ public interface IManejadorOferta {
 
 	public abstract void addPostulacion(Postulacion pos);
 	
-	public abstract Set<Postulacion> obtenerPostulaciones(String oferta, String empresa);
+	public abstract ArrayList<Postulacion> obtenerPostulaciones(String oferta, String empresa);
 
 	public abstract boolean existeOferta(String string);
 
-	public abstract Set<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada);
+	public abstract ArrayList<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada);
 }

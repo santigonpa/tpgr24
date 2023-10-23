@@ -2,9 +2,8 @@ package logica_manejadores;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.ArrayList;
+
 
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
@@ -19,10 +18,10 @@ import utils.Fabrica;
 
 public class ManejadorUsuario implements IManejadorUsuario {
 	
-	private Map<String, Usuario> usuarios;
-	private Map<String, Usuario> usuariosPorEmail; //los emails son unicos tambien
-	private Map<String, Empresa> empresas;
-	private Map<String, Postulante> postulantes;
+	private HashMap<String, Usuario> usuarios;
+	private HashMap<String, Usuario> usuariosPorEmail; //los emails son unicos tambien
+	private HashMap<String, Empresa> empresas;
+	private HashMap<String, Postulante> postulantes;
     private static ManejadorUsuario instancia = null;
 
     private ManejadorUsuario() {
@@ -77,12 +76,12 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	return  usuariosPorEmail.getOrDefault(email, null); //si no existe deberia retornar null
     }
     
-    public Map<String, DataEmpresa> getDataEmpresas() {
-    	Map<String, DataEmpresa> res = new HashMap<>();;
-    	Set<Empresa> temp = new HashSet<>();
+    public HashMap<String, DataEmpresa> getDataEmpresas() {
+    	HashMap<String, DataEmpresa> res = new HashMap<>();;
+    	ArrayList<Empresa> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-        Set<String> clavesEmpresas = this.empresas.keySet();
+    	ArrayList<String> clavesEmpresas = new ArrayList<> (this.empresas.keySet());
         for (String nombreEmpresa : clavesEmpresas) {
         	Empresa empAct = (Empresa) this.empresas.get(nombreEmpresa);
         	temp.add(empAct);
@@ -121,8 +120,8 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		return res;
 	}
 	
-	public Map<String, DataPostulante> getDataPostulantes() {
-	    Map<String, DataPostulante> res = new HashMap<>();
+	public HashMap<String, DataPostulante> getDataPostulantes() {
+	    HashMap<String, DataPostulante> res = new HashMap<>();
 	    
 	    for (Postulante empAct : this.postulantes.values()) {
 	        
@@ -158,12 +157,12 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	}
 
 	@Override
-	public Map<String, DataUsuario> getDataUsuario() {
-		Map<String, DataUsuario> res = new HashMap<>();
-    	Set<Usuario> temp = new HashSet<>();
+	public HashMap<String, DataUsuario> getDataUsuario() {
+		HashMap<String, DataUsuario> res = new HashMap<>();
+		ArrayList<Usuario> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-        Set<String> clavesUsuarios = this.usuarios.keySet();
+		ArrayList<String> clavesUsuarios = new ArrayList<> (this.usuarios.keySet());
         for (String nombreUsuario : clavesUsuarios) {
         	Usuario user =  this.usuarios.get(nombreUsuario);
         	temp.add(user);
@@ -184,11 +183,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	}
 
 	@Override
-	public Set<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName) {
-		Set<DataOferta> res = new HashSet<>();
+	public ArrayList<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName) {
+		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
-		Map<String, OfertaLaboral> mapaOfertas = emp.getOfertas();
-		Set<String> claves = mapaOfertas.keySet();
+		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertas();
+		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta(oferta.getNombreOferta(), oferta.getDescripcion(), oferta.getCiudad(), oferta.getDepartamento(), oferta.getHoraInicio(), oferta.getHoraFin(), oferta.getRemuneracion(), oferta.getCosto(), oferta.getFecha(), oferta.getEstado(), oferta.getEmpresa().getNickName(), oferta.getImagen(), null, oferta.getTipoDePago());
@@ -197,11 +196,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		return res;
 	}
 
-	public Set<DataOferta> obtenerOfertasConfirmadasDeEmpresa(String nickName){
-		Set<DataOferta> res = new HashSet<>();
+	public ArrayList<DataOferta> obtenerOfertasConfirmadasDeEmpresa(String nickName){
+		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
-		Map<String, OfertaLaboral> mapaOfertas = emp.getOfertasAprobadasDeEmpresa();
-		Set<String> claves = mapaOfertas.keySet();
+		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasAprobadasDeEmpresa();
+		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta(oferta.getNombreOferta(), oferta.getDescripcion(), oferta.getCiudad(), oferta.getDepartamento(), oferta.getHoraInicio(), oferta.getHoraFin(), oferta.getRemuneracion(), oferta.getCosto(), oferta.getFecha(), oferta.getEstado(), oferta.getEmpresa().getNickName() , oferta.getImagen(), null,  oferta.getTipoDePago());
@@ -210,11 +209,11 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		return res;
 	} 
 	
-	public Set<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName){
-		Set<DataOferta> res = new HashSet<>();
+	public ArrayList<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName){
+		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
-		Map<String, OfertaLaboral> mapaOfertas = emp.getOfertasRechazadasIngresadas();
-		Set<String> claves = mapaOfertas.keySet();
+		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasRechazadasIngresadas();
+		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta(oferta.getNombreOferta(), oferta.getDescripcion(), oferta.getCiudad(), oferta.getDepartamento(), oferta.getHoraInicio(), oferta.getHoraFin(), oferta.getRemuneracion(), oferta.getCosto(), oferta.getFecha(), oferta.getEstado(), oferta.getEmpresa().getNickName(), oferta.getImagen(), null, oferta.getTipoDePago());

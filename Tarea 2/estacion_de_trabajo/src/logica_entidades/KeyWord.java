@@ -1,12 +1,11 @@
 package logica_entidades;
 
-import java.util.Map;
 import java.util.HashMap;
 
 public class KeyWord {
 	
 	private String palabraClave;
-	private Map<String, OfertaLaboral> ofertas; 
+	private HashMap<String, OfertaLaboral> ofertas; 
 	
 	public KeyWord(String palabra) {
 		this.palabraClave = palabra;

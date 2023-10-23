@@ -3,7 +3,7 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
+import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -127,7 +127,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	comboPostul.setVisible(false);
                 	DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
             		try {
-            		Set<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(selectedEmpresa.getNickName());
+            			ArrayList<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(selectedEmpresa.getNickName());
             		
             	    if (ofertas!= null) {
             	    // Agregar las empresas al modelo del JComboBox
@@ -159,7 +159,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
             		Postulante pos = IMU.obtenerPostulante(selectedPostulante.getNickName());
             		
-            		Set<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
+            		ArrayList<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
             		
             	    if (postulaciones!= null) {
             	    // Agregar las empresas al modelo del JComboBox
@@ -315,7 +315,7 @@ public class ConsultaDeUsuario extends JInternalFrame {
 	public void cargarUsuarios() {
 		DefaultComboBoxModel<DataUsuario> model = new DefaultComboBoxModel<>();
 		try {
-		Set<DataUsuario> usuarios = ICU.getDataUsuarios();
+			ArrayList<DataUsuario> usuarios = ICU.getDataUsuarios();
 		
 	    
 	    // Agregar las empresas al modelo del JComboBox

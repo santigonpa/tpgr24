@@ -2,7 +2,7 @@ package presentacion;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
@@ -223,7 +223,7 @@ getContentPane().setLayout(groupLayout);
 public void cargarUsuarios() {
 DefaultComboBoxModel<DataUsuario> model = new DefaultComboBoxModel<>();
 try {
-Set<DataUsuario> usuarios = ICU.getDataUsuarios();
+	ArrayList<DataUsuario> usuarios = ICU.getDataUsuarios();
 // Agregar usuarios al modelo del JComboBox
 for (DataUsuario usuario : usuarios) {
 model.addElement(usuario);

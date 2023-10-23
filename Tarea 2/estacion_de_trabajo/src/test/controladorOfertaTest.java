@@ -10,8 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,6 @@ import logica_controladores.IControladorOferta;
 import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
 import logica_datatypes.DataPaquete;
-import logica_datatypes.DataPostulante;
 import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
@@ -71,7 +69,7 @@ class controladorOfertaTest {
         String departamento = "Montevideo";
         int remuneracion = 2500;
         LocalDate fechaDeAlta = f1;
-        new HashSet<>();
+        new ArrayList<>();
 
         
             co.darAltaOferta(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta, null, null);
@@ -134,8 +132,8 @@ class controladorOfertaTest {
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		Set<String> palabrasClave1 = new HashSet<>();
-		Set<DataKeyWord> setdt = mo.getDataKeyWord();
+		ArrayList<String> palabrasClave1 = new ArrayList<>();
+		ArrayList<DataKeyWord> setdt = mo.getDataKeyWord();
 		for(DataKeyWord dtk : setdt) {
 			palabrasClave1.add(dtk.getPalabraClave());
 		}
@@ -159,7 +157,7 @@ class controladorOfertaTest {
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		Set<String> palabrasClave1 = new HashSet<>();
+		ArrayList<String> palabrasClave1 = new ArrayList<>();
 		co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		
 		assertThrows(NombreRepetidoOfertaException.class, () -> {
@@ -183,7 +181,7 @@ class controladorOfertaTest {
 	
 	@Test
 	void testeoDeDataPubli() {
-		Set<DataTipoPublicacion> setDtPubli = mpyt.getDataTipoPublicacion();
+		ArrayList<DataTipoPublicacion> setDtPubli = mpyt.getDataTipoPublicacion();
 		String Publi = mpyt.obtenerTipoPublicacion("Premium").getNombre();
 		String comparacion = null;
 		for(DataTipoPublicacion dtp : setDtPubli) {
@@ -199,7 +197,7 @@ class controladorOfertaTest {
 	@Test
 	void testeoGetOfertasPorKeys() {
 		String key = "Tiempo completo";
-		Set<DataOferta> dataOfers = mo.obtenerOfertasConfirmadasPorKey(key);
+		ArrayList<DataOferta> dataOfers = mo.obtenerOfertasConfirmadasPorKey(key);
 		String ofer = "Desarrollador Frontend";
 		String comparacion = null;
 		for(DataOferta dto : dataOfers) {
@@ -215,7 +213,7 @@ class controladorOfertaTest {
 	void testeoobtenerPos() {
 		String ofer = "Soporte Tecnico";
 		String empre = "EcoTech";
-		Set<Postulacion> postulaciones = mo.obtenerPostulaciones(ofer,empre);
+		ArrayList<Postulacion> postulaciones = mo.obtenerPostulaciones(ofer,empre);
 	}
 	
 	@Test
@@ -223,8 +221,8 @@ class controladorOfertaTest {
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		Set<String> palabrasClave1 = new HashSet<>();
-		Set<DataKeyWord> setdt = mo.getDataKeyWord();
+		ArrayList<String> palabrasClave1 = new ArrayList<>();
+		ArrayList<DataKeyWord> setdt = mo.getDataKeyWord();
 		for(DataKeyWord dtk : setdt) {
 			palabrasClave1.add(dtk.getPalabraClave());
 		}
@@ -272,7 +270,7 @@ class controladorOfertaTest {
 	@Test
 	void getPostulantesStringTest() {
 		String ofer = "Desarrollador Frontend";
-		Set<String> postu = co.getPostulantesString(ofer);
+		ArrayList<String> postu = co.getPostulantesString(ofer);
 		String pos = "lgarcia";
 		String comparacion = null;
 		for(String dpos : postu) {
@@ -287,7 +285,7 @@ class controladorOfertaTest {
 	@Test 
 	void getDataPaqueteTest() {
 		String paq = "Destacado";
-		Set<DataPaquete> paquetes = mpyt.getDataPaquete();
+		ArrayList<DataPaquete> paquetes = mpyt.getDataPaquete();
 		String comparacion = null;
 		for(DataPaquete paqs : paquetes) {
 			if(paq == paqs.getNombre()) {

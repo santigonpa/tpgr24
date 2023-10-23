@@ -1,9 +1,8 @@
 package logica_manejadores;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
@@ -17,14 +16,14 @@ public class ManejadorOferta implements IManejadorOferta{
 	
 
 	private static ManejadorOferta instancia;
-	private Map<String, OfertaLaboral> ofertasLaborales;
-	private Map<String, KeyWord> keywordsTotales;
-	private	Set<Postulacion> postulaciones;
+	private HashMap<String, OfertaLaboral> ofertasLaborales;
+	private HashMap<String, KeyWord> keywordsTotales;
+	private	ArrayList<Postulacion> postulaciones;
 	
 	private ManejadorOferta() {
 		this.ofertasLaborales = new HashMap<String, OfertaLaboral>();
 		this.keywordsTotales = new HashMap<String, KeyWord>();
-		this.postulaciones = new HashSet<Postulacion>();
+		this.postulaciones = new ArrayList<Postulacion>();
 	}
 	
 	public static ManejadorOferta getInstance() {
@@ -43,7 +42,7 @@ public class ManejadorOferta implements IManejadorOferta{
 		return (OfertaLaboral) this.ofertasLaborales.get(nombre);
 	}
 
-	public void linkearKeywords(Set<String> palabrasClaveSelec , OfertaLaboral nuevaOfertaLaboral) {
+	public void linkearKeywords(ArrayList<String> palabrasClaveSelec , OfertaLaboral nuevaOfertaLaboral) {
 		for (String kw : palabrasClaveSelec) {
 			KeyWord palabra = (KeyWord) this.keywordsTotales.get(kw);
 			if (palabra != null) {
@@ -58,12 +57,12 @@ public class ManejadorOferta implements IManejadorOferta{
         this.ofertasLaborales.put(nombre, nuevaOferta);
 	}
 
-	public Set<DataKeyWord> getDataKeyWord() {
-		Set<DataKeyWord> res = new HashSet<>();
-    	Set<KeyWord> temp = new HashSet<>();
+	public ArrayList<DataKeyWord> getDataKeyWord() {
+		ArrayList<DataKeyWord> res = new ArrayList<>();
+		ArrayList<KeyWord> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-        Set<String> clavesKeyWord = this.keywordsTotales.keySet();
+		ArrayList<String> clavesKeyWord = new ArrayList<> (this.keywordsTotales.keySet());
         for (String nombreKeyword : clavesKeyWord) {
         	KeyWord keyAct = (KeyWord) this.keywordsTotales.get(nombreKeyword);
         	temp.add(keyAct);
@@ -92,10 +91,10 @@ public class ManejadorOferta implements IManejadorOferta{
 		return ofer != null;
 	}
 	
-	public Set<DataOferta> getOfertas(){
+	public ArrayList<DataOferta> getOfertas(){
 			
-			Set<DataOferta> res = new HashSet<>();
-			Map<String, OfertaLaboral> ofer = this.ofertasLaborales;
+			ArrayList<DataOferta> res = new ArrayList<>();
+			HashMap<String, OfertaLaboral> ofer = this.ofertasLaborales;
 			if (!ofer.isEmpty()) {
 				for (Map.Entry<String, OfertaLaboral> entry : ofer.entrySet()) {
 				    res.add(entry.getValue().getDataOferta());
@@ -110,8 +109,8 @@ public class ManejadorOferta implements IManejadorOferta{
 	}
 
 	
-	public Set<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada) {
-		Set<DataOferta> res = new HashSet<>();
+	public ArrayList<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada) {
+		ArrayList<DataOferta> res = new ArrayList<>();
 		for (String ofertaNombre : this.ofertasLaborales.keySet() ) {
 			OfertaLaboral ofertaReal = this.ofertasLaborales.get(ofertaNombre);
 			DataOferta oferta = this.ofertasLaborales.get(ofertaNombre).getDataOferta();
@@ -122,13 +121,15 @@ public class ManejadorOferta implements IManejadorOferta{
 		return res;
 	}
 	
-	public Set<Postulacion> obtenerPostulaciones(String oferta, String empresa) {
+	public ArrayList<Postulacion> obtenerPostulaciones(String oferta, String empresa) {
 		Fabrica fab = Fabrica.getInstance();
 		IManejadorOferta imo = (IManejadorOferta) fab.getInManejadorOferta();
 		OfertaLaboral ofertaLab = imo.obtenerOferta(oferta); 
-		Set<Postulacion> postulaciones = ofertaLab.getPostulaciones();
+		ArrayList<Postulacion> postulaciones = ofertaLab.getPostulaciones();
 		return postulaciones;		
 	}
+
+	
 
 
 	} 

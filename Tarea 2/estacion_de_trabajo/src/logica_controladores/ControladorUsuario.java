@@ -1,9 +1,8 @@
 package logica_controladores;
 
-import java.util.Set;
+import java.util.ArrayList;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.HashMap;
 
 
 import excepciones.NicknameYaExisteException;
@@ -55,12 +54,12 @@ public class ControladorUsuario implements IControladorUsuario {
 	}
 }
 
-public Map<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa){
+public HashMap<String, OfertaLaboral> obtenerOfertarDeEmpresa(DataEmpresa empresa){
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Empresa empre = (Empresa) manejadorUsuario.obtenerUsuario(empresa.getNickName());
-	Map<String, OfertaLaboral> ofertas = empre.getOfertas();
+	HashMap<String, OfertaLaboral> ofertas = empre.getOfertas();
 	return ofertas;
 }
 
@@ -73,24 +72,24 @@ public DataUsuario listarInfoUser(String usuario) {
 	return DtUser;
 }
 
-public Set<Postulacion> obtenerPostulaciones(String usuario){
+public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Postulante post = (Postulante) manejadorUsuario.obtenerUsuario(usuario);
-	Set<Postulacion> res = post.obtenerPostulaciones();
+	ArrayList<Postulacion> res = post.obtenerPostulaciones();
 	return res;
 }
 
 	@Override
-	public Set<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException {
+	public ArrayList<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
 		
-		Set<DataEmpresa> res = new HashSet<>();
-		Map<String, DataEmpresa> mapa = muser.getDataEmpresas();
+		ArrayList<DataEmpresa> res = new ArrayList<>();
+		HashMap<String, DataEmpresa> mapa = muser.getDataEmpresas();
 		if (mapa != null) {
-			for (Map.Entry<String, DataEmpresa> entry : mapa.entrySet()) {
+			for (HashMap.Entry<String, DataEmpresa> entry : mapa.entrySet()) {
 			    res.add(entry.getValue());
 			}
 			return res;
@@ -101,19 +100,19 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 						
 }
 	@Override
-	public Set<DataTipoPublicacion> getDataTipoPublicacion() {
+	public ArrayList<DataTipoPublicacion> getDataTipoPublicacion() {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT mpyt = fabrica.getInManejadorPyT();
 		
-		Set<DataTipoPublicacion> res = mpyt.getDataTipoPublicacion();
+		ArrayList<DataTipoPublicacion> res = mpyt.getDataTipoPublicacion();
 		return res;
 	}
 
-	public Set<DataKeyWord> getDataKeyWord() {
+	public ArrayList<DataKeyWord> getDataKeyWord() {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorOferta musr = fabrica.getInManejadorOferta();
 		
-		Set<DataKeyWord> res = musr.getDataKeyWord();
+		ArrayList<DataKeyWord> res = musr.getDataKeyWord();
 		return res;
 	}
 
@@ -156,14 +155,14 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	}
 
 	@Override
-	public Set<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException {
+	public ArrayList<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
 		
-		Set<DataUsuario> res = new HashSet<>();
-		Map<String, DataUsuario> mapa = muser.getDataUsuario();
+		ArrayList<DataUsuario> res = new ArrayList<>();
+		HashMap<String, DataUsuario> mapa = muser.getDataUsuario();
 		if (!mapa.isEmpty()) {
-			for (Map.Entry<String, DataUsuario> entry : mapa.entrySet()) {
+			for (HashMap.Entry<String, DataUsuario> entry : mapa.entrySet()) {
 			    res.add(entry.getValue());
 			}
 			return res;
@@ -174,21 +173,21 @@ public Set<Postulacion> obtenerPostulaciones(String usuario){
 	
 
 	@Override
-	public Set<DataOferta> getDataOfertasDeEmpresa(String nickName) {
+	public ArrayList<DataOferta> getDataOfertasDeEmpresa(String nickName) {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
-		Set<DataOferta> res = muser.obtenerOfertasDeUnaEmpresa(nickName);
+		ArrayList<DataOferta> res = muser.obtenerOfertasDeUnaEmpresa(nickName);
 		return res;
 	}
 	
 	@Override
-	public Set<DataPostulante> getDataPostulante() {
+	public ArrayList<DataPostulante> getDataPostulante() {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
 		
-		Set<DataPostulante> res = new HashSet<>();
-		Map<String, DataPostulante> mapa = muser.getDataPostulantes();
-		for (Map.Entry<String, DataPostulante> entry : mapa.entrySet()) {
+		ArrayList<DataPostulante> res = new ArrayList<>();
+		HashMap<String, DataPostulante> mapa = muser.getDataPostulantes();
+		for (HashMap.Entry<String, DataPostulante> entry : mapa.entrySet()) {
 		    res.add(entry.getValue());
 		}
 		return res;

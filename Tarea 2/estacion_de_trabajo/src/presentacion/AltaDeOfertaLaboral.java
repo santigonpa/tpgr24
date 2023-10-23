@@ -10,9 +10,8 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.text.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -328,7 +327,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
                                                   .toLocalTime();
 		
 		List<DataKeyWord> seleccionadosKeyword = listaKeyWords.getSelectedValuesList();
-		Set<String> seleccionados = new HashSet<>();
+		ArrayList<String> seleccionados = new ArrayList<>();
 		for(DataKeyWord value : seleccionadosKeyword) {
 			seleccionados.add(value.toString());
 		}
@@ -411,7 +410,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	}
 	
 	public void cargarEmpresas() {
-		Set<DataEmpresa> empresas = new HashSet<>();
+		ArrayList<DataEmpresa> empresas = new ArrayList<>();
 		DefaultComboBoxModel<DataEmpresa> model = new DefaultComboBoxModel<>();
 		try {
 			empresas = ICU.getDataEmpresa();
@@ -429,7 +428,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	}
 	
 	public void cargarTiposDePublicacion() {
-	    Set<DataTipoPublicacion> tiposDePublicacion = ICU.getDataTipoPublicacion();
+	    ArrayList<DataTipoPublicacion> tiposDePublicacion = ICU.getDataTipoPublicacion();
 	    DefaultComboBoxModel<DataTipoPublicacion> model1 = new DefaultComboBoxModel<>();
 	    
 	    // Agregar los tipos de publicación al modelo del JComboBox
@@ -442,7 +441,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	}
 	
 	public void cargarKeywords() {
-	    Set<DataKeyWord> keywords = ICU.getDataKeyWord();
+		ArrayList<DataKeyWord> keywords = ICU.getDataKeyWord();
 	    
 	    DefaultListModel<DataKeyWord> model = new DefaultListModel<>();
 	    

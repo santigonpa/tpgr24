@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 import logica_controladores.IControladorOferta;
@@ -95,7 +95,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             
             	DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
         		try {
-        		Set<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(selectedEmpresa.getNickName());
+        			ArrayList<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(selectedEmpresa.getNickName());
         		
         	    if (ofertas!= null) {
 	        	    for (DataOferta oferta : ofertas) {
@@ -127,7 +127,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             	textFieldFechaDeAlta.setText(selectedOferta.getFechaAltaComoString());
             	
             	DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>();
-            	Set<String> postulantes = ICO.getPostulantesString(selectedOferta.getNombre());
+            	ArrayList<String> postulantes = ICO.getPostulantesString(selectedOferta.getNombre());
             	for(String postulante : postulantes) {
             		model3.addElement(postulante);	
             	}
@@ -251,7 +251,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
 	public void cargarEmpresas() {
 		DefaultComboBoxModel<DataEmpresa> model1 = new DefaultComboBoxModel<>();
 		try {
-		Set<DataEmpresa> empresas = ICU.getDataEmpresa();
+			ArrayList<DataEmpresa> empresas = ICU.getDataEmpresa();
 		
 	    
 	    // Agregar las empresas al modelo del JComboBox
@@ -300,7 +300,7 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
     	textFieldFechaDeAlta.setText(of.getFechaAltaComoString());
     	
     	DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>();
-    	Set<String> postulantes = ICO.getPostulantesString(of.getNombre());
+    	ArrayList<String> postulantes = ICO.getPostulantesString(of.getNombre());
     	for(String postulante : postulantes) {
     		model3.addElement(postulante);	
     	}

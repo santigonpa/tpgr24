@@ -1,8 +1,7 @@
 package logica_entidades;
 
-import java.util.Map;
-import java.time.LocalDate;
 import java.util.HashMap;
+import java.time.LocalDate;
 
 import logica_datatypes.DataEmpresa;
 import logica_entidades.OfertaLaboral.EstadoOferta;
@@ -12,8 +11,8 @@ public class Empresa extends Usuario{
 	private String descripcion;
 	private String web; 
 	private CompraPaquete compra;
-	private Map<String, OfertaLaboral> ofertas;
-	private Map<String, Paquete> paquetes;
+	private HashMap<String, OfertaLaboral> ofertas;
+	private HashMap<String, Paquete> paquetes;
 
 	
 	public Empresa(String nickName, String nombre, String apellido, String email, String descripcion, String web, byte[]imagen , String psw) {
@@ -41,10 +40,10 @@ public class Empresa extends Usuario{
 		return compra;
 	}
 	
-	public Map<String, OfertaLaboral> getOfertas() {
-	    Map<String, OfertaLaboral> res = new HashMap<>();
+	public HashMap<String, OfertaLaboral> getOfertas() {
+	    HashMap<String, OfertaLaboral> res = new HashMap<>();
 	        
-	    for (Map.Entry<String, OfertaLaboral> entry : this.ofertas.entrySet()) {
+	    for (HashMap.Entry<String, OfertaLaboral> entry : this.ofertas.entrySet()) {
 	        LocalDate fechaO = entry.getValue().getFecha(); // FECHA ALTA
 	        int sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
 	        LocalDate fechaLimite = fechaO.plusDays(sumoDias);
@@ -100,8 +99,8 @@ public class Empresa extends Usuario{
 		return this.compra != null;
 	}
 	
-	public Map<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
-		Map<String, OfertaLaboral> res = new HashMap<>();
+	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
+		HashMap<String, OfertaLaboral> res = new HashMap<>();
         
 	    for (String ofertaNombre : this.ofertas.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
@@ -112,8 +111,8 @@ public class Empresa extends Usuario{
 	    return res;
 	}
 	
-	public Map<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
-		Map<String, OfertaLaboral> res = new HashMap<>();
+	public HashMap<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
+		HashMap<String, OfertaLaboral> res = new HashMap<>();
         
 	    for (String ofertaNombre : this.ofertas.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
@@ -149,7 +148,7 @@ public class Empresa extends Usuario{
 		this.ofertas.put(nombreOferta, nuevaOferta);
 	}
 	
-	public Map<String, Paquete> getPaquetes(){
+	public HashMap<String, Paquete> getPaquetes(){
 		return this.paquetes;
 	}
 

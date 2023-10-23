@@ -3,7 +3,7 @@ package controladores.publicar;
 import java.time.LocalDate;
 
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.ArrayList;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
@@ -51,14 +51,14 @@ public class PublicadorControladorOfertas {
     @WebMethod
     public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
             String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-            String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
+            String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
         controladorOferta.altaPublicacionOfertaLaboralConPaquete(empresa, tipoPubli, nombre, descripcion, horarioInicio, horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec, imagen, tipoDePago);
     }
 
     @WebMethod
     public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
             String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-            String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+            String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
         controladorOferta.altaPublicacionOfertaLaboralGeneral(empresa, tipoPubli, nombre, descripcion, horarioInicio, horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec, imagen, tipoDePago);
     }
 
@@ -74,7 +74,7 @@ public class PublicadorControladorOfertas {
     }
 
     @WebMethod
-    public Set<String> getPostulantesString(String oferta){
+    public ArrayList<String> getPostulantesString(String oferta){
         return controladorOferta.getPostulantesString(oferta);
     }
 

@@ -1,7 +1,7 @@
 package logica_manejadores;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
@@ -14,7 +14,7 @@ import logica_entidades.Usuario;
 
 public interface IManejadorUsuario {
 
-	public abstract Map<String, DataEmpresa> getDataEmpresas();
+	public abstract HashMap<String, DataEmpresa> getDataEmpresas();
 
 	//public abstract boolean nickNameYaExiste(String nickname);
 
@@ -26,19 +26,19 @@ public interface IManejadorUsuario {
 
 	public abstract DataEmpresa getDataEmpresa(String empresa);
 
-	public abstract Map<String, DataPostulante> getDataPostulantes();
+	public abstract HashMap<String, DataPostulante> getDataPostulantes();
 	
 	public abstract DataPostulante getDataPostulante(String postulante);
 
-	public abstract Map<String, DataUsuario> getDataUsuario();
+	public abstract HashMap<String, DataUsuario> getDataUsuario();
 
 	public abstract Postulante obtenerPostulante(String post);
 
-	public abstract Set<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName);
+	public abstract ArrayList<DataOferta> obtenerOfertasDeUnaEmpresa(String nickName);
 	
-	public abstract Set<DataOferta> obtenerOfertasConfirmadasDeEmpresa(String nickName);
+	public abstract ArrayList<DataOferta> obtenerOfertasConfirmadasDeEmpresa(String nickName);
 	
-	public abstract Set<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName);
+	public abstract ArrayList<DataOferta> obtenerOfertasRechazadasIngresadas(String nickName);
 	
 	public abstract Empresa obtenerEmpresa(String emp);
 	

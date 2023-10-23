@@ -2,7 +2,7 @@ package logica_controladores;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.ArrayList;
 
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
@@ -64,7 +64,7 @@ public class ControladorOferta implements IControladorOferta {
 
 	public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException{
+			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException{
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario musr = fabrica.getInManejadorUsuario();
@@ -108,7 +108,7 @@ public class ControladorOferta implements IControladorOferta {
 	
 	public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, Set<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
@@ -180,7 +180,7 @@ public class ControladorOferta implements IControladorOferta {
 	}
 
 
-	public Set<String> getPostulantesString(String oferta){
+	public ArrayList<String> getPostulantesString(String oferta){
 		Fabrica fab = Fabrica.getInstance();
 		IManejadorOferta imo = fab.getInManejadorOferta();
 		OfertaLaboral ofer = imo.obtenerOferta(oferta);
