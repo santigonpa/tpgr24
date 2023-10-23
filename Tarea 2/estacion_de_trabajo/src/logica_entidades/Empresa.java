@@ -1,10 +1,16 @@
 package logica_entidades;
 
 import java.util.HashMap;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
 import java.time.LocalDate;
 
 import logica_datatypes.DataEmpresa;
 import logica_entidades.OfertaLaboral.EstadoOferta;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Empresa extends Usuario{
 	//Atributos

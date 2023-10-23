@@ -5,7 +5,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataOferta;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class OfertaLaboral {
 	

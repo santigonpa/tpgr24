@@ -2,7 +2,11 @@ package logica_entidades;
 
 import java.time.LocalDate;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataTipoPublicacion;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class TipoPublicacion {
 	//Atributos

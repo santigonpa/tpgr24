@@ -2,10 +2,13 @@ package logica_entidades;
 
 import java.util.ArrayList;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataPaquete;
 
 import java.time.LocalDate;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Paquete {
 

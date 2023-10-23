@@ -2,6 +2,11 @@ package logica_entidades;
 
 import java.util.HashMap;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class KeyWord {
 	
 	private String palabraClave;

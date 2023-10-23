@@ -1,7 +1,12 @@
 package logica_entidades;
 
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataUsuario;
 
+@XmlType
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Usuario {
 	
 	//Atributos

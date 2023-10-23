@@ -4,7 +4,11 @@ package logica_entidades;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataPostulacion;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Postulacion {
 
