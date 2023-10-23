@@ -1,6 +1,10 @@
 package logica_datatypes;
 
 import java.time.LocalDate;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class DataPaquete {
 
@@ -13,16 +17,15 @@ public class DataPaquete {
 	private byte[] imagen;
 	private LocalDate fechadealta;
 	
-	public DataPaquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) {
-		this.nombre = nombre;
-		this.setDescripcion(descripcion);
-		this.setValidez(validez);
-		this.setDescuento(descuento);
-		this.setFechaDeAlta(fechadealta);
-		this.setImagen(imagen);
-		this.setCosto(costo);
+	public DataPaquete() {
+
 	}
 	
+	//setters
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 	public void setCosto(int costo){
 		this.costo = costo;
@@ -31,6 +34,25 @@ public class DataPaquete {
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
+	
+	public void setFechaDeAlta(LocalDate fechadealta) {
+		this.fechadealta = fechadealta;
+	}
+
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
+	}
+
+	public void setValidez(int validez) {
+		this.validez = validez;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	
+	//getters
 	
 	public int getCosto(){
 		return this.costo;
@@ -48,34 +70,17 @@ public class DataPaquete {
 		return descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-
-
 	public int getValidez() {
 		return validez;
-	}
-
-	public void setValidez(int validez) {
-		this.validez = validez;
 	}
 
 	public int getDescuento() {
 		return descuento;
 	}
-
-	public void setDescuento(int descuento) {
-		this.descuento = descuento;
-	}
-
 	public LocalDate getFechaDeAlta() {
 		return fechadealta;
 	}
-	public void setFechaDeAlta(LocalDate fechadealta) {
-		this.fechadealta = fechadealta;
-	}
+
 
 	
 }

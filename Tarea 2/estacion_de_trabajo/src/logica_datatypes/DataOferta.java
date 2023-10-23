@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral.EstadoOferta;
 
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataOferta {
 
 		
@@ -30,30 +35,68 @@ public class DataOferta {
 	
 	//la del momento en el alta
 	
-	public DataOferta(String nombre, String descripcion, String ciudad, 
-			String departamento, LocalTime horaInicio2, LocalTime horaFin2
-			, float remuneracion , int costoDeOfertaLaboral, LocalDate fechaDeAlta2, EstadoOferta string, String empresa, byte[]imagen,  ArrayList<KeyWord> palabrasClave, String tipoDePago){
-		this.setNombre(nombre);
-		this.setCiudad(ciudad);
-		this.setDescripcion(descripcion);
-		this.setCostoDeOfertaLaboral(costoDeOfertaLaboral);
-		this.setHoraFin(horaFin2);
-		this.setHoraInicio(horaInicio2);
-		this.setDepartamento(departamento);
-		this.setRemuneracion(remuneracion);
-		this.setFechaDeAlta(fechaDeAlta2);
-		this.setEstado(string);
-		this.setEmpresa(empresa);
-		this.setImagen(imagen);
-		this.palabrasClave = palabrasClave;
-		this.tipoDePago = tipoDePago;
+	public DataOferta(){
 	}
 
 
+	//setters
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public void setHoraInicio(LocalTime horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public void setHoraFin(LocalTime horaFin) {
+		this.horaFin = horaFin;
+	}
+
+	public void setRemuneracion(float remuneracion) {
+		this.remuneracion = remuneracion;
+	}
+
+	public void setCostoDeOfertaLaboral(int costoDeOfertaLaboral) {
+		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
+	}
+
+	public void setFechaDeAlta(LocalDate fechaDeAlta) {
+		this.fechaDeAlta = fechaDeAlta;
+	}
+	
+	public void setEstado(EstadoOferta estado) {
+		this.estado = estado;
+	}
+	
 	public void setEmpresa(String emp) {
 		this.empresa = emp;
 	}
+	
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
+	public void setTipoDePago(String tipo) {
+		this.tipoDePago = tipo;
+	}
+	
+	public void setKeyWords(ArrayList<KeyWord> keys) {
+		this.palabrasClave = keys;
+	}
+
+	//gettes
 	
 	public ArrayList<KeyWord> getKeyWords() {
 		return this.palabrasClave;
@@ -63,9 +106,7 @@ public class DataOferta {
 		return this.empresa;
 	}
 	
-	public void setImagen(byte[] imagen) {
-		this.imagen = imagen;
-	}
+
 	
 	public byte[] getImagen() {
 		return imagen;
@@ -75,33 +116,24 @@ public class DataOferta {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 
 	public String getCiudad() {
 		return ciudad;
 	}
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
+
 
 	public String getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
-	}
+
 
 	public LocalTime getHoraInicio() {
 		return horaInicio;
@@ -112,9 +144,7 @@ public class DataOferta {
 	    return horaInicio.format(formateo1);
 	}
 	
-	public void setHoraInicio(LocalTime horaInicio) {
-		this.horaInicio = horaInicio;
-	}
+
 
 	public LocalTime getHoraFin() {
 		return horaFin;
@@ -124,53 +154,44 @@ public class DataOferta {
 		DateTimeFormatter formateo2 = DateTimeFormatter.ofPattern("HH:mm");
 	    return horaFin.format(formateo2);
 	}
-	public void setHoraFin(LocalTime horaFin) {
-		this.horaFin = horaFin;
-	}
+
 
 	public float getRemuneracion() {
 		return remuneracion;
 	}
 
-	public void setRemuneracion(float remuneracion) {
-		this.remuneracion = remuneracion;
-	}
+
 
 	public int getCostoDeOfertaLaboral() {
 		return costoDeOfertaLaboral;
 	}
 
-	public void setCostoDeOfertaLaboral(int costoDeOfertaLaboral) {
-		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
-	}
+
 
 	public LocalDate getFechaDeAlta() {
 		return fechaDeAlta;
 	}
 
-	public void setFechaDeAlta(LocalDate fechaDeAlta) {
-		this.fechaDeAlta = fechaDeAlta;
-	}
+
 
 	public String getFechaAltaComoString() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaDeAlta.format(formatter);
 	}
 	
-	public String toString() {
-        return this.getNombre(); // Devuelve el nombre de la oferta
-    }
 
 	public EstadoOferta getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EstadoOferta estado) {
-		this.estado = estado;
-	}
 
 	public String getTipoDePago() {
 		return this.tipoDePago;
 	}
+
+	public String toString() {
+        return this.getNombre(); // Devuelve el nombre de la oferta
+    }
+
 }
 

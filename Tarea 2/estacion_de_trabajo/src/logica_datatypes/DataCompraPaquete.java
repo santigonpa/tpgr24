@@ -1,16 +1,17 @@
 package logica_datatypes;
 
 import java.time.LocalDate;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataCompraPaquete {
 	//Atributos
 	private LocalDate fechaCompra;
 	private LocalDate fechaVenc;
 	
 	//Constructor
-	public DataCompraPaquete(LocalDate fechaCompra, LocalDate fechaVenc) {
-		this.setFechaCompra(fechaCompra);
-		this.setFechaVenc(fechaVenc);
+	public DataCompraPaquete() {
 	}
 
 	public LocalDate getFechaCompra() {

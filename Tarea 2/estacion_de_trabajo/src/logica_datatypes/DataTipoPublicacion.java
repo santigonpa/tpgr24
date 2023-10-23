@@ -3,6 +3,10 @@ package logica_datatypes;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataTipoPublicacion {
 	//Atributos
 	private String nombre;
@@ -12,14 +16,43 @@ public class DataTipoPublicacion {
 	private float costo;
 	private LocalDate fecha;
 	
-	public DataTipoPublicacion(String nomb, String desc, int exp, int dura, float costo, LocalDate fecha) {
-		this.nombre = nomb;
-		this.setDescripcion(desc);
-		this.setExposicion(exp);
-		this.setDuracion(dura);
-		this.setCosto(costo);
-		this.setFecha(fecha);
+	public DataTipoPublicacion() {
+
 	}
+	
+	//setters
+
+	public void setNombres(String nombre) {
+		this.nombre = nombre;
+	}
+	
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+
+	public void setCosto(float costo) {
+		this.costo = costo;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
+
+	public void setExposicion(int exposicion) {
+		this.exposicion = exposicion;
+	}
+
+
+	//gettes
 	
 	public String getNombre() {
 		return nombre;
@@ -32,43 +65,19 @@ public class DataTipoPublicacion {
 	public LocalDate getFecha() {
 		return fecha;
 	}
-
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
-	}
-
 	public float getCosto() {
 		return costo;
 	}
-
-	public void setCosto(float costo) {
-		this.costo = costo;
-	}
-
 	public int getDuracion() {
 		return duracion;
 	}
-
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
-	}
-
 	public int getExposicion() {
 		return exposicion;
 	}
-
-	public void setExposicion(int exposicion) {
-		this.exposicion = exposicion;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
 	public String getFechaString() {
 		LocalDate fechaa = this.fecha;
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

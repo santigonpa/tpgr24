@@ -1,5 +1,9 @@
 package logica_datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataEmpresa extends DataUsuario{
 	//Atributos
 		private String descripcion;
@@ -7,10 +11,8 @@ public class DataEmpresa extends DataUsuario{
 
 	//Contructores
 		
-		public DataEmpresa(String nickName, String nombre, String apellido, String email, String descripcion, String web, byte[]imagen , String psw) {
-			super(nickName, nombre, apellido, email, psw , imagen);
-			this.descripcion = descripcion;
-			this.web = web; 
+		public DataEmpresa() {
+			super();	 
 			
 		}
 		

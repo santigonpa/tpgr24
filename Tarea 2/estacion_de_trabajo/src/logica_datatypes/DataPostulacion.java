@@ -12,21 +12,33 @@ public class DataPostulacion extends DataUsuario {
 
 
 	//Constructor
-	public DataPostulacion(LocalDate fecha2, String curri, String motiv, String nickPost) {
-		this.setFecha(fecha2);
-		this.setCv(curri);
-		this.setMotivacion(motiv);
-		this.setNickPostulante(nickPost);
+	public DataPostulacion() {
+	
 	}
 
-
-	public LocalDate getFecha() {
-		return fecha;
-	}
-
+	//setters
 
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+
+	public void setCv(String curri) {
+		this.curri = curri;
+	}
+
+	public void setMotivacion(String motivacion) {
+		this.motivacion = motivacion;
+	}
+
+
+	public void setNickPostulante(String nickPostulante) {
+		this.nickPostulante = nickPostulante;
+	}
+	
+	//getters
+	
+	public LocalDate getFecha() {
+		return fecha;
 	}
 
 
@@ -34,19 +46,8 @@ public class DataPostulacion extends DataUsuario {
 		return curri;
 	}
 
-
-	public void setCv(String curri) {
-		this.curri = curri;
-	}
-
-
 	public String getMotivacion() {
 		return motivacion;
-	}
-
-
-	public void setMotivacion(String motivacion) {
-		this.motivacion = motivacion;
 	}
 
 
@@ -55,10 +56,6 @@ public class DataPostulacion extends DataUsuario {
 	}
 
 
-	public void setNickPostulante(String nickPostulante) {
-		this.nickPostulante = nickPostulante;
-	}
-	
 	
 	
 }

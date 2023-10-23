@@ -1,5 +1,9 @@
 package logica_datatypes;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataUsuario {
 
 	//Atributos
@@ -14,15 +18,7 @@ public class DataUsuario {
 	
 	public DataUsuario() {
 	}
-	
-	public DataUsuario(String nickName, String nombre, String apellido, String email , String psw, byte[] imagen) {
-		this.nickName = nickName;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.setImagen(imagen);
-		this.setPsw(psw);
-	}
+
 	
 	//Getters
 	
@@ -40,6 +36,14 @@ public class DataUsuario {
 	
 	public String getEmail() {
 		return email;
+	}
+
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public String getPsw() {
+		return psw;
 	}
 
 	//setters
@@ -60,16 +64,8 @@ public class DataUsuario {
 		this.email = email;
 	}
 
-	public byte[] getImagen() {
-		return imagen;
-	}
-
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
-	}
-
-	public String getPsw() {
-		return psw;
 	}
 
 	public void setPsw(String psw) {
