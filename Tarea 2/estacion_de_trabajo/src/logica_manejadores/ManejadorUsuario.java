@@ -87,7 +87,15 @@ public class ManejadorUsuario implements IManejadorUsuario {
         	temp.add(empAct);
         }
         for (Empresa empAct: temp) {
-        	DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(), empAct.getNombre(), empAct.getApellido(), empAct.getEmail(), empAct.getDescripcion(), empAct.getLinkWeb(), empAct.getImagen(), empAct.getPsw());
+        	DataEmpresa nuevaDTEmp = new DataEmpresa();
+        	nuevaDTEmp.setNickName(empAct.getNickName()); 
+	        nuevaDTEmp.setNombre(empAct.getNombre());  
+	        nuevaDTEmp.setApellido(empAct.getApellido());
+	        nuevaDTEmp.setEmail(empAct.getEmail());
+	        nuevaDTEmp.setLinkWeb(empAct.getLinkWeb());
+	        nuevaDTEmp.setDescripcion(empAct.getDescripcion());
+	        nuevaDTEmp.setImagen(empAct.getImagen());
+	        nuevaDTEmp.setPsw( empAct.getPsw());
         	res.put(empAct.getNickName(), nuevaDTEmp);
         }
         
@@ -125,16 +133,16 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	    
 	    for (Postulante empAct : this.postulantes.values()) {
 	        
-	    	DataPostulante nuevaDTPost = new DataPostulante(
-	            empAct.getNickName(),
-	            empAct.getNombre(),
-	            empAct.getApellido(),
-	            empAct.getEmail(),
-	            empAct.getNacimineto(),
-	            empAct.getNacionalidad(),
-	            empAct.getImagen(),
-	            empAct.getPsw()
-	        );
+	    	DataPostulante nuevaDTPost = new DataPostulante();
+	           nuevaDTPost.setNickName(empAct.getNickName()); 
+	           nuevaDTPost.setNombre(empAct.getNombre());  
+	           nuevaDTPost.setApellido(empAct.getApellido());
+	           nuevaDTPost.setEmail(empAct.getEmail());
+	           nuevaDTPost.setNacimiento(empAct.getNacimineto());
+	           nuevaDTPost.setNacionalidad(empAct.getNacionalidad());
+	           nuevaDTPost.setImagen(empAct.getImagen());
+	           nuevaDTPost.setPsw( empAct.getPsw());
+	        ;
 	        res.put(empAct.getNickName(), nuevaDTPost);
 	    }
 	    
@@ -170,12 +178,28 @@ public class ManejadorUsuario implements IManejadorUsuario {
         for (Usuario empAct: temp) {
         	if (empAct instanceof Empresa) {
         		Empresa empAct1 =(Empresa) empAct;
-        		DataEmpresa nuevaDTEmp = new DataEmpresa(empAct.getNickName(), empAct.getNombre(), empAct.getApellido(), empAct.getEmail(), empAct1.getDescripcion(), empAct1.getLinkWeb(), empAct1.getImagen(), empAct1.getPsw());
-            	res.put(empAct.getNickName(), nuevaDTEmp);
+        		DataEmpresa nuevaDTEmp = new DataEmpresa();
+        		nuevaDTEmp.setNickName(empAct.getNickName()); 
+ 	           	nuevaDTEmp.setNombre(empAct.getNombre());  
+ 	           	nuevaDTEmp.setApellido(empAct.getApellido());
+ 	           	nuevaDTEmp.setEmail(empAct.getEmail());
+ 	           	nuevaDTEmp.setLinkWeb(empAct1.getLinkWeb());
+ 	           	nuevaDTEmp.setDescripcion(empAct1.getDescripcion());
+ 	           	nuevaDTEmp.setImagen(empAct.getImagen());
+ 	           	nuevaDTEmp.setPsw( empAct.getPsw());
+        		res.put(empAct.getNickName(), nuevaDTEmp);
         	}else if (empAct instanceof Postulante){
         		Postulante empAct1 =(Postulante) empAct;
-        		DataPostulante nuevaDTPost = new DataPostulante(empAct.getNickName(), empAct.getNombre(), empAct.getApellido(), empAct.getEmail(), empAct1.getNacimineto(), empAct1.getNacionalidad(), empAct1.getImagen(), empAct1.getPsw());
-            	res.put(empAct.getNickName(), nuevaDTPost);
+        		DataPostulante nuevaDTPost = new DataPostulante();
+        		nuevaDTPost.setNickName(empAct1.getNickName()); 
+ 	           	nuevaDTPost.setNombre(empAct1.getNombre());  
+ 	           	nuevaDTPost.setApellido(empAct1.getApellido());
+ 	           	nuevaDTPost.setEmail(empAct1.getEmail());
+ 	           	nuevaDTPost.setNacimiento(empAct1.getNacimineto());
+ 	           	nuevaDTPost.setNacionalidad(empAct1.getNacionalidad());
+ 	           	nuevaDTPost.setImagen(empAct1.getImagen());
+ 	           	nuevaDTPost.setPsw( empAct1.getPsw());
+        		res.put(empAct.getNickName(), nuevaDTPost);
         	}
         }
         
@@ -190,7 +214,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
-			DataOferta ofert = new DataOferta(oferta.getNombreOferta(), oferta.getDescripcion(), oferta.getCiudad(), oferta.getDepartamento(), oferta.getHoraInicio(), oferta.getHoraFin(), oferta.getRemuneracion(), oferta.getCosto(), oferta.getFecha(), oferta.getEstado(), oferta.getEmpresa().getNickName(), oferta.getImagen(), null, oferta.getTipoDePago());
+			DataOferta ofert = new DataOferta();
+			ofert.setCiudad(oferta.getCiudad());
+			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
+			ofert.setDepartamento(oferta.getDepartamento());
+			ofert.setDescripcion(oferta.getDescripcion());
+			ofert.setEmpresa(oferta.getEmpresa().getNickName());
+			ofert.setEstado(oferta.getEstado());
+			ofert.setFechaDeAlta(oferta.getFecha());
+			ofert.setHoraFin(oferta.getHoraFin());
+			ofert.setHoraInicio(oferta.getHoraInicio());
+			ofert.setImagen(oferta.getImagen());
+			ofert.setTipoDePago(oferta.getTipoDePago());
+			ofert.setRemuneracion(oferta.getRemuneracion());
+			ofert.setNombre(oferta.getNombreOferta());
 			res.add(ofert);
 		}
 		return res;
@@ -203,7 +240,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
-			DataOferta ofert = new DataOferta(oferta.getNombreOferta(), oferta.getDescripcion(), oferta.getCiudad(), oferta.getDepartamento(), oferta.getHoraInicio(), oferta.getHoraFin(), oferta.getRemuneracion(), oferta.getCosto(), oferta.getFecha(), oferta.getEstado(), oferta.getEmpresa().getNickName() , oferta.getImagen(), null,  oferta.getTipoDePago());
+			DataOferta ofert = new DataOferta();
+			ofert.setCiudad(oferta.getCiudad());
+			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
+			ofert.setDepartamento(oferta.getDepartamento());
+			ofert.setDescripcion(oferta.getDescripcion());
+			ofert.setEmpresa(oferta.getEmpresa().getNickName());
+			ofert.setEstado(oferta.getEstado());
+			ofert.setFechaDeAlta(oferta.getFecha());
+			ofert.setHoraFin(oferta.getHoraFin());
+			ofert.setHoraInicio(oferta.getHoraInicio());
+			ofert.setImagen(oferta.getImagen());
+			ofert.setTipoDePago(oferta.getTipoDePago());
+			ofert.setRemuneracion(oferta.getRemuneracion());
+			ofert.setNombre(oferta.getNombreOferta());
 			res.add(ofert);
 		}
 		return res;
@@ -216,7 +266,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
-			DataOferta ofert = new DataOferta(oferta.getNombreOferta(), oferta.getDescripcion(), oferta.getCiudad(), oferta.getDepartamento(), oferta.getHoraInicio(), oferta.getHoraFin(), oferta.getRemuneracion(), oferta.getCosto(), oferta.getFecha(), oferta.getEstado(), oferta.getEmpresa().getNickName(), oferta.getImagen(), null, oferta.getTipoDePago());
+			DataOferta ofert = new DataOferta();
+			ofert.setCiudad(oferta.getCiudad());
+			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
+			ofert.setDepartamento(oferta.getDepartamento());
+			ofert.setDescripcion(oferta.getDescripcion());
+			ofert.setEmpresa(oferta.getEmpresa().getNickName());
+			ofert.setEstado(oferta.getEstado());
+			ofert.setFechaDeAlta(oferta.getFecha());
+			ofert.setHoraFin(oferta.getHoraFin());
+			ofert.setHoraInicio(oferta.getHoraInicio());
+			ofert.setImagen(oferta.getImagen());
+			ofert.setTipoDePago(oferta.getTipoDePago());
+			ofert.setRemuneracion(oferta.getRemuneracion());
+			ofert.setNombre(oferta.getNombreOferta());
 			res.add(ofert);
 		}
 		return res;

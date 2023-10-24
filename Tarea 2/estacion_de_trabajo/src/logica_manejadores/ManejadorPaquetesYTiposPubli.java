@@ -45,7 +45,14 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
         	temp.add(tipoAct);
         }
         for (TipoPublicacion tipoActual: temp) {
-        	DataTipoPublicacion nuevaDTP = new DataTipoPublicacion(tipoActual.getNombre(), tipoActual.getDescripcion(), tipoActual.getExposicion(), tipoActual.getDuracion(), tipoActual.getCosto(), tipoActual.getFecha());
+        	DataTipoPublicacion nuevaDTP = new DataTipoPublicacion();
+        	nuevaDTP.setCosto(tipoActual.getCosto());
+        	nuevaDTP.setDescripcion(tipoActual.getDescripcion());
+        	nuevaDTP.setDuracion(tipoActual.getDuracion());
+        	nuevaDTP.setExposicion(tipoActual.getExposicion());
+        	nuevaDTP.setFecha(tipoActual.getFecha());
+        	nuevaDTP.setNombres(tipoActual.getNombre());
+     ;
         	res.add(nuevaDTP);
         }
         
@@ -62,7 +69,14 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		if (paquetito == null) {
 			return null;
 		}else {
-			DataPaquete resultado = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
+			DataPaquete resultado = new DataPaquete();
+			resultado.setCosto(paquetito.getCosto());
+			resultado.setDescripcion(paquetito.getDescripcion());
+			resultado.setDescuento(paquetito.getDescuento());
+			resultado.setFechaDeAlta(paquetito.getFechaDeAlta());
+			resultado.setImagen(paquetito.getImagen());
+			resultado.setNombre(paquetito.getNombre());
+			resultado.setValidez(paquetito.getValidez());
 			return resultado;
 		}
 	}
@@ -81,8 +95,15 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
         	temp.add(tipoAct);
         }
         for (Paquete paquetito: temp) {
-        	DataPaquete nuevaDTP = new DataPaquete(paquetito.getNombre(), paquetito.getDescripcion(), paquetito.getValidez(), paquetito.getDescuento(), paquetito.getFechaDeAlta(), paquetito.getCosto(), paquetito.getImagen());
-        	res.add(nuevaDTP); 
+        			DataPaquete nuevaDTP = new DataPaquete();
+        			nuevaDTP.setCosto(paquetito.getCosto());
+        			nuevaDTP.setDescripcion(paquetito.getDescripcion());
+        			nuevaDTP.setDescuento(paquetito.getDescuento());
+        			nuevaDTP.setFechaDeAlta(paquetito.getFechaDeAlta());
+        			nuevaDTP.setImagen(paquetito.getImagen());
+        			nuevaDTP.setNombre(paquetito.getNombre());
+        			nuevaDTP.setValidez(paquetito.getValidez());
+        			res.add(nuevaDTP); 
         }
         
     	return res;

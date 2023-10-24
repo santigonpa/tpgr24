@@ -45,7 +45,18 @@ public class ControladorOferta implements IControladorOferta {
 			throw new NombreRepetidoOfertaException("Ya existe una oferta con este nombre");
 		}
 		
-		OfertaLaboral ofer = new OfertaLaboral(nombre, descripcion, ciudad, departamento, horaInicio, horaFin, remuneracion, costoDeOfertaLaboral, fechaDeAlta, imagen, tipoDePago);
+		OfertaLaboral ofer = new OfertaLaboral();
+		ofer.setCiudad(ciudad);
+		ofer.setCostoOfer(costoDeOfertaLaboral);
+		ofer.setDepartamento(departamento);
+		ofer.setDescripcion(descripcion);
+		ofer.setFechaAlta(fechaDeAlta);
+		ofer.setHorarioFin(horaFin);
+		ofer.setHorarioIni(horaInicio);
+		ofer.setImagen(imagen);
+		ofer.setNombre(nombre);
+		ofer.setRemuneracion(remuneracion);
+		ofer.setTipodePago(tipoDePago);
 		manejadorOferta.addOferta(ofer);
 		}
 	
@@ -94,10 +105,18 @@ public class ControladorOferta implements IControladorOferta {
 			}
 		}
 		
-		nuevaOferta = new OfertaLaboral(nombre, descripcion, ciudad, 
-				departamento, horarioInicio, horarioFin
-				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen, tipoDePago);
-		
+		nuevaOferta = new OfertaLaboral();
+		nuevaOferta.setCiudad(ciudad);
+		nuevaOferta.setCostoOfer((int) costoOfertaLaboral);
+		nuevaOferta.setDepartamento(departamento);
+		nuevaOferta.setDescripcion(descripcion);
+		nuevaOferta.setFechaAlta(fecha);
+		nuevaOferta.setHorarioFin(horarioFin);
+		nuevaOferta.setHorarioIni(horarioInicio);
+		nuevaOferta.setImagen(imagen);
+		nuevaOferta.setNombre(nombre);
+		nuevaOferta.setRemuneracion(remuneracion);
+		nuevaOferta.setTipodePago(tipoDePago);
 		nuevaOferta.setEmpresa(emp);
 		emp.linkearOfertaEmpresa(nuevaOferta, nombre);
 		nuevaOferta.setTipoPublicacion(tipo);
@@ -130,10 +149,19 @@ public class ControladorOferta implements IControladorOferta {
 		costoOfertaLaboral = (int) tipo.getCosto();
 		
 		
-		nuevaOferta = new OfertaLaboral(nombre, descripcion, ciudad, 
-				departamento, horarioInicio, horarioFin
-				, remuneracion , (int) costoOfertaLaboral,  fecha, imagen, tipoDePago);
-		
+		nuevaOferta = new OfertaLaboral();
+		nuevaOferta.setCiudad(ciudad);
+		nuevaOferta.setCostoOfer((int) costoOfertaLaboral);
+		nuevaOferta.setDepartamento(departamento);
+		nuevaOferta.setDescripcion(descripcion);
+		nuevaOferta.setFechaAlta(fecha);
+		nuevaOferta.setHorarioFin(horarioFin);
+		nuevaOferta.setHorarioIni(horarioInicio);
+		nuevaOferta.setImagen(imagen);
+		nuevaOferta.setNombre(nombre);
+		nuevaOferta.setRemuneracion(remuneracion);
+		nuevaOferta.setTipodePago(tipoDePago);
+		nuevaOferta.setEmpresa(emp);
 		nuevaOferta.setEmpresa(emp);
 		emp.linkearOfertaEmpresa(nuevaOferta, nombre);
 		nuevaOferta.setTipoPublicacion(tipo);
@@ -151,7 +179,13 @@ public class ControladorOferta implements IControladorOferta {
 		if (manejadorPyT.tipoPubliYaExiste(nombre)) {
 			throw new NombreTipoPubliYaExisteException("Ya existe un Tipo de Publicacon de Oferta Laboral con ese nombre.");
 		}
-		TipoPublicacion tipo = new TipoPublicacion(nombre, descripcion, exposicion, duracion, costo, fecha);
+		TipoPublicacion tipo = new TipoPublicacion();
+		tipo.setCosto(costo);
+		tipo.setDescripcion(descripcion);
+		tipo.setDuracion(duracion);
+		tipo.setExposicion(exposicion);
+		tipo.setFecha(fecha);
+		tipo.setNombre(nombre);
 		manejadorPyT.addTipoPublicacion(tipo);
 	}		
 
@@ -162,7 +196,12 @@ public class ControladorOferta implements IControladorOferta {
  
 		OfertaLaboral oferta = mofer.obtenerOferta(ofer);
 		Postulante postu = muser.obtenerPostulante(post);
-		Postulacion nuevaPost = new Postulacion(fecha, curri, mot, postu, oferta);
+		Postulacion nuevaPost = new Postulacion();
+		nuevaPost.setCv(curri);
+		nuevaPost.setFecha(fecha);
+		nuevaPost.setMotivacion(mot);
+		nuevaPost.setOfer(oferta);
+		nuevaPost.setPost(postu);
 		
 		if (oferta.existePostulacion(postu.getNickName())) {
 			throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esa oferta");

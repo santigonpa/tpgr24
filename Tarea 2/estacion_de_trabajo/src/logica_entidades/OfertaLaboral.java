@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataOferta;
+import utils.Fabrica;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -129,8 +130,13 @@ public class OfertaLaboral {
 		this.tipoDeOferta = tipo;
 	}
 
+	
 	public void setEstado(EstadoOferta estado) {
 		this.estado = estado;
+	}
+	
+	public void setTipodePago(String pago) {
+		this.tipoDePago = pago;
 	}
 	
 	//getters

@@ -68,7 +68,8 @@ public class ManejadorOferta implements IManejadorOferta{
         	temp.add(keyAct);
         }
         for (KeyWord keyAct: temp) {
-        	DataKeyWord nuevaDTKey = new DataKeyWord(keyAct.getPalabraClave());
+        	DataKeyWord nuevaDTKey = new DataKeyWord();
+        	nuevaDTKey.setPalabraclave(keyAct.getPalabraClave());
         	res.add(nuevaDTKey);
         }
         

@@ -68,7 +68,13 @@ public DataUsuario listarInfoUser(String usuario) {
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Usuario user = manejadorUsuario.obtenerUsuario(usuario);
-	DataUsuario DtUser = new DataUsuario(user.getNickName(), user.getNombre(), user.getApellido(), user.getEmail(), user.getPsw(), user.getImagen());
+	DataUsuario DtUser = new DataUsuario();
+	DtUser.setApellido(user.getApellido());
+	DtUser.setEmail(user.getEmail());
+	DtUser.setImagen(user.getImagen());
+	DtUser.setNickName(user.getNickName());
+	DtUser.setNombre(user.getNombre());
+	DtUser.setPsw(user.getPsw());
 	return DtUser;
 }
 
@@ -130,7 +136,13 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         if (nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || descripcion.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        empresa = new Empresa(nickname, nombre, apellido, email, descripcion, web, imagen, psw);
+        empresa = new Empresa();
+        empresa.setApellido(apellido);
+        empresa.setEmail(email);
+        empresa.setImagen(imagen);
+        empresa.setNickName(nickname);
+        empresa.setNombre(nombre);
+        empresa.setPsw(psw);
         muser.addUsuario(empresa);
 		
 	}
@@ -149,7 +161,13 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         if (nickname.equals("") || nombre.equals("") || apellido.equals("") || email.equals("") || nacimiento.equals(null)|| nacionalidad.equals("")){
 			throw new campoInvalidoException("No estan todos los campos rellenados"); 
 		}
-        postulante = new Postulante(nickname, nombre, apellido, email, nacimiento, nacionalidad, imagen, psw);
+        postulante = new Postulante();
+        postulante.setApellido(apellido);
+        postulante.setEmail(email);
+        postulante.setImagen(imagen);
+        postulante.setNickName(nickname);
+        postulante.setNombre(nombre);
+        postulante.setPsw(psw);
         muser.addUsuario(postulante);
 		
 	}
