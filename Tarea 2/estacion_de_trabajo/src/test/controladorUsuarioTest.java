@@ -47,6 +47,9 @@ class controladorUsuarioTest {
 	private static Postulante p2;
 	private static Empresa e1;
 	private static Empresa e2;
+	private static TipoPublicacion tp1;
+	private static OfertaLaboral o1;
+	private static DataEmpresa pruebaDataEmp;
 	private static Postulacion postulacion1;
 	@BeforeAll
 	public static void setUpBeforeClass() throws UsuarioNoExisteException {
@@ -67,25 +70,84 @@ class controladorUsuarioTest {
 		mo = f.getInManejadorOferta();
 		LocalDate f1 = LocalDate.of(2023, 9, 15);
 		LocalDate f2 = LocalDate.of(2023, 9, 15);
-		p1 = new Postulante("Pedro", "Herni", "pepi", "pepi@gmail.com", f1, "Uru", null, null);
-		p2 = new Postulante("Maria", "Lopes", "mari", "marilaosa@gmail.com", f2, "Esp", null, null);
-		e1 = new Empresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com", null, null);
-		e2 = new Empresa("LifeCinema", "vida", "cine", "noMirenCuevana@gmail.com", "Descuentos con tarjetas seleccionadas", "www.lifeCinemas.com", null, null);
+		//p1 = new Postulante("Pedro", "Herni", "pepi", "pepi@gmail.com", f1, "Uru", null, null);
+		p1 = new Postulante();
+		p1.setNombre("Pedro");
+		p1.setApellido("Herni");
+		p1.setNickName("pepi");
+		p1.setEmail("pepi@gmail.com");
+		p1.setNacimiento(f1);
+		p1.setNacionalidad("Uru");
+		
+	
+		//p2 = new Postulante("Maria", "Lopes", "mari", "marilaosa@gmail.com", f2, "Esp", null, null);
+		p2 = new Postulante();
+		p2.setNombre("Maria");
+		p2.setApellido("Lopes");
+		p2.setNickName("mari");
+		p2.setEmail("marilaosa@gmail.com");
+		p2.setNacimiento(f2);
+		p2.setNacionalidad("Esp");
+		
+		//e1 = new Empresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com", null, null);
+		e1 = new Empresa();
+		e1.setNombre("McDonalds");
+		e1.setApellido("Ronald");
+		e1.setNickName("ElDonal");
+		e1.setEmail("cajitaFeliz@gmail.com");
+		e1.setDescripcion("Comida rapida");
+		e1.setLinkWeb("www.mCDonalds.com");
+		
+		//e2 = new Empresa("LifeCinema", "vida", "cine", "noMirenCuevana@gmail.com", "Descuentos con tarjetas seleccionadas", "www.lifeCinemas.com", null, null);
+		e2 = new Empresa();
+		e2.setNombre("LifeCinema");
+		e2.setApellido("vida");
+		e2.setNickName("cine");
+		e2.setEmail("noMirenCuevana@gmail.com");
+		e2.setDescripcion("Descuentos con tarjetas seleccionadas");
+		e2.setLinkWeb("www.lifeCinemas.com");
+		
 		LocalDate at1 = LocalDate.parse("10-08-2023", dateFormatter);
 		LocalTime hi1 = LocalTime.parse("09:00");
 		LocalTime hf1 = LocalTime.parse("18:00");
 		LocalDate ao1 = LocalDate.of(2023, 9, 15);
-		TipoPublicacion tp1 = new TipoPublicacion("Premium", "Obten maxima visibilidad.", 1, 30, 4000, at1);
+		//TipoPublicacion tp1 = new TipoPublicacion("Premium", "Obten maxima visibilidad.", 1, 30, 4000, at1);
+		tp1 = new TipoPublicacion();
+		tp1.setNombre("Premium");
+		tp1.setDescripcion("Obten maxima visibilidad.");
+		tp1.setExposicion(1);
+		tp1.setDuracion(30);
+		tp1.setCosto(4000);
+		tp1.setFecha(at1);
+		
 		mu.addUsuario(e1);
 		mu.addUsuario(e2);
 		mu.addUsuario(p1);
 		mu.addUsuario(p2);
-		OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend", "Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "Montevideo", "Montevideo", hi1, hf1, 90000, 4000, ao1,  null, null);
+		//OfertaLaboral o1 = new OfertaLaboral("Desarolaldor Frontend", "Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.", "Montevideo", "Montevideo", hi1, hf1, 90000, 4000, ao1,  null, null);
+		o1 = new OfertaLaboral();
+		o1.setNombre("Desarolaldor Frontend");
+		o1.setDescripcion("Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.");
+		o1.setDepartamento("Montevideo");
+		o1.setCiudad("Montevideo");
+		o1.setHorarioIni(hi1);
+		o1.setHorarioFin(hf1);
+		o1.setRemuneracion(900000);
+		o1.setCostoOfer(4000);
+		o1.setFechaAlta(ao1);
+		
 		e1.agregarOfertas(o1.getNombreOferta(), o1);
 		o1.setEmpresa((Empresa) e1);
 		o1.setTipoPublicacion(tp1);
 		
-		postulacion1 = new Postulacion(f1, "sou un cv", "soy una motivacion", p1, o1);
+		//postulacion1 = new Postulacion(f1, "sou un cv", "soy una motivacion", p1, o1);
+		postulacion1 = new Postulacion();
+		postulacion1.setFecha(f1);
+		postulacion1.setCv("sou un cv");
+		postulacion1.setMotivacion("soy una motivacion");
+		postulacion1.setPost(p1);
+		postulacion1.setOfer(o1);
+		
 		try {
 			cu.agregarPostulacionAPostulante(p1.getNickName(), postulacion1);
 		} catch (yaExistePostulacionAOfertaException e) {
@@ -120,7 +182,14 @@ class controladorUsuarioTest {
 			Postulante p = mu.obtenerPostulante(nickName);
 			Empresa e = (Empresa) mu.obtenerEmpresa(nickName2);
 			DataUsuario pruebaDataPos = cu.listarInfoUser(nickName);
-			DataEmpresa pruebaDataEmp = new DataEmpresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com", null, null);
+			//DataEmpresa pruebaDataEmp = new DataEmpresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com", null, null);
+			pruebaDataEmp = new DataEmpresa();
+			pruebaDataEmp.setNombre("McDonalds");
+			pruebaDataEmp.setApellido("Ronald");
+			pruebaDataEmp.setDescripcion("ElDonal");
+			pruebaDataEmp.setEmail("cajitaFeliz@gmail.com");
+			pruebaDataEmp.setDescripcion("Comida rapida");
+			pruebaDataEmp.setLinkWeb("www.mCDonalds.com");
 			
 			HashMap<String, OfertaLaboral> mapaOfEmpresa =  cu.obtenerOfertarDeEmpresa(pruebaDataEmp);
 			OfertaLaboral pruebaEncuentro = mapaOfEmpresa.get("Desarolaldor Frontend");

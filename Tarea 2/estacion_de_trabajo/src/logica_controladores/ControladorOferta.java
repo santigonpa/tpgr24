@@ -68,7 +68,14 @@ public class ControladorOferta implements IControladorOferta {
 			throw new NombrePaqueteYaExiste("Ya existe un paquete con este nombre");
 		}
 		
-		Paquete paq = new Paquete(nombre, descripcion, validez, descuento, fechadealta, costo, imagen);
+		Paquete paq = new Paquete();
+		paq.setNombre(nombre);
+		paq.setDescripcion(descripcion);
+		paq.setValidez(validez);
+		paq.setDescuento(descuento);
+		paq.setFechaAlta(fechadealta);
+		paq.setCosto(costo);
+		paq.setImagen(imagen);
 		manejadorPyT.addPaquete(paq);
 		}
 
