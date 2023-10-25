@@ -24,15 +24,8 @@ public class Paquete {
 	
 	//Contructor
 	//solo llamar si el descuento esta entre 0 y 100
-	public Paquete(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.validez = validez;
-		this.descuento = descuento;
-		this.fechadealta = fechadealta;
-		this.costo = costo;
-		this.imagen = imagen;
-		this.tipoPublicaciones = new ArrayList<>();
+	public Paquete() {
+		super();
 	}
 	
 	//setters

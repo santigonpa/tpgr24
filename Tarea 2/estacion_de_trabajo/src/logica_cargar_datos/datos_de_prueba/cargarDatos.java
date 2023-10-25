@@ -47,25 +47,167 @@ public class cargarDatos {
 		
 
 		//Creo Postulantes
-		Usuario p1 = new Postulante("lgarcia", "Lucia", "Garcia", "lgarcia85@gmail.com", n1, "Uruguaya", null, "awdrg543");
-		Usuario p2 = new Postulante("matilo","Matias","Lopez","matias.lopez90@hotmail.com",n2,"Argentina",null,"edrft543");
-		Usuario p3 = new Postulante("maro","Maria","Rodriguez","marrod@gmail.com",n3,"Uruguaya",null,"r5t6y7u8");
-		Usuario p4 = new Postulante("javierf","Javier","Fernandez","javierf93@yahoo.com",n4,"Mexicana",null,"45idgaf67");
-		Usuario p5 = new Postulante("valen25","Valentina","Martinez","vale87@gmail.com",n5,"Uruguaya",null,"poiuy987");
-		Usuario p6 = new Postulante("andpel2","Andres","Perez","anpe92@hotmail.com",n6,"Chilena",null,"xdrgb657");
-		Usuario p7 = new Postulante("sicam","Camila","Silva","camisilva89@gmail.com",n7,"Uruguaya",null,"mnjkiu89");
-		Usuario p8 = new Postulante("sebgon","Sebastian","Gonzalez","gonza95@yahoo.com",n8,"Colombiana",null,"ytrewq10");
-		Usuario p9 = new Postulante("isabel","Isabella","Lopez","loisa@gmail.com",n9,"Uruguaya",null,"sbsplol1");
-		Usuario p10 = new Postulante("marram02","Martin","Ramirez","marram@hotmail.com",n10,"Argentina",null,"okmnji98");
-		
+		Postulante p1 = new Postulante();
+		p1.setNickName("lgarcia");
+		p1.setNombre("Lucia");
+		p1.setApellido("Garcia");
+		p1.setEmail("lgarcia85@gmail.com");
+		p1.setNacimiento(n1);
+		p1.setNacionalidad("Uruguaya");
+		p1.setImagen(null);
+		p1.setPsw("awdrg543");
+
+		Postulante p2 = new Postulante();
+		p2.setNickName("matilo");
+		p2.setNombre("Matias");
+		p2.setApellido("Lopez");
+		p2.setEmail("matias.lopez90@hotmail.com");
+		p2.setNacimiento(n2);
+		p2.setNacionalidad("Argentina");
+		p2.setImagen(null);
+		p2.setPsw("edrft543");
+
+		Postulante p3 = new Postulante();
+		p3.setNickName("maro");
+		p3.setNombre("Maria");
+		p3.setApellido("Rodriguez");
+		p3.setEmail("marrod@gmail.com");
+		p3.setNacimiento(n3);
+		p3.setNacionalidad("Uruguaya");
+		p3.setImagen(null);
+		p3.setPsw("r5t6y7u8");
+
+		Postulante p4 = new Postulante();
+		p4.setNickName("javierf");
+		p4.setNombre("Javier");
+		p4.setApellido("Fernandez");
+		p4.setEmail("javierf93@yahoo.com");
+		p4.setNacimiento(n4);
+		p4.setNacionalidad("Mexicana");
+		p4.setImagen(null);
+		p4.setPsw("45idgaf67");
+
+		Postulante p5 = new Postulante();
+		p5.setNickName("valen25");
+		p5.setNombre("Valentina");
+		p5.setApellido("Martinez");
+		p5.setEmail("vale87@gmail.com");
+		p5.setNacimiento(n5);
+		p5.setNacionalidad("Uruguaya");
+		p5.setImagen(null);
+		p5.setPsw("poiuy987");
+
+		Postulante p6 = new Postulante();
+		p6.setNickName("andpel2");
+		p6.setNombre("Andres");
+		p6.setApellido("Perez");
+		p6.setEmail("anpe92@hotmail.com");
+		p6.setNacimiento(n6);
+		p6.setNacionalidad("Chilena");
+		p6.setImagen(null);
+		p6.setPsw("xdrgb657");
+
+		Postulante p7 = new Postulante();
+		p7.setNickName("sicam");
+		p7.setNombre("Camila");
+		p7.setApellido("Silva");
+		p7.setEmail("camisilva89@gmail.com");
+		p7.setNacimiento(n7);
+		p7.setNacionalidad("Uruguaya");
+		p7.setImagen(null);
+		p7.setPsw("mnjkiu89");
+
+		Postulante p8 = new Postulante();
+		p8.setNickName("sebgon");
+		p8.setNombre("Sebastian");
+		p8.setApellido("Gonzalez");
+		p8.setEmail("gonza95@yahoo.com");
+		p8.setNacimiento(n8);
+		p8.setNacionalidad("Colombiana");
+		p8.setImagen(null);
+		p8.setPsw("ytrewq10");
+
+		Postulante p9 = new Postulante();
+		p9.setNickName("isabel");
+		p9.setNombre("Isabella");
+		p9.setApellido("Lopez");
+		p9.setEmail("loisa@gmail.com");
+		p9.setNacimiento(n9);
+		p9.setNacionalidad("Uruguaya");
+		p9.setImagen(null);
+		p9.setPsw("sbsplol1");
+
+		Postulante p10 = new Postulante();
+		p10.setNickName("marram02");
+		p10.setNombre("Martin");
+		p10.setApellido("Ramirez");
+		p10.setEmail("marram@hotmail.com");
+		p10.setNacimiento(n10);
+		p10.setNacionalidad("Argentina");
+		p10.setImagen(null);
+		p10.setPsw("okmnji98");
+
 		//Creo Empresas
-		Usuario e1 = new Empresa("EcoTech","Sophia","Johnosn","info@EcoTehc.com","EcoTech Innovations es una empresa lider en soluciones tecnol´ogicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafios ambientales mas apremiantes de nuestro tiempo. Desde sistemas de energıa renovable y dispositivos de monitorizacion ambiental hasta soluciones de gestion de residuos inteligentes, nuestra mision es proporcionar herramientas que permitan a las empresas y comunidades adoptar practicas mas ecologicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnologia y la naturaleza, y trabajamos incansablemente para impulsar un futuro mas limpio y sostenible.","http://www.EcoTechInnovations.com",null,"qsxcdw43");
-		Usuario e2 = new Empresa("FusionTech","William","Smith","contacto@FusionTech.net","FusionTech Dynamics es una empresa pionera en el ambito de la inteligencia artificial y la automatizacion avanzada. Nuestro equipo multidisciplinario de ingenieros, cientificos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimizacion de procesos industriales hasta la creacion de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnologia mejore y amplie nuestras capacidades innatas.","http://www.FusionTechDynamics.net",null,"qpwoei586");
-		Usuario e3 = new Empresa("GlobalHealth","Isabella","Brown","jobs@GlobalHelath.uy","GlobalHealth Dynamics es una empresa comprometida con el avance de la atencion medica a nivel mundial. Como lideres en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnosticos mas precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra vision es crear un ecosistema de salud conectado en el que los datos medicos se utilicen de manera etica y segura para mejorar la calidad de vida de las personas. A traves de la innovacion constante y la colaboracion con expertos medicos, estamos dando forma al futuro de la atencion medica, donde la tecnologia y la compasion se unen parasalvar vidas y mejorar el bienestar en todo el mundo.","http://www.globalhealthdynamics.uy/info",null,"asdfg654");
-		Usuario e4 = new Empresa("ANTEL","Washington","Rocha","jarrington@ANTEL.com.uy","En Antel te brindamos servicios de vanguardia en tecnologia de comunicacion en Telefonia Movil, Fija, Banda Ancha y Datos","ANTEL.com.uy",null,"2nru096");
-		Usuario e5 = new Empresa("MIEM","Pablo","Bengoechea","eldiez@MIEM.org.uy","Balance Energetico Nacional (BEN). La Direccion Nacional de Energia (DNE) del Ministerio de Industria, Energia y Mineria (MIEM) presenta anualmente el BEN.","MIEM.com.uy",null,"ibii4xo");
-		Usuario e6 = new Empresa("TechSolutions","Mercedes","Venn","Mercedes@TechSolutions.com.uy", "”TechSolutions Inc.” es una empresa lider en el sector de tecnologia de la informacion y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamanos y sectores. Su enfoque se centra en la creacion de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.","TechSolutions.com",null,"1ngs03p");
-		
+		Empresa e1 = new Empresa();
+		e1.setNombre("EcoTech");
+		e1.setNombre("Sophia");
+		e1.setApellido("Johnson");
+		e1.setEmail("info@EcoTehc.com");
+		e1.setDescripcion("EcoTech Innovations es una empresa lider en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología y la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.");
+		e1.setLinkWeb("http://www.EcoTechInnovations.com");
+		e1.setImagen(null);
+		e1.setPsw("qsxcdw43");
+
+		Empresa e2 = new Empresa();
+		e2.setNombre("FusionTech");
+		e2.setNombre("William");
+		e2.setApellido("Smith");
+		e2.setEmail("contacto@FusionTech.net");
+		e2.setDescripcion("FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros, científicos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimización de procesos industriales hasta la creación de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnología mejore y amplíe nuestras capacidades innatas.");
+		e2.setLinkWeb("http://www.FusionTechDynamics.net");
+		e2.setImagen(null);
+		e2.setPsw("qpwoei586");
+
+		Empresa e3 = new Empresa();
+		e3.setNombre("GlobalHealth");
+		e3.setNombre("Isabella");
+		e3.setApellido("Brown");
+		e3.setEmail("jobs@GlobalHelath.uy");
+		e3.setDescripcion("GlobalHealth Dynamics es una empresa comprometida con el avance de la atención médica a nivel mundial. Como líderes en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnósticos más precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra visión es crear un ecosistema de salud conectado en el que los datos médicos se utilicen de manera ética y segura para mejorar la calidad de vida de las personas. A través de la innovación constante y la colaboración con expertos médicos, estamos dando forma al futuro de la atención médica, donde la tecnología y la compasión se unen para salvar vidas y mejorar el bienestar en todo el mundo.");
+		e3.setLinkWeb("http://www.globalhealthdynamics.uy/info");
+		e3.setImagen(null);
+		e3.setPsw("asdfg654");
+
+		Empresa e4 = new Empresa();
+		e4.setNombre("ANTEL");
+		e4.setNombre("Washington");
+		e4.setApellido("Rocha");
+		e4.setEmail("jarrington@ANTEL.com.uy");
+		e4.setDescripcion("En Antel te brindamos servicios de vanguardia en tecnología de comunicación en Telefonia Movil, Fija, Banda Ancha y Datos");
+		e4.setLinkWeb("ANTEL.com.uy");
+		e4.setImagen(null);
+		e4.setPsw("2nru096");
+
+		Empresa e5 = new Empresa();
+		e5.setNombre("MIEM");
+		e5.setNombre("Pablo");
+		e5.setApellido("Bengoechea");
+		e5.setEmail("eldiez@MIEM.org.uy");
+		e5.setDescripcion("Balance Energetico Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.");
+		e5.setLinkWeb("MIEM.com.uy");
+		e5.setImagen(null);
+		e5.setPsw("ibii4xo");
+
+		Empresa e6 = new Empresa();
+		e6.setNombre("TechSolutions");
+		e6.setNombre("Mercedes");
+		e6.setApellido("Venn");
+		e6.setEmail("Mercedes@TechSolutions.com.uy");
+		e6.setDescripcion("TechSolutions Inc. es una empresa líder en el sector de tecnología de la información y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamaños y sectores. Su enfoque se centra en la creación de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.");
+		e6.setLinkWeb("TechSolutions.com");
+		e6.setImagen(null);
+		e6.setPsw("1ngs03p");
+
 		//Agrego Usarios
 		mu.addUsuario(p1);
 		mu.addUsuario(p2);
@@ -95,12 +237,39 @@ public class cargarDatos {
 		LocalDate at4 = LocalDate.parse("07-08-2023", dateFormatter);
 		
 		//Creo Tipos
-		TipoPublicacion tp1 = new TipoPublicacion("Premium","Obten maxima visibilidad.",1,30,4000,at1);
-		TipoPublicacion tp2 = new TipoPublicacion("Destacada","Destaca tu anuncio",2,15,500,at2);
-		TipoPublicacion tp3 = new TipoPublicacion("Estandar","Mejora la posicion de tu anuncio",3,20,150,at3);
-		TipoPublicacion tp4 = new TipoPublicacion("Basica","Publica de forma sencilla en la lista de ofertas",4,7,50,at4);
-		
-		//Agrego Tipos
+	
+		TipoPublicacion tp1 = new TipoPublicacion();
+		tp1.setNombre("Premium");
+		tp1.setDescripcion("Obtén máxima visibilidad.");
+		tp1.setExposicion(1);
+		tp1.setDuracion(30);
+		tp1.setCosto(4000);
+		tp1.setFecha(at1);
+
+		TipoPublicacion tp2 = new TipoPublicacion();
+		tp2.setNombre("Destacada");
+		tp2.setDescripcion("Destaca tu anuncio");
+		tp2.setExposicion(2);
+		tp2.setDuracion(15);
+		tp2.setCosto(500);
+		tp2.setFecha(at2);
+
+		TipoPublicacion tp3 = new TipoPublicacion();
+		tp3.setNombre("Estandar");
+		tp3.setDescripcion("Mejora la posición de tu anuncio");
+		tp3.setExposicion(3);
+		tp3.setDuracion(20);
+		tp3.setCosto(150);
+		tp3.setFecha(at3);
+
+		TipoPublicacion tp4 = new TipoPublicacion();
+		tp4.setNombre("Basica");
+		tp4.setDescripcion("Publica de forma sencilla en la lista de ofertas");
+		tp4.setExposicion(4);
+		tp4.setDuracion(7);
+		tp4.setCosto(50);
+		tp4.setFecha(at4);
+//Agrego Tipos
 		
 		mpyt.addTipoPublicacion(tp1);
 		mpyt.addTipoPublicacion(tp2);
@@ -108,16 +277,36 @@ public class cargarDatos {
 		mpyt.addTipoPublicacion(tp4);
 		
 		//Cargo Keywords
-		KeyWord k1 = new KeyWord("Tiempo completo");
-		KeyWord k2 = new KeyWord("Medio tiempo");
-		KeyWord k3 = new KeyWord("Remoto");
-		KeyWord k4 = new KeyWord("Freelance");
-		KeyWord k5 = new KeyWord("Temporal");
-		KeyWord k6 = new KeyWord("Permanente");
-		KeyWord k7 = new KeyWord("Computacion");
-		KeyWord k8 = new KeyWord("Administracion");
-		KeyWord k9 = new KeyWord("Logistica");
-		KeyWord k10 = new KeyWord("Contabilidad");
+		KeyWord k1 = new KeyWord();
+		k1.setPalabra("Tiempo completo");
+
+		KeyWord k2 = new KeyWord();
+		k2.setPalabra("Medio tiempo");
+
+		KeyWord k3 = new KeyWord();
+		k3.setPalabra("Remoto");
+
+		KeyWord k4 = new KeyWord();
+		k4.setPalabra("Freelance");
+
+		KeyWord k5 = new KeyWord();
+		k5.setPalabra("Temporal");
+
+		KeyWord k6 = new KeyWord();
+		k6.setPalabra("Permanente");
+
+		KeyWord k7 = new KeyWord();
+		k7.setPalabra("Computacion");
+
+		KeyWord k8 = new KeyWord();
+		k8.setPalabra("Administracion");
+
+		KeyWord k9 = new KeyWord();
+		k9.setPalabra("Logistica");
+
+		KeyWord k10 = new KeyWord();
+		k10.setPalabra("Contabilidad");
+
 		
 		//Agrego Kewword
 	
@@ -184,21 +373,175 @@ public class cargarDatos {
 		
 		
 		//Creo Oferta   // FALTAN OFERTAS 
-		OfertaLaboral o1 = new OfertaLaboral("Desarrollador Frontend","Unete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.","Montevideo","Montevideo",hi1,hf1,90000,4000,ao1,null, "Basico");
-		OfertaLaboral o2 = new OfertaLaboral("Estrategia de Negocios","Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes","Punta del Este","Maldonado",hi2,hf2,80000,150,ao2,null, "Sin paquete");
-		OfertaLaboral o3 = new OfertaLaboral("Diseñador UX/UI","Trabaja en colaboracion con nuestro talentoso equipo de dise˜no para crear soluciones impactantes.","Rosario","Colonia",hi3,hf3,65000,150,ao3,null, "Sin paquete");
-		OfertaLaboral o4 = new OfertaLaboral("Analista de Datos","Ayuda a nuestros clientes a tomar decisiones informadas basadas en an´alisis y visualizaciones de datos.","Maldonado","Maldonado",hi4,hf4,40000,4000,ao4,null, "Sin paquete");
-		OfertaLaboral o5 = new OfertaLaboral("Content Manager","Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en linea de nuestros clientes.","Montevideo","Montevideo",hi5,hf5,10000,500,ao5,null, "Sin paquete");
-		OfertaLaboral o6 = new OfertaLaboral("Soporte Tecnico","Ofrece un excelente servicio de soporte t´ecnico a nuestros clientes, resolviendo problemas y brindando soluciones.","Minas","Lavalleja",hi6,hf6,30000,50,ao6,null, "Destacado");
-		OfertaLaboral o7 = new OfertaLaboral("A. de Marketing Digital","Unete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.","Flores","Flores",hi7,hf7,80000,4000,ao7,null, "Sin paquete");
-		OfertaLaboral o8 = new OfertaLaboral("Contador Senior","Unete a nuestro equipo contable y ayuda en la gestion financiera de la empresa.","Colonia Suiza","Colonia",hi8,hf8,10000,500,ao8,null, "Sin paquete");
-		OfertaLaboral o9 = new OfertaLaboral("Técnico/a Básico Red","RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).","Paysandú","Paysandú",hi9,hf9,40000,500,ao9,null, "Sin paquete");
-		OfertaLaboral o10 = new OfertaLaboral("Desarrollador de Software Senior","Únete a nuestro equipo y lidera proyectos de desarrollo de software sostenible y ecológico. Impulsa la innovación y contribuye a un futuro más verde.", "Montevideo","Montevideo", hi10, hf10,123000,500, ao10,null,"Destacada");
-		OfertaLaboral o11 = new OfertaLaboral("Desarrollador de Software Full Stack", "Únete a nuestro equipo para crear soluciones de software personalizadas de extremo a extremo. Colabora en proyectos emocionantes y desafiantes.", "Río Negro", "Fray Bentos", hi11,hf11, 135000, 4000, ao11, null,"Premium");
-		OfertaLaboral o12 = new OfertaLaboral("Gerente de Proyecto", "Únete a nuestro equipo de gestión de proyectos y lidera la entrega exitosa de soluciones de software personalizadas. Colabora con equipos multidisciplinarios y clientes exigentes.", "Montevideo", "Montevideo",hi12,hf12, 230000, 500, ao12, null, "Destacada");
-		OfertaLaboral o13 = new OfertaLaboral("Ingeniero de Calidad de Software", "Asegura la calidad de nuestros productos de software sostenibles. Únete a nosotros para garantizar un impacto positivo en el medio ambiente.", "Montevideo", "Montevideo", hi13, hf13, 60000, 4000, ao13, null, "Premium");
-		
-		
+		OfertaLaboral o1 = new OfertaLaboral();
+		o1.setNombre("Desarrollador Frontend");
+		o1.setDescripcion("Únete a nuestro equipo de desarrollo frontend y crea experiencias de usuario excepcionales.");
+		o1.setCiudad("Montevideo");
+		o1.setDepartamento("Montevideo");
+		o1.setHorarioIni(hi1);
+		o1.setHorarioFin(hf1);
+		o1.setRemuneracion(90000);
+		o1.setCostoOfer(4000);
+		o1.setFechaAlta(ao1);
+		o1.setImagen(null);
+		o1.setTipodePago("Basico");
+
+		OfertaLaboral o2 = new OfertaLaboral();
+		o2.setNombre("Estrategia de Negocios");
+		o2.setDescripcion("Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes");
+		o2.setCiudad("Punta del Este");
+		o2.setDepartamento("Maldonado");
+		o2.setHorarioIni(hi2);
+		o2.setHorarioFin(hf2);
+		o2.setRemuneracion(80000);
+		o2.setCostoOfer(150);
+		o2.setFechaAlta(ao2);
+		o2.setImagen(null);
+		o2.setTipodePago("Sin paquete");
+
+		OfertaLaboral o3 = new OfertaLaboral();
+		o3.setNombre("Diseñador UX/UI");
+		o3.setDescripcion("Trabaja en colaboración con nuestro talentoso equipo de diseño para crear soluciones impactantes.");
+		o3.setCiudad("Rosario");
+		o3.setDepartamento("Colonia");
+		o3.setHorarioIni(hi3);
+		o3.setHorarioFin(hf3);
+		o3.setRemuneracion(65000);
+		o3.setCostoOfer(150);
+		o3.setFechaAlta(ao3);
+		o3.setImagen(null);
+		o3.setTipodePago("Sin paquete");
+
+		OfertaLaboral o4 = new OfertaLaboral();
+		o4.setNombre("Analista de Datos");
+		o4.setDescripcion("Ayuda a nuestros clientes a tomar decisiones informadas basadas en análisis y visualizaciones de datos.");
+		o4.setCiudad("Maldonado");
+		o4.setDepartamento("Maldonado");
+		o4.setHorarioIni(hi4);
+		o4.setHorarioFin(hf4);
+		o4.setRemuneracion(40000);
+		o4.setCostoOfer(4000);
+		o4.setFechaAlta(ao4);
+		o4.setImagen(null);
+		o4.setTipodePago("Sin paquete");
+
+		OfertaLaboral o5 = new OfertaLaboral();
+		o5.setNombre("Content Manager");
+		o5.setDescripcion("Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en línea de nuestros clientes.");
+		o5.setCiudad("Montevideo");
+		o5.setDepartamento("Montevideo");
+		o5.setHorarioIni(hi5);
+		o5.setHorarioFin(hf5);
+		o5.setRemuneracion(10000);
+		o5.setCostoOfer(500);
+		o5.setFechaAlta(ao5);
+		o5.setImagen(null);
+		o5.setTipodePago("Sin paquete");
+
+		OfertaLaboral o6 = new OfertaLaboral();
+		o6.setNombre("Soporte Tecnico");
+		o6.setDescripcion("Ofrece un excelente servicio de soporte técnico a nuestros clientes, resolviendo problemas y brindando soluciones.");
+		o6.setCiudad("Minas");
+		o6.setDepartamento("Lavalleja");
+		o6.setHorarioIni(hi6);
+		o6.setHorarioFin(hf6);
+		o6.setRemuneracion(30000);
+		o6.setCostoOfer(50);
+		o6.setFechaAlta(ao6);
+		o6.setImagen(null);
+		o6.setTipodePago("Destacado");
+
+		OfertaLaboral o7 = new OfertaLaboral();
+		o7.setNombre("A. de Marketing Digital");
+		o7.setDescripcion("Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.");
+		o7.setCiudad("Flores");
+		o7.setDepartamento("Flores");
+		o7.setHorarioIni(hi7);
+		o7.setHorarioFin(hf7);
+		o7.setRemuneracion(80000);
+		o7.setCostoOfer(4000);
+		o7.setFechaAlta(ao7);
+		o7.setImagen(null);
+		o7.setTipodePago("Sin paquete");
+
+		OfertaLaboral o8 = new OfertaLaboral();
+		o8.setNombre("Contador Senior");
+		o8.setDescripcion("Únete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.");
+		o8.setCiudad("Colonia Suiza");
+		o8.setDepartamento("Colonia");
+		o8.setHorarioIni(hi8);
+		o8.setHorarioFin(hf8);
+		o8.setRemuneracion(10000);
+		o8.setCostoOfer(500);
+		o8.setFechaAlta(ao8);
+		o8.setImagen(null);
+		o8.setTipodePago("Sin paquete");
+
+		OfertaLaboral o9 = new OfertaLaboral();
+		o9.setNombre("Técnico/a Básico Red");
+		o9.setDescripcion("RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).");
+		o9.setCiudad("Paysandú");
+		o9.setDepartamento("Paysandú");
+		o9.setHorarioIni(hi9);
+		o9.setHorarioFin(hf9);
+		o9.setRemuneracion(40000);
+		o9.setCostoOfer(500);
+		o9.setFechaAlta(ao9);
+		o9.setImagen(null);
+		o9.setTipodePago("Sin paquete");
+
+		OfertaLaboral o10 = new OfertaLaboral();
+		o10.setNombre("Desarrollador de Software Senior");
+		o10.setDescripcion("Únete a nuestro equipo y lidera proyectos de desarrollo de software sostenible y ecológico. Impulsa la innovación y contribuye a un futuro más verde.");
+		o10.setCiudad("Montevideo");
+		o10.setDepartamento("Montevideo");
+		o10.setHorarioIni(hi10);
+		o10.setHorarioFin(hf10);
+		o10.setRemuneracion(123000);
+		o10.setCostoOfer(500);
+		o10.setFechaAlta(ao10);
+		o10.setImagen(null);
+		o10.setTipodePago("Destacada");
+
+		OfertaLaboral o11 = new OfertaLaboral();
+		o11.setNombre("Desarrollador de Software Full Stack");
+		o11.setDescripcion("Únete a nuestro equipo para crear soluciones de software personalizadas de extremo a extremo. Colabora en proyectos emocionantes y desafiantes.");
+		o11.setCiudad("Río Negro");
+		o11.setDepartamento("Fray Bentos");
+		o11.setHorarioIni(hi11);
+		o11.setHorarioFin(hf11);
+		o11.setRemuneracion(135000);
+		o11.setCostoOfer(4000);
+		o11.setFechaAlta(ao11);
+		o11.setImagen(null);
+		o11.setTipodePago("Premium");
+
+		OfertaLaboral o12 = new OfertaLaboral();
+		o12.setNombre("Gerente de Proyecto");
+		o12.setDescripcion("Únete a nuestro equipo de gestión de proyectos y lidera la entrega exitosa de soluciones de software personalizadas. Colabora con equipos multidisciplinarios y clientes exigentes.");
+		o12.setCiudad("Montevideo");
+		o12.setDepartamento("Montevideo");
+		o12.setHorarioIni(hi12);
+		o12.setHorarioFin(hf12);
+		o12.setRemuneracion(230000);
+		o12.setCostoOfer(500);
+		o12.setFechaAlta(ao12);
+		o12.setImagen(null);
+		o12.setTipodePago("Destacada");
+
+		OfertaLaboral o13 = new OfertaLaboral();
+		o13.setNombre("Ingeniero de Calidad de Software");
+		o13.setDescripcion("Asegura la calidad de nuestros productos de software sostenibles. Únete a nosotros para garantizar un impacto positivo en el medio ambiente.");
+		o13.setCiudad("Montevideo");
+		o13.setDepartamento("Montevideo");
+		o13.setHorarioIni(hi13);
+		o13.setHorarioFin(hf13);
+		o13.setRemuneracion(60000);
+		o13.setCostoOfer(4000);
+		o13.setFechaAlta(ao13);
+		o13.setImagen(null);
+		o13.setTipodePago("Premium");
+
 		//Agrego oferta a Empresa
 		((Empresa) e1).agregarOfertas(o1.getNombreOferta(),o1);
 		((Empresa) e3).agregarOfertas(o2.getNombreOferta(),o2);
@@ -369,13 +712,48 @@ public class cargarDatos {
 		
 		
 		//Creo Postulaciones
-		Postulacion pos1 = new Postulacion(fPos1,"Licenciada en Administracion, experiencia en gestion de equipos y proyectos. Conocimientos en Office.","Estoy emocionada por la oportunidad de formar parte de un equipo dinamico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o1);
-		Postulacion pos2 = new Postulacion(fPos2,"Estudiante de Comunicacion, habilidades en redaccion y manejo de redes sociales. Experiencia en practicas en medios locales","Me encantaria formar parte de un equipo que me permita desarrollar mis habilidades en comunicacion y marketing.",(Postulante)p2,o2);
-		Postulacion pos3 = new Postulacion(fPos3,"Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones moviles. Conocimientos en JavaScript y React.","Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnologia.",(Postulante)p3,o1);
-		Postulacion pos4 = new Postulacion(fPos4,"Tecnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos electricos.","Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades tecnicas y contribuir al mantenimiento eficiente.",(Postulante)p4,o3);
-		Postulacion pos5 = new Postulacion(fPos5,"Musico profesional, experiencia en espectaculos en vivo. Habilidades en canto y guitarra.","Me gustaria combinar mi pasion por la musica con una oportunidad laboral que me permita seguir creciendo como artista.",(Postulante)p5,o2);
-		Postulacion pos6 = new Postulacion(fPos6,"Licenciada en Administracion, me considero genia, experiencia en gestion de equipos y proyectos. Conocimientos en Microsoft Office.","Estoy emocionada por la oportunidad de formar parte de un equipo dinamico y contribuir con mis habilidades de liderazgo.",(Postulante)p1,o2);
-		
+		Postulacion pos1 = new Postulacion();
+		pos1.setFecha(fPos1);
+		pos1.setCv("Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos en Office.");
+		pos1.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
+		pos1.setPost((Postulante)p1);
+		pos1.setOfer(o1);
+
+		Postulacion pos2 = new Postulacion();
+		pos2.setFecha(fPos2);
+		pos2.setCv("Estudiante de Comunicación, habilidades en redacción y manejo de redes sociales. Experiencia en prácticas en medios locales");
+		pos2.setMotivacion("Me encantaría formar parte de un equipo que me permita desarrollar mis habilidades en comunicación y marketing.");
+		pos2.setPost((Postulante)p2);
+		pos2.setOfer(o2);
+
+		Postulacion pos3 = new Postulacion();
+		pos3.setFecha(fPos3);
+		pos3.setCv("Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.");
+		pos3.setMotivacion("Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.");
+		pos3.setPost((Postulante)p3);
+		pos3.setOfer(o1);
+
+		Postulacion pos4 = new Postulacion();
+		pos4.setFecha(fPos4);
+		pos4.setCv("Técnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos eléctricos.");
+		pos4.setMotivacion("Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades técnicas y contribuir al mantenimiento eficiente.");
+		pos4.setPost((Postulante)p4);
+		pos4.setOfer(o3);
+
+		Postulacion pos5 = new Postulacion();
+		pos5.setFecha(fPos5);
+		pos5.setCv("Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.");
+		pos5.setMotivacion("Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.");
+		pos5.setPost((Postulante)p5);
+		pos5.setOfer(o2);
+
+		Postulacion pos6 = new Postulacion();
+		pos6.setFecha(fPos6);
+		pos6.setCv("Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.");
+		pos6.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
+		pos6.setPost((Postulante)p1);
+		pos6.setOfer(o2);
+
 		mo.addPostulacion(pos1);
 		mo.addPostulacion(pos2);
 		mo.addPostulacion(pos3);
@@ -420,11 +798,42 @@ public class cargarDatos {
 		
 		//Creo los paquetes
 		
-		Paquete paq1 = new Paquete("Básico", "Publica ofertas laborales en nuestra plataforma por un período de 30 días.", 30, 20, fhp1, 3720, null);
-		Paquete paq2 = new Paquete("Destacado", "Publica ofertas laborales destacadas que se mostrará en la parte superior de los resultados de búsqueda por 45 días.", 45, 10, fhp2, 315, null);
-		Paquete paq3 = new Paquete("Premium", "Publica ofertas laborales premium que incluye promoción en nuestras redes sociales y listado en la sección destacada por 60 días.", 60, 15, fhp3, 7055, null);
-		Paquete paq4 = new Paquete("Express", "Publica ofertas laborales urgentes resaltada en color y se mostrará en la sección de urgente por 15 días.", 15, 5, fhp4, 950, null);
-		
+		Paquete paq1 = new Paquete();
+		paq1.setNombre("Básico");
+		paq1.setDescripcion("Publica ofertas laborales en nuestra plataforma por un período de 30 días.");
+		paq1.setValidez(30);
+		paq1.setDescuento(20);
+		paq1.setFechaAlta(fhp1);
+		paq1.setCosto(3720);
+		paq1.setImagen(null);
+
+		Paquete paq2 = new Paquete();
+		paq2.setNombre("Destacado");
+		paq2.setDescripcion("Publica ofertas laborales destacadas que se mostrarán en la parte superior de los resultados de búsqueda por 45 días.");
+		paq2.setValidez(45);
+		paq2.setDescuento(10);
+		paq2.setFechaAlta(fhp2);
+		paq2.setCosto(315);
+		paq2.setImagen(null);
+
+		Paquete paq3 = new Paquete();
+		paq3.setNombre("Premium");
+		paq3.setDescripcion("Publica ofertas laborales premium que incluyen promoción en nuestras redes sociales y listado en la sección destacada por 60 días.");
+		paq3.setValidez(60);
+		paq3.setDescuento(15);
+		paq3.setFechaAlta(fhp3);
+		paq3.setCosto(7055);
+		paq3.setImagen(null);
+
+		Paquete paq4 = new Paquete();
+		paq4.setNombre("Express");
+		paq4.setDescripcion("Publica ofertas laborales urgentes resaltadas en color y se mostrarán en la sección de urgente por 15 días.");
+		paq4.setValidez(15);
+		paq4.setDescuento(5);
+		paq4.setFechaAlta(fhp4);
+		paq4.setCosto(950);
+		paq4.setImagen(null);
+
 		//Los añado al manejador
 		
 		mpyt.addPaquete(paq1);
