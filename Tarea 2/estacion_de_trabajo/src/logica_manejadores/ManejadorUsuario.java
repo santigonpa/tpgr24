@@ -22,6 +22,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	private HashMap<String, Usuario> usuariosPorEmail; //los emails son unicos tambien
 	private HashMap<String, Empresa> empresas;
 	private HashMap<String, Postulante> postulantes;
+	private HashMap<String, Paquete> paquetes;
     private static ManejadorUsuario instancia = null;
 
     private ManejadorUsuario() {
@@ -69,7 +70,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 
 
     public Usuario obtenerUsuario(String nick) {
-        return  usuarios.getOrDefault(nick, null); //si no existe deberia retornar null
+        return  usuarios.getOrDefault(nick, null); 
     }
     
     public Usuario obtenerUsuarioPorEmail(String email) {
