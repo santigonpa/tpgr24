@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 import utils.Fabrica;
 import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
+import manejadores.publicar.*;
 import logica_controladores.IControladorUsuario;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorUsuario;
@@ -37,6 +38,8 @@ public class Principal {
 			public void run() {
 				try {
 					Principal window = new Principal();
+					PublicadorManejadorUsuario pmuser = new PublicadorManejadorUsuario();
+					pmuser.publicar();
 					window.trabajouy.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

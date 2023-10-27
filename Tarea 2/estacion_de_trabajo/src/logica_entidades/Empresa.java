@@ -17,8 +17,8 @@ public class Empresa extends Usuario{
 	private String descripcion;
 	private String web; 
 	private CompraPaquete compra;
-	private HashMap<String, OfertaLaboral> ofertas;
-	private HashMap<String, Paquete> paquetes;
+	private HashMap<String, OfertaLaboral> ofertas = new HashMap<String, OfertaLaboral>();
+	private HashMap<String, Paquete> paquetes = new HashMap<String, Paquete>();
 
 	
 	public Empresa() {

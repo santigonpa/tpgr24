@@ -149,7 +149,7 @@ public class cargarDatos {
 
 		//Creo Empresas
 		Empresa e1 = new Empresa();
-		e1.setNombre("EcoTech");
+		e1.setNickName("EcoTech");
 		e1.setNombre("Sophia");
 		e1.setApellido("Johnson");
 		e1.setEmail("info@EcoTehc.com");
@@ -159,7 +159,7 @@ public class cargarDatos {
 		e1.setPsw("qsxcdw43");
 
 		Empresa e2 = new Empresa();
-		e2.setNombre("FusionTech");
+		e2.setNickName("FusionTech");
 		e2.setNombre("William");
 		e2.setApellido("Smith");
 		e2.setEmail("contacto@FusionTech.net");
@@ -169,7 +169,7 @@ public class cargarDatos {
 		e2.setPsw("qpwoei586");
 
 		Empresa e3 = new Empresa();
-		e3.setNombre("GlobalHealth");
+		e3.setNickName("GlobalHealth");
 		e3.setNombre("Isabella");
 		e3.setApellido("Brown");
 		e3.setEmail("jobs@GlobalHelath.uy");
@@ -179,7 +179,7 @@ public class cargarDatos {
 		e3.setPsw("asdfg654");
 
 		Empresa e4 = new Empresa();
-		e4.setNombre("ANTEL");
+		e4.setNickName("ANTEL");
 		e4.setNombre("Washington");
 		e4.setApellido("Rocha");
 		e4.setEmail("jarrington@ANTEL.com.uy");
@@ -189,7 +189,7 @@ public class cargarDatos {
 		e4.setPsw("2nru096");
 
 		Empresa e5 = new Empresa();
-		e5.setNombre("MIEM");
+		e5.setNickName("MIEM");
 		e5.setNombre("Pablo");
 		e5.setApellido("Bengoechea");
 		e5.setEmail("eldiez@MIEM.org.uy");
@@ -199,7 +199,7 @@ public class cargarDatos {
 		e5.setPsw("ibii4xo");
 
 		Empresa e6 = new Empresa();
-		e6.setNombre("TechSolutions");
+		e6.setNickName("TechSolutions");
 		e6.setNombre("Mercedes");
 		e6.setApellido("Venn");
 		e6.setEmail("Mercedes@TechSolutions.com.uy");

@@ -15,7 +15,7 @@ public class Postulante extends Usuario{
 	//Atributos
 	private LocalDate nacimiento;
 	private String nacionalidad;
-	private ArrayList<Postulacion> postulaciones;
+	private ArrayList<Postulacion> postulaciones = new ArrayList<>();;
 	//Constructores
 	
 	public Postulante(){

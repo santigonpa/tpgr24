@@ -37,10 +37,10 @@ public class OfertaLaboral {
 	
 	//Links de oferta
 		
-	private ArrayList<Postulacion> postulacionesSobreLaOferta;
+	private ArrayList<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();;
 	private Empresa empresaAsociada;
 	private TipoPublicacion tipoDeOferta;
-	private ArrayList<KeyWord> palabrasClave;
+	private ArrayList<KeyWord> palabrasClave = new ArrayList<>();;
 	//private DataOferta dataOferta;
 	
 	// Operaciones
