@@ -29,7 +29,7 @@ public class PublicadorManejadorUsuario {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = "http://localhost:8080/ManejadorUsuario";
+        String url = "http://localhost:9128/ManejadorUsuario";
         System.out.println("Publicando servicio de ManejadorUsuario en " + url);
         endpoint = Endpoint.publish(url, this);
     }

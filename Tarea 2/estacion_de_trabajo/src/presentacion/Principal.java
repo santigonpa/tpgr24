@@ -8,7 +8,11 @@ import javax.swing.JMenuItem;
 import utils.Fabrica;
 import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
-import manejadores.publicar.*;
+import manejadores.publicar.PublicadorManejadorPyT;
+import manejadores.publicar.PublicadorManejadorOfertas;
+import manejadores.publicar.PublicadorManejadorUsuario;
+import controladores.publicar.PublicadorControladorOfertas;
+import controladores.publicar.PublicadorControladorUsuario;
 import logica_controladores.IControladorUsuario;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorUsuario;
@@ -39,7 +43,15 @@ public class Principal {
 				try {
 					Principal window = new Principal();
 					PublicadorManejadorUsuario pmuser = new PublicadorManejadorUsuario();
+					PublicadorManejadorPyT pmpyt = new PublicadorManejadorPyT();
+					PublicadorControladorOfertas pcofer = new PublicadorControladorOfertas();
+					PublicadorControladorUsuario pcuser = new PublicadorControladorUsuario();
+					PublicadorManejadorOfertas pmofer = new PublicadorManejadorOfertas();
 					pmuser.publicar();
+					pmpyt.publicar();
+					pcofer.publicar();
+					pmofer.publicar();
+					pcuser.publicar();
 					window.trabajouy.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

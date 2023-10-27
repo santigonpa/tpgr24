@@ -27,9 +27,9 @@ public class PublicadorControladorOfertas {
 
     @WebMethod(exclude = true)
     public void publicar() {
-//        String url = ConfigHelper.getWebServiceBaseURL() + "/ControladorOferta"; nosotros no tenemos un config helper
- //       System.out.println("Publicando servicio de ControladorOferta en " + url);
- //       endpoint = Endpoint.publish(url, this);
+    	String url = "http://localhost:9121/ControladorOfertas";
+        System.out.println("Publicando servicio de ControladorOfertas en " + url);
+        endpoint = Endpoint.publish(url, this);
     }
 
     @WebMethod(exclude = true)

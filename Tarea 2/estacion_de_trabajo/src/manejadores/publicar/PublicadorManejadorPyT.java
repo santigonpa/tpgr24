@@ -24,7 +24,7 @@ public class PublicadorManejadorPyT {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = "http://localhost:8080/ManejadorPaquetesYTiposPubli";
+        String url = "http://localhost:9120/ManejadorPaquetesYTiposPubli";
         System.out.println("Publicando servicio de ManejadorPaquetesYTiposPubli en " + url);
         endpoint = Endpoint.publish(url, this);
     }
@@ -56,7 +56,7 @@ public class PublicadorManejadorPyT {
     }
 
     @WebMethod
-    public ArrayList<DataPaquete> getDataPaquete() {
+    public ArrayList<DataPaquete> getDataPaqueteArreglo() {
         return manejadorPaquetesYTiposPubli.getDataPaquete();
     }
 

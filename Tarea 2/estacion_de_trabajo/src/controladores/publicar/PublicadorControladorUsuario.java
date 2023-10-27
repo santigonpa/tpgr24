@@ -1,6 +1,7 @@
 package controladores.publicar;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
@@ -28,13 +29,26 @@ public class PublicadorControladorUsuario {
 	public PublicadorControladorUsuario() {
 	}
 	
+	@WebMethod(exclude = true)
+    public void publicar() {
+		String url = "http://localhost:9123/ControladorUsuario";
+        System.out.println("Publicando servicio de ControladorUsuario en " + url);
+        endpoint = Endpoint.publish(url, this);
+    }
+
+    @WebMethod(exclude = true)
+    public Endpoint getEndpoint() {
+        return endpoint;
+    }
+	
 	//Operaciones a ser publicadas
 	
 	@WebMethod
-	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
+	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, String nacimiento,
 			String nacionalidad, byte[]imagen , String psw)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
-		
-		ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, nacimiento, nacionalidad, imagen, psw);
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fechaNacimiento = LocalDate.parse(nacimiento, dateFormatter);
+		ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, psw);
 	}
 	
 	@WebMethod

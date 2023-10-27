@@ -6,15 +6,16 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import com.model.EstadoSesion;
+import com.serviciosweb.controladores.publicar.CampoInvalidoException_Exception;
+import com.serviciosweb.controladores.publicar.EmailYaExisteException_Exception;
+import com.serviciosweb.controladores.publicar.NicknameYaExisteException_Exception;
+import com.serviciosweb.controladores.publicar.PublicadorControladorUsuario;
+import com.serviciosweb.controladores.publicar.PublicadorControladorUsuarioService;
 
-import excepciones.EmailYaExisteException;
-import excepciones.NicknameYaExisteException;
-import excepciones.campoInvalidoException;
+
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,8 +23,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import logica_controladores.IControladorUsuario;
-import utils.Fabrica;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**
@@ -38,8 +37,8 @@ public class ServletAltaDeUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	
-	private Fabrica fab = Fabrica.getInstance();
-	private IControladorUsuario ICU = fab.getInUser();
+	private PublicadorControladorUsuarioService servicePublicadorUsuario = new PublicadorControladorUsuarioService();
+	private PublicadorControladorUsuario puertoControladorUsuario = servicePublicadorUsuario.getPublicadorControladorUsuarioPort();
     
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
@@ -192,16 +191,12 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		        // Realiza las acciones para registrar un postulante
 		    	// Obtén el valor del campo de fecha de nacimiento desde la solicitud
 		        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
-		        // Crea un formateador para el patrón de fecha (yyyy-MM-dd)
-		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		        String nacionalidad = request.getParameter("nacionalidad");
 		        
 		        try {
-		            // Intenta analizar la fecha en un objeto LocalDate
-		            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
-		            ICU.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimiento, nacionalidad, imagenBytes, contrasenia);
+		            puertoControladorUsuario.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimientoStr, nacionalidad, imagenBytes, contrasenia);
 		            request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
-		        } catch (NicknameYaExisteException e) {
+		        } catch (NicknameYaExisteException_Exception e) {
 		        	// Agregar un atributo a la solicitud con el mensaje de error
 		            request.setAttribute("errorRegistroNickname", "El nickname ya está en uso. Por favor, elige otro.");
 		            
@@ -209,7 +204,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 		            return;
 		        }
-		        catch (EmailYaExisteException e) {
+		        catch (EmailYaExisteException_Exception e) {
 		        	
 
 		        	// Agregar un atributo a la solicitud con el mensaje de error
@@ -218,7 +213,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		            // Redirigir de vuelta a tu formulario de registro
 		            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 		            return;
-				} catch (campoInvalidoException e) {
+				} catch (CampoInvalidoException_Exception e) {
 					//ESTO NO DEBERIA HACER NADA
 					e.printStackTrace();
 					
@@ -232,11 +227,11 @@ public class ServletAltaDeUsuario extends HttpServlet {
 				    	String descripcion = request.getParameter("descripcion");
 				    	String linkWeb = request.getParameter("linkSitio");
 				    try {
-				    	ICU.altaUsuarioEmpresa(nickName, nombre, apellido, email, descripcion, linkWeb, imagenBytes, contrasenia);
+				    	puertoControladorUsuario.altaUsuarioEmpresa(nickName, nombre, apellido, email, descripcion, linkWeb, imagenBytes, contrasenia);
 			            response.sendRedirect("/TrabajoUY/iniciarSesion");
 			         
 			            
-			        } catch (NicknameYaExisteException e) {
+			        } catch (NicknameYaExisteException_Exception e) {
 			        	
 			            request.setAttribute("errorRegistroNickname", "El nickname ya está en uso. Por favor, elige otro.");
 			            
@@ -244,7 +239,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 			            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 			            return;
 			        }
-			        catch (EmailYaExisteException e) {
+			        catch (EmailYaExisteException_Exception e) {
 						
 			        	
 			            request.setAttribute("errorRegistroEmail", "El nickname ya está en uso. Por favor, elige otro.");
@@ -252,7 +247,7 @@ public class ServletAltaDeUsuario extends HttpServlet {
 			            // Redirigir de vuelta a tu formulario de registro
 			            request.getRequestDispatcher("/WEB-INF/usuarios/AltaUsuario.jsp").forward(request, response);
 			            return;
-					} catch (campoInvalidoException e) {
+					} catch (CampoInvalidoException_Exception e) {
 						
 			            request.setAttribute("campoInvalido", "Existe un campo sin rellenar. Por favor verifique, si estaba creando una empresa vuelva a seleccionar EMPRESA arriba.");
 			            

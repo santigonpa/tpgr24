@@ -46,6 +46,5 @@
 	<classpathentry kind="lib" path="/tpgr24/lib/stax-ex.jar"/>
 	<classpathentry kind="lib" path="/tpgr24/lib/streambuffer.jar"/>
 	<classpathentry kind="lib" path="/tpgr24/lib/woodstox-core.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/servidor_central"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
