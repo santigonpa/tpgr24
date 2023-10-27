@@ -34,11 +34,4 @@
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 		<nature>net.sourceforge.pmd.eclipse.plugin.pmdNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>estacion_de_trabajo</name>
-			<type>2</type>
-			<location>C:/Users/Serrana/git/tpgr24/Tarea 2/estacion_de_trabajo</location>
-		</link>
-	</linkedResources>
 </projectDescription>
