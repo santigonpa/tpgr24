@@ -3,6 +3,7 @@ package controladores.publicar;
 import java.time.LocalDate;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import jakarta.jws.WebMethod;
@@ -50,27 +51,42 @@ public class PublicadorControladorOfertas {
 
     @WebMethod
     public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
-            String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
+            String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
             String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
-        controladorOferta.altaPublicacionOfertaLaboralConPaquete(empresa, tipoPubli, nombre, descripcion, horarioInicio, horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec, imagen, tipoDePago);
+        
+    	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
+    	
+		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
+		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
+    	controladorOferta.altaPublicacionOfertaLaboralConPaquete(empresa, tipoPubli, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec, imagen, tipoDePago);
     }
 
     @WebMethod
     public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
-            String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-            String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
-        controladorOferta.altaPublicacionOfertaLaboralGeneral(empresa, tipoPubli, nombre, descripcion, horarioInicio, horarioFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec, imagen, tipoDePago);
+            String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
+            String departamento, String fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+        
+    		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
+    		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
+    		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
+    		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
+    		controladorOferta.altaPublicacionOfertaLaboralGeneral(empresa, tipoPubli, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaAlta, palabrasClaveSelec, imagen, tipoDePago);
     }
 
     @WebMethod
     public void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
-            int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException {
-        controladorOferta.altaDeTipoDePubliDeOferLab(nombre, descripcion, exposicion, costo, duracion, fecha);
+            int costo, int duracion, String fecha) throws NombreTipoPubliYaExisteException {
+    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
+    	controladorOferta.altaDeTipoDePubliDeOferLab(nombre, descripcion, exposicion, costo, duracion, fechaAlta);
     }
 
     @WebMethod
-    public void agregarPostulacion(String post, String ofer, String curri, String mot, LocalDate fecha) throws yaExistePostulacionAOfertaException {
-        controladorOferta.agregarPostulacion(post, ofer, curri, mot, fecha);
+    public void agregarPostulacion(String post, String ofer, String curri, String mot, String fecha) throws yaExistePostulacionAOfertaException {
+    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
+    	controladorOferta.agregarPostulacion(post, ofer, curri, mot, fechaAlta);
     }
 
     @WebMethod
