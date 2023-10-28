@@ -68,7 +68,7 @@ public class Empresa extends Usuario{
 	public DataEmpresa getDTEmpresa() {
 		DataEmpresa DtEmp = new DataEmpresa();
 		DtEmp.setApellido(this.getApellido());
-		DtEmp.setDescripcion(this.descripcion);
+		DtEmp.setDescripcion(this.getDescripcion());
 		DtEmp.setEmail(this.getEmail());
 		DtEmp.setImagen(this.getImagen());
 		DtEmp.setLinkWeb(this.getLinkWeb());

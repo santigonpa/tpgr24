@@ -9,12 +9,11 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 import com.model.EstadoSesion;
-import com.serviciosweb.controladores.publicar.CampoInvalidoException_Exception;
-import com.serviciosweb.controladores.publicar.EmailYaExisteException_Exception;
-import com.serviciosweb.controladores.publicar.NicknameYaExisteException_Exception;
-import com.serviciosweb.controladores.publicar.PublicadorControladorUsuario;
-import com.serviciosweb.controladores.publicar.PublicadorControladorUsuarioService;
-
+import com.webservices.controladores.publicar.CampoInvalidoException_Exception;
+import com.webservices.controladores.publicar.EmailYaExisteException_Exception;
+import com.webservices.controladores.publicar.NicknameYaExisteException_Exception;
+import com.webservices.controladores.publicar.PublicadorControladorUsuario;
+import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
