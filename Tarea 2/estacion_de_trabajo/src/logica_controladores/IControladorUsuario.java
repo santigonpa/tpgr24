@@ -51,6 +51,8 @@ public interface IControladorUsuario {
 	
 	public abstract void modificarDatosEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String web , byte[]imagen , String psw);
+
+	public abstract ArrayList<Postulacion> obtenerPostulaciones(String usuario);
 	
 
 }
