@@ -16,6 +16,10 @@ public class EmailYaExisteException_Exception
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8881219002674022536L;
+	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

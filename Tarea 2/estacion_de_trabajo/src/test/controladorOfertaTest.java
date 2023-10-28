@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -213,6 +212,7 @@ class controladorOfertaTest {
 	void testeoobtenerPos() {
 		String ofer = "Soporte Tecnico";
 		String empre = "EcoTech";
+		@SuppressWarnings("unused")
 		ArrayList<Postulacion> postulaciones = mo.obtenerPostulaciones(ofer,empre);
 	}
 	

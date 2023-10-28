@@ -14,7 +14,6 @@ import logica_controladores.IControladorOferta;
 import logica_controladores.IControladorUsuario;
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
-import logica_datatypes.DataPostulacion;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_entidades.Postulacion;

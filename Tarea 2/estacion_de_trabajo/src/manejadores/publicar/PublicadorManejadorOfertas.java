@@ -11,12 +11,8 @@ import logica_datatypes.DataOferta;
 import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Postulacion;
-import excepciones.*;
-import utils.Fabrica;
 import logica_manejadores.ManejadorOferta;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 @WebService

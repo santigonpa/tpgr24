@@ -16,6 +16,10 @@ public class YaExistePostulacionAOfertaException_Exception
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3300204030758464083L;
+	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

@@ -16,6 +16,10 @@ public class NombreRepetidoOfertaException_Exception
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7445852803837817577L;
+	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

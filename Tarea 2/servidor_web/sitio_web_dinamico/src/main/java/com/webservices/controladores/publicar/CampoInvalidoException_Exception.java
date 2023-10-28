@@ -16,6 +16,10 @@ public class CampoInvalidoException_Exception
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6177449048771012645L;
+	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

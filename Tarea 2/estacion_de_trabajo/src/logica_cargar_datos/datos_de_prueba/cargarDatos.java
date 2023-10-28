@@ -17,7 +17,6 @@ import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
-import logica_entidades.Usuario;
 import logica_entidades.OfertaLaboral.EstadoOferta;
 import utils.Fabrica;
 

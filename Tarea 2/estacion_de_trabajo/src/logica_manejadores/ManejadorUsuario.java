@@ -14,7 +14,6 @@ import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
-import utils.Fabrica;
 
 public class ManejadorUsuario implements IManejadorUsuario {
 	
@@ -284,6 +283,18 @@ public class ManejadorUsuario implements IManejadorUsuario {
 			res.add(ofert);
 		}
 		return res;
+	}
+
+
+
+	public HashMap<String, Paquete> getPaquetes() {
+		return paquetes;
+	}
+
+
+
+	public void setPaquetes(HashMap<String, Paquete> paquetes) {
+		this.paquetes = paquetes;
 	}
 
 

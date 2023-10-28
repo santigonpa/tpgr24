@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataOferta;
-import utils.Fabrica;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 

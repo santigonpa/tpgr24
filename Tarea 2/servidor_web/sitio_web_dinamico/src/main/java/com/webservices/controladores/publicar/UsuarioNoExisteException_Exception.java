@@ -16,6 +16,10 @@ public class UsuarioNoExisteException_Exception
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3384715229151312127L;
+	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
