@@ -267,7 +267,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}else {
 			String nombrePaq;
 		try {
-			Empresa empr = (Empresa) puertoManejadorUsuario.obtenerEmpresa(usuario.getNickName());
+			Empresa empr = (Empresa) puertoManejadorUsuario.obteneraEmpresa(usuario.getNickName());
 			
 			if(empr.getCompra() != null) {
 				nombrePaq = empr.getCompra().getPaqCompr().getNombre(); //esto cambie de getPaquete a getPaqCompr chequear (el que esta generado es el que puse yo)

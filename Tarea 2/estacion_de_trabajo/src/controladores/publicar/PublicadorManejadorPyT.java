@@ -55,7 +55,7 @@ public class PublicadorManejadorPyT {
     }
 
     @WebMethod
-    public DataPaquete getDataPaquete(String nombre) {
+    public DataPaquete getDataPaqueteIndividual(String nombre) {
         return manejadorPaquetesYTiposPubli.getDataPaquete(nombre);
     }
 

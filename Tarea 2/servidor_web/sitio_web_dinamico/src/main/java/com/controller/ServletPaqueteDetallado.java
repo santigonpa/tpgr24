@@ -41,7 +41,7 @@ public class ServletPaqueteDetallado extends HttpServlet {
 			throws ServletException, IOException {
     	
     	String nombrePaquete = request.getParameter("id");
-		DataPaquete paquete = puertoManejadorPyT.getDataPaquete(nombrePaquete);
+		DataPaquete paquete = puertoManejadorPyT.getDataPaqueteIndividual(nombrePaquete);
 		request.setAttribute("paquete", paquete);
 		
 		if(getEstado(request) == EstadoSesion.NO_LOGEADO) {	

@@ -9,11 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.Empresa;
+import com.webservices.controladores.publicar.OfertaLaboral;
+import com.webservices.controladores.publicar.Postulacion;
 import com.webservices.controladores.publicar.Postulante;
 import com.webservices.controladores.publicar.Usuario;
-
+import com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.model.EstadoSesion;
@@ -68,7 +73,11 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	if(banderaSesion && banderaPostulante) {
 	    		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
-	    		boolean estaPost = puertoManejadorOfertas.obtenerOferta(nombreOfer).existeLaPostulacion(nickName);
+	    		List<Postulacion> postulaciones = puertoManejadorOfertas.obtenerOferta(nombreOfer).getPostulacionesSobreLaOferta();
+	    		boolean estaPost = false;
+	    		for(Postulacion postu : postulaciones) {
+	    			if(postu.getPost().getNickName().equals(nickName)) {estaPost = true;}
+	    		}
 	    		String post = request.getParameter("id");
 	    		if(estaPost){
 	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaPost.jsp").forward(request, response);
@@ -82,7 +91,13 @@ public class ServletDetalleOferta extends HttpServlet {
 				Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
 	    		boolean esSuOferta;
-	    		if(puertoManejadorUsuario.obtenerEmpresa(nickName).getOferta(nombreOfer) == null) {
+	    		Empresa enterprise = puertoManejadorUsuario.obteneraEmpresa(nickName);
+	    		OfertaLaboral ofertaDeEnter = null;
+				List<Empresa.Ofertas.Entry> ofertasDeEnter =  enterprise.getOfertas().getEntry();
+	    		for(Empresa.Ofertas.Entry entry : ofertasDeEnter) {
+	    			if(entry.getKey().equals(nombreOfer)) {ofertaDeEnter = entry.getValue();}
+	    		}
+	    		if(ofertaDeEnter == null) {
 	    			esSuOferta = false;
 	    		}else {
 	    			esSuOferta = true;

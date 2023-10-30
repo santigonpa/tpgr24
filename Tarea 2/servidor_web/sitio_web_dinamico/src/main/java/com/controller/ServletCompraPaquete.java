@@ -65,10 +65,10 @@ public class ServletCompraPaquete extends HttpServlet {
 			if(banderaSesion) {
 			String paq = (String)request.getParameter("id");
 			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			Empresa emp = (Empresa) puertoManejadorUsuario.obtenerEmpresa(user.getNickName());
+			Empresa emp = (Empresa) puertoManejadorUsuario.obteneraEmpresa(user.getNickName());
 			Paquete paquete= puertoManejadorPyT.getPaquete(paq);
-			DataPaquete dtpaq = puertoManejadorPyT.getDataPaquete(paq);
-			puertoManejadorUsuario.CompraPaquete(paquete, emp.getNickName());
+			DataPaquete dtpaq = puertoManejadorPyT.getDataPaqueteIndividual(paq);
+			puertoManejadorUsuario.compraPaquete(paquete, emp.getNickName());
 			DataEmpresa DTemp = puertoManejadorUsuario.getDataEmpresa(emp.getNickName());
 			request.setAttribute("paquete", dtpaq);
 			request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
