@@ -31,15 +31,18 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <%@ page import="logica_datatypes.DataPaquete" %>
-    <%@ page import="java.time.LocalTime" %>
-    <%@ page import="java.time.LocalDate" %>
-    <%@ page import="logica_entidades.OfertaLaboral.EstadoOferta" %>
+        <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorPyT" %>
+     <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorPyTService" %>
+    <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
+        <%@ page import="java.util.ArrayList" %>
+    <%@ page import="java.util.List" %>
+    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
+        <%@ page import="com.webservices.controladores.publicar.Paquete" %>
+        <%@ page import="com.webservices.controladores.publicar.TipoPublicacion" %>
     <%@page import ="java.util.Base64" %>
-    <%@ page import="logica_entidades.KeyWord" %>
-	<%@ page import="java.util.Set" %>
+        <%@ page import="com.webservices.controladores.publicar.DataPaquete" %>
     
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -61,7 +64,7 @@
 	 	String nombre = paqueteDet.getNombre();
 	 	String descripcion = paqueteDet.getDescripcion();
 	 	int validez = paqueteDet.getValidez();
-	 	LocalDate fechaAlta = paqueteDet.getFechaDeAlta(); 
+	 	String fechaAlta = paqueteDet.getFechadealta(); 
 	 	int descuento = paqueteDet.getDescuento();
 	 	float costo = paqueteDet.getCosto();
 	 	

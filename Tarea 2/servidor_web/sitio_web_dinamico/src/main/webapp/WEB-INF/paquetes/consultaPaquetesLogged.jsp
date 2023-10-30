@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
           
-    <%@page import= "logica_datatypes.DataPaquete" %>
+        <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorPyT" %>
+     <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorPyTService" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
+        <%@ page import="java.util.ArrayList" %>
+    <%@ page import="java.util.List" %>
+    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
+        <%@ page import="com.webservices.controladores.publicar.Usuario" %>
+        <%@ page import="com.webservices.controladores.publicar.TipoPublicacion" %>
+    
     <%@page import ="java.util.Base64" %>
+        <%@ page import="com.webservices.controladores.publicar.DataPaquete" %>
+    
     
 <!DOCTYPE html>
 <html>
@@ -46,27 +55,15 @@
 
 		<div class="cartas">
 
-				<%
-			    
-				Set<DataPaquete> conjuntoDePaquetes = (Set<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
-			    
-			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
-			    
-			        String nombreOfer;
-			        String descripcion;
-			        byte[] imagenBytes;
-			
-			        for (DataPaquete dataTP : conjuntoDePaquetes) {
-			            nombreOfer = dataTP.getNombre();    
-			            imagenBytes = dataTP.getImagen();
-			            
-			            String base64Image = "";
-			            if (imagenBytes != null) {
-			                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-			            }else{
-			            	//aca va la imagen default
-			            }
-			    %>
+				 <%
+                ArrayList<DataPaquete> listaDePaquetes = (ArrayList<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
+                
+                if (listaDePaquetes != null && !listaDePaquetes.isEmpty()) {
+                    for (DataPaquete dataTP : listaDePaquetes) {
+                        String nombreOfer = dataTP.getNombre();
+                        byte[] imagenBytes = dataTP.getImagen();
+                        String base64Image = (imagenBytes != null) ? Base64.getEncoder().encodeToString(imagenBytes) : ""; // Añade aquí la imagen predeterminada si es necesario
+            %>
 				
 			    <div class="card" style="width: 20rem;">				
 			    <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de paquete" style="object-fit: cover; width: 100%; height: 100%;">
