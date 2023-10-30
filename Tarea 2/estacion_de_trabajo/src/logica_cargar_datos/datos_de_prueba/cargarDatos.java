@@ -14,7 +14,6 @@ import logica_entidades.Empresa;
 import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
-import logica_entidades.Usuario;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
@@ -47,15 +46,15 @@ public class cargarDatos {
 		
 
 		//Creo Postulantes
-		Usuario p1 = new Postulante();
-		( p1).setNickName("lgarcia");
-		((Postulante) p1).setNombre("Lucia");
-		((Postulante) p1).setApellido("Garcia");
-		( p1).setEmail("lgarcia85@gmail.com");
-		((Postulante) p1).setNacimiento(n1);
-		((Postulante) p1).setNacionalidad("Uruguaya");
-		((Postulante) p1).setImagen(null);
-		((Postulante) p1).setPsw("awdrg543");
+		Postulante p1 = new Postulante();
+		p1.setNickName("lgarcia");
+		p1.setNombre("Lucia");
+		p1.setApellido("Garcia");
+		p1.setEmail("lgarcia85@gmail.com");
+		p1.setNacimiento(n1);
+		p1.setNacionalidad("Uruguaya");
+		p1.setImagen(null);
+		p1.setPsw("awdrg543");
 
 		Postulante p2 = new Postulante();
 		p2.setNickName("matilo");
