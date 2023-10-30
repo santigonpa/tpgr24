@@ -2,7 +2,9 @@ package com.controller;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import com.model.EstadoSesion;
@@ -49,12 +51,12 @@ public class ServletConsultaUsuario extends HttpServlet {
     	String nickUser = request.getParameter("VerPerfil");
     	if(nickUser==null) {
 	    	WrapperHashMap usuariosWrap =  puertoControladorUsuario.getDataUsuario();
-	    	@SuppressWarnings("unchecked") // deberia andar siempre 
-			Map<String,DataUsuario> usuarios = (Map<String,DataUsuario>) usuariosWrap.getMapa();
-			Set<String> claves = usuarios.keySet();
+	    	 
+			List<com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry> claves = usuariosWrap.getMapa().getEntry();
+			
 			Set<DataUsuario> usuariosColeccion = new HashSet<DataUsuario>();
-			for(String clave : claves ) {
-				DataUsuario dataUser = usuarios.get(clave);
+			for(com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry clave : claves ) {
+				DataUsuario dataUser = (DataUsuario) clave.getValue();
 				usuariosColeccion.add(dataUser);
 			}
 			request.setAttribute("coleccionDataUsuarios", usuariosColeccion);
