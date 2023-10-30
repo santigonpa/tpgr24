@@ -1,6 +1,7 @@
 package logica_manejadores;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -134,11 +135,13 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	    for (Postulante empAct : this.postulantes.values()) {
 	        
 	    	DataPostulante nuevaDTPost = new DataPostulante();
+	    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = empAct.getNacimineto().format(formatter);
 	           nuevaDTPost.setNickName(empAct.getNickName()); 
 	           nuevaDTPost.setNombre(empAct.getNombre());  
 	           nuevaDTPost.setApellido(empAct.getApellido());
 	           nuevaDTPost.setEmail(empAct.getEmail());
-	           nuevaDTPost.setNacimiento(empAct.getNacimineto());
+	           nuevaDTPost.setNacimiento(formattedDate);
 	           nuevaDTPost.setNacionalidad(empAct.getNacionalidad());
 	           nuevaDTPost.setImagen(empAct.getImagen());
 	           nuevaDTPost.setPsw( empAct.getPsw());
@@ -191,11 +194,13 @@ public class ManejadorUsuario implements IManejadorUsuario {
         	}else if (empAct instanceof Postulante){
         		Postulante empAct1 =(Postulante) empAct;
         		DataPostulante nuevaDTPost = new DataPostulante();
+        		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String formattedDate = empAct1.getNacimineto().format(formatter);
         		nuevaDTPost.setNickName(empAct1.getNickName()); 
  	           	nuevaDTPost.setNombre(empAct1.getNombre());  
  	           	nuevaDTPost.setApellido(empAct1.getApellido());
  	           	nuevaDTPost.setEmail(empAct1.getEmail());
- 	           	nuevaDTPost.setNacimiento(empAct1.getNacimineto());
+ 	           	nuevaDTPost.setNacimiento(formattedDate);
  	           	nuevaDTPost.setNacionalidad(empAct1.getNacionalidad());
  	           	nuevaDTPost.setImagen(empAct1.getImagen());
  	           	nuevaDTPost.setPsw( empAct1.getPsw());
@@ -215,15 +220,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();
+			DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+	        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = oferta.getFecha().format(formatterFecha);
+	        String formattedTimeHoraFin = oferta.getHoraFin().format(formatterHora);
+	        String formattedTimeHoraInicio = oferta.getHoraInicio().format(formatterHora);
 			ofert.setCiudad(oferta.getCiudad());
 			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
 			ofert.setDepartamento(oferta.getDepartamento());
 			ofert.setDescripcion(oferta.getDescripcion());
 			ofert.setEmpresa(oferta.getEmpresa().getNickName());
 			ofert.setEstado(oferta.getEstado());
-			ofert.setFechaDeAlta(oferta.getFecha());
-			ofert.setHoraFin(oferta.getHoraFin());
-			ofert.setHoraInicio(oferta.getHoraInicio());
+			ofert.setFechaDeAlta(formattedDate);
+			ofert.setHoraFin(formattedTimeHoraFin);
+			ofert.setHoraInicio(formattedTimeHoraInicio);
 			ofert.setImagen(oferta.getImagen());
 			ofert.setTipoDePago(oferta.getTipoDePago());
 			ofert.setRemuneracion(oferta.getRemuneracion());
@@ -241,15 +251,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();
+			DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+	        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = oferta.getFecha().format(formatterFecha);
+	        String formattedTimeHoraFin = oferta.getHoraFin().format(formatterHora);
+	        String formattedTimeHoraInicio = oferta.getHoraInicio().format(formatterHora);
 			ofert.setCiudad(oferta.getCiudad());
 			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
 			ofert.setDepartamento(oferta.getDepartamento());
 			ofert.setDescripcion(oferta.getDescripcion());
 			ofert.setEmpresa(oferta.getEmpresa().getNickName());
 			ofert.setEstado(oferta.getEstado());
-			ofert.setFechaDeAlta(oferta.getFecha());
-			ofert.setHoraFin(oferta.getHoraFin());
-			ofert.setHoraInicio(oferta.getHoraInicio());
+			ofert.setFechaDeAlta(formattedDate);
+			ofert.setHoraFin(formattedTimeHoraFin);
+			ofert.setHoraInicio(formattedTimeHoraInicio);
 			ofert.setImagen(oferta.getImagen());
 			ofert.setTipoDePago(oferta.getTipoDePago());
 			ofert.setRemuneracion(oferta.getRemuneracion());
@@ -267,15 +282,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();
+			DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+	        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = oferta.getFecha().format(formatterFecha);
+	        String formattedTimeHoraFin = oferta.getHoraFin().format(formatterHora);
+	        String formattedTimeHoraInicio = oferta.getHoraInicio().format(formatterHora);
 			ofert.setCiudad(oferta.getCiudad());
 			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
 			ofert.setDepartamento(oferta.getDepartamento());
 			ofert.setDescripcion(oferta.getDescripcion());
 			ofert.setEmpresa(oferta.getEmpresa().getNickName());
 			ofert.setEstado(oferta.getEstado());
-			ofert.setFechaDeAlta(oferta.getFecha());
-			ofert.setHoraFin(oferta.getHoraFin());
-			ofert.setHoraInicio(oferta.getHoraInicio());
+			ofert.setFechaDeAlta(formattedDate);
+			ofert.setHoraFin(formattedTimeHoraFin);
+			ofert.setHoraInicio(formattedTimeHoraInicio);
 			ofert.setImagen(oferta.getImagen());
 			ofert.setTipoDePago(oferta.getTipoDePago());
 			ofert.setRemuneracion(oferta.getRemuneracion());

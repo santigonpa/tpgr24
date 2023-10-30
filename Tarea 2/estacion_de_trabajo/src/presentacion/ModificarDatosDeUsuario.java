@@ -75,7 +75,7 @@ nickname.setText(selectedUsuario.getNickName());
 email.setText(selectedUsuario.getEmail());
 if (selectedUsuario instanceof DataPostulante) {
 DataPostulante postulante = (DataPostulante) selectedUsuario;
-dateSpinner.setToolTipText(postulante.getFechaString());
+dateSpinner.setToolTipText(postulante.getNacimineto());
 nacionalidad.setText(postulante.getNacionalidad());
 } else if (selectedUsuario instanceof DataEmpresa) {
 DataEmpresa empresa = (DataEmpresa) selectedUsuario;

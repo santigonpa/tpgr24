@@ -133,7 +133,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 					ciudad.setText(oferta.getCiudad());
 					departamento.setText(oferta.getDepartamento());
 					remuneracion.setText(oferta.getRemuneracion()+ "");
-					fechaAlta.setText(oferta.getFechaAltaComoString());
+					fechaAlta.setText(oferta.getFechaDeAlta());
 				
 				}
 			});

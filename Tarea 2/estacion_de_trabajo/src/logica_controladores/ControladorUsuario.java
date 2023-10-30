@@ -17,6 +17,7 @@ import logica_datatypes.DataOferta;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataTipoPublicacion;
 import logica_datatypes.DataUsuario;
+import logica_datatypes.WrapperArrayList;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Postulacion;
@@ -77,13 +78,22 @@ public DataUsuario listarInfoUser(String usuario) {
 	DtUser.setPsw(user.getPsw());
 	return DtUser;
 }
-
+/*
 public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	Fabrica fabrica = Fabrica.getInstance();
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Postulante post = (Postulante) manejadorUsuario.obtenerUsuario(usuario);
 	ArrayList<Postulacion> res = post.obtenerPostulaciones();
+	return res;
+}*/
+public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
+	
+	Postulante post = (Postulante) manejadorUsuario.obtenerUsuario(usuario);
+	WrapperArrayList wrapper = post.obtenerPostulaciones();
+	ArrayList<Postulacion> res = (ArrayList<Postulacion>) wrapper.getLista();
 	return res;
 }
 

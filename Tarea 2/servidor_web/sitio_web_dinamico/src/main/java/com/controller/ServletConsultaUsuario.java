@@ -6,15 +6,19 @@ import java.util.Map;
 import java.util.Set;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperHashMap;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataUsuario;
-import logica_manejadores.IManejadorUsuario;
-import utils.Fabrica;
+
+
+
 
 /**
  * Servlet implementation class ServletConsultaUsuario
@@ -22,8 +26,9 @@ import utils.Fabrica;
 @WebServlet (description = "Servlet de Consulta de usuario", urlPatterns = { "/ConsultarUsuario" })
 public class ServletConsultaUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private Fabrica fab = Fabrica.getInstance();
-    private IManejadorUsuario IMU = fab.getInManejadorUsuario();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoControladorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,11 +48,14 @@ public class ServletConsultaUsuario extends HttpServlet {
 			throws ServletException, IOException {
     	String nickUser = request.getParameter("VerPerfil");
     	if(nickUser==null) {
-	    	Map<String,DataUsuario> usuarios =  IMU.getDataUsuario();
+	    	WrapperHashMap usuariosWrap =  puertoControladorUsuario.getDataUsuario();
+	    	@SuppressWarnings("unchecked") // deberia andar siempre 
+			Map<String,DataUsuario> usuarios = (Map<String,DataUsuario>) usuariosWrap.getMapa();
 			Set<String> claves = usuarios.keySet();
 			Set<DataUsuario> usuariosColeccion = new HashSet<DataUsuario>();
 			for(String clave : claves ) {
-				usuariosColeccion.add(usuarios.get(clave));
+				DataUsuario dataUser = usuarios.get(clave);
+				usuariosColeccion.add(dataUser);
 			}
 			request.setAttribute("coleccionDataUsuarios", usuariosColeccion);
 			

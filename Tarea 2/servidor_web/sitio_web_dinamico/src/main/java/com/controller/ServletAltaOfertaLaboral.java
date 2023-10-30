@@ -11,21 +11,12 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Part;
-import logica_controladores.IControladorOferta;
-import logica_datatypes.DataKeyWord;
-import logica_datatypes.DataTipoPublicacion;
-import logica_entidades.Empresa;
-import logica_entidades.KeyWord;
-import logica_entidades.Usuario;
-import logica_manejadores.IManejadorOferta;
-import logica_manejadores.IManejadorPyT;
-import logica_manejadores.IManejadorUsuario;
-import utils.Fabrica;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -34,10 +25,25 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import com.model.EstadoSesion;
-import excepciones.NombreRepetidoOfertaException;
-import excepciones.noExistePublicacionException;
-
-
+import com.webservices.controladores.publicar.PublicadorControladorUsuario;
+import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
+import com.webservices.controladores.publicar.PublicadorManejadorPyT;
+import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.WrapperArrayList;
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.DataPaquete;
+import com.webservices.controladores.publicar.KeyWord;
+import com.webservices.controladores.publicar.NoExistePublicacionException_Exception;
+import com.webservices.controladores.publicar.NombreRepetidoOfertaException_Exception;
+import com.webservices.controladores.publicar.DataTipoPublicacion;
+import com.webservices.controladores.publicar.Empresa;
+import com.webservices.controladores.publicar.PublicadorControladorOfertas;
+import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 
 /**
  * Servlet implementation class ServletAltaOfertaLaboral
@@ -49,10 +55,14 @@ import excepciones.noExistePublicacionException;
 
 public class ServletAltaOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Fabrica fab = Fabrica.getInstance();
-	private IManejadorPyT IPYT = fab.getInManejadorPyT();
-	private static IControladorOferta ICO = fab.getInOfer();
-	private static IManejadorOferta IMO = fab.getInManejadorOferta();
+	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
+	private PublicadorControladorOfertasService servicePublicadorOfertas = new PublicadorControladorOfertasService();
+	private PublicadorControladorOfertas puertoControladorOfertas = servicePublicadorOfertas.getPublicadorControladorOfertasPort();
+	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
@@ -90,8 +100,25 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Set<DataTipoPublicacion> coleccionPTP = IPYT.getDataTipoPublicacion();
-    	Set<DataKeyWord> coleccionKeys = IMO.getDataKeyWord();
+    	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+    	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();
+
+		for (Object objeto : coleccionPTPWrapper) {
+		    if (objeto instanceof DataTipoPublicacion) {
+		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
+		        coleccionPTP.add(dataTipoPublicacion);
+		    }
+		}
+		
+		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
+		ArrayList<KeyWord> coleccionKeys = new ArrayList<>();
+		
+		for (Object objeto2 : coleccionKeysWrapper) {
+		    if (objeto2 instanceof KeyWord) {
+		    	KeyWord key = (KeyWord) objeto2;
+		    	coleccionKeys.add(key);
+		    }
+		}
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
 		
 		
@@ -103,7 +130,16 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
     	} //es una empresa todo ok
     	else if (user instanceof Empresa) {
-    		Set<DataTipoPublicacion> tiposPubli = fab.getInManejadorPyT().getDataTipoPublicacion();
+    		ArrayList<Object> coleccionDataTWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+        	ArrayList<DataTipoPublicacion> tiposPubli = new ArrayList<>();
+
+    		for (Object objeto3 : coleccionDataTWrapper) {
+    		    if (objeto3 instanceof DataTipoPublicacion) {
+    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto3;
+    		        tiposPubli.add(dataTipoPublicacion);
+    		    }
+    		}
+
     		request.setAttribute("keys", coleccionKeys);
     		request.setAttribute("tiposPubli", tiposPubli);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
@@ -121,8 +157,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     	Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
     	
     	
-    	Fabrica fabrica = Fabrica.getInstance();
-		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+    	
 		
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
@@ -201,24 +236,34 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 
 		Set<KeyWord> keys = new HashSet<>();
 		for (String iter : conjuntoOpciones) {
-		    keys.add(new KeyWord(iter));
+			KeyWord clave = new KeyWord();
+			clave.setPalabraClave(iter);
+		    keys.add(clave);
 		}
-
+		
+		WrapperArrayList conjuntoOpcionesWrapper = new WrapperArrayList();
+		for(String key : conjuntoOpciones) {
+			conjuntoOpcionesWrapper.getLista().add(conjuntoOpcionesWrapper);
+		}
+		
 		
 		
 		
 		String tipoPago = request.getParameter("tipoPago");
 		
 		LocalDate fechaActual = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+        String fechaFormateada = fechaActual.format(formatter);
 		
 		System.out.println("El" + tipoPago);
 		
 		if(tipoPago.equals("pagoGeneral")) {
 			try {
-				ICO.altaPublicacionOfertaLaboralGeneral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, "Sin paquete");
+				puertoControladorOfertas.altaPublicacionOfertaLaboralGeneral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, "Sin paquete");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 				dispatcher.forward(request, response);
-			}catch (NombreRepetidoOfertaException e){	
+			}catch (NombreRepetidoOfertaException_Exception e){	
 	           request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
 	           request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 	            return;
@@ -226,7 +271,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}else {
 			String nombrePaq;
 		try {
-			Empresa empr = (Empresa) mu.obtenerEmpresa(usuario.getNickName());
+			Empresa empr = (Empresa) puertoManejadorUsuario.obtenerEmpresa(usuario.getNickName());
 			
 			if(empr.getCompra() != null) {
 				nombrePaq = empr.getCompra().getPaquete().getNombre();
@@ -237,12 +282,12 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
-		}catch (NombreRepetidoOfertaException e){
+		}catch (NombreRepetidoOfertaException_Exception e){
 				request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
-		} catch (noExistePublicacionException e) {
+		} catch (NoExistePublicacionException_Exception e) {
 	        	request.setAttribute("errorTipoPubli", "El tipo de publicacion ingresada no se encunetra disponible");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 		}

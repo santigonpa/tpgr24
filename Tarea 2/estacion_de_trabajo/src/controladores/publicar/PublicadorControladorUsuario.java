@@ -23,6 +23,8 @@ import logica_datatypes.DataOferta;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataTipoPublicacion;
 import logica_datatypes.DataUsuario;
+import logica_datatypes.WrapperArrayList;
+import logica_datatypes.WrapperHashMap;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Postulacion;
@@ -79,13 +81,15 @@ public class PublicadorControladorUsuario {
 	}
 	
 	@WebMethod
-	 public HashMap<String, OfertaLaboral> obtenerOfertarDeEmpresa(String empresa){
+	 public WrapperHashMap obtenerOfertarDeEmpresa(String empresa){
 		//le paso un string mejor porque es mas facil usarla desde el cliente
 		Fabrica fab = Fabrica.getInstance();
 		IManejadorUsuario IMU = fab.getInManejadorUsuario();
 		Empresa emp = IMU.obtenerEmpresa(empresa);
 		DataEmpresa dataEmp = emp.getDTEmpresa();
-		return ICU.obtenerOfertarDeEmpresa(dataEmp);
+		HashMap<String, OfertaLaboral> mapa = ICU.obtenerOfertarDeEmpresa(dataEmp);
+		WrapperHashMap ret = new WrapperHashMap(mapa);
+		return ret;
 	}
 	
 	@WebMethod
@@ -94,36 +98,47 @@ public class PublicadorControladorUsuario {
 	}
 	
 	@WebMethod
-	public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
+	public WrapperArrayList obtenerPostulaciones(String usuario){
 		
-		return ICU.obtenerPostulaciones(usuario);
-		
+		ArrayList<Postulacion> arr =  ICU.obtenerPostulaciones(usuario);
+		WrapperArrayList ret = new WrapperArrayList(arr);
+		return ret;
 	}
 	
 	
 	@WebMethod
-	public ArrayList<DataTipoPublicacion> getDataTipoPublicacion() {
-		return ICU.getDataTipoPublicacion();
+	public WrapperArrayList getDataTipoPublicacion() {
+		ArrayList<DataTipoPublicacion> arr =  ICU.getDataTipoPublicacion();
+		WrapperArrayList ret = new WrapperArrayList(arr);
+		return ret;
 	}
 	
 	@WebMethod
-	public ArrayList<DataKeyWord> getDataKeyWord(){
-		return ICU.getDataKeyWord();
+	public WrapperArrayList getDataKeyWord(){
+		ArrayList<DataKeyWord> arr =  ICU.getDataKeyWord();
+		WrapperArrayList ret = new WrapperArrayList(arr);
+		return ret;
 	}
 	
 	@WebMethod
-	public ArrayList<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException {
-		return ICU.getDataUsuarios();
+	public WrapperArrayList getDataUsuarios() throws UsuarioNoExisteException {
+		ArrayList<DataUsuario> arr =  ICU.getDataUsuarios();
+		WrapperArrayList ret = new WrapperArrayList(arr);
+		return ret;
 	}
 	
 	@WebMethod
-	public ArrayList<DataOferta> getDataOfertasDeEmpresa(String nickName) {
-		return getDataOfertasDeEmpresa(nickName);
+	public WrapperArrayList getDataOfertasDeEmpresa(String nickName) {
+		ArrayList<DataOferta> arr = ICU.getDataOfertasDeEmpresa(nickName);
+		WrapperArrayList ret = new WrapperArrayList(arr);
+		return ret;
 	}
 	
 	@WebMethod
-	public ArrayList<DataPostulante> getDataPostulante() {
-		return ICU.getDataPostulante();
+	public WrapperArrayList getDataPostulante() {
+		ArrayList<DataPostulante> arr = ICU.getDataPostulante();
+		WrapperArrayList ret = new WrapperArrayList(arr);
+		return ret;
 		}
 	
 	@WebMethod

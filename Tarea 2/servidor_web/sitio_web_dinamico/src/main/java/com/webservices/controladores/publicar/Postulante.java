@@ -1,11 +1,8 @@
 
 package com.webservices.controladores.publicar;
 
-import java.util.ArrayList;
-import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -21,7 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *       <sequence>
  *         <element name="nacimiento" type="{http://publicar.controladores/}localDate" minOccurs="0"/>
  *         <element name="nacionalidad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="postulaciones" type="{http://publicar.controladores/}postulacion" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="postulaciones" type="{http://publicar.controladores/}wrapperArrayList" minOccurs="0"/>
  *       </sequence>
  *     </extension>
  *   </complexContent>
@@ -42,8 +39,7 @@ public class Postulante
 
     protected LocalDate nacimiento;
     protected String nacionalidad;
-    @XmlElement(nillable = true)
-    protected List<Postulacion> postulaciones;
+    protected WrapperArrayList postulaciones;
 
     /**
      * Obtiene el valor de la propiedad nacimiento.
@@ -94,34 +90,27 @@ public class Postulante
     }
 
     /**
-     * Gets the value of the postulaciones property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the postulaciones property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getPostulaciones().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Postulacion }
-     * 
+     * Obtiene el valor de la propiedad postulaciones.
      * 
      * @return
-     *     The value of the postulaciones property.
+     *     possible object is
+     *     {@link WrapperArrayList }
+     *     
      */
-    public List<Postulacion> getPostulaciones() {
-        if (postulaciones == null) {
-            postulaciones = new ArrayList<>();
-        }
-        return this.postulaciones;
+    public WrapperArrayList getPostulaciones() {
+        return postulaciones;
+    }
+
+    /**
+     * Define el valor de la propiedad postulaciones.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link WrapperArrayList }
+     *     
+     */
+    public void setPostulaciones(WrapperArrayList value) {
+        this.postulaciones = value;
     }
 
 }

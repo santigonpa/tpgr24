@@ -16,10 +16,6 @@ public class NoExistePublicacionException_Exception
 {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6541454995538025527L;
-	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

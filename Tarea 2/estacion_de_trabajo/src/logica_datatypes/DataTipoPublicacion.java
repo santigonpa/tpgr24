@@ -14,7 +14,7 @@ public class DataTipoPublicacion {
 	private int exposicion;
 	private int duracion;
 	private float costo;
-	private LocalDate fecha;
+	private String fecha;
 	
 	public DataTipoPublicacion() {
 
@@ -27,7 +27,7 @@ public class DataTipoPublicacion {
 	}
 	
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -62,7 +62,7 @@ public class DataTipoPublicacion {
 		return this.getNombre(); // Devuelve el nombre del TipoPublicacion
 	}
 
-	public LocalDate getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 	public float getCosto() {
@@ -78,10 +78,4 @@ public class DataTipoPublicacion {
 		return descripcion;
 	}
 
-	public String getFechaString() {
-		LocalDate fechaa = this.fecha;
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	    String fechaFormateada = fechaa.format(formatter);
-	    return fechaFormateada;
-	}
 }

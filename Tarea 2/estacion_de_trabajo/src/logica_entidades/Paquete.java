@@ -7,6 +7,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataPaquete;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -139,10 +140,12 @@ public class Paquete {
 	*/
 	public DataPaquete getDTPaquete() {
 		DataPaquete DtPaq = new DataPaquete();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = this.fechadealta.format(formatter);
 		DtPaq.setCosto(this.costo);
 		DtPaq.setDescripcion(this.descripcion);
 		DtPaq.setDescuento(this.descuento);
-		DtPaq.setFechaDeAlta(this.fechadealta);
+		DtPaq.setFechaDeAlta(formattedDate);
 		DtPaq.setImagen(this.imagen);
 		DtPaq.setValidez(this.validez);
 		DtPaq.setNombre(this.nombre);

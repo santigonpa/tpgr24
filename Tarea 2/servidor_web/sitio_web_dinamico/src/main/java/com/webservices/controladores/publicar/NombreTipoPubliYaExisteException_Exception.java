@@ -16,10 +16,6 @@ public class NombreTipoPubliYaExisteException_Exception
 {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 7288207299896375968L;
-	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

@@ -16,6 +16,7 @@ import jakarta.xml.ws.Endpoint;
 import excepciones.*;
 import logica_controladores.ControladorOferta;
 import logica_datatypes.DataOferta;
+import logica_datatypes.WrapperArrayList;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -39,39 +40,54 @@ public class PublicadorControladorOfertas {
     }
 
     @WebMethod
-    public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento, LocalTime horaInicio, LocalTime horaFin, int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
-        controladorOferta.darAltaOferta(nombre, descripcion, ciudad, departamento, horaInicio, horaFin, remuneracion, costoDeOfertaLaboral, fechaDeAlta, imagen, tipoDePago);
+    public void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento, String horaInicio, String horaFin, int remuneracion, int costoDeOfertaLaboral, String fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+    	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalTime horaDeInicio = LocalTime.parse(horaInicio, formateo);
+		LocalTime horaDeFin = LocalTime.parse(horaFin, formateo);
+    	LocalDate fecha = LocalDate.parse(fechaDeAlta,formatter);
+    	controladorOferta.darAltaOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, costoDeOfertaLaboral, fecha, imagen, tipoDePago);
     }
 
     @WebMethod
-    public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) throws NombrePaqueteYaExiste {
-        controladorOferta.crearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre, descripcion, validez, descuento, fechadealta, costo, imagen);
+    public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, String fechaDeAlta, int costo, byte[] imagen) throws NombrePaqueteYaExiste {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate fecha = LocalDate.parse(fechaDeAlta,formatter);
+    	controladorOferta.crearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre, descripcion, validez, descuento, fecha, costo, imagen);
     }
 
 
     @WebMethod
     public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
             String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
-            String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
+            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
-    	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate fechaLocalDate = LocalDate.parse(fecha,formatter);
 		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
 		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
-    	controladorOferta.altaPublicacionOfertaLaboralConPaquete(empresa, tipoPubli, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fecha, palabrasClaveSelec, imagen, tipoDePago);
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<String> palabrasClave = (ArrayList<String>) palabrasClaveSelec.getLista();
+		
+    	controladorOferta.altaPublicacionOfertaLaboralConPaquete(empresa, tipoPubli, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaLocalDate, palabrasClave, imagen, tipoDePago);
     }
 
     @WebMethod
     public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
             String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
-            String departamento, String fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
         
-    		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
-    		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
-    		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
-    		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
-    		controladorOferta.altaPublicacionOfertaLaboralGeneral(empresa, tipoPubli, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaAlta, palabrasClaveSelec, imagen, tipoDePago);
+    	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate fechaLocalDate = LocalDate.parse(fecha,formatter);
+		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
+		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<String> palabrasClave = (ArrayList<String>) palabrasClaveSelec.getLista();
+    		controladorOferta.altaPublicacionOfertaLaboralGeneral(empresa, tipoPubli, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaLocalDate, palabrasClave, imagen, tipoDePago);
     }
 
     @WebMethod
@@ -90,8 +106,10 @@ public class PublicadorControladorOfertas {
     }
 
     @WebMethod
-    public ArrayList<String> getPostulantesString(String oferta){
-        return controladorOferta.getPostulantesString(oferta);
+    public WrapperArrayList getPostulantesString(String oferta){
+    	ArrayList<String> list =  controladorOferta.getPostulantesString(oferta);
+    	WrapperArrayList ret = new WrapperArrayList(list);
+        return ret;
     }
 
     @WebMethod

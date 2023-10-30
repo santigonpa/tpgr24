@@ -24,11 +24,11 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="ciudad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="departamento" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="horaInicio" type="{http://publicar.controladores/}localTime" minOccurs="0"/>
- *         <element name="horaFin" type="{http://publicar.controladores/}localTime" minOccurs="0"/>
+ *         <element name="horaInicio" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="horaFin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="remuneracion" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         <element name="costoDeOfertaLaboral" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         <element name="fechaDeAlta" type="{http://publicar.controladores/}localDate" minOccurs="0"/>
+ *         <element name="fechaDeAlta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="estado" type="{http://publicar.controladores/}estadoOferta" minOccurs="0"/>
  *         <element name="empresa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
@@ -65,11 +65,11 @@ public class DataOferta {
     protected String descripcion;
     protected String ciudad;
     protected String departamento;
-    protected LocalTime horaInicio;
-    protected LocalTime horaFin;
+    protected String horaInicio;
+    protected String horaFin;
     protected float remuneracion;
     protected int costoDeOfertaLaboral;
-    protected LocalDate fechaDeAlta;
+    protected String fechaDeAlta;
     @XmlSchemaType(name = "string")
     protected EstadoOferta estado;
     protected String empresa;
@@ -179,10 +179,10 @@ public class DataOferta {
      * 
      * @return
      *     possible object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public LocalTime getHoraInicio() {
+    public String getHoraInicio() {
         return horaInicio;
     }
 
@@ -191,10 +191,10 @@ public class DataOferta {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public void setHoraInicio(LocalTime value) {
+    public void setHoraInicio(String value) {
         this.horaInicio = value;
     }
 
@@ -203,10 +203,10 @@ public class DataOferta {
      * 
      * @return
      *     possible object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public LocalTime getHoraFin() {
+    public String getHoraFin() {
         return horaFin;
     }
 
@@ -215,10 +215,10 @@ public class DataOferta {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalTime }
+     *     {@link String }
      *     
      */
-    public void setHoraFin(LocalTime value) {
+    public void setHoraFin(String value) {
         this.horaFin = value;
     }
 
@@ -259,10 +259,10 @@ public class DataOferta {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public LocalDate getFechaDeAlta() {
+    public String getFechaDeAlta() {
         return fechaDeAlta;
     }
 
@@ -271,10 +271,10 @@ public class DataOferta {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link String }
      *     
      */
-    public void setFechaDeAlta(LocalDate value) {
+    public void setFechaDeAlta(String value) {
         this.fechaDeAlta = value;
     }
 

@@ -20,11 +20,11 @@ public class DataOferta {
 	private String descripcion;
 	private String ciudad;
 	private String departamento;
-	private LocalTime horaInicio; //  horario de trbaajo asociado
-	private LocalTime horaFin;
+	private String horaInicio; //  horario de trbaajo asociado
+	private String horaFin;  // ESTOS ERAN LOCALTIME
 	private float remuneracion;
 	private int costoDeOfertaLaboral; 
-	private LocalDate fechaDeAlta;
+	private String fechaDeAlta; // esto era LocalDate
 	private EstadoOferta estado;
 	private String empresa;
 	private byte[] imagen;
@@ -56,11 +56,11 @@ public class DataOferta {
 		this.departamento = departamento;
 	}
 
-	public void setHoraInicio(LocalTime horaInicio) {
+	public void setHoraInicio(String horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public void setHoraFin(LocalTime horaFin) {
+	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
 	}
 
@@ -72,7 +72,7 @@ public class DataOferta {
 		this.costoDeOfertaLaboral = costoDeOfertaLaboral;
 	}
 
-	public void setFechaDeAlta(LocalDate fechaDeAlta) {
+	public void setFechaDeAlta(String fechaDeAlta) {
 		this.fechaDeAlta = fechaDeAlta;
 	}
 	
@@ -135,25 +135,19 @@ public class DataOferta {
 
 
 
-	public LocalTime getHoraInicio() {
+	public String getHoraInicio() {
 		return horaInicio;
 	}
 
-	public String getHoraInicioString() {
-		DateTimeFormatter formateo1 = DateTimeFormatter.ofPattern("HH:mm");
-	    return horaInicio.format(formateo1);
-	}
+	
 	
 
 
-	public LocalTime getHoraFin() {
+	public String getHoraFin() {
 		return horaFin;
 	}
 	
-	public String getHoraFinString() {
-		DateTimeFormatter formateo2 = DateTimeFormatter.ofPattern("HH:mm");
-	    return horaFin.format(formateo2);
-	}
+	
 
 
 	public float getRemuneracion() {
@@ -168,16 +162,13 @@ public class DataOferta {
 
 
 
-	public LocalDate getFechaDeAlta() {
+	public String getFechaDeAlta() {
 		return fechaDeAlta;
 	}
 
 
 
-	public String getFechaAltaComoString() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return fechaDeAlta.format(formatter);
-	}
+	
 	
 
 	public EstadoOferta getEstado() {

@@ -3,9 +3,7 @@ package com.helpers;
 import com.model.EstadoSesion;
 
 import jakarta.servlet.http.HttpSession;
-import logica_datatypes.DataEmpresa;
-import logica_datatypes.DataPostulante;
-import logica_datatypes.DataUsuario;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 
@@ -39,21 +37,21 @@ public class EstadoSesionHelper {
 		if (!hayUsuarioLogueado(request)) {
 			return false;
 		}
-		return getUsuarioLogueado(request) instanceof DataEmpresa;
+		return getUsuarioLogueado(request) instanceof com.webservices.controladores.publicar.DataEmpresa;
 	}
 
 	public static boolean hayPostulanteLogueado(HttpServletRequest request) {
 		if (!hayUsuarioLogueado(request)) {
 			return false;
 		}
-		return getUsuarioLogueado(request) instanceof DataPostulante;
+		return getUsuarioLogueado(request) instanceof com.webservices.controladores.publicar.DataPostulante;
 	}
 
-	public static DataUsuario getUsuarioLogueado(HttpServletRequest request) {
-		return (DataUsuario) request.getSession().getAttribute("estadoSesion");
+	public static com.webservices.controladores.publicar.DataUsuario getUsuarioLogueado(HttpServletRequest request) {
+		return (com.webservices.controladores.publicar.DataUsuario) request.getSession().getAttribute("estadoSesion");
 	}
 
-	public static void setUsuarioLogueado(HttpServletRequest request, DataUsuario usuario) {
+	public static void setUsuarioLogueado(HttpServletRequest request, com.webservices.controladores.publicar.DataUsuario usuario) {
 		request.getSession().setAttribute("estadoSesion", usuario);
 	}
 }

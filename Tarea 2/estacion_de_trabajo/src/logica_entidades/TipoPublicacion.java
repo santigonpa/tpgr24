@@ -1,6 +1,7 @@
 package logica_entidades;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -81,11 +82,13 @@ public class TipoPublicacion {
 	
 	public DataTipoPublicacion getDTTipoPublicacion() {
 		DataTipoPublicacion DtTipoPub = new DataTipoPublicacion();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = this.fecha.format(formatter);
 		DtTipoPub.setCosto(this.costo);
 		DtTipoPub.setDescripcion(this.descripcion);
 		DtTipoPub.setDuracion(this.duracion);
 		DtTipoPub.setExposicion(this.exposicion);
-		DtTipoPub.setFecha(this.fecha);
+		DtTipoPub.setFecha(formattedDate);
 		DtTipoPub.setNombres(this.nombre);
 		return DtTipoPub;
 	}

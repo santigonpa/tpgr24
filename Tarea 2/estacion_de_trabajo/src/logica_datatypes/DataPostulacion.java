@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class DataPostulacion extends DataUsuario {
 
 	//Atributos
-	private LocalDate fecha;
+	private String fecha; 
 	private String curri;
 	private String motivacion;
 	private String nickPostulante;
@@ -18,7 +18,7 @@ public class DataPostulacion extends DataUsuario {
 
 	//setters
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -37,7 +37,7 @@ public class DataPostulacion extends DataUsuario {
 	
 	//getters
 	
-	public LocalDate getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 

@@ -88,6 +88,26 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link WrapperHashMap }
+     * 
+     * @return
+     *     the new instance of {@link WrapperHashMap }
+     */
+    public WrapperHashMap createWrapperHashMap() {
+        return new WrapperHashMap();
+    }
+
+    /**
+     * Create an instance of {@link WrapperHashMap.Mapa }
+     * 
+     * @return
+     *     the new instance of {@link WrapperHashMap.Mapa }
+     */
+    public WrapperHashMap.Mapa createWrapperHashMapMapa() {
+        return new WrapperHashMap.Mapa();
+    }
+
+    /**
      * Create an instance of {@link EmailYaExisteException }
      * 
      * @return
@@ -148,23 +168,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayList }
+     * Create an instance of {@link WrapperArrayList }
      * 
      * @return
-     *     the new instance of {@link ArrayList }
+     *     the new instance of {@link WrapperArrayList }
      */
-    public ArrayList createArrayList() {
-        return new ArrayList();
-    }
-
-    /**
-     * Create an instance of {@link HashMap }
-     * 
-     * @return
-     *     the new instance of {@link HashMap }
-     */
-    public HashMap createHashMap() {
-        return new HashMap();
+    public WrapperArrayList createWrapperArrayList() {
+        return new WrapperArrayList();
     }
 
     /**
@@ -285,6 +295,16 @@ public class ObjectFactory {
      */
     public Empresa.Ofertas.Entry createEmpresaOfertasEntry() {
         return new Empresa.Ofertas.Entry();
+    }
+
+    /**
+     * Create an instance of {@link WrapperHashMap.Mapa.Entry }
+     * 
+     * @return
+     *     the new instance of {@link WrapperHashMap.Mapa.Entry }
+     */
+    public WrapperHashMap.Mapa.Entry createWrapperHashMapMapaEntry() {
+        return new WrapperHashMap.Mapa.Entry();
     }
 
     /**

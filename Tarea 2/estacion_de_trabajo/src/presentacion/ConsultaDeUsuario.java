@@ -16,6 +16,7 @@ import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
+import logica_datatypes.WrapperArrayList;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_manejadores.IManejadorUsuario;
@@ -150,15 +151,16 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	apellidoLabel.setText(selectedPostulante.getApellido());
                 	emailLabel.setText(selectedPostulante.getEmail());
                 	nacionLabel.setText(selectedPostulante.getNacionalidad());
-                	fechaNacLabel.setText(selectedPostulante.getFechaString());
+                	fechaNacLabel.setText(selectedPostulante.getNacimineto());
      
                 	comboOferta.setVisible(false);
                 	comboPostul.setVisible(true);
                 	
                 	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
             		Postulante pos = IMU.obtenerPostulante(selectedPostulante.getNickName());
-            		
-            		ArrayList<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
+            		WrapperArrayList wrapper = pos.obtenerPostulaciones();
+            		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) wrapper.getLista();
+            		//ArrayList<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
             		
             	    if (postulaciones!= null) {
             	    // Agregar las empresas al modelo del JComboBox

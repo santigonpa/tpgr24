@@ -10,7 +10,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 public class KeyWord {
 	
 	private String palabraClave;
-	private HashMap<String, OfertaLaboral> ofertas = new HashMap<>();
+	private HashMap<String, OfertaLaboral> ofertas = new HashMap<String, OfertaLaboral>();
 	
 	public KeyWord() {
 

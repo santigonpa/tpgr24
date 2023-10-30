@@ -15,7 +15,7 @@ public class DataPaquete {
 	private int descuento;
 	private int costo;
 	private byte[] imagen;
-	private LocalDate fechadealta;
+	private String fechadealta;
 	
 	public DataPaquete() {
 
@@ -35,7 +35,7 @@ public class DataPaquete {
 		this.imagen = imagen;
 	}
 	
-	public void setFechaDeAlta(LocalDate fechadealta) {
+	public void setFechaDeAlta(String fechadealta) {
 		this.fechadealta = fechadealta;
 	}
 
@@ -77,7 +77,7 @@ public class DataPaquete {
 	public int getDescuento() {
 		return descuento;
 	}
-	public LocalDate getFechaDeAlta() {
+	public String getFechaDeAlta() {
 		return fechadealta;
 	}
 

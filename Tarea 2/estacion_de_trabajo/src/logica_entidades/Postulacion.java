@@ -2,6 +2,7 @@ package logica_entidades;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -79,9 +80,11 @@ public class Postulacion {
 		
 		public DataPostulacion getDTPostulacion() {
 			DataPostulacion DtPost = new DataPostulacion();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = this.fecha.format(formatter);
 			DtPost.setCv(this.curri);
 			DtPost.setMotivacion(this.motivacion);
-			DtPost.setFecha(this.fecha);
+			DtPost.setFecha(formattedDate);
 			DtPost.setNickName(this.post.getNickName());
 			return DtPost;
 		}

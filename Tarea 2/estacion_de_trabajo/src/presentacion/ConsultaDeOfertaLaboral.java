@@ -122,9 +122,9 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
             	textFieldCiudad.setText(selectedOferta.getCiudad());
             	textFieldDepartamento.setText(selectedOferta.getDepartamento());
 
-            	textFieldHoraFin.setText(selectedOferta.getHoraFinString());
-            	textFieldHoraInicio.setText(selectedOferta.getHoraInicioString());
-            	textFieldFechaDeAlta.setText(selectedOferta.getFechaAltaComoString());
+            	textFieldHoraFin.setText(selectedOferta.getHoraFin());
+            	textFieldHoraInicio.setText(selectedOferta.getHoraInicio());
+            	textFieldFechaDeAlta.setText(selectedOferta.getFechaDeAlta());
             	
             	DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>();
             	ArrayList<String> postulantes = ICO.getPostulantesString(selectedOferta.getNombre());
@@ -295,9 +295,9 @@ public class ConsultaDeOfertaLaboral extends JInternalFrame {
     	
 
     	
-    	textFieldHoraFin.setText(of.getHoraFinString());
-    	textFieldHoraInicio.setText(of.getHoraInicioString());
-    	textFieldFechaDeAlta.setText(of.getFechaAltaComoString());
+    	textFieldHoraFin.setText(of.getHoraFin());
+    	textFieldHoraInicio.setText(of.getHoraInicio());
+    	textFieldFechaDeAlta.setText(of.getFechaDeAlta());
     	
     	DefaultComboBoxModel<String> model3 = new DefaultComboBoxModel<>();
     	ArrayList<String> postulantes = ICO.getPostulantesString(of.getNombre());

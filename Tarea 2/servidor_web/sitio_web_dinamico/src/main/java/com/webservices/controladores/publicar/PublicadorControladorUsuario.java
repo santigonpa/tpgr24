@@ -27,78 +27,8 @@ public interface PublicadorControladorUsuario {
 
     /**
      * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
-     * @throws CampoInvalidoException_Exception
-     * @throws EmailYaExisteException_Exception
-     * @throws NicknameYaExisteException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulanteResponse", fault = {
-        @FaultAction(className = NicknameYaExisteException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulante/Fault/NicknameYaExisteException"),
-        @FaultAction(className = EmailYaExisteException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulante/Fault/EmailYaExisteException"),
-        @FaultAction(className = CampoInvalidoException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulante/Fault/campoInvalidoException")
-    })
-    public void altaUsuarioPostulante(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        byte[] arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7)
-        throws CampoInvalidoException_Exception, EmailYaExisteException_Exception, NicknameYaExisteException_Exception
-    ;
-
-    /**
-     * 
      * @return
-     *     returns controladores.publicar.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionResponse")
-    public ArrayList getDataTipoPublicacion();
-
-    /**
-     * 
-     * @return
-     *     returns controladores.publicar.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataKeyWordRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataKeyWordResponse")
-    public ArrayList getDataKeyWord();
-
-    /**
-     * 
-     * @return
-     *     returns controladores.publicar.ArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataPostulanteResponse")
-    public ArrayList getDataPostulante();
-
-    /**
-     * 
-     * @return
-     *     returns controladores.publicar.ArrayList
+     *     returns controladores.publicar.WrapperArrayList
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
@@ -106,9 +36,29 @@ public interface PublicadorControladorUsuario {
     @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataUsuariosRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataUsuariosResponse", fault = {
         @FaultAction(className = UsuarioNoExisteException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/getDataUsuarios/Fault/UsuarioNoExisteException")
     })
-    public ArrayList getDataUsuarios()
+    public WrapperArrayList getDataUsuarios()
         throws UsuarioNoExisteException_Exception
     ;
+
+    /**
+     * 
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataKeyWordRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataKeyWordResponse")
+    public WrapperArrayList getDataKeyWord();
+
+    /**
+     * 
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataPostulanteResponse")
+    public WrapperArrayList getDataPostulante();
 
     /**
      * 
@@ -153,41 +103,52 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns controladores.publicar.DataUsuario
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @throws CampoInvalidoException_Exception
+     * @throws EmailYaExisteException_Exception
+     * @throws NicknameYaExisteException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/listarInfoUserRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/listarInfoUserResponse")
-    public DataUsuario listarInfoUser(
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulanteResponse", fault = {
+        @FaultAction(className = NicknameYaExisteException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulante/Fault/NicknameYaExisteException"),
+        @FaultAction(className = EmailYaExisteException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulante/Fault/EmailYaExisteException"),
+        @FaultAction(className = CampoInvalidoException_Exception.class, value = "http://publicar.controladores/PublicadorControladorUsuario/altaUsuarioPostulante/Fault/campoInvalidoException")
+    })
+    public void altaUsuarioPostulante(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        byte[] arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7)
+        throws CampoInvalidoException_Exception, EmailYaExisteException_Exception, NicknameYaExisteException_Exception
+    ;
 
     /**
      * 
-     * @param arg0
      * @return
-     *     returns controladores.publicar.ArrayList
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesResponse")
-    public ArrayList obtenerPostulaciones(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns controladores.publicar.HashMap
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaResponse")
-    public HashMap obtenerOfertarDeEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionResponse")
+    public WrapperArrayList getDataTipoPublicacion();
 
     /**
      * 
@@ -210,33 +171,15 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteResponse")
-    public void modificarDatosPostulante(
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesResponse")
+    public WrapperArrayList obtenerPostulaciones(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        byte[] arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7);
+        String arg0);
 
     /**
      * 
@@ -272,13 +215,70 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteResponse")
+    public void modificarDatosPostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        byte[] arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7);
+
+    /**
+     * 
+     * @param arg0
      * @return
-     *     returns controladores.publicar.ArrayList
+     *     returns controladores.publicar.WrapperHashMap
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaResponse")
+    public WrapperHashMap obtenerOfertarDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataOfertasDeEmpresaRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataOfertasDeEmpresaResponse")
-    public ArrayList getDataOfertasDeEmpresa(
+    public WrapperArrayList getDataOfertasDeEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.DataUsuario
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/listarInfoUserRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/listarInfoUserResponse")
+    public DataUsuario listarInfoUser(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 

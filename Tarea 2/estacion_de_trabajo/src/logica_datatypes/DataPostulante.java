@@ -9,7 +9,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DataPostulante extends DataUsuario {
 	//Atributos
-		private LocalDate nacimiento;
+		private String nacimiento;
 		private String nacionalidad;
 		
 		//Constructores
@@ -20,7 +20,7 @@ public class DataPostulante extends DataUsuario {
 		
 		//getters
 		
-		public LocalDate getNacimineto() {
+		public String getNacimineto() {
 			return nacimiento;
 		}
 		
@@ -28,18 +28,11 @@ public class DataPostulante extends DataUsuario {
 			return nacionalidad;
 		}
 
-		public String getFechaString() {
-			// Define el formato deseado
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	        
-	        // Convierte el LocalDate a una cadena con el formato especificado
-	        String fechaFormateada = this.nacimiento.format(formatter);
-		return fechaFormateada;
-		}
+		
 		
 		//setters
 		
-		public void setNacimiento(LocalDate nacimiento) {
+		public void setNacimiento(String nacimiento) {
 			this.nacimiento = nacimiento;
 		}
 		

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import= "logica_datatypes.DataTipoPublicacion" %>
+    <%@page import= "com.webservices.manejadores.publicar.DataTipoPublicacion" %>
     <%@page import="java.util.Set" %>
+    <%@page import="java.time.LocalDate;
+" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +13,8 @@
     <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
-    <%@page import= "logica_datatypes.DataOferta" %>
-    <%@page import= "logica_datatypes.DataKeyWord" %>
+    <%@page import= "com.webservices.manejadores.publicar.DataOferta" %>
+    <%@page import= "com.webservices.controladores.publicar.KeyWord" %>
 
     <!-- Bootstrap -->
     <link
@@ -223,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				<%
 			    
 				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
-				Set<DataKeyWord> keys = (Set<DataKeyWord>) request.getAttribute("keys");
+				Set<KeyWord> keys = (Set<KeyWord>) request.getAttribute("keys");
 				
 				
 			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
@@ -233,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			        int exp;
 			        int duracion;
 			        float costo;
-			        String fecha;
+			        LocalDate fecha;
 			
 			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
 			        	nombrePaquete = dataTP.getNombre();

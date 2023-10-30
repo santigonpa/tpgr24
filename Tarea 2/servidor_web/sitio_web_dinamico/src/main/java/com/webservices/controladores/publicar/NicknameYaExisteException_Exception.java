@@ -16,10 +16,6 @@ public class NicknameYaExisteException_Exception
 {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -2904007376315701151L;
-	/**
      * Java type that goes as soapenv:Fault detail element.
      * 
      */

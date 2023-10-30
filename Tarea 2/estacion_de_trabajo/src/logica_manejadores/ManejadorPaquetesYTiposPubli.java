@@ -1,6 +1,7 @@
 package logica_manejadores;
 
 import java.util.HashMap;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -46,11 +47,13 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
         }
         for (TipoPublicacion tipoActual: temp) {
         	DataTipoPublicacion nuevaDTP = new DataTipoPublicacion();
+        	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDate = tipoActual.getFecha().format(formatter);
         	nuevaDTP.setCosto(tipoActual.getCosto());
         	nuevaDTP.setDescripcion(tipoActual.getDescripcion());
         	nuevaDTP.setDuracion(tipoActual.getDuracion());
         	nuevaDTP.setExposicion(tipoActual.getExposicion());
-        	nuevaDTP.setFecha(tipoActual.getFecha());
+        	nuevaDTP.setFecha(formattedDate);
         	nuevaDTP.setNombres(tipoActual.getNombre());
      ;
         	res.add(nuevaDTP);
@@ -70,10 +73,12 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 			return null;
 		}else {
 			DataPaquete resultado = new DataPaquete();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = paquetito.getFechaDeAlta().format(formatter);
 			resultado.setCosto(paquetito.getCosto());
 			resultado.setDescripcion(paquetito.getDescripcion());
 			resultado.setDescuento(paquetito.getDescuento());
-			resultado.setFechaDeAlta(paquetito.getFechaDeAlta());
+			resultado.setFechaDeAlta(formattedDate);
 			resultado.setImagen(paquetito.getImagen());
 			resultado.setNombre(paquetito.getNombre());
 			resultado.setValidez(paquetito.getValidez());
@@ -96,10 +101,12 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
         }
         for (Paquete paquetito: temp) {
         			DataPaquete nuevaDTP = new DataPaquete();
+        			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        	        String formattedDate = paquetito.getFechaDeAlta().format(formatter);
         			nuevaDTP.setCosto(paquetito.getCosto());
         			nuevaDTP.setDescripcion(paquetito.getDescripcion());
         			nuevaDTP.setDescuento(paquetito.getDescuento());
-        			nuevaDTP.setFechaDeAlta(paquetito.getFechaDeAlta());
+        			nuevaDTP.setFechaDeAlta(formattedDate);
         			nuevaDTP.setImagen(paquetito.getImagen());
         			nuevaDTP.setNombre(paquetito.getNombre());
         			nuevaDTP.setValidez(paquetito.getValidez());

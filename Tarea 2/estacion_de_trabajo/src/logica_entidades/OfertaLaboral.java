@@ -49,15 +49,20 @@ public class OfertaLaboral {
 	
 	public DataOferta getDataOferta() {
 		DataOferta dataOfer = new DataOferta();
+        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = this.fechaDeAlta.format(formatterFecha);
+        String formattedTimeHoraFin = this.horaFin.format(formatterHora);
+        String formattedTimeHoraInicio = this.horaInicio.format(formatterHora);
 		dataOfer.setCiudad(this.ciudad);
 		dataOfer.setCostoDeOfertaLaboral(this.costoDeOfertaLaboral);
 		dataOfer.setDepartamento(this.departamento);
 		dataOfer.setDescripcion(this.descripcion);
 		dataOfer.setEmpresa(this.empresaAsociada.getNickName());
 		dataOfer.setEstado(this.estado);
-		dataOfer.setFechaDeAlta(this.fechaDeAlta);
-		dataOfer.setHoraFin(this.horaFin);
-		dataOfer.setHoraInicio(this.horaInicio);
+		dataOfer.setFechaDeAlta(formattedDate);
+		dataOfer.setHoraFin(formattedTimeHoraFin);
+		dataOfer.setHoraInicio(formattedTimeHoraInicio);
 		dataOfer.setImagen(this.imagen);
 		dataOfer.setTipoDePago(this.tipoDePago);
 		dataOfer.setRemuneracion(this.remuneracion);

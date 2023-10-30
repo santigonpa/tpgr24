@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "logica_entidades.Usuario" %>
+<%@page import= "com.webservices.controladores.publicar.Usuario" %>
 <!DOCTYPE html>
 <html>
 
