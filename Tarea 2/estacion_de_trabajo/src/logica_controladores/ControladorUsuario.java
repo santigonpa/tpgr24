@@ -161,7 +161,7 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
 			String nacionalidad, byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		ManejadorUsuario muser = ManejadorUsuario.getinstance();
-        Usuario postulante = muser.obtenerUsuario(nickname);
+        Postulante postulante = (Postulante) muser.obtenerUsuario(nickname);
         Usuario emailEnUso = muser.obtenerUsuarioPorEmail(email);
         if (emailEnUso != null) {
         	throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");
@@ -178,7 +178,8 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         postulante.setNickName(nickname);
         postulante.setNombre(nombre);
         postulante.setPsw(psw);
-        muser.addUsuario(postulante);
+        postulante.setNacimiento(nacimiento);
+        muser.addUsuario((Usuario)postulante);
 		
 	}
 
