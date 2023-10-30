@@ -69,7 +69,7 @@ public class ServletCompraPaquete extends HttpServlet {
 			Paquete paquete= puertoManejadorPyT.getPaquete(paq);
 			DataPaquete dtpaq = puertoManejadorPyT.getDataPaquete(paq);
 			puertoManejadorUsuario.CompraPaquete(paquete, emp.getNickName());
-			DataEmpresa DTemp = puertoManejadorPyT.getDataEmpresa(emp.getNickName());
+			DataEmpresa DTemp = puertoManejadorUsuario.getDataEmpresa(emp.getNickName());
 			request.setAttribute("paquete", dtpaq);
 			request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 			}			

@@ -6,11 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import com.webservices.controladores.publicar.DataTipoPublicacion;
 import com.webservices.controladores.publicar.Postulacion;
 import com.webservices.controladores.publicar.Postulante;
 import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
-
+import java.util.ArrayList;
 import java.util.Set;
 
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
@@ -54,19 +57,49 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     	
     	if(banderaPostulante) {
     		Postulante post = (Postulante) puertoManejadorUsuario.obtenerPostulante(usuario.getNickName());
-    		Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
+    		
+    		ArrayList<Object> coleccionPostulacionWrapper = (ArrayList<Object>) post.getPostulaciones().getLista();
+        	ArrayList<Postulacion> postulacionesDeUsuario = new ArrayList<>();
+
+    		for (Object objeto : coleccionPostulacionWrapper) {
+    		    if (objeto instanceof Postulacion) {
+    		    	Postulacion postu = (Postulacion) objeto;
+    		    	postulacionesDeUsuario.add(postu);
+    		    }
+    		}
+    		
+    		Postulacion dtPost = null;
+    		for(Postulacion postula : postulacionesDeUsuario) {
+    			if(postula.getOfer().getNombre().equals(nombreOfer)) {dtPost = postula;}
+    		}
+    		//Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
     		if (dtPost != null) {
     			request.setAttribute("dtPost", dtPost);
         		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
     		}
     		
     	}else if(!banderaPostulante && (user == null)){
-    		Set<Postulacion> postulantes = (Set<Postulacion>) puertoManejadorOfertas.obtenerOferta(nombreOfer).getPostulaciones();
+    
+    		ArrayList<Postulacion> postulantes = (ArrayList<Postulacion>) puertoManejadorOfertas.obtenerOferta(nombreOfer).getPostulacionesSobreLaOferta();
     		request.setAttribute("postulantes", postulantes);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
     	}else if(!banderaPostulante && (user != null)) {
     		Postulante pos = (Postulante) puertoManejadorUsuario.obtenerPostulante(user);
-    		Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
+    		ArrayList<Object> coleccionPostulacionWrapper = (ArrayList<Object>) pos.getPostulaciones().getLista();
+        	ArrayList<Postulacion> postulacionesDeUsuario = new ArrayList<>();
+
+    		for (Object objeto : coleccionPostulacionWrapper) {
+    		    if (objeto instanceof Postulacion) {
+    		    	Postulacion postu = (Postulacion) objeto;
+    		    	postulacionesDeUsuario.add(postu);
+    		    }
+    		}
+    		
+    		Postulacion dtPost = null;
+    		for(Postulacion postula : postulacionesDeUsuario) {
+    			if(postula.getOfer().getNombre().equals(nombreOfer)) {dtPost = postula;}
+    		}
+    		//Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
 	    	if (dtPost != null) {
 	    			request.setAttribute("dtPost", dtPost);
 	        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 

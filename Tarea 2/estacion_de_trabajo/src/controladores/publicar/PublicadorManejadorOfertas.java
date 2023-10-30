@@ -42,8 +42,12 @@ public class PublicadorManejadorOfertas {
     }
 
     @WebMethod
-    public DataOferta obtenerOferta(String nombre) {
+    public DataOferta obtenerDataOferta(String nombre) {
         return manejadorOferta.getDataOferta(nombre);
+    }
+    @WebMethod
+    public OfertaLaboral obtenerOferta(String nombre) {
+        return manejadorOferta.obtenerOferta(nombre);
     }
 
     @WebMethod
@@ -100,7 +104,7 @@ public class PublicadorManejadorOfertas {
     	WrapperArrayList ret = new WrapperArrayList(arr);
     	return ret;
     }
-    
+    @WebMethod
     public DataOferta getDataOferta(String nombre) {
     	return manejadorOferta.getDataOferta(nombre);
     }

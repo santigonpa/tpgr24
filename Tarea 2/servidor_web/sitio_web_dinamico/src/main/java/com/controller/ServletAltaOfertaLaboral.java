@@ -241,7 +241,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		
 		WrapperArrayList conjuntoOpcionesWrapper = new WrapperArrayList();
 		for(String key : conjuntoOpciones) {
-			conjuntoOpcionesWrapper.getLista().add(conjuntoOpcionesWrapper); //esto esta raro
+			conjuntoOpcionesWrapper.getLista().add(key);
 		}
 	
 		
@@ -270,12 +270,12 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 			Empresa empr = (Empresa) puertoManejadorUsuario.obtenerEmpresa(usuario.getNickName());
 			
 			if(empr.getCompra() != null) {
-				nombrePaq = empr.getCompra().getPaquete().getNombre();
+				nombrePaq = empr.getCompra().getPaqCompr().getNombre(); //esto cambie de getPaquete a getPaqCompr chequear (el que esta generado es el que puse yo)
 			}else {
 				nombrePaq = "Servlet";
 			}
 			
-			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, nombrePaq);
+			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException_Exception e){

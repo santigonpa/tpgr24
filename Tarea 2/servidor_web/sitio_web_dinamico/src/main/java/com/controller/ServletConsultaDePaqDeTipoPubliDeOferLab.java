@@ -57,7 +57,7 @@ public static EstadoSesion getEstado(HttpServletRequest request)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-		ArrayList<Object> coleccionPaquetesWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataPaquete().getLista();
+		ArrayList<Object> coleccionPaquetesWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataPaqueteArreglo().getLista();
 		ArrayList<DataPaquete> coleccionPaquetes = new ArrayList<>();
 		
 		for (Object objeto : coleccionPaquetesWrapper) {

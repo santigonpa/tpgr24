@@ -11,13 +11,9 @@ import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.Postulante;
 import com.webservices.controladores.publicar.Usuario;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-
+import java.util.List;
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
@@ -53,9 +49,13 @@ public class ServletVerPerfil extends HttpServlet {
 		}else {
 		 usuarioAConsultar = (String) request.getAttribute("VerPerfil");
 		}
-		
-		Map<String,DataUsuario> usuarios = puertoManejadorUsuario.getDataUsuario();
-		DataUsuario usuarioConsultar = usuarios.get(usuarioAConsultar);
+		DataUsuario usuarioConsultar = null;
+		@SuppressWarnings("unchecked")
+		List<DataUsuario> usuarios = (List<DataUsuario>) puertoManejadorUsuario.getDataUsuario().getMapa();
+		for(DataUsuario dtUser : usuarios) {
+			if(dtUser.getNickName().equals(usuarioAConsultar)) {usuarioConsultar = dtUser;}
+		}
+		//DataUsuario usuarioConsultar = usuarios.get(usuarioAConsultar);
 		String tipoUser;
 		
 		if(usuarioConsultar instanceof DataPostulante) {

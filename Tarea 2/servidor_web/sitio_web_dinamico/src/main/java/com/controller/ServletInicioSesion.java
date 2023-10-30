@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.Usuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 import com.webservices.controladores.publicar.UsuarioNoExisteException;
@@ -40,7 +40,7 @@ public class ServletInicioSesion extends HttpServlet {
     		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     		
-    		DataUsuario usuario = puertoManejadorUsuario.obtenerUsuario(usrOemail);
+    		Usuario usuario = puertoManejadorUsuario.obtenerUsuario(usrOemail);
     		
     		if(usuario == null) {
     			usuario = puertoManejadorUsuario.obtenerUsuarioPorEmail(usrOemail);

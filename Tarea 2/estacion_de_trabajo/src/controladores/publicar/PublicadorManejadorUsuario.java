@@ -61,7 +61,7 @@ public class PublicadorManejadorUsuario {
 
 
     @WebMethod
-    public DataUsuario obtenerUsuario(String nick) {
+    public DataUsuario obtenerDataUsuario(String nick) {
         Usuario usu = manejadorUsuario.obtenerUsuario(nick);
         if (usu instanceof Empresa) {
             return manejadorUsuario.getDataEmpresa(nick);
@@ -73,7 +73,7 @@ public class PublicadorManejadorUsuario {
     }
 
     @WebMethod
-    public DataUsuario obtenerUsuarioPorEmail(String email) {
+    public DataUsuario obtenerDataUsuarioPorEmail(String email) {
         Usuario usu = manejadorUsuario.obtenerUsuarioPorEmail(email);
         if (usu instanceof Empresa) {
             return manejadorUsuario.getDataEmpresa(usu.getNickName());
@@ -139,9 +139,17 @@ public class PublicadorManejadorUsuario {
     	WrapperArrayList ret = new WrapperArrayList(arr);
     	return ret;
     }
-    
+    @WebMethod
     public  Postulante obtenerPostulante(String post) {
     	return manejadorUsuario.obtenerPostulante(post);
+    }
+    @WebMethod
+    public  Usuario obtenerUsuario(String user) {
+    	return manejadorUsuario.obtenerUsuario(user);
+    }
+    @WebMethod
+    public  Usuario obtenerUsuarioPorEmail(String email) {
+    	return manejadorUsuario.obtenerUsuarioPorEmail(email);
     }
     
 }
