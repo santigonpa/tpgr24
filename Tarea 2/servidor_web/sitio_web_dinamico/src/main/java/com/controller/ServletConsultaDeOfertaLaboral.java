@@ -6,20 +6,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataOferta;
-import logica_datatypes.DataUsuario;
-import logica_entidades.OfertaLaboral;
-import logica_entidades.Postulante;
-import logica_manejadores.IManejadorOferta;
-import logica_manejadores.IManejadorUsuario;
-import utils.Fabrica;
-
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.Postulante;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
+import java.util.ArrayList;
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 
 /**
  * Servlet implementation class ServletConsultaDeOfertaLaboral
@@ -28,8 +23,11 @@ import com.model.EstadoSesion;
 @MultipartConfig
 public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private Fabrica fab = Fabrica.getInstance();
-    private IManejadorOferta IMO = fab.getInManejadorOferta();
+    
+	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,12 +55,26 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			
 			if(banderaSesion && banderaPostulante) {
 				if(empresaSeleccionada != null) {
-			    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada).getLista();
+					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+			    	for (Object objeto : coleccionOferWrapper) {
+					    if (objeto instanceof DataOferta) {
+					    	DataOferta dataOferta = (DataOferta) objeto;
+					    	coleccionOfer.add(dataOferta);
+					    }
+					}
 					request.setAttribute("coleccionOfertas", coleccionOfer);
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
 
 				}else if(keywordSeleccionada != null){
-					Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
+					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+			    	for (Object objeto : coleccionOferWrapper) {
+					    if (objeto instanceof DataOferta) {
+					    	DataOferta dataOferta = (DataOferta) objeto;
+					    	coleccionOfer.add(dataOferta);
+					    }
+					}
 					request.setAttribute("coleccionOfertas", coleccionOfer);
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
 
@@ -73,12 +85,26 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			}
 			if(banderaSesion && !banderaPostulante){
 					if(empresaSeleccionada != null) {
-				    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+						ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada).getLista();
+						ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+				    	for (Object objeto : coleccionOferWrapper) {
+						    if (objeto instanceof DataOferta) {
+						    	DataOferta dataOferta = (DataOferta) objeto;
+						    	coleccionOfer.add(dataOferta);
+						    }
+						}
 						request.setAttribute("coleccionOfertas", coleccionOfer);
 						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
 
 					}else if(keywordSeleccionada != null){
-						Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+						ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
+						ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+				    	for (Object objeto : coleccionOferWrapper) {
+						    if (objeto instanceof DataOferta) {
+						    	DataOferta dataOferta = (DataOferta) objeto;
+						    	coleccionOfer.add(dataOferta);
+						    }
+						}
 						request.setAttribute("coleccionOfertas", coleccionOfer);
 						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
 
@@ -90,12 +116,26 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			
 			if(!banderaSesion) {
 				if(empresaSeleccionada != null) {
-			    	Set<DataOferta> coleccionOfer = fab.getInManejadorUsuario().obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>) puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada).getLista();
+					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+			    	for (Object objeto : coleccionOferWrapper) {
+					    if (objeto instanceof DataOferta) {
+					    	DataOferta dataOferta = (DataOferta) objeto;
+					    	coleccionOfer.add(dataOferta);
+					    }
+					}
 					request.setAttribute("coleccionOfertas", coleccionOfer);
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
 
 				}else if(keywordSeleccionada != null){
-					Set<DataOferta> coleccionOfer = IMO.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>) puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
+					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+			    	for (Object objeto : coleccionOferWrapper) {
+					    if (objeto instanceof DataOferta) {
+					    	DataOferta dataOferta = (DataOferta) objeto;
+					    	coleccionOfer.add(dataOferta);
+					    }
+					}
 					request.setAttribute("coleccionOfertas", coleccionOfer);
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
 
@@ -108,22 +148,12 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			
     }
 
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		cargarDatos(request, response);
-		
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

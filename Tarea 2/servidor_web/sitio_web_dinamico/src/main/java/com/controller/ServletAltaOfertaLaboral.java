@@ -121,8 +121,6 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
 		
-		
-    	
     	Usuario user = (Usuario) request.getSession().getAttribute("usuario");
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
@@ -243,11 +241,9 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		
 		WrapperArrayList conjuntoOpcionesWrapper = new WrapperArrayList();
 		for(String key : conjuntoOpciones) {
-			conjuntoOpcionesWrapper.getLista().add(conjuntoOpcionesWrapper);
+			conjuntoOpcionesWrapper.getLista().add(conjuntoOpcionesWrapper); //esto esta raro
 		}
-		
-		
-		
+	
 		
 		String tipoPago = request.getParameter("tipoPago");
 		
@@ -279,7 +275,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 				nombrePaq = "Servlet";
 			}
 			
-			ICO.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, nombrePaq);
+			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio, horaDeFin, remuneracion, ciudad, departamento, fechaActual, conjuntoOpciones, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException_Exception e){

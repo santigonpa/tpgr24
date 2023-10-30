@@ -3,16 +3,12 @@ package com.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorControladorUsuario;
+import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,10 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import logica_controladores.IControladorUsuario;
-import logica_entidades.Postulante;
-import logica_entidades.Usuario;
-import utils.Fabrica;
+import com.webservices.controladores.publicar.Postulante;
+import com.webservices.controladores.publicar.Usuario;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**
@@ -38,8 +32,8 @@ import jakarta.servlet.annotation.MultipartConfig;
 public class ServletModificarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    private Fabrica fab = Fabrica.getInstance();
-    private IControladorUsuario ICU = fab.getInUser();
+    private PublicadorControladorUsuarioService servicePublicadorUsuario = new PublicadorControladorUsuarioService();
+	private PublicadorControladorUsuario puertoControladorUsuario = servicePublicadorUsuario.getPublicadorControladorUsuarioPort();
     public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
@@ -136,14 +130,10 @@ public class ServletModificarUsuario extends HttpServlet {
 	    	// Obtén el valor del campo de fecha de nacimiento desde la solicitud
 	        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
 	        // Crea un formateador para el patrón de fecha (yyyy-MM-dd)
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	        String nacionalidad = request.getParameter("nacionalidad");
 	         
-	        
 	       
-	            // Intenta analizar la fecha en un objeto LocalDate
-	            LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
-	            ICU.modificarDatosPostulante(usr.getNickName(), nombre, apellido, usr.getEmail(), fechaNacimiento, nacionalidad, imagenBytes, contrasenia);
+	            puertoControladorUsuario.modificarDatosPostulante(usr.getNickName(), nombre, apellido, usr.getEmail(), fechaNacimientoStr, nacionalidad, imagenBytes, contrasenia);
 	            //le cierro la sesion porque cambio la contrasenia
 	            
 	            request.getRequestDispatcher("/CerrarSesion").forward(request, response);
@@ -156,7 +146,7 @@ public class ServletModificarUsuario extends HttpServlet {
 			    	String descripcion = request.getParameter("descripcion");
 			    	String linkWeb = request.getParameter("linkSitio");
 			    
-			    	ICU.modificarDatosEmpresa(usr.getNickName() , nombre, apellido, usr.getEmail(), descripcion, linkWeb, imagenBytes, contrasenia);
+			    	puertoControladorUsuario.modificarDatosEmpresa(usr.getNickName() , nombre, apellido, usr.getEmail(), descripcion, linkWeb, imagenBytes, contrasenia);
 			    	//le cierro la sesion porque cambio la contrasenia
 			    	request.getRequestDispatcher("/CerrarSesion").forward(request, response);
 		         

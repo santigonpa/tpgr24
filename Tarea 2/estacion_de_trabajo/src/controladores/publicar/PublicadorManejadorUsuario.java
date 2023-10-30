@@ -139,4 +139,9 @@ public class PublicadorManejadorUsuario {
     	WrapperArrayList ret = new WrapperArrayList(arr);
     	return ret;
     }
+    
+    public  Postulante obtenerPostulante(String post) {
+    	return manejadorUsuario.obtenerPostulante(post);
+    }
+    
 }

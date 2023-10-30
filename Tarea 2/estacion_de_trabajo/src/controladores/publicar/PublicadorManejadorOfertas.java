@@ -100,4 +100,8 @@ public class PublicadorManejadorOfertas {
     	WrapperArrayList ret = new WrapperArrayList(arr);
     	return ret;
     }
+    
+    public DataOferta getDataOferta(String nombre) {
+    	return manejadorOferta.getDataOferta(nombre);
+    }
 }

@@ -1,20 +1,20 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.Set;
-
+import java.util.ArrayList;
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataOferta;
-import logica_entidades.Postulante;
-import logica_manejadores.IManejadorOferta;
-import logica_manejadores.IManejadorUsuario;
-import utils.Fabrica;
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.Postulante;
 
 /**
  * Servlet implementation class ServletPostulacionAOferta
@@ -22,9 +22,11 @@ import utils.Fabrica;
 @WebServlet (description = "Servlet para postularse a una oferta laboral", urlPatterns = { "/PostulacionAOferta" })
 public class ServletPostulacionAOferta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Fabrica fab = Fabrica.getInstance();
-	private static IManejadorUsuario manejadorUser = fab.getInManejadorUsuario();
-	private static IManejadorOferta manejadorOfer = fab.getInManejadorOferta();
+
+	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
 	
 	
 	public ServletPostulacionAOferta() {
@@ -45,13 +47,30 @@ public class ServletPostulacionAOferta extends HttpServlet {
 			if (empresaSeleccionada != null) {
 				
 				// cambio el campo del select empresa
-				Set<DataOferta> ofertasConfirmadas = manejadorUser.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+				ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>) puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada).getLista();
+		    	ArrayList<DataOferta> ofertasConfirmadas = new ArrayList<>();
+
+				for (Object objeto : ofertasConfirmadasWrapper) {
+				    if (objeto instanceof DataOferta) {
+				    	DataOferta dataTipoPublicacion = (DataOferta) objeto;
+				        ofertasConfirmadas.add(dataTipoPublicacion);
+				    }
+				}
+				
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
 			
 			}else if (keywordSeleccionada != null){
 				// cambio el campo del select keyword
-				Set<DataOferta> ofertasConfirmadas = manejadorOfer.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+				ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>) puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
+		    	ArrayList<DataOferta> ofertasConfirmadas = new ArrayList<>();
+
+				for (Object objeto : ofertasConfirmadasWrapper) {
+				    if (objeto instanceof DataOferta) {
+				    	DataOferta dataTipoPublicacion = (DataOferta) objeto;
+				        ofertasConfirmadas.add(dataTipoPublicacion);
+				    }
+				}
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
 			

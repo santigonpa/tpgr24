@@ -6,21 +6,24 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataEmpresa;
-import logica_datatypes.DataPaquete;
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataPaquete;
 
-import logica_entidades.Empresa;
-import logica_entidades.Usuario;
-import logica_entidades.Paquete;
-
-
-
-import logica_manejadores.IManejadorPyT;
-import utils.Fabrica;
+import com.webservices.controladores.publicar.Empresa;
+import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.Paquete;
+import com.webservices.controladores.publicar.PublicadorControladorOfertas;
+import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 
 import java.io.IOException;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorManejadorPyT;
+import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 
 @WebServlet (description = "Servlet para comprar paquete", urlPatterns = { "/CompraPaquete" })
 @MultipartConfig
@@ -29,19 +32,19 @@ import com.model.EstadoSesion;
  */
 public class ServletCompraPaquete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 private Fabrica fab = Fabrica.getInstance();
-	    private IManejadorPyT IMPYT = fab.getInManejadorPyT();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
+	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
+	private PublicadorControladorOfertasService servicePublicadorOfertas = new PublicadorControladorOfertasService();
+	private PublicadorControladorOfertas puertoControladorOfertas = servicePublicadorOfertas.getPublicadorControladorOfertasPort();
+	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+
     public ServletCompraPaquete() {
         super();
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 
     public static EstadoSesion getEstado(HttpServletRequest request){	//obtiene el tipo de la sesion
   		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
@@ -60,13 +63,13 @@ public class ServletCompraPaquete extends HttpServlet {
     		}
 			
 			if(banderaSesion) {
-				String paq = (String)request.getParameter("id");
+			String paq = (String)request.getParameter("id");
 			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			Empresa emp = (Empresa) fab.getInManejadorUsuario().obtenerEmpresa(user.getNickName());
-			Paquete paquete=fab.getInManejadorPyT().getPaquete(paq);
-			DataPaquete dtpaq = paquete.getDTPaquete();
-			fab.getInManejadorUsuario().CompraPaquete(paquete, emp.getNickName());
-			DataEmpresa DTemp = emp.getDTEmpresa();
+			Empresa emp = (Empresa) puertoManejadorUsuario.obtenerEmpresa(user.getNickName());
+			Paquete paquete= puertoManejadorPyT.getPaquete(paq);
+			DataPaquete dtpaq = puertoManejadorPyT.getDataPaquete(paq);
+			puertoManejadorUsuario.CompraPaquete(paquete, emp.getNickName());
+			DataEmpresa DTemp = puertoManejadorPyT.getDataEmpresa(emp.getNickName());
 			request.setAttribute("paquete", dtpaq);
 			request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 			}			
@@ -83,12 +86,7 @@ public class ServletCompraPaquete extends HttpServlet {
         cargarDatos(request, response);
     }
 
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

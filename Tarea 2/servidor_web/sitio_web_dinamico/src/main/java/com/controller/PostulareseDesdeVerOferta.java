@@ -50,14 +50,14 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 		        listaDataOferta.add(dataOferta);
 		    }
 		}
-		DataOferta of = null;
+		DataOferta ofer = null;
 		for (DataOferta ofertaIterando : listaDataOferta) {
 	        if (ofertaIterando.getNombre().equals(oferta)) {
-	            of = ofertaIterando; 
+	            ofer = ofertaIterando; 
 	        }
 	    }
 		
-		request.getSession().setAttribute("dataOfertaPos", of);
+		request.getSession().setAttribute("dataOfertaPos", ofer);
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
 			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaPostulacionAOfer.jsp").forward(request, response);
 		}

@@ -7,18 +7,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica_controladores.IControladorUsuario;
-import logica_datatypes.DataOferta;
-import logica_entidades.Postulante;
-import logica_entidades.Usuario;
-import logica_manejadores.IManejadorOferta;
-import logica_manejadores.IManejadorUsuario;
-import utils.Fabrica;
+
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.Postulante;
+import com.webservices.controladores.publicar.Usuario;
+
 
 import java.io.IOException;
 import java.util.Set;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 
 @WebServlet (description = "Servlet de Consulta de oferta laboral detllada", urlPatterns = { "/DetalleOferta" })
 @MultipartConfig
@@ -27,9 +29,11 @@ import com.model.EstadoSesion;
  */
 public class ServletDetalleOferta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static Fabrica fab = Fabrica.getInstance();
-    private static IManejadorOferta IMO = fab.getInManejadorOferta();
-    private static IManejadorUsuario IMU = fab.getInManejadorUsuario();
+
+    private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,7 +54,7 @@ public class ServletDetalleOferta extends HttpServlet {
 
 	    	boolean banderaSesion;
 	    	String nombreOfer = request.getParameter("id");
-			DataOferta ofer = IMO.getDataOferta(nombreOfer);
+			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
 	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
 
@@ -64,7 +68,7 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	if(banderaSesion && banderaPostulante) {
 	    		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
-	    		boolean estaPost = IMO.obtenerOferta(nombreOfer).existeLaPostulacion(nickName);
+	    		boolean estaPost = puertoManejadorOfertas.obtenerOferta(nombreOfer).existeLaPostulacion(nickName);
 	    		String post = request.getParameter("id");
 	    		if(estaPost){
 	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaPost.jsp").forward(request, response);
@@ -78,7 +82,7 @@ public class ServletDetalleOferta extends HttpServlet {
 				Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
 	    		boolean esSuOferta;
-	    		if(IMU.obtenerEmpresa(nickName).getOferta(nombreOfer) == null) {
+	    		if(puertoManejadorUsuario.obtenerEmpresa(nickName).getOferta(nombreOfer) == null) {
 	    			esSuOferta = false;
 	    		}else {
 	    			esSuOferta = true;

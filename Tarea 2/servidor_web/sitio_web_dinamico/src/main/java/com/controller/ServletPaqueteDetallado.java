@@ -6,14 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataPaquete;
-import logica_entidades.Usuario;
-import logica_manejadores.IManejadorPyT;
-import utils.Fabrica;
-
+import com.webservices.controladores.publicar.DataPaquete;
 import java.io.IOException;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorManejadorPyT;
+import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
 
 @WebServlet (description = "Servlet de detalle de paquete", urlPatterns = { "/DetalleDePaquete" })
 @MultipartConfig
@@ -24,8 +22,8 @@ import com.model.EstadoSesion;
 
 public class ServletPaqueteDetallado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Fabrica fab = Fabrica.getInstance();
-	private static IManejadorPyT IPYT = fab.getInManejadorPyT();
+	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -43,7 +41,7 @@ public class ServletPaqueteDetallado extends HttpServlet {
 			throws ServletException, IOException {
     	
     	String nombrePaquete = request.getParameter("id");
-		DataPaquete paquete = IPYT.getDataPaquete(nombrePaquete);
+		DataPaquete paquete = puertoManejadorPyT.getDataPaquete(nombrePaquete);
 		request.setAttribute("paquete", paquete);
 		
 		if(getEstado(request) == EstadoSesion.NO_LOGEADO) {	

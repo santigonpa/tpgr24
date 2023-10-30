@@ -6,16 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataTipoPublicacion;
-import logica_entidades.Empresa;
-import logica_entidades.Usuario;
-import logica_manejadores.IManejadorPyT;
-import utils.Fabrica;
-
+import com.webservices.controladores.publicar.DataTipoPublicacion;
 import java.io.IOException;
-import java.util.Set;
-
+import java.util.ArrayList;
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorManejadorPyT;
+import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
 
 /**
  * Servlet implementation class ServletConsultaTipoPubliOferLab
@@ -26,8 +22,9 @@ import com.model.EstadoSesion;
 
 public class ServletConsultaTipoPubliOferLab extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Fabrica fab = Fabrica.getInstance();
-	private IManejadorPyT IPYT = fab.getInManejadorPyT();   
+	
+	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
 	
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
@@ -45,7 +42,15 @@ public class ServletConsultaTipoPubliOferLab extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Set<DataTipoPublicacion> coleccionPTP = IPYT.getDataTipoPublicacion() ;
+		ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+    	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();
+
+		for (Object objeto : coleccionPTPWrapper) {
+		    if (objeto instanceof DataTipoPublicacion) {
+		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
+		        coleccionPTP.add(dataTipoPublicacion);
+		    }
+		}
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
 		
     	//es visitante accede igual

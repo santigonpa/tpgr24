@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica_entidades.Usuario;
+import com.webservices.controladores.publicar.Usuario;
 
 import java.io.IOException;
 

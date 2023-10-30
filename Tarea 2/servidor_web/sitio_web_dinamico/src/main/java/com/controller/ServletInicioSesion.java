@@ -8,15 +8,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import logica_entidades.Usuario;
-import logica_manejadores.IManejadorUsuario;
-import utils.Fabrica;
+
+import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.UsuarioNoExisteException;
+import com.webservices.controladores.publicar.UsuarioNoExisteException_Exception;
 
 import java.io.IOException;
 
 import com.model.EstadoSesion;
-
-import excepciones.UsuarioNoExisteException;
 
 @WebServlet (description = "Servlet de inicio de sesion", urlPatterns = { "/iniciarSesion" })
 public class ServletInicioSesion extends HttpServlet {
@@ -35,14 +36,18 @@ public class ServletInicioSesion extends HttpServlet {
     	EstadoSesion estado;
     	
     	try {
-    		Fabrica fabrica = Fabrica.getInstance();
-    		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
-    		Usuario usuario = mu.obtenerUsuario(usrOemail);
+
+    		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+    		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+    		
+    		DataUsuario usuario = puertoManejadorUsuario.obtenerUsuario(usrOemail);
+    		
     		if(usuario == null) {
-    			usuario = mu.obtenerUsuarioPorEmail(usrOemail);
+    			usuario = puertoManejadorUsuario.obtenerUsuarioPorEmail(usrOemail);
     		}
     		if(usuario == null) {
-    			throw new UsuarioNoExisteException("Puede que tu nombre de usuario o correo electronico sea incorrecto. Vuelva a intentarlo.");
+    			UsuarioNoExisteException exception = new UsuarioNoExisteException();
+    			throw new UsuarioNoExisteException_Exception("Puede que tu nombre de usuario o correo electronico sea incorrecto. Vuelva a intentarlo.", exception);
     		}
 			if (!usuario.getPsw().equals(psw)) {
 				estado = EstadoSesion.MAL_LOGEADO;
@@ -55,7 +60,7 @@ public class ServletInicioSesion extends HttpServlet {
 				request.getSession().setAttribute("usuario", usuario);
 				request.getSession().setAttribute("nicknameUsuario", usuario.getNickName());
 			}
-    	} catch (UsuarioNoExisteException ex) {
+    	} catch (UsuarioNoExisteException_Exception ex) {
 			estado = EstadoSesion.NO_LOGEADO;
 		}
 

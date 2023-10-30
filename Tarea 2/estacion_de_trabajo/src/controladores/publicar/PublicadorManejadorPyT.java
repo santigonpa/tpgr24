@@ -6,6 +6,7 @@ import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.xml.ws.Endpoint;
+import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataPaquete;
 import logica_datatypes.DataTipoPublicacion;
 import logica_datatypes.WrapperArrayList;
@@ -81,4 +82,16 @@ public class PublicadorManejadorPyT {
     public boolean nombrePaqueteYaExiste(String nombre) {
         return manejadorPaquetesYTiposPubli.nombrePaqueteYaExiste(nombre);
     }
+    
+    @WebMethod
+    public Paquete getPaquete(String nombre) {
+    	return manejadorPaquetesYTiposPubli.getPaquete(nombre);
+    }
+    
+    public WrapperArrayList getDataPaquete() {
+    	ArrayList<DataPaquete> arr = manejadorPaquetesYTiposPubli.getDataPaquete();
+    	WrapperArrayList ret = new WrapperArrayList(arr);
+    	return ret;
+    }
+    
 }

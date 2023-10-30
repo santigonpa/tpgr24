@@ -7,17 +7,25 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import logica_datatypes.DataPaquete;
-import logica_datatypes.DataTipoPublicacion;
-import logica_entidades.Empresa;
-import logica_entidades.Usuario;
-import logica_manejadores.IManejadorPyT;
-import utils.Fabrica;
+import com.webservices.controladores.publicar.DataPaquete;
+import com.webservices.controladores.publicar.DataTipoPublicacion;
+import com.webservices.controladores.publicar.Empresa;
+import com.webservices.controladores.publicar.KeyWord;
+import com.webservices.controladores.publicar.Usuario;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.PublicadorControladorOfertas;
+import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorPyT;
+import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 
 /**
  * Servlet implementation class ServletConsultaDePaqDeTipoPubliDeOferLab
@@ -28,8 +36,8 @@ import com.model.EstadoSesion;
 
 public class ServletConsultaDePaqDeTipoPubliDeOferLab extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Fabrica fab = Fabrica.getInstance();
-	private IManejadorPyT IPYT = fab.getInManejadorPyT();
+	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
 	
 public static EstadoSesion getEstado(HttpServletRequest request)
 {	//obtiene el tipo de la sesion
@@ -49,8 +57,15 @@ public static EstadoSesion getEstado(HttpServletRequest request)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+		ArrayList<Object> coleccionPaquetesWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataPaquete().getLista();
+		ArrayList<DataPaquete> coleccionPaquetes = new ArrayList<>();
 		
-		Set<DataPaquete> coleccionPaquetes = IPYT.getDataPaquete() ;
+		for (Object objeto : coleccionPaquetesWrapper) {
+		    if (objeto instanceof DataPaquete) {
+		    	DataPaquete dtpaq = (DataPaquete) objeto;
+		    	coleccionPaquetes.add(dtpaq);
+		    }
+		}
 		
 		request.setAttribute("coleccionDataPaquetes", coleccionPaquetes);
 		
