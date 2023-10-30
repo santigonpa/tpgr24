@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="logica_datatypes.DataOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.DataOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+     <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
     <%@ page import="java.time.LocalTime" %>
     <%@ page import="java.time.LocalDate" %>
-    <%@ page import="logica_entidades.OfertaLaboral.EstadoOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.EstadoOferta" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@ page import="logica_entidades.KeyWord" %>
-    <%@ page import="java.util.Set" %>
-    <%@ page import="logica_entidades.Usuario" %>
+    <%@ page import="com.webservices.controladores.publicar.KeyWord" %>
+    <%@ page import="java.util.ArrayList" %>
+    <%@ page import="java.util.List" %>
+    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
+    <%@ page import="com.webservices.controladores.publicar.Usuario" %>
     <%@ page import="java.time.format.DateTimeFormatter" %>
     
 
@@ -232,12 +236,10 @@
 	 	String desc = oferta.getDescripcion();
 	 	String ciudad = oferta.getCiudad();
 	 	String dep = oferta.getDepartamento();
-	 	LocalTime horaI = oferta.getHoraInicio();
-	 	LocalTime horaF = oferta.getHoraFin();
+	 	String horaI = oferta.getHoraInicio();
+	 	String horaF = oferta.getHoraFin();
 	 	float remuneracion = oferta.getRemuneracion();
-	 	LocalDate alta = oferta.getFechaDeAlta();
-	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    String formattedDate = alta.format(dateFormatter);
+	 	String alta = oferta.getFechaDeAlta();
 	 	EstadoOferta est = oferta.getEstado();
 	 	String emp = oferta.getEmpresa();
         byte[] imagenBytes = oferta.getImagen();
@@ -245,11 +247,17 @@
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);
         }
-        Set<KeyWord> keys = oferta.getKeyWords();
+       // Set<KeyWord> keys = oferta.getKeyWords();
+        List<KeyWord> palabrasClave = oferta.getPalabrasClave();
+        
+       	PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+    	PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+    	
+    	
 
     %>
     
-			   <main>
+			   <main>S
 			    <div class="contenedor4">
 			        <div class="row justify-content-center">
 			            <div class="col-6 col-md-4">
@@ -322,7 +330,7 @@
 			                            <h4 class="fs-5 fw-normal">Fecha:</h4>
 			                        </div>
 			                        <div class="col">
-			                            <h4 class="fs-5 fw-lighter"><%= formattedDate %></h4>
+			                            <h4 class="fs-5 fw-lighter"><%= alta %></h4>
 			                        </div>
 			                    </div>
 			                    <hr>
@@ -364,9 +372,17 @@
 							        <div class="container">
 							            <p class="fs-6 fw-lighter">
 							                <%
-							                    Set<KeyWord> keywords = oferta.getKeyWords();
+												ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>)puertoManejadorOfertas.getDataKeyWord().getLista();
+							                	ArrayList<KeyWord> coleccionKeys = new ArrayList<>();
+							                	for(Object objeto2: coleccionKeysWrapper){
+							                		if(objeto2 instanceof KeyWord){
+							                			KeyWord key = (KeyWord)objeto2;
+							                			coleccionKeys.add(key);
+							                		}
+							                	}
+							                
 							                    boolean firstKeyword = true;
-							                    for (KeyWord keyword : keywords) {
+							                    for (KeyWord keyword : coleccionKeys) {
 							                        if (!firstKeyword) {
 							                            out.print("<span style='margin-right: 5px;'>,</span>"); // Agregar coma y espacio entre las keywords, excepto la primera
 							                        }
