@@ -35,19 +35,19 @@ public class ServletInicioSesion extends HttpServlet {
     	String psw= request.getParameter("password");
     	EstadoSesion estado;
     	
+    	System.out.println(usrOemail);
+    	System.out.println(psw);
     	try {
 
     		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
-    		
     		Usuario usuario = puertoManejadorUsuario.obtenerUsuario(usrOemail);
     		
     		if(usuario == null) {
     			usuario = puertoManejadorUsuario.obtenerUsuarioPorEmail(usrOemail);
     		}
     		if(usuario == null) {
-    			UsuarioNoExisteException exception = new UsuarioNoExisteException();
-    			throw new UsuarioNoExisteException_Exception("Puede que tu nombre de usuario o correo electronico sea incorrecto. Vuelva a intentarlo.", exception);
+    			throw new Exception("Puede que tu nombre de usuario o correo electronico sea incorrecto. Vuelva a intentarlo.");
     		}
 			if (!usuario.getPsw().equals(psw)) {
 				estado = EstadoSesion.MAL_LOGEADO;
@@ -60,7 +60,7 @@ public class ServletInicioSesion extends HttpServlet {
 				request.getSession().setAttribute("usuario", usuario);
 				request.getSession().setAttribute("nicknameUsuario", usuario.getNickName());
 			}
-    	} catch (UsuarioNoExisteException_Exception ex) {
+    	} catch (Exception ex) {
 			estado = EstadoSesion.NO_LOGEADO;
 		}
 
