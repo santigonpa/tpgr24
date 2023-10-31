@@ -70,11 +70,14 @@ public class ManejadorUsuario implements IManejadorUsuario {
 
 
     public Usuario obtenerUsuario(String nick) {
-        return  usuarios.getOrDefault(nick, null); 
+        Usuario user = usuarios.getOrDefault(nick, null);
+    	 return user;
     }
     
     public Usuario obtenerUsuarioPorEmail(String email) {
-    	return  usuariosPorEmail.getOrDefault(email, null); //si no existe deberia retornar null
+    	
+    	Usuario user = usuariosPorEmail.getOrDefault(email, null); //si no existe deberia retornar null
+   	 	return user;
     }
     
     public HashMap<String, DataEmpresa> getDataEmpresas() {

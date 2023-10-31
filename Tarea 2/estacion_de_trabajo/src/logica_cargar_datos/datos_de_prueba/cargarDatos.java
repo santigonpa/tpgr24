@@ -4,14 +4,21 @@ import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import excepciones.EmailYaExisteException;
+import excepciones.NicknameYaExisteException;
+import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_controladores.IControladorUsuario;
 import logica_entidades.Empresa;
 import logica_entidades.KeyWord;
+import logica_entidades.Usuario;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
@@ -21,9 +28,27 @@ import logica_entidades.OfertaLaboral.EstadoOferta;
 import utils.Fabrica;
 
 public class cargarDatos {
-	public void cargar() {
+	
+	public byte[] getFile(String name)
+            throws  IOException {
+		byte[] byteArray = null;
+        try {
+                File f = new File("img/" + name);
+                @SuppressWarnings("resource")
+				FileInputStream streamer = new FileInputStream(f);
+                byteArray = new byte[streamer.available()];
+                streamer.read(byteArray);
+        } catch (IOException e) {
+                throw e;
+        }
+        return byteArray;
+	}
+	
+	
+	public void cargar() throws IOException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		IControladorUsuario icu = fabrica.getInUser();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
 		IManejadorPyT mpyt = fabrica.getInManejadorPyT();
 		IControladorUsuario cu = fabrica.getInUser();	
@@ -46,6 +71,22 @@ public class cargarDatos {
 		
 
 		//Creo Postulantes
+		byte[] p1img = this.getFile("U1.jpg");
+		byte[] p2img = this.getFile("U2.jpg");
+		byte[] p3img = this.getFile("U3.jpg");
+		byte[] p4img = this.getFile("U4.jpg");
+		byte[] p5img = this.getFile("U5.jpg");
+		byte[] p6img = this.getFile("U6.jpg");
+		byte[] p7img = this.getFile("U7.jpg");
+		byte[] p8img = this.getFile("U8.jpg");
+		byte[] p9img = this.getFile("U9.jpg");
+		byte[] p10img = this.getFile("U10.jpg");
+		byte[] p11img = this.getFile("U11.jpg");
+		byte[] p12img = this.getFile("U12.jpg");
+		byte[] p13img = this.getFile("U13.jpg");
+		byte[] p14img = this.getFile("U14.jpg");
+		byte[] p15img = this.getFile("U15.jpg");
+		byte[] p16img = this.getFile("U16.jpg");
 		Postulante p1 = new Postulante();
 		p1.setNickName("lgarcia");
 		p1.setNombre("Lucia");
@@ -53,9 +94,9 @@ public class cargarDatos {
 		p1.setEmail("lgarcia85@gmail.com");
 		p1.setNacimiento(n1);
 		p1.setNacionalidad("Uruguaya");
-		p1.setImagen(null);
+		p1.setImagen(p1img);
 		p1.setPsw("awdrg543");
-
+		
 		Postulante p2 = new Postulante();
 		p2.setNickName("matilo");
 		p2.setNombre("Matias");
@@ -63,18 +104,18 @@ public class cargarDatos {
 		p2.setEmail("matias.lopez90@hotmail.com");
 		p2.setNacimiento(n2);
 		p2.setNacionalidad("Argentina");
-		p2.setImagen(null);
+		p2.setImagen(p2img);
 		p2.setPsw("edrft543");
 
-		Postulante p3 = new Postulante();
-		p3.setNickName("maro");
-		p3.setNombre("Maria");
-		p3.setApellido("Rodriguez");
-		p3.setEmail("marrod@gmail.com");
-		p3.setNacimiento(n3);
-		p3.setNacionalidad("Uruguaya");
-		p3.setImagen(null);
-		p3.setPsw("r5t6y7u8");
+		Usuario p3 = new Postulante();
+		((Postulante) p3).setNickName("maro");
+		((Postulante) p3).setNombre("Maria");
+		((Postulante) p3).setApellido("Rodriguez");
+		((Postulante) p3).setEmail("marrod@gmail.com");
+		((Postulante) p3).setNacimiento(n3);
+		((Postulante) p3).setNacionalidad("Uruguaya");
+		((Postulante) p3).setImagen(p3img);
+		((Postulante) p3).setPsw("r5t6y7u8");
 
 		Postulante p4 = new Postulante();
 		p4.setNickName("javierf");
@@ -83,7 +124,7 @@ public class cargarDatos {
 		p4.setEmail("javierf93@yahoo.com");
 		p4.setNacimiento(n4);
 		p4.setNacionalidad("Mexicana");
-		p4.setImagen(null);
+		p4.setImagen(p4img);
 		p4.setPsw("45idgaf67");
 
 		Postulante p5 = new Postulante();
@@ -93,7 +134,7 @@ public class cargarDatos {
 		p5.setEmail("vale87@gmail.com");
 		p5.setNacimiento(n5);
 		p5.setNacionalidad("Uruguaya");
-		p5.setImagen(null);
+		p5.setImagen(p5img);
 		p5.setPsw("poiuy987");
 
 		Postulante p6 = new Postulante();
@@ -103,7 +144,7 @@ public class cargarDatos {
 		p6.setEmail("anpe92@hotmail.com");
 		p6.setNacimiento(n6);
 		p6.setNacionalidad("Chilena");
-		p6.setImagen(null);
+		p6.setImagen(p6img);
 		p6.setPsw("xdrgb657");
 
 		Postulante p7 = new Postulante();
@@ -113,7 +154,7 @@ public class cargarDatos {
 		p7.setEmail("camisilva89@gmail.com");
 		p7.setNacimiento(n7);
 		p7.setNacionalidad("Uruguaya");
-		p7.setImagen(null);
+		p7.setImagen(p7img);
 		p7.setPsw("mnjkiu89");
 
 		Postulante p8 = new Postulante();
@@ -123,7 +164,7 @@ public class cargarDatos {
 		p8.setEmail("gonza95@yahoo.com");
 		p8.setNacimiento(n8);
 		p8.setNacionalidad("Colombiana");
-		p8.setImagen(null);
+		p8.setImagen(p8img);
 		p8.setPsw("ytrewq10");
 
 		Postulante p9 = new Postulante();
@@ -133,7 +174,7 @@ public class cargarDatos {
 		p9.setEmail("loisa@gmail.com");
 		p9.setNacimiento(n9);
 		p9.setNacionalidad("Uruguaya");
-		p9.setImagen(null);
+		p9.setImagen(p9img);
 		p9.setPsw("sbsplol1");
 
 		Postulante p10 = new Postulante();
@@ -143,7 +184,7 @@ public class cargarDatos {
 		p10.setEmail("marram@hotmail.com");
 		p10.setNacimiento(n10);
 		p10.setNacionalidad("Argentina");
-		p10.setImagen(null);
+		p10.setImagen(p10img);
 		p10.setPsw("okmnji98");
 
 		//Creo Empresas
@@ -154,7 +195,7 @@ public class cargarDatos {
 		e1.setEmail("info@EcoTehc.com");
 		e1.setDescripcion("EcoTech Innovations es una empresa lider en soluciones tecnológicas sostenibles. Nuestro enfoque se centra en desarrollar y comercializar productos y servicios que aborden los desafíos ambientales más apremiantes de nuestro tiempo. Desde sistemas de energía renovable y dispositivos de monitorización ambiental hasta soluciones de gestión de residuos inteligentes, nuestra misión es proporcionar herramientas que permitan a las empresas y comunidades adoptar prácticas más ecológicas sin comprometer la eficiencia. Creemos en la convergencia armoniosa entre la tecnología y la naturaleza, y trabajamos incansablemente para impulsar un futuro más limpio y sostenible.");
 		e1.setLinkWeb("http://www.EcoTechInnovations.com");
-		e1.setImagen(null);
+		e1.setImagen(p11img);
 		e1.setPsw("qsxcdw43");
 
 		Empresa e2 = new Empresa();
@@ -164,7 +205,7 @@ public class cargarDatos {
 		e2.setEmail("contacto@FusionTech.net");
 		e2.setDescripcion("FusionTech Dynamics es una empresa pionera en el ámbito de la inteligencia artificial y la automatización avanzada. Nuestro equipo multidisciplinario de ingenieros, científicos de datos y desarrolladores crea soluciones innovadoras que aprovechan la potencia de la IA para transformar industrias. Desde la optimización de procesos industriales hasta la creación de asistentes virtuales altamente personalizados, nuestro objetivo es revolucionar la forma en que las empresas operan y se conectan con sus clientes. Creemos en la sinergia entre la mente humana y las capacidades de la IA, y trabajamos para construir un mundo donde la tecnología mejore y amplíe nuestras capacidades innatas.");
 		e2.setLinkWeb("http://www.FusionTechDynamics.net");
-		e2.setImagen(null);
+		e2.setImagen(p12img);
 		e2.setPsw("qpwoei586");
 
 		Empresa e3 = new Empresa();
@@ -174,7 +215,7 @@ public class cargarDatos {
 		e3.setEmail("jobs@GlobalHelath.uy");
 		e3.setDescripcion("GlobalHealth Dynamics es una empresa comprometida con el avance de la atención médica a nivel mundial. Como líderes en el campo de la salud digital, desarrollamos plataformas y herramientas que permiten a los profesionales de la salud ofrecer diagnósticos más precisos, tratamientos personalizados y seguimiento continuo de los pacientes. Nuestra visión es crear un ecosistema de salud conectado en el que los datos médicos se utilicen de manera ética y segura para mejorar la calidad de vida de las personas. A través de la innovación constante y la colaboración con expertos médicos, estamos dando forma al futuro de la atención médica, donde la tecnología y la compasión se unen para salvar vidas y mejorar el bienestar en todo el mundo.");
 		e3.setLinkWeb("http://www.globalhealthdynamics.uy/info");
-		e3.setImagen(null);
+		e3.setImagen(p13img);
 		e3.setPsw("asdfg654");
 
 		Empresa e4 = new Empresa();
@@ -184,7 +225,7 @@ public class cargarDatos {
 		e4.setEmail("jarrington@ANTEL.com.uy");
 		e4.setDescripcion("En Antel te brindamos servicios de vanguardia en tecnología de comunicación en Telefonia Movil, Fija, Banda Ancha y Datos");
 		e4.setLinkWeb("ANTEL.com.uy");
-		e4.setImagen(null);
+		e4.setImagen(p14img);
 		e4.setPsw("2nru096");
 
 		Empresa e5 = new Empresa();
@@ -194,7 +235,7 @@ public class cargarDatos {
 		e5.setEmail("eldiez@MIEM.org.uy");
 		e5.setDescripcion("Balance Energetico Nacional (BEN). La Dirección Nacional de Energía (DNE) del Ministerio de Industria, Energía y Minería (MIEM) presenta anualmente el BEN.");
 		e5.setLinkWeb("MIEM.com.uy");
-		e5.setImagen(null);
+		e5.setImagen(p15img);
 		e5.setPsw("ibii4xo");
 
 		Empresa e6 = new Empresa();
@@ -204,14 +245,14 @@ public class cargarDatos {
 		e6.setEmail("Mercedes@TechSolutions.com.uy");
 		e6.setDescripcion("TechSolutions Inc. es una empresa líder en el sector de tecnología de la información y el software. Se especializa en el desarrollo de soluciones de software personalizadas para empresas de diversos tamaños y sectores. Su enfoque se centra en la creación de aplicaciones empresariales innovadoras que optimizan procesos, mejoran la eficiencia y brindan una ventaja competitiva a sus clientes.");
 		e6.setLinkWeb("TechSolutions.com");
-		e6.setImagen(null);
+		e6.setImagen(p16img);
 		e6.setPsw("1ngs03p");
 
 		//Agrego Usarios
 		mu.addUsuario(p1);
 		mu.addUsuario(p2);
 		mu.addUsuario(p3);
-		mu.addUsuario(p4);
+		mu.addUsuario((Usuario)p4);
 		mu.addUsuario(p5);
 		mu.addUsuario(p6);
 		mu.addUsuario(p7);
@@ -223,7 +264,7 @@ public class cargarDatos {
 		mu.addUsuario(e3);
 		mu.addUsuario(e4);
 		mu.addUsuario(e5);
-		mu.addUsuario(e6);
+		mu.addUsuario((Usuario)e6);
 		
 		//------------------------------//		
 		
@@ -715,7 +756,10 @@ public class cargarDatos {
 		pos1.setFecha(fPos1);
 		pos1.setCv("Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos en Office.");
 		pos1.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
-		pos1.setPost((Postulante)p1);
+		//pos1.setPost((Postulante)p1);
+		//Postulante p1 = (Postulante) mu.obtenerUsuario("lgarcia");
+		//System.out.println(p1.getNickName());
+		//pos1.setPost((Postulante)p1);
 		pos1.setOfer(o1);
 
 		Postulacion pos2 = new Postulacion();
@@ -750,7 +794,7 @@ public class cargarDatos {
 		pos6.setFecha(fPos6);
 		pos6.setCv("Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.");
 		pos6.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
-		pos6.setPost((Postulante)p1);
+		//pos6.setPost((Postulante)p1);
 		pos6.setOfer(o2);
 
 		mo.addPostulacion(pos1);
@@ -769,7 +813,7 @@ public class cargarDatos {
 		
 		
 		try {
-			cu.agregarPostulacionAPostulante(p1.getNickName() , pos1);
+			//cu.agregarPostulacionAPostulante(p1.getNickName() , pos1);
 			cu.agregarPostulacionAPostulante(p2.getNickName(), pos2);
 			cu.agregarPostulacionAPostulante(p3.getNickName(), pos3);
 			cu.agregarPostulacionAPostulante(p4.getNickName(), pos4);

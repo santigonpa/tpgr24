@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 import com.webservices.controladores.publicar.UsuarioNoExisteException;
@@ -37,32 +38,33 @@ public class ServletInicioSesion extends HttpServlet {
     	
     	System.out.println(usrOemail);
     	System.out.println(psw);
-    	try {
+    	
 
     		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
-    		Usuario usuario = puertoManejadorUsuario.obtenerUsuario(usrOemail);
     		
-    		if(usuario == null) {
-    			usuario = puertoManejadorUsuario.obtenerUsuarioPorEmail(usrOemail);
+    		DataUsuario dusuario = puertoManejadorUsuario.obtenerDataUsuario(usrOemail);
+    		
+    		if(dusuario.getNickName().equals("null")) {
+    			dusuario = puertoManejadorUsuario.obtenerDataUsuarioPorEmail(usrOemail);
     		}
-    		if(usuario == null) {
-    			throw new Exception("Puede que tu nombre de usuario o correo electronico sea incorrecto. Vuelva a intentarlo.");
+    		if(dusuario.getNickName().equals("null")) {
+    			estado = EstadoSesion.NO_LOGEADO;
+    		}else {
+			
+    			if (!dusuario.getPsw().equals(psw)) {
+    				estado = EstadoSesion.MAL_LOGEADO;
+    			}
+    			else{
+    				estado = EstadoSesion.SI_LOGEADO;
+    				// setea el usuario logueado
+				
+    				request.getSession().setAttribute("usuario", dusuario);
+    				request.getSession().setAttribute("nicknameUsuario", dusuario.getNickName());
+    			}
+    	
     		}
-			if (!usuario.getPsw().equals(psw)) {
-				estado = EstadoSesion.MAL_LOGEADO;
-			}
-			else{
-				estado = EstadoSesion.SI_LOGEADO;
-				// setea el usuario logueado
-				
-				
-				request.getSession().setAttribute("usuario", usuario);
-				request.getSession().setAttribute("nicknameUsuario", usuario.getNickName());
-			}
-    	} catch (Exception ex) {
-			estado = EstadoSesion.NO_LOGEADO;
-		}
+		
 
 		if(estado == EstadoSesion.MAL_LOGEADO || estado == EstadoSesion.NO_LOGEADO) {
 			sesion.setAttribute("estadoSesion", estado);

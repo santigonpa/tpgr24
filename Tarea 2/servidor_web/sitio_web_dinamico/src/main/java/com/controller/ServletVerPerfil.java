@@ -11,6 +11,8 @@ import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.Postulante;
 import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.WrapperHashMap;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +52,10 @@ public class ServletVerPerfil extends HttpServlet {
 		 usuarioAConsultar = (String) request.getAttribute("VerPerfil");
 		}
 		DataUsuario usuarioConsultar = null;
-		@SuppressWarnings("unchecked")
-		List<DataUsuario> usuarios = (List<DataUsuario>) puertoManejadorUsuario.getDataUsuario().getMapa();
-		for(DataUsuario dtUser : usuarios) {
-			if(dtUser.getNickName().equals(usuarioAConsultar)) {usuarioConsultar = dtUser;}
+		
+		List<WrapperHashMap.Mapa.Entry> usuarios =  puertoManejadorUsuario.getDataUsuario().getMapa().getEntry();
+		for(WrapperHashMap.Mapa.Entry dtUser : usuarios) {
+			if(((DataUsuario) dtUser.getValue()).getNickName().equals(usuarioAConsultar)) {usuarioConsultar = (DataUsuario) dtUser.getValue();}
 		}
 		//DataUsuario usuarioConsultar = usuarios.get(usuarioAConsultar);
 		String tipoUser;

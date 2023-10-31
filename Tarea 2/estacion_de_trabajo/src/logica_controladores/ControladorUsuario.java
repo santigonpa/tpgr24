@@ -135,7 +135,8 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	@Override
 	public void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String web,  byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException,  campoInvalidoException {
-		ManejadorUsuario muser = ManejadorUsuario.getinstance();
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
         Usuario empresa = muser.obtenerUsuario(nickname);
         Usuario emailEnUso = muser.obtenerUsuarioPorEmail(email);
         if (emailEnUso != null) {
@@ -160,7 +161,8 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
 			String nacionalidad, byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
-		ManejadorUsuario muser = ManejadorUsuario.getinstance();
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
         Postulante postulante = (Postulante) muser.obtenerUsuario(nickname);
         Usuario emailEnUso = muser.obtenerUsuarioPorEmail(email);
         if (emailEnUso != null) {
@@ -179,6 +181,7 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         postulante.setNombre(nombre);
         postulante.setPsw(psw);
         postulante.setNacimiento(nacimiento);
+        postulante.setNacionalidad(nacionalidad);
         muser.addUsuario((Usuario)postulante);
 		
 	}

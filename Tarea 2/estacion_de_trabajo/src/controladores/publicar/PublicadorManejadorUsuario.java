@@ -145,11 +145,21 @@ public class PublicadorManejadorUsuario {
     }
     @WebMethod
     public  Usuario obtenerUsuario(String user) {
-    	return manejadorUsuario.obtenerUsuario(user);
+    	Usuario usuario = manejadorUsuario.obtenerUsuario(user);
+    	if(usuario == null) {
+    		usuario = new Usuario();
+    		usuario.setNickName("null");
+    	}
+    	return usuario;
     }
     @WebMethod
     public  Usuario obtenerUsuarioPorEmail(String email) {
-    	return manejadorUsuario.obtenerUsuarioPorEmail(email);
+    	Usuario usuario =  manejadorUsuario.obtenerUsuarioPorEmail(email);
+    	if(usuario == null) {
+    		usuario = new Usuario();
+    		usuario.setNickName("null");
+    	}
+    	return usuario;
     }
     
 }

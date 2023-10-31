@@ -10,6 +10,7 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,6 +22,7 @@ import excepciones.ContraseniaDiferenteException;
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
 import excepciones.campoInvalidoException;
+import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
 import logica_controladores.IControladorUsuario;
 
@@ -240,7 +242,12 @@ public class AltaDeUsuario extends JInternalFrame{
 	    
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cmdAltaDeUsuarioActionPerformed(e);
+				try {
+					cmdAltaDeUsuarioActionPerformed(e);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}); 
 		
@@ -252,7 +259,7 @@ public class AltaDeUsuario extends JInternalFrame{
 		});
 		
 	}
-	protected void cmdAltaDeUsuarioActionPerformed(ActionEvent e) {
+	protected void cmdAltaDeUsuarioActionPerformed(ActionEvent e) throws IOException {
 		String nickname = this.textField.getText();
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
@@ -272,13 +279,15 @@ public class AltaDeUsuario extends JInternalFrame{
     	if (verificarFormularioUsuario()) {
     	    try {
     	    	if(contra1.equals(contra2)) {
+    	    		cargarDatos cargador = new cargarDatos();
+    	    		byte[] fotoPredeterminada = cargador.getFile("userImage.jpg");
 	    	        if (selectedOption.equals("Empresa")) {
-	    	            ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web,null,contra1);
+	    	            ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web,fotoPredeterminada,contra1);
 	    	            JOptionPane.showMessageDialog(this, "La empresa se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
 	    	            limpiarFormulario();
 	                    setVisible(false);
 	    	        } else if (selectedOption.equals("Postulante")) {
-	    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, localDate, nacionalidad,null,contra1);
+	    	            ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, localDate, nacionalidad,fotoPredeterminada,contra1);
 	    	            JOptionPane.showMessageDialog(this, "El usuario se dio de alta con exito", "Alta de Usuario", JOptionPane.INFORMATION_MESSAGE);
 	    	            limpiarFormulario();
 	                    setVisible(false);
