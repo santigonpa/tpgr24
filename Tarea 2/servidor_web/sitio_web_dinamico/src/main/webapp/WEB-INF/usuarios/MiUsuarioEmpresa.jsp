@@ -12,6 +12,7 @@
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
     <%@page import= "java.util.Map" %>
+    <%@page import= "java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -460,7 +461,14 @@
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     		DataEmpresa emp = (DataEmpresa) usr;
     		String nickNameEmpresa = emp.getNickName();
-    		ArrayList<DataPaquete> paquetes = puertoManejadorUsuario.obtenerDataPaquetes(nickNameEmpresa).getLista();
+    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPaquetes(nickNameEmpresa).getLista();
+    		ArrayList<DataPaquete> paquetes = new ArrayList<>();
+
+    		for (Object objeto : listaObjetos) {
+    		    if (objeto instanceof DataPaquete) {
+    		    	paquetes.add((DataPaquete) objeto);
+    		    }
+    		}
     	
     		if(!paquetes.isEmpty() || paquetes == null){
 	     %>

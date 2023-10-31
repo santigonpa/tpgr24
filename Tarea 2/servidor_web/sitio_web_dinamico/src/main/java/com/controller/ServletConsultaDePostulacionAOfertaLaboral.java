@@ -76,9 +76,16 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     		}
     		
     	}else if(!banderaPostulante && (user == null)){
-    
-    		ArrayList<DataPostulacion> postulantes = (ArrayList<DataPostulacion>) puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(nombreOfer).getLista();
-    		request.setAttribute("postulantes", postulantes);
+    		List<Object> listaPostulantes = puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(nombreOfer).getLista();
+    		ArrayList<DataPostulacion> postulaciones = new ArrayList<>();
+
+    		for (Object objeto : listaPostulantes) {
+    		    if (objeto instanceof DataPostulacion) {
+    		        postulaciones.add((DataPostulacion) objeto);
+    		    }
+    		}
+    		//request.setAttribute("postulantes", postulantes); raaaaro
+    		request.setAttribute("postulantes", postulaciones);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
     	}else if(!banderaPostulante && (user != null)) {
     		DataPostulante pos = (DataPostulante) puertoManejadorUsuario.obtenerDataUsuario(user);
@@ -93,7 +100,7 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
 
     		DataPostulacion dtPost = null;
     		for(DataPostulacion postula : postulaciones) {
-    			if(postula.getOfer().getNombre().equals(nombreOfer)) {dtPost = postula;}
+    			if(postula.getNombreOferta().equals(nombreOfer)) {dtPost = postula;}
     		}
     		//Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
 	    	if (dtPost != null) {

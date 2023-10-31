@@ -75,8 +75,7 @@ public class ServletConsultaUsuario extends HttpServlet {
     	}else {
     		request.setAttribute("VerPerfil", nickUser);
 			
-			request.getRequestDispatcher("VerPerfil").
-					forward(request, response);
+			request.getRequestDispatcher("VerPerfil").forward(request, response);
     	}
     }
 	/**

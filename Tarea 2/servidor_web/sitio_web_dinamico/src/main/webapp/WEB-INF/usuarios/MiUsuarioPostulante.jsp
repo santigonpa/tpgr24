@@ -14,6 +14,7 @@
   <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
  <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
  <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+<%@page import= "java.util.List" %>
 
  
  
@@ -304,9 +305,14 @@
 	      
 	      	PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
 	  	 	PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
-      	  	
-	        
-      	  	ArrayList<DataOferta> ofertasDePostulacion = (ArrayList<DataOferta>) puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickUser).getLista();
+	        List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickUser).getLista();
+	        ArrayList<DataOferta> ofertasDePostulacion = new ArrayList<>();
+
+	        for (Object objeto : listaObjetos) {
+	            if (objeto instanceof DataOferta) {
+	            	ofertasDePostulacion.add((DataOferta) objeto);
+	            }
+	        }
 	      	if(!ofertasDePostulacion.isEmpty()){
 	    	  
 	      %>

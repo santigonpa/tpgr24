@@ -91,7 +91,8 @@ public class ServletVerPerfil extends HttpServlet {
 							    }
 							}
 							request.setAttribute("ofertasConfirmadas",ofertasConfi);
-							ArrayList<Object> ofertasRechazadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasRechazadasIngresadas(usuarioAConsultar).getLista();
+							List<Object> ofertasRechazadasWrapper = puertoManejadorUsuario.obtenerOfertasRechazadasIngresadas(usuarioAConsultar).getLista();
+							
 					    	Set<DataOferta> ofertasRech = new HashSet<>();
 
 							for (Object objeto : ofertasRechazadasWrapper) {
@@ -150,8 +151,8 @@ public class ServletVerPerfil extends HttpServlet {
 		}else { // LA SESION NO ESTA INICIADA
 			
 			if(tipoUser.equals("Empresa")) {
-				ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
-		    	Set<DataOferta> ofertasConfi = new HashSet<>();
+				List<Object> ofertasConfirmadasWrapper = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
+		    	ArrayList<DataOferta> ofertasConfi = new ArrayList<>();
 
 				for (Object objeto : ofertasConfirmadasWrapper) {
 				    if (objeto instanceof DataOferta) {
