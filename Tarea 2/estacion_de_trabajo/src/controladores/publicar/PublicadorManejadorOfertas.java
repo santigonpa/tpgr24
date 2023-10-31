@@ -69,7 +69,13 @@ public class PublicadorManejadorOfertas {
     	WrapperArrayList ret = new WrapperArrayList(arr);
     	return ret;
     }
-
+    
+    @WebMethod
+    public DataKeyWord getDataKeyWordPorNombre(String nombre) {
+    	DataKeyWord ret = manejadorOferta.getDataKeyWordPorNombre(nombre);
+    	return ret;   
+  	}
+    
     @WebMethod
     public void addKeyword(KeyWord key) {
         manejadorOferta.addKeyword(key);

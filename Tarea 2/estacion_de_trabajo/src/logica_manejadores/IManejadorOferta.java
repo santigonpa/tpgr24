@@ -25,6 +25,7 @@ public interface IManejadorOferta {
 
 	public abstract void addKeyword(KeyWord key);
 
+	public abstract DataKeyWord getDataKeyWordPorNombre(String nombre);
 
 	public abstract void addPostulacion(Postulacion pos);
 	

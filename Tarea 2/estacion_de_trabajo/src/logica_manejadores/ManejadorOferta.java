@@ -130,6 +130,10 @@ public class ManejadorOferta implements IManejadorOferta{
 		return postulaciones;		
 	}
 
+	public DataKeyWord getDataKeyWordPorNombre(String nombre) {
+		DataKeyWord dataRes = new DataKeyWord();
+		return dataRes;
+	}
 	
 
 
