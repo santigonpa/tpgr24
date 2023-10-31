@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import= "logica_entidades.Usuario" %>
-    <%@page import= "logica_entidades.Postulante" %>
+    <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+    <%@page import= "com.webservices.controladores.publicar.DataPostulante" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
 			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				<div class = "profile-container" ></div>
                 
                 
-                <% Postulante usrPos = (Postulante) usr; %>
+                <% DataPostulante usrPos = (DataPostulante) usr; %>
                 
                <div class = "my-4">
 					
@@ -295,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
 												Nacimiento:</label> <input type="date" class="form-control"
 												id="fechaNacimiento" name="fechaNacimiento"
 												placeholder="Ingrese su Fecha de Nacimiento"
-												value="<%= usrPos.getNacimineto().toString() %>" />
+												value="<%= usrPos.getNacimiento() %>" />
 										</div>
 										
                    					     <div id="fechaNacimientoError" class="text-danger"></div>

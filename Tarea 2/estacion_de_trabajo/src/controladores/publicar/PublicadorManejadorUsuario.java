@@ -8,12 +8,14 @@ import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.xml.ws.Endpoint;
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
+import logica_datatypes.DataPaquete;
 import logica_datatypes.DataPostulacion;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_datatypes.WrapperArrayList;
 import logica_datatypes.WrapperHashMap;
 import logica_entidades.Empresa;
+import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
@@ -22,6 +24,7 @@ import logica_manejadores.ManejadorUsuario;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -65,7 +68,12 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public DataUsuario obtenerDataUsuario(String nick) {
         Usuario usu = manejadorUsuario.obtenerUsuario(nick);
-        if (usu instanceof Empresa) {
+        if(usu == null) {
+        	DataUsuario usuar = new DataUsuario();
+        	 usuar.setNickName("null");
+        	return usuar;
+    	}
+        else if (usu instanceof Empresa) {
             return manejadorUsuario.getDataEmpresa(nick);
         } else if (usu instanceof Postulante) {
             return manejadorUsuario.getDataPostulante(nick);
@@ -77,7 +85,12 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public DataUsuario obtenerDataUsuarioPorEmail(String email) {
         Usuario usu = manejadorUsuario.obtenerUsuarioPorEmail(email);
-        if (usu instanceof Empresa) {
+        if(usu == null) {
+        	DataUsuario usuar = new DataUsuario();
+        	 usuar.setNickName("null");
+        	return usuar;
+    	}
+        else if (usu instanceof Empresa) {
             return manejadorUsuario.getDataEmpresa(usu.getNickName());
         } else if (usu instanceof Postulante) {
             return manejadorUsuario.getDataPostulante(usu.getNickName());
@@ -165,8 +178,8 @@ public class PublicadorManejadorUsuario {
     }
     
     @WebMethod
-    public  WrapperArrayList obtenerDataPostulaciones(String nickName) {
-    	Postulante usuario =  (Postulante) manejadorUsuario.obtenerUsuarioPorEmail(nickName);
+    public  WrapperArrayList obtenerDataPostulaciones(String nickName) { //obtiene las postulaciones del postulante nickName
+    	Postulante usuario =  (Postulante) manejadorUsuario.obtenerUsuario(nickName);
     	WrapperArrayList arregloPostulWrapper = usuario.getPostulaciones();
     	@SuppressWarnings("unchecked")
 		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
@@ -178,6 +191,60 @@ public class PublicadorManejadorUsuario {
     	return ret;
     }
     
+    @WebMethod
+    public  WrapperArrayList obtenerDataPaquetes(String nickName) { //obtiene los paquetes de nickName
+    	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
+    	Map<String,Paquete> paquetes = usuario.getPaquetes();
+    	ArrayList<DataPaquete> dataPaquetes = new ArrayList<>();
+    	for(Paquete paqActual : paquetes.values()) {
+    		dataPaquetes.add(paqActual.getDTPaquete());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(dataPaquetes);
+    	return ret;
+    }
+    
+    @WebMethod
+    public WrapperArrayList obtenerDataOfertasDePostulaciones(String nickUser) { //son las ofertas a las que esta postulado nickUser
+    	Postulante usuario =  (Postulante) manejadorUsuario.obtenerUsuario(nickUser);
+    	WrapperArrayList arregloPostulWrapper = usuario.getPostulaciones();
+    	@SuppressWarnings("unchecked")
+		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
+    	ArrayList<DataOferta> arregloDeOfertas = new ArrayList<>();
+    	for(Postulacion postul : arregloPostul) {
+    		DataOferta ofert = postul.getOferta().getDataOferta();
+    		arregloDeOfertas.add(ofert);
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arregloDeOfertas);
+    	return ret;
+    }
+    
+    @WebMethod
+    public WrapperArrayList obtenerDataOfertasDeEmpresa(String nickUser) { // ESTO DEVUELVE las ofertas de la empresa en data
+    	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickUser);
+    	Map<String,OfertaLaboral> ofertas = usuario.getOfertas();
+    	ArrayList<DataOferta> dataOfertas = new ArrayList<>();
+    	for(OfertaLaboral oferActual : ofertas.values()) {
+    		dataOfertas.add(oferActual.getDataOferta());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(dataOfertas);
+    	return ret;
+    }
+    
+    @WebMethod
+    public  String obtenerNombrePaquete(String nickName) {
+    	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
+    	return usuario.getCompra().getPaquete().getNombre();
+    }
+    
+    @WebMethod
+    public  String tienePaquetePregunta(String nickName) {
+    	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
+    	if( usuario.getCompra().getPaquete() != null ) {
+    		return "si";
+    	}else {
+    		return "no";
+    	}
+    }
 }
     
 

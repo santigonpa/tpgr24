@@ -7,8 +7,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import com.webservices.controladores.publicar.DataUsuario;
-import com.webservices.controladores.publicar.Usuario;
-
 import java.io.IOException;
 
 

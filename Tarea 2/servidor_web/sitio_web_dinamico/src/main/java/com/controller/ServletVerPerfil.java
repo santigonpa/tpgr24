@@ -9,8 +9,6 @@ import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataOferta;
 import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.DataUsuario;
-import com.webservices.controladores.publicar.Postulante;
-import com.webservices.controladores.publicar.Usuario;
 import com.webservices.controladores.publicar.WrapperHashMap;
 
 import java.io.IOException;
@@ -49,7 +47,7 @@ public class ServletVerPerfil extends HttpServlet {
 		String usuarioAConsultar;
 		
 		if(request.getAttribute("VerPerfil") == null) { 
-			 Usuario usuarioVerPerfil = (Usuario) request.getSession().getAttribute("usuario");
+			 DataUsuario usuarioVerPerfil = (DataUsuario) request.getSession().getAttribute("usuario");
 			 usuarioAConsultar = usuarioVerPerfil.getNickName();
 		}else {
 		 usuarioAConsultar = (String) request.getAttribute("VerPerfil");
@@ -115,7 +113,7 @@ public class ServletVerPerfil extends HttpServlet {
 					
 					if(usuarioConsultar instanceof DataEmpresa) {
 						ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
-				    	ArrayList<DataOferta> ofertasConfi = new ArrayList<>();
+						Set<DataOferta> ofertasConfi = new HashSet<>();
 
 						for (Object objeto : ofertasConfirmadasWrapper) {
 						    if (objeto instanceof DataOferta) {

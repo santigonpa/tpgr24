@@ -6,21 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import com.webservices.controladores.publicar.DataOferta;
-import com.webservices.controladores.publicar.Empresa;
-import com.webservices.controladores.publicar.OfertaLaboral;
-import com.webservices.controladores.publicar.Postulacion;
-import com.webservices.controladores.publicar.Postulante;
-import com.webservices.controladores.publicar.Usuario;
-import com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry;
-
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataPostulante;
+import com.webservices.controladores.publicar.DataPostulacion;
+import com.webservices.controladores.publicar.DataUsuario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
@@ -61,7 +54,7 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	String nombreOfer = request.getParameter("id");
 			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
-	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
+	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
 
 			
 			if(getEstado(request) != null) {
@@ -71,11 +64,11 @@ public class ServletDetalleOferta extends HttpServlet {
 		    	}	    	
 			
 	    	if(banderaSesion && banderaPostulante) {
-	    		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
+	    		DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
-	    		List<Postulacion> postulaciones = puertoManejadorOfertas.obtenerOferta(nombreOfer).getPostulacionesSobreLaOferta();
+	    		ArrayList<DataPostulacion> postulaciones =(ArrayList<DataPostulacion>) puertoManejadorOfertas.obtenerDataOfertasDePostulaciones(nickName).getLista();
 	    		boolean estaPost = false;
-	    		for(Postulacion postu : postulaciones) {
+	    		for(DataPostulacion postu : postulaciones) {
 	    			if(postu.getPost().getNickName().equals(nickName)) {estaPost = true;}
 	    		}
 	    		String post = request.getParameter("id");
@@ -88,19 +81,20 @@ public class ServletDetalleOferta extends HttpServlet {
 	    		}
 			}
 			if(banderaSesion && !banderaPostulante){
-				Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
+				DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
-	    		boolean esSuOferta;
-	    		Empresa enterprise = puertoManejadorUsuario.obteneraEmpresa(nickName);
-	    		OfertaLaboral ofertaDeEnter = null;
-				List<Empresa.Ofertas.Entry> ofertasDeEnter =  enterprise.getOfertas().getEntry();
-	    		for(Empresa.Ofertas.Entry entry : ofertasDeEnter) {
-	    			if(entry.getKey().equals(nombreOfer)) {ofertaDeEnter = entry.getValue();}
+	    		boolean esSuOferta = false;
+	    		List<Object> listaOriginal = puertoManejadorUsuario.obtenerDataOfertasDeEmpresa(nickName).getLista();
+	    		ArrayList<DataOferta> ofertasDeEnter = new ArrayList<>();
+
+	    		for (Object obj : listaOriginal) {
+	    		    if (obj instanceof DataOferta) {
+	    		        ofertasDeEnter.add((DataOferta) obj);
+	    		    }
 	    		}
-	    		if(ofertaDeEnter == null) {
-	    			esSuOferta = false;
-	    		}else {
-	    			esSuOferta = true;
+
+	    		for(DataOferta ofertaActual : ofertasDeEnter) {
+	    			if(ofertaActual.getNombre().equals(nombreOfer)) {esSuOferta = true;}
 	    		}
 	    		if(esSuOferta){
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaEmp.jsp").forward(request, response);

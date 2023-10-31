@@ -5,13 +5,12 @@
  <%@page import= "java.time.format.DateTimeFormatter" %> 
  <%@page import= "java.time.format.DateTimeFormatter" %> 
  <%@page import= "com.webservices.controladores.publicar.DataPostulante" %>
+ <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
  <%@page import="java.util.Set" %>
+ <%@page import="java.util.ArrayList" %>
  <%@page import = "java.io.FileOutputStream" %>
  <%@page import  = "java.io.IOException" %>
  <%@page import ="java.util.Base64" %>
- <%@page import= "com.webservices.controladores.publicar.Postulacion" %>
- <%@page import= "com.webservices.controladores.publicar.OfertaLaboral" %>
- <%@page import= "com.webservices.controladores.publicar.Postulante" %>
   <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
  <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
  <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
@@ -302,20 +301,21 @@
 	      
 	      
 	      <%
-	      Fabrica fab = Fabrica.getInstance();
-      	  IManejadorUsuario imu = fab.getInManejadorUsuario();
-      	  Postulante usr = (Postulante) imu.obtenerUsuario(nickUser);
-      	  Set<Postulacion> postulaciones = usr.obtenerPostulaciones();
-	      if(!postulaciones.isEmpty()){
+	      
+	      	PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	  	 	PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+      	  	
+	        
+      	  	ArrayList<DataOferta> ofertasDePostulacion = (ArrayList<DataOferta>) puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickUser).getLista();
+	      	if(!ofertasDePostulacion.isEmpty()){
 	    	  
 	      %>
 		      <div class= "cartas-ofertas">
 					<%
 				        String nombreOf;
 				        byte[] imagenOfByte;
-				        for (Postulacion postulacion: postulaciones) {
-				        	OfertaLaboral oferta = postulacion.getOferta();
-				            nombreOf = oferta.getNombreOferta();
+				        for(DataOferta oferta: ofertasDePostulacion) {
+				            nombreOf = oferta.getNombre();
 				            imagenOfByte = oferta.getImagen();
 				
 				            String base64ImagenOf = Base64.getEncoder().encodeToString(imagenOfByte);

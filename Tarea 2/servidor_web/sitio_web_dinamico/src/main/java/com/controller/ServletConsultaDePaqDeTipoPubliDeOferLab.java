@@ -8,24 +8,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.webservices.controladores.publicar.DataPaquete;
-import com.webservices.controladores.publicar.DataTipoPublicacion;
-import com.webservices.controladores.publicar.Empresa;
-import com.webservices.controladores.publicar.KeyWord;
-import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataUsuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Set;
-
 import com.model.EstadoSesion;
-import com.webservices.controladores.publicar.PublicadorControladorOfertas;
-import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
-import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
-import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorPyT;
 import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
-import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
-import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 
 /**
  * Servlet implementation class ServletConsultaDePaqDeTipoPubliDeOferLab
@@ -56,7 +46,7 @@ public static EstadoSesion getEstado(HttpServletRequest request)
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+		DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 		ArrayList<Object> coleccionPaquetesWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataPaqueteArreglo().getLista();
 		ArrayList<DataPaquete> coleccionPaquetes = new ArrayList<>();
 		
@@ -73,7 +63,7 @@ public static EstadoSesion getEstado(HttpServletRequest request)
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
     		request.getRequestDispatcher("/WEB-INF/paquetes/consultarPaquetes.jsp").forward(request, response);
     	} //es una empresa todo ok
-    	else if (user instanceof Empresa) {
+    	else if (user instanceof DataEmpresa) {
     		request.getRequestDispatcher("/WEB-INF/paquetes/consultaPaquetesLogged.jsp").forward(request, response);
     	}//	es un postulante
     	else {

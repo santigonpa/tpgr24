@@ -8,6 +8,7 @@ import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.xml.ws.Endpoint;
 import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
+import logica_datatypes.DataPostulacion;
 import logica_datatypes.WrapperArrayList;
 import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral;
@@ -107,5 +108,17 @@ public class PublicadorManejadorOfertas {
     @WebMethod
     public DataOferta getDataOferta(String nombre) {
     	return manejadorOferta.getDataOferta(nombre);
+    }
+    
+    @WebMethod
+    public WrapperArrayList obtenerPostulacionesSobreLaOferta(String nombreOferta) {
+    	OfertaLaboral ofert = manejadorOferta.obtenerOferta(nombreOferta);
+    	ArrayList<Postulacion> arrPostus = ofert.getPostulaciones();
+    	ArrayList<DataPostulacion> dataPostus = new ArrayList<>();
+    	for(Postulacion posActual : arrPostus) {
+    		dataPostus.add(posActual.getDTPostulacion());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(dataPostus);
+    	return ret;
     }
 }

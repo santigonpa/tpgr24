@@ -7,15 +7,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.webservices.controladores.publicar.DataTipoPublicacion;
-import com.webservices.controladores.publicar.Postulacion;
-import com.webservices.controladores.publicar.Postulante;
-import com.webservices.controladores.publicar.Usuario;
-import com.webservices.controladores.publicar.WrapperArrayList;
-
+import com.webservices.controladores.publicar.DataPostulacion;
+import com.webservices.controladores.publicar.DataPostulante;
+import com.webservices.controladores.publicar.DataUsuario;
 import java.util.ArrayList;
-import java.util.Set;
-
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
@@ -51,25 +46,17 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     	String user = request.getParameter("user");
 
 		//DataOferta ofer = IMO.getDataOferta(nombreOfer);
-		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");    	
+		DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
 		
-    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
+    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
     	
     	if(banderaPostulante) {
-    		Postulante post = (Postulante) puertoManejadorUsuario.obtenerPostulante(usuario.getNickName());
+    		DataPostulante post = (DataPostulante) puertoManejadorUsuario.obtenerDataUsuario(usuario.getNickName());
     		
-    		ArrayList<Object> coleccionPostulacionWrapper = (ArrayList<Object>) post.getPostulaciones().getLista();
-        	ArrayList<Postulacion> postulacionesDeUsuario = new ArrayList<>();
-
-    		for (Object objeto : coleccionPostulacionWrapper) {
-    		    if (objeto instanceof Postulacion) {
-    		    	Postulacion postu = (Postulacion) objeto;
-    		    	postulacionesDeUsuario.add(postu);
-    		    }
-    		}
-    		
-    		Postulacion dtPost = null;
-    		for(Postulacion postula : postulacionesDeUsuario) {
+    		ArrayList<DataPostulacion> postulacionesDeUsuario = (ArrayList<DataPostulacion>) puertoManejadorUsuario.obtenerDataPostulaciones(post.getNickName()).getLista();
+        	
+    		DataPostulacion dtPost = null;
+    		for(DataPostulacion postula : postulacionesDeUsuario) {
     			if(postula.getOfer().getNombre().equals(nombreOfer)) {dtPost = postula;}
     		}
     		//Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
@@ -80,23 +67,15 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     		
     	}else if(!banderaPostulante && (user == null)){
     
-    		ArrayList<Postulacion> postulantes = (ArrayList<Postulacion>) puertoManejadorOfertas.obtenerOferta(nombreOfer).getPostulacionesSobreLaOferta();
+    		ArrayList<DataPostulacion> postulantes = (ArrayList<DataPostulacion>) puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(nombreOfer).getList();
     		request.setAttribute("postulantes", postulantes);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
     	}else if(!banderaPostulante && (user != null)) {
-    		Postulante pos = (Postulante) puertoManejadorUsuario.obtenerPostulante(user);
-    		ArrayList<Object> coleccionPostulacionWrapper = (ArrayList<Object>) pos.getPostulaciones().getLista();
-        	ArrayList<Postulacion> postulacionesDeUsuario = new ArrayList<>();
-
-    		for (Object objeto : coleccionPostulacionWrapper) {
-    		    if (objeto instanceof Postulacion) {
-    		    	Postulacion postu = (Postulacion) objeto;
-    		    	postulacionesDeUsuario.add(postu);
-    		    }
-    		}
-    		
-    		Postulacion dtPost = null;
-    		for(Postulacion postula : postulacionesDeUsuario) {
+    		DataPostulante pos = (DataPostulante) puertoManejadorUsuario.obtenerDataUsuario(user);
+    		ArrayList<DataPostulacion> postulacionesDeUsuario =(ArrayList<DataPostulacion>) puertoManejadorOfertas.obtenerDataOfertasDePostulaciones(pos.getNickName()).getLista();
+        	
+    		DataPostulacion dtPost = null;
+    		for(DataPostulacion postula : postulacionesDeUsuario) {
     			if(postula.getOfer().getNombre().equals(nombreOfer)) {dtPost = postula;}
     		}
     		//Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);

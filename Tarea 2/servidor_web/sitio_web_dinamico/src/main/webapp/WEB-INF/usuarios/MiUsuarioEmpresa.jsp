@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import= "logica_entidades.Usuario" %>
-    <%@page import= "logica_entidades.Paquete" %>
-    <%@page import= "logica_entidades.Empresa" %>
-    <%@page import= "logica_datatypes.DataEmpresa" %>
-    <%@page import= "logica_datatypes.DataOferta" %>
-    <%@page import= "logica_datatypes.DataPaquete" %>
+    <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+    <%@page import= "com.webservices.controladores.publicar.DataPaquete" %>
+    <%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
+    <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
     <%@page import="java.util.Set" %>
+    <%@page import="java.util.ArrayList" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
@@ -161,7 +162,7 @@
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
 			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
@@ -286,7 +287,7 @@
 	            <label for="disabledTextInput" class="form-label">SITIO WEB</label>
 	          </div>
 	        </fieldset>
-	        <a href="<%= empresaConsultada.getLinkWeb() %>"><%= empresaConsultada.getLinkWeb() %></a>
+	        <a href="<%= empresaConsultada.getWeb() %>"><%= empresaConsultada.getWeb() %></a>
 	        
 	         
 	        	
@@ -455,8 +456,11 @@
 	    </div>
 	      
     	<%	
-    		Empresa emp = (Empresa) usr;
-    		Map<String, Paquete> paquetes = emp.getPaquetes();
+    		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+    		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+    		DataEmpresa emp = (DataEmpresa) usr;
+    		String nickNameEmpresa = emp.getNickName();
+    		ArrayList<DataPaquete> paquetes = puertoManejadorUsuario.obtenerDataPaquetes(nickNameEmpresa).getLista();
     	
     		if(!paquetes.isEmpty() || paquetes == null){
 	     %>
@@ -470,7 +474,7 @@
 		        String descPaq;
 		        byte[] imagenBytesPaquete;
 		
-		        for (Paquete paqAct : paquetes.values()) {
+		        for (DataPaquete paqAct : paquetes ) {
 		        	nombrePaq = paqAct.getNombre();
 					imagenBytesPaquete = paqAct.getImagen();
 					descPaq = paqAct.getDescripcion();

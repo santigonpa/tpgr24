@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.webservices.controladores.publicar.DataOferta;
-import com.webservices.controladores.publicar.Postulante;
+import com.webservices.controladores.publicar.DataPostulante;
 
 /**
  * Servlet implementation class ServletPostulacionAOferta
@@ -39,7 +39,7 @@ public class ServletPostulacionAOferta extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean banderaSesion = getEstado(request).equals(EstadoSesion.SI_LOGEADO);
-		boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
+		boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
 		String empresaSeleccionada = request.getParameter("empresa");
 		String keywordSeleccionada = request.getParameter("keyword");
 		//me fijo si esta la sesion iniciada y su vez si es postulante

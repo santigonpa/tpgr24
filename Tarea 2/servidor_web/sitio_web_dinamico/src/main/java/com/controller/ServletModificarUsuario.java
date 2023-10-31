@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import com.webservices.controladores.publicar.Postulante;
-import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.DataPostulante;
+import com.webservices.controladores.publicar.DataUsuario;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**
@@ -67,9 +67,9 @@ public class ServletModificarUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
 			HttpSession sessionIniciada = request.getSession(false);
-		    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+		    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 		    
-		    if(usr instanceof Postulante) {
+		    if(usr instanceof DataPostulante) {
 		    	request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuarioPostulante.jsp").forward(request, response);
 		    }else {
 		    	request.getRequestDispatcher("/WEB-INF/usuarios/ModificarUsuarioEmpresa.jsp").forward(request, response);
@@ -87,7 +87,7 @@ public class ServletModificarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession sessionIniciada = request.getSession(false);
-	    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+	    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 	    
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
@@ -124,7 +124,7 @@ public class ServletModificarUsuario extends HttpServlet {
 	        
 		}
 		
-		if (usr instanceof Postulante) {
+		if (usr instanceof DataPostulante) {
 	        // El usuario seleccionó "Postulante"
 	        // Realiza las acciones para registrar un postulante
 	    	// Obtén el valor del campo de fecha de nacimiento desde la solicitud

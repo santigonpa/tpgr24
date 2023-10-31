@@ -9,13 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import com.webservices.controladores.publicar.Usuario;
 import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
-import com.webservices.controladores.publicar.UsuarioNoExisteException;
-import com.webservices.controladores.publicar.UsuarioNoExisteException_Exception;
-
 import java.io.IOException;
 
 import com.model.EstadoSesion;

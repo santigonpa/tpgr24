@@ -19,27 +19,23 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import com.model.EstadoSesion;
-import com.webservices.controladores.publicar.PublicadorControladorUsuario;
-import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
 import com.webservices.controladores.publicar.PublicadorManejadorPyT;
 import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
-import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.WrapperArrayList;
-import com.webservices.controladores.publicar.DataOferta;
-import com.webservices.controladores.publicar.DataPaquete;
 import com.webservices.controladores.publicar.KeyWord;
 import com.webservices.controladores.publicar.NoExistePublicacionException_Exception;
 import com.webservices.controladores.publicar.NombreRepetidoOfertaException_Exception;
 import com.webservices.controladores.publicar.DataTipoPublicacion;
-import com.webservices.controladores.publicar.Empresa;
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataPaquete;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
 import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
@@ -121,13 +117,13 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
 		
-    	Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
     		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
     	} //es una empresa todo ok
-    	else if (user instanceof Empresa) {
+    	else if (user instanceof DataEmpresa) {
     		ArrayList<Object> coleccionDataTWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
         	ArrayList<DataTipoPublicacion> tiposPubli = new ArrayList<>();
 
@@ -152,7 +148,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+    	DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");
     	
     	
     	
@@ -267,10 +263,11 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}else {
 			String nombrePaq;
 		try {
-			Empresa empr = (Empresa) puertoManejadorUsuario.obteneraEmpresa(usuario.getNickName());
-			
-			if(empr.getCompra() != null) {
-				nombrePaq = empr.getCompra().getPaqCompr().getNombre(); //esto cambie de getPaquete a getPaqCompr chequear (el que esta generado es el que puse yo)
+			DataEmpresa empr = (DataEmpresa) puertoManejadorUsuario.obtenerDataUsuario(usuario.getNickName());
+			String valor = puertoManejadorUsuario.tienePaquetePregunta(empr.getNickName());
+			if(valor.equals("si")) { //esto se fija si tiene paquete ,  y si tiene paquete le pone el nombre a nombrePaq 
+				// cequeen si lo hice bien porque estoy cambiando un millon de cosas y no se muy bien que hace esto xdd
+				nombrePaq = puertoManejadorUsuario.obtenerNombrePaquete(empr.getNickName());
 			}else {
 				nombrePaq = "Servlet";
 			}

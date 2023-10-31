@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
-import com.webservices.controladores.publicar.Usuario;
+import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.YaExistePostulacionAOfertaException_Exception;
 import com.webservices.controladores.publicar.DataOferta;
-import com.webservices.controladores.publicar.Postulante;
+import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
 import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
 
@@ -69,12 +69,12 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 		String curriculum = request.getParameter("curriculum");
 		System.out.println(curriculum);
 		DataOferta dofer = (DataOferta) request.getSession().getAttribute("dataOfertaPos");
-		Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
+		DataUsuario usr = (DataUsuario) request.getSession().getAttribute("usuario");
 		LocalDate fechaActual = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
         String fechaFormateada = fechaActual.format(formatter);
 		try {
-			if(usr instanceof Postulante) {
+			if(usr instanceof DataPostulante) {
 				puertoControladorOfertas.agregarPostulacion(usr.getNickName(),dofer.getNombre(), curriculum, motiv, fechaFormateada);
 				request.getRequestDispatcher("home").forward(request, response);
 			}
