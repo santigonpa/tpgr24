@@ -149,7 +149,7 @@ class controladorUsuarioTest {
 		//postulacion1 = new Postulacion(f1, "sou un cv", "soy una motivacion", p1, o1);
 		postulacion1 = new Postulacion();
 		postulacion1.setFecha(f1);
-		postulacion1.setCv("sou un cv");
+		postulacion1.setCurri("sou un cv");
 		postulacion1.setMotivacion("soy una motivacion");
 		postulacion1.setPost(p1);
 		postulacion1.setOfer(o1);

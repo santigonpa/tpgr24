@@ -754,7 +754,7 @@ public class cargarDatos {
 		//Creo Postulaciones
 		Postulacion pos1 = new Postulacion();
 		pos1.setFecha(fPos1);
-		pos1.setCv("Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos en Office.");
+		pos1.setCurri("Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos en Office.");
 		pos1.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
 		//pos1.setPost((Postulante)p1);
 		//Postulante p1 = (Postulante) mu.obtenerUsuario("lgarcia");
@@ -764,35 +764,35 @@ public class cargarDatos {
 
 		Postulacion pos2 = new Postulacion();
 		pos2.setFecha(fPos2);
-		pos2.setCv("Estudiante de Comunicación, habilidades en redacción y manejo de redes sociales. Experiencia en prácticas en medios locales");
+		pos2.setCurri("Estudiante de Comunicación, habilidades en redacción y manejo de redes sociales. Experiencia en prácticas en medios locales");
 		pos2.setMotivacion("Me encantaría formar parte de un equipo que me permita desarrollar mis habilidades en comunicación y marketing.");
 		pos2.setPost((Postulante)p2);
 		pos2.setOfer(o2);
 
 		Postulacion pos3 = new Postulacion();
 		pos3.setFecha(fPos3);
-		pos3.setCv("Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.");
+		pos3.setCurri("Ingeniero en Sistemas, experiencia en desarrollo web y aplicaciones móviles. Conocimientos en JavaScript y React.");
 		pos3.setMotivacion("Me entusiasma la posibilidad de trabajar en proyectos desafiantes y seguir creciendo como profesional en el campo de la tecnología.");
 		pos3.setPost((Postulante)p3);
 		pos3.setOfer(o1);
 
 		Postulacion pos4 = new Postulacion();
 		pos4.setFecha(fPos4);
-		pos4.setCv("Técnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos eléctricos.");
+		pos4.setCurri("Técnico en Electricidad, experiencia en mantenimiento industrial. Conocimientos en lectura de planos eléctricos.");
 		pos4.setMotivacion("Estoy interesado en formar parte de un equipo que me permita aplicar mis habilidades técnicas y contribuir al mantenimiento eficiente.");
 		pos4.setPost((Postulante)p4);
 		pos4.setOfer(o3);
 
 		Postulacion pos5 = new Postulacion();
 		pos5.setFecha(fPos5);
-		pos5.setCv("Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.");
+		pos5.setCurri("Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.");
 		pos5.setMotivacion("Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.");
 		pos5.setPost((Postulante)p5);
 		pos5.setOfer(o2);
 
 		Postulacion pos6 = new Postulacion();
 		pos6.setFecha(fPos6);
-		pos6.setCv("Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.");
+		pos6.setCurri("Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.");
 		pos6.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
 		//pos6.setPost((Postulante)p1);
 		pos6.setOfer(o2);

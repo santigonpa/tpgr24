@@ -66,10 +66,18 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	if(banderaSesion && banderaPostulante) {
 	    		DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
-	    		ArrayList<DataPostulacion> postulaciones =(ArrayList<DataPostulacion>) puertoManejadorOfertas.obtenerDataOfertasDePostulaciones(nickName).getLista();
+	    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPostulaciones(nickName).getLista();
+	    		ArrayList<DataPostulacion> postulaciones = new ArrayList<>();
+
+	    		for (Object objeto : listaObjetos) {
+	    		    if (objeto instanceof DataPostulacion) {
+	    		        postulaciones.add((DataPostulacion) objeto);
+	    		    }
+	    		}
+
 	    		boolean estaPost = false;
 	    		for(DataPostulacion postu : postulaciones) {
-	    			if(postu.getPost().getNickName().equals(nickName)) {estaPost = true;}
+	    			if(postu.getNickName().equals(nickName)) {estaPost = true;}
 	    		}
 	    		String post = request.getParameter("id");
 	    		if(estaPost){

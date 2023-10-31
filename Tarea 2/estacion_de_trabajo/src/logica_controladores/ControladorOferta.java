@@ -204,7 +204,7 @@ public class ControladorOferta implements IControladorOferta {
 		OfertaLaboral oferta = mofer.obtenerOferta(ofer);
 		Postulante postu = muser.obtenerPostulante(post);
 		Postulacion nuevaPost = new Postulacion();
-		nuevaPost.setCv(curri);
+		nuevaPost.setCurri(curri);
 		nuevaPost.setFecha(fecha);
 		nuevaPost.setMotivacion(mot);
 		nuevaPost.setOfer(oferta);

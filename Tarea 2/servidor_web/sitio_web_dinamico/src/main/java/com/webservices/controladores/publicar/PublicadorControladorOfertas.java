@@ -116,33 +116,6 @@ public interface PublicadorControladorOfertas {
      * @param arg2
      * @param arg3
      * @param arg4
-     * @throws YaExistePostulacionAOfertaException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionResponse", fault = {
-        @FaultAction(className = YaExistePostulacionAOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacion/Fault/yaExistePostulacionAOfertaException")
-    })
-    public void agregarPostulacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4)
-        throws YaExistePostulacionAOfertaException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
      * @param arg5
      * @throws NombreTipoPubliYaExisteException_Exception
      */
@@ -169,6 +142,19 @@ public interface PublicadorControladorOfertas {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringResponse")
+    public WrapperArrayList getPostulantesString(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
      */
     @WebMethod
     @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralResponse")
@@ -189,15 +175,29 @@ public interface PublicadorControladorOfertas {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns controladores.publicar.WrapperArrayList
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @throws YaExistePostulacionAOfertaException_Exception
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringResponse")
-    public WrapperArrayList getPostulantesString(
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionResponse", fault = {
+        @FaultAction(className = YaExistePostulacionAOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacion/Fault/yaExistePostulacionAOfertaException")
+    })
+    public void agregarPostulacion(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4)
+        throws YaExistePostulacionAOfertaException_Exception
+    ;
 
     /**
      * 

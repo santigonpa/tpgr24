@@ -34,7 +34,7 @@ public class Postulacion {
 		this.motivacion = motiv;
 	}
 	
-	public void setCv(String curriculum) {
+	public void setCurri(String curriculum) {
 		this.curri = curriculum;
 	}
 	
@@ -82,10 +82,11 @@ public class Postulacion {
 			DataPostulacion DtPost = new DataPostulacion();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	        String formattedDate = this.fecha.format(formatter);
-			DtPost.setCv(this.curri);
+			DtPost.setCurri(this.curri);
 			DtPost.setMotivacion(this.motivacion);
 			DtPost.setFecha(formattedDate);
 			DtPost.setNickName(this.post.getNickName());
+			DtPost.setNombreOferta(this.ofer.getNombreOferta());
 			return DtPost;
 		}
 		

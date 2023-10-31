@@ -11,11 +11,12 @@ public class DataPostulacion extends DataUsuario {
 	private String curri;
 	private String motivacion;
 	private String nickPostulante;
+	private String nombreOferta;
 
 
 	//Constructor
 	public DataPostulacion() {
-	
+		super();
 	}
 
 	//setters
@@ -24,7 +25,7 @@ public class DataPostulacion extends DataUsuario {
 		this.fecha = fecha;
 	}
 
-	public void setCv(String curri) {
+	public void setCurri(String curri) {
 		this.curri = curri;
 	}
 
@@ -44,7 +45,7 @@ public class DataPostulacion extends DataUsuario {
 	}
 
 
-	public String getCv() {
+	public String getCurri() {
 		return curri;
 	}
 
@@ -55,6 +56,14 @@ public class DataPostulacion extends DataUsuario {
 
 	public String getNickPostulante() {
 		return nickPostulante;
+	}
+
+	public String getNombreOferta() {
+		return nombreOferta;
+	}
+
+	public void setNombreOferta(String nombreOferta) {
+		this.nombreOferta = nombreOferta;
 	}
 
 

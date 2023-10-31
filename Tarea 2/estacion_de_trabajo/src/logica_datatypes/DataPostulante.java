@@ -1,8 +1,6 @@
 package logica_datatypes;
 
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 
