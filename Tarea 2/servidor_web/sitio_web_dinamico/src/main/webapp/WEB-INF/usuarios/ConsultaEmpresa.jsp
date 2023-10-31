@@ -1,10 +1,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "logica_datatypes.DataEmpresa" %>
+<%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
  <%@page import ="java.util.Base64" %>
  <%@page import="java.util.Set" %>
- <%@page import= "logica_datatypes.DataOferta" %>
+ <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
 
 <!DOCTYPE html>
 <html lang = "es">
@@ -244,7 +244,7 @@
 	            <label for="disabledTextInput" class="form-label">SITIO WEB</label>
 	          </div>
 	        </fieldset>
-	        <a href="<%= empresaConsultada.getLinkWeb() %>"><%= empresaConsultada.getLinkWeb() %></a>
+	        <a href="<%= empresaConsultada.getWeb() %>"><%= empresaConsultada.getWeb() %></a>
 	        
 	         
 	        	

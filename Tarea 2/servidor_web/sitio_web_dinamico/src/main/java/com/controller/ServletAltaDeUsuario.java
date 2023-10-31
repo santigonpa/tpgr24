@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import com.model.EstadoSesion;
@@ -189,11 +191,15 @@ public class ServletAltaDeUsuario extends HttpServlet {
 		        // El usuario seleccionó "Postulante"
 		        // Realiza las acciones para registrar un postulante
 		    	// Obtén el valor del campo de fecha de nacimiento desde la solicitud
-		        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
+		        String fechaNacimientoRecibida = request.getParameter("fechaNacimiento");
 		        String nacionalidad = request.getParameter("nacionalidad");
+		        DateTimeFormatter formatoOriginal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		        LocalDate localDate = LocalDate.parse(fechaNacimientoRecibida, formatoOriginal);
+		        String fechaFormateada = localDate.format(formatoDeseado);
 		        
 		        try {
-		            puertoControladorUsuario.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaNacimientoStr, nacionalidad, imagenBytes, contrasenia);
+		            puertoControladorUsuario.altaUsuarioPostulante(nickName, nombre, apellido, email, fechaFormateada, nacionalidad, imagenBytes, contrasenia);
 		            request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
 		        } catch (NicknameYaExisteException_Exception e) {
 		        	// Agregar un atributo a la solicitud con el mensaje de error

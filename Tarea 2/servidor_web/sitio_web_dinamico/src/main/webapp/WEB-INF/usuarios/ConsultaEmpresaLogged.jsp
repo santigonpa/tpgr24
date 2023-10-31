@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import= "logica_datatypes.DataEmpresa" %>
+<%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
  <%@page import ="java.util.Base64" %>
  <%@page import="java.util.Set" %>
- <%@page import= "logica_datatypes.DataOferta" %>
-  <%@page import= "logica_entidades.Usuario" %>
+ <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+  <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
 
 <!DOCTYPE html>
 <html>
@@ -138,7 +138,7 @@
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
 			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
@@ -261,7 +261,7 @@
 	            <label for="disabledTextInput" class="form-label">SITIO WEB</label>
 	          </div>
 	        </fieldset>
-	        <a href="<%= empresaConsultada.getLinkWeb() %>"><%= empresaConsultada.getLinkWeb() %></a>
+	        <a href="<%= empresaConsultada.getWeb() %>"><%= empresaConsultada.getWeb() %></a>
 	        
 	         
 	        	
