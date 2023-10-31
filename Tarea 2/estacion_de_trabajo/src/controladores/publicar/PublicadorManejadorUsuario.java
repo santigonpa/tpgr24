@@ -245,6 +245,12 @@ public class PublicadorManejadorUsuario {
     		return "no";
     	}
     }
+    
+    @WebMethod
+    public DataPostulacion obtenerDataPostulacion(Postulacion pos) {
+    	return pos.getDTPostulacion();
+    }
+    
 }
     
 
