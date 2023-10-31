@@ -15,7 +15,10 @@ import com.webservices.controladores.publicar.WrapperHashMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
@@ -71,8 +74,8 @@ public class ServletVerPerfil extends HttpServlet {
 		
 		if(	(getEstado(request) == EstadoSesion.SI_LOGEADO)  ) {
 				
-			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			if(user instanceof Postulante) {		
+			DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
+			if(user instanceof DataPostulante) {		
 					//Esta consultando su propio perfil
 				
 					if(user.getNickName().equals(usuarioAConsultar)) {
@@ -91,7 +94,7 @@ public class ServletVerPerfil extends HttpServlet {
 							}
 							request.setAttribute("ofertasConfirmadas",ofertasConfi);
 							ArrayList<Object> ofertasRechazadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasRechazadasIngresadas(usuarioAConsultar).getLista();
-					    	ArrayList<DataOferta> ofertasRech = new ArrayList<>();
+					    	Set<DataOferta> ofertasRech = new HashSet<>();
 
 							for (Object objeto : ofertasRechazadasWrapper) {
 							    if (objeto instanceof DataOferta) {
@@ -150,7 +153,7 @@ public class ServletVerPerfil extends HttpServlet {
 			
 			if(tipoUser.equals("Empresa")) {
 				ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
-		    	ArrayList<DataOferta> ofertasConfi = new ArrayList<>();
+		    	Set<DataOferta> ofertasConfi = new HashSet<>();
 
 				for (Object objeto : ofertasConfirmadasWrapper) {
 				    if (objeto instanceof DataOferta) {

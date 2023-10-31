@@ -86,6 +86,7 @@ public class Postulante extends Usuario{
 	} */
 	
 	public void agregarPostulacionAPostulante(Postulacion postulacion) {
+		@SuppressWarnings("unchecked")
 		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones.getLista();
 		postulaciones.add(postulacion);
 	}
@@ -99,6 +100,7 @@ public class Postulante extends Usuario{
 	} */
 	
 	public boolean estaPostulado(Postulacion postu) {
+		@SuppressWarnings("unchecked")
 		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones.getLista();
 		if (postulaciones.isEmpty()) {
 			return false;
@@ -128,7 +130,8 @@ public class Postulante extends Usuario{
 	
 	public Postulacion encontrarPostulacionPorNombreOferta(String nombreOfer) {
 	    Postulacion pos = null;
-	    ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones.getLista();
+	    @SuppressWarnings("unchecked")
+		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones.getLista();
 		for (Postulacion postulacion : postulaciones) {
 	        if (postulacion.getOferta().getNombreOferta().equals(nombreOfer)) {
 	            pos = postulacion; 

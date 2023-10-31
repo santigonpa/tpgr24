@@ -8,12 +8,14 @@ import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.xml.ws.Endpoint;
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
+import logica_datatypes.DataPostulacion;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
 import logica_datatypes.WrapperArrayList;
 import logica_datatypes.WrapperHashMap;
 import logica_entidades.Empresa;
 import logica_entidades.Paquete;
+import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
 import logica_manejadores.ManejadorUsuario;
@@ -162,4 +164,20 @@ public class PublicadorManejadorUsuario {
     	return usuario;
     }
     
+    @WebMethod
+    public  WrapperArrayList obtenerDataPostulaciones(String nickName) {
+    	Postulante usuario =  (Postulante) manejadorUsuario.obtenerUsuarioPorEmail(nickName);
+    	WrapperArrayList arregloPostulWrapper = usuario.getPostulaciones();
+    	@SuppressWarnings("unchecked")
+		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
+    	ArrayList<DataPostulacion> arregloDataPostu = new ArrayList<>();
+    	for(Postulacion posActual : arregloPostul) {
+    		arregloDataPostu.add(posActual.getDTPostulacion());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arregloDataPostu);
+    	return ret;
+    }
+    
 }
+    
+

@@ -137,7 +137,7 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 			String web,  byte[]imagen , String psw) throws NicknameYaExisteException, EmailYaExisteException,  campoInvalidoException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
-        Usuario empresa = muser.obtenerUsuario(nickname);
+		Empresa empresa = (Empresa) muser.obtenerUsuario(nickname);
         Usuario emailEnUso = muser.obtenerUsuarioPorEmail(email);
         if (emailEnUso != null) {
         	throw new EmailYaExisteException("El email " + emailEnUso.getEmail() + " ya esta registrado");
@@ -154,6 +154,8 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         empresa.setNickName(nickname);
         empresa.setNombre(nombre);
         empresa.setPsw(psw);
+        empresa.setLinkWeb(web);
+        empresa.setDescripcion(descripcion);
         muser.addUsuario(empresa);
 		
 	}
