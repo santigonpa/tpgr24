@@ -4,17 +4,17 @@
  <%@page import= "java.time.LocalTime" %> 
  <%@page import= "java.time.format.DateTimeFormatter" %> 
  <%@page import= "java.time.format.DateTimeFormatter" %> 
- <%@page import= "logica_datatypes.DataPostulante" %>
+ <%@page import= "com.webservices.controladores.publicar.DataPostulante" %>
  <%@page import="java.util.Set" %>
  <%@page import = "java.io.FileOutputStream" %>
  <%@page import  = "java.io.IOException" %>
  <%@page import ="java.util.Base64" %>
- <%@page import= "logica_entidades.Postulacion" %>
- <%@page import= "logica_entidades.OfertaLaboral" %>
- <%@page import= "logica_entidades.Postulante" %>
- <%@page import= "utils.Fabrica" %>
- <%@page import= "logica_manejadores.IManejadorUsuario" %>
- <%@page import= "logica_entidades.Usuario" %>
+ <%@page import= "com.webservices.controladores.publicar.Postulacion" %>
+ <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+ <%@page import= "com.webservices.controladores.publicar.Postulante" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
+ <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
 
  
  
@@ -145,7 +145,7 @@
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
                 <% 
 			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usuar = (Usuario) sessionIniciada.getAttribute("usuario");
+			    DataUsuario usuar = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
 			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
@@ -235,7 +235,7 @@
 	    String nickUser;
         String nombreUser;
         String apellidoUser;
-        LocalDate nac;
+        String nac;
       	String email;
         byte[] imagenBytes;
         String nacionalidad;
@@ -246,13 +246,12 @@
         apellidoUser = dataUser.getApellido();
         email = dataUser.getEmail();
         imagenBytes = dataUser.getImagen();
-        nac= dataUser.getNacimineto();
+        nac= dataUser.getNacimiento();
         nacionalidad = dataUser.getNacionalidad();
         
         String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
         
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String fechaFormateada = nac.format(dateFormatter);
+        
         
         
 	    %>

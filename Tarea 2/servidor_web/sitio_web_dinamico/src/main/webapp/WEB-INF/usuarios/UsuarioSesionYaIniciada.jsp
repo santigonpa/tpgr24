@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "logica_entidades.Usuario" %>
+<%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
 <!DOCTYPE html>
 <html lang = "es">
 <head>
@@ -55,7 +55,7 @@
         <% 
         
         HttpSession sessionIniciada = request.getSession(false);
-        Usuario usr =  (Usuario) sessionIniciada.getAttribute("usuario");
+        DataUsuario usr =  (DataUsuario) sessionIniciada.getAttribute("usuario");
        	String nombre = usr.getNombre();
        	String apellido = usr.getApellido();
        	
