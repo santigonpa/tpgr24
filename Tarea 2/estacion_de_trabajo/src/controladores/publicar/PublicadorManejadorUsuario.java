@@ -144,14 +144,22 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public WrapperArrayList obtenerOfertasConfirmadasDeEmpresa(String nickName) {
     	ArrayList<DataOferta> arr = manejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(nickName);
-    	WrapperArrayList ret = new WrapperArrayList(arr);
+    	ArrayList<String> arrString = new ArrayList<>();
+    	for(DataOferta ofActual : arr) {
+    		arrString.add(ofActual.getNombre());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arrString);
     	return ret;
     }
 
     @WebMethod
     public WrapperArrayList obtenerOfertasRechazadasIngresadas(String nickName) {
     	ArrayList<DataOferta> arr = manejadorUsuario.obtenerOfertasRechazadasIngresadas(nickName);
-    	WrapperArrayList ret = new WrapperArrayList(arr);
+    	ArrayList<String> arrString = new ArrayList<>();
+    	for(DataOferta ofActual : arr) {
+    		arrString.add(ofActual.getNombre());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arrString);
     	return ret;
     }
     @WebMethod
@@ -209,9 +217,9 @@ public class PublicadorManejadorUsuario {
     	WrapperArrayList arregloPostulWrapper = usuario.getPostulaciones();
     	@SuppressWarnings("unchecked")
 		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
-    	ArrayList<DataOferta> arregloDeOfertas = new ArrayList<>();
+    	ArrayList<String> arregloDeOfertas = new ArrayList<>();
     	for(Postulacion postul : arregloPostul) {
-    		DataOferta ofert = postul.getOferta().getDataOferta();
+    		String ofert = postul.getOferta().getNombreOferta();
     		arregloDeOfertas.add(ofert);
     	}
     	WrapperArrayList ret = new WrapperArrayList(arregloDeOfertas);

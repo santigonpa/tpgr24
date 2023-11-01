@@ -67,7 +67,7 @@ public class OfertaLaboral {
 		dataOfer.setTipoDePago(this.tipoDePago);
 		dataOfer.setRemuneracion(this.remuneracion);
 		dataOfer.setNombre(this.nombre);
-		dataOfer.setKeyWords(this.palabrasClave);
+		//dataOfer.setKeyWords(this.palabrasClave);
 		return dataOfer;
 	}
 	

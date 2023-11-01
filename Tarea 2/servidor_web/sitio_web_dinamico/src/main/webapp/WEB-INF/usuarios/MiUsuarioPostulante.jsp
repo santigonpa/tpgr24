@@ -7,13 +7,18 @@
  <%@page import= "com.webservices.controladores.publicar.DataPostulante" %>
  <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
  <%@page import="java.util.Set" %>
+  <%@page import="java.util.HashSet" %>
  <%@page import="java.util.ArrayList" %>
  <%@page import = "java.io.FileOutputStream" %>
  <%@page import  = "java.io.IOException" %>
  <%@page import ="java.util.Base64" %>
   <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
  <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+ 
  <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+  <%@page import= "com.webservices.controladores.publicar.WrapperArrayList" %>
 <%@page import= "java.util.List" %>
 
  
@@ -305,14 +310,26 @@
 	      
 	      	PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
 	  	 	PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
-	        List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickUser).getLista();
-	        ArrayList<DataOferta> ofertasDePostulacion = new ArrayList<>();
-
-	        for (Object objeto : listaObjetos) {
-	            if (objeto instanceof DataOferta) {
-	            	ofertasDePostulacion.add((DataOferta) objeto);
-	            }
-	        }
+	        PublicadorManejadorOfertasService servicePublicadorOfertas = new PublicadorManejadorOfertasService();
+	        PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorOfertas.getPublicadorManejadorOfertasPort();
+	            		
+	            		WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickUser);
+						List<Object> oferObj = wrapperArr.getLista();
+						ArrayList<DataOferta> ofertasDePostulacion = new ArrayList<>();
+						Set<String> nombresOfer = new HashSet<>();
+						
+						for (Object objeto : oferObj) {
+						    if (objeto instanceof String) {
+						    	String dataOfer = (String) objeto;
+						    	nombresOfer.add(dataOfer);
+						    }
+						}
+						for(String nombreOferta : nombresOfer ) {
+							DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+							ofertasDePostulacion.add(ofertaData);
+						}
+	            	
+	      
 	      	if(!ofertasDePostulacion.isEmpty()){
 	    	  
 	      %>

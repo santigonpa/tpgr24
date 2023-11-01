@@ -87,6 +87,19 @@ public class cargarDatos {
 		byte[] p14img = this.getFile("U14.jpg");
 		byte[] p15img = this.getFile("U15.jpg");
 		byte[] p16img = this.getFile("U16.jpg");
+		byte[] o1img = this.getFile("O1.jpg");
+		byte[] o2img = this.getFile("O2.jpg");
+		byte[] o3img = this.getFile("O3.jpg");
+		byte[] o4img = this.getFile("O4.jpg");
+		byte[] o5img = this.getFile("O5.jpg");
+		byte[] o6img = this.getFile("O6.jpg");
+		byte[] o7img = this.getFile("O7.jpg");
+		byte[] o8img = this.getFile("O8.jpg");
+		byte[] o9img = this.getFile("O9.jpg");
+		byte[] o10img = this.getFile("O10.jpg");
+		byte[] o11img = this.getFile("O11.jpg");
+		byte[] o12img = this.getFile("O12.jpg");
+		byte[] o13img = this.getFile("O13.jpg");
 		Postulante p1 = new Postulante();
 		p1.setNickName("lgarcia");
 		p1.setNombre("Lucia");
@@ -423,7 +436,7 @@ public class cargarDatos {
 		o1.setRemuneracion(90000);
 		o1.setCostoOfer(4000);
 		o1.setFechaAlta(ao1);
-		o1.setImagen(null);
+		o1.setImagen(o1img);
 		o1.setTipodePago("Basico");
 
 		OfertaLaboral o2 = new OfertaLaboral();
@@ -436,7 +449,7 @@ public class cargarDatos {
 		o2.setRemuneracion(80000);
 		o2.setCostoOfer(150);
 		o2.setFechaAlta(ao2);
-		o2.setImagen(null);
+		o2.setImagen(o2img);
 		o2.setTipodePago("Sin paquete");
 
 		OfertaLaboral o3 = new OfertaLaboral();
@@ -449,7 +462,7 @@ public class cargarDatos {
 		o3.setRemuneracion(65000);
 		o3.setCostoOfer(150);
 		o3.setFechaAlta(ao3);
-		o3.setImagen(null);
+		o3.setImagen(o3img);
 		o3.setTipodePago("Sin paquete");
 
 		OfertaLaboral o4 = new OfertaLaboral();
@@ -462,7 +475,7 @@ public class cargarDatos {
 		o4.setRemuneracion(40000);
 		o4.setCostoOfer(4000);
 		o4.setFechaAlta(ao4);
-		o4.setImagen(null);
+		o4.setImagen(o4img);
 		o4.setTipodePago("Sin paquete");
 
 		OfertaLaboral o5 = new OfertaLaboral();
@@ -475,7 +488,7 @@ public class cargarDatos {
 		o5.setRemuneracion(10000);
 		o5.setCostoOfer(500);
 		o5.setFechaAlta(ao5);
-		o5.setImagen(null);
+		o5.setImagen(o5img);
 		o5.setTipodePago("Sin paquete");
 
 		OfertaLaboral o6 = new OfertaLaboral();
@@ -488,7 +501,7 @@ public class cargarDatos {
 		o6.setRemuneracion(30000);
 		o6.setCostoOfer(50);
 		o6.setFechaAlta(ao6);
-		o6.setImagen(null);
+		o6.setImagen(o6img);
 		o6.setTipodePago("Destacado");
 
 		OfertaLaboral o7 = new OfertaLaboral();
@@ -501,7 +514,7 @@ public class cargarDatos {
 		o7.setRemuneracion(80000);
 		o7.setCostoOfer(4000);
 		o7.setFechaAlta(ao7);
-		o7.setImagen(null);
+		o7.setImagen(o7img);
 		o7.setTipodePago("Sin paquete");
 
 		OfertaLaboral o8 = new OfertaLaboral();
@@ -514,7 +527,7 @@ public class cargarDatos {
 		o8.setRemuneracion(10000);
 		o8.setCostoOfer(500);
 		o8.setFechaAlta(ao8);
-		o8.setImagen(null);
+		o8.setImagen(o8img);
 		o8.setTipodePago("Sin paquete");
 
 		OfertaLaboral o9 = new OfertaLaboral();
@@ -527,7 +540,7 @@ public class cargarDatos {
 		o9.setRemuneracion(40000);
 		o9.setCostoOfer(500);
 		o9.setFechaAlta(ao9);
-		o9.setImagen(null);
+		o9.setImagen(o9img);
 		o9.setTipodePago("Sin paquete");
 
 		OfertaLaboral o10 = new OfertaLaboral();
@@ -540,7 +553,7 @@ public class cargarDatos {
 		o10.setRemuneracion(123000);
 		o10.setCostoOfer(500);
 		o10.setFechaAlta(ao10);
-		o10.setImagen(null);
+		o10.setImagen(o10img);
 		o10.setTipodePago("Destacada");
 
 		OfertaLaboral o11 = new OfertaLaboral();
@@ -553,7 +566,7 @@ public class cargarDatos {
 		o11.setRemuneracion(135000);
 		o11.setCostoOfer(4000);
 		o11.setFechaAlta(ao11);
-		o11.setImagen(null);
+		o11.setImagen(o11img);
 		o11.setTipodePago("Premium");
 
 		OfertaLaboral o12 = new OfertaLaboral();
@@ -566,7 +579,7 @@ public class cargarDatos {
 		o12.setRemuneracion(230000);
 		o12.setCostoOfer(500);
 		o12.setFechaAlta(ao12);
-		o12.setImagen(null);
+		o12.setImagen(o12img);
 		o12.setTipodePago("Destacada");
 
 		OfertaLaboral o13 = new OfertaLaboral();
@@ -579,7 +592,7 @@ public class cargarDatos {
 		o13.setRemuneracion(60000);
 		o13.setCostoOfer(4000);
 		o13.setFechaAlta(ao13);
-		o13.setImagen(null);
+		o13.setImagen(o13img);
 		o13.setTipodePago("Premium");
 
 		//Agrego oferta a Empresa
@@ -756,10 +769,7 @@ public class cargarDatos {
 		pos1.setFecha(fPos1);
 		pos1.setCurri("Licenciada en Administración, experiencia en gestión de equipos y proyectos. Conocimientos en Office.");
 		pos1.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
-		//pos1.setPost((Postulante)p1);
-		//Postulante p1 = (Postulante) mu.obtenerUsuario("lgarcia");
-		//System.out.println(p1.getNickName());
-		//pos1.setPost((Postulante)p1);
+		pos1.setPost((Postulante)p1);
 		pos1.setOfer(o1);
 
 		Postulacion pos2 = new Postulacion();
@@ -794,7 +804,7 @@ public class cargarDatos {
 		pos6.setFecha(fPos6);
 		pos6.setCurri("Licenciada en Administración, me considero genia, experiencia en gestión de equipos y proyectos. Conocimientos en Microsoft Office.");
 		pos6.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo dinámico y contribuir con mis habilidades de liderazgo.");
-		//pos6.setPost((Postulante)p1);
+		pos6.setPost((Postulante)p1);
 		pos6.setOfer(o2);
 
 		mo.addPostulacion(pos1);
@@ -813,12 +823,12 @@ public class cargarDatos {
 		
 		
 		try {
-			//cu.agregarPostulacionAPostulante(p1.getNickName() , pos1);
+			cu.agregarPostulacionAPostulante(p1.getNickName() ,pos1);
 			cu.agregarPostulacionAPostulante(p2.getNickName(), pos2);
 			cu.agregarPostulacionAPostulante(p3.getNickName(), pos3);
 			cu.agregarPostulacionAPostulante(p4.getNickName(), pos4);
 			cu.agregarPostulacionAPostulante(p5.getNickName(), pos5);
-			cu.agregarPostulacionAPostulante(p6.getNickName(), pos6);
+			cu.agregarPostulacionAPostulante(p1.getNickName(), pos6);
 		} catch (yaExistePostulacionAOfertaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

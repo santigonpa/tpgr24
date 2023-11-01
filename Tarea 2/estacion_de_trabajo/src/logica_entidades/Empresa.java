@@ -80,8 +80,8 @@ public class Empresa extends Usuario{
 	
 	public HashMap<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-        
-	    for (String ofertaNombre : this.ofertas.keySet()) {
+        HashMap<String,OfertaLaboral> mapa = this.getOfertas();
+	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
 	    			res.put(ofertaNombre, oferta);
@@ -92,8 +92,8 @@ public class Empresa extends Usuario{
 	
 	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-        
-	    for (String ofertaNombre : this.ofertas.keySet()) {
+		HashMap<String,OfertaLaboral> mapa = this.getOfertas();
+	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
 	    			res.put(ofertaNombre, oferta);

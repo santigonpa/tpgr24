@@ -9,10 +9,11 @@ import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataOferta;
 import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.WrapperHashMap;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,7 @@ import java.util.Set;
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
 @WebServlet (description = "Servlet de ver perfil de usuario", urlPatterns = { "/VerPerfil" })
 public class ServletVerPerfil extends HttpServlet {
@@ -27,7 +29,8 @@ public class ServletVerPerfil extends HttpServlet {
 	
     private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
 	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
-
+	private PublicadorManejadorOfertasService servicePublicadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorOfertas.getPublicadorManejadorOfertasPort();
     public ServletVerPerfil() {
         super();
     }
@@ -81,27 +84,23 @@ public class ServletVerPerfil extends HttpServlet {
 						
 					}else {
 						if(usuarioConsultar instanceof DataEmpresa) {
-							ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
-					    	ArrayList<DataOferta> ofertasConfi = new ArrayList<>();
-
+							WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+							List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+							Set<DataOferta> ofertasConfi = new HashSet<>();
+							Set<String> nombresOfer = new HashSet<>();
+							
 							for (Object objeto : ofertasConfirmadasWrapper) {
-							    if (objeto instanceof DataOferta) {
-							    	DataOferta dataOfer = (DataOferta) objeto;
-							    	ofertasConfi.add(dataOfer);
+							    if (objeto instanceof String) {
+							    	String dataOfer = (String) objeto;
+							    	nombresOfer.add(dataOfer);
 							    }
+							}
+							for(String nombreOferta : nombresOfer ) {
+								DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+								ofertasConfi.add(ofertaData);
 							}
 							request.setAttribute("ofertasConfirmadas",ofertasConfi);
-							List<Object> ofertasRechazadasWrapper = puertoManejadorUsuario.obtenerOfertasRechazadasIngresadas(usuarioAConsultar).getLista();
 							
-					    	Set<DataOferta> ofertasRech = new HashSet<>();
-
-							for (Object objeto : ofertasRechazadasWrapper) {
-							    if (objeto instanceof DataOferta) {
-							    	DataOferta dataOfer = (DataOferta) objeto;
-							    	ofertasRech.add(dataOfer);
-							    }
-							}
-							request.setAttribute("ofertasRyI",ofertasRech);
 							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
 						}else {
 							request.getRequestDispatcher("/WEB-INF/usuarios/Consulta"+tipoUser+"Logged.jsp").forward(request, response);
@@ -113,25 +112,40 @@ public class ServletVerPerfil extends HttpServlet {
 				}else {//es empresa
 					
 					if(usuarioConsultar instanceof DataEmpresa) {
-						ArrayList<Object> ofertasConfirmadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
+						WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+						List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
 						Set<DataOferta> ofertasConfi = new HashSet<>();
-
+						Set<String> nombresOfer = new HashSet<>();
+						
 						for (Object objeto : ofertasConfirmadasWrapper) {
-						    if (objeto instanceof DataOferta) {
-						    	DataOferta dataOfer = (DataOferta) objeto;
-						    	ofertasConfi.add(dataOfer);
+						    if (objeto instanceof String) {
+						    	String dataOfer = (String) objeto;
+						    	nombresOfer.add(dataOfer);
 						    }
+						}
+						for(String nombreOferta : nombresOfer ) {
+							DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+							ofertasConfi.add(ofertaData);
 						}
 						request.setAttribute("ofertasConfirmadas",ofertasConfi);
-						ArrayList<Object> ofertasRechazadasWrapper = (ArrayList<Object>)  puertoManejadorUsuario.obtenerOfertasRechazadasIngresadas(usuarioAConsultar).getLista();
-				    	ArrayList<DataOferta> ofertasRech = new ArrayList<>();
-
-						for (Object objeto : ofertasRechazadasWrapper) {
-						    if (objeto instanceof DataOferta) {
-						    	DataOferta dataOfer = (DataOferta) objeto;
-						    	ofertasRech.add(dataOfer);
+						
+						WrapperArrayList wrapperArray = puertoManejadorUsuario.obtenerOfertasRechazadasIngresadas(usuarioAConsultar);
+						List<Object> ofertasRechWrapper = wrapperArray.getLista();
+						Set<DataOferta> ofertasRech = new HashSet<>();
+						Set<String> ofertasRechString = new HashSet<>();
+						
+						for (Object objeto : ofertasRechWrapper) {
+						    if (objeto instanceof String) {
+						    	String dataOferRech = (String) objeto;
+						    	ofertasRechString.add(dataOferRech);
 						    }
 						}
+						
+						for(String nombreOfertaRech : ofertasRechString ) {
+							DataOferta ofertaDataRech = puertoManejadorOfertas.getDataOferta(nombreOfertaRech);
+							ofertasRech.add(ofertaDataRech);
+						}
+						
 						request.setAttribute("ofertasRyI",ofertasRech);
 						if(user.getNickName().equals(usuarioAConsultar)) {	
 						
@@ -151,15 +165,22 @@ public class ServletVerPerfil extends HttpServlet {
 		}else { // LA SESION NO ESTA INICIADA
 			
 			if(tipoUser.equals("Empresa")) {
-				List<Object> ofertasConfirmadasWrapper = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar).getLista();
-		    	ArrayList<DataOferta> ofertasConfi = new ArrayList<>();
-
+				WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(usuarioAConsultar);
+				List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+				Set<DataOferta> ofertasConfi = new HashSet<>();
+				Set<String> nombresOfer = new HashSet<>();
+				
 				for (Object objeto : ofertasConfirmadasWrapper) {
-				    if (objeto instanceof DataOferta) {
-				    	DataOferta dataOfer = (DataOferta) objeto;
-				    	ofertasConfi.add(dataOfer);
+				    if (objeto instanceof String) {
+				    	String dataOfer = (String) objeto;
+				    	nombresOfer.add(dataOfer);
 				    }
 				}
+				for(String nombreOferta : nombresOfer ) {
+					DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+					ofertasConfi.add(ofertaData);
+				}
+				
 				request.setAttribute("ofertasConfirmadas",ofertasConfi);
 			}
 			
