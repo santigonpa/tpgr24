@@ -55,15 +55,30 @@
 
 		<div class="cartas">
 
-				 <%
-                ArrayList<DataPaquete> listaDePaquetes = (ArrayList<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
-                
-                if (listaDePaquetes != null && !listaDePaquetes.isEmpty()) {
-                    for (DataPaquete dataTP : listaDePaquetes) {
-                        String nombreOfer = dataTP.getNombre();
-                        byte[] imagenBytes = dataTP.getImagen();
-                        String base64Image = (imagenBytes != null) ? Base64.getEncoder().encodeToString(imagenBytes) : ""; // Añade aquí la imagen predeterminada si es necesario
-            %>
+				<%
+				private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+				private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
+
+    WrapperArrayList listaDePaquetesWrapper = (WrapperArrayList) request.getAttribute("coleccionDataPaquetes");
+    ArrayList<DataPaquete> listaDePaquetes = new ArrayList<>();
+
+    if (listaDePaquetesWrapper != null) {
+        for (Object objeto : listaDePaquetesWrapper.getLista()) {
+            if (objeto instanceof DataPaquete) {
+                DataPaquete dataTP = (DataPaquete) objeto;
+                listaDePaquetes.add(dataTP);
+            }
+        }
+    }
+
+    if (listaDePaquetes != null && !listaDePaquetes.isEmpty()) {
+        for (DataPaquete dataTP : listaDePaquetes) {
+            String nombreOfer = dataTP.getNombre();
+            byte[] imagenBytes = dataTP.getImagen();
+            String base64Image = (imagenBytes != null) ? Base64.getEncoder().encodeToString(imagenBytes) : ""; // Añade aquí la imagen predeterminada si es necesario
+%>
+
+
 				
 			    <div class="card" style="width: 20rem;">				
 			    <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de paquete" style="object-fit: cover; width: 100%; height: 100%;">
