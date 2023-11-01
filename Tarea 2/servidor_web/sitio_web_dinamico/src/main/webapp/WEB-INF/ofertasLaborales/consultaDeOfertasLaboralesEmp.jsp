@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
           
-	<%@page import= "logica_datatypes.DataEmpresa" %>
-	<%@page import= "logica_datatypes.DataOferta" %>
-	<%@page import= "logica_datatypes.DataKeyWord" %>
+	<%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
+	<%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+	<%@page import= "com.webservices.controladores.publicar.DataKeyWord" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@page import= "logica_manejadores.IManejadorUsuario" %>
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
     <%@page import="java.util.Map" %>
-    <%@page import= "utils.Fabrica" %>
-    <%@page import= "logica_manejadores.IManejadorOferta" %>
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
+    <%@ page import="java.util.ArrayList" %>
     
     
 <!DOCTYPE html>
@@ -142,14 +143,15 @@
 						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
 						    <option selected disabled>Filtrar por empresa</option>
 						    <% 
-						       Fabrica fab = Fabrica.getInstance();
-						       IManejadorUsuario imu = fab.getInManejadorUsuario();
-						       Map<String, DataEmpresa> dataEmpresas = imu.getDataEmpresas();
-						       for(DataEmpresa dEmpr : dataEmpresas.values()){
-						         String nickEmpresa = dEmpr.getNickName();
+								Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
+							    
+							    if(!conjuntoDeEmpresas.isEmpty()){  
+							    	String nickEmpresa;
+							    	for (DataEmpresa dataEmp : conjuntoDeEmpresas) {
+							            nickEmpresa = dataEmp.getNickName();
 						    %>
 						    <option value="<%= nickEmpresa %>"><%= nickEmpresa %></option>
-						    <% } %>
+						    <% } }%>
 						  </select>
 						</form>
 	                </div>
@@ -158,13 +160,14 @@
 						  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
 						    <option selected disabled>Filtrar por KeyWord</option>
 						    <% 
-						       IManejadorOferta imo = fab.getInManejadorOferta();
-						       Set<DataKeyWord> dataKeywords = imo.getDataKeyWord();
-						       for(DataKeyWord dataKW : dataKeywords){
-						         String palabra = dataKW.getPalabraClave();
+						       ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
+						    	if (keys != null && !keys.isEmpty()) {
+						    		String palabra;
+									for (DataKeyWord key : keys) {  
+						         		palabra = key.getPalabraClave();
 						    %>
 						    <option value="<%= palabra %>"><%= palabra %></option>
-						    <% } %>
+						    <% }} %>
 						  </select>
 						</form>
 	                </div>

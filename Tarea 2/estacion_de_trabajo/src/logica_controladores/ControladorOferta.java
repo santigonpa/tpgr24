@@ -125,6 +125,7 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaOferta.setRemuneracion(remuneracion);
 		nuevaOferta.setTipodePago(tipoDePago);
 		nuevaOferta.setEmpresa(emp);
+		nuevaOferta.setEstado(EstadoOferta.INGRESADA);
 		emp.linkearOfertaEmpresa(nuevaOferta, nombre);
 		nuevaOferta.setTipoPublicacion(tipo);
 		mofer.linkearKeywords(palabrasClaveSelec, nuevaOferta); //linkea la coleccion de keywords a la oferta
@@ -170,6 +171,7 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaOferta.setTipodePago(tipoDePago);
 		nuevaOferta.setEmpresa(emp);
 		nuevaOferta.setEmpresa(emp);
+		nuevaOferta.setEstado(EstadoOferta.INGRESADA);
 		emp.linkearOfertaEmpresa(nuevaOferta, nombre);
 		nuevaOferta.setTipoPublicacion(tipo);
 		mofer.linkearKeywords(palabrasClaveSelec, nuevaOferta); //linkea la coleccion de keywords a la oferta
