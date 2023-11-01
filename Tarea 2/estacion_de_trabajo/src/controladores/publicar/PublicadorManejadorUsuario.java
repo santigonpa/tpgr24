@@ -239,7 +239,7 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public  String tienePaquetePregunta(String nickName) {
     	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
-    	if( usuario.getCompra().getPaquete() != null ) {
+    	if( usuario.getCompra() != null ) {
     		return "si";
     	}else {
     		return "no";

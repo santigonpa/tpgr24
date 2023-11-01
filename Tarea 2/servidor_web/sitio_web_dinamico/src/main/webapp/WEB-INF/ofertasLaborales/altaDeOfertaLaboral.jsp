@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import= "com.webservices.manejadores.publicar.DataTipoPublicacion" %>
+    <%@page import= "com.webservices.controladores.publicar.DataTipoPublicacion" %>
     <%@page import="java.util.Set" %>
-    <%@page import="java.time.LocalDate;
-" %>
+    <%@page import="java.time.LocalDate" %>
+    <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+    <%@page import= "com.webservices.controladores.publicar.KeyWord" %>
+    <%@page import= "com.webservices.controladores.publicar.DataKeyWord" %>
+    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
+    <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +17,6 @@
     <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
-    <%@page import= "com.webservices.manejadores.publicar.DataOferta" %>
-    <%@page import= "com.webservices.controladores.publicar.KeyWord" %>
 
     <!-- Bootstrap -->
     <link
@@ -224,8 +226,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				<%
 			    
-				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
-				Set<KeyWord> keys = (Set<KeyWord>) request.getAttribute("keys");
+				ArrayList<DataTipoPublicacion> conjuntoDePaquetes = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+				ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
 				
 				
 			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
@@ -235,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			        int exp;
 			        int duracion;
 			        float costo;
-			        LocalDate fecha;
+			        String fecha;
 			
 			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
 			        	nombrePaquete = dataTP.getNombre();
@@ -243,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			        	exp = dataTP.getExposicion();
 			        	duracion = dataTP.getDuracion();
 			        	
-			        	fecha = dataTP.getFechaString();
+			        	fecha = dataTP.getFecha();
 			    %>
 				
 				

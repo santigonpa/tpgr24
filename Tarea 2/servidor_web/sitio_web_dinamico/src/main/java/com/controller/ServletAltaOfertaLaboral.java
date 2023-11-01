@@ -34,6 +34,7 @@ import com.webservices.controladores.publicar.KeyWord;
 import com.webservices.controladores.publicar.NoExistePublicacionException_Exception;
 import com.webservices.controladores.publicar.NombreRepetidoOfertaException_Exception;
 import com.webservices.controladores.publicar.DataTipoPublicacion;
+import com.webservices.controladores.publicar.DataKeyWord;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataPaquete;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
@@ -107,11 +108,11 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}
 		
 		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
-		ArrayList<KeyWord> coleccionKeys = new ArrayList<>();
+		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
 		
 		for (Object objeto2 : coleccionKeysWrapper) {
-		    if (objeto2 instanceof KeyWord) {
-		    	KeyWord key = (KeyWord) objeto2;
+		    if (objeto2 instanceof DataKeyWord) {
+		    	DataKeyWord key = (DataKeyWord) objeto2;
 		    	coleccionKeys.add(key);
 		    }
 		}
@@ -242,9 +243,9 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	
 		
 		String tipoPago = request.getParameter("tipoPago");
-		
+
 		LocalDate fechaActual = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
         String fechaFormateada = fechaActual.format(formatter);
 		
