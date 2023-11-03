@@ -54,6 +54,7 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	String nombreOfer = request.getParameter("id");
 			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
+			
 	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
 
 			

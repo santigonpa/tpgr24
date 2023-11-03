@@ -127,4 +127,12 @@ public class PublicadorManejadorOfertas {
     	WrapperArrayList ret = new WrapperArrayList(dataPostus);
     	return ret;
     }
+    
+    @WebMethod
+    public WrapperArrayList getKeysPorNombreOfer(String oferta) {
+    	OfertaLaboral ofer = manejadorOferta.obtenerOferta(oferta);
+    	ArrayList<String> keys = ofer.getKeyWordsString();
+    	WrapperArrayList ret = new WrapperArrayList(keys);
+    	return ret;
+    }
 }
