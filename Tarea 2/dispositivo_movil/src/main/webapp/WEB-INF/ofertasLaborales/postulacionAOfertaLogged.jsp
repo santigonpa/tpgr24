@@ -149,7 +149,7 @@
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
+                <li><a class="dropdown-item" href="/dispositivo_movil/VerPerfil">Usuario</a></li>
                 <li><a class="dropdown-item" href="modificarDatosDeUsuario.html">Modificar Usuario</a></li>
                 <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
                 <!-- no se si meter ese js-->
@@ -238,7 +238,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col">
-                    <form id="empresaForm" action="/TrabajoUY/PostulacionAOferta" method="get"> 
+                    <form id="empresaForm" action="/dispositivo_movil/PostulacionAOferta" method="get"> 
 					  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
 					    <option selected disabled>Filtrar por empresa</option>
 					    <% Fabrica fab = Fabrica.getInstance();
@@ -253,7 +253,7 @@
 					</form>
                 </div>
                 <div class="col">
-                    <form id="keywordForm" action="/TrabajoUY/PostulacionAOferta" method="get"> 
+                    <form id="keywordForm" action="/dispositivo_movil/PostulacionAOferta" method="get"> 
 					  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
 					    <option selected disabled>Filtrar por KeyWord</option>
 					    <% 
@@ -333,7 +333,7 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta %></h5>
 			          <p class="card-text"><%= descripcionOferta %></p>
-			          <a href="/TrabajoUY/PostulacionDesdeVerOferta?ofer=<%= nombreOferta %>" class="btn btn-outline-dark">Postularme</a>
+			          <a href="/dispositivo_movil/PostulacionDesdeVerOferta?ofer=<%= nombreOferta %>" class="btn btn-outline-dark">Postularme</a>
 			        </div>
 			      </div>
 			      </div>

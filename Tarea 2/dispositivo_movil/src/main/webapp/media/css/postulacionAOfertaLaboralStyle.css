@@ -1,0 +1,392 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap');
+body{
+    font-family: 'Fira Sans Condensed', serif;
+}
+*{
+    margin: 0;
+    padding:0;
+}
+.navbar-brand .logotipo-trabajouy {
+    width: 80px; /* Establece el ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-right: -15px; /* Espacio entre la imagen y el texto */
+    margin-top : -10px;
+}
+.cerrar-sesion {
+    color: rgb(0, 0, 0) !important; /* Color de texto predeterminado (blanco) */
+    background-color: transparent !important; /* Fondo predeterminado (transparente) */
+    transition: background-color 0.3s, color 0.3s !important; /* Transición suave de color y fondo */
+}
+
+.cerrar-sesion:hover {
+    color: white !important; /* Cambia el color de texto a blanco al hacer hover */
+    background-color: red !important; /* Cambia el fondo a rojo al hacer hover */
+}
+
+/* Estilos para el texto "TRABAJO UY" */
+.navbar-brand .texto-trabajo-uy {
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Peso de fuente (negrita) */
+    color: #071857; /* Color de texto (rojo como ejemplo) */
+    text-shadow: #ffffff;
+    /* Otros estilos que desees aplicar */
+}
+
+/* Estilos para centrar la barra de búsqueda y el botón */
+
+
+.titulo-trabajouy{
+    text-shadow: #FFFF;
+}
+
+
+/* Personaliza el componente de navegación de Bootstrap */
+.navbar {
+    margin: 0; /* Elimina el margen superior */
+    padding: 0; /* Elimina el relleno */
+}
+
+.navbar-parte-usuario{
+	margin-top : 15px;
+	margin-left : auto !important;
+}
+
+
+/* Personaliza el margen inferior del componente de navegación (opcional) */
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+
+
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+body{
+  margin : 0;
+}
+
+.trabajo-uy {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 100px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  text-shadow: 3px 3px 0px black;
+}
+
+.slogan-uy {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 500;
+  text-shadow: #ffffff;
+  letter-spacing: 0.2px;
+  font-size: 35px;
+  margin-top: 10px; /* Agrega espacio en la parte superior */
+  margin-bottom: 0; /* Elimina el espacio en la parte inferior predeterminado */
+}
+.trabajo-uy,
+.slogan-uy {
+  position: relative; /* Asegura que los títulos se coloquen sobre las olas */
+  z-index: 1; /* Establece un índice Z mayor que 0 para que estén encima de las olas */
+}
+
+p{
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  font-size:14px;
+  color: #333333;
+}
+.logo {
+  width:50px;
+  fill:white;
+  padding-right:15px;
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea el contenido en la parte superior */
+    align-items: center;
+    height: 75vh; /* Establece la altura al 100% de la ventana */
+    margin: 0;
+    padding: 0;
+}
+
+.flex { /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:14vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: white;
+}
+
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+  position: absolute;
+  width: 100%;
+  height: 100%; /* Establece el alto al 100% para que cubra toda la sección */
+  z-index: 0; /* Establece un índice Z menor que 1 para que esté detrás de los títulos */
+}
+  .content {
+    height:30vh;
+  }
+  h1 {
+    font-size:24px;
+  }
+}
+
+.nav-link,
+.navbar-toggler-icon,
+.nav-link.disabled,
+.form-control,
+.navbar-parte-usuario {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 300;
+}
+
+.carousel-container {
+  width: 80%; /* Establece el ancho del contenedor */
+  height: 600px; /* Establece la altura del contenedor */
+  margin-top: 350px; /* Centra horizontalmente el contenedor */
+  overflow: hidden; /* Oculta el contenido que exceda el contenedor */
+  background-size: cover;
+}
+
+.carousel {
+  width: 100%; /* Ajusta el ancho del carrusel al 100% del contenedor */
+  height: 100%; /* Ajusta la altura del carrusel al 100% del contenedor */
+}
+
+.carousel-inner {
+  width: 100%; /* Ajusta el ancho del contenido del carrusel al 100% */
+  height: 100%; /* Ajusta la altura del contenido del carrusel al 100% */
+}
+
+.carousel-item {
+  width: 100%; /* Ajusta el ancho de los elementos del carrusel al 100% */
+  height: 100%; /* Ajusta la altura de los elementos del carrusel al 100% */
+  
+  
+}
+
+.carousel img {
+  width: 100%; /* Ajusta el ancho de las imágenes dentro del carrusel al 100% */
+  height: 100%; /* Ajusta la altura de las imágenes dentro del carrusel al 100% */
+}
+
+.contenedor {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.contenedor2 {
+  text-align: center;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+.contenedor3 {
+  text-align: center;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+.contenedor4 {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+.contenedor5 {
+  background-color: rgb(240, 240, 240);
+  padding-bottom: 30px;
+  padding-left: 10px; 
+  padding-right: 10px;
+  overflow: hidden;
+ 
+  width: 100%; /* Puedes ajustar el ancho según tus necesidades */
+}
+
+i{
+	font-size: 25px;
+}
+
+.contenedorPrincipal{
+  margin-top: 30px; /*ajusta la distancia del titulo a la barra */
+  text-align: center;
+ }
+
+.contenedorCards{
+	  margin-left: 90px;
+}
+
+.button-grup{
+	position: relative;
+  	display: inline-flex;
+ 	vertical-align: middle;
+ }
+ 
+ @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap');
+
+body {
+    font-family: 'Fira Sans Condensed', serif;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 1px solid black
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"], input[type="tel"], input[type="url"], select, textarea {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.form-container > * > *:not(label)::placeholder {
+    color: #c7c7c7;
+}
+
+
+.active.text-secondary {
+    color: var(--bs-primary) !important;
+}
+
+.carousel-containerOfer{
+  width: 80%; /* Establece el ancho del contenedor */
+  height: 600px; /* Establece la altura del contenedor */
+  overflow: hidden; /* Oculta el contenido que exceda el contenedor */
+  background-size: cover;
+}
+
+.alinearImg{
+	margin-top: 105px;
+	margin-right: 50px;
+	width : 120%;
+	height : 180%;
+}
+
+.alinearImg2{
+	margin-top: 50px;
+	margin-right: 50px;
+	width : 100%;
+	height : 100%;
+}
+
+
+
+
+/* EMPIEZAN ESTILOS DE CONSULTA POSTULANTE MAIN */
+
+
+.contenedor-principal {
+  text-align: center; /* Alinea los elementos en el centro horizontal */
+}
+
+.card,
+.contenedor-form {
+  display: inline-block; /* Hace que los elementos estén en línea */
+  vertical-align: top; /* Alinea los elementos en la parte superior */
+  width: calc(50% - 10px); /* Establece el ancho deseado para cada elemento (50% del contenedor con espacio entre ellos) */
+  margin-right: 20px; /* Agrega espacio entre la tarjeta y el formulario */
+}
+
+.card{
+	margin-top : 75px;
+	margin-left : 75px;
+}
+
+.contenedor-principal {
+  display: flex; /* Hace que los elementos estén en la misma línea */
+  align-items: flex-start; /* Alinea los elementos en la parte superior del contenedor */
+}
+
+.card {
+  margin-right: 20px; /* Agrega espacio entre la tarjeta y el formulario */
+}
+
+.contenedor-form{
+  margin-top : 75px;
+  margin-left : 75px;
+}
+.nombre-user{
+	font-family: 'Fira Sans Condensed', sans-serif;
+    font-size:50px;/* Tamaño de fuente */
+    font-weight: bold; /* Peso de fuente (negrita) */
+    color: #343a40; 
+    text-shadow: #ffffff;
+}
+
+
+
+
+/* Estilos para el contenedor de la alerta */
+.alert {
+  text-align: center; /* Centra el texto horizontalmente */
+  padding: 20px; /* Agrega espaciado interno para el margen */
+  margin-top: 100px;	/* Agrega margen superior para separar del encabezado */
+  margin-bottom: 20px;/* Agrega margen inferior para separar del pie de página */
+}
+
+/* Estilos para el texto dentro de la alerta */
+.alert p {
+  font-size: 16px; /* Tamaño de fuente deseado */
+  margin: 5px 0; /* Margen superior e inferior para separar los párrafos */
+}
