@@ -1,5 +1,5 @@
 
-package com.webservices;
+package com.webservices.controladores.publicar;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -1,5 +1,5 @@
 
-package com.webservices;
+package com.webservices.controladores.publicar;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
