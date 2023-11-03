@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import logica_entidades.KeyWord;
+
 import com.webservices.controladores.publicar.DataOferta;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataPostulante;
@@ -54,6 +56,8 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	String nombreOfer = request.getParameter("id");
 			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
+			
+			ArrayList<KeyWord> pal = ofer.getKeyWords();
 			
 	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
 
