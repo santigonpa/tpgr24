@@ -44,6 +44,7 @@
     <%@ page import="com.webservices.controladores.publicar.KeyWord" %>
 	<%@page import= "java.util.ArrayList" %>
     
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -184,28 +185,33 @@
   		 	<hr>
   		  
   		  <%
-  	
-  			ArrayList<KeyWord> palabras = null;
+  			
+  			ArrayList<String> palabras = (ArrayList<String>) request.getAttribute("keys");
   		  %>
 			<div class="row">
     			<div class="col">
   					<h4 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
   				</div>
   				<div class="col">
-					<% for (KeyWord key : palabras) { %>
-						<a>
-      						<button type="button" class="btn btn-outline-secondary"><%= key.getPalabraClave() %></button>
-						</a>
-					<% } %>
+					    <% for (String key : palabras) { %>
+					        <div class="mb-2 mt-2"> <!-- Agregando margen superior e inferior a cada botón -->
+					            <a>
+					                <button type="button" class="btn btn-outline-secondary"><%= key %></button>
+					            </a>
+					        </div>
+					    <% } %>
+					</div>			
 				</div>
-				</div>
+				
+				<hr>
 			</div>
 			</div>
+		
 			
   		</div>
   		</div>
 	</main>
-	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
+
 </html>

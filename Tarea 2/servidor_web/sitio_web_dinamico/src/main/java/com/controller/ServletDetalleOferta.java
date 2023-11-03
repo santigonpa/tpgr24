@@ -21,6 +21,7 @@ import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
 @WebServlet (description = "Servlet de Consulta de oferta laboral detllada", urlPatterns = { "/DetalleOferta" })
 @MultipartConfig
@@ -57,6 +58,14 @@ public class ServletDetalleOferta extends HttpServlet {
 			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
 			
+			List<Object> keys = puertoManejadorOfertas.getKeysPorNombreOfer(nombreOfer).getLista();
+			ArrayList<String> keysEnviar = new ArrayList<>();
+			for (Object objetoK : keys) {
+    		    if (objetoK instanceof String) {
+    		    	keysEnviar.add((String) objetoK);
+    		    }
+    		}
+			request.setAttribute("keys", keysEnviar);
 			
 	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
 

@@ -32,15 +32,15 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
-    <%@ page import="logica_datatypes.DataOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.DataOferta" %>
     <%@ page import="java.time.LocalTime" %>
     <%@ page import="java.time.LocalDate" %>
-    <%@ page import="logica_entidades.OfertaLaboral.EstadoOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.EstadoOferta" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@ page import="logica_entidades.KeyWord" %>
-	<%@ page import="java.util.Set" %>
+    <%@ page import="com.webservices.controladores.publicar.KeyWord" %>
+	<%@ page import="java.util.ArrayList" %>
 	<%@ page import="java.time.format.DateTimeFormatter" %>
     
     <script
@@ -53,19 +53,17 @@
 <body>
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	    
-	 <%
+	     <%
         // Recupera la ofertaSeleccionada de la solicitud
         DataOferta oferta = (DataOferta) request.getAttribute("ofer");
 	 	String nombre = oferta.getNombre();
 	 	String desc = oferta.getDescripcion();
 	 	String ciudad = oferta.getCiudad();
 	 	String dep = oferta.getDepartamento();
-	 	LocalTime horaI = oferta.getHoraInicio();
-	 	LocalTime horaF = oferta.getHoraFin();
+	 	String horaI = oferta.getHoraInicio();
+	 	String horaF = oferta.getHoraFin();
 	 	float remuneracion = oferta.getRemuneracion();
-	 	LocalDate alta = oferta.getFechaDeAlta();
-	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    String formattedDate = alta.format(dateFormatter);
+	 	String alta = oferta.getFechaDeAlta(); 
 	 	EstadoOferta est = oferta.getEstado();
 	 	String emp = oferta.getEmpresa();
         byte[] imagenBytes = oferta.getImagen();
@@ -73,9 +71,9 @@
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);
         }
-        Set<KeyWord> keys = oferta.getKeyWords();
+      
 		String es = (String) request.getAttribute("queEs");
-		
+        
     %>
 	
 	<div class = "contenedor4">
@@ -159,7 +157,7 @@
       					<h4 class = "fs-5 fw=normal">Fecha:</h4>
    				 </div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%= formattedDate %></h4>
+      					<h4 class = "fs-5 fw-lighter"><%= alta %></h4>
     		 	</div>
   		 	</div>
   		 	<hr>
@@ -184,23 +182,23 @@
 						</a>    		 	</div>
   		 	</div>
   		 	<hr>
-  		 
-  		  
   		  <%
-  		  	Set<KeyWord> palabras = oferta.getKeyWords();
-  		  
+  			
+  			ArrayList<String> palabras = (ArrayList<String>) request.getAttribute("keys");
   		  %>
 			<div class="row">
     			<div class="col">
   					<h4 class = "text-uppercase fs-5 fw-bolder">Keywords</h5>
   				</div>
   				<div class="col">
-					<% for (KeyWord key : palabras) { %>
-						<a>
-      						<button type="button" class="btn btn-outline-secondary"><%= key.getPalabraClave() %></button>
-						</a>
-					<% } %>
-				</div>
+					    <% for (String key : palabras) { %>
+					        <div class="mb-2 mt-2"> <!-- Agregando margen superior e inferior a cada botón -->
+					            <a>
+					                <button type="button" class="btn btn-outline-secondary"><%= key %></button>
+					            </a>
+					        </div>
+					    <% } %>
+					</div>			
 				</div>
 			</div>
 			</div>
