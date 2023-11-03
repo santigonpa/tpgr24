@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@page import= "logica_datatypes.DataTipoPublicacion" %>
-    <%@page import="java.util.Set" %>
+    <%@page import= "com.webservices.controladores.publicar.DataTipoPublicacion" %>
+    <%@page import= "java.util.ArrayList" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
@@ -76,16 +76,14 @@
 	<main>
 	<div class="contenedor4">
   			<h2 class="-titulo-"><strong>Tipos de Publicación de Ofertas Laborales</strong></h2>
-  			<p>
-  			<hr>
-  			</p>
+  			<p><hr></p>
 		</div>	
 	
 	<div class="cartas">
 
 				<%
 			    
-				Set<DataTipoPublicacion> conjuntoDePaquetes = (Set<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+				ArrayList<DataTipoPublicacion> conjuntoDePaquetes = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
 			    
 			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
 			    
@@ -102,7 +100,7 @@
 			        	exp = dataTP.getExposicion();
 			        	duracion = dataTP.getDuracion();
 			        	costo = dataTP.getCosto();
-			        	fecha = dataTP.getFechaString();
+			        	fecha = dataTP.getFecha();
 			    %>
 				
 			    <div class="card" style="width: 20rem;">
