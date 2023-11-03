@@ -87,15 +87,20 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			String empresaSeleccionada = request.getParameter("empresa");
 			String keywordSeleccionada = request.getParameter("keyword");
 			
+			System.out.println(empresaSeleccionada);
+			System.out.println(keywordSeleccionada);
+			
 			if(banderaSesion && banderaPostulante) {
 				if(empresaSeleccionada != null) {
 					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					System.out.println(empresaSeleccionada);
 					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
 					Set<DataOferta> coleccionOfer = new HashSet<>();
 					Set<String> nombresOfer = new HashSet<>();
 					
 					for (Object objeto : ofertasConfirmadasWrapper) {
 					    if (objeto instanceof String) {
+					    	System.out.print(objeto);
 					    	String dataOfer = (String) objeto;
 					    	nombresOfer.add(dataOfer);
 					    }
@@ -110,7 +115,8 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 				}else if(keywordSeleccionada != null){
 					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
 					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
-			    	for (Object objeto : coleccionOferWrapper) {
+					System.out.println(keywordSeleccionada);
+					for (Object objeto : coleccionOferWrapper) {
 					    if (objeto instanceof DataOferta) {
 					    	DataOferta dataOferta = (DataOferta) objeto;
 					    	coleccionOfer.add(dataOferta);
@@ -149,9 +155,7 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 						List<Object> ofertasConfirmadasWrapper = wrapperArr2.getLista();
 						Set<DataOferta> coleccionOfer = new HashSet<>();
 						Set<String> nombresOfer = new HashSet<>();
-						System.out.println("Previo al for");
-						for (Object objeto : ofertasConfirmadasWrapper) {
-							System.out.println(objeto);
+						for (Object objeto : ofertasConfirmadasWrapper) { 
 						    if (objeto instanceof DataOferta) {	
 						    	String dataOfer = ((DataOferta) objeto).getNombre();					    	nombresOfer.add(dataOfer);
 						    }
@@ -171,35 +175,49 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			}	
 			
 			if(!banderaSesion) {
+				System.out.println("No logged");
 				if(empresaSeleccionada != null) {
-					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>) puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada).getLista();
-					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
-			    	for (Object objeto : coleccionOferWrapper) {
-					    if (objeto instanceof DataOferta) {
-					    	DataOferta dataOferta = (DataOferta) objeto;
-					    	coleccionOfer.add(dataOferta);
+					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+					Set<DataOferta> coleccionOfer = new HashSet<>();
+					Set<String> nombresOfer = new HashSet<>();
+					
+					for (Object objeto : ofertasConfirmadasWrapper) {
+					    if (objeto instanceof String) {
+					    	String dataOfer = (String) objeto;
+					    	nombresOfer.add(dataOfer);
 					    }
 					}
-					request.setAttribute("coleccionOfertas", coleccionOfer);
-					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+					for(String nombreOferta : nombresOfer ) {
+						DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+						coleccionOfer.add(ofertaData);
+					}
+					request.setAttribute("coleccionOfertas",coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
 
-				}else if(keywordSeleccionada != null){
-					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>) puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
-					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
-			    	for (Object objeto : coleccionOferWrapper) {
-					    if (objeto instanceof DataOferta) {
-					    	DataOferta dataOferta = (DataOferta) objeto;
-					    	coleccionOfer.add(dataOferta);
-					    }
-					}
-					request.setAttribute("coleccionOfertas", coleccionOfer);
-					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+					}else if(keywordSeleccionada != null){
+						WrapperArrayList wrapperArr2 = puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+						List<Object> ofertasConfirmadasWrapper = wrapperArr2.getLista();
+						Set<DataOferta> coleccionOfer = new HashSet<>();
+						Set<String> nombresOfer = new HashSet<>();
+						for (Object objeto : ofertasConfirmadasWrapper) {	
+						    if (objeto instanceof DataOferta) {	
+						    	String dataOfer = ((DataOferta) objeto).getNombre();					    	nombresOfer.add(dataOfer);
+						    }
+						}
+						
+						for(String nombreOferta : nombresOfer ) {
+							DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+							coleccionOfer.add(ofertaData);
+						}
+						request.setAttribute("coleccionOfertas",coleccionOfer);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
 
 				
-				}else {
-					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
-				}
-			}
+					}else {
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+					}
+			}	
 			
 			
     }

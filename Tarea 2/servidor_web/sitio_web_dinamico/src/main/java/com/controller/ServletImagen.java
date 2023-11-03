@@ -25,6 +25,7 @@ public class ServletImagen extends HttpServlet {
         // Obtén el arreglo de bytes de la imagen desde la sesión
         HttpSession session = request.getSession(false);
         DataUsuario usr = (DataUsuario) session.getAttribute("usuario");
+        if (usr != null) {
         byte[] imagenBytes = usr.getImagen();
         
         // Establece el tipo de contenido de la respuesta como una imagen
@@ -33,7 +34,7 @@ public class ServletImagen extends HttpServlet {
         // Escribe los bytes de la imagen en la respuesta
         response.getOutputStream().write(imagenBytes);
         response.getOutputStream().close();
-        
+        }
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
