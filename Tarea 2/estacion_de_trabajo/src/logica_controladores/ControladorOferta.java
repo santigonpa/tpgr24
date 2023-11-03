@@ -1,5 +1,8 @@
 package logica_controladores;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -60,6 +63,21 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorOferta.addOferta(ofer);
 		}
 	
+	public byte[] getFile(String name)
+            throws  IOException {
+		byte[] byteArray = null;
+        try {
+                File f = new File("img/" + name);
+                @SuppressWarnings("resource")
+				FileInputStream streamer = new FileInputStream(f);
+                byteArray = new byte[streamer.available()];
+                streamer.read(byteArray);
+        } catch (IOException e) {
+                throw e;
+        }
+        return byteArray;
+	}
+	
 	public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) throws NombrePaqueteYaExiste{
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();
@@ -111,6 +129,12 @@ public class ControladorOferta implements IControladorOferta {
 				throw new noExistePublicacionException("No puede realizar el pago de esta manera. Intente de forma general");
 			}
 		}
+		byte[] img = null;
+		try {
+			img = this.getFile("imgagenDefaultOferta.jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		nuevaOferta = new OfertaLaboral();
 		nuevaOferta.setCiudad(ciudad);
@@ -120,7 +144,7 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaOferta.setFechaAlta(fecha);
 		nuevaOferta.setHorarioFin(horarioFin);
 		nuevaOferta.setHorarioIni(horarioInicio);
-		nuevaOferta.setImagen(imagen);
+		nuevaOferta.setImagen(img);
 		nuevaOferta.setNombre(nombre);
 		nuevaOferta.setRemuneracion(remuneracion);
 		nuevaOferta.setTipodePago(tipoDePago);
@@ -155,7 +179,12 @@ public class ControladorOferta implements IControladorOferta {
 		
 		
 		costoOfertaLaboral = (int) tipo.getCosto();
-		
+		byte[] img = null;
+		try {
+			img = this.getFile("imgagenDefaultOferta.jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		nuevaOferta = new OfertaLaboral();
 		nuevaOferta.setCiudad(ciudad);
@@ -165,7 +194,7 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaOferta.setFechaAlta(fecha);
 		nuevaOferta.setHorarioFin(horarioFin);
 		nuevaOferta.setHorarioIni(horarioInicio);
-		nuevaOferta.setImagen(imagen);
+		nuevaOferta.setImagen(img);
 		nuevaOferta.setNombre(nombre);
 		nuevaOferta.setRemuneracion(remuneracion);
 		nuevaOferta.setTipodePago(tipoDePago);
