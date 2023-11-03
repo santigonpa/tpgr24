@@ -71,7 +71,7 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 		DataOferta dofer = (DataOferta) request.getSession().getAttribute("dataOfertaPos");
 		DataUsuario usr = (DataUsuario) request.getSession().getAttribute("usuario");
 		LocalDate fechaActual = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String fechaFormateada = fechaActual.format(formatter);
 		try {
 			if(usr instanceof DataPostulante) {
