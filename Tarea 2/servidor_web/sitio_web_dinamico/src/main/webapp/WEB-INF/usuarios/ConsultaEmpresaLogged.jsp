@@ -314,7 +314,7 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta %></h5>
 			          <p class="card-text"><%= descripcion %></p>
-			          <a href="#" class="btn btn-outline-dark">Postularme</a>
+			          <a href="PostulacionAOferta" class="btn btn-outline-dark">Postularme</a>
 			        </div>
 			      </div>
 			    </div>
