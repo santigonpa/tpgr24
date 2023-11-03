@@ -27,7 +27,7 @@ public class DataOferta {
 	private byte[] imagen;
 	private String tipoDePago;
 	
-	private ArrayList<KeyWord> palabrasClave;
+	//private ArrayList<KeyWord> palabrasClave;
 
 	
 	//la del momento en el alta
@@ -89,16 +89,16 @@ public class DataOferta {
 		this.tipoDePago = tipo;
 	}
 	
-	public void setKeyWords(ArrayList<KeyWord> keys) {
+	/*public void setKeyWords(ArrayList<KeyWord> keys) {
 		this.palabrasClave = keys;
-	}
+	}*/
 
 	//gettes
-	
+	/*
 	public ArrayList<KeyWord> getKeyWords() {
 		return this.palabrasClave;
 	}
-	
+	*/
 	public String getEmpresa() {
 		return this.empresa;
 	}

@@ -6,6 +6,7 @@
     <%@ page import="java.time.LocalTime" %>
     <%@ page import="java.time.LocalDate" %>
     <%@ page import="com.webservices.controladores.publicar.EstadoOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.DataUsuario" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
@@ -148,7 +149,7 @@
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
 			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
