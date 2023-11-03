@@ -51,8 +51,8 @@ public class ServletPostulacionAOferta extends HttpServlet {
 		    	ArrayList<DataOferta> ofertasConfirmadas = new ArrayList<>();
 
 				for (Object objeto : ofertasConfirmadasWrapper) {
-				    if (objeto instanceof DataOferta) {
-				    	DataOferta dataTipoPublicacion = (DataOferta) objeto;
+				    if (objeto instanceof String) {
+				    	DataOferta dataTipoPublicacion = puertoManejadorOfertas.getDataOferta((String) objeto) ;
 				        ofertasConfirmadas.add(dataTipoPublicacion);
 				    }
 				}

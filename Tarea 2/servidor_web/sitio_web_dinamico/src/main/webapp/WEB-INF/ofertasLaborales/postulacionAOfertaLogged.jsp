@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "logica_entidades.Usuario" %>
-<%@page import= "utils.Fabrica" %>
-<%@page import= "logica_manejadores.IManejadorUsuario" %>
-<%@page import= "logica_manejadores.IManejadorOferta" %>
-<%@page import= "logica_entidades.Usuario" %>
-<%@page import= "logica_datatypes.DataEmpresa" %>
-<%@page import= "logica_datatypes.DataOferta" %>
-<%@page import= "logica_datatypes.DataKeyWord" %>
-<%@page import="java.util.Map" %>
+<%@page import= "com.webservices.controladores.publicar.Usuario" %>
+<%@page import= "com.webservices.controladores.publicar.Usuario" %>
+<%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
+<%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+<%@page import= "com.webservices.controladores.publicar.DataKeyWord" %>
+<%@page import= "com.webservices.controladores.publicar.WrapperHashMap" %>
+<%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+<%@page import= "com.webservices.controladores.publicar.WrapperArrayList" %>
+<%@ page import = "com.webservices.controladores.publicar.PublicadorManejadorUsuario"%>
+<%@ page import = "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService"%>
+<%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+<%@page import= " com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+ <%@ page import="java.util.ArrayList" %>
+  <%@ page import="java.util.HashSet" %>
+<%@page import="java.util.List" %>
 <%@page import="java.util.Set" %>
 <%@page import ="java.util.Base64" %>
 
@@ -143,7 +149,7 @@
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
-			    Usuario usr = (Usuario) sessionIniciada.getAttribute("usuario");
+			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
 			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
@@ -241,10 +247,18 @@
                     <form id="empresaForm" action="/TrabajoUY/PostulacionAOferta" method="get"> 
 					  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
 					    <option selected disabled>Filtrar por empresa</option>
-					    <% Fabrica fab = Fabrica.getInstance();
-					       IManejadorUsuario imu = fab.getInManejadorUsuario();
-					       Map<String, DataEmpresa> dataEmpresas = imu.getDataEmpresas();
-					       for(DataEmpresa dEmpr : dataEmpresas.values()){
+					    <%
+							PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+							PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+							WrapperHashMap dataEmpWrapper =puertoManejadorUsuario.getDataEmpresas();
+					       	List<com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry> claves = dataEmpWrapper.getMapa().getEntry();
+							
+							Set<DataEmpresa> dataEmpresasColeccion = new HashSet<DataEmpresa>();
+							for(com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry clave : claves ) {
+								DataEmpresa dataUser = (DataEmpresa) clave.getValue();
+								dataEmpresasColeccion.add(dataUser);
+							}
+					       for(DataEmpresa dEmpr : dataEmpresasColeccion){
 					         String nickEmpresa = dEmpr.getNickName();
 					    %>
 					    <option value="<%= nickEmpresa %>"><%= nickEmpresa %></option>
@@ -257,8 +271,17 @@
 					  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
 					    <option selected disabled>Filtrar por KeyWord</option>
 					    <% 
-					       IManejadorOferta imo = fab.getInManejadorOferta();
-					       Set<DataKeyWord> dataKeywords = imo.getDataKeyWord();
+						 PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+						 PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+					      List<Object> dataKeyWrapper = (List<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
+							
+							Set<DataKeyWord> dataKeywords = new HashSet<DataKeyWord>();
+							for(Object dkey : dataKeyWrapper) {
+								if(dkey instanceof DataKeyWord){
+									DataKeyWord dataKey = (DataKeyWord) dkey;
+									dataKeywords.add(dataKey);
+								}
+							}
 					       for(DataKeyWord dataKW : dataKeywords){
 					         String palabra = dataKW.getPalabraClave();
 					    %>
@@ -311,8 +334,14 @@
 				 String descripcionOferta;
 				 byte[] imagenBytes;
 				 
-				 Set<DataOferta> ofertas = (Set<DataOferta>) request.getAttribute("coleccionOfertasPostulacion");
-				 
+				 ArrayList<DataOferta> ofertas = (ArrayList<DataOferta>) request.getAttribute("coleccionOfertasPostulacion");
+				// Set<DataOferta> ofertasArray = new HashSet<>();
+				 //for(Object obj: ofertas){
+				//	 if(obj instanceof DataOferta){
+				//		 DataOferta dofer = (DataOferta) obj;
+				//		 ofertas.add(dofer);
+				//	 }
+				// }
 				 if(!ofertas.isEmpty()){
 				 
 				 for (DataOferta ofertaActual : ofertas ){
