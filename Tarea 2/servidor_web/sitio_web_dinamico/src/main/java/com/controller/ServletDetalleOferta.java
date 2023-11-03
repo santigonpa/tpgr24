@@ -15,12 +15,16 @@ import com.webservices.controladores.publicar.DataPostulacion;
 import com.webservices.controladores.publicar.DataUsuario;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
 @WebServlet (description = "Servlet de Consulta de oferta laboral detllada", urlPatterns = { "/DetalleOferta" })
 @MultipartConfig
@@ -57,6 +61,14 @@ public class ServletDetalleOferta extends HttpServlet {
 			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
 			
+			List<Object> keys = puertoManejadorOfertas.getKeysPorNombreOfer(nombreOfer).getLista();
+			ArrayList<String> keysEnviar = new ArrayList<>();
+			for (Object objetoK : keys) {
+    		    if (objetoK instanceof String) {
+    		    	keysEnviar.add((String) objetoK);
+    		    }
+    		}
+			request.setAttribute("keys", keysEnviar);
 			
 	    	boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof DataPostulante;
 
@@ -96,18 +108,22 @@ public class ServletDetalleOferta extends HttpServlet {
 				DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
 	    		boolean esSuOferta = false;
-	    		List<Object> listaOriginal = puertoManejadorUsuario.obtenerDataOfertasDeEmpresa(nickName).getLista();
-	    		ArrayList<DataOferta> ofertasDeEnter = new ArrayList<>();
-
-	    		for (Object obj : listaOriginal) {
-	    		    if (obj instanceof DataOferta) {
-	    		        ofertasDeEnter.add((DataOferta) obj);
-	    		    }
+	    		
+	    		WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(nickName);
+				List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+				Set<String> nombresOfer = new HashSet<>();
+				
+				for (Object objeto : ofertasConfirmadasWrapper) {
+				    if (objeto instanceof String) {
+				    	String dataOfer = (String) objeto;
+				    	nombresOfer.add(dataOfer);
+				    }
+				}
+				
+	    		for(String ofertaActual : nombresOfer) {
+	    			if(ofertaActual.equals(nombreOfer)) {esSuOferta = true;}
 	    		}
-
-	    		for(DataOferta ofertaActual : ofertasDeEnter) {
-	    			if(ofertaActual.getNombre().equals(nombreOfer)) {esSuOferta = true;}
-	    		}
+	    		
 	    		if(esSuOferta){
 					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaEmp.jsp").forward(request, response);
 	    		}else {

@@ -79,7 +79,7 @@
   					<strong>PARA ACCEDER A ESTE SITIO DEBES ESTAR REGISTRADO COMO UN POSTULANTE</strong>
   					<br>
   					<br>
-  					<a href="/TrabajoUY/home" class="alert-link">Haz click aquí para volver al inicio</a>
+  					<a href="/dispositivo_movil/home" class="alert-link">Haz click aquí para volver al inicio</a>
 			</div>
 			</div>
 		</main>

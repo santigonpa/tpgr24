@@ -2,114 +2,154 @@
     pageEncoding="UTF-8"%>
 <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
     
-    <header>
-      <!-- donde dice/buscar es la direccion donde va a llevar, y variable q es la que almacena la busqueda -->
-      <!-- esto se debe implementar mas adelante  
-            
-                <img class = "logotipo-trabajouy" src="logotipoTrabajoUy-transformed.png" alt="Logotipo de Mi Sitio">
-            
-            
-            -->
+   <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="home">
+            <img
+              src="media/img/logoNuevo.png"
+              alt="Logo"
+              width="42"
+              height="44"
+            />
+          </a>
 
-	<nav class="navbar bg-dark px-5">
-    	<a class="navbar-brand" href="home">
-      		<img src="media/img/logoNuevo.png"
-      		alt="Logo" 
-      		width="42" 
-      		height="44">
-    	</a>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Usuarios
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            </a>
-              <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="ConsultarUsuario">Perfiles</a></li>
-              
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100 justify-content-around">
+              <li class="nav-item dropdown d-none d-lg-block order-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Usuarios</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="ConsultarUsuario"
+                      >Perfiles</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown pt-4 pt-lg-0 order-lg-1 order-3">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Ofertas Laborales</a
+                >
+                <ul class="dropdown-menu mb-2 bg-light">
+                  <li class="d-none d-lg-block">
+                    <a
+                      class="dropdown-item"
+                      href="/TrabajoUY/AltaDeOfertaLaboral"
+                      >Crear Oferta Laboral</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="ConsultaDeOfertaLaboral"
+                      >Ver Ofertas</a
+                    >
+                  </li>
+                  <li class="d-none d-md-block">
+                    <a
+                      class="dropdown-item"
+                      href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral"
+                      >Tipos de Publicaciones</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown d-none d-lg-block order-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  >Paquetes</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="/TrabajoUY/ConsultaDePaquetes"
+                      >Ver Paquetes</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item order-2">
+                <form class="d-flex pt-4 pt-lg-0" role="search">
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Buscar"
+                    aria-label="Buscar"
+                  />
+                  <button class="btn btn-secondary" type="submit">
+                    <span class="d-none d-lg-block">Buscar</span>
+                    <i
+                      class="fa-solid fa-magnifying-glass d-block d-lg-none"
+                    ></i>
+                  </button>
+                </form>
+              </li>
+
+              <li class="nav-item ml-auto mt-auto dropdown order-1 order-lg-3">
+                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                  <img
+                    src="<%= request.getContextPath() %>/ServletImagen"
+                    onerror="this.src = '/media/img/userImage.jpg'"
+                    alt="Foto Perfil"
+                    width="30"
+                    height="30"
+                    style="border-radius: 50%; margin-right: 10px"
+                  />
+                  Mi Usuario
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end d-none">
+                  <li>
+                    <a class="dropdown-item" href="/TrabajoUY/VerPerfil"
+                      >Usuario</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/TrabajoUY/ModificarUsuario"
+                      >Modificar Usuario</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item cerrar-sesion"
+                      href="javascript:void(0);"
+                      onclick="confirmarCerrarSesion();"
+                      >Cerrar sesiÃ³n</a
+                    >
+                  </li>
+                </ul>
+              </li>
             </ul>
-          </li>
           </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown">
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Ofertas Laborales
-
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/TrabajoUY/AltaDeOfertaLaboral">Crear Oferta Laboral</a></li>
-              <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDeOfertaLaboral">Ver Ofertas</a></li>
-              <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral">Tipos de Publicaciones</a></li>
-            </ul>
-          </li>
-          </div>
-          
-          <div class = button-grup>
-  	        <li class="nav-item dropdown" >
-            	<a
-              	class="nav-link dropdown-toggle"
-              	href="#"
-              	role="button"
-              	data-bs-toggle="dropdown"
-              	aria-expanded="false"
-              	style="color: white"
-            	>Paquetes
-
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDePaquetes">Ver Paquetes</a></li>
-            </ul>
-          </li>
-          </div>
-  	
-  		<div class = button-grup>
-  			<form class="d-flex" role="search">
-      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-    		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		</form>
-  		</div>
-  		
-  		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del botón -->
-            <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
-			    <% 
-			    HttpSession sessionIniciada = request.getSession(false);
-			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
-			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
-			    Mi Usuario
-			</a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
-                <li><a class="dropdown-item" href="ModificarUsuario">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
-                <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
-            </ul> 
         </div>
-    </div>
-  		
-	</nav>
-		<script>
-		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
-    	if (confirmacion) {
-			window.location.href = "/TrabajoUY/CerrarSesion";
-    		}
-		}
-	</script>
-	</header>
+      </nav>
+    </header>
