@@ -213,7 +213,7 @@
 		<% 
 		if ("Postulante".equals(es)) { %>
 		    <div class="contenedor text-center mt-5">
-			    <a href="/TrabajoUY/PostulacionDesdeVerOferta?ofer=<%= nombre %>" style="text-decoration: none;">
+			    <a href="/dispositivo_movil/PostulacionDesdeVerOferta?ofer=<%= nombre %>" style="text-decoration: none;">
 				    <button class="btn btn-dark" type="button" style="margin-top: 40px;">Postularme</button>
 				</a>
 			</div>

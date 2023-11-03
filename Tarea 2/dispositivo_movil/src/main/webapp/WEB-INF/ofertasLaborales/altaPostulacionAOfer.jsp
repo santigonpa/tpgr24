@@ -111,7 +111,7 @@
 
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/TrabajoUY/AltaDeOfertaLaboral">Crear Oferta Laboral</a></li>
+              <li><a class="dropdown-item" href="/dispositivo_movil/AltaDeOfertaLaboral">Crear Oferta Laboral</a></li>
               <li><a class="dropdown-item" href="ConsultaDeOfertaLaboral">Ver Ofertas</a></li>
               <li><a class="dropdown-item" href="ConsultaDeTipoDePublicacionDeOfertaLaboral">Tipos de Publicaciones</a></li>
             </ul>
@@ -154,8 +154,8 @@
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
-                <li><a class="dropdown-item" href="/TrabajoUY/ModificarUsuario">Modificar Usuario</a></li>
+                <li><a class="dropdown-item" href="/dispositivo_movil/VerPerfil">Usuario</a></li>
+                <li><a class="dropdown-item" href="/dispositivo_movil/ModificarUsuario">Modificar Usuario</a></li>
                 <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
                 <!-- no se si meter ese js-->
                 <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
