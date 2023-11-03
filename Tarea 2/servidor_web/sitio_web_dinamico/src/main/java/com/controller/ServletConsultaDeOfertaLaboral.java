@@ -211,11 +211,11 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 							coleccionOfer.add(ofertaData);
 						}
 						request.setAttribute("coleccionOfertas",coleccionOfer);
-						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
 
 				
 					}else {
-						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
 					}
 			}	
 			
