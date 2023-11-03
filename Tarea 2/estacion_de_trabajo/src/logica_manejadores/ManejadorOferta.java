@@ -1,5 +1,6 @@
 package logica_manejadores;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -115,8 +116,15 @@ public class ManejadorOferta implements IManejadorOferta{
 		for (String ofertaNombre : this.ofertasLaborales.keySet() ) {
 			OfertaLaboral ofertaReal = this.ofertasLaborales.get(ofertaNombre);
 			DataOferta oferta = this.ofertasLaborales.get(ofertaNombre).getDataOferta();
+			
 			if (ofertaReal.getKeyWordsString().contains(keywordSeleccionada) && ofertaReal.getEstado().equals(EstadoOferta.ACEPTADA)) {
-				res.add(oferta);
+				 LocalDate fechaO = ofertaReal.getFecha();
+				 int sumoDias = ofertaReal.getTipoDeOferta().getDuracion();
+				 LocalDate fechaLimite = fechaO.plusDays(sumoDias);
+				 
+				 if (!fechaLimite.isBefore(LocalDate.now())) { // Controlo que este vigente
+					 res.add(oferta);
+				 } 	
 			}
 		}
 		return res;
