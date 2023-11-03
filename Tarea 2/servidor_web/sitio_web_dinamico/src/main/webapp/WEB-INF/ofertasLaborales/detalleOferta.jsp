@@ -185,6 +185,7 @@
   		  
   		  <%
   	
+  			ArrayList<KeyWord> palabras = null;
   		  %>
 			<div class="row">
     			<div class="col">
