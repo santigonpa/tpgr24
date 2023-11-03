@@ -1,5 +1,5 @@
 
-package com.webservices.controladores.publicar;
+package com.webservices;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
@@ -63,15 +63,12 @@ public interface PublicadorManejadorPyT {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns controladores.publicar.Paquete
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getPaqueteResponse")
-    public Paquete getPaquete(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionResponse")
+    public void addTipoPublicacion(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        DataTipoPublicacion arg0);
 
     /**
      * 
@@ -99,12 +96,15 @@ public interface PublicadorManejadorPyT {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns controladores.publicar.Paquete
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionResponse")
-    public void addTipoPublicacion(
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getPaqueteResponse")
+    public Paquete getPaquete(
         @WebParam(name = "arg0", partName = "arg0")
-        DataTipoPublicacion arg0);
+        String arg0);
 
     /**
      * 

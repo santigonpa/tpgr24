@@ -71,6 +71,19 @@ public interface PublicadorManejadorUsuario {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasDeUnaEmpresaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasDeUnaEmpresaResponse")
+    public WrapperArrayList obtenerOfertasDeUnaEmpresa(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasConfirmadasDeEmpresaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasConfirmadasDeEmpresaResponse")
     public WrapperArrayList obtenerOfertasConfirmadasDeEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
@@ -97,43 +110,10 @@ public interface PublicadorManejadorUsuario {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasDeUnaEmpresaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasDeUnaEmpresaResponse")
-    public WrapperArrayList obtenerOfertasDeUnaEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns controladores.publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
     @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasRechazadasIngresadasRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerOfertasRechazadasIngresadasResponse")
     public WrapperArrayList obtenerOfertasRechazadasIngresadas(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns controladores.publicar.WrapperHashMap
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/getDataUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/getDataUsuarioResponse")
-    public WrapperHashMap getDataUsuario();
-
-    /**
-     * 
-     * @return
-     *     returns controladores.publicar.WrapperHashMap
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/getDataEmpresasRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/getDataEmpresasResponse")
-    public WrapperHashMap getDataEmpresas();
 
     /**
      * 
@@ -147,16 +127,6 @@ public interface PublicadorManejadorUsuario {
         Paquete arg0,
         @WebParam(name = "arg1", partName = "arg1")
         String arg1);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/addUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/addUsuarioResponse")
-    public void addUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataUsuario arg0);
 
     /**
      * 
@@ -178,21 +148,38 @@ public interface PublicadorManejadorUsuario {
      */
     @WebMethod
     @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/getDataEmpresasRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/getDataEmpresasResponse")
+    public WrapperHashMap getDataEmpresas();
+
+    /**
+     * 
+     * @return
+     *     returns controladores.publicar.WrapperHashMap
+     */
+    @WebMethod
+    @WebResult(partName = "return")
     @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/getDataPostulantesRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/getDataPostulantesResponse")
     public WrapperHashMap getDataPostulantes();
 
     /**
      * 
      * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/addUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/addUsuarioResponse")
+    public void addUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataUsuario arg0);
+
+    /**
+     * 
      * @return
-     *     returns controladores.publicar.Empresa
+     *     returns controladores.publicar.WrapperHashMap
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obteneraEmpresaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obteneraEmpresaResponse")
-    public Empresa obteneraEmpresa(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/getDataUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/getDataUsuarioResponse")
+    public WrapperHashMap getDataUsuario();
 
     /**
      * 
@@ -202,8 +189,8 @@ public interface PublicadorManejadorUsuario {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioResponse")
-    public DataUsuario obtenerDataUsuario(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioPorEmailRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioPorEmailResponse")
+    public DataUsuario obtenerDataUsuarioPorEmail(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -224,25 +211,12 @@ public interface PublicadorManejadorUsuario {
      * 
      * @param arg0
      * @return
-     *     returns java.lang.String
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/tienePaquetePreguntaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/tienePaquetePreguntaResponse")
-    public String tienePaquetePregunta(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns controladores.publicar.DataUsuario
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioPorEmailRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioPorEmailResponse")
-    public DataUsuario obtenerDataUsuarioPorEmail(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataOfertasDePostulacionesRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataOfertasDePostulacionesResponse")
+    public WrapperArrayList obtenerDataOfertasDePostulaciones(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -267,8 +241,8 @@ public interface PublicadorManejadorUsuario {
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerNombrePaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerNombrePaqueteResponse")
-    public String obtenerNombrePaquete(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/tienePaquetePreguntaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/tienePaquetePreguntaResponse")
+    public String tienePaquetePregunta(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -289,6 +263,19 @@ public interface PublicadorManejadorUsuario {
      * 
      * @param arg0
      * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerNombrePaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerNombrePaqueteResponse")
+    public String obtenerNombrePaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
@@ -302,12 +289,25 @@ public interface PublicadorManejadorUsuario {
      * 
      * @param arg0
      * @return
-     *     returns controladores.publicar.WrapperArrayList
+     *     returns controladores.publicar.DataUsuario
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataOfertasDePostulacionesRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataOfertasDePostulacionesResponse")
-    public WrapperArrayList obtenerDataOfertasDePostulaciones(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obtenerDataUsuarioResponse")
+    public DataUsuario obtenerDataUsuario(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.Empresa
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorUsuario/obteneraEmpresaRequest", output = "http://publicar.controladores/PublicadorManejadorUsuario/obteneraEmpresaResponse")
+    public Empresa obteneraEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
