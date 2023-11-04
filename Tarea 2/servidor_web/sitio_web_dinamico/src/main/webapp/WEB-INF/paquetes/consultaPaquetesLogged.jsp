@@ -56,20 +56,9 @@
 		<div class="cartas">
 
 				<%
-				private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
-				private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
-
-    WrapperArrayList listaDePaquetesWrapper = (WrapperArrayList) request.getAttribute("coleccionDataPaquetes");
-    ArrayList<DataPaquete> listaDePaquetes = new ArrayList<>();
-
-    if (listaDePaquetesWrapper != null) {
-        for (Object objeto : listaDePaquetesWrapper.getLista()) {
-            if (objeto instanceof DataPaquete) {
-                DataPaquete dataTP = (DataPaquete) objeto;
-                listaDePaquetes.add(dataTP);
-            }
-        }
-    }
+				
+	ArrayList<DataPaquete> listaDePaquetes = (ArrayList<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
+   
 
     if (listaDePaquetes != null && !listaDePaquetes.isEmpty()) {
         for (DataPaquete dataTP : listaDePaquetes) {
