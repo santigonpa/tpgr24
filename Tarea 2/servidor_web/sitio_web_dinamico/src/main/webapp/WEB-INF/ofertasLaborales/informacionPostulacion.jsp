@@ -4,12 +4,16 @@
 <html>
 <head>
 
-	<%@ page import="logica_entidades.Postulacion" %>
-	<%@ page import="logica_entidades.OfertaLaboral" %>
-	<%@ page import="logica_datatypes.DataPostulacion" %>
+	<%@ page import="com.webservices.controladores.publicar.Postulacion" %>
+	<%@ page import="com.webservices.controladores.publicar.DataOferta" %>
+	<%@ page import="com.webservices.controladores.publicar.DataPostulacion" %>
 	<%@ page import="java.time.LocalDate" %>
 	<%@page import ="java.util.Base64" %>
-	
+	<%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+	 <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+	<%@ page import="com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+	 <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
+	 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="media/css/consultaPostulanteStyle.css" />
@@ -50,19 +54,24 @@
 	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	 <main>  
 	   <%
-	   	Postulacion post = (Postulacion) request.getAttribute("dtPost");
-	   	String nombreO = post.getNombreOfer();
+	   	DataPostulacion post = (DataPostulacion) request.getAttribute("dtPost");
+	   	String nombreO = post.getNombreOferta();
 	   	
-	   	OfertaLaboral ofertaLaboral = post.getOferta();
+	   	PublicadorManejadorOfertasService servicePublicadorOfertas = new PublicadorManejadorOfertasService();
+		PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorOfertas.getPublicadorManejadorOfertasPort();
+		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+		
+	   	DataOferta ofertaLaboral = (DataOferta) puertoManejadorOfertas.getDataOferta(nombreO);
 	   	
-	   	
-	   	String apellido = post.getNombreOfer();
-	   	String cvBreve = post.getCV();
+
+	   	String apellido =  puertoManejadorUsuario.getDataPostulante(post.getNickPostulante()).getApellido();
+	   	String cvBreve = post.getCurri();
 	   	String motivacion = post.getMotivacion();
-	   	LocalDate fecha = post.getFecha();
-	   	String nombrePostulante = post.getNombrePostulante();
+	   	String fecha = post.getFecha();
+	   	String nombrePostulante = post.getNickPostulante();
 	   	
-	   	byte[] imagenBytes = post.getPostulante().getImagen();
+	   	byte[] imagenBytes = puertoManejadorUsuario.obtenerPostulante(post.getNickPostulante()).getImagen();
         String base64Image = "";
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);
