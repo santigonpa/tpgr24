@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <%@page import= "logica_entidades.Postulacion" %>
+    <%@page import= "com.webservices.controladores.publicar.DataPostulacion" %>
+    <%@page import= "com.webservices.controladores.publicar.Postulacion" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@page import="java.util.Set" %>  
+    <%@page import="java.util.ArrayList" %>  
       
     <link rel="stylesheet" href="consultaPostulanteStyle.css" />
     <link rel="stylesheet" href="media/css/indexStyle.css" />
@@ -57,7 +58,7 @@
 		<div class="cartas">
 			    <%
 			    
-			    Set<Postulacion> conjuntoDePost = (Set<Postulacion>) request.getAttribute("postulantes");
+			    ArrayList<DataPostulacion> conjuntoDePost = (ArrayList<DataPostulacion>) request.getAttribute("postulantes");
 			    
 			    if(!conjuntoDePost.isEmpty()){
 			    
@@ -67,23 +68,19 @@
 			        String nombreOfer;
 			        byte[] imagenBytes;
 			
-			        for (Postulacion post : conjuntoDePost) {
+			        for (DataPostulacion post : conjuntoDePost) {
 			            motivacion = post.getMotivacion();
-			            nombreUser = post.getNombrePostulante();
-			            apellidoUser = post.getPostulante().getApellido();
-			            imagenBytes = post.getPostulante().getImagen();
-						nombreOfer = post.getNombreOfer();
-			            String base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+			            nombreUser = post.getNickPostulante();
+						nombreOfer = post.getNombreOferta();
 			            
 			    %>
 			
 			    
 			    <div class="card" style="width: 18rem;">
-  					<img src="data:image/jpeg;base64, <%= base64Image %>" align = "absmiddle" class="img-thumbnail shadow" alt="...">
+  					
 	  				 <div class="card-body">
-	    				<h5 class="card-title"><%=nombreUser %> <%=apellidoUser %></h5>
 	    				<p class="card-text"><%= motivacion %></p>
-						<a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %>&user=<%= post.getPostulante().getNickName() %>" class="btn btn-outline-dark">Informacion postulacion</a>
+						<a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %>&user=<%= nombreUser %>" class="btn btn-outline-dark">Informacion postulacion</a>
 	  				 </div>
 				</div>
 				
