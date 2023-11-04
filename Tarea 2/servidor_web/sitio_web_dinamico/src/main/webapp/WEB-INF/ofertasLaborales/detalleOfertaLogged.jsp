@@ -200,8 +200,9 @@
 					    <% } %>
 					</div>			
 				</div>
+				<hr>	
 			</div>
-			</div>
+			</div>				
 			<div class="contenedorPrincipal">
 							    
   		</div>

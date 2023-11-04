@@ -94,13 +94,14 @@ public class ServletDetalleOferta extends HttpServlet {
 	    		    }
 	    		}
 
+	    		String post = request.getParameter("id");
+	    		
 	    		boolean estaPost = false;
 	    		for(DataPostulacion postu : postulaciones) {
-	    			if(postu.getNickName().equals(nickName)) {
+	    			if(postu.getNickName().equals(post)) {
 	    				estaPost = true;}
 	    		}
 	    		
-	    		String post = request.getParameter("id");
 	    		if(estaPost){
 	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaPost.jsp").forward(request, response);
 	    		}else {
