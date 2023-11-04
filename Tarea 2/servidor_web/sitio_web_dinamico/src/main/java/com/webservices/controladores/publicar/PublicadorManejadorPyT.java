@@ -38,19 +38,6 @@ public interface PublicadorManejadorPyT {
      * 
      * @param arg0
      * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/nombrePaqueteYaExisteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/nombrePaqueteYaExisteResponse")
-    public boolean nombrePaqueteYaExiste(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns controladores.publicar.TipoPublicacion
      */
     @WebMethod
@@ -63,12 +50,15 @@ public interface PublicadorManejadorPyT {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns boolean
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionResponse")
-    public void addTipoPublicacion(
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/nombrePaqueteYaExisteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/nombrePaqueteYaExisteResponse")
+    public boolean nombrePaqueteYaExiste(
         @WebParam(name = "arg0", partName = "arg0")
-        DataTipoPublicacion arg0);
+        String arg0);
 
     /**
      * 
@@ -84,25 +74,35 @@ public interface PublicadorManejadorPyT {
      * 
      * @param arg0
      * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/tipoPubliYaExisteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/tipoPubliYaExisteResponse")
-    public boolean tipoPubliYaExiste(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns controladores.publicar.Paquete
      */
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getPaqueteResponse")
     public Paquete getPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionResponse")
+    public void addTipoPublicacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataTipoPublicacion arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/tipoPubliYaExisteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/tipoPubliYaExisteResponse")
+    public boolean tipoPubliYaExiste(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
