@@ -230,7 +230,7 @@
 				  %>
 				  
 				  
-				    
+				   
 				    <div class="col-md-4 mb-4">
 				   
 				      <div class="card" style="width: 20rem;">
@@ -326,7 +326,8 @@
 					 }
 					 
 				%>
-	
+				 </div>
+		 </div>
 	    </div>
 		</main>
     

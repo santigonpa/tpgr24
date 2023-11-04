@@ -15,6 +15,7 @@ import com.webservices.controladores.publicar.DataPostulacion;
 import com.webservices.controladores.publicar.DataUsuario;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.webservices.controladores.publicar.WrapperArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -82,10 +83,12 @@ public class ServletDetalleOferta extends HttpServlet {
 	    	if(banderaSesion && banderaPostulante) {
 	    		DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
 	    		String nickName = usuario.getNickName();
-	    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPostulaciones(nickName).getLista();
+	    		
+	    		WrapperArrayList listaObjetos = puertoManejadorUsuario.obtenerDataPostulaciones(nickName);
+	    		List<Object> postulacionesWrapper = listaObjetos.getLista();
 	    		ArrayList<DataPostulacion> postulaciones = new ArrayList<>();
-
-	    		for (Object objeto : listaObjetos) {
+	    		
+	    		for (Object objeto : postulacionesWrapper) {
 	    		    if (objeto instanceof DataPostulacion) {
 	    		        postulaciones.add((DataPostulacion) objeto);
 	    		    }
@@ -93,8 +96,10 @@ public class ServletDetalleOferta extends HttpServlet {
 
 	    		boolean estaPost = false;
 	    		for(DataPostulacion postu : postulaciones) {
-	    			if(postu.getNickName().equals(nickName)) {estaPost = true;}
+	    			if(postu.getNickName().equals(nickName)) {
+	    				estaPost = true;}
 	    		}
+	    		
 	    		String post = request.getParameter("id");
 	    		if(estaPost){
 	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaPost.jsp").forward(request, response);

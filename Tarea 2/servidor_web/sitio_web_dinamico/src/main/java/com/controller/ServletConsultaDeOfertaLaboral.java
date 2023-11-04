@@ -87,20 +87,15 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			String empresaSeleccionada = request.getParameter("empresa");
 			String keywordSeleccionada = request.getParameter("keyword");
 			
-			System.out.println(empresaSeleccionada);
-			System.out.println(keywordSeleccionada);
-			
 			if(banderaSesion && banderaPostulante) {
 				if(empresaSeleccionada != null) {
 					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
-					System.out.println(empresaSeleccionada);
 					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
 					Set<DataOferta> coleccionOfer = new HashSet<>();
 					Set<String> nombresOfer = new HashSet<>();
 					
 					for (Object objeto : ofertasConfirmadasWrapper) {
 					    if (objeto instanceof String) {
-					    	System.out.print(objeto);
 					    	String dataOfer = (String) objeto;
 					    	nombresOfer.add(dataOfer);
 					    }
@@ -115,7 +110,6 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 				}else if(keywordSeleccionada != null){
 					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
 					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
-					System.out.println(keywordSeleccionada);
 					for (Object objeto : coleccionOferWrapper) {
 					    if (objeto instanceof DataOferta) {
 					    	DataOferta dataOferta = (DataOferta) objeto;
@@ -175,7 +169,6 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			}	
 			
 			if(!banderaSesion) {
-				System.out.println("No logged");
 				if(empresaSeleccionada != null) {
 					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
 					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
@@ -193,7 +186,7 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 						coleccionOfer.add(ofertaData);
 					}
 					request.setAttribute("coleccionOfertas",coleccionOfer);
-					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
 
 					}else if(keywordSeleccionada != null){
 						WrapperArrayList wrapperArr2 = puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
