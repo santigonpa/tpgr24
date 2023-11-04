@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
     <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
     <%@page import= "com.webservices.controladores.publicar.DataPostulante" %>
+     <%@page import= "java.time.format.DateTimeFormatter" %> 
+      <%@page import= "java.time.LocalDate" %> 
+    <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -236,7 +240,15 @@ document.addEventListener("DOMContentLoaded", function () {
 				<div class = "profile-container" ></div>
                 
                 
-                <% DataPostulante usrPos = (DataPostulante) usr; %>
+                <% DataPostulante usrPos = (DataPostulante) usr;
+             // Define el formato de entrada
+                DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate fecha = LocalDate.parse(usrPos.getNacimiento(), formatoEntrada);
+                
+                // Define el formato de salida
+                DateTimeFormatter formatoSalida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String fechaFormateada = fecha.format(formatoSalida);
+                %>
                 
                <div class = "my-4">
 					
@@ -295,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
 												Nacimiento:</label> <input type="date" class="form-control"
 												id="fechaNacimiento" name="fechaNacimiento"
 												placeholder="Ingrese su Fecha de Nacimiento"
-												value="<%= usrPos.getNacimiento() %>" />
+												value="<%= fechaFormateada %>" />
 										</div>
 										
                    					     <div id="fechaNacimientoError" class="text-danger"></div>

@@ -144,9 +144,16 @@ public class PublicadorControladorUsuario {
 	@WebMethod
 	public void modificarDatosPostulante(String nickname, String nombre, String apellido, String email,
 			String nacimiento, String nacionalidad, byte[] imagen, String psw) {
-		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate fechaNacimiento = LocalDate.parse(nacimiento, dateFormatter);
-		ICU.modificarDatosPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, psw);
+		
+		
+		// Define el formato de entrada
+        DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fecha = LocalDate.parse(nacimiento, formatoEntrada);
+        
+        // Define el formato de salida
+        DateTimeFormatter formatoSalida = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String fechaFormateada = fecha.format(formatoSalida);
+		ICU.modificarDatosPostulante(nickname, nombre, apellido, email, fechaFormateada, nacionalidad, imagen, psw);
 	}
 	
 	@WebMethod

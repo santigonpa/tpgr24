@@ -483,7 +483,12 @@ class controladorUsuarioTest {
 	@Test
 	void testeoModificarPostulante() {
 		LocalDate fecha111 = LocalDate.of(2023, 9, 15);
-		cu.modificarDatosPostulante("lgarcia", "luchi", "garcia sosa","lgarcia85@gmail.com" , fecha111, "hola", null, "ola");
+		// Define el formato que deseas
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Formatea la fecha en el formato deseado
+        String fechaFormateada = fecha111.format(formato);
+		cu.modificarDatosPostulante("lgarcia", "luchi", "garcia sosa","lgarcia85@gmail.com" , fechaFormateada, "hola", null, "ola");
 		
 		assertEquals(mu.getDataPostulante("lgarcia").getNombre(),"luchi");
 	}

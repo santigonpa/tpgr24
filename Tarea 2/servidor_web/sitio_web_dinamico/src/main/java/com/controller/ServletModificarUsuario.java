@@ -128,7 +128,9 @@ public class ServletModificarUsuario extends HttpServlet {
 	        // El usuario seleccionó "Postulante"
 	        // Realiza las acciones para registrar un postulante
 	    	// Obtén el valor del campo de fecha de nacimiento desde la solicitud
+			
 	        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
+	        
 	        // Crea un formateador para el patrón de fecha (yyyy-MM-dd)
 	        String nacionalidad = request.getParameter("nacionalidad");
 	         

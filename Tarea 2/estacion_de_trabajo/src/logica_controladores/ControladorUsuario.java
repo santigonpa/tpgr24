@@ -2,6 +2,7 @@ package logica_controladores;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 
@@ -229,14 +230,19 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 
 	@Override
 	public void modificarDatosPostulante(String nickname, String nombre, String apellido, String email,
-			LocalDate nacimiento, String nacionalidad, byte[] imagen, String psw) {
+			String nacimiento, String nacionalidad, byte[] imagen, String psw) {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 		
 		Postulante postulanteAModificar = manejadorUsuario.obtenerPostulante(nickname);
 		postulanteAModificar.setNombre(nombre);
 		postulanteAModificar.setApellido(apellido);
-		postulanteAModificar.setNacimiento(nacimiento);
+		// Define el formato del String
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Parsea el String y crea un objeto LocalDate
+        LocalDate fecha = LocalDate.parse(nacimiento, formato);
+		postulanteAModificar.setNacimiento(fecha);
 		postulanteAModificar.setImagen(imagen);
 		postulanteAModificar.setNacionalidad(nacionalidad);
 		postulanteAModificar.setPsw(psw);
