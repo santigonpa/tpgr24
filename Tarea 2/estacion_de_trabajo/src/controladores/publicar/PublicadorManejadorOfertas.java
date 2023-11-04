@@ -133,6 +133,29 @@ public class PublicadorManejadorOfertas {
     }
     
     @WebMethod
+    public WrapperArrayList getNickPostulantes(String oferta) {
+    	OfertaLaboral ofer = manejadorOferta.obtenerOferta(oferta);
+    	ArrayList<Postulacion> arrPostus = ofer.getPostulaciones();
+    	ArrayList<String> arr = new ArrayList<>();
+    	for(Postulacion posActual : arrPostus) {
+    		arr.add(posActual.getNickPostulante());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arr);
+    	return ret;
+    }
+    
+    @WebMethod
+    public WrapperArrayList getNickPostulantesAOferEmpresa(String oferta, String empresa) {
+    	ArrayList<Postulacion> arrPostus = manejadorOferta.obtenerPostulaciones(oferta, empresa);
+    	ArrayList<String> arr = new ArrayList<>();
+    	for(Postulacion posActual : arrPostus) {
+    		arr.add(posActual.getNickPostulante());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arr);
+    	return ret;
+    }
+    
+    @WebMethod
     public WrapperArrayList getKeysPorNombreOfer(String oferta) {
     	OfertaLaboral ofer = manejadorOferta.obtenerOferta(oferta);
     	ArrayList<String> keys = ofer.getKeyWordsString();

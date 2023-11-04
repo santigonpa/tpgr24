@@ -51,6 +51,19 @@ public interface PublicadorManejadorOfertas {
      * 
      * @param arg0
      * @return
+     *     returns controladores.publicar.DataKeyWord
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/getDataKeyWordPorNombreRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/getDataKeyWordPorNombreResponse")
+    public DataKeyWord getDataKeyWordPorNombre(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
      *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
@@ -79,15 +92,22 @@ public interface PublicadorManejadorOfertas {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns controladores.publicar.DataKeyWord
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/getDataKeyWordPorNombreRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/getDataKeyWordPorNombreResponse")
-    public DataKeyWord getDataKeyWordPorNombre(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addPostulacionRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addPostulacionResponse")
+    public void addPostulacion(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        Postulacion arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addKeywordRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addKeywordResponse")
+    public void addKeyword(
+        @WebParam(name = "arg0", partName = "arg0")
+        KeyWord arg0);
 
     /**
      * 
@@ -107,30 +127,20 @@ public interface PublicadorManejadorOfertas {
      * @param arg0
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addKeywordRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addKeywordResponse")
-    public void addKeyword(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addUsuarioResponse")
+    public void addUsuario(
         @WebParam(name = "arg0", partName = "arg0")
-        KeyWord arg0);
+        OfertaLaboral arg0);
 
     /**
      * 
      * @param arg0
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addPostulacionRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addPostulacionResponse")
-    public void addPostulacion(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addOfertaRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addOfertaResponse")
+    public void addOferta(
         @WebParam(name = "arg0", partName = "arg0")
-        Postulacion arg0);
-
-    /**
-     * 
-     * @return
-     *     returns controladores.publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/getOfertasRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/getOfertasResponse")
-    public WrapperArrayList getOfertas();
+        OfertaLaboral arg0);
 
     /**
      * 
@@ -148,26 +158,6 @@ public interface PublicadorManejadorOfertas {
     /**
      * 
      * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addOfertaRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addOfertaResponse")
-    public void addOferta(
-        @WebParam(name = "arg0", partName = "arg0")
-        OfertaLaboral arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/addUsuarioRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/addUsuarioResponse")
-    public void addUsuario(
-        @WebParam(name = "arg0", partName = "arg0")
-        OfertaLaboral arg0);
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns boolean
      */
@@ -175,6 +165,42 @@ public interface PublicadorManejadorOfertas {
     @WebResult(partName = "return")
     @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/existeOfertaRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/existeOfertaResponse")
     public boolean existeOferta(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/getOfertasRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/getOfertasResponse")
+    public WrapperArrayList getOfertas();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/getNickPostulantesRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/getNickPostulantesResponse")
+    public WrapperArrayList getNickPostulantes(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.DataOferta
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/obtenerDataOfertaRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/obtenerDataOfertaResponse")
+    public DataOferta obtenerDataOferta(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
 
@@ -207,14 +233,17 @@ public interface PublicadorManejadorOfertas {
     /**
      * 
      * @param arg0
+     * @param arg1
      * @return
-     *     returns controladores.publicar.DataOferta
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/obtenerDataOfertaRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/obtenerDataOfertaResponse")
-    public DataOferta obtenerDataOferta(
+    @Action(input = "http://publicar.controladores/PublicadorManejadorOfertas/getNickPostulantesAOferEmpresaRequest", output = "http://publicar.controladores/PublicadorManejadorOfertas/getNickPostulantesAOferEmpresaResponse")
+    public WrapperArrayList getNickPostulantesAOferEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1);
 
 }

@@ -1,11 +1,8 @@
 
 package com.webservices.controladores.publicar;
 
-import java.util.ArrayList;
-import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlSchemaType;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -33,7 +30,6 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="empresa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         <element name="tipoDePago" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         <element name="palabrasClave" type="{http://publicar.controladores/}keyWord" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -56,8 +52,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "estado",
     "empresa",
     "imagen",
-    "tipoDePago",
-    "palabrasClave"
+    "tipoDePago"
 })
 public class DataOferta {
 
@@ -75,8 +70,6 @@ public class DataOferta {
     protected String empresa;
     protected byte[] imagen;
     protected String tipoDePago;
-    @XmlElement(nillable = true)
-    protected List<KeyWord> palabrasClave;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -370,37 +363,6 @@ public class DataOferta {
      */
     public void setTipoDePago(String value) {
         this.tipoDePago = value;
-    }
-
-    /**
-     * Gets the value of the palabrasClave property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the palabrasClave property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getPalabrasClave().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link KeyWord }
-     * 
-     * 
-     * @return
-     *     The value of the palabrasClave property.
-     */
-    public List<KeyWord> getPalabrasClave() {
-        if (palabrasClave == null) {
-            palabrasClave = new ArrayList<>();
-        }
-        return this.palabrasClave;
     }
 
 }
