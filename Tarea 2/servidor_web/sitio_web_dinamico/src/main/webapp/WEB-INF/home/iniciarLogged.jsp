@@ -1,9 +1,10 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="media/css/indexLoggedStyle.css" />
@@ -122,21 +123,21 @@
   		</div>
   		
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
-        <div class="nav-button"> <!-- Contenedor del botón -->
+        <div class="nav-button"> <!-- Contenedor del botÃ³n -->
             <a href="#" class="nav-link" data-bs-toggle="dropdown" style="color: white;">
 			    <% 
 			    HttpSession sessionIniciada = request.getSession(false);
 			    DataUsuario usr = (DataUsuario) sessionIniciada.getAttribute("usuario");
 			    %>
-			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="Botón" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
+			    <img src="<%= request.getContextPath() %>/ServletImagen" alt="BotÃ³n" width="30" height="30" style="border-radius: 50%; margin-right: 10px;">
 			    Mi Usuario
 			</a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="/TrabajoUY/VerPerfil">Usuario</a></li>
                 <li><a class="dropdown-item" href="/TrabajoUY/ModificarUsuario">Modificar Usuario</a></li>
-                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesión</a></li>-->
+                <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesiÃ³n</a></li>-->
                 <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesiÃ³n</a></li>
             </ul>
         </div>
     </div>
@@ -145,7 +146,7 @@
 	<!-- no se si meter ese js-->
 	<script>
 		function confirmarCerrarSesion() {
-    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
+    	var confirmacion = confirm("Estás seguro de que deseas cerrar la sesión?");
     	if (confirmacion) {
 			window.location.href = "/TrabajoUY/CerrarSesion";
     		}
