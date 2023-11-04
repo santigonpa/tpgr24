@@ -93,7 +93,11 @@ public class PublicadorManejadorOfertas {
 
     @WebMethod
     public WrapperArrayList getOfertas() {
-    	ArrayList<DataOferta> arr =  manejadorOferta.getOfertas();
+    	ArrayList<DataOferta> arrOfertas =  manejadorOferta.getOfertas();
+    	ArrayList<String> arr = new ArrayList<>();
+    	for(DataOferta data : arrOfertas) {
+    		arr.add(data.getNombre());
+    	}
     	WrapperArrayList ret = new WrapperArrayList(arr);
     	return ret;
     }

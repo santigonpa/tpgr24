@@ -46,8 +46,9 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 		ArrayList<DataOferta> listaDataOferta = new ArrayList<>();
 
 		for (Object objeto : ofertasWrapper) {
-		    if (objeto instanceof DataOferta) {
-		        DataOferta dataOferta = (DataOferta) objeto;
+		    if (objeto instanceof String) {
+		        String nomOferta = (String) objeto;
+		        DataOferta dataOferta = puertoManejadorOfertas.getDataOferta(nomOferta);
 		        listaDataOferta.add(dataOferta);
 		    }
 		}

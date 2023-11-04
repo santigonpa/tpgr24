@@ -314,11 +314,8 @@
 			        <div class="card-body">
 			          <h5 class="card-title"><%= nombreOferta %></h5>
 			          <p class="card-text"><%= descripcion %></p>
-<<<<<<< HEAD
+
 			          <a href="/TrabajoUY/PostulacionAOferta" class="btn btn-outline-dark">Postularme</a>
-=======
-			          <a href="PostulacionAOferta" class="btn btn-outline-dark">Postularme</a>
->>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
 			        </div>
 			      </div>
 			    </div>

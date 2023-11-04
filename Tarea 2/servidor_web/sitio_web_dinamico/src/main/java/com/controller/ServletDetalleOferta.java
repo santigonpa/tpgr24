@@ -94,12 +94,17 @@ public class ServletDetalleOferta extends HttpServlet {
 	    		    }
 	    		}
 
-	    		String post = request.getParameter("id");
-	    		
+	    		String nombreOfertaConsultada = request.getParameter("id");
 	    		boolean estaPost = false;
-	    		for(DataPostulacion postu : postulaciones) {
-	    			if(postu.getNickName().equals(post)) {
-	    				estaPost = true;}
+	    		
+	    		List<Object> listaObjetosOfertasDePostulante = puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickName).getLista();
+	    		
+	    		
+	    		for(Object ofert : listaObjetosOfertasDePostulante) {
+	    			if(ofert instanceof String) {
+	    				DataOferta ofertaData = puertoManejadorOfertas.getDataOferta( (String) ofert);
+	    				if(ofertaData.getNombre().equals(nombreOfertaConsultada)) {estaPost = true;}
+	    			}
 	    		}
 	    		
 	    		if(estaPost){
