@@ -7,15 +7,34 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataKeyWord;
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.Postulante;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
+import com.webservices.controladores.publicar.WrapperHashMap;
 /**
  * Servlet implementation class ServletConsultaDeOfertaLaboral_movil
  */
-@WebServlet (description = "Servlet de Consulta de oferta laboral", urlPatterns = { "/ServletConsultaDeOfertaLaboral_movil" })
+@WebServlet (description = "Servlet de Consulta de oferta laboral", urlPatterns = { "/ConsultaDeOfertaLaboral_movil" })
 @MultipartConfig
 public class ServletConsultaDeOfertaLaboral_movil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -23,21 +42,183 @@ public class ServletConsultaDeOfertaLaboral_movil extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    public static EstadoSesion getEstado(HttpServletRequest request){	//obtiene el tipo de la sesion
+  		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
+  		
+  	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    protected void cargarDatos(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+    	
+    	//le mando al jsp las empresas -------------------------------
+    	WrapperHashMap empresasWrap =  puertoManejadorUsuario.getDataEmpresas();
+   	 
+		List<com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry> claves = empresasWrap.getMapa().getEntry();
+		
+		Set<DataEmpresa> usuariosColeccion = new HashSet<DataEmpresa>();
+		for(com.webservices.controladores.publicar.WrapperHashMap.Mapa.Entry clave : claves ) {
+			DataEmpresa dataEmp = (DataEmpresa) clave.getValue();
+			usuariosColeccion.add(dataEmp);
+		}
+		request.setAttribute("coleccionDataEmpresas", usuariosColeccion);
+    	//le mando al jsp las keywords---------------------------------
+		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
+		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
+		
+		for (Object objeto2 : coleccionKeysWrapper) {
+		    if (objeto2 instanceof DataKeyWord) {
+		    	DataKeyWord key = (DataKeyWord) objeto2;
+		    	coleccionKeys.add(key);
+		    }
+		}
+		request.setAttribute("keys", coleccionKeys);
+		//------------------------------------------------------------
+
+    		boolean banderaSesion;
+    		if (getEstado(request) != null) {
+    			banderaSesion = getEstado(request).equals(EstadoSesion.SI_LOGEADO);
+    		}else {
+    			banderaSesion = false;
+    		}
+			boolean banderaPostulante = request.getSession().getAttribute("usuario") instanceof Postulante;
+			String empresaSeleccionada = request.getParameter("empresa");
+			String keywordSeleccionada = request.getParameter("keyword");
+			
+			if(banderaSesion && banderaPostulante) {
+				if(empresaSeleccionada != null) {
+					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+					Set<DataOferta> coleccionOfer = new HashSet<>();
+					Set<String> nombresOfer = new HashSet<>();
+					
+					for (Object objeto : ofertasConfirmadasWrapper) {
+					    if (objeto instanceof String) {
+					    	String dataOfer = (String) objeto;
+					    	nombresOfer.add(dataOfer);
+					    }
+					}
+					for(String nombreOferta : nombresOfer ) {
+						DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+						coleccionOfer.add(ofertaData);
+					}
+					request.setAttribute("coleccionOfertas",coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
+
+				}else if(keywordSeleccionada != null){
+					ArrayList<Object> coleccionOferWrapper = (ArrayList<Object>)  puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada).getLista();
+					ArrayList<DataOferta> coleccionOfer = new ArrayList<>();
+					for (Object objeto : coleccionOferWrapper) {
+					    if (objeto instanceof DataOferta) {
+					    	DataOferta dataOferta = (DataOferta) objeto;
+					    	coleccionOfer.add(dataOferta);
+					    }
+					}
+					request.setAttribute("coleccionOfertas", coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
+
+			
+				}else {
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesPost.jsp").forward(request,response);
+				}
+			}
+			if(banderaSesion && !banderaPostulante){
+				if(empresaSeleccionada != null) {
+					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+					Set<DataOferta> coleccionOfer = new HashSet<>();
+					Set<String> nombresOfer = new HashSet<>();
+					
+					for (Object objeto : ofertasConfirmadasWrapper) {
+					    if (objeto instanceof String) {
+					    	String dataOfer = (String) objeto;
+					    	nombresOfer.add(dataOfer);
+					    }
+					}
+					for(String nombreOferta : nombresOfer ) {
+						DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+						coleccionOfer.add(ofertaData);
+					}
+					request.setAttribute("coleccionOfertas",coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+
+					}else if(keywordSeleccionada != null){
+						WrapperArrayList wrapperArr2 = puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+						List<Object> ofertasConfirmadasWrapper = wrapperArr2.getLista();
+						Set<DataOferta> coleccionOfer = new HashSet<>();
+						Set<String> nombresOfer = new HashSet<>();
+						for (Object objeto : ofertasConfirmadasWrapper) { 
+						    if (objeto instanceof DataOferta) {	
+						    	String dataOfer = ((DataOferta) objeto).getNombre();					    	nombresOfer.add(dataOfer);
+						    }
+						}
+						
+						for(String nombreOferta : nombresOfer ) {
+							DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+							coleccionOfer.add(ofertaData);
+						}
+						request.setAttribute("coleccionOfertas",coleccionOfer);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+
+				
+					}else {
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaboralesEmp.jsp").forward(request,response);
+					}
+			}	
+			
+			if(!banderaSesion) {
+				if(empresaSeleccionada != null) {
+					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);
+					List<Object> ofertasConfirmadasWrapper = wrapperArr.getLista();
+					Set<DataOferta> coleccionOfer = new HashSet<>();
+					Set<String> nombresOfer = new HashSet<>();
+					
+					for (Object objeto : ofertasConfirmadasWrapper) {
+					    if (objeto instanceof String) {
+					    	String dataOfer = (String) objeto;
+					    	nombresOfer.add(dataOfer);
+					    }
+					}
+					for(String nombreOferta : nombresOfer ) {
+						DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+						coleccionOfer.add(ofertaData);
+					}
+					request.setAttribute("coleccionOfertas",coleccionOfer);
+					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+
+					}else if(keywordSeleccionada != null){
+						WrapperArrayList wrapperArr2 = puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
+						List<Object> ofertasConfirmadasWrapper = wrapperArr2.getLista();
+						Set<DataOferta> coleccionOfer = new HashSet<>();
+						Set<String> nombresOfer = new HashSet<>();
+						for (Object objeto : ofertasConfirmadasWrapper) {	
+						    if (objeto instanceof DataOferta) {	
+						    	String dataOfer = ((DataOferta) objeto).getNombre();					    	nombresOfer.add(dataOfer);
+						    }
+						}
+						
+						for(String nombreOferta : nombresOfer ) {
+							DataOferta ofertaData = puertoManejadorOfertas.getDataOferta(nombreOferta);
+							coleccionOfer.add(ofertaData);
+						}
+						request.setAttribute("coleccionOfertas",coleccionOfer);
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+
+				
+					}else {
+						request.getRequestDispatcher("/WEB-INF/ofertasLaborales/consultaDeOfertasLaborales.jsp").forward(request,response);
+					}
+			}	
+			
+			
+    }
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		cargarDatos(request, response);
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
