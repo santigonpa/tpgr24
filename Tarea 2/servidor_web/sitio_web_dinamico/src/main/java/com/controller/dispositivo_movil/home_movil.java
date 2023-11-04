@@ -49,12 +49,12 @@ import com.model.EstadoSesion;
 				
 			case NO_LOGEADO:
 					// hace que se ejecute el jsp sin cambiar la url
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home_mobil/iniciar_mobil.jsp"); //obtiene dispatcher construido con la ruta
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/mobil/home_mobil/iniciar_mobil.jsp"); //obtiene dispatcher construido con la ruta
 					dispatcher.forward(request, response); // envia los datos hacia la ruta con el request y response
 					break;
 			case SI_LOGEADO:
 					// hace que se ejecute el jsp sin cambiar la url
-					RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/home_mobil/iniciarLogged_mobil.jsp"); //obtiene dispatcher construido con la ruta
+					RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/mobil/home_mobil/iniciarLogged_mobil.jsp"); //obtiene dispatcher construido con la ruta
 					dispatcher2.forward(request, response); // envia los datos hacia la ruta con el request y response
 					break;
 			default:

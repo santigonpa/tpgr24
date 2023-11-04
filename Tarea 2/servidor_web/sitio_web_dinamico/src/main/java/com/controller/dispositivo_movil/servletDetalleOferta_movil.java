@@ -23,7 +23,7 @@ import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 import com.webservices.controladores.publicar.WrapperArrayList;
 
-@WebServlet (description = "Servlet de Consulta de oferta laboral detllada", urlPatterns = { "/DetalleOferta" })
+@WebServlet (description = "Servlet de Consulta de oferta laboral detllada movil", urlPatterns = { "/DetalleOferta_movil" })
 @MultipartConfig
 /**
  * Servlet implementation class ServletDetalleOferta_movil
@@ -104,11 +104,11 @@ public class servletDetalleOferta_movil extends HttpServlet {
 	    		}
 	    		
 	    		if(estaPost){
-	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaPost_movil.jsp").forward(request, response);
+	    			request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/detalleOfertaPost_movil.jsp").forward(request, response);
 	    		}else {
 	    			String queEs = "Postulante";
 					request.setAttribute("queEs", queEs);
-	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaLogged_movil.jsp").forward(request, response);
+	    			request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/detalleOfertaLogged_movil.jsp").forward(request, response);
 	    		}
 			}
 			if(banderaSesion && !banderaPostulante){

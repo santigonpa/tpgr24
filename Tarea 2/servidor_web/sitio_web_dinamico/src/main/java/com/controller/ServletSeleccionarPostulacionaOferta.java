@@ -31,7 +31,7 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) && request.getSession().getAttribute("usuario") instanceof DataEmpresa) {
 			
-			ArrayList<Object> dataOferWrapper = puertoManejadorOfertas.obtenerOfertasConfirmadasYVencidas()
+			//ArrayList<Object> dataOferWrapper = puertoManejadorOfertas.obtenerOfertasConfirmadasYVencidas()
 		}
 	}
 
