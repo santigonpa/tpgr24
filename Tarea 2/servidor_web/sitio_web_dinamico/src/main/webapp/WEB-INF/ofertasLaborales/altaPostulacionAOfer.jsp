@@ -248,14 +248,9 @@
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);
         }
-       // Set<KeyWord> keys = oferta.getKeyWords();
-        List<KeyWord> palabrasClave = oferta.getPalabrasClave();
+       // Set<KeyWord> keys = oferta.getKeyWords(); 
+        ArrayList<String> palabrasClave = (ArrayList<String>) request.getAttribute("keys");
         
-       	PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
-    	PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
-    	
-    	
-
     %>
     
 			   <main>S
@@ -373,21 +368,12 @@
 							        <div class="container">
 							            <p class="fs-6 fw-lighter">
 							                <%
-												ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>)puertoManejadorOfertas.getDataKeyWord().getLista();
-							                	ArrayList<KeyWord> coleccionKeys = new ArrayList<>();
-							                	for(Object objeto2: coleccionKeysWrapper){
-							                		if(objeto2 instanceof KeyWord){
-							                			KeyWord key = (KeyWord)objeto2;
-							                			coleccionKeys.add(key);
-							                		}
-							                	}
-							                
-							                    boolean firstKeyword = true;
-							                    for (KeyWord keyword : coleccionKeys) {
+							                	boolean firstKeyword = true;
+							                    for (String keyword : palabrasClave) {
 							                        if (!firstKeyword) {
 							                            out.print("<span style='margin-right: 5px;'>,</span>"); // Agregar coma y espacio entre las keywords, excepto la primera
 							                        }
-							                        out.print("<span>" + keyword.getPalabraClave() + "</span>"); // Mostrar el nombre de la keyword
+							                        out.print("<span>" + keyword + "</span>"); // Mostrar el nombre de la keyword
 							                        firstKeyword = false;
 							                    }
 							                %>

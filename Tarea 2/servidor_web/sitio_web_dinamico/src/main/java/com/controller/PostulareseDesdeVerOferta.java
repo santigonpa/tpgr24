@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
@@ -24,7 +25,7 @@ import com.webservices.controladores.publicar.PublicadorControladorOfertasServic
 public class PostulareseDesdeVerOferta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PublicadorManejadorOfertasService serviceManejadorOferta = new PublicadorManejadorOfertasService();
-	private PublicadorManejadorOfertas puertoManejadorOferta  = serviceManejadorOferta.getPublicadorManejadorOfertasPort();
+	private PublicadorManejadorOfertas puertoManejadorOfertas  = serviceManejadorOferta.getPublicadorManejadorOfertasPort();
 	private PublicadorControladorOfertasService servicePublicadorOfertas = new PublicadorControladorOfertasService();
 	private PublicadorControladorOfertas puertoControladorOfertas = servicePublicadorOfertas.getPublicadorControladorOfertasPort();
 
@@ -39,7 +40,7 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String oferta = request.getParameter("ofer");
-		ArrayList<Object> ofertasWrapper = (ArrayList<Object>) puertoManejadorOferta.getOfertas().getLista();
+		ArrayList<Object> ofertasWrapper = (ArrayList<Object>) puertoManejadorOfertas.getOfertas().getLista();
 		
 
 		ArrayList<DataOferta> listaDataOferta = new ArrayList<>();
@@ -56,6 +57,15 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 	            ofer = ofertaIterando; 
 	        }
 	    }
+		
+		List<Object> keys = puertoManejadorOfertas.getKeysPorNombreOfer(oferta).getLista();
+		ArrayList<String> keysEnviar = new ArrayList<>();
+		for (Object objetoK : keys) {
+		    if (objetoK instanceof String) {
+		    	keysEnviar.add((String) objetoK);
+		    }
+		}
+		request.setAttribute("keys", keysEnviar);
 		
 		request.getSession().setAttribute("dataOfertaPos", ofer);
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
