@@ -156,8 +156,20 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	}
 
 	public DataPostulante getDataPostulante(String postulante) {
-	    DataPostulante res = this.getDataPostulantes().get(postulante);
-	    return res;
+	    Postulante empAct = this.postulantes.get(postulante);
+	    DataPostulante nuevaDTPost = new DataPostulante();
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = empAct.getNacimineto().format(formatter);
+           nuevaDTPost.setNickName(empAct.getNickName()); 
+           nuevaDTPost.setNombre(empAct.getNombre());  
+           nuevaDTPost.setApellido(empAct.getApellido());
+           nuevaDTPost.setEmail(empAct.getEmail());
+           nuevaDTPost.setNacimiento(formattedDate);
+           nuevaDTPost.setNacionalidad(empAct.getNacionalidad());
+           nuevaDTPost.setImagen(empAct.getImagen());
+           nuevaDTPost.setPsw( empAct.getPsw());
+	    
+	    return nuevaDTPost;
 	}
 	
 	public Postulante obtenerPostulante(String post) {

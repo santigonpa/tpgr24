@@ -241,6 +241,7 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaPost.setOfer(oferta);
 		nuevaPost.setPost(postu);
 		
+		
 		if (oferta.existePostulacion(postu.getNickName())) {
 			throw new yaExistePostulacionAOfertaException("El postulante ya se encuentra postulado a esa oferta");
 		}

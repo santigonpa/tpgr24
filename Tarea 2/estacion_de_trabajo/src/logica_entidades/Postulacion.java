@@ -85,7 +85,7 @@ public class Postulacion {
 			DtPost.setCurri(this.curri);
 			DtPost.setMotivacion(this.motivacion);
 			DtPost.setFecha(formattedDate);
-			DtPost.setNickName(this.post.getNickName());
+			DtPost.setNickPostulante(this.post.getNickName());
 			DtPost.setNombreOferta(this.ofer.getNombreOferta());
 			return DtPost;
 		}

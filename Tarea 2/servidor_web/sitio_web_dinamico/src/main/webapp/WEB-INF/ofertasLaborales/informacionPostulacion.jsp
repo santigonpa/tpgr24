@@ -7,6 +7,7 @@
 	<%@ page import="com.webservices.controladores.publicar.Postulacion" %>
 	<%@ page import="com.webservices.controladores.publicar.DataOferta" %>
 	<%@ page import="com.webservices.controladores.publicar.DataPostulacion" %>
+	<%@ page import="com.webservices.controladores.publicar.DataUsuario" %>
 	<%@ page import="java.time.LocalDate" %>
 	<%@page import ="java.util.Base64" %>
 	<%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
@@ -65,13 +66,14 @@
 	   	DataOferta ofertaLaboral = (DataOferta) puertoManejadorOfertas.getDataOferta(nombreO);
 	   	
 
-	   	String apellido =  puertoManejadorUsuario.getDataPostulante(post.getNickPostulante()).getApellido();
+	   	DataUsuario user =  puertoManejadorUsuario.obtenerDataUsuario(post.getNickPostulante());
+	   	String apellido = user.getApellido();
 	   	String cvBreve = post.getCurri();
 	   	String motivacion = post.getMotivacion();
 	   	String fecha = post.getFecha();
 	   	String nombrePostulante = post.getNickPostulante();
 	   	
-	   	byte[] imagenBytes = puertoManejadorUsuario.obtenerPostulante(post.getNickPostulante()).getImagen();
+	   	byte[] imagenBytes = puertoManejadorUsuario.obtenerDataUsuario(post.getNickPostulante()).getImagen();
         String base64Image = "";
         if (imagenBytes != null) {
             base64Image = Base64.getEncoder().encodeToString(imagenBytes);

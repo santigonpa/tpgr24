@@ -70,7 +70,9 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     			if(postula.getNombreOferta().equals(nombreOfer)) {dtPost = postula;}
     		}
     		//Postulacion dtPost = (Postulacion) post.encontrarPostulacionPorNombreOferta(nombreOfer);
+    		System.out.println(dtPost.getMotivacion());
     		if (dtPost != null) {
+    			System.out.println(dtPost.getNickPostulante());
     			request.setAttribute("dtPost", dtPost);
         		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
     		}
@@ -102,8 +104,10 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     		for(DataPostulacion postula : postulaciones) {
     			if(postula.getNombreOferta().equals(nombreOfer)) {dtPost = postula;}
     		}
+    		
     		//Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
 	    	if (dtPost != null) {
+	    		
 	    			request.setAttribute("dtPost", dtPost);
 	        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
 	    	}
