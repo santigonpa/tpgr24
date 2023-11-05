@@ -1,5 +1,6 @@
 package logica_entidades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -8,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.time.LocalDate;
 
 import logica_datatypes.DataEmpresa;
+import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.OfertaLaboral.EstadoOferta;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -62,6 +64,18 @@ public class Empresa extends Usuario{
 	
 	public HashMap<String, Paquete> getPaquetes(){
 		return this.paquetes;
+	}
+	
+	public ArrayList<DataTipoPublicacion> getPublicaciones(){
+		
+		CompraPaquete paq = this.compra;
+		ArrayList<TipoPublicacion> tipoPub = paq.getTipoDePublicacionesDisp();
+		ArrayList<DataTipoPublicacion> res = new ArrayList();
+		
+		for (TipoPublicacion tipo : tipoPub) {
+		    res.add(tipo.getDTTipoPublicacion());
+		}
+		return res;
 	}
 
 

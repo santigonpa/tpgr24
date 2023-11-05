@@ -160,6 +160,14 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         muser.addUsuario(empresa);
 		
 	}
+	
+	public ArrayList<DataTipoPublicacion> getPublicacionesEmpresa(String emp){
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
+		Empresa empresa = muser.obtenerEmpresa(emp);
+		ArrayList<DataTipoPublicacion> res = empresa.getPublicaciones();
+		return res;
+	}
 
 	
 	public void altaUsuarioPostulante(String nickname, String nombre, String apellido, String email, LocalDate nacimiento,
