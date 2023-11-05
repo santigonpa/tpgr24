@@ -61,7 +61,14 @@
                     for (DataPaquete dataTP : listaDePaquetes) {
                         String nombreOfer = dataTP.getNombre();
                         byte[] imagenBytes = dataTP.getImagen();
-                        String base64Image = (imagenBytes != null) ? Base64.getEncoder().encodeToString(imagenBytes) : ""; // Añade aquí la imagen predeterminada si es necesario
+                        imagenBytes = dataTP.getImagen();
+			            
+			            String base64Image = "";
+			            if (imagenBytes != null) {
+			                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+			            }else{
+			            	//aca va la imagen default
+			            }
             %>
 				
 			    <div class="card" style="width: 20rem;">				

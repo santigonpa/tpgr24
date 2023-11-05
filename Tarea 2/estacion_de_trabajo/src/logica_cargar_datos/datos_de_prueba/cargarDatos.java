@@ -836,18 +836,20 @@ public class cargarDatos {
 		
 		
 		//------------------------------//	
-		//Falta todo lo de Paquete que es opcional, veremos si se hace.
-		
-		//Creo un paquete(ojala no se rompa todo)
-
-
-		
+		//PAQUETES
+	
 		//Fechas para paquetes
 		
 		LocalDate fhp1 = LocalDate.parse("16-08-2023", dateFormatter);
 		LocalDate fhp2 = LocalDate.parse("15-08-2023", dateFormatter);
 		LocalDate fhp3 = LocalDate.parse("14-08-2023", dateFormatter);
 		LocalDate fhp4 = LocalDate.parse("13-08-2023", dateFormatter);
+		
+		//Imagenes de paquetes
+		byte[] paq1img = this.getFile("imagenPaquete1.jpg");
+		byte[] paq2img = this.getFile("imagenPaquete2.jpg");
+		byte[] paq3img = this.getFile("imagenPaquete3.jpg");
+		byte[] paq4img = this.getFile("imagenPaquete4.jpg");
 		
 		//Creo los paquetes
 		
@@ -858,7 +860,7 @@ public class cargarDatos {
 		paq1.setDescuento(20);
 		paq1.setFechaAlta(fhp1);
 		paq1.setCosto(3720);
-		paq1.setImagen(null);
+		paq1.setImagen(paq1img);
 
 		Paquete paq2 = new Paquete();
 		paq2.setNombre("Destacado");
@@ -867,7 +869,7 @@ public class cargarDatos {
 		paq2.setDescuento(10);
 		paq2.setFechaAlta(fhp2);
 		paq2.setCosto(315);
-		paq2.setImagen(null);
+		paq2.setImagen(paq2img);
 
 		Paquete paq3 = new Paquete();
 		paq3.setNombre("Premium");
@@ -876,7 +878,7 @@ public class cargarDatos {
 		paq3.setDescuento(15);
 		paq3.setFechaAlta(fhp3);
 		paq3.setCosto(7055);
-		paq3.setImagen(null);
+		paq3.setImagen(paq3img);
 
 		Paquete paq4 = new Paquete();
 		paq4.setNombre("Express");
@@ -885,7 +887,7 @@ public class cargarDatos {
 		paq4.setDescuento(5);
 		paq4.setFechaAlta(fhp4);
 		paq4.setCosto(950);
-		paq4.setImagen(null);
+		paq4.setImagen(paq4img);
 
 		//Los añado al manejador
 		
