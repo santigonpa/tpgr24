@@ -119,7 +119,7 @@
     <title>Ofertas Laborales</title>
 	</head>
 <body>
-	 <jsp:include page="/WEB-INF/mobil/templates_movil/header_movil.jsp"></jsp:include>
+    <%@ include file="../templates_movil/header_movil.jsp" %>
 	
 	<main>
 				<div class="contenedor4">

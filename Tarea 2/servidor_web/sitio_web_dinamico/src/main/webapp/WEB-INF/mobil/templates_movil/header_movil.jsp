@@ -3,11 +3,7 @@
 <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <div class="container-fluid">
-<<<<<<< HEAD
-          <a class="navbar-brand" href="home">
-=======
-          <a class="navbar-brand" href="home_movil">
->>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
+
             <img
               src="media/img/logoNuevo.png"
               alt="Logo"

@@ -52,7 +52,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <body>
-	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+    <%@ include file="../templates_movil/headerLogged_movil.jsp" %>
 	 <main>  
 	   <%
 	   	DataPostulacion post = (DataPostulacion) request.getAttribute("dtPost");

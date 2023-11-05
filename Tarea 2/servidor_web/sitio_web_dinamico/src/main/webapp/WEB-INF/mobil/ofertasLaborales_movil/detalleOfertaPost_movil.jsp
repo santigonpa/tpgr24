@@ -50,7 +50,7 @@
     <title>TrabajoUY</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+    <%@ include file="../templates_movil/headerLogged_movil.jsp" %>
 	    
 	 <%
         // Recupera la ofertaSeleccionada de la solicitud
