@@ -16,6 +16,7 @@ import excepciones.NicknameYaExisteException;
 import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_controladores.IControladorUsuario;
+import logica_entidades.CompraPaquete;
 import logica_entidades.Empresa;
 import logica_entidades.KeyWord;
 import logica_entidades.Usuario;
@@ -902,6 +903,37 @@ public class cargarDatos {
 		((Empresa) e6).agregarPaquetes(paq2.getNombre(), paq2);
 		((Empresa) e1).agregarPaquetes(paq3.getNombre(), paq3);
 		((Empresa) e1).agregarPaquetes(paq4.getNombre(), paq4);
+		
+		//Fechas de las compras
+		LocalDate fc1 = LocalDate.parse("1-10-2023", dateFormatter); //e1 y pq3
+		LocalDate fvc1 = LocalDate.parse("1-12-2023", dateFormatter);
+		LocalDate fc2 = LocalDate.parse("8-9-2023", dateFormatter); 
+		LocalDate fvc2 = LocalDate.parse("24-10-2023", dateFormatter);
+		LocalDate fc3 = LocalDate.parse("23-10-2023", dateFormatter); 
+		LocalDate fvc3 = LocalDate.parse("7-11-2023", dateFormatter);
+
+		
+		
+		//Creo los compra paquete
+		CompraPaquete comp1 = new CompraPaquete();
+		comp1.setFechaCompr(fc1);
+		comp1.setFechaVenc(fvc1);
+		comp1.setPaquete(paq1);
+		
+		CompraPaquete comp2 = new CompraPaquete();
+		comp2.setFechaCompr(fc2);
+		comp2.setFechaVenc(fvc2);
+		comp2.setPaquete(paq2);
+		
+		CompraPaquete comp3 = new CompraPaquete();
+		comp3.setFechaCompr(fc3);
+		comp3.setFechaVenc(fvc3);
+		comp3.setPaquete(paq2);
+		
+		//Le asigno a cada empresa como "compra paquete" su ultimo paquete comprado
+		((Empresa) e1).setCompra(comp1);
+		((Empresa) e2).setCompra(comp3);
+		((Empresa) e6).setCompra(comp2);
 	
-	}
+	}		
 }

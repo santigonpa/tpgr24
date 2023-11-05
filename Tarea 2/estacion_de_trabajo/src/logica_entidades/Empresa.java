@@ -67,9 +67,9 @@ public class Empresa extends Usuario{
 	}
 	
 	public ArrayList<DataTipoPublicacion> getPublicaciones(){
-		
-		CompraPaquete paquete = this.compra;
-		if(paquete != null) {
+		if(this.tienePaqueteAsociado()) {
+			
+			CompraPaquete paquete = this.compra;
 			ArrayList<TipoPublicacion> tipoPub = paquete.getTipoDePublicacionesDisp();
 			ArrayList<DataTipoPublicacion> res = new ArrayList();
 			for (TipoPublicacion tipo : tipoPub) {
@@ -77,7 +77,7 @@ public class Empresa extends Usuario{
 			
 			}
 			return res;
-
+			
 		}else {
 			return null;
 		}
