@@ -270,22 +270,16 @@
 			    
 			    <% 
 			    }else{
-			        	
 			        	%>
-			           
-			           
-			             
-						    <div class = "my-5"></div>
-					  			<div class="container">
-							    	<div class="row">
-							        	<div class="col text-center">
-							            	<div class="alert alert-danger" role="alert">
-							                No hay Usuarios registrados hasta el momento
-							            	</div>
-							        	</div>
-							    	</div>
-								</div>
-			             
+						    <div class="contendor2">	 
+						    <div class="carta" style="width: 98vw;">       
+							            <div class="alert alert-danger" role="alert">
+							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+							            	<hr>
+							                Hasta el momento no hay usuarios registrados en el sistema
+							            </div>
+							        </div>
+						</div>
 			       <% 
 			        }
 			    %>
