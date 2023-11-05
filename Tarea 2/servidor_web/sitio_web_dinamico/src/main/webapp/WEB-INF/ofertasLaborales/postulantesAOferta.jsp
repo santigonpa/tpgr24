@@ -51,27 +51,25 @@
 
 		<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	<main>	
+	 <%
+		 String nombreOfer = (String) request.getAttribute("nombreOferta");
+	 %>		
 		<div class="contenedor">
-	  		<h2 class="titulo">Información postulantes</h2>
+			<h2 class="text-uppercase fs-4 fw-bolder">Usuarios postulados a <%= nombreOfer %></h2>
 		</div>
 		
 		<div class="cartas">
 			    <%
 			    
-			    ArrayList<DataPostulacion> conjuntoDePost = (ArrayList<DataPostulacion>) request.getAttribute("postulantes");
+			    ArrayList<String> conjuntoDePost = (ArrayList<String>) request.getAttribute("postulantes");
 			    
 			    if(!conjuntoDePost.isEmpty()){
 			    
-			        String motivacion;
-			        String nombreUser;
-			        String apellidoUser;
-			        String nombreOfer;
-			        byte[] imagenBytes;
+			        String nombre;
+			        
 			
-			        for (DataPostulacion post : conjuntoDePost) {
-			            motivacion = post.getMotivacion();
-			            nombreUser = post.getNickPostulante();
-						nombreOfer = post.getNombreOferta();
+			        for (String post : conjuntoDePost) {
+			            nombre = post;
 			            
 			    %>
 			
@@ -79,8 +77,8 @@
 			    <div class="card" style="width: 18rem;">
   					
 	  				 <div class="card-body">
-	    				<p class="card-text"><%= motivacion %></p>
-						<a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %>&user=<%= nombreUser %>" class="btn btn-outline-dark">Informacion postulacion</a>
+	    				<p class="card-text"><strong><%= post %></strong></p>
+						<a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOfer %>&user=<%= post %>" class="btn btn-outline-dark">Informacion postulacion</a>
 	  				 </div>
 				</div>
 				

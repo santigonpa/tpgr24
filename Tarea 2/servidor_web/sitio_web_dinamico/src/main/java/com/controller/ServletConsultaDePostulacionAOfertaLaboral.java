@@ -46,6 +46,7 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     	
     	String nombreOfer = request.getParameter("id");
     	String user = request.getParameter("user");
+    	
 
 		//DataOferta ofer = IMO.getDataOferta(nombreOfer);
 		DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");    	
@@ -78,41 +79,42 @@ public class ServletConsultaDePostulacionAOfertaLaboral extends HttpServlet {
     		}
     		
     	}else if(!banderaPostulante && (user == null)){
-    		List<Object> listaPostulantes = puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(nombreOfer).getLista();
-    		ArrayList<DataPostulacion> postulaciones = new ArrayList<>();
-
+    		List<Object> listaPostulantes = puertoManejadorOfertas.getNickPostulantes(nombreOfer).getLista();
+    		ArrayList<String> postulaciones = new ArrayList<>();
     		for (Object objeto : listaPostulantes) {
-    		    if (objeto instanceof DataPostulacion) {
-    		        postulaciones.add((DataPostulacion) objeto);
+    			System.out.println(objeto);
+    		    if (objeto instanceof String) {
+    		        postulaciones.add((String) objeto);
     		    }
     		}
     		//request.setAttribute("postulantes", postulantes); raaaaro
+    		request.setAttribute("nombreOferta", nombreOfer);
     		request.setAttribute("postulantes", postulaciones);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulantesAOferta.jsp").forward(request, response);
     	}else if(!banderaPostulante && (user != null)) {
-    		DataPostulante pos = (DataPostulante) puertoManejadorUsuario.obtenerDataUsuario(user);
-    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPostulaciones(pos.getNickName()).getLista();
-    		ArrayList<DataPostulacion> postulaciones = new ArrayList<>();
+    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPostulaciones(user).getLista();
+    		ArrayList<DataPostulacion> postulacionesDeUsuario = new ArrayList<>();
 
     		for (Object objeto : listaObjetos) {
     		    if (objeto instanceof DataPostulacion) {
-    		        postulaciones.add((DataPostulacion) objeto);
+    		        postulacionesDeUsuario.add((DataPostulacion) objeto);
     		    }
     		}
-
+    		
     		DataPostulacion dtPost = null;
-    		for(DataPostulacion postula : postulaciones) {
-    			if(postula.getNombreOferta().equals(nombreOfer)) {dtPost = postula;}
+    		for(DataPostulacion postula : postulacionesDeUsuario) {
+    			System.out.println("nombre de la oferta:" + postula.getNombreOferta());
+    			if(postula.getNombreOferta().equals(nombreOfer)) {
+    				dtPost = postula;
+    			}
     		}
-    		
-    		//Postulacion dtPost = (Postulacion) pos.encontrarPostulacionPorNombreOferta(nombreOfer);
-	    	if (dtPost != null) {
-	    		
-	    			request.setAttribute("dtPost", dtPost);
-	        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
-	    	}
-    		
-    		
+
+    		System.out.println(dtPost.getMotivacion());
+    		if (dtPost != null) {
+    			System.out.println(dtPost.getNickPostulante());
+    			request.setAttribute("dtPost", dtPost);
+        		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/informacionPostulacion.jsp").forward(request, response); 
+    		}
     	}
     
 	    

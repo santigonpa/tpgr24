@@ -238,7 +238,7 @@
 					        <div class="card-body">
 		    						<h5 class="card-title"><%= nombreOfer %></h5>
 		    						<p class="card-text"><%= descripcion %></p>
-									<a href="ServletDetalleOferta?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
+									<a href="servletDetalleOferta_movil?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
 				    	</div>
 				      </div>
 				      
