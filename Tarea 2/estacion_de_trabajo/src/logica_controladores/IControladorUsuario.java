@@ -25,6 +25,8 @@ public interface IControladorUsuario {
 	public abstract ArrayList<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException;
 
 	public abstract ArrayList<DataTipoPublicacion> getDataTipoPublicacion();
+	
+	public abstract ArrayList<DataTipoPublicacion> getPublicacionesEmpresa(String emp);
 
 	public abstract void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String web , byte[]imagen , String psw)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException;

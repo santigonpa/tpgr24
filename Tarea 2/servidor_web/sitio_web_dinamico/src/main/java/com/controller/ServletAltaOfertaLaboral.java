@@ -39,6 +39,8 @@ import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataPaquete;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
 import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
+import com.webservices.controladores.publicar.PublicadorControladorUsuario;
+import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 
@@ -58,9 +60,12 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	private PublicadorControladorOfertas puertoControladorOfertas = servicePublicadorOfertas.getPublicadorControladorOfertasPort();
 	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
 	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
-	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
-	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
-	
+	private PublicadorManejadorUsuarioService servicePublicadorManUsuario = new PublicadorManejadorUsuarioService();
+	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorManUsuario.getPublicadorManejadorUsuarioPort();
+	private PublicadorControladorUsuarioService servicePublicadorUsuario = new PublicadorControladorUsuarioService();
+	private PublicadorControladorUsuario puertoControladorUsuario = servicePublicadorUsuario.getPublicadorControladorUsuarioPort();
+    
+    
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
@@ -97,7 +102,11 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+
+    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
+
+    	
+    	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
     	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();
 
 		for (Object objeto : coleccionPTPWrapper) {
@@ -118,7 +127,6 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
 		
-    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
