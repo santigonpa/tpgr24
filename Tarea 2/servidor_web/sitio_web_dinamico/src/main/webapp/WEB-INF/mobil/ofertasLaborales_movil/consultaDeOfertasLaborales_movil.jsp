@@ -119,7 +119,7 @@
     <title>Ofertas Laborales</title>
 	</head>
 <body>
-	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+	 <jsp:include page="/WEB-INF/mobil/templates_movil/header_movil.jsp"></jsp:include>
 	
 	<main>
 				<div class="contenedor4">
@@ -134,7 +134,7 @@
 	        <div class="container text-center">
 	            <div class="row">
 	                <div class="col">
-	                    <form id="empresaForm" action="/TrabajoUY/ConsultaDeOfertaLaboral" method="get"> 
+	                    <form id="empresaForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
 						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
 						    <option selected disabled>Filtrar por empresa</option>
 						    <% 
@@ -151,7 +151,7 @@
 						</form>
 	                </div>
 	                <div class="col">
-	                    <form id="keywordForm" action="/TrabajoUY/ConsultaDeOfertaLaboral" method="get"> 
+	                    <form id="keywordForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
 						  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
 						    <option selected disabled>Filtrar por KeyWord</option>
 						    <% 
@@ -238,7 +238,7 @@
 					        <div class="card-body">
 		    						<h5 class="card-title"><%= nombreOfer %></h5>
 		    						<p class="card-text"><%= descripcion %></p>
-									<a href="servletDetalleOferta_movil?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
+									<a href="DetalleOferta_movil?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
 				    	</div>
 				      </div>
 				      

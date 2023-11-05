@@ -49,6 +49,7 @@
     <title>TrabajoUY</title>
   </head>
   <body>
+<<<<<<< HEAD
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <div class="container-fluid">
@@ -180,6 +181,9 @@
         </div>
       </nav>
     </header>
+=======
+    <jsp:include page="/WEB-INF/mobil/templates_movil/header_movil.jsp"></jsp:include>
+>>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
     <main>
       <div
         class="header-ola"

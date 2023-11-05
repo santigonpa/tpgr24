@@ -137,7 +137,7 @@
                 <li><a class="dropdown-item" href="/TrabajoUY/ModificarUsuario">Modificar Usuario</a></li>
                 <!--<li><a class="dropdown-item cerrar-sesion" href="index.html">Cerrar sesiÃ³n</a></li>-->
                 <!-- no se si meter ese js-->
-                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesiÃ³n</a></li>
+                <li><a class="dropdown-item cerrar-sesion" href="javascript:void(0);" onclick="confirmarCerrarSesion();">Cerrar sesión</a></li>
             </ul>
         </div>
     </div>

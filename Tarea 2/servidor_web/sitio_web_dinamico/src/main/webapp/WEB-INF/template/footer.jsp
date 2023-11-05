@@ -30,7 +30,7 @@
 								<a href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral" class="text-dark">Tipos de publicación</a>
 							</p>
 							<p>
-								<a href="/TrabajoUY/CargarDatos" class="text-dark">Ayuda</a>
+								<a href="/TrabajoUY/home_movil" class="text-dark">Ayuda</a>
 							</p>
 					   </div>
 					   

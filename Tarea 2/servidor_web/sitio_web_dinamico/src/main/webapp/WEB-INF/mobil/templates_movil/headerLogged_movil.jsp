@@ -62,7 +62,11 @@
                     >
                   </li>
                   <li>
+<<<<<<< HEAD
                     <a class="dropdown-item" href="ConsultaDeOfertaLaboral"
+=======
+                    <a class="dropdown-item" href="/TrabajoUY/ConsultaDeOfertaLaboral_movil"
+>>>>>>> branch 'master' of https://gitlab.fing.edu.uy/tprog/tpgr24.git
                       >Ver Ofertas</a
                     >
                   </li>
