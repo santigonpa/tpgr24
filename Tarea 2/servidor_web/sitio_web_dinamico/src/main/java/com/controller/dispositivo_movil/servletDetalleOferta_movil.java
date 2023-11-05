@@ -26,7 +26,7 @@ import com.webservices.controladores.publicar.WrapperArrayList;
 @WebServlet (description = "Servlet de Consulta de oferta laboral detllada movil", urlPatterns = { "/DetalleOferta_movil" })
 @MultipartConfig
 /**
- * Servlet implementation class ServletDetalleOferta_movil
+ * Servlet implementation class servletDetalleOferta_movil
  */
 public class servletDetalleOferta_movil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -131,18 +131,11 @@ public class servletDetalleOferta_movil extends HttpServlet {
 	    			if(ofertaActual.equals(nombreOfer)) {esSuOferta = true;}
 	    		}
 	    		
-	    		if(esSuOferta){
-					request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaEmp.jsp").forward(request, response);
-	    		}else {
-	    			String queEs = "Empresa";
-					request.setAttribute("queEs", queEs);
-	    			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaLogged.jsp").forward(request, response);
-	    		}
 
 			}	
 			
 			if(!banderaSesion) {
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOferta.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/detalleOferta_movil.jsp").forward(request, response);
 			}
     
     }		
