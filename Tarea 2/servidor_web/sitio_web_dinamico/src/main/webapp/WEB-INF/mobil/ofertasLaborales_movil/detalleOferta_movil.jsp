@@ -77,22 +77,22 @@
 
     %>
 	<main>
-		<div class = "contenedor4">
+		<div class = "container">
 
   		<div class="row">
-		<div class="col-6 col-md-4">
-			<div class = "alinearImg3">
+		<div class="col-12 col-md-4">
+			<div class = "my-4">
            
   				<img src="data:image/jpeg;base64, <%= base64Image %>" align = "absmiddle" class="img-thumbnail shadow" alt="...">
 		
 			</div>
 		</div>
-    	<div class="col-md-8">
-			<div class="contenedor4">
+    	<div class="col-md-8 mt-0 mt-md-4">
+			<div class="container">
 				<h2 class="text-uppercase fs-4 fw-bolder">Información de la oferta</h2>
 			</div>
 			<!--cargo datos-->
-		  <div class = "contenedor4">
+		  <div class = "container pt-5">
 		  	<div class="row">
     			<div class="col">
       					<h4 class = "fs-5 fw=normal">Nombre:</h4>
