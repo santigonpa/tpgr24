@@ -122,14 +122,12 @@
     <%@ include file="../templates_movil/header_movil.jsp" %>
 	
 	<main>
-				<div class="contenedor4">
+				<div class="container pt-4">
 			  		<h2 class="titulo"><strong>Ofertas Laborales</strong></h2>
-			  		<p>
 			  		<hr>
-			  		</p>
 				</div>
 
-			<div class="contenedorPrincipal">
+			
        
 	        <div class="container text-center">
 	            <div class="row">
@@ -195,8 +193,7 @@
 		       	 					<h2 class="titulo">Ofertas Relacionadas con la palabra clave "<%= request.getParameter("keyword") %>"</h2>
 		    					</div>
 						 
-						  <div class="contenedorCards">
-						 		<div class="row mt-4">
+						  <div class="container mx-auto row justify-content-center align-items-center mt-4">
 						 		
 						 <%
 					 
@@ -327,8 +324,6 @@
 					 
 				%>
 				 </div>
-		 </div>
-	    </div>
 		</main>
     
    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
