@@ -111,18 +111,15 @@
   });
 	</script>
 
+	<style>
+    
 
-<style>
-    
-.row {
---bs-gutter-x: 0rem !important;
-}
-    
     </style>
+
     <title>Ofertas Laborales</title>
 	</head>
 <body>
-	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+	 <jsp:include page="/WEB-INF/mobil/templates_movil/headerLogged_movil.jsp"></jsp:include>
 	
 	<main>
 				<div class="contenedor4">
@@ -137,32 +134,32 @@
 	        <div class="container text-center">
 	            <div class="row">
 	                <div class="col">
-	                    <form id="empresaForm" action="/TrabajoUY/ConsultaDeOfertaLaboral" method="get"> 
+	                    <form id="empresaForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
 						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
 						    <option selected disabled>Filtrar por empresa</option>
 						    <% 
-						    Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
+							Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
 						    
 						    if(!conjuntoDeEmpresas.isEmpty()){  
 						    	String nickEmpresa;
 						    	for (DataEmpresa dataEmp : conjuntoDeEmpresas) {
 						            nickEmpresa = dataEmp.getNickName();
-					    %>
+						    %>
 						    <option value="<%= nickEmpresa %>"><%= nickEmpresa %></option>
-						    <% }}%>
+						    <% }} %>
 						  </select>
 						</form>
 	                </div>
 	                <div class="col">
-	                    <form id="keywordForm" action="/TrabajoUY/ConsultaDeOfertaLaboral" method="get"> 
+	                    <form id="keywordForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
 						  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
 						    <option selected disabled>Filtrar por KeyWord</option>
 						    <% 
-						       ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
-						    	if (keys != null && !keys.isEmpty()) {
-						    		String palabra;
-									for (DataKeyWord key : keys) {  
-						         		palabra = key.getPalabraClave();
+						    ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
+					    	if (keys != null && !keys.isEmpty()) {
+					    		String palabra;
+								for (DataKeyWord key : keys) {  
+					         		palabra = key.getPalabraClave();
 						    %>
 						    <option value="<%= palabra %>"><%= palabra %></option>
 						    <% }} %>
@@ -211,7 +208,7 @@
 					 <% 
 					 	Set<DataOferta> conjDeOfer = (Set<DataOferta>) request.getAttribute("coleccionOfertas");
 					    
-					    if(!conjDeOfer.isEmpty()){
+					    if(conjDeOfer != null && !conjDeOfer.isEmpty()){
 					    
 					        String nombreOfer;
 					        String descripcion;
@@ -233,7 +230,7 @@
 				  %>
 				  
 				  
-				    
+				   
 				    <div class="col-md-4 mb-4">
 				   
 				      <div class="card" style="width: 20rem;">
@@ -241,7 +238,7 @@
 					        <div class="card-body">
 		    						<h5 class="card-title"><%= nombreOfer %></h5>
 		    						<p class="card-text"><%= descripcion %></p>
-									<a href="ServletDetalleOferta?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
+									<a href="DetalleOferta_movil?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
 				    	</div>
 				      </div>
 				      
@@ -329,8 +326,10 @@
 					 }
 					 
 				%>
-	
-	    		</main>
+				 </div>
+		 </div>
+	    </div>
+		</main>
     
    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
      

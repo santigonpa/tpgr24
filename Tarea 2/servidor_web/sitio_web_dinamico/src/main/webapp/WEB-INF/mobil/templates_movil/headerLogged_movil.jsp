@@ -62,7 +62,7 @@
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="ConsultaDeOfertaLaboral"
+                    <a class="dropdown-item" href="/TrabajoUY/ConsultaDeOfertaLaboral_movil"
                       >Ver Ofertas</a
                     >
                   </li>

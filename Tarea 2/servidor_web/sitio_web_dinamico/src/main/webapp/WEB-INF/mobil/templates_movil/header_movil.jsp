@@ -3,7 +3,7 @@
 <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <div class="container-fluid">
-          <a class="navbar-brand" href="home">
+          <a class="navbar-brand" href="home_movil">
             <img
               src="media/img/logoNuevo.png"
               alt="Logo"
