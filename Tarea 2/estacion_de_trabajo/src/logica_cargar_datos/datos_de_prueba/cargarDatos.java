@@ -903,12 +903,12 @@ public class cargarDatos {
 		((Empresa) e1).agregarPaquetes(paq4.getNombre(), paq4);
 		
 		//Fechas de las compras
-		LocalDate fc1 = LocalDate.parse("1-10-2023", dateFormatter); //e1 y pq3
-		LocalDate fvc1 = LocalDate.parse("1-12-2023", dateFormatter);
-		LocalDate fc2 = LocalDate.parse("8-9-2023", dateFormatter); 
+		LocalDate fc1 = LocalDate.parse("01-10-2023", dateFormatter); //e1 y pq3
+		LocalDate fvc1 = LocalDate.parse("01-12-2023", dateFormatter);
+		LocalDate fc2 = LocalDate.parse("08-9-2023", dateFormatter); 
 		LocalDate fvc2 = LocalDate.parse("24-10-2023", dateFormatter);
 		LocalDate fc3 = LocalDate.parse("23-10-2023", dateFormatter); 
-		LocalDate fvc3 = LocalDate.parse("7-11-2023", dateFormatter);
+		LocalDate fvc3 = LocalDate.parse("07-11-2023", dateFormatter);
 
 		
 		

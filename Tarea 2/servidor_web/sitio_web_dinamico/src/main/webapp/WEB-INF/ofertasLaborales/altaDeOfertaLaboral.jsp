@@ -60,23 +60,23 @@
 	    <script>
       // Lógica para mostrar u ocultar los formularios según la pestaña seleccionada
       $(document).ready(function () {
-  		$("#pagoGen-tab").on("click", function () {
-   		$("#pagoGeneral").show();
-    	$("#pagoConPaquete").hide();
-    	$("#tipoPago").val("pagoGeneral"); // Actualiza el valor del campo oculto
-  });
+    $("#pagoGen-tab").on("click", function () {
+        $("#pagoGeneral").show();
+        $("#pagoConPaquete").hide();
+        $("#tipoPago").val("pagoGeneral");
+    });
 
-  		$("#pagoPaq-tab").on("click", function () {
-    	$("#pagoConPaquete").hide();
-    	$("#pagoConPaquete").show();
-    	$("#tipoPago").val("pagoPaquete"); // Actualiza el valor del campo oculto
-    	
-    	 $("#valorCampoOculto").text($("#tipoPago").val());
-  });		
+    $("#pagoPaq-tab").on("click", function () {
+        $("#pagoGeneral").hide(); // Ocultar elementos relacionados con Pago General
+        $("#pagoConPaquete").show();
+        $("#tipoPago").val("pagoPaquete");
+    });
 });
+
 
     </script>
       
+  
       <script>
 		function validarFormulario() {
 		    var nombre = document.getElementById("nombre").value;
@@ -222,11 +222,12 @@ document.addEventListener("DOMContentLoaded", function () {
             </ul>
           </div>
          
+           <div class="tab-pane fade" id="pagoGeneral">
             <div class="cartas">
 
 				<%
 			    
-				ArrayList<DataTipoPublicacion> conjuntoDePaquetes = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+				ArrayList<DataTipoPublicacion> conjuntoDePaquetes = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetesCompleta");
 				ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
 				
 				
@@ -243,9 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			        	nombrePaquete = dataTP.getNombre();
 			        	descripcion = dataTP.getDescripcion();
 			        	exp = dataTP.getExposicion();
-			        	duracion = dataTP.getDuracion();
-			        	
+			        	duracion = dataTP.getDuracion();			        	
 			        	fecha = dataTP.getFecha();
+
 			    %>
 				
 				
@@ -268,6 +269,62 @@ document.addEventListener("DOMContentLoaded", function () {
 			        
 			        %>  
 			    	
+			    	</div>
+			    	</div>
+
+	<div class="tab-pane fade" id="pagoConPaquete">
+            <div class="cartas">
+
+				<%
+			    
+				ArrayList<DataTipoPublicacion> conjuntoDePaquetes2 = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+				
+				
+			    if(conjuntoDePaquetes2 != null && !conjuntoDePaquetes2.isEmpty()){
+			    
+			        String nombrePaquete2;
+			        String descripcion2;
+			
+			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
+			        	nombrePaquete2 = dataTP.getNombre();
+			        	descripcion2 = dataTP.getDescripcion();
+
+			    %>
+				
+				
+				
+			    <div class="card" style="width: 20rem;">
+			   		<div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
+           	 			<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
+        			</div>
+        			
+			        <div class="card-body">
+    						<h5 class="card-title"><strong><%= nombrePaquete2 %></strong></h5>
+    						<p class="card-text"><%= descripcion2 %></p>
+    				 		<input type="radio" class="btn-check" name ="btnradio" id="<%= nombrePaquete2 %>" autocomplete="off">
+    				 		<label class="btn btn-outline-dark" for="<%= nombrePaquete2 %>">Seleccionar</label>			
+					</div>
+		    	</div>
+			    
+			    <%
+			        }}else{ 	
+				        	%>
+						    <div class="contendor2">	 
+						    <div class="carta" style="width: 62vw;">       
+							            <div class="alert alert-danger" role="alert">
+							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+							            	<hr>
+							                Su empresa no cuenta con algún paquete o su paquete ya no tiene más publicaciones
+							            </div>
+							        </div>
+						</div>
+				    
+				      <% 
+				    }
+			        
+			        %>  
+			    	
+			    	</div>
 			    	</div>
 
 		<div class="card-body">
@@ -399,6 +456,22 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 			
 	</main>
+	
+	  <script>
+	  // Obtener el valor de tipoPago
+  
+  var tipoPago = "<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoPaquete" %>";
+
+  // Verificar el valor y seleccionar la pestaña correspondiente
+  if (tipoPago === "pagoPaquete") {
+    // Selecciona la pestaña de Empresa
+    $("#pagoPaq-tab").tab("show");
+  } else {
+    // Selecciona la pestaña de Postulante (predeterminado)
+    $("#pagoGen-tab").tab("show");
+  }
+</script>
+    
 	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 

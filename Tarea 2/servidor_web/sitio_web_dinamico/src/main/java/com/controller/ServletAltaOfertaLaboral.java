@@ -105,16 +105,28 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 
     	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 
+    	ArrayList<Object> coleccionPTPWrapperCompleta = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+    	ArrayList<DataTipoPublicacion> coleccionPTPCompleta = new ArrayList<>();
+
+		for (Object objeto : coleccionPTPWrapperCompleta) {
+		    if (objeto instanceof DataTipoPublicacion) {
+		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
+		        coleccionPTPCompleta.add(dataTipoPublicacion);
+		    }
+		}
+    	
     	
     	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
-    	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();
-
+    	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();		
+    	
 		for (Object objeto : coleccionPTPWrapper) {
 		    if (objeto instanceof DataTipoPublicacion) {
 		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
 		        coleccionPTP.add(dataTipoPublicacion);
 		    }
 		}
+		
+		coleccionPTP = null;
 		
 		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
 		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
@@ -126,7 +138,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		    }
 		}
 		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
-		
+		request.setAttribute("coleccionDataPaquetesCompleta", coleccionPTPCompleta);
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
