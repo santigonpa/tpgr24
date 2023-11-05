@@ -27,7 +27,6 @@ import logica_entidades.Usuario;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
-import logica_manejadores.ManejadorUsuario;
 
 
 public class ControladorUsuario implements IControladorUsuario {
@@ -94,6 +93,7 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	
 	Postulante post = (Postulante) manejadorUsuario.obtenerUsuario(usuario);
 	WrapperArrayList wrapper = post.obtenerPostulaciones();
+	@SuppressWarnings("unchecked")
 	ArrayList<Postulacion> res = (ArrayList<Postulacion>) wrapper.getLista();
 	return res;
 }

@@ -11,9 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import excepciones.EmailYaExisteException;
-import excepciones.NicknameYaExisteException;
-import excepciones.campoInvalidoException;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_controladores.IControladorUsuario;
 import logica_entidades.CompraPaquete;
@@ -49,6 +46,7 @@ public class cargarDatos {
 	public void cargar() throws IOException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario mu = fabrica.getInManejadorUsuario();
+		@SuppressWarnings("unused")
 		IControladorUsuario icu = fabrica.getInUser();
 		IManejadorOferta mo = fabrica.getInManejadorOferta();
 		IManejadorPyT mpyt = fabrica.getInManejadorPyT();

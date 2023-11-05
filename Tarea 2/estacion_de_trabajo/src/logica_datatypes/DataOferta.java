@@ -1,8 +1,5 @@
 package logica_datatypes;
 
-import java.util.ArrayList;
-
-import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral.EstadoOferta;
 
 

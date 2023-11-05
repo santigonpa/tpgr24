@@ -71,7 +71,7 @@ public class Empresa extends Usuario{
 			
 			CompraPaquete paquete = this.compra;
 			ArrayList<TipoPublicacion> tipoPub = paquete.getTipoDePublicacionesDisp();
-			ArrayList<DataTipoPublicacion> res = new ArrayList();
+			ArrayList<DataTipoPublicacion> res = new ArrayList<>();
 			for (TipoPublicacion tipo : tipoPub) {
 			    res.add(tipo.getDTTipoPublicacion());
 			

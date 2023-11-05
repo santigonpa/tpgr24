@@ -159,7 +159,8 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
             		Postulante pos = IMU.obtenerPostulante(selectedPostulante.getNickName());
             		WrapperArrayList wrapper = pos.obtenerPostulaciones();
-            		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) wrapper.getLista();
+            		@SuppressWarnings("unchecked")
+					ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) wrapper.getLista();
             		//ArrayList<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
             		
             	    if (postulaciones!= null) {
