@@ -180,8 +180,7 @@
 	       	 					<h2 class="titulo">Ofertas de <%= request.getParameter("empresa") %></h2>
 	    					</div>
 					 
-					  <div class="contenedorCards">
-					 		<div class="row mt-4">
+					  <div class="container flex flex-wrap">
 					 		
 					 <%
 					 
@@ -228,7 +227,6 @@
 				  
 				  
 				   
-				    <div class="col-md-4 mb-4">
 				   
 				      <div class="card" style="width: 20rem;">
 					        <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de usuario" style="object-fit: cover; width: 100%; height: 100%;">
@@ -237,7 +235,6 @@
 		    						<p class="card-text"><%= descripcion %></p>
 									<a href="DetalleOferta_movil?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
 				    	</div>
-				      </div>
 				      
 				      
 				<%
@@ -248,7 +245,6 @@
 					  
 					  </div>
 					
-					</div>
 					
 					<%
 					 
