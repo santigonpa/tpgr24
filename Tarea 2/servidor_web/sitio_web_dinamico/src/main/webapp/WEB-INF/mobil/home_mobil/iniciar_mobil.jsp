@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
 
     <!-- FONTS -->
     <link
@@ -68,8 +68,8 @@
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
-          <h1 class="trabajo-uy">Trabajo UY</h1>
-          <h2 class="slogan-uy">
+          <h1 class="trabajo-uy fs-1">Trabajo UY</h1>
+          <h2 class="slogan-uy fs-2 p-2">
             Consigue el trabajo que buscas de la manera más fácil.
           </h2>
         </div>
@@ -77,7 +77,7 @@
         <!--Waves Container-->
         <div>
           <svg
-            class="waves"
+            class="waves d-none d-lg-block"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 24 150 28"

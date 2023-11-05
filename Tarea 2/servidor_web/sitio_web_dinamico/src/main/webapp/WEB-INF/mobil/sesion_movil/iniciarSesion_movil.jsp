@@ -51,102 +51,42 @@
   <body>
      <jsp:include page="/WEB-INF/mobil/templates_movil/header_movil.jsp"></jsp:include>
     <main>
-      <div
-        class="header-ola"
-        style="
-          position: relative;
-          text-align: center;
-          background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg');
-          background-size: cover;
-          background-position: center;
-          color: white;
-          z-index: -1;
-        "
-      >
-        <!--Content before waves-->
-        <div
-          class="inner-header d-flex justify-content-center align-items-center flex-column"
-        >
-          <h1 class="trabajo-uy">Trabajo UY</h1>
-          <h2 class="slogan-uy">
-            Consigue el trabajo que buscas de la manera más fácil.
-          </h2>
-        </div>
-
-        <!--Waves Container-->
-        <div>
-          <svg
-            class="waves"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28"
-            preserveAspectRatio="none"
-            shape-rendering="auto"
-          >
-            <defs>
-              <path
-                id="gentle-wave"
-                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-              />
-            </defs>
-            <g class="parallax">
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="0"
-                fill="rgba(255,255,255,0.7)"
-              />
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="3"
-                fill="rgba(255,255,255,0.5)"
-              />
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="5"
-                fill="rgba(255,255,255,0.3)"
-              />
-              <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-            </g>
-          </svg>
-        </div>
-        <!--Waves end-->
-      </div>
-      <!--Header ends-->
-
-      <!--Content starts-->
-
-      <!--Content ends-->
-      <div
-        class="titulo3"
-        style="
-          text-align: center;
-          margin-top: 50px;
-          padding: 0;
-          font-family: 'Fira Sans Condensed';
-        "
-      >
-        <h3
-          class="galeria-titulo"
-          style="color: rgb(0, 0, 0); text-shadow: 6px 6px 15 black"
-        >
-          Algunos de nuestros clientes que ya consiguieron empleo con TrabajoUY.
-        </h3>
-      </div>
-
-      <div class="container-galeria">
-        <section class="galeria">
-          <img src="media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" />
-          <img src="media/img/of1.jpg" />
-          <img src="media/img/of2.jpg" />
-          <img src="media/img/of3.jpg" />
-          <img src="media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" />
-          <img src="media/img/irina-2Q8bo_6lu1Y-unsplash.jpg" />
-        </section>
-      </div>
-    </main>
+		<div class="container w-75 bg-white mt-5 mb-0 rounded shadow"  style="margin-bottom: 20px">
+			<div class="row align-items-strech">
+				<div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded ">
+					
+				</div>
+				<div class="col bg-white p-4 rounded-end">
+					<div class="text-end">
+						<img src="media/img/logoNuevo.png" width="48" alt="">
+					</div>
+					<h2 class="fw-bold text-center">Bienvenido</h2>
+					<h5 class="fw-bold text-center">Inicio de sesión</h5>
+					
+					<!--Login-->
+					<form action="iniciarSesion" method="POST">
+						<div>
+							<label for="email" class="form-label" >Usuario o Correo electrónico</label>
+							<input type="text" class="form-control" name="email" required="required">
+						</div>
+						<div>
+							<label for="password" class="form-label">Contraseña</label>
+							<input type="password" class="form-control" name="password" required="required">
+						</div>
+						<div class="d-grid">
+							<button  type="submit" class="btn btn-dark">Iniciar sesión</button>
+						</div>
+						<div class="my-3">
+							<span>¿No tienes cuenta? <a href="AltaUsuario">Regístrate.</a></span> <br>
+							<span><a href="#">Recuperar contraseña.</a></span>
+						</div>
+					</form>
+					
+					
+				</div>
+			</div>
+		</div>
+	</main>
 
     <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
   </body>

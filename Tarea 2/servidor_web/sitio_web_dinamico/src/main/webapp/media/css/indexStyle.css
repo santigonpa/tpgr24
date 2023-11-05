@@ -62,9 +62,10 @@ body{
 .trabajo-uy {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 900;
+  color: red;
   letter-spacing: 2px;
   text-shadow: #ffffff;
-  font-size: 100px;
+  font-size: 2rem;
   margin-bottom: 10px; /* Agrega espacio en la parte inferior */
   margin-top: 0; /* Elimina el espacio en la parte superior predeterminado */
 }
@@ -74,7 +75,7 @@ body{
   font-weight: 500;
   text-shadow: #ffffff;
   letter-spacing: 0.2px;
-  font-size: 35px;
+  font-size: 1.5rem;
   margin-top: 10px; /* Agrega espacio en la parte superior */
   margin-bottom: 0; /* Elimina el espacio en la parte inferior predeterminado */
 }
@@ -324,3 +325,11 @@ section img:hover {
 	height : 100%;
 }
 
+@media screen and (max-width:768px) {
+	.trabajo-uy {
+		font-size: 1.8rem;
+	}
+	.slogan-uy {
+		font-size: 1rem;
+	}
+}
