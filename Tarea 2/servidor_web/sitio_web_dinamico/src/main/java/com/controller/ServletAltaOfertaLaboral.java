@@ -126,8 +126,6 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		    }
 		}
 		
-		coleccionPTP = null;
-		
 		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
 		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
 		
