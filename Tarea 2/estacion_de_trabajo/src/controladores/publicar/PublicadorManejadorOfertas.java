@@ -10,12 +10,16 @@ import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
 import logica_datatypes.DataPostulacion;
 import logica_datatypes.WrapperArrayList;
+import logica_entidades.Empresa;
 import logica_entidades.KeyWord;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Postulacion;
 import logica_manejadores.ManejadorOferta;
+import logica_manejadores.ManejadorUsuario;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -24,6 +28,7 @@ public class PublicadorManejadorOfertas {
     private Endpoint endpoint = null;
 
     private ManejadorOferta manejadorOferta = ManejadorOferta.getInstance();
+    private ManejadorUsuario manejadorUsuario = ManejadorUsuario.getinstance();
 
     @WebMethod(exclude = true)
     public void publicar() {
@@ -161,5 +166,17 @@ public class PublicadorManejadorOfertas {
     	ArrayList<String> keys = ofer.getKeyWordsString();
     	WrapperArrayList ret = new WrapperArrayList(keys);
     	return ret;
+    }
+    
+    @WebMethod
+    public WrapperArrayList getOfertasConfirmadasYVencidas(String nickname) {
+    	Empresa emp = manejadorUsuario.obtenerEmpresa(nickname);
+		HashMap<String, OfertaLaboral> oferVencidas = emp.getOfertasAprobadasYVencidasDeEmpresa();
+		ArrayList<String> oferVencidasStr = new ArrayList<>();
+		for(String ofer : oferVencidas.keySet()) {
+			oferVencidasStr.add(ofer); 
+		}
+		WrapperArrayList ret = new WrapperArrayList(oferVencidasStr);
+		return ret;
     }
 }

@@ -57,6 +57,23 @@ public class Empresa extends Usuario{
 	    return res;
 	}
 	
+	public HashMap<String, OfertaLaboral> getOfertasVencidas() {
+	    HashMap<String, OfertaLaboral> res = new HashMap<>();
+	        
+	    for (HashMap.Entry<String, OfertaLaboral> entry : this.ofertas.entrySet()) {
+	        LocalDate fechaO = entry.getValue().getFecha(); // FECHA ALTA
+	        int sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
+	        LocalDate fechaLimite = fechaO.plusDays(sumoDias);
+	        
+	        if (!fechaLimite.isAfter(LocalDate.now())) { // Verifica si esta vencida la oferta
+	            res.put(entry.getKey(), entry.getValue());
+	        }
+	    }
+	      
+	    return res;
+	}
+	
+	
 	public OfertaLaboral getOferta(String nombreOfer) {
 		return this.ofertas.get(nombreOfer);
 	}
@@ -112,6 +129,18 @@ public class Empresa extends Usuario{
 	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
 		HashMap<String,OfertaLaboral> mapa = this.getOfertas();
+	    for (String ofertaNombre : mapa.keySet()) {
+	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
+	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
+	    			res.put(ofertaNombre, oferta);
+	    		}
+	    }
+	    return res;
+	}
+	
+	public HashMap<String, OfertaLaboral> getOfertasAprobadasYVencidasDeEmpresa(){
+		HashMap<String, OfertaLaboral> res = new HashMap<>();
+		HashMap<String,OfertaLaboral> mapa = this.getOfertasVencidas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
