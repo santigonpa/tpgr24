@@ -168,14 +168,14 @@ class controladorOfertaTest {
 	@Test
 	void agregoPostulacion() throws yaExistePostulacionAOfertaException{
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1);
+		co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1,"");
 	}
 	
 	@Test 
 	void agregoPostulacionRepetida() throws yaExistePostulacionAOfertaException{
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
 		assertThrows(yaExistePostulacionAOfertaException.class, () -> {
-			co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1);
+			co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1,"");
 		});
 	}
 	

@@ -245,7 +245,7 @@ public class ControladorOferta implements IControladorOferta {
 		manejadorPyT.addTipoPublicacion(tipo);
 	}		
 
-	public void agregarPostulacion(String post, String ofer, String curri, String mot, LocalDate fecha) throws yaExistePostulacionAOfertaException {
+	public void agregarPostulacion(String post, String ofer, String curri, String mot, LocalDate fecha, String linkVid) throws yaExistePostulacionAOfertaException {
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
 		IManejadorOferta mofer = fabrica.getInManejadorOferta();
@@ -258,6 +258,10 @@ public class ControladorOferta implements IControladorOferta {
 		nuevaPost.setMotivacion(mot);
 		nuevaPost.setOfer(oferta);
 		nuevaPost.setPost(postu);
+		String linkVidEmbed = getVideoEmbed(linkVid);
+		nuevaPost.setVideo(linkVidEmbed);
+		
+		
 		
 		
 		if (oferta.existePostulacion(postu.getNickName())) {
@@ -296,6 +300,26 @@ public class ControladorOferta implements IControladorOferta {
 		OfertaLaboral ofer = imo.obtenerOferta(dof.getNombre());
 		ofer.setEstado(EstadoOferta.RECHAZADA);
 		
+	}
+	
+	public String getVideoEmbed(String videoUrl) {
+        // Verifica si la URL proporcionada es válida
+        if (videoUrl == null || videoUrl.isEmpty()) {
+            return "URL de YouTube no válida";
+        }
+
+        // Patrón de expresión regular para buscar el ID del video
+        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed\\?videoid=|/v/|/e/|v=)([a-zA-Z0-9-]+)";
+        java.util.regex.Pattern compiledPattern = java.util.regex.Pattern.compile(pattern);
+        java.util.regex.Matcher matcher = compiledPattern.matcher(videoUrl);
+
+        if (matcher.find()) {
+            String videoId = matcher.group();
+            String embedCode = "https://www.youtube.com/embed/" + videoId;
+            return embedCode;
+        }
+
+        return "URL de YouTube no válida";
 	}
 	
 

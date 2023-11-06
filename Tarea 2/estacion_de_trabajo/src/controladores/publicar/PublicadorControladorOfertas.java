@@ -99,10 +99,10 @@ public class PublicadorControladorOfertas {
     }
 
     @WebMethod
-    public void agregarPostulacion(String post, String ofer, String curri, String mot, String fecha) throws yaExistePostulacionAOfertaException {
+    public void agregarPostulacion(String post, String ofer, String curri, String mot, String fecha, String linkVid) throws yaExistePostulacionAOfertaException {
     	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
-    	controladorOferta.agregarPostulacion(post, ofer, curri, mot, fechaAlta);
+    	controladorOferta.agregarPostulacion(post, ofer, curri, mot, fechaAlta, linkVid);
     }
 
     @WebMethod

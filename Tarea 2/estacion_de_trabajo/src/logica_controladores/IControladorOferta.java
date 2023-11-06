@@ -29,7 +29,7 @@ public abstract void darAltaOferta(String nombre, String descripcion, String ciu
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
 		int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException;
 
-public abstract void agregarPostulacion(String post, String ofer, String curriculum, String mot, LocalDate fecha) throws yaExistePostulacionAOfertaException;
+public abstract void agregarPostulacion(String post, String ofer, String curriculum, String mot, LocalDate fecha, String linkVid) throws yaExistePostulacionAOfertaException;
 
 public abstract void agregarPostulacionApostulante(Postulacion nuevaPost, String post);
 

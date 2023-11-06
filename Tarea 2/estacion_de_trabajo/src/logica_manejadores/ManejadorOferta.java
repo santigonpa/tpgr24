@@ -143,7 +143,5 @@ public class ManejadorOferta implements IManejadorOferta{
 		return dataRes;
 	}
 	
-
-
 	} 
 

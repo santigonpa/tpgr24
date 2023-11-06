@@ -88,6 +88,7 @@ public class Postulacion {
 			DtPost.setFecha(formattedDate);
 			DtPost.setNickPostulante(this.post.getNickName());
 			DtPost.setNombreOferta(this.ofer.getNombreOferta());
+			DtPost.setVideo(this.getVideo());
 			return DtPost;
 		}
 		
