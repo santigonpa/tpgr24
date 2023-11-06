@@ -888,6 +888,20 @@ public class cargarDatos {
 		paq4.setCosto(950);
 		paq4.setImagen(paq4img);
 
+		//Setteo los tipos de publicacion
+		
+		paq1.setPublicaciones(tp1, 1);
+		paq1.setPublicaciones(tp2, 1);
+		paq1.setPublicaciones(tp3, 1);
+		
+		paq2.setPublicaciones(tp3, 2);
+		paq2.setPublicaciones(tp4, 1);
+		
+		paq3.setPublicaciones(tp1, 2);
+		paq3.setPublicaciones(tp3, 2);
+		
+		paq4.setPublicaciones(tp2, 2);
+			
 		//Los añado al manejador
 		
 		mpyt.addPaquete(paq1);
@@ -905,7 +919,7 @@ public class cargarDatos {
 		//Fechas de las compras
 		LocalDate fc1 = LocalDate.parse("01-10-2023", dateFormatter); //e1 y pq3
 		LocalDate fvc1 = LocalDate.parse("01-12-2023", dateFormatter);
-		LocalDate fc2 = LocalDate.parse("08-9-2023", dateFormatter); 
+		LocalDate fc2 = LocalDate.parse("08-09-2023", dateFormatter); 
 		LocalDate fvc2 = LocalDate.parse("24-10-2023", dateFormatter);
 		LocalDate fc3 = LocalDate.parse("23-10-2023", dateFormatter); 
 		LocalDate fvc3 = LocalDate.parse("07-11-2023", dateFormatter);
@@ -916,7 +930,7 @@ public class cargarDatos {
 		CompraPaquete comp1 = new CompraPaquete();
 		comp1.setFechaCompr(fc1);
 		comp1.setFechaVenc(fvc1);
-		comp1.setPaquete(paq1);
+		comp1.setPaquete(paq3);
 		
 		CompraPaquete comp2 = new CompraPaquete();
 		comp2.setFechaCompr(fc2);

@@ -34,6 +34,7 @@ import excepciones.UsuarioNoExisteException;
 import excepciones.yaExistePostulacionAOfertaException;
 
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 
 
@@ -46,6 +47,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private IControladorUsuario ICU;
 	private IControladorOferta ICO;
 	private IManejadorOferta IMO;
+	private IManejadorUsuario IMU;
 	private JLabel txtEmpresa;
 	private JLabel txtOferta;
 	private JComboBox<DataOferta> comboBoxOferta;
@@ -74,6 +76,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private JSpinner spinner;
 	private JComboBox<DataPostulante> comboBoxPost;
 	private JComboBox<DataEmpresa> comboBoxEmp;
+	private JTextField linkvideo;
 	
 	/**
 	 * Launch the application.
@@ -104,6 +107,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		ICU = Icu;
 		ICO = Ico;
 		IMO = Imo;
+		IMU = Imu;
 		setClosable(true);
 		setTitle("Postulacion a Oferta Laboral");
 		setBounds(100, 100, 710, 680);
@@ -170,13 +174,13 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		txtDatosPostulante.setBounds(292, 392, 180, 16);
 		
 		txtCVReducido = new JLabel("CV reducido:");
-		txtCVReducido.setBounds(65, 431, 107, 16);
+		txtCVReducido.setBounds(93, 436, 107, 16);
 		
 		scrollPaneCVReducido = new JScrollPane();
 		scrollPaneCVReducido.setBounds(193, 431, 486, 85);
 		
 		txtMotivacion = new JLabel("Motivacion:");
-		txtMotivacion.setBounds(65, 533, 74, 16);
+		txtMotivacion.setBounds(63, 534, 74, 16);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(573, 617, 118, 25);
@@ -218,23 +222,22 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		
 		
 		JLabel fechaDePostulacion = new JLabel("Fecha de Inscripcion :");
-		fechaDePostulacion.setBounds(66, 591, 150, 16);
+		fechaDePostulacion.setBounds(396, 590, 150, 16);
 		
 		spinner = new JSpinner();
-		spinner.setBounds(234, 589, 159, 22);
+		spinner.setBounds(520, 584, 159, 22);
         spinner.setModel(new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR));
 
 		
 		motTextArea = new JTextArea();
-		motTextArea.setBounds(193, 530, 486, 48);
+		motTextArea.setBounds(133, 530, 546, 48);
 		
 		comboBoxEmp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
 				try {
 					DataEmpresa emp = (DataEmpresa) comboBoxEmp.getSelectedItem();
-					ArrayList<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(emp.getNickName());
-				
+					ArrayList<DataOferta> ofertas = IMU.obtenerOfertasConfirmadasDeEmpresa(emp.getNickName());
 					if (ofertas!= null) {
 					// Agregar las empresas al modelo del JComboBox
 						for (DataOferta oferta : ofertas) {
@@ -283,11 +286,24 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		getContentPane().add(scrollPaneCVReducido);
 		getContentPane().add(fechaDePostulacion);
 		getContentPane().add(spinner);	
+		
+		JLabel txtLinkVideo = new JLabel("Link Video:");
+		txtLinkVideo.setBounds(63, 590, 74, 16);
+		getContentPane().add(txtLinkVideo);
+		
+		linkvideo = new JTextField();
+		linkvideo.setBounds(133, 589, 253, 20);
+		getContentPane().add(linkvideo);
+		linkvideo.setColumns(10);
 	}
 	protected void altaPostulacion(ActionEvent e) throws yaExistePostulacionAOfertaException {
         String cv = CVReducido.getText();
         String mot = motTextArea.getText();
         Date fechaD = (Date) spinner.getValue();
+        String linkVid = linkvideo.getText();
+        if(linkVid.isEmpty()) {
+        	linkVid=null;
+        }
         Instant instant = fechaD.toInstant();
         LocalDate fechalocalDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
         //String empr = (String) comboBoxEmp.getSelectedItem();
@@ -303,7 +319,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
                 JOptionPane.showMessageDialog(null, e5.getMessage(), "Error de Postulación", JOptionPane.ERROR_MESSAGE);
             }*/
         try {
-        	ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate);
+        	ICO.agregarPostulacion(post.getNickName(), ofer.getNombre(), cv, mot, fechalocalDate,linkVid);
             JOptionPane.showMessageDialog(this, "La postulacion a la oferta laboral se realizo con exito", "Postulacion a Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
             limpiarFormulario();
             setVisible(false);
@@ -357,5 +373,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	public void limpiarFormulario() {
 		this.CVReducido.setText("");
 		this.motTextArea.setText("");
+		this.linkvideo.setText("");
 	}
 }

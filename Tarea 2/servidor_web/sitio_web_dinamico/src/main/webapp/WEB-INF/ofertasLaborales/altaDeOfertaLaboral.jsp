@@ -79,6 +79,7 @@
   
       <script>
 		function validarFormulario() {
+			var tipoPubli = document.getElementById("tipoPubli").value;
 		    var nombre = document.getElementById("nombre").value;
 		    var descripcion = document.getElementById("descripcion").value;
 		    var departamento = document.getElementById("departamento").value;
@@ -89,7 +90,7 @@
 			
 		    
 		
-		    if (nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
+		    if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
 		        alert("Todos los campos son obligatorios");
 		        return false; // Evita que el formulario se envíe si hay campos vacíos
 		    }
@@ -110,31 +111,6 @@
 	    });
 	</script>
       
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Obtenemos el formulario por su ID
-    var formulario = document.getElementById("alta-form");
-
-    // Agregamos un evento al formulario para verificar la selección
-    formulario.addEventListener("submit", function (event) {
-        var botonesRadio = document.getElementsByName("btnradio");
-        var botonSeleccionado = null;
-
-        for (var i = 0; i < botonesRadio.length; i++) {
-            if (botonesRadio[i].checked) {
-                botonSeleccionado = botonesRadio[i].id;
-                break; // Sale del bucle si se encuentra un botón seleccionado
-            }
-        }
-
-        if (botonSeleccionado === null) {
-            alert("Debes seleccionar una opción de tipo de publicación antes de enviar el formulario.");
-            event.preventDefault(); // Evita el envío del formulario si no hay selección
-        }
-    });
-});
-</script>
-	
 	<script>
 	document.addEventListener("DOMContentLoaded", function () {
         var form = document.getElementById("alta-form");
@@ -242,10 +218,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			
 			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
 			        	nombrePaquete = dataTP.getNombre();
-			        	descripcion = dataTP.getDescripcion();
-			        	exp = dataTP.getExposicion();
-			        	duracion = dataTP.getDuracion();			        	
-			        	fecha = dataTP.getFecha();
 
 			    %>
 				
@@ -258,9 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
         			
 			        <div class="card-body">
     						<h5 class="card-title"><strong><%= nombrePaquete %></strong></h5>
-    						<p class="card-text"><%= descripcion %></p>
-    				 		<input type="radio" class="btn-check" name ="btnradio" id="<%= nombrePaquete %>" autocomplete="off">
-    				 		<label class="btn btn-outline-dark" for="<%= nombrePaquete %>">Seleccionar</label>			
+    				 		<input type="radio" class="btn-check" name ="btnradio" id="<%= nombrePaquete %>" autocomplete="off">		
 					</div>
 		    	</div>
 			    
@@ -273,21 +243,23 @@ document.addEventListener("DOMContentLoaded", function () {
 			    	</div>
 
 	<div class="tab-pane fade" id="pagoConPaquete">
-            <div class="cartas">
-
+		<div class="my-5"></div>
+					
+		<h3 class="-titulo-">Tipos de publicación disponibles actualmente en su paqute</h3>
+            <div class="cartas">	
 				<%
 			    
-				ArrayList<DataTipoPublicacion> conjuntoDePaquetes2 = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetes");
+				ArrayList<String> conjuntoDePaquetes2 = (ArrayList<String>) request.getAttribute("coleccionDataPaquetes");
 				
 				
 			    if(conjuntoDePaquetes2 != null && !conjuntoDePaquetes2.isEmpty()){
 			    
 			        String nombrePaquete2;
-			        String descripcion2;
+			        //String descripcion2;
 			
-			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
-			        	nombrePaquete2 = dataTP.getNombre();
-			        	descripcion2 = dataTP.getDescripcion();
+			        for (String dataTP : conjuntoDePaquetes2) {
+			        	nombrePaquete = dataTP;
+			        	//descripcion2 = dataTP.getDescripcion();
 
 			    %>
 				
@@ -299,10 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
         			</div>
         			
 			        <div class="card-body">
-    						<h5 class="card-title"><strong><%= nombrePaquete2 %></strong></h5>
-    						<p class="card-text"><%= descripcion2 %></p>
-    				 		<input type="radio" class="btn-check" name ="btnradio" id="<%= nombrePaquete2 %>" autocomplete="off">
-    				 		<label class="btn btn-outline-dark" for="<%= nombrePaquete2 %>">Seleccionar</label>			
+    						<h5 class="card-title"><strong><%= nombrePaquete %></strong></h5>
 					</div>
 		    	</div>
 			    
@@ -343,6 +312,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	            <form id="alta-form" action = "/TrabajoUY/AltaDeOfertaLaboral" method = "POST" enctype="multipart/form-data">
 				
 				<input type="hidden" id="tipoPago" name="tipoPago" value="<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoGeneral" %>" />
+				
+				 <div class="form-floating mb-3">
+					<input type="text" class="form-control" id="tipoPubli" name="tipoPubli" placeholder="" value="<%= request.getParameter("tipoPubli") != null ? request.getParameter("tipoPubli") : "" %>">					
+					<label for="floatingInput">Tipo de publicación de la Oferta</label>
+					
+				</div>
 				
 	            <div class="form-floating mb-3">
 					<input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<%= request.getParameter("nombre") != null ? request.getParameter("nombre") : "" %>">					

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import= "com.webservices.controladores.publicar.Usuario" %>
-<%@page import= "com.webservices.controladores.publicar.Usuario" %>
+
 <%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
 <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
 <%@page import= "com.webservices.controladores.publicar.DataKeyWord" %>
@@ -11,7 +10,7 @@
 <%@ page import = "com.webservices.controladores.publicar.PublicadorManejadorUsuario"%>
 <%@ page import = "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService"%>
 <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
-<%@page import= " com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+<%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
  <%@ page import="java.util.ArrayList" %>
   <%@ page import="java.util.HashSet" %>
 <%@page import="java.util.List" %>

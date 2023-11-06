@@ -92,6 +92,7 @@
               <li><a class="dropdown-item" href="/TrabajoUY/AltaDeOfertaLaboral">Crear Oferta Laboral</a></li>
               <li><a class="dropdown-item" href="ConsultaDeOfertaLaboral">Ver Ofertas</a></li>
               <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral">Tipos de Publicaciones</a></li>
+              <li><a class="dropdown-item" href="/TrabajoUY/SeleccionarPostulacion">Seleccionar Postulantes de Oferta</a></li>
             </ul>
           </li>
           </div>

@@ -7,12 +7,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.webservices.controladores.publicar.DataPostulacion;
-import com.webservices.controladores.publicar.DataPostulante;
-import com.webservices.controladores.publicar.DataUsuario;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.webservices.controladores.publicar.DataPostulacion;
+import com.webservices.controladores.publicar.DataPostulante;
+import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;

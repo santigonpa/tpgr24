@@ -27,6 +27,7 @@ import logica_datatypes.WrapperArrayList;
 import logica_datatypes.WrapperHashMap;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
@@ -47,7 +48,7 @@ public class PublicadorControladorUsuario {
 	
 	@WebMethod(exclude = true)
     public void publicar() {
-		String url = "http://localhost:9123/ControladorUsuario";
+		String url = "http://localhost:9128/ControladorUsuario";
         System.out.println("Publicando servicio de ControladorUsuario en " + url);
         endpoint = Endpoint.publish(url, this);
     }
@@ -93,6 +94,11 @@ public class PublicadorControladorUsuario {
 	}
 	
 	@WebMethod
+	public void comprarPaquete(Paquete paq, String emp) {
+		ICU.comprarPaquete(paq, emp);
+	}
+	
+	@WebMethod
 	public DataUsuario listarInfoUser(String usuario) {
 		return ICU.listarInfoUser(usuario);
 	}
@@ -116,10 +122,14 @@ public class PublicadorControladorUsuario {
 	@WebMethod
 	public WrapperArrayList getPublicacionesEmpresa(String emp){
 		ArrayList<DataTipoPublicacion> arr =  ICU.getPublicacionesEmpresa(emp);
-		WrapperArrayList ret = new WrapperArrayList(arr);
+		ArrayList<String> res = new ArrayList<>();
+		for(DataTipoPublicacion data : arr) {
+			res.add(data.getNombre());
+		}
+		WrapperArrayList ret = new WrapperArrayList(res);
 		return ret;
 	}
-	
+
 	@WebMethod
 	public WrapperArrayList getDataKeyWord(){
 		ArrayList<DataKeyWord> arr =  ICU.getDataKeyWord();

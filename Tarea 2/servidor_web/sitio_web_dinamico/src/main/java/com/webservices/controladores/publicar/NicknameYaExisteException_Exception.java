@@ -45,7 +45,7 @@ public class NicknameYaExisteException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: controladores.publicar.NicknameYaExisteException
+     *     returns fault bean: publicar.NicknameYaExisteException
      */
     public NicknameYaExisteException getFaultInfo() {
         return faultInfo;

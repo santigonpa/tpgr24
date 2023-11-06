@@ -45,7 +45,7 @@ public class CampoInvalidoException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: controladores.publicar.CampoInvalidoException
+     *     returns fault bean: publicar.CampoInvalidoException
      */
     public CampoInvalidoException getFaultInfo() {
         return faultInfo;

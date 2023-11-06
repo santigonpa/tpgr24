@@ -64,8 +64,11 @@ public class Paquete {
 	}
 	
 	public void setPublicaciones(TipoPublicacion publi, int cantidad) {
+		if(this.tipoPublicaciones == null) {
+			this.tipoPublicaciones = new ArrayList<TipoPublicacion>();
+		}
 		for(int i=1; i <= cantidad ; i++) {
-			(this.tipoPublicaciones).add(publi);
+			(this.tipoPublicaciones).add(publi);			
 		}
 	}
 	

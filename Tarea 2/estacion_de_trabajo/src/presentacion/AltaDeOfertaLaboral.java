@@ -26,6 +26,7 @@ import javax.swing.text.DocumentFilter;
 
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.UsuarioNoExisteException;
+import excepciones.noExistePublicacionException;
 import logica_controladores.IControladorOferta;
 import logica_controladores.IControladorUsuario;
 import logica_datatypes.DataEmpresa;
@@ -274,7 +275,12 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
         //inicio evento para que cuando apreto el boton sucedan cosas, lo hago con la operacion porque es complejo lo que realiza
         btnAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cmdAltaDeOfertaLaboralActionPerformed(e);
+                try {
+					cmdAltaDeOfertaLaboralActionPerformed(e);
+				} catch (noExistePublicacionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         
@@ -286,7 +292,7 @@ public class AltaDeOfertaLaboral extends JInternalFrame {
 	// INICIO DE METODOS DE LOS EVENTOS
 	
 	//Esto se invoca cuando le damos a aceptar
-	protected void cmdAltaDeOfertaLaboralActionPerformed(ActionEvent e) {
+	protected void cmdAltaDeOfertaLaboralActionPerformed(ActionEvent e) throws noExistePublicacionException {
 		//obtener los datos de los campos
 		String nombre = this.textFieldNombre.getText();
 		String ciudad = this.textFieldCiudad.getText();

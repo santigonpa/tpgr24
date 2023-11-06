@@ -24,25 +24,25 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import com.model.EstadoSesion;
-import com.webservices.controladores.publicar.PublicadorManejadorPyT;
-import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
-import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
-import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataKeyWord;
+import com.webservices.controladores.publicar.DataPaquete;
+import com.webservices.controladores.publicar.DataTipoPublicacion;
 import com.webservices.controladores.publicar.DataUsuario;
-import com.webservices.controladores.publicar.WrapperArrayList;
 import com.webservices.controladores.publicar.KeyWord;
 import com.webservices.controladores.publicar.NoExistePublicacionException_Exception;
 import com.webservices.controladores.publicar.NombreRepetidoOfertaException_Exception;
-import com.webservices.controladores.publicar.DataTipoPublicacion;
-import com.webservices.controladores.publicar.DataKeyWord;
-import com.webservices.controladores.publicar.DataEmpresa;
-import com.webservices.controladores.publicar.DataPaquete;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
 import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
 import com.webservices.controladores.publicar.PublicadorControladorUsuario;
 import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
+import com.webservices.controladores.publicar.PublicadorManejadorPyT;
+import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
 /**
  * Servlet implementation class ServletAltaOfertaLaboral
@@ -105,44 +105,45 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 
     	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 
-    	ArrayList<Object> coleccionPTPWrapperCompleta = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
-    	ArrayList<DataTipoPublicacion> coleccionPTPCompleta = new ArrayList<>();
-
-		for (Object objeto : coleccionPTPWrapperCompleta) {
-		    if (objeto instanceof DataTipoPublicacion) {
-		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
-		        coleccionPTPCompleta.add(dataTipoPublicacion);
-		    }
-		}
-    	
-    	
-    	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
-    	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();		
-    	
-		for (Object objeto : coleccionPTPWrapper) {
-		    if (objeto instanceof DataTipoPublicacion) {
-		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
-		        coleccionPTP.add(dataTipoPublicacion);
-		    }
-		}
-		
-		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
-		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
-		
-		for (Object objeto2 : coleccionKeysWrapper) {
-		    if (objeto2 instanceof DataKeyWord) {
-		    	DataKeyWord key = (DataKeyWord) objeto2;
-		    	coleccionKeys.add(key);
-		    }
-		}
-		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
-		request.setAttribute("coleccionDataPaquetesCompleta", coleccionPTPCompleta);
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
     		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
-    	} //es una empresa todo ok
-    	else if (user instanceof DataEmpresa) {
+    	 //es una empresa todo ok
+    	}else if (user instanceof DataEmpresa) {
+    		
+    		ArrayList<Object> coleccionPTPWrapperCompleta = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+        	ArrayList<DataTipoPublicacion> coleccionPTPCompleta = new ArrayList<>();
+
+    		for (Object objeto : coleccionPTPWrapperCompleta) {
+    		    if (objeto instanceof DataTipoPublicacion) {
+    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
+    		        coleccionPTPCompleta.add(dataTipoPublicacion);
+    		    }
+    		}
+        	
+        	
+        	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
+        	ArrayList<String> coleccionPTP = new ArrayList<>();		
+        	
+    		for (Object objeto : coleccionPTPWrapper) {
+    		    if (objeto instanceof String) {
+    		        coleccionPTP.add((String)objeto);
+    		    }
+    		}
+    		
+    		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
+    		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
+    		
+    		for (Object objeto2 : coleccionKeysWrapper) {
+    		    if (objeto2 instanceof DataKeyWord) {
+    		    	DataKeyWord key = (DataKeyWord) objeto2;
+    		    	coleccionKeys.add(key);
+    		    }
+    		}
+    		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
+    		request.setAttribute("coleccionDataPaquetesCompleta", coleccionPTPCompleta);
+    		
     		ArrayList<Object> coleccionDataTWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
         	ArrayList<DataTipoPublicacion> tiposPubli = new ArrayList<>();
 
@@ -178,6 +179,8 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		String ciudad = request.getParameter("ciudad");
 		String horaDeInicioo = request.getParameter("horaDeInicio");
 		String horaDeFinn = request.getParameter("horaDeFin");
+		String opcionSeleccionadaTP = request.getParameter("tipoPubli");
+		System.out.println(opcionSeleccionadaTP);
 		
 		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
 	
@@ -227,19 +230,8 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 				}
 		
     
-		String opcionSeleccionadaTP;
-		String botonSeleccionado = request.getParameter("btnradio");
-
-	    if ("basica".equals(botonSeleccionado)) {
-	        opcionSeleccionadaTP = "Básica";
-	    } else if ("estandar".equals(botonSeleccionado)) {
-	        opcionSeleccionadaTP = "Estándar";
-	    } else if ("premium".equals(botonSeleccionado)) {
-	    	opcionSeleccionadaTP =  "Premium";
-	    } else {
-	    	opcionSeleccionadaTP = "Destacada";
-	    }
-	    
+		
+ 
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
 		Set<String> conjuntoOpciones = new HashSet<>();
 
@@ -267,6 +259,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
         String fechaFormateada = fechaActual.format(formatter);
 		
+        
 		System.out.println("El" + tipoPago);
 		
 		if(tipoPago.equals("pagoGeneral")) {
@@ -278,6 +271,10 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	           request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
 	           request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 	            return;
+	        }catch(NoExistePublicacionException_Exception e) {
+	        	request.setAttribute("errorNombrePubli", "El tipo de publicacion seleccionada no existe");
+		        request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
+		        return;
 	        }
 		}else {
 			String nombrePaq;
@@ -291,17 +288,23 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 				nombrePaq = "Servlet";
 			}
 			
+			System.out.println(nombrePaq);
+			
 			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
 		}catch (NombreRepetidoOfertaException_Exception e){
 				request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			dispatcher.forward(request, response);
+	        	return;
 		} catch (NoExistePublicacionException_Exception e) {
 	        	request.setAttribute("errorTipoPubli", "El tipo de publicacion ingresada no se encunetra disponible");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
+	        	return;
+		} catch(noExisteTipoPubli_Exception e) {
+				request.setAttribute("errorPubli", "No cuenta con el tipo de publicacion elegida");
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
+				return;
 		}
 		}
     }	

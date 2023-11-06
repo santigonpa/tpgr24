@@ -17,7 +17,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "PublicadorManejadorOfertasService", targetNamespace = "http://publicar.controladores/", wsdlLocation = "http://localhost:9125/ManejadorOferta?wsdl")
+@WebServiceClient(name = "PublicadorManejadorOfertasService", targetNamespace = "http://publicar.controladores/", wsdlLocation = "http://localhost:9128/ManejadorOferta?wsdl")
 public class PublicadorManejadorOfertasService
     extends Service
 {
@@ -30,7 +30,7 @@ public class PublicadorManejadorOfertasService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9125/ManejadorOferta?wsdl");
+            url = new URL("http://localhost:9128/ManejadorOferta?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

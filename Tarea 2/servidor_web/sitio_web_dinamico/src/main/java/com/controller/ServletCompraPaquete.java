@@ -6,24 +6,27 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.CompraPaquete;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataPaquete;
-
+import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.Empresa;
-import com.webservices.controladores.publicar.Usuario;
 import com.webservices.controladores.publicar.Paquete;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
 import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
-
-import java.io.IOException;
-
-import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.PublicadorManejadorPyT;
 import com.webservices.controladores.publicar.PublicadorManejadorPyTService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.Usuario;
 
 @WebServlet (description = "Servlet para comprar paquete", urlPatterns = { "/CompraPaquete" })
 @MultipartConfig
@@ -64,13 +67,27 @@ public class ServletCompraPaquete extends HttpServlet {
 			
 			if(banderaSesion) {
 			String paq = (String)request.getParameter("id");
-			Usuario user = (Usuario) request.getSession().getAttribute("usuario");
-			Empresa emp = (Empresa) puertoManejadorUsuario.obteneraEmpresa(user.getNickName());
+			Paquete paquete = puertoManejadorPyT.getPaquete(paq);
+	    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
+	    	Empresa emp = puertoManejadorUsuario.obteneraEmpresa(user.getNickName());
+	    	CompraPaquete compPaq = new CompraPaquete();
+	    	
+	    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	    	LocalDate fechaActual = LocalDate.now();
+	    	String fechaActualFormateada = fechaActual.format(dateFormatter); // Formatear a String con el formato deseado
+	    	LocalDate fAlta = LocalDate.parse(fechaActualFormateada, dateFormatter); // Analizar la fecha formateada
+
+			int dias = paquete.getValidez();
+			LocalDate fVen = fAlta.plusDays(dias);
+	    
+			
+			
+			/*	DataEmpresa dtEmp = (DataEmpresa) request.getSession().getAttribute("usuario");
+			Empresa emp = (Empresa) puertoManejadorUsuario.obteneraEmpresa(dtEmp.getNickName());
 			Paquete paquete= puertoManejadorPyT.getPaquete(paq);
 			DataPaquete dtpaq = puertoManejadorPyT.getDataPaqueteIndividual(paq);
 			puertoManejadorUsuario.compraPaquete(paquete, emp.getNickName());
-			DataEmpresa DTemp = puertoManejadorUsuario.getDataEmpresa(emp.getNickName());
-			request.setAttribute("paquete", dtpaq);
+			*///request.setAttribute("paquete", dtpaq);
 			request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 			}			
 			

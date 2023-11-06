@@ -18,6 +18,7 @@ import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.noExistePublicacionException;
+import excepciones.noExisteTipoPubli;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
@@ -127,7 +128,7 @@ class controladorOfertaTest {
 	}
 	
 	@Test
-	void altaDePublicacionDeOferOk() throws NombreRepetidoOfertaException {
+	void altaDePublicacionDeOferOk() throws NombreRepetidoOfertaException, noExistePublicacionException {
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
@@ -152,7 +153,7 @@ class controladorOfertaTest {
 	}
 	
 	@Test
-	void publicacionOfertaRepetida()throws NombreRepetidoOfertaException {
+	void publicacionOfertaRepetida()throws NombreRepetidoOfertaException, noExistePublicacionException {
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
@@ -167,14 +168,14 @@ class controladorOfertaTest {
 	@Test
 	void agregoPostulacion() throws yaExistePostulacionAOfertaException{
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1);
+		co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1,"");
 	}
 	
 	@Test 
 	void agregoPostulacionRepetida() throws yaExistePostulacionAOfertaException{
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
 		assertThrows(yaExistePostulacionAOfertaException.class, () -> {
-			co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1);
+			co.agregarPostulacion("lgarcia","Soporte Tecnico","hombre","arania",fecha1,"");
 		});
 	}
 	
@@ -217,7 +218,7 @@ class controladorOfertaTest {
 	}
 	
 	@Test
-	void testeoAltaPubliOferConPaquete() throws NombreRepetidoOfertaException, noExistePublicacionException{
+	void testeoAltaPubliOferConPaquete() throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli{
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);

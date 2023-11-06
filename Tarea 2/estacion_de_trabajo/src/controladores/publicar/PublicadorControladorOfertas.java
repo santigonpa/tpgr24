@@ -29,7 +29,7 @@ public class PublicadorControladorOfertas {
 
     @WebMethod(exclude = true)
     public void publicar() {
-    	String url = "http://localhost:9121/ControladorOfertas";
+    	String url = "http://localhost:9128/ControladorOfertas";
         System.out.println("Publicando servicio de ControladorOfertas en " + url);
         endpoint = Endpoint.publish(url, this);
     }
@@ -60,7 +60,7 @@ public class PublicadorControladorOfertas {
     @WebMethod
     public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
             String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
-            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
+            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -77,7 +77,7 @@ public class PublicadorControladorOfertas {
     @WebMethod
     public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
             String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
-            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -99,10 +99,10 @@ public class PublicadorControladorOfertas {
     }
 
     @WebMethod
-    public void agregarPostulacion(String post, String ofer, String curri, String mot, String fecha) throws yaExistePostulacionAOfertaException {
+    public void agregarPostulacion(String post, String ofer, String curri, String mot, String fecha, String linkVid) throws yaExistePostulacionAOfertaException {
     	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
-    	controladorOferta.agregarPostulacion(post, ofer, curri, mot, fechaAlta);
+    	controladorOferta.agregarPostulacion(post, ofer, curri, mot, fechaAlta, linkVid);
     }
 
     @WebMethod
