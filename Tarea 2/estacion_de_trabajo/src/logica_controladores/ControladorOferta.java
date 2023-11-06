@@ -305,7 +305,7 @@ public class ControladorOferta implements IControladorOferta {
 	public String getVideoEmbed(String videoUrl) {
         // Verifica si la URL proporcionada es válida
         if (videoUrl == null || videoUrl.isEmpty()) {
-            return "URL de YouTube no válida";
+            return null;
         }
 
         // Patrón de expresión regular para buscar el ID del video
@@ -319,7 +319,7 @@ public class ControladorOferta implements IControladorOferta {
             return embedCode;
         }
 
-        return "URL de YouTube no válida";
+        return null;
 	}
 	
 
