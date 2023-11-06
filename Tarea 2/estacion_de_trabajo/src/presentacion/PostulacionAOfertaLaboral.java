@@ -235,7 +235,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 				DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
 				try {
 					DataEmpresa emp = (DataEmpresa) comboBoxEmp.getSelectedItem();
-					ArrayList<DataOferta> ofertas = ICU.getDataOfertasDeEmpresa(emp.getNickName());
+					ArrayList<DataOferta> ofertas = ICU.obte(emp.getNickName());
 				
 					if (ofertas!= null) {
 					// Agregar las empresas al modelo del JComboBox
@@ -372,5 +372,6 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	public void limpiarFormulario() {
 		this.CVReducido.setText("");
 		this.motTextArea.setText("");
+		this.linkvideo.setText("");
 	}
 }
