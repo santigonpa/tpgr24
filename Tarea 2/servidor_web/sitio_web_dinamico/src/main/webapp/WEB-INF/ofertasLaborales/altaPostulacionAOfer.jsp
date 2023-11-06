@@ -401,6 +401,11 @@
 			                        <textarea class="form-control" placeholder="" id="curriculum" name="curriculum" style="height: 250px" required></textarea>
 			                        <label for="floatingTextarea">Escriba un CV breve</label>
 			                    </div>
+			                    
+			                    <div class="form-floating mb-3">
+			                        <input type="url" class="form-control" id="video" name="video" placeholder="">
+			                        <label for="floatingInput">Ingrese un link a un video de YouTube si lo desea</label>
+			                    </div>
 			
 			                    <div class="my-5"></div>
 			

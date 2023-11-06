@@ -76,9 +76,8 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String motiv = request.getParameter("motiv");
-		System.out.println(motiv);
 		String curriculum = request.getParameter("curriculum");
-		System.out.println(curriculum);
+		String video = request.getParameter("video");
 		DataOferta dofer = (DataOferta) request.getSession().getAttribute("dataOfertaPos");
 		DataUsuario usr = (DataUsuario) request.getSession().getAttribute("usuario");
 		LocalDate fechaActual = LocalDate.now();
@@ -86,7 +85,7 @@ public class PostulareseDesdeVerOferta extends HttpServlet {
         String fechaFormateada = fechaActual.format(formatter);
 		try {
 			if(usr instanceof DataPostulante) {
-				puertoControladorOfertas.agregarPostulacion(usr.getNickName(),dofer.getNombre(), curriculum, motiv, fechaFormateada);
+				puertoControladorOfertas.agregarPostulacion(usr.getNickName(),dofer.getNombre(), curriculum, motiv, fechaFormateada,video);
 				request.getRequestDispatcher("home").forward(request, response);
 			}
 		}catch (YaExistePostulacionAOfertaException_Exception e) {
