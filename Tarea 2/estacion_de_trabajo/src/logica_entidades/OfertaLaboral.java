@@ -33,10 +33,11 @@ public class OfertaLaboral {
 	private EstadoOferta estado;
 	private byte[] imagen;
 	private String tipoDePago;
+	private ArrayList<String> ordenPostulaciones = new ArrayList<>();
 	
 	//Links de oferta
 		
-	private ArrayList<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();;
+	private ArrayList<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();
 	private Empresa empresaAsociada;
 	private TipoPublicacion tipoDeOferta;
 	private ArrayList<KeyWord> palabrasClave = new ArrayList<>();;
@@ -267,6 +268,14 @@ public class OfertaLaboral {
 			}
 		}
 		return false;
+	}
+
+	public ArrayList<String> getOrdenPostulaciones() {
+		return ordenPostulaciones;
+	}
+
+	public void setOrdenPostulaciones(ArrayList<String> ordenPostulaciones) {
+		this.ordenPostulaciones = ordenPostulaciones;
 	}
 
 	
