@@ -136,9 +136,9 @@
 				</div>
 
 		<%
-		boolean bandera = (boolean) request.getAttribute("esEmpresa");
 		
-		if(bandera){
+		
+		if(request.getSession().getAttribute("usuario") instanceof DataEmpresa){
 		
 		%>
 
@@ -154,7 +154,7 @@
 					 
 					 
 					 <% 
-					 	Set<DataOferta> conjDeOfer = (Set<DataOferta>) request.getAttribute("ofertasVencidas");
+					 	Set<DataOferta> conjDeOfer = (Set<DataOferta>) request.getSession().getAttribute("ofertasVencidas");
 					    
 					    if(conjDeOfer != null && !conjDeOfer.isEmpty()){
 					    

@@ -7,14 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataOferta;
-import com.webservices.controladores.publicar.Empresa;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
@@ -38,14 +36,16 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) && request.getSession().getAttribute("usuario") instanceof DataEmpresa) {
+		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) ) {
 			
-			request.getSession().setAttribute("esEmpresa",true);
+			
 			DataEmpresa demp = (DataEmpresa) request.getSession().getAttribute("usuario");
 			ArrayList<Object> ofertasVencWrapper = (ArrayList<Object>) puertoManejadorOfertas.getOfertasConfirmadasYVencidas(demp.getNickName()).getLista();
 			Set<DataOferta> dtofers = new HashSet<>();
 			for(Object obj :ofertasVencWrapper) {
-				DataOferta dofer = (DataOferta) obj;
+				String doferString = (String) obj;
+				System.out.println(doferString);
+				DataOferta dofer = puertoManejadorOfertas.getDataOferta(doferString);
 				dtofers.add(dofer);
 			}
 			request.getSession().setAttribute("ofertasVencidas",dtofers);
@@ -63,15 +63,14 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 					postulaciones.add(postu);
 				}
 				request.getSession().setAttribute("postulacionesDeOfer", postulaciones);
-				request.getRequestDispatcher("/WEB-INF/usuarios/detalleOfertaConPostulaciones.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaConPostulaciones.jsp").forward(request, response);
 				
 			}else {
-				request.getRequestDispatcher("/WEB-INF/usuarios/seleccionarOfertasVencidasConfirmadas.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/seleccionarOfertasVencidasConfirmadas.jsp").forward(request, response);
 			}
 		
-		}else {
-			request.getSession().setAttribute("esEmpresa",false);
 		}
+		
 	}
 
 	

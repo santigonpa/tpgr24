@@ -65,7 +65,7 @@ public class Empresa extends Usuario{
 	        int sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
 	        LocalDate fechaLimite = fechaO.plusDays(sumoDias);
 	        
-	        if (!fechaLimite.isAfter(LocalDate.now())) { // Verifica si esta vencida la oferta
+	        if (fechaLimite.isBefore(LocalDate.now())) { // Verifica si esta vencida la oferta
 	            res.put(entry.getKey(), entry.getValue());
 	        }
 	    }

@@ -105,44 +105,46 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 
     	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 
-    	ArrayList<Object> coleccionPTPWrapperCompleta = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
-    	ArrayList<DataTipoPublicacion> coleccionPTPCompleta = new ArrayList<>();
-
-		for (Object objeto : coleccionPTPWrapperCompleta) {
-		    if (objeto instanceof DataTipoPublicacion) {
-		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
-		        coleccionPTPCompleta.add(dataTipoPublicacion);
-		    }
-		}
-    	
-    	
-    	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
-    	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();		
-    	
-		for (Object objeto : coleccionPTPWrapper) {
-		    if (objeto instanceof DataTipoPublicacion) {
-		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
-		        coleccionPTP.add(dataTipoPublicacion);
-		    }
-		}
-		
-		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
-		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
-		
-		for (Object objeto2 : coleccionKeysWrapper) {
-		    if (objeto2 instanceof DataKeyWord) {
-		    	DataKeyWord key = (DataKeyWord) objeto2;
-		    	coleccionKeys.add(key);
-		    }
-		}
-		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
-		request.setAttribute("coleccionDataPaquetesCompleta", coleccionPTPCompleta);
 		
     	//no hay usuario logueado, lo mandamos a iniciar sesion
     	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
     		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
-    	} //es una empresa todo ok
-    	else if (user instanceof DataEmpresa) {
+    	 //es una empresa todo ok
+    	}else if (user instanceof DataEmpresa) {
+    		
+    		ArrayList<Object> coleccionPTPWrapperCompleta = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
+        	ArrayList<DataTipoPublicacion> coleccionPTPCompleta = new ArrayList<>();
+
+    		for (Object objeto : coleccionPTPWrapperCompleta) {
+    		    if (objeto instanceof DataTipoPublicacion) {
+    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
+    		        coleccionPTPCompleta.add(dataTipoPublicacion);
+    		    }
+    		}
+        	
+        	
+        	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
+        	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();		
+        	
+    		for (Object objeto : coleccionPTPWrapper) {
+    		    if (objeto instanceof DataTipoPublicacion) {
+    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
+    		        coleccionPTP.add(dataTipoPublicacion);
+    		    }
+    		}
+    		
+    		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
+    		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
+    		
+    		for (Object objeto2 : coleccionKeysWrapper) {
+    		    if (objeto2 instanceof DataKeyWord) {
+    		    	DataKeyWord key = (DataKeyWord) objeto2;
+    		    	coleccionKeys.add(key);
+    		    }
+    		}
+    		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
+    		request.setAttribute("coleccionDataPaquetesCompleta", coleccionPTPCompleta);
+    		
     		ArrayList<Object> coleccionDataTWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
         	ArrayList<DataTipoPublicacion> tiposPubli = new ArrayList<>();
 
