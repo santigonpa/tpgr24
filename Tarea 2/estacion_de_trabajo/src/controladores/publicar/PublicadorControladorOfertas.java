@@ -60,7 +60,7 @@ public class PublicadorControladorOfertas {
     @WebMethod
     public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
             String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
-            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
+            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -77,7 +77,7 @@ public class PublicadorControladorOfertas {
     @WebMethod
     public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
             String descripcion, String horarioInicio, String horarioFin, int remuneracion, String ciudad,
-            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+            String departamento, String fecha, WrapperArrayList palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

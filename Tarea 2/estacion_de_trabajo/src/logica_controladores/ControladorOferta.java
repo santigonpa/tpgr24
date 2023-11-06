@@ -11,8 +11,10 @@ import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
 import excepciones.NombreTipoPubliYaExisteException;
 import excepciones.noExistePublicacionException;
+import excepciones.noExisteTipoPubli;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_datatypes.DataOferta;
+import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
@@ -100,7 +102,7 @@ public class ControladorOferta implements IControladorOferta {
 
 	public void altaPublicacionOfertaLaboralConPaquete(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException{
+			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli{
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario musr = fabrica.getInManejadorUsuario();
@@ -129,6 +131,19 @@ public class ControladorOferta implements IControladorOferta {
 				throw new noExistePublicacionException("No puede realizar el pago de esta manera. Intente de forma general");
 			}
 		}
+		
+		ArrayList<DataTipoPublicacion> tiposPub = emp.getPublicaciones();
+		boolean existeT = false;
+		for(DataTipoPublicacion pub : tiposPub) {
+			if(pub.getNombre().equals(tipoPubli)) {
+				existeT = true;
+			}
+		}
+		
+		if(!existeT) {
+			throw new noExisteTipoPubli("No cuenta con el tipo de publicacion elegida");
+		}
+		
 		byte[] img = null;
 		try {
 			img = this.getFile("imgagenDefaultOferta.jpg");
@@ -159,7 +174,7 @@ public class ControladorOferta implements IControladorOferta {
 	
 	public void altaPublicacionOfertaLaboralGeneral(String empresa, String tipoPubli, String nombre,
 			String descripcion, LocalTime horarioInicio, LocalTime horarioFin, int remuneracion, String ciudad,
-			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException {
+			String departamento, LocalDate fecha, ArrayList<String> palabrasClaveSelec, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException,  noExistePublicacionException{
 		
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorUsuario muser = fabrica.getInManejadorUsuario();
@@ -176,7 +191,10 @@ public class ControladorOferta implements IControladorOferta {
 		
 		//busco tipo de publicacion
 		TipoPublicacion tipo = mpt.obtenerTipoPublicacion(tipoPubli);
-		
+		if(tipo == null) {
+			throw new noExistePublicacionException("El tipo de publicacion seleccionada no existe");
+			
+		}
 		
 		costoOfertaLaboral = (int) tipo.getCosto();
 		byte[] img = null;

@@ -271,6 +271,10 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	           request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
 	           request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 	            return;
+	        }catch(NoExistePublicacionException_Exception e) {
+	        	request.setAttribute("errorNombrePubli", "El tipo de publicacion seleccionada no existe");
+		        request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
+		        return;
 	        }
 		}else {
 			String nombrePaq;
@@ -292,11 +296,15 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		}catch (NombreRepetidoOfertaException_Exception e){
 				request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			dispatcher.forward(request, response);
+	        	return;
 		} catch (NoExistePublicacionException_Exception e) {
 	        	request.setAttribute("errorTipoPubli", "El tipo de publicacion ingresada no se encunetra disponible");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
+	        	return;
+		} catch(noExisteTipoPubli_Exception e) {
+				request.setAttribute("errorPubli", "No cuenta con el tipo de publicacion elegida");
+				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
+				return;
 		}
 		}
     }	
