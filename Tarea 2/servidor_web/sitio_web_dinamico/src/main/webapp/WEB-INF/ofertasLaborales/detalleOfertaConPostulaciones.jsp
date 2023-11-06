@@ -215,7 +215,7 @@
 			</div>				
 			<div class="contenedorPrincipal">
 							    <!-- ACA ARRANCA A MOSTRAR LAS POSTULACIONES -->
-							    <div class = "texto-of">
+		<div class = "texto-of">
 	    		<h2>Postulaciones</h2>
 	    		</div> 
 	      
@@ -229,6 +229,7 @@
 	      	if(!postulantes.isEmpty()){
 	    	  
 	      %>
+	      <form action="SeleccionarPostulacion" method="POST" id="ordenForm">
 		      <div class= "cartas-ofertas">
 					<%
 				        String nombrePostulante;
@@ -244,31 +245,65 @@
 				    %>
 					
 					<div class="card bg-light" style="width: 15rem;">
-				  <img src="data:image/jpeg;base64, <%= base64ImagenOf %>" class="card-img-top" alt="imagen de usuario">
-				  <div class="card-body">
-				    <h5 class="card-title" style="color: black;"><%= postu %></h5>
-				    <p> </p>
-				    
-				    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>&user=<%= postu %>" class="btn btn-dark">Ver más de la postulación</a>
-				  </div>
-				</div>
+					    <img src="data:image/jpeg;base64, <%= base64ImagenOf %>" class="card-img-top" alt="imagen de usuario">
+					    <div class="card-body">
+					        <h5 class="card-title" style="color: black;"><%= postu %></h5>
+					        <p> </p>
+					        <input type="number" id="orden_<%= postu %>" name="orden_<%= postu %>" placeholder="Número de orden">
+					        <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>&user=<%= postu %>" class="btn btn-dark">Ver más de la postulación</a>
+					    </div>
+					</div>
 				<% } %>
 			
 				</div>
+				<button type="button" id="guardarOrden">Guardar Orden</button>
+				<input type="hidden" name="postulantesOrdenados" id="postulantesOrdenados">
+		</form>
 		<% }else{ %>
 			<p>Esta oferta no tiene postulaciones</p>
 		<%} %>
-	    
-							    
-							    
-							    
-							    
+							   	
+			<div id="orden"></div>		    
   		</div>
   		</div>
 	</div>
-		
-		
-	
+		<script>
+		document.getElementById('guardarOrden').addEventListener('click', function () {
+		    cartasOrdenadas = [];
+		    var cartas = document.querySelectorAll('.card');
+		    var numerosAsignados = new Set();
+
+		    cartas.forEach(function (carta) {
+		        var numeroOrdenInput = carta.querySelector('input');
+		        var numeroOrden = parseInt(numeroOrdenInput.value);
+		        var contenidoCarta = carta.querySelector('h5').textContent;
+
+		        if (!isNaN(numeroOrden) && !numerosAsignados.has(numeroOrden)) {
+		            cartasOrdenadas.push({ orden: numeroOrden, contenido: contenidoCarta });
+		            numerosAsignados.add(numeroOrden);
+		            numeroOrdenInput.style.border = ''; // Restablecer el estilo
+		        } else {
+		            numeroOrdenInput.style.border = '2px solid red'; // Establecer un borde rojo en caso de conflicto
+		        }
+		    });
+
+		    if (cartasOrdenadas.length === cartas.length) {
+		        cartasOrdenadas.sort(function (a, b) {
+		            return a.orden - b.orden;
+		        });
+
+		        // Actualiza el campo oculto con la lista ordenada de postulantes
+		        var postulantesOrdenadosInput = document.getElementById('postulantesOrdenados');
+		        postulantesOrdenadosInput.value = JSON.stringify(cartasOrdenadas);
+
+		        // Envía el formulario al servidor
+		        document.getElementById('ordenForm').submit();
+		    } else {
+		        alert('Por favor, asegúrate de asignar números de orden únicos a todas las cartas.');
+		    }
+		});
+</script>
+
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 </html>
