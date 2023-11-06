@@ -8,11 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.DataPostulacion;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
@@ -36,6 +38,8 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
 		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) ) {
 			
 			
@@ -55,14 +59,23 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 				
 				//esta seleccionada una oferta y se debe poner lo de elegir postulantes
 				DataOferta dofer = puertoManejadorOfertas.getDataOferta(ofertaSeleccionada);
-				request.getSession().setAttribute("ofertaSeleccionada",dofer);
-				ArrayList<Object> postuWrapper = (ArrayList<Object>) puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(ofertaSeleccionada).getLista();
+				
+				ArrayList<Object> postuWrapper = (ArrayList<Object>) puertoManejadorOfertas.getNickPostulantes(ofertaSeleccionada).getLista();
 				Set<String> postulaciones = new HashSet<>();
 				for(Object obj: postuWrapper) {
 					String postu = (String) obj;
 					postulaciones.add(postu);
 				}
-				request.getSession().setAttribute("postulacionesDeOfer", postulaciones);
+				List<Object> palabrasClaveObject = (List<Object>) puertoManejadorOfertas.getKeysPorNombreOfer(dofer.getNombre()).getLista();
+				Set<String> palabrasClave = new HashSet<>();
+				
+				for(Object obj: palabrasClaveObject) {
+					String palabra = (String) obj;
+					palabrasClave.add(palabra);
+				}
+				request.getSession().setAttribute("keys", palabrasClave);
+				request.getSession().setAttribute("ofertaSeleccionada",dofer);
+				request.getSession().setAttribute("postulantesDeOfer", postulaciones);
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaConPostulaciones.jsp").forward(request, response);
 				
 			}else {

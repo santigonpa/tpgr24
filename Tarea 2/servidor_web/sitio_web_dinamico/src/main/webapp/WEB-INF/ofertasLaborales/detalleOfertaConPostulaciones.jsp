@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+     <%@page import= "com.webservices.controladores.publicar.DataPostulacion" %>
+     <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+     <%@page import= "java.util.Set" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +16,9 @@
     <link rel="stylesheet" href="media/css/indexStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
     <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
+    <link rel="stylesheet" href="media/css/consultaPostulanteStyle.css" />
+    <link rel="stylesheet" href="media/css/consultarEmpresaStyle.css" />
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -54,7 +65,7 @@
 	    
 	     <%
         // Recupera la ofertaSeleccionada de la solicitud
-        DataOferta oferta = (DataOferta) request.getAttribute("ofertaSeleccionada");
+        DataOferta oferta = (DataOferta) request.getSession().getAttribute("ofertaSeleccionada");
 	 	String nombre = oferta.getNombre();
 	 	String desc = oferta.getDescripcion();
 	 	String ciudad = oferta.getCiudad();
@@ -183,7 +194,7 @@
   		 	<hr>
   		  <%
   			
-  			ArrayList<String> palabras = (ArrayList<String>) request.getAttribute("keys");
+  			Set<String> palabras = (Set<String>) request.getSession().getAttribute("keys");
   		  %>
 			<div class="row">
     			<div class="col">
@@ -204,6 +215,54 @@
 			</div>				
 			<div class="contenedorPrincipal">
 							    <!-- ACA ARRANCA A MOSTRAR LAS POSTULACIONES -->
+							    <div class = "texto-of">
+	    		<h2>Postulaciones</h2>
+	    		</div> 
+	      
+	      
+	      <%
+	      
+	      	PublicadorManejadorUsuarioService servicePublicadorManejadorUsuarios = new PublicadorManejadorUsuarioService();
+	  		PublicadorManejadorUsuario puertoManejadorUsuarios = servicePublicadorManejadorUsuarios.getPublicadorManejadorUsuarioPort();
+	            	
+	      	Set<String> postulantes = (Set<String>) request.getSession().getAttribute("postulantesDeOfer");
+	      	if(!postulantes.isEmpty()){
+	    	  
+	      %>
+		      <div class= "cartas-ofertas">
+					<%
+				        String nombrePostulante;
+				        byte[] imagenOfByte;
+				        for(String postu: postulantes) {
+				        	
+				        	DataUsuario userPostulado = puertoManejadorUsuarios.obtenerDataUsuario(postu);
+				        	
+				            imagenOfByte = userPostulado.getImagen();
+				
+				            String base64ImagenOf = Base64.getEncoder().encodeToString(imagenOfByte);
+				            
+				    %>
+					
+					<div class="card bg-light" style="width: 15rem;">
+				  <img src="data:image/jpeg;base64, <%= base64ImagenOf %>" class="card-img-top" alt="imagen de usuario">
+				  <div class="card-body">
+				    <h5 class="card-title" style="color: black;"><%= postu %></h5>
+				    <p> </p>
+				    
+				    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>&user=<%= postu %>" class="btn btn-dark">Ver más de la postulación</a>
+				  </div>
+				</div>
+				<% } %>
+			
+				</div>
+		<% }else{ %>
+			<p>Esta oferta no tiene postulaciones</p>
+		<%} %>
+	    
+							    
+							    
+							    
+							    
   		</div>
   		</div>
 	</div>
