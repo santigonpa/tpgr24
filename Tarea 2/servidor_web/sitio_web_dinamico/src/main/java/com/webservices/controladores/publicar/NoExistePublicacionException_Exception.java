@@ -45,7 +45,7 @@ public class NoExistePublicacionException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: webservices.NoExistePublicacionException
+     *     returns fault bean: publicar.NoExistePublicacionException
      */
     public NoExistePublicacionException getFaultInfo() {
         return faultInfo;

@@ -73,11 +73,13 @@ public interface PublicadorControladorOfertas {
      * @param arg7
      * @param arg8
      * @param arg9
+     * @throws NoExistePublicacionException_Exception
      * @throws NombreRepetidoOfertaException_Exception
      */
     @WebMethod
     @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralGeneralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralGeneralResponse", fault = {
-        @FaultAction(className = NombreRepetidoOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralGeneral/Fault/NombreRepetidoOfertaException")
+        @FaultAction(className = NombreRepetidoOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralGeneral/Fault/NombreRepetidoOfertaException"),
+        @FaultAction(className = NoExistePublicacionException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralGeneral/Fault/noExistePublicacionException")
     })
     public void altaPublicacionOfertaLaboralGeneral(
         @WebParam(name = "arg0", partName = "arg0")
@@ -106,34 +108,7 @@ public interface PublicadorControladorOfertas {
         byte[] arg11,
         @WebParam(name = "arg12", partName = "arg12")
         String arg12)
-        throws NombreRepetidoOfertaException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @throws YaExistePostulacionAOfertaException_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionResponse", fault = {
-        @FaultAction(className = YaExistePostulacionAOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacion/Fault/yaExistePostulacionAOfertaException")
-    })
-    public void agregarPostulacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4)
-        throws YaExistePostulacionAOfertaException_Exception
+        throws NoExistePublicacionException_Exception, NombreRepetidoOfertaException_Exception
     ;
 
     /**
@@ -170,7 +145,7 @@ public interface PublicadorControladorOfertas {
      * 
      * @param arg0
      * @return
-     *     returns webservices.WrapperArrayList
+     *     returns publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -203,26 +178,17 @@ public interface PublicadorControladorOfertas {
      * 
      * @param arg0
      * @param arg1
-     * @param arg10
-     * @param arg11
-     * @param arg12
      * @param arg2
      * @param arg3
      * @param arg4
      * @param arg5
-     * @param arg6
-     * @param arg7
-     * @param arg8
-     * @param arg9
-     * @throws NoExistePublicacionException_Exception
-     * @throws NombreRepetidoOfertaException_Exception
+     * @throws YaExistePostulacionAOfertaException_Exception
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaqueteRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaqueteResponse", fault = {
-        @FaultAction(className = NombreRepetidoOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaquete/Fault/NombreRepetidoOfertaException"),
-        @FaultAction(className = NoExistePublicacionException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaquete/Fault/noExistePublicacionException")
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacionResponse", fault = {
+        @FaultAction(className = YaExistePostulacionAOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/agregarPostulacion/Fault/yaExistePostulacionAOfertaException")
     })
-    public void altaPublicacionOfertaLaboralConPaquete(
+    public void agregarPostulacion(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0,
         @WebParam(name = "arg1", partName = "arg1")
@@ -234,22 +200,8 @@ public interface PublicadorControladorOfertas {
         @WebParam(name = "arg4", partName = "arg4")
         String arg4,
         @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        int arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7,
-        @WebParam(name = "arg8", partName = "arg8")
-        String arg8,
-        @WebParam(name = "arg9", partName = "arg9")
-        String arg9,
-        @WebParam(name = "arg10", partName = "arg10")
-        WrapperArrayList arg10,
-        @WebParam(name = "arg11", partName = "arg11")
-        byte[] arg11,
-        @WebParam(name = "arg12", partName = "arg12")
-        String arg12)
-        throws NoExistePublicacionException_Exception, NombreRepetidoOfertaException_Exception
+        String arg5)
+        throws YaExistePostulacionAOfertaException_Exception
     ;
 
     /**
@@ -295,6 +247,61 @@ public interface PublicadorControladorOfertas {
         @WebParam(name = "arg10", partName = "arg10")
         String arg10)
         throws NombreRepetidoOfertaException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg10
+     * @param arg11
+     * @param arg12
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     * @param arg8
+     * @param arg9
+     * @throws NoExistePublicacionException_Exception
+     * @throws NoExisteTipoPubli_Exception
+     * @throws NombreRepetidoOfertaException_Exception
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaqueteRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaqueteResponse", fault = {
+        @FaultAction(className = NombreRepetidoOfertaException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaquete/Fault/NombreRepetidoOfertaException"),
+        @FaultAction(className = NoExistePublicacionException_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaquete/Fault/noExistePublicacionException"),
+        @FaultAction(className = NoExisteTipoPubli_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/altaPublicacionOfertaLaboralConPaquete/Fault/noExisteTipoPubli")
+    })
+    public void altaPublicacionOfertaLaboralConPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        int arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7,
+        @WebParam(name = "arg8", partName = "arg8")
+        String arg8,
+        @WebParam(name = "arg9", partName = "arg9")
+        String arg9,
+        @WebParam(name = "arg10", partName = "arg10")
+        WrapperArrayList arg10,
+        @WebParam(name = "arg11", partName = "arg11")
+        byte[] arg11,
+        @WebParam(name = "arg12", partName = "arg12")
+        String arg12)
+        throws NoExistePublicacionException_Exception, NoExisteTipoPubli_Exception, NombreRepetidoOfertaException_Exception
     ;
 
 }

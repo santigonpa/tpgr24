@@ -45,7 +45,7 @@ public class NombrePaqueteYaExiste_Exception
     /**
      * 
      * @return
-     *     returns fault bean: webservices.NombrePaqueteYaExiste
+     *     returns fault bean: publicar.NombrePaqueteYaExiste
      */
     public NombrePaqueteYaExiste getFaultInfo() {
         return faultInfo;

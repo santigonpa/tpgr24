@@ -45,7 +45,7 @@ public class CampoInvalidoException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: webservices.CampoInvalidoException
+     *     returns fault bean: publicar.CampoInvalidoException
      */
     public CampoInvalidoException getFaultInfo() {
         return faultInfo;

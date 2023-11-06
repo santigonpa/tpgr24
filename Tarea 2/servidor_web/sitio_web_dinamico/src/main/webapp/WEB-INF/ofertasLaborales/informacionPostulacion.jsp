@@ -72,6 +72,8 @@
 	   	String motivacion = post.getMotivacion();
 	   	String fecha = post.getFecha();
 	   	String nombrePostulante = post.getNickPostulante();
+	   	String video = post.getVideo();
+	   	
 	   	
 	   	byte[] imagenBytes = puertoManejadorUsuario.obtenerDataUsuario(post.getNickPostulante()).getImagen();
         String base64Image = "";
@@ -150,8 +152,9 @@
     			<div class="col">
       					<h4 class = "fs-5 fw=normal">Video de la postulación:</h4>
    				 </div>
+   				 <div class = "my-3"></div>
     			<div class="col">
-      					<h4 class = "fs-5 fw-lighter"><%= video %></h4>
+      					<iframe width="873" height="491" src="<%= video %>"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     		 	</div>
   		 	</div>
   		 	<hr>

@@ -10,7 +10,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the webservices package. 
+ * generated in the publicar package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -31,7 +31,7 @@ public class ObjectFactory {
     private final static QName _YaExistePostulacionAOfertaException_QNAME = new QName("http://publicar.controladores/", "yaExistePostulacionAOfertaException");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: webservices
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicar
      * 
      */
     public ObjectFactory() {
@@ -178,13 +178,13 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Postulacion }
+     * Create an instance of {@link Paquete }
      * 
      * @return
-     *     the new instance of {@link Postulacion }
+     *     the new instance of {@link Paquete }
      */
-    public Postulacion createPostulacion() {
-        return new Postulacion();
+    public Paquete createPaquete() {
+        return new Paquete();
     }
 
     /**
@@ -195,6 +195,26 @@ public class ObjectFactory {
      */
     public LocalDate createLocalDate() {
         return new LocalDate();
+    }
+
+    /**
+     * Create an instance of {@link TipoPublicacion }
+     * 
+     * @return
+     *     the new instance of {@link TipoPublicacion }
+     */
+    public TipoPublicacion createTipoPublicacion() {
+        return new TipoPublicacion();
+    }
+
+    /**
+     * Create an instance of {@link Postulacion }
+     * 
+     * @return
+     *     the new instance of {@link Postulacion }
+     */
+    public Postulacion createPostulacion() {
+        return new Postulacion();
     }
 
     /**
@@ -245,26 +265,6 @@ public class ObjectFactory {
      */
     public CompraPaquete createCompraPaquete() {
         return new CompraPaquete();
-    }
-
-    /**
-     * Create an instance of {@link Paquete }
-     * 
-     * @return
-     *     the new instance of {@link Paquete }
-     */
-    public Paquete createPaquete() {
-        return new Paquete();
-    }
-
-    /**
-     * Create an instance of {@link TipoPublicacion }
-     * 
-     * @return
-     *     the new instance of {@link TipoPublicacion }
-     */
-    public TipoPublicacion createTipoPublicacion() {
-        return new TipoPublicacion();
     }
 
     /**
