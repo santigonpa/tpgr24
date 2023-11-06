@@ -27,6 +27,7 @@ import logica_datatypes.WrapperArrayList;
 import logica_datatypes.WrapperHashMap;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_manejadores.IManejadorUsuario;
 import utils.Fabrica;
@@ -90,6 +91,11 @@ public class PublicadorControladorUsuario {
 		HashMap<String, OfertaLaboral> mapa = ICU.obtenerOfertarDeEmpresa(dataEmp);
 		WrapperHashMap ret = new WrapperHashMap(mapa);
 		return ret;
+	}
+	
+	@WebMethod
+	public void comprarPaquete(Paquete paq, String emp) {
+		ICU.comprarPaquete(paq, emp);
 	}
 	
 	@WebMethod

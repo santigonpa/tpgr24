@@ -17,12 +17,15 @@ import logica_datatypes.DataPostulante;
 import logica_datatypes.DataTipoPublicacion;
 import logica_datatypes.DataUsuario;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 
 
 public interface IControladorUsuario {
 
 	public abstract ArrayList<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException;
+	
+	public abstract void comprarPaquete(Paquete paq, String emp);
 
 	public abstract ArrayList<DataTipoPublicacion> getDataTipoPublicacion();
 	
