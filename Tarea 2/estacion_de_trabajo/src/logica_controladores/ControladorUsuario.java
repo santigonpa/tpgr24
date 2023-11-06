@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
+import logica_entidades.CompraPaquete;
 
 import excepciones.NicknameYaExisteException;
 import excepciones.UsuarioNoExisteException;
@@ -21,6 +22,7 @@ import logica_datatypes.DataUsuario;
 import logica_datatypes.WrapperArrayList;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
@@ -197,6 +199,29 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 		
 	}
 
+	public void comprarPaquete(Paquete paq, String emp) {
+		
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorUsuario imu = (IManejadorUsuario) fab.getInUser();
+		Empresa empresa = (Empresa) imu.obtenerEmpresa(emp);
+    	CompraPaquete compPaq = new CompraPaquete();
+    	
+    	
+    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    	LocalDate fechaActual = LocalDate.now();
+    	String fechaActualFormateada = fechaActual.format(dateFormatter); // Formatear a String con el formato deseado
+    	LocalDate fAlta = LocalDate.parse(fechaActualFormateada, dateFormatter); // Analizar la fecha formateada
+
+		int dias = paq.getValidez();
+		LocalDate fVen = fAlta.plusDays(dias);
+		
+		compPaq.setFechaCompr(fAlta);
+		compPaq.setFechaVenc(fVen);
+		compPaq.setPaquete(paq);
+		
+		empresa.setCompra(compPaq);
+	}
+	
 	@Override
 	public ArrayList<DataUsuario> getDataUsuarios() throws UsuarioNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();
