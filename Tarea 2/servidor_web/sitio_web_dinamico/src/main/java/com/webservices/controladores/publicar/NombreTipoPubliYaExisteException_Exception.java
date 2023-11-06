@@ -45,7 +45,7 @@ public class NombreTipoPubliYaExisteException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: controladores.publicar.NombreTipoPubliYaExisteException
+     *     returns fault bean: webservices.NombreTipoPubliYaExisteException
      */
     public NombreTipoPubliYaExisteException getFaultInfo() {
         return faultInfo;

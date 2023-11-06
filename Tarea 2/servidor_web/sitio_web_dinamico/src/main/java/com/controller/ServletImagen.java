@@ -6,8 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import com.webservices.controladores.publicar.DataUsuario;
 import java.io.IOException;
+
+import com.webservices.controladores.publicar.DataUsuario;
 
 
 public class ServletImagen extends HttpServlet {

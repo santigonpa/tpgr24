@@ -905,7 +905,7 @@ public class cargarDatos {
 		//Fechas de las compras
 		LocalDate fc1 = LocalDate.parse("01-10-2023", dateFormatter); //e1 y pq3
 		LocalDate fvc1 = LocalDate.parse("01-12-2023", dateFormatter);
-		LocalDate fc2 = LocalDate.parse("08-9-2023", dateFormatter); 
+		LocalDate fc2 = LocalDate.parse("08-09-2023", dateFormatter); 
 		LocalDate fvc2 = LocalDate.parse("24-10-2023", dateFormatter);
 		LocalDate fc3 = LocalDate.parse("23-10-2023", dateFormatter); 
 		LocalDate fvc3 = LocalDate.parse("07-11-2023", dateFormatter);

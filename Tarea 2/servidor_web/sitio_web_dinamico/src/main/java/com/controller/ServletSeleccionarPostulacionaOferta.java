@@ -37,7 +37,10 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
    	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) && request.getSession().getAttribute("usuario") instanceof DataEmpresa) {
+			
+			request.getSession().setAttribute("esEmpresa",true);
 			DataEmpresa demp = (DataEmpresa) request.getSession().getAttribute("usuario");
 			ArrayList<Object> ofertasVencWrapper = (ArrayList<Object>) puertoManejadorOfertas.getOfertasConfirmadasYVencidas(demp.getNickName()).getLista();
 			Set<DataOferta> dtofers = new HashSet<>();
@@ -45,29 +48,37 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 				DataOferta dofer = (DataOferta) obj;
 				dtofers.add(dofer);
 			}
-			if(dtofers.siEmpty()) {
-				request.getRequestDispatcher("/WEB-INF/usuarios/no tiene ofertas confirmadas vencidas.jsp").forward(request, response);
+			request.getSession().setAttribute("ofertasVencidas",dtofers);
+			String ofertaSeleccionada = request.getParameter("SeleccionarPostulacion"); // nombre de la oferta seleccionada
+			
+			if(ofertaSeleccionada != null) {
+				
+				//esta seleccionada una oferta y se debe poner lo de elegir postulantes
+				DataOferta dofer = puertoManejadorOfertas.getDataOferta(ofertaSeleccionada);
+				request.getSession().setAttribute("ofertaSeleccionada",dofer);
+				ArrayList<Object> postuWrapper = (ArrayList<Object>) puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(ofertaSeleccionada).getLista();
+				Set<String> postulaciones = new HashSet<>();
+				for(Object obj: postuWrapper) {
+					String postu = (String) obj;
+					postulaciones.add(postu);
+				}
+				request.getSession().setAttribute("postulacionesDeOfer", postulaciones);
+				request.getRequestDispatcher("/WEB-INF/usuarios/detalleOfertaConPostulaciones.jsp").forward(request, response);
+				
 			}else {
-				request.getSession().setAttribute("ofertasVencidas",dtofers);
-				request.getRequestDispatcher("/WEB-INF/usuarios/el jsp de seleccionar la oferta confirmada pero vencida.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/usuarios/seleccionarOfertasVencidasConfirmadas.jsp").forward(request, response);
 			}
+		
 		}else {
-			request.getRequestDispatcher("/WEB-INF/usuarios/el jsp de tiene que ser una empresa.jsp").forward(request, response);
+			request.getSession().setAttribute("esEmpresa",false);
 		}
 	}
 
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nombreOfer = request.getParameter("OfertaVencAConsultar");
-		DataOferta dofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
-		request.getSession().setAttribute("ofertaVencAConsultar", dofer);
-		ArrayList<Object> postuWrapper = (ArrayList<Object>) puertoManejadorOfertas.obtenerPostulacionesSobreLaOferta(nombreOfer).getLista();
-		Set<String> postulaciones = new HashSet<>();
-		for(Object obj: postuWrapper) {
-			String postu = (String) obj;
-			postulaciones.add(postu);
-		}
-		request.getSession().setAttribute("postulacionesDeOfer", postulaciones);
-		request.getRequestDispatcher("/WEB-INF/usuarios/detalles de oferta con postulaciones.jsp").forward(request, response);
+		
 	}
 
 }

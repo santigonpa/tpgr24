@@ -29,7 +29,7 @@ public class PublicadorControladorOfertas {
 
     @WebMethod(exclude = true)
     public void publicar() {
-    	String url = "http://localhost:9121/ControladorOfertas";
+    	String url = "http://localhost:9128/ControladorOfertas";
         System.out.println("Publicando servicio de ControladorOfertas en " + url);
         endpoint = Endpoint.publish(url, this);
     }

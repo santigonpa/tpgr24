@@ -17,7 +17,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "PublicadorManejadorPyTService", targetNamespace = "http://publicar.controladores/", wsdlLocation = "http://localhost:9120/ManejadorPaquetesYTiposPubli?wsdl")
+@WebServiceClient(name = "PublicadorManejadorPyTService", targetNamespace = "http://publicar.controladores/", wsdlLocation = "http://localhost:9128/ManejadorPaquetesYTiposPubli?wsdl")
 public class PublicadorManejadorPyTService
     extends Service
 {
@@ -30,7 +30,7 @@ public class PublicadorManejadorPyTService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9120/ManejadorPaquetesYTiposPubli?wsdl");
+            url = new URL("http://localhost:9128/ManejadorPaquetesYTiposPubli?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

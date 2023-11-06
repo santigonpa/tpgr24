@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.DataPostulante;
+import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.PublicadorControladorUsuario;
 import com.webservices.controladores.publicar.PublicadorControladorUsuarioService;
 
@@ -16,8 +18,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import com.webservices.controladores.publicar.DataPostulante;
-import com.webservices.controladores.publicar.DataUsuario;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**

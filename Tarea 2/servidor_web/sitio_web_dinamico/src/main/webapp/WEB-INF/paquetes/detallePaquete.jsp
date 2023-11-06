@@ -31,18 +31,18 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-        <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorPyT" %>
-     <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorPyTService" %>
+        <%@ page import="com.webservices.PublicadorManejadorPyT" %>
+     <%@ page import="com.webservices.PublicadorManejadorPyTService" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
         <%@ page import="java.util.ArrayList" %>
     <%@ page import="java.util.List" %>
-    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
-        <%@ page import="com.webservices.controladores.publicar.Paquete" %>
-        <%@ page import="com.webservices.controladores.publicar.TipoPublicacion" %>
+    <%@ page import="com.webservices.WrapperArrayList" %>
+        <%@ page import="com.webservices.Paquete" %>
+        <%@ page import="com.webservices.TipoPublicacion" %>
     <%@page import ="java.util.Base64" %>
-        <%@ page import="com.webservices.controladores.publicar.DataPaquete" %>
+        <%@ page import="com.webservices.DataPaquete" %>
     
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

@@ -45,7 +45,7 @@ public class YaExistePostulacionAOfertaException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: controladores.publicar.YaExistePostulacionAOfertaException
+     *     returns fault bean: webservices.YaExistePostulacionAOfertaException
      */
     public YaExistePostulacionAOfertaException getFaultInfo() {
         return faultInfo;

@@ -5,13 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.webservices.controladores.publicar.DataEmpresa;
-import com.webservices.controladores.publicar.DataOferta;
-import com.webservices.controladores.publicar.DataPostulante;
-import com.webservices.controladores.publicar.DataUsuario;
-import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
-import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
-import com.webservices.controladores.publicar.WrapperHashMap;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -19,9 +12,16 @@ import java.util.List;
 import java.util.Set;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.DataEmpresa;
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.DataPostulante;
+import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
+import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 import com.webservices.controladores.publicar.WrapperArrayList;
+import com.webservices.controladores.publicar.WrapperHashMap;
 
 @WebServlet (description = "Servlet de ver perfil de usuario", urlPatterns = { "/VerPerfil" })
 public class ServletVerPerfil extends HttpServlet {
