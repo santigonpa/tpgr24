@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%@page import= "com.webservices.DataEmpresa" %>
-	<%@page import= "com.webservices.DataOferta" %>
-	<%@page import= "com.webservices.DataKeyWord" %>
+    <%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
+	<%@page import= "com.webservices.controladores.publicar.DataOferta" %>
+	<%@page import= "com.webservices.controladores.publicar.DataKeyWord" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@page import= "com.webservices.PublicadorManejadorUsuario" %>
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
     <%@page import="java.util.Map" %>
-    <%@page import= "com.webservices.PublicadorManejadorOfertas" %>
-    <%@ page import="com.webservices.WrapperArrayList" %>
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+    <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
     <%@ page import="java.util.ArrayList" %>
     
     

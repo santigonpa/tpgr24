@@ -31,14 +31,14 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
-    <%@ page import="com.webservices.DataOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.DataOferta" %>
     <%@ page import="java.time.LocalTime" %>
     <%@ page import="java.time.LocalDate" %>
-    <%@ page import="com.webservices.EstadoOferta" %>
+    <%@ page import="com.webservices.controladores.publicar.EstadoOferta" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
     <%@page import ="java.util.Base64" %>
-    <%@ page import="com.webservices.KeyWord" %>
+    <%@ page import="com.webservices.controladores.publicar.KeyWord" %>
 	<%@ page import="java.util.ArrayList" %>
 	<%@ page import="java.time.format.DateTimeFormatter" %>
     

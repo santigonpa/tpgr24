@@ -4,16 +4,16 @@
 <html>
 <head>
 
-	<%@ page import="com.webservices.Postulacion" %>
-	<%@ page import="com.webservices.DataOferta" %>
-	<%@ page import="com.webservices.DataPostulacion" %>
-	<%@ page import="com.webservices.DataUsuario" %>
+	<%@ page import="com.webservices.controladores.publicar.Postulacion" %>
+	<%@ page import="com.webservices.controladores.publicar.DataOferta" %>
+	<%@ page import="com.webservices.controladores.publicar.DataPostulacion" %>
+	<%@ page import="com.webservices.controladores.publicar.DataUsuario" %>
 	<%@ page import="java.time.LocalDate" %>
 	<%@page import ="java.util.Base64" %>
-	<%@ page import="com.webservices.PublicadorManejadorOfertas" %>
-	 <%@ page import="com.webservices.PublicadorManejadorOfertasService" %>
-	<%@ page import="com.webservices.PublicadorManejadorUsuario" %>
-	 <%@ page import="com.webservices.PublicadorManejadorUsuarioService" %>
+	<%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+	 <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+	<%@ page import="com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+	 <%@ page import="com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
 	 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
