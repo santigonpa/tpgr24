@@ -34,6 +34,8 @@ public class CompraPaquete {
 	
 	public void setPaquete(Paquete paq) {
 		this.paqCompr = paq;
+		ArrayList<TipoPublicacion> tipospu = paq.getTipoPublicacions();
+		this.tipoPublicaciones = tipospu;
 	}
 	
 	public void setTipoPubli(ArrayList<TipoPublicacion> tipospu) {

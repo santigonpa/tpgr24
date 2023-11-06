@@ -888,6 +888,20 @@ public class cargarDatos {
 		paq4.setCosto(950);
 		paq4.setImagen(paq4img);
 
+		//Setteo los tipos de publicacion
+		
+		paq1.setPublicaciones(tp1, 1);
+		paq1.setPublicaciones(tp2, 1);
+		paq1.setPublicaciones(tp3, 1);
+		
+		paq2.setPublicaciones(tp3, 2);
+		paq2.setPublicaciones(tp4, 1);
+		
+		paq3.setPublicaciones(tp1, 2);
+		paq3.setPublicaciones(tp3, 2);
+		
+		paq4.setPublicaciones(tp2, 2);
+			
 		//Los añado al manejador
 		
 		mpyt.addPaquete(paq1);
@@ -916,7 +930,7 @@ public class cargarDatos {
 		CompraPaquete comp1 = new CompraPaquete();
 		comp1.setFechaCompr(fc1);
 		comp1.setFechaVenc(fvc1);
-		comp1.setPaquete(paq1);
+		comp1.setPaquete(paq3);
 		
 		CompraPaquete comp2 = new CompraPaquete();
 		comp2.setFechaCompr(fc2);

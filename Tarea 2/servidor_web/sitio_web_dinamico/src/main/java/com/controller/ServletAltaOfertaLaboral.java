@@ -124,12 +124,11 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
         	
         	
         	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
-        	ArrayList<DataTipoPublicacion> coleccionPTP = new ArrayList<>();		
+        	ArrayList<String> coleccionPTP = new ArrayList<>();		
         	
     		for (Object objeto : coleccionPTPWrapper) {
-    		    if (objeto instanceof DataTipoPublicacion) {
-    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
-    		        coleccionPTP.add(dataTipoPublicacion);
+    		    if (objeto instanceof String) {
+    		        coleccionPTP.add((String)objeto);
     		    }
     		}
     		
@@ -180,6 +179,8 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		String ciudad = request.getParameter("ciudad");
 		String horaDeInicioo = request.getParameter("horaDeInicio");
 		String horaDeFinn = request.getParameter("horaDeFin");
+		String opcionSeleccionadaTP = request.getParameter("tipoPubli");
+		System.out.println(opcionSeleccionadaTP);
 		
 		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
 	
@@ -229,19 +230,8 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 				}
 		
     
-		String opcionSeleccionadaTP;
-		String botonSeleccionado = request.getParameter("btnradio");
-
-	    if ("basica".equals(botonSeleccionado)) {
-	        opcionSeleccionadaTP = "Básica";
-	    } else if ("estandar".equals(botonSeleccionado)) {
-	        opcionSeleccionadaTP = "Estándar";
-	    } else if ("premium".equals(botonSeleccionado)) {
-	    	opcionSeleccionadaTP =  "Premium";
-	    } else {
-	    	opcionSeleccionadaTP = "Destacada";
-	    }
-	    
+		
+ 
 		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
 		Set<String> conjuntoOpciones = new HashSet<>();
 
@@ -269,6 +259,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
         String fechaFormateada = fechaActual.format(formatter);
 		
+        
 		System.out.println("El" + tipoPago);
 		
 		if(tipoPago.equals("pagoGeneral")) {
@@ -292,6 +283,8 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 			}else {
 				nombrePaq = "Servlet";
 			}
+			
+			System.out.println(nombrePaq);
 			
 			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");

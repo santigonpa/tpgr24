@@ -116,10 +116,14 @@ public class PublicadorControladorUsuario {
 	@WebMethod
 	public WrapperArrayList getPublicacionesEmpresa(String emp){
 		ArrayList<DataTipoPublicacion> arr =  ICU.getPublicacionesEmpresa(emp);
-		WrapperArrayList ret = new WrapperArrayList(arr);
+		ArrayList<String> res = new ArrayList<>();
+		for(DataTipoPublicacion data : arr) {
+			res.add(data.getNombre());
+		}
+		WrapperArrayList ret = new WrapperArrayList(res);
 		return ret;
 	}
-	
+
 	@WebMethod
 	public WrapperArrayList getDataKeyWord(){
 		ArrayList<DataKeyWord> arr =  ICU.getDataKeyWord();
