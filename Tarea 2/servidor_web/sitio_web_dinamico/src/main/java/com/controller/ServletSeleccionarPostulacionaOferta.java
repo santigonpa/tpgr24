@@ -78,7 +78,7 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 				request.getSession().setAttribute("postulantesDeOfer", postulaciones);
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/detalleOfertaConPostulaciones.jsp").forward(request, response);
 				
-			}else {
+			} else {
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/seleccionarOfertasVencidasConfirmadas.jsp").forward(request, response);
 			}
 		
