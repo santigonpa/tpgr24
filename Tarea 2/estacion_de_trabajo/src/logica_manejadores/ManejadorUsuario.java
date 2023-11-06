@@ -331,6 +331,36 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	public void setPaquetes(HashMap<String, Paquete> paquetes) {
 		this.paquetes = paquetes;
 	}
-
+	
+	public ArrayList<DataOferta> obtenerOfertasFinalizadas(String empresa){
+		ArrayList<DataOferta> res = new ArrayList<>();
+		Empresa emp = (Empresa) this.empresas.get(empresa);
+		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasRechazadas();
+		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
+		for (String clave : claves) {
+			OfertaLaboral oferta = mapaOfertas.get(clave);
+			DataOferta ofert = new DataOferta();
+			DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+	        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = oferta.getFecha().format(formatterFecha);
+	        String formattedTimeHoraFin = oferta.getHoraFin().format(formatterHora);
+	        String formattedTimeHoraInicio = oferta.getHoraInicio().format(formatterHora);
+			ofert.setCiudad(oferta.getCiudad());
+			ofert.setCostoDeOfertaLaboral(oferta.getCosto());
+			ofert.setDepartamento(oferta.getDepartamento());
+			ofert.setDescripcion(oferta.getDescripcion());
+			ofert.setEmpresa(oferta.getEmpresa().getNickName());
+			ofert.setEstado(oferta.getEstado());
+			ofert.setFechaDeAlta(formattedDate);
+			ofert.setHoraFin(formattedTimeHoraFin);
+			ofert.setHoraInicio(formattedTimeHoraInicio);
+			ofert.setImagen(oferta.getImagen());
+			ofert.setTipoDePago(oferta.getTipoDePago());
+			ofert.setRemuneracion(oferta.getRemuneracion());
+			ofert.setNombre(oferta.getNombreOferta());
+			res.add(ofert);
+		}
+		return res;
+	}
 
 }

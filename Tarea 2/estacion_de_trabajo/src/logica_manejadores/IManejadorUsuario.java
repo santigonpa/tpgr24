@@ -44,6 +44,7 @@ public interface IManejadorUsuario {
 	
 	public abstract void CompraPaquete(Paquete paq, String empresa);
 
+	public abstract ArrayList<DataOferta> obtenerOfertasFinalizadas(String empresa);
 
 	
 }
