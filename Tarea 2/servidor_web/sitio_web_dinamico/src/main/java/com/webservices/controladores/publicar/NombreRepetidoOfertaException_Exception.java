@@ -45,7 +45,7 @@ public class NombreRepetidoOfertaException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: webservices.NombreRepetidoOfertaException
+     *     returns fault bean: publicar.NombreRepetidoOfertaException
      */
     public NombreRepetidoOfertaException getFaultInfo() {
         return faultInfo;

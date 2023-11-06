@@ -21,6 +21,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="motivacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nickPostulante" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nombreOferta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="video" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </extension>
  *   </complexContent>
@@ -35,7 +36,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "curri",
     "motivacion",
     "nickPostulante",
-    "nombreOferta"
+    "nombreOferta",
+    "video"
 })
 public class DataPostulacion
     extends DataUsuario
@@ -46,6 +48,7 @@ public class DataPostulacion
     protected String motivacion;
     protected String nickPostulante;
     protected String nombreOferta;
+    protected String video;
 
     /**
      * Obtiene el valor de la propiedad fecha.
@@ -165,6 +168,30 @@ public class DataPostulacion
      */
     public void setNombreOferta(String value) {
         this.nombreOferta = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad video.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVideo() {
+        return video;
+    }
+
+    /**
+     * Define el valor de la propiedad video.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVideo(String value) {
+        this.video = value;
     }
 
 }
