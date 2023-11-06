@@ -11,10 +11,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataOferta;
 import com.webservices.controladores.publicar.DataPostulacion;
+import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
@@ -90,7 +92,22 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	    // Recupera la cadena de texto con los nombres de los postulantes ordenados
+	    String postulantesOrdenados = request.getParameter("postulantesOrdenados");
+
+	    // Divide la cadena de texto para obtener una lista de nombres
+	    String[] nombres = postulantesOrdenados.split(",");
+
+	    // Crea tu ArrayList para almacenar los nombres en orden
+	    ArrayList<String> nombresEnOrden = new ArrayList<String>();
+
+	    // Agrega los nombres en el orden en el que aparecen en la cadena
+	    for (String nombre : nombres) {
+	    	System.out.println(nombre);
+	        nombresEnOrden.add(nombre);
+	    }
+
 	}
 
 }

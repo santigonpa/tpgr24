@@ -269,40 +269,52 @@
 	</div>
 		<script>
 		document.getElementById('guardarOrden').addEventListener('click', function () {
-		    cartasOrdenadas = [];
 		    var cartas = document.querySelectorAll('.card');
-		    var numerosAsignados = new Set();
+
+		    // Crea un objeto para mapear el número de orden al nombre del postulante
+		    var ordenes = {};
+
+		    // Crea un conjunto para rastrear los números de orden duplicados
+		    var numerosOrdenDuplicados = new Set();
+
+		    var error = false;
 
 		    cartas.forEach(function (carta) {
+		        var nombreCarta = carta.querySelector('h5').textContent;
 		        var numeroOrdenInput = carta.querySelector('input');
 		        var numeroOrden = parseInt(numeroOrdenInput.value);
-		        var contenidoCarta = carta.querySelector('h5').textContent;
 
-		        if (!isNaN(numeroOrden) && !numerosAsignados.has(numeroOrden)) {
-		            cartasOrdenadas.push({ orden: numeroOrden, contenido: contenidoCarta });
-		            numerosAsignados.add(numeroOrden);
-		            numeroOrdenInput.style.border = ''; // Restablecer el estilo
+		        // Verifica si el número de orden está duplicado o es inválido
+		        if (numerosOrdenDuplicados.has(numeroOrden) || isNaN(numeroOrden)) {
+		            error = true;
+		            numeroOrdenInput.style.border = '2px solid red'; // Establece un borde rojo en caso de error
 		        } else {
-		            numeroOrdenInput.style.border = '2px solid red'; // Establecer un borde rojo en caso de conflicto
+		            numerosOrdenDuplicados.add(numeroOrden);
+		            ordenes[nombreCarta] = numeroOrden;
+		            numeroOrdenInput.style.border = ''; // Restablecer el estilo
 		        }
 		    });
 
-		    if (cartasOrdenadas.length === cartas.length) {
-		        cartasOrdenadas.sort(function (a, b) {
-		            return a.orden - b.orden;
+		    if (error) {
+		        alert('Por favor, verifique los números de orden, asegúrese de que sean únicos y válidos.');
+		    } else {
+		        // Ordena los nombres en función del número de orden
+		        var nombresOrdenados = Object.keys(ordenes).sort(function (a, b) {
+		            return ordenes[a] - ordenes[b];
 		        });
 
-		        // Actualiza el campo oculto con la lista ordenada de postulantes
+		        // Convierte el array de nombres ordenados en una cadena de texto delimitada por comas
+		        var postulantesOrdenados = nombresOrdenados.join(',');
+
+		        // Asigna la cadena de texto al campo oculto
 		        var postulantesOrdenadosInput = document.getElementById('postulantesOrdenados');
-		        postulantesOrdenadosInput.value = JSON.stringify(cartasOrdenadas);
+		        postulantesOrdenadosInput.value = postulantesOrdenados;
 
 		        // Envía el formulario al servidor
 		        document.getElementById('ordenForm').submit();
-		    } else {
-		        alert('Por favor, asegúrate de asignar números de orden únicos a todas las cartas.');
 		    }
 		});
-</script>
+		</script>
 
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
