@@ -47,6 +47,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 	private IControladorUsuario ICU;
 	private IControladorOferta ICO;
 	private IManejadorOferta IMO;
+	private IManejadorUsuario IMU;
 	private JLabel txtEmpresa;
 	private JLabel txtOferta;
 	private JComboBox<DataOferta> comboBoxOferta;
@@ -106,6 +107,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 		ICU = Icu;
 		ICO = Ico;
 		IMO = Imo;
+		IMU = Imu;
 		setClosable(true);
 		setTitle("Postulacion a Oferta Laboral");
 		setBounds(100, 100, 710, 680);
@@ -235,8 +237,7 @@ public class PostulacionAOfertaLaboral extends JInternalFrame {
 				DefaultComboBoxModel<DataOferta> model = new DefaultComboBoxModel<>();
 				try {
 					DataEmpresa emp = (DataEmpresa) comboBoxEmp.getSelectedItem();
-					ArrayList<DataOferta> ofertas = ICU.obte(emp.getNickName());
-				
+					ArrayList<DataOferta> ofertas = IMU.obtenerOfertasConfirmadasDeEmpresa(emp.getNickName());
 					if (ofertas!= null) {
 					// Agregar las empresas al modelo del JComboBox
 						for (DataOferta oferta : ofertas) {
