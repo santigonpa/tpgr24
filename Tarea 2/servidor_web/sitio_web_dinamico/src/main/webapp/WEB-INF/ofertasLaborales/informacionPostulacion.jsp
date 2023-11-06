@@ -146,7 +146,15 @@
   		 	<hr>
   		 	
   		 	
-  		 	
+  		 	<div class="row">
+    			<div class="col">
+      					<h4 class = "fs-5 fw=normal">Video de la postulación:</h4>
+   				 </div>
+    			<div class="col">
+      					<h4 class = "fs-5 fw-lighter"><%= video %></h4>
+    		 	</div>
+  		 	</div>
+  		 	<hr>
   		 	
   			
 

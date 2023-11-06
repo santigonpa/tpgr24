@@ -12,6 +12,7 @@ public class DataPostulacion extends DataUsuario {
 	private String motivacion;
 	private String nickPostulante;
 	private String nombreOferta;
+	private String video;
 
 
 	//Constructor
@@ -64,6 +65,14 @@ public class DataPostulacion extends DataUsuario {
 
 	public void setNombreOferta(String nombreOferta) {
 		this.nombreOferta = nombreOferta;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
 	}
 
 

@@ -19,6 +19,7 @@ public class Postulacion {
 	private String motivacion;
 	private Postulante post;
 	private OfertaLaboral ofer;
+	private String video;
 	
 	//Constructor
 	public Postulacion() {
@@ -111,5 +112,13 @@ public class Postulacion {
 	    public int hashCode() {
 	        return Objects.hash(fecha, curri, motivacion, post, ofer);
 	    }
+
+		public String getVideo() {
+			return video;
+		}
+
+		public void setVideo(String video) {
+			this.video = video;
+		}
 	
 }
