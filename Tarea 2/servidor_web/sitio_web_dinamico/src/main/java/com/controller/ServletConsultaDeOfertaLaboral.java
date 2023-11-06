@@ -87,6 +87,9 @@ public class ServletConsultaDeOfertaLaboral extends HttpServlet {
 			String empresaSeleccionada = request.getParameter("empresa");
 			String keywordSeleccionada = request.getParameter("keyword");
 			
+			System.out.println(banderaPostulante);
+			System.out.println(banderaSesion);
+			
 			if(banderaSesion && banderaPostulante) {
 				if(empresaSeleccionada != null) {
 					WrapperArrayList wrapperArr = puertoManejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(empresaSeleccionada);

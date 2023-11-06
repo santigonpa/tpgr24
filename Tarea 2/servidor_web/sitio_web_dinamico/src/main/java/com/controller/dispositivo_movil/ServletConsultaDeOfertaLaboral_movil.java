@@ -103,7 +103,7 @@ public class ServletConsultaDeOfertaLaboral_movil extends HttpServlet {
 						coleccionOfer.add(ofertaData);
 					}
 					request.setAttribute("coleccionOfertas",coleccionOfer);
-					request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaborales_movil.jsp").forward(request,response);
+					request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaboralesPost_movil.jsp").forward(request,response);
 
 					}else if(keywordSeleccionada != null){
 						WrapperArrayList wrapperArr2 = puertoManejadorOfertas.obtenerOfertasConfirmadasPorKey(keywordSeleccionada);
@@ -121,11 +121,11 @@ public class ServletConsultaDeOfertaLaboral_movil extends HttpServlet {
 							coleccionOfer.add(ofertaData);
 						}
 						request.setAttribute("coleccionOfertas",coleccionOfer);
-						request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaborales_movil.jsp").forward(request,response);
+						request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaboralesPost_movil.jsp").forward(request,response);
 
 				
 					}else {
-						request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaborales_movil.jsp").forward(request,response);
+						request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaboralesPost_movil.jsp").forward(request,response);
 					}
 			}	
 		

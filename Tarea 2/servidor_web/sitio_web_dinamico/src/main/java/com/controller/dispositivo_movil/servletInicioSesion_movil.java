@@ -80,7 +80,7 @@ public class servletInicioSesion_movil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(getEstado(request) == EstadoSesion.SI_LOGEADO) {
-			request.getRequestDispatcher("/WEB-INF/usuarios/UsuarioSesionYaIniciada.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/mobil/home_mobil/iniciar_mobil.jsp").forward(request, response);
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/mobil/sesion_movil/iniciarSesion_movil.jsp");
 			dispatcher.forward(request, response);

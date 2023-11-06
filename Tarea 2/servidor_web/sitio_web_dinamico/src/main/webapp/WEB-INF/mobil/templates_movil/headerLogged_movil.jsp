@@ -114,8 +114,7 @@
                   </button>
                 </form>
               </li>
-
-              <li class="nav-item ml-auto mt-auto dropdown order-1 order-lg-3">
+              <li class="nav-item dropdown pt-4 pt-lg-0 order-0 order-lg-3">
                 <a class="nav-link" href="#" data-bs-toggle="dropdown">
                   <img
                     src="<%= request.getContextPath() %>/ServletImagen"
@@ -127,7 +126,7 @@
                   />
                   Mi Usuario
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end d-none">
+                <ul class="dropdown-menu dropdown-menu-end">
                   <li>
                     <a class="dropdown-item" href="/TrabajoUY/VerPerfil"
                       >Usuario</a
@@ -148,6 +147,8 @@
                   </li>
                 </ul>
               </li>
+
+             
             </ul>
           </div>
         </div>
