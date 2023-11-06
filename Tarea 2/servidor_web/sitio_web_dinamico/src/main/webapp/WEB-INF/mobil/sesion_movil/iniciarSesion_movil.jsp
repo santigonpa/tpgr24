@@ -64,7 +64,7 @@
 					<h5 class="fw-bold text-center">Inicio de sesión</h5>
 					
 					<!--Login-->
-					<form action="iniciarSesion" method="POST">
+					<form action="iniciarSesion_movil" method="POST">
 						<div>
 							<label for="email" class="form-label" >Usuario o Correo electrónico</label>
 							<input type="text" class="form-control" name="email" required="required">
@@ -74,7 +74,7 @@
 							<input type="password" class="form-control" name="password" required="required">
 						</div>
 						<div class="d-grid">
-							<button  type="submit" class="btn btn-dark">Iniciar sesión</button>
+							<button  href="" type="submit" class="btn btn-dark">Iniciar sesión</button>
 						</div>
 						<div class="my-3">
 							<span>¿No tienes cuenta? <a href="AltaUsuario">Regístrate.</a></span> <br>

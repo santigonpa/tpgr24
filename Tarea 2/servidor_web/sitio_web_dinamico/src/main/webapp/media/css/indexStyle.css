@@ -64,8 +64,8 @@ body{
   font-weight: 900;
   letter-spacing: 2px;
   text-shadow: #ffffff;
-  font-size: 3rem;
-  margin-bottom: 10px; /* Agrega espacio en la parte inferior */
+  font-size: 100px;
+  margin-bottom: 100px; /* Agrega espacio en la parte inferior */
   margin-top: 0; /* Elimina el espacio en la parte superior predeterminado */
 }
 
@@ -74,7 +74,7 @@ body{
   font-weight: 500;
   text-shadow: #ffffff;
   letter-spacing: 0.2px;
-  font-size: 2rem;
+  font-size: 35px;
   margin-top: 10px; /* Agrega espacio en la parte superior */
   margin-bottom: 0; /* Elimina el espacio en la parte inferior predeterminado */
 }
