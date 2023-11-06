@@ -304,7 +304,7 @@ public class ControladorOferta implements IControladorOferta {
 	
 	public String getVideoEmbed(String videoUrl) {
         // Verifica si la URL proporcionada es válida
-        if (videoUrl == null || videoUrl.isEmpty()) {
+        if (videoUrl == null || videoUrl.isEmpty() || videoUrl.equals("")) {
             return null;
         }
 
