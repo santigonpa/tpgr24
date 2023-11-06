@@ -3,7 +3,7 @@
 <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
         <div class="container-fluid">
-          <a class="navbar-brand" href="home">
+          <a class="navbar-brand" href="/TrabajoUY/home_movil">
             <img
               src="media/img/logoNuevo.png"
               alt="Logo"
@@ -26,24 +26,6 @@
 
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav w-100 justify-content-around">
-              <li class="nav-item dropdown d-none d-lg-block order-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Usuarios</a
-                >
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="ConsultarUsuario"
-                      >Perfiles</a
-                    >
-                  </li>
-                </ul>
-              </li>
-
               <li class="nav-item dropdown pt-4 pt-lg-0 order-lg-1 order-3">
                 <a
                   class="nav-link dropdown-toggle"
@@ -54,49 +36,12 @@
                   >Ofertas Laborales</a
                 >
                 <ul class="dropdown-menu mb-2 bg-light">
-                  <li class="d-none d-lg-block">
-                    <a
-                      class="dropdown-item"
-                      href="/TrabajoUY/AltaDeOfertaLaboral"
-                      >Crear Oferta Laboral</a
-                    >
-                  </li>
                   <li>
-
-
                     <a class="dropdown-item" href="/TrabajoUY/ConsultaDeOfertaLaboral_movil"
                       >Ver Ofertas</a
                     >
                   </li>
-                  <li class="d-none d-md-block">
-                    <a
-                      class="dropdown-item"
-                      href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral"
-                      >Tipos de Publicaciones</a
-                    >
-                  </li>
                 </ul>
-              </li>
-
-              <li class="nav-item dropdown d-none d-lg-block order-1">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Paquetes</a
-                >
-                <ul class="dropdown-menu">
-                  <li>
-                    <a
-                      class="dropdown-item"
-                      href="/TrabajoUY/ConsultaDePaquetes"
-                      >Ver Paquetes</a
-                    >
-                  </li>
-                </ul>
-              </li>
 
               <li class="nav-item order-2">
                 <form class="d-flex pt-4 pt-lg-0" role="search">

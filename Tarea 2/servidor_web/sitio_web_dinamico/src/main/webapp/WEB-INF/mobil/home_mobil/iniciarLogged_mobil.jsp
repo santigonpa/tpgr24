@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
+   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="media/css/indexLoggedStyle.css" />
     <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="media/css/indexStyle.css" />
+
+    <!-- FONTS -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap"
@@ -14,7 +16,16 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;900&display=swap"
     />
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+    <!-- Icono de pag -->
     <link rel="icon" href="media/img/logoNuevo.png" type="image/x-icon" />
+
+    <!-- BS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -22,6 +33,12 @@
       crossorigin="anonymous"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <!-- ICONOS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -35,6 +52,25 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    
+    <script>
+		$(document).ready(function(){
+		    // Inicializa el carrusel
+		    $('.carousel').carousel();
+		
+		    // Controla el evento de clic para el botón "Previous"
+		    $('.carousel-control-prev').click(function(){
+		        $('.carousel').carousel('prev');
+		    });
+		
+		    // Controla el evento de clic para el botón "Next"
+		    $('.carousel-control-next').click(function(){
+		        $('.carousel').carousel('next');
+		    });
+		});
+	</script>
+    
+    
     <title>TrabajoUY</title>
   </head>
   <body>
@@ -59,7 +95,7 @@
         >
           <h1 class="trabajo-uy">Trabajo UY</h1>
           <h2 class="slogan-uy">
-            Consigue el trabajo que buscas de la manera mÃ¡s fÃ¡cil.
+            Postúlate al trabajo de tus sueños.
           </h2>
         </div>
 
@@ -104,12 +140,7 @@
         </div>
         <!--Waves end-->
       </div>
-      <!--Header ends-->
-
-      <!--Content starts-->
-
-      <!--Content ends-->
-      <div
+     <div
         class="titulo3"
         style="
           text-align: center;
@@ -122,20 +153,43 @@
           class="galeria-titulo"
           style="color: rgb(0, 0, 0); text-shadow: 6px 6px 15 black"
         >
-          Algunos de nuestros clientes que ya consiguieron empleo con TrabajoUY.
+          Algunos de nuestros usuarios que ya consiguieron empleo con TrabajoUY.
         </h3>
       </div>
+	
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img class="d-block w-100" src="media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img class="d-block w-100" src="media/img/of1.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img class="d-block w-100" src="media/img/of2.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img class="d-block w-100" src="media/img/of3.jpg">
+		    </div>
+		    <div class="carousel-item">
+		      <img class="d-block w-100" src="media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg">
+		    </div>
+		  <div class="carousel-item">
+		      <img class="d-block w-100" src="media/img/irina-2Q8bo_6lu1Y-unsplash.jpg">
+		    </div>
+		  </div>
+		  
+		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+	</div>
 
-      <div class="container-galeria">
-        <section class="galeria">
-          <img src="media/img/jason-goodman-fXVx1opWGxM-unsplash.jpg" />
-          <img src="media/img/of1.jpg" />
-          <img src="media/img/of2.jpg" />
-          <img src="media/img/of3.jpg" />
-          <img src="media/img/k-mitch-hodge-Esi7nknKxmw-unsplash.jpg" />
-          <img src="media/img/irina-2Q8bo_6lu1Y-unsplash.jpg" />
-        </section>
-      </div>
+      
     </main>
 
     <!-- no se si meter ese js-->
@@ -150,6 +204,6 @@
       }
     </script>
 
-    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/mobil/templates_movil/footerMovil.jsp"></jsp:include>
   </body>
 </html>
