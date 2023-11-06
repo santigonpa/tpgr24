@@ -179,4 +179,17 @@ public class PublicadorManejadorOfertas {
 		WrapperArrayList ret = new WrapperArrayList(oferVencidasStr);
 		return ret;
     }
+    
+    @WebMethod 
+    public void addOrdenPostulantes(WrapperArrayList wrapper, String nombreOferta) {
+    	OfertaLaboral ofer = manejadorOferta.obtenerOferta(nombreOferta);
+    	ArrayList<String> ret = new ArrayList<>();
+    	
+    	for(Object obj :wrapper.getLista() ) {
+    		String nombrePostulante = (String) obj;
+    		ret.add(nombrePostulante);
+    	}
+    	
+    	ofer.setOrdenPostulaciones(ret);
+    }
 }

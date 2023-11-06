@@ -21,6 +21,7 @@ import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
 @WebServlet (description = "Servlet seleccionar Postulacion a Oferta Laboral", urlPatterns = { "/SeleccionarPostulacion" })
 public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
@@ -92,22 +93,23 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	    // Recupera la cadena de texto con los nombres de los postulantes ordenados
+		DataOferta dataOfer = (DataOferta) request.getSession().getAttribute("ofertaSeleccionada");
 	    String postulantesOrdenados = request.getParameter("postulantesOrdenados");
-
-	    // Divide la cadena de texto para obtener una lista de nombres
+	    // divide la cadena de texto para obtener una lista de nombres
 	    String[] nombres = postulantesOrdenados.split(",");
-
-	    // Crea tu ArrayList para almacenar los nombres en orden
 	    ArrayList<String> nombresEnOrden = new ArrayList<String>();
 
-	    // Agrega los nombres en el orden en el que aparecen en la cadena
+	    WrapperArrayList wrapper = new WrapperArrayList();
+	    
 	    for (String nombre : nombres) {
 	    	System.out.println(nombre);
-	        nombresEnOrden.add(nombre);
+	        nombresEnOrden.add(nombre); //lo dejo para probar
+	        wrapper.getLista().add(nombre);
 	    }
-
+	    
+	    puertoManejadorOfertas.addOrdenPostulantes(wrapper , dataOfer.getNombre());
+	    
+	    request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 	}
 
 }
