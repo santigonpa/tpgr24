@@ -217,6 +217,8 @@
 							    <!-- ACA ARRANCA A MOSTRAR LAS POSTULACIONES -->
 		<div class = "texto-of">
 	    		<h2>Postulaciones</h2>
+	    		<h5 style="color: #444;">Indique el orden, de menor a mayor, en el que quedarán las postulaciones.</h5>
+				<h6 style="color: #666;">Cuanto menor sea el número que especifique, más arriba en la lista quedarán las postulaciones correspondientes.</h6>
 	    		</div> 
 	      
 	      
@@ -243,20 +245,18 @@
 				            String base64ImagenOf = Base64.getEncoder().encodeToString(imagenOfByte);
 				            
 				    %>
-					
 					<div class="card bg-light" style="width: 15rem;">
 					    <img src="data:image/jpeg;base64, <%= base64ImagenOf %>" class="card-img-top" alt="imagen de usuario">
 					    <div class="card-body">
-					        <h5 class="card-title" style="color: black;"><%= postu %></h5>
-					        <p> </p>
-					        <input type="number" id="orden_<%= postu %>" name="orden_<%= postu %>" placeholder="Número de orden">
-					        <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>&user=<%= postu %>" class="btn btn-dark">Ver más de la postulación</a>
+					        <h5 class="card-title" style="color: black; margin-bottom: 10px;"><%= postu %></h5>
+					        <input type="number" id="orden_<%= postu %>" name="orden_<%= postu %>" placeholder="Número de orden" style="padding: 5px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;">
+					        <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>&user=<%= postu %>" class="btn btn-dark" style="margin-top: 10px;">Ver más de la postulación</a>
 					    </div>
 					</div>
 				<% } %>
 			
 				</div>
-				<button type="button" id="guardarOrden">Guardar Orden</button>
+				<button type="button" id="guardarOrden" class="btn btn-dark">Guardar Orden</button>
 				<input type="hidden" name="postulantesOrdenados" id="postulantesOrdenados">
 		</form>
 		<% }else{ %>
