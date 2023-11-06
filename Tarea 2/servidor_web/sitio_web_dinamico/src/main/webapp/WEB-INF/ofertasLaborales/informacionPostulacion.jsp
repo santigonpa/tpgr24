@@ -153,9 +153,21 @@
       					<h4 class = "fs-5 fw=normal">Video de la postulación:</h4>
    				 </div>
    				 <div class = "my-3"></div>
+    			<%
+    			if(!(video == null) ) {
+    			%>
     			<div class="col">
       					<iframe width="873" height="491" src="<%= video %>"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     		 	</div>
+    		 	<%
+    			}else{
+    		 	%>
+    		 	<div class="col">
+      					<h4 class = "fs-5 fw-lighter">No tiene video asociado a la postulación o envió un link incorrecto.</h4>
+    		 	</div>
+    		 	<%
+    		 	}
+    			%>
   		 	</div>
   		 	<hr>
   		 	
