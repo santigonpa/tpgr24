@@ -28,19 +28,6 @@ public interface PublicadorControladorOfertas {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns controladores.publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringResponse")
-    public WrapperArrayList getPostulantesString(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
      * @param arg1
      * @param arg2
      * @param arg3
@@ -66,59 +53,6 @@ public interface PublicadorControladorOfertas {
         @WebParam(name = "arg5", partName = "arg5")
         String arg5)
         throws NombreTipoPubliYaExisteException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralResponse")
-    public void rechazarOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataOferta arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralResponse")
-    public void aceptarOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataOferta arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @throws NombrePaqueteYaExiste_Exception
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/crearPaqueteDeTipoDePublicacionDeOfertasLaboralesRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/crearPaqueteDeTipoDePublicacionDeOfertasLaboralesResponse", fault = {
-        @FaultAction(className = NombrePaqueteYaExiste_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/crearPaqueteDeTipoDePublicacionDeOfertasLaborales/Fault/NombrePaqueteYaExiste")
-    })
-    public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        int arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        int arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        int arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        byte[] arg6)
-        throws NombrePaqueteYaExiste_Exception
     ;
 
     /**
@@ -182,6 +116,39 @@ public interface PublicadorControladorOfertas {
      * @param arg3
      * @param arg4
      * @param arg5
+     * @param arg6
+     * @throws NombrePaqueteYaExiste_Exception
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/crearPaqueteDeTipoDePublicacionDeOfertasLaboralesRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/crearPaqueteDeTipoDePublicacionDeOfertasLaboralesResponse", fault = {
+        @FaultAction(className = NombrePaqueteYaExiste_Exception.class, value = "http://publicar.controladores/PublicadorControladorOfertas/crearPaqueteDeTipoDePublicacionDeOfertasLaborales/Fault/NombrePaqueteYaExiste")
+    })
+    public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        int arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        int arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        int arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        byte[] arg6)
+        throws NombrePaqueteYaExiste_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
      * @throws YaExistePostulacionAOfertaException_Exception
      */
     @WebMethod
@@ -203,6 +170,39 @@ public interface PublicadorControladorOfertas {
         String arg5)
         throws YaExistePostulacionAOfertaException_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringResponse")
+    public WrapperArrayList getPostulantesString(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralResponse")
+    public void aceptarOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataOferta arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralResponse")
+    public void rechazarOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataOferta arg0);
 
     /**
      * 
