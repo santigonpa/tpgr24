@@ -28,6 +28,19 @@ public interface PublicadorControladorOfertas {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringResponse")
+    public WrapperArrayList getPostulantesString(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
      * @param arg1
      * @param arg2
      * @param arg3
@@ -54,6 +67,26 @@ public interface PublicadorControladorOfertas {
         String arg5)
         throws NombreTipoPubliYaExisteException_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralResponse")
+    public void rechazarOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataOferta arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralResponse")
+    public void aceptarOfertaLaboral(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataOferta arg0);
 
     /**
      * 
@@ -140,39 +173,6 @@ public interface PublicadorControladorOfertas {
         String arg12)
         throws NoExistePublicacionException_Exception, NombreRepetidoOfertaException_Exception
     ;
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/rechazarOfertaLaboralResponse")
-    public void rechazarOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataOferta arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/aceptarOfertaLaboralResponse")
-    public void aceptarOfertaLaboral(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataOferta arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringRequest", output = "http://publicar.controladores/PublicadorControladorOfertas/getPostulantesStringResponse")
-    public WrapperArrayList getPostulantesString(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
 
     /**
      * 

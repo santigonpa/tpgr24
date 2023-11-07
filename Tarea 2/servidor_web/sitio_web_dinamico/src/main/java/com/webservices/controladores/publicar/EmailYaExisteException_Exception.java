@@ -45,7 +45,7 @@ public class EmailYaExisteException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: publicar.EmailYaExisteException
+     *     returns fault bean: controladores.publicar.EmailYaExisteException
      */
     public EmailYaExisteException getFaultInfo() {
         return faultInfo;

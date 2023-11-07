@@ -45,7 +45,7 @@ public class NoExisteTipoPubli_Exception
     /**
      * 
      * @return
-     *     returns fault bean: publicar.NoExisteTipoPubli
+     *     returns fault bean: controladores.publicar.NoExisteTipoPubli
      */
     public NoExisteTipoPubli getFaultInfo() {
         return faultInfo;

@@ -45,7 +45,7 @@ public class UsuarioNoExisteException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: publicar.UsuarioNoExisteException
+     *     returns fault bean: controladores.publicar.UsuarioNoExisteException
      */
     public UsuarioNoExisteException getFaultInfo() {
         return faultInfo;

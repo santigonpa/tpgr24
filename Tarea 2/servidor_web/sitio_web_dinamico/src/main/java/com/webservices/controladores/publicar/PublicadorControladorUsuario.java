@@ -27,16 +27,6 @@ public interface PublicadorControladorUsuario {
 
     /**
      * 
-     * @return
-     *     returns publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionResponse")
-    public WrapperArrayList getDataTipoPublicacion();
-
-    /**
-     * 
      * @param arg0
      * @param arg1
      * @param arg2
@@ -74,6 +64,16 @@ public interface PublicadorControladorUsuario {
         String arg7)
         throws CampoInvalidoException_Exception, EmailYaExisteException_Exception, NicknameYaExisteException_Exception
     ;
+
+    /**
+     * 
+     * @return
+     *     returns controladores.publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/getDataTipoPublicacionResponse")
+    public WrapperArrayList getDataTipoPublicacion();
 
     /**
      * 
@@ -118,7 +118,7 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @return
-     *     returns publicar.WrapperArrayList
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -128,7 +128,7 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @return
-     *     returns publicar.WrapperArrayList
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -138,7 +138,7 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @return
-     *     returns publicar.WrapperArrayList
+     *     returns controladores.publicar.WrapperArrayList
      * @throws UsuarioNoExisteException_Exception
      */
     @WebMethod
@@ -167,7 +167,7 @@ public interface PublicadorControladorUsuario {
      * 
      * @param arg0
      * @return
-     *     returns publicar.DataUsuario
+     *     returns controladores.publicar.DataUsuario
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -180,20 +180,7 @@ public interface PublicadorControladorUsuario {
      * 
      * @param arg0
      * @return
-     *     returns publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesResponse")
-    public WrapperArrayList obtenerPostulaciones(
-        @WebParam(name = "arg0", partName = "arg0")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns publicar.WrapperArrayList
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -205,39 +192,21 @@ public interface PublicadorControladorUsuario {
     /**
      * 
      * @param arg0
-     * @param arg1
-     * @param arg2
-     * @param arg3
-     * @param arg4
-     * @param arg5
-     * @param arg6
-     * @param arg7
+     * @return
+     *     returns controladores.publicar.WrapperHashMap
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteResponse")
-    public void modificarDatosPostulante(
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaResponse")
+    public WrapperHashMap obtenerOfertarDeEmpresa(
         @WebParam(name = "arg0", partName = "arg0")
-        String arg0,
-        @WebParam(name = "arg1", partName = "arg1")
-        String arg1,
-        @WebParam(name = "arg2", partName = "arg2")
-        String arg2,
-        @WebParam(name = "arg3", partName = "arg3")
-        String arg3,
-        @WebParam(name = "arg4", partName = "arg4")
-        String arg4,
-        @WebParam(name = "arg5", partName = "arg5")
-        String arg5,
-        @WebParam(name = "arg6", partName = "arg6")
-        byte[] arg6,
-        @WebParam(name = "arg7", partName = "arg7")
-        String arg7);
+        String arg0);
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns publicar.WrapperArrayList
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
@@ -299,13 +268,44 @@ public interface PublicadorControladorUsuario {
      * 
      * @param arg0
      * @return
-     *     returns publicar.WrapperHashMap
+     *     returns controladores.publicar.WrapperArrayList
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerOfertarDeEmpresaResponse")
-    public WrapperHashMap obtenerOfertarDeEmpresa(
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/obtenerPostulacionesResponse")
+    public WrapperArrayList obtenerPostulaciones(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @param arg4
+     * @param arg5
+     * @param arg6
+     * @param arg7
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteRequest", output = "http://publicar.controladores/PublicadorControladorUsuario/modificarDatosPostulanteResponse")
+    public void modificarDatosPostulante(
+        @WebParam(name = "arg0", partName = "arg0")
+        String arg0,
+        @WebParam(name = "arg1", partName = "arg1")
+        String arg1,
+        @WebParam(name = "arg2", partName = "arg2")
+        String arg2,
+        @WebParam(name = "arg3", partName = "arg3")
+        String arg3,
+        @WebParam(name = "arg4", partName = "arg4")
+        String arg4,
+        @WebParam(name = "arg5", partName = "arg5")
+        String arg5,
+        @WebParam(name = "arg6", partName = "arg6")
+        byte[] arg6,
+        @WebParam(name = "arg7", partName = "arg7")
+        String arg7);
 
 }
