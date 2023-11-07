@@ -41,7 +41,14 @@
                       >Ver Ofertas</a
                     >
                   </li>
+                
+                  <li>
+                    <a class="dropdown-item" href="/TrabajoUY/PostulacionAOferta_movil"
+                      >Postularme a oferta laboral</a
+                    >
+                  </li>
                 </ul>
+                
 
               <li class="nav-item order-2">
                 <form class="d-flex pt-4 pt-lg-0" role="search">
@@ -78,8 +85,8 @@
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/TrabajoUY/ModificarUsuario"
-                      >Modificar Usuario</a
+                    <a class="dropdown-item" href="/TrabajoUY/PostulacionAOferta_movil"
+                      >Postularme a una oferta laboral</a
                     >
                   </li>
                   <li>

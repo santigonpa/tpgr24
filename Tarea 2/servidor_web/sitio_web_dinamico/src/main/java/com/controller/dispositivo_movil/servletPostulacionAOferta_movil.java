@@ -58,7 +58,7 @@ public class servletPostulacionAOferta_movil extends HttpServlet {
 				}
 				
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/mobil/postulaciones/postularmeAOferta_movil.jsp").forward(request, response);
 			
 			}else if (keywordSeleccionada != null){
 				// cambio el campo del select keyword
@@ -72,10 +72,10 @@ public class servletPostulacionAOferta_movil extends HttpServlet {
 				    }
 				}
 				request.setAttribute("coleccionOfertasPostulacion", ofertasConfirmadas);
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/mobil/postulaciones/postularmeAOferta_movil.jsp").forward(request, response);
 			
 			}else {
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/postulacionAOfertaLogged.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/mobil/postulaciones/postularmeAOferta_movil.jsp").forward(request, response);
 			}
 		
 		// NO DEBERIA PODER POSTULARSE

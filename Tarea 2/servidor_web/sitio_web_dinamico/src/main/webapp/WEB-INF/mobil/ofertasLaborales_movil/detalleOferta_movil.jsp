@@ -53,7 +53,7 @@
     <title>TrabajoUY</title>
 </head>
 <body>
-    <%@ include file="../templates_movil/header_movil.jsp" %>
+	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
 	    
 	 <%
         // Recupera la ofertaSeleccionada de la solicitud
@@ -207,10 +207,16 @@
 			</div>
 			</div>
 		
+
 			
   		</div>
   		</div>
+
+		  
+		
 	</main>
+	
+	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
 

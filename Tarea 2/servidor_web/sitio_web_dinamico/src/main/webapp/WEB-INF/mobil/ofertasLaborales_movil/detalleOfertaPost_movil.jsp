@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -204,12 +203,12 @@
 	
 	
 	<div class="contenedor text-center mt-3">
-	    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>" class="gap-2 py-5" align="center" style="text-decoration: none;">
+	    <a  class="gap-2 py-5" align="center" style="text-decoration: none;">
 	        <button class="btn btn-dark" type="button">Ver detalles de la postulación</button>
 	    </a>
 	</div>
 	</main>
 		
-	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/mobil/templates_movil/footerMovil.jsp"></jsp:include>
 </body>
 </html>

@@ -108,7 +108,7 @@ public class servletDetalleOferta_movil extends HttpServlet {
 	    		}else {
 	    			String queEs = "Postulante";
 					request.setAttribute("queEs", queEs);
-	    			request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/detalleOfertaPost_movil.jsp").forward(request, response);
+	    			request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/detalleOferta_movil.jsp").forward(request, response);
 	    		}
 			}
 			if(banderaSesion && !banderaPostulante){
