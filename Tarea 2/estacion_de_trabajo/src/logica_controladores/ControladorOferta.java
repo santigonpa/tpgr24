@@ -121,6 +121,10 @@ public class ControladorOferta implements IControladorOferta {
 		//busco tipo de publicacion
 		TipoPublicacion tipo = mpt.obtenerTipoPublicacion(tipoPubli);
 		
+		 if (tipo == null) {
+		        throw new noExisteTipoPubli("No cuenta con el tipo de publicación elegida");
+		    }
+		
 		float costoOfertaLaboral = (int) tipo.getCosto();
 		
 		if (emp.tienePaqueteAsociado()) {

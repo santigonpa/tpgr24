@@ -160,44 +160,48 @@
 				    </div>
 				  <% } %>
 				  
-	<% if (request.getAttribute("errorTipoPubli") != null) { %>
-				    <div class="alert alert-danger">
-				    <div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
-					<hr>
-				      <%= request.getAttribute("errorNombreOferta") %>
-				      <br>
-				      <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
-				    </div>
-				  <% } %>
+			<% if (request.getAttribute("errorTipoPubli") != null) { %>
+			    <div class="alert alert-danger">
+			        <div class="text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+			        <hr>
+			        <%= request.getAttribute("errorTipoPubli") %>
+			        <br>
+			        <a href="/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp" class="text-dark">Reintentar</a>
+			    </div>
+			<% } %>
+
 		</div>			  	
 	</div>	
 	
 	
-	<div class="container mt-5"> 
+<% if (request.getAttribute("errorTipoPubli") == null) { %>
+    <div class="container mt-5"> 
         <div class="card">
-          <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs justify-content-center">
-              <li class="nav-item">
-                <a
-                  class="nav-link active text-muted fs-3"
-                  id="pagoGen-tab"
-                  data-toggle="tab"
-                  href="#pagoGeneral"
-                  >Pago General</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-muted fs-3"
-                  id="pagoPaq-tab"
-                  data-toggle="tab"
-                  href="#pagoConPaquete"
-                  >Pago con Paquete</a
-                >
-              </li>
-            </ul>
-          </div>
-         
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link active text-muted fs-3"
+                            id="pagoGen-tab"
+                            data-toggle="tab"
+                            href="#pagoGeneral"
+                            >Pago General</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link text-muted fs-3"
+                            id="pagoPaq-tab"
+                            data-toggle="tab"
+                            href="#pagoConPaquete"
+                            >Pago con Paquete</a
+                        >
+                    </li>
+                </ul>
+            </div>
+    </div>
+<% } %>
+
            <div class="tab-pane fade" id="pagoGeneral">
             <div class="cartas">
 
@@ -318,6 +322,12 @@
 					<label for="floatingInput">Tipo de publicación de la Oferta</label>
 					
 				</div>
+				
+				<% if (request.getAttribute("errorPubli") != null) { %>
+				    <div class="alert alert-danger">
+				      <%= request.getAttribute("errorPubli") %>
+				    </div>
+				  <% } %>
 				
 	            <div class="form-floating mb-3">
 					<input type="text" class="form-control" id="nombre" name="nombre" placeholder="" value="<%= request.getParameter("nombre") != null ? request.getParameter("nombre") : "" %>">					

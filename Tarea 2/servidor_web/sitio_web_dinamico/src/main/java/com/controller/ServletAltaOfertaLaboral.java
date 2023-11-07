@@ -31,6 +31,7 @@ import com.webservices.controladores.publicar.DataTipoPublicacion;
 import com.webservices.controladores.publicar.DataUsuario;
 import com.webservices.controladores.publicar.KeyWord;
 import com.webservices.controladores.publicar.NoExistePublicacionException_Exception;
+import com.webservices.controladores.publicar.NoExisteTipoPubli_Exception;
 import com.webservices.controladores.publicar.NombreRepetidoOfertaException_Exception;
 import com.webservices.controladores.publicar.PublicadorControladorOfertas;
 import com.webservices.controladores.publicar.PublicadorControladorOfertasService;
@@ -289,7 +290,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 			}
 			
 			System.out.println(nombrePaq);
-			
+			System.out.println(opcionSeleccionadaTP);
 			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, nombrePaq);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 			dispatcher.forward(request, response);
@@ -298,10 +299,10 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 	        	return;
 		} catch (NoExistePublicacionException_Exception e) {
-	        	request.setAttribute("errorTipoPubli", "El tipo de publicacion ingresada no se encunetra disponible");
+	        	request.setAttribute("errorTipoPubli", "No cuenta con el tipo de publicacion seleccionada");
 	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
 	        	return;
-		} catch(noExisteTipoPubli_Exception e) {
+		} catch(NoExisteTipoPubli_Exception e) {
 				request.setAttribute("errorPubli", "No cuenta con el tipo de publicacion elegida");
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
 				return;
