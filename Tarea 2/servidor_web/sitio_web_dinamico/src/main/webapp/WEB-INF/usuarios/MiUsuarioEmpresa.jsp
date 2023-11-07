@@ -616,6 +616,154 @@
 				  }
 			%>
 	</div>
+	
+	
+	
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	     <h2>Seguidores de tu Empresa</h2>
+	      </div>
+	     
+	     <%	
+	     	Set<DataUsuario> usuariosSeguidores = (Set<DataUsuario>) request.getAttribute("seguidores");
+	     	//si hay ofertas confirmadas las muestro si no no
+	     	
+	     	if( !usuariosSeguidores.isEmpty()){
+	     		
+	     %>
+	     
+	    
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
+				
+				
+				<%  //initfor
+				String nickNameSeguidor; 
+		        byte[] imagenBytesSeguidor;
+		
+		        for (DataUsuario seguidor : usuariosSeguidores) {
+		        	nickNameSeguidor = seguidor.getNickName();
+		        	imagenBytesSeguidor = seguidor.getImagen();
+		            String base64ImageSeguidor = Base64.getEncoder().encodeToString(imagenBytesSeguidor);
+					
+				%>
+			  
+			  
+			    
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 13rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageSeguidor %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nickNameSeguidor  %></h5>
+			          <a href="?VerPerfil=<%= nickNameSeguidor  %>" class="btn btn-outline-dark">Consultar datos del Usuario</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			
+			
+			  
+			  </div>
+			
+			</div>
+			
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                Este Usuario no tiene seguidores
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+    	
+    	</div>
+    	
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	     <h2>Seguidos de tu Empresa</h2>
+	      </div>
+	     
+	     <%	
+	     	Set<DataUsuario> usuariosSeguidos = (Set<DataUsuario>) request.getAttribute("seguidos");
+	     	//si hay ofertas confirmadas las muestro si no no
+	     	
+	     	if( !usuariosSeguidos.isEmpty()){
+	     		
+	     %>
+	     
+	    
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
+				
+				
+				<%  //initfor
+				String nickNameSeguido; 
+		        byte[] imagenBytesSeguido;
+		
+		        for (DataUsuario seguido : usuariosSeguidos) {
+		        	nickNameSeguido = seguido.getNickName();
+		        	imagenBytesSeguido = seguido.getImagen();
+		            String base64ImageSeguido = Base64.getEncoder().encodeToString(imagenBytesSeguido);
+					
+				%>
+			  
+			  
+			    
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 13rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageSeguido %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nickNameSeguido  %></h5>
+			          <a href="?VerPerfil=<%= nickNameSeguido  %>" class="btn btn-outline-dark">Consultar datos del Usuario</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			
+			
+			  
+			  </div>
+			
+			</div>
+			
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                Este Usuario no tiene seguidos
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+    	
+    	</div>
     	
     	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
     

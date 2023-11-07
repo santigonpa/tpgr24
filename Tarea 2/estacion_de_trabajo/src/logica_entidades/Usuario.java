@@ -3,6 +3,7 @@ package logica_entidades;
 import jakarta.xml.bind.annotation.XmlType;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -117,22 +118,25 @@ public class Usuario {
 	}
 
 	public void dejarDeSeguirAUsuario(Usuario userASeguir) {
-		for(Usuario user : this.usuariosQueYoSigo) {
-			if (user.getNickName().equals(userASeguir.getNickName())) {
-				this.usuariosQueYoSigo.remove(user);
-			}
-		}
-		
+	    Iterator<Usuario> iterator = this.usuariosQueYoSigo.iterator();
+	    while (iterator.hasNext()) {
+	        Usuario user = iterator.next();
+	        if (user.getNickName().equals(userASeguir.getNickName())) {
+	            iterator.remove();
+	        }
+	    }
 	}
 
 	public void quitarSeguidor(Usuario userSeguidor) {
-		for(Usuario user : this.usuariosQueMeSiguen) {
-			if (user.getNickName().equals(userSeguidor.getNickName())) {
-				this.usuariosQueMeSiguen.remove(user);
-			}
-		}
-		
+	    Iterator<Usuario> iterator = this.usuariosQueMeSiguen.iterator();
+	    while (iterator.hasNext()) {
+	        Usuario user = iterator.next();
+	        if (user.getNickName().equals(userSeguidor.getNickName())) {
+	            iterator.remove();
+	        }
+	    }
 	}
+
 
 
 

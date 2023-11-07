@@ -49,12 +49,25 @@ public class ServletVerPerfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuarioAConsultar;
 		
-		if(request.getAttribute("VerPerfil") == null) { 
+		if(request.getParameter("VerPerfil") != null){ 
+			
+			usuarioAConsultar = (String) request.getParameter("VerPerfil");
+			 
+		
+		}else if (request.getAttribute("VerPerfil") == null)  {
+			
+			
+			
 			 DataUsuario usuarioVerPerfil = (DataUsuario) request.getSession().getAttribute("usuario");
 			 usuarioAConsultar = usuarioVerPerfil.getNickName();
+			
+	
+		
 		}else {
 		 usuarioAConsultar = (String) request.getAttribute("VerPerfil");
+		 System.out.println(usuarioAConsultar);
 		}
+		
 		DataUsuario usuarioConsultar = null;
 		
 		List<WrapperHashMap.Mapa.Entry> usuarios =  puertoManejadorUsuario.getDataUsuario().getMapa().getEntry();
@@ -70,8 +83,31 @@ public class ServletVerPerfil extends HttpServlet {
 			tipoUser = "Empresa";
 		}
 		
+		WrapperArrayList wrapperSeguidores = puertoManejadorUsuario.obtenerSeguidores(usuarioConsultar.getNickName());
+		WrapperArrayList wrapperSeguidos = puertoManejadorUsuario.obtenerSeguidos(usuarioConsultar.getNickName());
+		
+		Set<DataUsuario> usuariosSeguidores = new HashSet<>();
+		Set<DataUsuario> usuariosSeguidos = new HashSet<>();
+		
+		for(Object obj : wrapperSeguidores.getLista()) {
+			String objString = (String) obj;
+			DataUsuario user = puertoManejadorUsuario.obtenerDataUsuario(objString);
+			usuariosSeguidores.add(user);
+		}
+		
+		for(Object obj : wrapperSeguidos.getLista()) {
+			String objString = (String) obj;
+			DataUsuario user = puertoManejadorUsuario.obtenerDataUsuario(objString);
+			usuariosSeguidos.add(user);
+		}
+		
 		//seteamos en el request el usuario a consultar
 		request.setAttribute("consultar", usuarioConsultar);
+		
+		// setteo los seguidos y los seguidores del usuario a consultar
+		request.setAttribute("seguidos", usuariosSeguidos);
+		request.setAttribute("seguidores", usuariosSeguidores);
+		
 		
 		if(	(getEstado(request) == EstadoSesion.SI_LOGEADO)  ) {
 				
