@@ -9,11 +9,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
+import com.webservices.controladores.publicar.WrapperArrayList;
 
 @WebServlet (description = "Servlet de inicio de sesion movil", urlPatterns = { "/iniciarSesion_movil" })
 public class servletInicioSesion_movil extends HttpServlet {
@@ -26,20 +32,21 @@ public class servletInicioSesion_movil extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
+    	
+    	
     	HttpSession sesion = request.getSession();
     	String usrOemail = request.getParameter("email");
     	String psw= request.getParameter("password");
     	EstadoSesion estado;
-    	
-    	System.out.println(usrOemail);
-    	System.out.println(psw);
     	
 
     		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     		
     		DataUsuario dusuario = puertoManejadorUsuario.obtenerDataUsuario(usrOemail);
+      		
     		
+    		if(dusuario instanceof DataPostulante) {
     		if(dusuario.getNickName().equals("null")) {
     			dusuario = puertoManejadorUsuario.obtenerDataUsuarioPorEmail(usrOemail);
     		}
@@ -51,13 +58,12 @@ public class servletInicioSesion_movil extends HttpServlet {
     				estado = EstadoSesion.MAL_LOGEADO;
     			}
     			else{
-    				estado = EstadoSesion.SI_LOGEADO;
-    				// setea el usuario logueado
-				
-    				request.getSession().setAttribute("usuario", dusuario);
-    				request.getSession().setAttribute("nicknameUsuario", dusuario.getNickName());
+	    				estado = EstadoSesion.SI_LOGEADO;
+	    				// setea el usuario logueado
+					
+	    				request.getSession().setAttribute("usuario", dusuario);
+	    				request.getSession().setAttribute("nicknameUsuario", dusuario.getNickName());
     			}
-    	
     		}
 		
 
@@ -69,7 +75,12 @@ public class servletInicioSesion_movil extends HttpServlet {
 			sesion.setAttribute("estadoSesion", estado);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/mobil/home_mobil/iniciarLogged_mobil.jsp");
 			dispatcher.forward(request, response);
+	
 		}
+    	}else {
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/mobil/sesion_movil/inicioDeSesionErroneoNoPost_movil.jsp");
+			dispatcher.forward(request, response);
+    	}
 	}
     
     public static EstadoSesion getEstado(HttpServletRequest request)
