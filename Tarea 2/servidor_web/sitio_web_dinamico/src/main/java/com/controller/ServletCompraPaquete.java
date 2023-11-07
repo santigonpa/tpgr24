@@ -79,7 +79,7 @@ public class ServletCompraPaquete extends HttpServlet {
 			        // Formatea la fecha en el formato deseado
 			        String fechaFormateada = fechaActual.format(formatter);
  
-				   //puertoManejadorUsuario.CompraDePaquete(nombrePaquete, nickUser, fechaFormateada);
+				   puertoManejadorUsuario.compraDePaquete(nombrePaquete, nickUser, fechaFormateada);
 					
 					request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 	    	
