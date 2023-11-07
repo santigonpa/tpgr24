@@ -55,6 +55,7 @@
               <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDeOfertaLaboral">Ver Ofertas</a></li>
               <li><a class="dropdown-item" href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral">Tipos de Publicaciones</a></li>
               <li><a class="dropdown-item" href="/TrabajoUY/SeleccionarPostulacion">Seleccionar Postulantes de Oferta</a></li>
+              <li><a class="dropdown-item" href="/TrabajoUY/FinalizarOferta">Finalizar Oferta Laboral</a></li>
             </ul>
           </li>
           </div>

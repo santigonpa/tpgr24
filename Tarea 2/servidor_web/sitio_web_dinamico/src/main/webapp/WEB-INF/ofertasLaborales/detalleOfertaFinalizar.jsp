@@ -2,12 +2,24 @@
     pageEncoding="UTF-8"%>
     
     <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
- <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
- <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
- <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
-     <%@page import= "com.webservices.controladores.publicar.DataPostulacion" %>
-     <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
-     <%@page import= "java.util.Set" %>
+ 	<%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+	<%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+	<%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+    <%@page import= "com.webservices.controladores.publicar.DataPostulacion" %>
+    <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
+    <%@page import= "java.util.Set" %>
+    <%@ page import="com.webservices.controladores.publicar.DataOferta" %>
+    <%@ page import="java.time.LocalTime" %>
+    <%@ page import="java.time.LocalDate" %>
+    <%@ page import="com.webservices.controladores.publicar.EstadoOferta" %>
+    <%@page import = "java.io.FileOutputStream" %>
+    <%@page import  = "java.io.IOException" %>
+    <%@page import ="java.util.Base64" %>
+    <%@ page import="com.webservices.controladores.publicar.KeyWord" %>
+	<%@ page import="java.util.ArrayList" %>
+	<%@ page import="java.time.format.DateTimeFormatter" %>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,22 +54,30 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- esto capaz hay que sacarlo despues porque es la importacion del script de bootstrap y es un js y para la parte 1 no va-->
-    <%@ page import="com.webservices.controladores.publicar.DataOferta" %>
-    <%@ page import="java.time.LocalTime" %>
-    <%@ page import="java.time.LocalDate" %>
-    <%@ page import="com.webservices.controladores.publicar.EstadoOferta" %>
-    <%@page import = "java.io.FileOutputStream" %>
-    <%@page import  = "java.io.IOException" %>
-    <%@page import ="java.util.Base64" %>
-    <%@ page import="com.webservices.controladores.publicar.KeyWord" %>
-	<%@ page import="java.util.ArrayList" %>
-	<%@ page import="java.time.format.DateTimeFormatter" %>
     
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    
+    <style>
+	  /* Estilos para centrar el botón */
+	  .centered-button {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    height: 20vh;
+	  }
+	
+	  /* Estilos para hacer el botón un poco más grande que el predeterminado */
+	  .custom-button {
+	    padding: 10px 20px;
+	    font-size: 1rem;
+	  }
+	</style>
+    
+    
     <title>TrabajoUY</title>
 </head>
 <body>
@@ -217,7 +237,9 @@
 		
 	<form action = "FinalizarOferta" method = "POST" >
 	<%request.getSession().setAttribute("ofertaAFinalizar",nombre) ;%>
-	<button type = "submit" class="btn btn-dark">Finalizar Oferta</button>
+	<div class="centered-button">
+    <button type="submit" class="btn btn-dark custom-button">Finalizar Oferta</button>
+ 	 </div>
 	</form>
 	
 

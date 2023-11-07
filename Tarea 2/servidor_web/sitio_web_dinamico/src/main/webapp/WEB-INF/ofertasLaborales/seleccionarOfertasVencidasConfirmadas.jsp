@@ -129,7 +129,7 @@
 	
 	<main>
 				<div class="contenedor4">
-			  		<h2 class="titulo"><strong>Seleccionar Postulantes de tus Ofertas Laborales</strong></h2>
+			  		<h2 class="titulo"><strong>Seleccionar Oferta Confirmada No Vigente</strong></h2>
 			  		
 			  		<hr>
 			  		

@@ -14,6 +14,7 @@ import java.util.Set;
 import com.model.EstadoSesion;
 import com.webservices.controladores.publicar.DataEmpresa;
 import com.webservices.controladores.publicar.DataOferta;
+import com.webservices.controladores.publicar.DataPostulante;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertas;
 import com.webservices.controladores.publicar.PublicadorManejadorOfertasService;
 import com.webservices.controladores.publicar.PublicadorManejadorUsuario;
@@ -38,7 +39,9 @@ public class ServletFinalizarOferta extends HttpServlet {
    	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		if(request.getSession().getAttribute("usuario") instanceof DataPostulante) {
+			request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralErroneo.jsp").forward(request, response);
+		}else {
 		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) ) {
 			
 			
@@ -77,6 +80,7 @@ public class ServletFinalizarOferta extends HttpServlet {
 			
 			}
 		
+		}
 		}
 		
 	}
