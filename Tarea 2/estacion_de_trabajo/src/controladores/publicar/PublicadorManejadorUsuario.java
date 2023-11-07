@@ -22,6 +22,8 @@ import logica_entidades.Postulante;
 import logica_entidades.Usuario;
 import logica_manejadores.ManejadorUsuario;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,8 +62,11 @@ public class PublicadorManejadorUsuario {
     }
 
     @WebMethod
-    public void CompraPaquete(Paquete paq, String empresa) {
-        manejadorUsuario.CompraPaquete(paq, empresa);
+    public void CompraPaquete(Paquete paq, String empresa, String fAlta, String fVen) {
+    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fechaA = LocalDate.parse(fAlta, dateFormatter);
+		LocalDate fechaV = LocalDate.parse(fVen, dateFormatter);
+        manejadorUsuario.CompraPaquete(paq, empresa, fechaA, fechaV);
     }
 
 

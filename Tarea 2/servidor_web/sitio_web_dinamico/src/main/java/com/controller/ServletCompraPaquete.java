@@ -36,69 +36,57 @@ import com.webservices.controladores.publicar.Usuario;
 public class ServletCompraPaquete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
-	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
-	private PublicadorControladorOfertasService servicePublicadorOfertas = new PublicadorControladorOfertasService();
-	private PublicadorControladorOfertas puertoControladorOfertas = servicePublicadorOfertas.getPublicadorControladorOfertasPort();
-	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
-	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
-	private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
-	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+	 	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+		private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
+		private PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
+		private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+		private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
+		private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
 
     public ServletCompraPaquete() {
         super();
     }
 
     public static EstadoSesion getEstado(HttpServletRequest request){	//obtiene el tipo de la sesion
-  		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
-  		
+		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");  		
   	}
     
   
 
     protected void cargarDatos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-    		boolean banderaSesion;
-    		if (getEstado(request) != null) {
-    			banderaSesion = getEstado(request).equals(EstadoSesion.SI_LOGEADO);
-    		}else {
-    			banderaSesion = false;
-    		}
-			
-			if(banderaSesion) {
-			String paq = (String)request.getParameter("id");
-			Paquete paquete = puertoManejadorPyT.getPaquete(paq);
-	    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
-	    	Empresa emp = puertoManejadorUsuario.obteneraEmpresa(user.getNickName());
-	    	CompraPaquete compPaq = new CompraPaquete();
-	    	
-	    	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	    	LocalDate fechaActual = LocalDate.now();
-	    	String fechaActualFormateada = fechaActual.format(dateFormatter); // Formatear a String con el formato deseado
-	    	LocalDate fAlta = LocalDate.parse(fechaActualFormateada, dateFormatter); // Analizar la fecha formateada
+    		
+    	//no hay usuario logueado, lo mandamos a iniciar sesion
+    	if(getEstado(request) == EstadoSesion.NO_LOGEADO) {
+    		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
+    	 //es una empresa todo ok
+    	}else {
+	    		String nombrePaquete = request.getParameter("nombre");
+	    		
+	    		System.out.println(nombrePaquete);
+				Paquete paquete = puertoManejadorPyT.getPaquete(nombrePaquete);
+	
+		    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
+		    	if (user instanceof DataEmpresa) {
+			    	String nickUser = user.getNickName();
+					System.out.println(nickUser);
+					
+					LocalDate fechaActual = LocalDate.now();
+				    LocalDate fechaDealta= fechaActual;
+				    LocalDate fechVencimiento = fechaActual.plusDays(paquete.getValidez());
+				    
 
-			int dias = paquete.getValidez();
-			LocalDate fVen = fAlta.plusDays(dias);
-	    
+					String fechaDeAltaStr = fechaDealta.toString();
+					String fechaVencimientoStr = fechVencimiento.toString();
+				    
+					puertoManejadorUsuario.compraPaquete(paquete, nickUser, fechaDeAltaStr, fechaVencimientoStr);
+					
+					request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
+	    	
+		    	}			
 			
-			
-			/*	DataEmpresa dtEmp = (DataEmpresa) request.getSession().getAttribute("usuario");
-			Empresa emp = (Empresa) puertoManejadorUsuario.obteneraEmpresa(dtEmp.getNickName());
-			Paquete paquete= puertoManejadorPyT.getPaquete(paq);
-			DataPaquete dtpaq = puertoManejadorPyT.getDataPaqueteIndividual(paq);
-			puertoManejadorUsuario.compraPaquete(paquete, emp.getNickName());
-			*///request.setAttribute("paquete", dtpaq);
-			request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
-			}			
-			
-			if(!banderaSesion) {
-			request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
-			
-			}
-			
-			
+    		}
     }
-    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         cargarDatos(request, response);
     }

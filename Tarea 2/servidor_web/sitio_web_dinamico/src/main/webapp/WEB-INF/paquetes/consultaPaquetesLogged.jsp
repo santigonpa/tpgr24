@@ -58,12 +58,12 @@
 				<%
 				
 	ArrayList<DataPaquete> listaDePaquetes = (ArrayList<DataPaquete>) request.getAttribute("coleccionDataPaquetes");
-   
 
     if (listaDePaquetes != null && !listaDePaquetes.isEmpty()) {
         for (DataPaquete dataTP : listaDePaquetes) {
             String nombreOfer = dataTP.getNombre();
             byte[] imagenBytes = dataTP.getImagen();
+            String nombrePaq = dataTP.getNombre();
             String base64Image = (imagenBytes != null) ? Base64.getEncoder().encodeToString(imagenBytes) : ""; // Añade aquí la imagen predeterminada si es necesario
 %>
 
@@ -75,8 +75,7 @@
     						<h5 class="card-title"><strong><%= nombreOfer %></strong></h5>
     						<hr>
 							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>
-							<a href="ServletCompraPaquete?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Comprar</a>
-							
+							<a href="ServletCompraPaquete?nombre=<%= nombrePaq %>" class="btn btn-outline-dark">comprar</a>
 							<br>
 							</div>
 		    	</div>

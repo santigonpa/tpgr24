@@ -58,13 +58,10 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	
     }
     
-	public void CompraPaquete(Paquete paq, String empresa) {
+	public void CompraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen) {
 		Empresa emp =(Empresa) this.empresas.get(empresa);
-	    LocalDate fechaActual = LocalDate.now();
-	    LocalDate fechaDealta= fechaActual;
-	    LocalDate fechVencimiento = fechaActual.plusDays(paq.getValidez());
 	    int costo = paq.getCosto();
-	    emp.comprarPaquete(paq, fechVencimiento, fechaDealta, costo);
+	    emp.comprarPaquete(paq, fAlta, fVen, costo);
 	    emp.agregarPaquetes(paq.getNombre(), paq);
 	}
 

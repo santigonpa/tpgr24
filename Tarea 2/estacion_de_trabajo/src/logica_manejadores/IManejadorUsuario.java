@@ -1,6 +1,7 @@
 package logica_manejadores;
 
 import java.util.HashMap;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import logica_datatypes.DataEmpresa;
@@ -42,7 +43,7 @@ public interface IManejadorUsuario {
 	
 	public abstract Empresa obtenerEmpresa(String emp);
 	
-	public abstract void CompraPaquete(Paquete paq, String empresa);
+	public abstract void CompraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen);
 
 	public abstract ArrayList<DataOferta> obtenerOfertasFinalizadas(String empresa);
 

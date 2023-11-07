@@ -64,6 +64,7 @@ public static EstadoSesion getEstado(HttpServletRequest request)
     		request.getRequestDispatcher("/WEB-INF/paquetes/consultarPaquetes.jsp").forward(request, response);
     	} //es una empresa todo ok
     	else if (user instanceof DataEmpresa) {
+    		request.setAttribute("empresa", user.getNickName());
     		request.getRequestDispatcher("/WEB-INF/paquetes/consultaPaquetesLogged.jsp").forward(request, response);
     	}//	es un postulante
     	else {
