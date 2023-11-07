@@ -1,6 +1,9 @@
 package logica_entidades;
 
 import jakarta.xml.bind.annotation.XmlType;
+
+import java.util.ArrayList;
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataUsuario;
@@ -16,6 +19,8 @@ public class Usuario {
 	private String email;
 	private String psw;
 	private byte[] imagen; // Nuevo atributo para la imagen de usuario
+	private ArrayList<Usuario> usuariosQueMeSiguen = new ArrayList<>();
+	private ArrayList<Usuario> usuariosQueYoSigo = new ArrayList<>();
 
 	//Constructor
 	
@@ -85,6 +90,48 @@ public class Usuario {
 		DtUser.setNombre(this.nombre);
 		DtUser.setPsw(this.psw);
 		return DtUser;
+	}
+
+
+	public ArrayList<Usuario> getUsuariosQueMeSiguen() {
+		return usuariosQueMeSiguen;
+	}
+
+	public void setUsuariosQueMeSiguen(ArrayList<Usuario> usuariosQueMeSiguen) {
+		this.usuariosQueMeSiguen = usuariosQueMeSiguen;
+	}
+
+	public ArrayList<Usuario> getUsuariosQueYoSigo() {
+		return usuariosQueYoSigo;
+	}
+
+	public void setUsuariosQueYoSigo(ArrayList<Usuario> usuariosQueYoSigo) {
+		this.usuariosQueYoSigo = usuariosQueYoSigo;
+	}
+
+	public void agregarSeguidor(Usuario userSeguidor) {
+		this.usuariosQueMeSiguen.add(userSeguidor);
+	}
+	public void seguirAUsuario(Usuario userASeguir) {
+		this.usuariosQueYoSigo.add(userASeguir);
+	}
+
+	public void dejarDeSeguirAUsuario(Usuario userASeguir) {
+		for(Usuario user : this.usuariosQueYoSigo) {
+			if (user.getNickName().equals(userASeguir.getNickName())) {
+				this.usuariosQueYoSigo.remove(user);
+			}
+		}
+		
+	}
+
+	public void quitarSeguidor(Usuario userSeguidor) {
+		for(Usuario user : this.usuariosQueMeSiguen) {
+			if (user.getNickName().equals(userSeguidor.getNickName())) {
+				this.usuariosQueMeSiguen.remove(user);
+			}
+		}
+		
 	}
 
 

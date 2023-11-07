@@ -248,4 +248,14 @@
     <servlet-name>ServletSeleccionarPostulacionaOferta</servlet-name>
     <url-pattern>/ServletSeleccionarPostulacionaOferta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>seguirUsuarioServlet</display-name>
+    <servlet-name>seguirUsuarioServlet</servlet-name>
+    <servlet-class>com.controller.seguirUsuarioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>seguirUsuarioServlet</servlet-name>
+    <url-pattern>/seguirUsuarioServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
