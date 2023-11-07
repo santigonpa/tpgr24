@@ -269,6 +269,46 @@ public class PublicadorManejadorUsuario {
     	WrapperArrayList ret = new WrapperArrayList(arrString);
     	return ret;
     }
+    
+    @WebMethod
+    public void agregarSeguidor(String usuarioSeguidor, String usuarioASeguir ) {
+        Usuario userSeguidor = manejadorUsuario.obtenerUsuario(usuarioSeguidor);
+        Usuario userASeguir = manejadorUsuario.obtenerUsuario(usuarioASeguir);
+        userSeguidor.seguirAUsuario(userASeguir);
+        userASeguir.agregarSeguidor(userSeguidor);
+    }
+
+    @WebMethod
+    public void quitarSeguidor(String usuarioSeguidor, String usuarioASeguir ) {
+        Usuario userSeguidor = manejadorUsuario.obtenerUsuario(usuarioSeguidor);
+        Usuario userASeguir = manejadorUsuario.obtenerUsuario(usuarioASeguir);
+        userSeguidor.dejarDeSeguirAUsuario(userASeguir);
+        userASeguir.quitarSeguidor(userSeguidor);
+    }
+
+    @WebMethod
+    public WrapperArrayList obtenerSeguidos(String nickUser) {
+        Usuario usuario =   manejadorUsuario.obtenerUsuario(nickUser);
+        ArrayList<String> dataUsuarios = new ArrayList<>();
+        for(Usuario user : usuario.getUsuariosQueYoSigo()) {
+            dataUsuarios.add(user.getNickName());
+        }
+        WrapperArrayList ret = new WrapperArrayList(dataUsuarios);
+
+        return ret;
+    }
+
+    @WebMethod
+    public WrapperArrayList obtenerSeguidores(String nickUser) {
+        Usuario usuario =   manejadorUsuario.obtenerUsuario(nickUser);
+        ArrayList<String> dataUsuarios = new ArrayList<>();
+        for(Usuario user : usuario.getUsuariosQueMeSiguen()) {
+            dataUsuarios.add(user.getNickName());
+        }
+        WrapperArrayList ret = new WrapperArrayList(dataUsuarios);
+
+        return ret;
+    }
 }
     
 
