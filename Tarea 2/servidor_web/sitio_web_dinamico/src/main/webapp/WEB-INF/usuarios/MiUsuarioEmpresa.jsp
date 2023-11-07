@@ -449,6 +449,80 @@
 			%>
     	
     	</div>
+    	<div class="contenedorPrincipal">
+    	
+    	<div class = "texto-of ">
+	     <h2>Ofertas Finalizadas de tu Empresa</h2>
+	      </div>
+	     
+	     <%	
+	     	Set<DataOferta> oferFin = (Set<DataOferta>) request.getAttribute("oferFin");
+	     	//si hay ofertas confirmadas las muestro si no no
+	     	if(!oferFin.isEmpty() || oferFin == null){
+	     %>
+	     
+	       <div class="contenedorCards">
+				 		<div class="row mt-4">
+				
+				
+				<%  //initfor
+				String nombreOferta3;
+		        String nombreUser3;
+		        String descripcion3;
+		        byte[] imagenBytesOferta3;
+		
+		        for (DataOferta ofertaActual3 : oferRechazadas) {
+		        	nombreOferta3 = ofertaActual3.getNombre();
+		        	imagenBytesOferta3 = ofertaActual3.getImagen();
+		        	descripcion3 = ofertaActual3.getDescripcion();
+					imagenBytesOferta3 = ofertaActual3.getImagen();
+		            String base64ImageOferta3 = Base64.getEncoder().encodeToString(imagenBytesOferta3);
+					
+				%>
+			  
+			  
+			    
+			    <div class="col-md-4 mb-4">
+			      <div class="card" style="width: 18rem;">
+			        <img src="data:image/jpeg;base64, <%= base64ImageOferta3 %>" class="card-img-top" alt="...">
+			        <div class="card-body">
+			          <h5 class="card-title"><%= nombreOferta3 %></h5>
+			          <p class="card-text"><%= descripcion3 %></p>
+			          <a href="ServletDetalleOferta?id=<%= nombreOferta3 %>" class="btn btn-outline-dark">Consultar datos de la oferta</a>
+			        </div>
+			      </div>
+			    </div>
+			
+			<%
+				  }
+			%>
+			
+			
+			  
+			  </div>
+			
+			</div>
+			
+			<%
+				  }else{
+					  
+					  %>
+					  <div class = "my-5"></div>
+					  <div class="container">
+							    <div class="row">
+							        <div class="col text-center">
+							            <div class="alert alert-danger" role="alert">
+							                No hay ofertas Finalizadas para esta empresa
+							            </div>
+							        </div>
+							    </div>
+							</div>
+					  
+					  <%
+				  }
+			%>
+    	
+    	</div>
     	
     	<div class="contenedorPrincipal">
     	

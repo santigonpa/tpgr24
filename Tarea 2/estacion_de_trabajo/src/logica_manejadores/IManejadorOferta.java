@@ -34,5 +34,9 @@ public interface IManejadorOferta {
 	public abstract boolean existeOferta(String string);
 
 	public abstract ArrayList<DataOferta> obtenerOfertasConfirmadasPorKey(String keywordSeleccionada);
+	
+	public abstract void finalizarOferta(String oferta);
+
+	
 
 }

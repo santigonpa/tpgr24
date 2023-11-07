@@ -192,4 +192,9 @@ public class PublicadorManejadorOfertas {
     	
     	ofer.setOrdenPostulaciones(ret);
     }
+    
+    @WebMethod 
+    public void finalizarOfer(String nombreOferta) {
+    	manejadorOferta.finalizarOferta(nombreOferta);
+    }
 }

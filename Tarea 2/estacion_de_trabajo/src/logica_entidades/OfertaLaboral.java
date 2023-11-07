@@ -17,7 +17,8 @@ public class OfertaLaboral {
 	public enum EstadoOferta {
         INGRESADA,
         ACEPTADA,
-        RECHAZADA
+        RECHAZADA,
+        FINALIZADA
     }
 	 //atributos de la oferta laboral
 	

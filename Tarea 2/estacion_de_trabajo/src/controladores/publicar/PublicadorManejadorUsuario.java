@@ -259,6 +259,16 @@ public class PublicadorManejadorUsuario {
     	return pos.getDTPostulacion();
     }
     
+    @WebMethod
+    public WrapperArrayList obtenerOfertasFinalizadas(String nickName) {
+    	ArrayList<DataOferta> arr = manejadorUsuario.obtenerOfertasFinalizadas(nickName);
+    	ArrayList<String> arrString = new ArrayList<>();
+    	for(DataOferta ofActual : arr) {
+    		arrString.add(ofActual.getNombre());
+    	}
+    	WrapperArrayList ret = new WrapperArrayList(arrString);
+    	return ret;
+    }
 }
     
 

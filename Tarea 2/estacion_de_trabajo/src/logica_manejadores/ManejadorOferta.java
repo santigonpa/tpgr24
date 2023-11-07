@@ -143,5 +143,10 @@ public class ManejadorOferta implements IManejadorOferta{
 		return dataRes;
 	}
 	
+	public void finalizarOferta(String oferta) {
+		OfertaLaboral ofer = this.obtenerOferta(oferta);
+		ofer.setEstado(EstadoOferta.FINALIZADA);
+	}
+	
 	} 
 
