@@ -94,8 +94,8 @@ public class PublicadorControladorUsuario {
 	}
 	
 	@WebMethod
-	public void comprarPaquete(Paquete paq, String emp) {
-		ICU.comprarPaquete(paq, emp);
+	public void comprarPaquete(Paquete paq, String empresa) {
+		ICU.comprarPaquete(paq, empresa);
 	}
 	
 	@WebMethod

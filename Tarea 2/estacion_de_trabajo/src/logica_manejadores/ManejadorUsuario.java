@@ -61,7 +61,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	public void CompraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen) {
 		Empresa emp =(Empresa) this.empresas.get(empresa);
 	    int costo = paq.getCosto();
-	    emp.comprarPaquete(paq, fAlta, fVen, costo);
+	    emp.comprarPaquete(paq, fVen,fAlta, costo);
 	    emp.agregarPaquetes(paq.getNombre(), paq);
 	}
 

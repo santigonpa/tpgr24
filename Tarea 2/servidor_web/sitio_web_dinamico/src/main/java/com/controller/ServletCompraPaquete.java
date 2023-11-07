@@ -74,12 +74,23 @@ public class ServletCompraPaquete extends HttpServlet {
 					LocalDate fechaActual = LocalDate.now();
 				    LocalDate fechaDealta= fechaActual;
 				    LocalDate fechVencimiento = fechaActual.plusDays(paquete.getValidez());
+
+				    String altaFormat = fechaDealta.toString();
+				    String vencFormat = fechVencimiento.toString();
+				    
+				    DateTimeFormatter formatoOriginal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			        LocalDate localDate = LocalDate.parse(altaFormat, formatoOriginal);
+			        LocalDate loalDVenc = LocalDate.parse(vencFormat, formatoOriginal);
+			        String alta = localDate.format(formatoDeseado);
+			        String vencimiento = loalDVenc.format(formatoDeseado);
+			        
 				    
 
 					String fechaDeAltaStr = fechaDealta.toString();
 					String fechaVencimientoStr = fechVencimiento.toString();
-				    
-					puertoManejadorUsuario.compraPaquete(paquete, nickUser, fechaDeAltaStr, fechaVencimientoStr);
+				    System.out.println(fechaDeAltaStr);					
+				    puertoManejadorUsuario.compraPaquete(paquete, nickUser, alta, vencimiento);
 					
 					request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 	    	
