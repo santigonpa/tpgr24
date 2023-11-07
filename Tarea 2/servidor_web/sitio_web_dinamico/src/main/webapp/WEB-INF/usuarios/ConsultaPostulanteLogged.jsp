@@ -255,8 +255,45 @@
         
         
 	    %>
+	    <div class="contenedorPrincipal">
 	    <div class="card" style="width: 18rem;">
 	      <img src="data:image/jpeg;base64, <%= base64Image %>" class="card-img-top" alt="imagen de usuario">
+	    </div>
+	     
+	  <%
+   		Set<DataUsuario> usuariosSeguidores = (Set<DataUsuario>) request.getAttribute("seguidores");
+    	boolean banderaPuedeSeguir = true;
+    	DataUsuario userASeguir = (DataUsuario) request.getAttribute("consultar");
+    	for(DataUsuario seguidorChecking : usuariosSeguidores){
+    		if(seguidorChecking.getNickName().equals(usuar.getNickName())){banderaPuedeSeguir = false;}
+    	}
+    	
+    	
+    	if(banderaPuedeSeguir){
+    		
+    		request.getSession().setAttribute("seguir","seguir");
+    	%>
+    	
+    	<div class="centered-button">
+    	<a href="SeguirUsuario?usuarioASeguir=<%= userASeguir.getNickName() %>" class="btn btn-dark custom-button">Seguir Usuario</a>
+ 	 	</div>
+    	
+    	<%
+    	}else{
+    		
+    		request.getSession().setAttribute("seguir","dejarDeSeguir");
+    		
+    	%>
+    	
+    	<div class="centered-button">
+    	<a href="SeguirUsuario?usuarioASeguir=<%= userASeguir.getNickName() %>" class="btn btn-dark custom-button">Dejar de Seguir Usuario</a>
+ 	 	</div>
+    	
+    	<%
+    	
+    	} 
+    	
+    	%>
 	    </div>
 	    <div class="contenedor-form">
 	      <form>
@@ -300,8 +337,7 @@
 	     <h2>Seguidores</h2>
 	      </div>
 	     
-	     <%	
-	     	Set<DataUsuario> usuariosSeguidores = (Set<DataUsuario>) request.getAttribute("seguidores");
+	     <%
 	     	//si hay ofertas confirmadas las muestro si no no
 	     	
 	     	if( !usuariosSeguidores.isEmpty()){
@@ -440,39 +476,6 @@
     	
     	</div>
 	  
-	  <%
-    	boolean banderaPuedeSeguir = true;
-    	DataUsuario userASeguir = (DataUsuario) request.getAttribute("consultar");
-    	for(DataUsuario seguidorChecking : usuariosSeguidores){
-    		if(seguidorChecking.getNickName().equals(usuar.getNickName())){banderaPuedeSeguir = false;}
-    	}
-    	
-    	
-    	if(banderaPuedeSeguir){
-    		
-    		request.getSession().setAttribute("seguir","seguir");
-    	%>
-    	
-    	<div class="centered-button">
-    	<a href="SeguirUsuario?usuarioASeguir=<%= userASeguir.getNickName() %>" class="btn btn-dark custom-button">Seguir Usuario</a>
- 	 	</div>
-    	
-    	<%
-    	}else{
-    		
-    		request.getSession().setAttribute("seguir","dejarDeSeguir");
-    		
-    	%>
-    	
-    	<div class="centered-button">
-    	<a href="SeguirUsuario?usuarioASeguir=<%= userASeguir.getNickName() %>" class="btn btn-dark custom-button">Dejar de Seguir Usuario</a>
- 	 	</div>
-    	
-    	<%
-    	
-    	} 
-    	
-    	%>
 	  
 	</main>
 	
