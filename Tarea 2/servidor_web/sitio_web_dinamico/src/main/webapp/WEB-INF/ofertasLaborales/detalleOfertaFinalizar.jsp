@@ -213,8 +213,14 @@
 				<hr>	
 			</div>
 			</div>				
+		
+		
+	<form action = "FinalizarOferta" method = "POST" >
+	<%request.getSession().setAttribute("ofertaAFinalizar",nombre) ;%>
+	<button type = "submit" class="btn btn-dark">Finalizar Oferta</button>
+	</form>
+	
 
-	<a href="FinalizarOferta?Fin=true&ofertaSeleccionada=<%= nombre %>" class="btn btn-dark">Finalizar Oferta</a>
 
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>

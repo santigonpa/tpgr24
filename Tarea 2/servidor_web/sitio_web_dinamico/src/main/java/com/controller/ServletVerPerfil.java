@@ -147,7 +147,7 @@ public class ServletVerPerfil extends HttpServlet {
 						}
 						
 						WrapperArrayList wrapperOferFin = puertoManejadorUsuario.obtenerOfertasFinalizadas(usuarioAConsultar);
-						List<Object> oferFinWrapper = wrapperArray.getLista();
+						List<Object> oferFinWrapper = wrapperOferFin.getLista();
 						Set<DataOferta> oferFin = new HashSet<>();
 						Set<String> oferFinString = new HashSet<>();
 						
@@ -164,7 +164,7 @@ public class ServletVerPerfil extends HttpServlet {
 						}
 						
 						request.setAttribute("ofertasRyI",ofertasRech);
-						request.setAttribute("oferetasFin", oferFin);
+						request.setAttribute("oferFin", oferFin);
 						if(user.getNickName().equals(usuarioAConsultar)) {	
 						
 						//Esta consultando su propio perfil

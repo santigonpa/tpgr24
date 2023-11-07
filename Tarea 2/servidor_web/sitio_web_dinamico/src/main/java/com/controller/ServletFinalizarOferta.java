@@ -53,15 +53,10 @@ public class ServletFinalizarOferta extends HttpServlet {
 			}
 			request.getSession().setAttribute("ofertasVencidas",dtofers);
 			String ofertaSeleccionada = request.getParameter("SeleccionarPostulacion"); // nombre de la oferta seleccionada
-			String finalizar = request.getParameter("Fin");
-			
-			if(ofertaSeleccionada != null && finalizar != null) {
-			
-				puertoManejadorOfertas.finalizarOfer(ofertaSeleccionada);
-				request.getRequestDispatcher("home").forward(request, response);
+			//String finalizar = (String) request.getParameter("Fin");
 				
-			}else if(ofertaSeleccionada != null) {
-
+			if(ofertaSeleccionada != null) {
+				System.out.println("que hago aca");
 				//esta seleccionada una oferta y se debe poner lo de elegir postulantes
 				DataOferta dofer = puertoManejadorOfertas.getDataOferta(ofertaSeleccionada);
 
@@ -88,7 +83,10 @@ public class ServletFinalizarOferta extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		//String ofertaSeleccionada = request.getParameter("SeleccionarPostulacion"); // nombre de la oferta seleccionada
+		String ofertaSeleccionada = (String) request.getSession().getAttribute("ofertaAFinalizar");
+		puertoManejadorOfertas.finalizarOfer(ofertaSeleccionada);
+		request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 	}
 
 }

@@ -458,7 +458,7 @@
 	     <%	
 	     	Set<DataOferta> oferFin = (Set<DataOferta>) request.getAttribute("oferFin");
 	     	//si hay ofertas confirmadas las muestro si no no
-	     	if(!oferFin.isEmpty() || oferFin == null){
+	     	if( oferFin != null  ){//|| !oferFin.isEmpty()
 	     %>
 	     
 	       <div class="contenedorCards">
@@ -471,7 +471,7 @@
 		        String descripcion3;
 		        byte[] imagenBytesOferta3;
 		
-		        for (DataOferta ofertaActual3 : oferRechazadas) {
+		        for (DataOferta ofertaActual3 : oferFin) {
 		        	nombreOferta3 = ofertaActual3.getNombre();
 		        	imagenBytesOferta3 = ofertaActual3.getImagen();
 		        	descripcion3 = ofertaActual3.getDescripcion();
@@ -535,14 +535,14 @@
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
     		DataEmpresa emp = (DataEmpresa) usr;
     		String nickNameEmpresa = emp.getNickName();
-    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPaquetes(nickNameEmpresa).getLista();
+    		//List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPaquetes(nickNameEmpresa).getLista();
     		ArrayList<DataPaquete> paquetes = new ArrayList<>();
-
+		/*
     		for (Object objeto : listaObjetos) {
     		    if (objeto instanceof DataPaquete) {
     		    	paquetes.add((DataPaquete) objeto);
     		    }
-    		}
+    		} */
     	
     		if(!paquetes.isEmpty() || paquetes == null){
 	     %>
