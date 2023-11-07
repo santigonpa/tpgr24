@@ -32,6 +32,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="estado" type="{http://publicar.controladores/}estadoOferta" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         <element name="tipoDePago" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="ordenPostulaciones" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="postulacionesSobreLaOferta" type="{http://publicar.controladores/}postulacion" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="empresaAsociada" type="{http://publicar.controladores/}empresa" minOccurs="0"/>
  *         <element name="tipoDeOferta" type="{http://publicar.controladores/}tipoPublicacion" minOccurs="0"/>
@@ -58,6 +59,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "estado",
     "imagen",
     "tipoDePago",
+    "ordenPostulaciones",
     "postulacionesSobreLaOferta",
     "empresaAsociada",
     "tipoDeOferta",
@@ -78,6 +80,8 @@ public class OfertaLaboral {
     protected EstadoOferta estado;
     protected byte[] imagen;
     protected String tipoDePago;
+    @XmlElement(nillable = true)
+    protected List<String> ordenPostulaciones;
     @XmlElement(nillable = true)
     protected List<Postulacion> postulacionesSobreLaOferta;
     protected Empresa empresaAsociada;
@@ -353,6 +357,37 @@ public class OfertaLaboral {
      */
     public void setTipoDePago(String value) {
         this.tipoDePago = value;
+    }
+
+    /**
+     * Gets the value of the ordenPostulaciones property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the ordenPostulaciones property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getOrdenPostulaciones().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     * @return
+     *     The value of the ordenPostulaciones property.
+     */
+    public List<String> getOrdenPostulaciones() {
+        if (ordenPostulaciones == null) {
+            ordenPostulaciones = new ArrayList<>();
+        }
+        return this.ordenPostulaciones;
     }
 
     /**
