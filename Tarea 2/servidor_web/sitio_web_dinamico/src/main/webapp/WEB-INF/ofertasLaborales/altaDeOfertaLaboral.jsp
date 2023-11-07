@@ -150,6 +150,7 @@
 	
 	<div class="container mt-5"> 
         <div class="card">
+        
 	 <% if (request.getAttribute("errorNombreOferta") != null) { %>
 				    <div class="alert alert-danger">
 				    <div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
@@ -180,6 +181,7 @@
 			<% } %>
 		</div>			  	
 	</div>	
+	
 	
 	
 <% if (request.getAttribute("errorTipoPubli") == null && request.getAttribute("errorNombrePubli") == null) { %>
@@ -256,8 +258,14 @@
 
 	<div class="tab-pane fade" id="pagoConPaquete">
 		<div class="my-5"></div>
-					
+		 <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div align="center">			
 		<h3 class="-titulo-">Tipos de publicación disponibles actualmente en su paqute</h3>
+		         </div>
+            </div>
+        </div>
+		
             <div class="cartas">	
 				<%
 			    

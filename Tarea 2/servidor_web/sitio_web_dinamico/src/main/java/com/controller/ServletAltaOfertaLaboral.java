@@ -29,6 +29,7 @@ import com.webservices.controladores.publicar.DataKeyWord;
 import com.webservices.controladores.publicar.DataPaquete;
 import com.webservices.controladores.publicar.DataTipoPublicacion;
 import com.webservices.controladores.publicar.DataUsuario;
+import com.webservices.controladores.publicar.Empresa;
 import com.webservices.controladores.publicar.KeyWord;
 import com.webservices.controladores.publicar.NoExistePublicacionException_Exception;
 import com.webservices.controladores.publicar.NoExisteTipoPubli_Exception;
@@ -123,9 +124,14 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     		    }
     		}
         	
-        	
-        	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
+    		
+    		Empresa empresita = (Empresa) puertoManejadorUsuario.obteneraEmpresa(user.getNickName());
         	ArrayList<String> coleccionPTP = new ArrayList<>();		
+
+        	if(empresita.getCompra() == null){
+            	coleccionPTP = null;		
+        	}else {
+        	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
         	
     		for (Object objeto : coleccionPTPWrapper) {
     		    if (objeto instanceof String) {
@@ -133,6 +139,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     		    }
     		}
     		
+        	}
     		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
     		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
     		
