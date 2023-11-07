@@ -203,9 +203,9 @@ public class PublicadorManejadorUsuario {
     public  WrapperArrayList obtenerDataPaquetes(String nickName) { //obtiene los paquetes de nickName
     	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
     	Map<String,Paquete> paquetes = usuario.getPaquetes();
-    	ArrayList<DataPaquete> dataPaquetes = new ArrayList<>();
+    	ArrayList<String> dataPaquetes = new ArrayList<>();
     	for(Paquete paqActual : paquetes.values()) {
-    		dataPaquetes.add(paqActual.getDTPaquete());
+    		dataPaquetes.add(paqActual.getDTPaquete().getNombre());
     	}
     	WrapperArrayList ret = new WrapperArrayList(dataPaquetes);
     	return ret;

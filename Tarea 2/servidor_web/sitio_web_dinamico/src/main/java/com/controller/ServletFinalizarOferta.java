@@ -56,7 +56,7 @@ public class ServletFinalizarOferta extends HttpServlet {
 			//String finalizar = (String) request.getParameter("Fin");
 				
 			if(ofertaSeleccionada != null) {
-				System.out.println("que hago aca");
+				
 				//esta seleccionada una oferta y se debe poner lo de elegir postulantes
 				DataOferta dofer = puertoManejadorOfertas.getDataOferta(ofertaSeleccionada);
 

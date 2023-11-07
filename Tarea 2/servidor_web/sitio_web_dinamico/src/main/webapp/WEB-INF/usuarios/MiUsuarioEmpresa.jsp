@@ -6,6 +6,8 @@
     <%@page import= "com.webservices.controladores.publicar.DataOferta" %>
     <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuarioService" %>
  <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorPyTService" %>
+ <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorPyT" %>
     <%@page import="java.util.Set" %>
     <%@page import="java.util.ArrayList" %>
     <%@page import = "java.io.FileOutputStream" %>
@@ -458,9 +460,12 @@
 	     <%	
 	     	Set<DataOferta> oferFin = (Set<DataOferta>) request.getAttribute("oferFin");
 	     	//si hay ofertas confirmadas las muestro si no no
-	     	if( oferFin != null  ){//|| !oferFin.isEmpty()
+	     	
+	     	if( !oferFin.isEmpty()){
+	     		
 	     %>
 	     
+	    
 	       <div class="contenedorCards">
 				 		<div class="row mt-4">
 				
@@ -533,17 +538,22 @@
     	<%	
     		PublicadorManejadorUsuarioService servicePublicadorUsuario = new PublicadorManejadorUsuarioService();
     		PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorUsuario.getPublicadorManejadorUsuarioPort();
+    		
+    		PublicadorManejadorPyTService servicePublicadorPyT = new PublicadorManejadorPyTService();
+    		PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorPyT.getPublicadorManejadorPyTPort();
+    		
     		DataEmpresa emp = (DataEmpresa) usr;
     		String nickNameEmpresa = emp.getNickName();
-    		//List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPaquetes(nickNameEmpresa).getLista();
+    		List<Object> listaObjetos = puertoManejadorUsuario.obtenerDataPaquetes(emp.getNickName()).getLista();
     		ArrayList<DataPaquete> paquetes = new ArrayList<>();
-		/*
+    		
+    		
     		for (Object objeto : listaObjetos) {
-    		    if (objeto instanceof DataPaquete) {
-    		    	paquetes.add((DataPaquete) objeto);
+    		    if (objeto instanceof String) {
+    		    	paquetes.add(puertoManejadorPyT.getDataPaqueteIndividual((String)objeto));
     		    }
-    		} */
-    	
+    		} 
+    		
     		if(!paquetes.isEmpty() || paquetes == null){
 	     %>
 	     
