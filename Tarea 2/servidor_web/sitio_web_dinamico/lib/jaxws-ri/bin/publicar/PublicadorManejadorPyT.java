@@ -36,13 +36,13 @@ public interface PublicadorManejadorPyT {
 
     /**
      * 
-     * @param arg0
+     * @return
+     *     returns publicar.WrapperArrayList
      */
     @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionResponse")
-    public void addTipoPublicacion(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataTipoPublicacion arg0);
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteResponse")
+    public WrapperArrayList getDataPaquete();
 
     /**
      * 
@@ -60,16 +60,6 @@ public interface PublicadorManejadorPyT {
     /**
      * 
      * @param arg0
-     */
-    @WebMethod
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addPaqueteResponse")
-    public void addPaquete(
-        @WebParam(name = "arg0", partName = "arg0")
-        DataPaquete arg0);
-
-    /**
-     * 
-     * @param arg0
      * @return
      *     returns publicar.Paquete
      */
@@ -82,13 +72,23 @@ public interface PublicadorManejadorPyT {
 
     /**
      * 
-     * @return
-     *     returns publicar.WrapperArrayList
+     * @param arg0
      */
     @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteResponse")
-    public WrapperArrayList getDataPaquete();
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addTipoPublicacionResponse")
+    public void addTipoPublicacion(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataTipoPublicacion arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/addPaqueteRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/addPaqueteResponse")
+    public void addPaquete(
+        @WebParam(name = "arg0", partName = "arg0")
+        DataPaquete arg0);
 
     /**
      * 
@@ -118,16 +118,6 @@ public interface PublicadorManejadorPyT {
 
     /**
      * 
-     * @return
-     *     returns publicar.WrapperArrayList
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteArregloRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteArregloResponse")
-    public WrapperArrayList getDataPaqueteArreglo();
-
-    /**
-     * 
      * @param arg0
      * @return
      *     returns publicar.DataPaquete
@@ -138,5 +128,15 @@ public interface PublicadorManejadorPyT {
     public DataPaquete getDataPaqueteIndividual(
         @WebParam(name = "arg0", partName = "arg0")
         String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns publicar.WrapperArrayList
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteArregloRequest", output = "http://publicar.controladores/PublicadorManejadorPyT/getDataPaqueteArregloResponse")
+    public WrapperArrayList getDataPaqueteArreglo();
 
 }

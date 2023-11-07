@@ -1,8 +1,11 @@
 
 package publicar;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -23,6 +26,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="psw" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         <element name="usuariosQueMeSiguen" type="{http://publicar.controladores/}usuario" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="usuariosQueYoSigo" type="{http://publicar.controladores/}usuario" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -38,7 +43,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "apellido",
     "email",
     "psw",
-    "imagen"
+    "imagen",
+    "usuariosQueMeSiguen",
+    "usuariosQueYoSigo"
 })
 @XmlSeeAlso({
     Postulante.class,
@@ -52,6 +59,10 @@ public class Usuario {
     protected String email;
     protected String psw;
     protected byte[] imagen;
+    @XmlElement(nillable = true)
+    protected List<Usuario> usuariosQueMeSiguen;
+    @XmlElement(nillable = true)
+    protected List<Usuario> usuariosQueYoSigo;
 
     /**
      * Obtiene el valor de la propiedad nickName.
@@ -193,6 +204,68 @@ public class Usuario {
      */
     public void setImagen(byte[] value) {
         this.imagen = value;
+    }
+
+    /**
+     * Gets the value of the usuariosQueMeSiguen property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the usuariosQueMeSiguen property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getUsuariosQueMeSiguen().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Usuario }
+     * 
+     * 
+     * @return
+     *     The value of the usuariosQueMeSiguen property.
+     */
+    public List<Usuario> getUsuariosQueMeSiguen() {
+        if (usuariosQueMeSiguen == null) {
+            usuariosQueMeSiguen = new ArrayList<>();
+        }
+        return this.usuariosQueMeSiguen;
+    }
+
+    /**
+     * Gets the value of the usuariosQueYoSigo property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a {@code set} method for the usuariosQueYoSigo property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getUsuariosQueYoSigo().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Usuario }
+     * 
+     * 
+     * @return
+     *     The value of the usuariosQueYoSigo property.
+     */
+    public List<Usuario> getUsuariosQueYoSigo() {
+        if (usuariosQueYoSigo == null) {
+            usuariosQueYoSigo = new ArrayList<>();
+        }
+        return this.usuariosQueYoSigo;
     }
 
 }
