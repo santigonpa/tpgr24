@@ -166,15 +166,23 @@
 			        <hr>
 			        <%= request.getAttribute("errorTipoPubli") %>
 			        <br>
-			        <a href="/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp" class="text-dark">Reintentar</a>
+			        <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
 			    </div>
 			<% } %>
-
+			<% if (request.getAttribute("errorNombrePubli") != null) { %>
+			    <div class="alert alert-danger">
+			        <div class="text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+			        <hr>
+			        <%= request.getAttribute("errorNombrePubli") %>
+			        <br>
+			        <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
+			    </div>
+			<% } %>
 		</div>			  	
 	</div>	
 	
 	
-<% if (request.getAttribute("errorTipoPubli") == null) { %>
+<% if (request.getAttribute("errorTipoPubli") == null && request.getAttribute("errorNombrePubli") == null) { %>
     <div class="container mt-5"> 
         <div class="card">
             <div class="card-header">
