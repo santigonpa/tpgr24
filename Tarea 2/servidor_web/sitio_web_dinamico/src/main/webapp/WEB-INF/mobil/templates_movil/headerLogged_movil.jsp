@@ -86,7 +86,7 @@
                     <a
                       class="dropdown-item cerrar-sesion"
                       href="javascript:void(0);"
-                      onclick="confirmarCerrarSesion();"
+                      onclick="confirmarCerrarSesionMovil();"
                       >Cerrar sesion</a
                     >
                   </li>
@@ -98,4 +98,12 @@
           </div>
         </div>
       </nav>
+      <script>
+		function confirmarCerrarSesionMovil() {
+    	var confirmacion = confirm("¿Estás seguro de que deseas cerrar la sesión?");
+    	if (confirmacion) {
+			window.location.href = "/TrabajoUY/cerrarSesion_movil";
+    		}
+		}
+	</script>
     </header>

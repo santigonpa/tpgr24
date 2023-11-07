@@ -14,7 +14,7 @@ import com.model.EstadoSesion;
 /**
  * Servlet implementation class ServletCerrarSesionMovil
  */
-@WebServlet (description = "Servlet Cerrar Sesion", urlPatterns = { "/cerrarSesion_movil" })
+@WebServlet (description = "Servlet Cerrar Sesion movil", urlPatterns = { "/cerrarSesion_movil" })
 public class ServletCerrarSesionMovil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
