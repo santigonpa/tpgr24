@@ -15,6 +15,7 @@ import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
+import utils.Fabrica;
 
 public class ManejadorUsuario implements IManejadorUsuario {
 	
@@ -65,7 +66,22 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	    emp.agregarPaquetes(paq.getNombre(), paq);
 	}
 
-
+	public void CompraDePaquete(String paq, String empresa, String fAlta) {
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorPyT MPyT = fab.getInManejadorPyT();
+		Paquete paquete = MPyT.getPaquete(paq);
+		
+		Empresa emp =(Empresa) this.empresas.get(empresa);
+		
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fechaA = LocalDate.parse(fAlta, dateFormatter);
+		LocalDate fechaV = fechaA.plusDays(paquete.getValidez());
+		
+		int costo = paquete.getCosto();
+	    emp.comprarPaquete(paquete, fechaV, fechaA, costo);
+	    emp.agregarPaquetes(paquete.getNombre(), paquete);
+	}
+	
     public Usuario obtenerUsuario(String nick) {
         Usuario user = usuarios.getOrDefault(nick, null);
     	 return user;

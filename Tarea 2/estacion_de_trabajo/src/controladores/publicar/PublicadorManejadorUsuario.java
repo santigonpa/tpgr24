@@ -69,7 +69,11 @@ public class PublicadorManejadorUsuario {
         manejadorUsuario.CompraPaquete(paq, empresa, fechaA, fechaV);
     }
 
-
+    @WebMethod
+    public void CompraDePaquete(String paq, String empresa, String fAlta) {	
+        manejadorUsuario.CompraDePaquete(paq, empresa, fAlta);
+    }
+    
     @WebMethod
     public DataUsuario obtenerDataUsuario(String nick) {
         Usuario usu = manejadorUsuario.obtenerUsuario(nick);

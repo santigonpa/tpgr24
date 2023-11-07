@@ -62,35 +62,24 @@ public class ServletCompraPaquete extends HttpServlet {
     	 //es una empresa todo ok
     	}else {
 	    		String nombrePaquete = request.getParameter("nombre");
-	    		
 	    		System.out.println(nombrePaquete);
-				Paquete paquete = puertoManejadorPyT.getPaquete(nombrePaquete);
+				
 	
 		    	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
-		    	if (user instanceof DataEmpresa) {
+		    	if (user instanceof DataEmpresa) {    	
 			    	String nickUser = user.getNickName();
 					System.out.println(nickUser);
 					
 					LocalDate fechaActual = LocalDate.now();
-				    LocalDate fechaDealta= fechaActual;
-				    LocalDate fechVencimiento = fechaActual.plusDays(paquete.getValidez());
+					System.out.println("Fecha antes del format: " + fechaActual.toString());
 
-				    String altaFormat = fechaDealta.toString();
-				    String vencFormat = fechVencimiento.toString();
-				    
-				    DateTimeFormatter formatoOriginal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-			        LocalDate localDate = LocalDate.parse(altaFormat, formatoOriginal);
-			        LocalDate loalDVenc = LocalDate.parse(vencFormat, formatoOriginal);
-			        String alta = localDate.format(formatoDeseado);
-			        String vencimiento = loalDVenc.format(formatoDeseado);
-			        
-				    
+			        // Crea un formateador con el patrón "dd-MM-yyyy"
+			        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-					String fechaDeAltaStr = fechaDealta.toString();
-					String fechaVencimientoStr = fechVencimiento.toString();
-				    System.out.println(fechaDeAltaStr);					
-				    puertoManejadorUsuario.compraPaquete(paquete, nickUser, alta, vencimiento);
+			        // Formatea la fecha en el formato deseado
+			        String fechaFormateada = fechaActual.format(formatter);
+ 
+				   //puertoManejadorUsuario.CompraDePaquete(nombrePaquete, nickUser, fechaFormateada);
 					
 					request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp").forward(request, response);
 	    	
