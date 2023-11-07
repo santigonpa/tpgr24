@@ -335,7 +335,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 	public ArrayList<DataOferta> obtenerOfertasFinalizadas(String empresa){
 		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(empresa);
-		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasRechazadas();
+		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasFinalizadas();
 		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);

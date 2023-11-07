@@ -137,7 +137,7 @@ public class Empresa extends Usuario{
 	    }
 	    return res;
 	}
-	public HashMap<String, OfertaLaboral> getOfertasRechazadas(){
+	public HashMap<String, OfertaLaboral> getOfertasFinalizadas(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
 		HashMap<String,OfertaLaboral> mapa = this.getOfertas();
 	    for (String ofertaNombre : mapa.keySet()) {
