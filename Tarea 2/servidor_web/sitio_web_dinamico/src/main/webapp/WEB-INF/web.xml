@@ -248,14 +248,4 @@
     <servlet-name>ServletSeleccionarPostulacionaOferta</servlet-name>
     <url-pattern>/ServletSeleccionarPostulacionaOferta</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletFinalizarOferta</display-name>
-    <servlet-name>ServletFinalizarOferta</servlet-name>
-    <servlet-class>com.controller.ServletFinalizarOferta</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletFinalizarOferta</servlet-name>
-    <url-pattern>/ServletFinalizarOferta</url-pattern>
-  </servlet-mapping>
 </web-app>
