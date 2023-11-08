@@ -5,10 +5,10 @@
        <footer class="bs-light text-dark pt-5">
 		   <div class="contenedor5 text-center text-md-start">
 			   <div class ="row text-center text-md-start">
-	  <hr class="mb-3">
+	  
 				   <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
 					   <h5 class="text-uppercase mb-4 font-weight-bold text-dark">Nosotros</h5>
-					  
+					   <hr class="mb-3">
 					  <p> 
        				  Desde nuestra creación en 2023, hemos sido una plataforma dedicada a facilitar la conexión entre empresas y postulantes en busca de oportunidades laborales emocionantes. Ya seas una empresa en busca de un talento o un postulante en búsqueda de tu próximo desafío, estamos aquí para ayudarte a alcanzar tus metas.
     				  </p>
@@ -16,27 +16,27 @@
         			Nuestra misión es servir como el puente que une a empleadores y futuros empleados, ayudando a construir equipos exitosos y carreras sólidas. ¡Únete a nuestra comunidad y da el siguiente paso en tu camino profesional!
     				</p>
 					</div>
-					   <hr class="mb-3">
+					   
 					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
 							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Déjanos ayudarte</h5> 
-							
+							<hr class="mb-3">
 							<p>
 								<a href="/TrabajoUY/iniciarSesion_movil" class="text-dark">Tu cuenta</a>
 							</p>
 							<p>
-								<a href="/TrabajoUY/ConsultaDeOfertaLaboral" class="text-dark">Ofertas</a>
+								<a href="/TrabajoUY/ConsultaDeOfertaLaboral_movil" class="text-dark">Ofertas</a>
 							</p>
 							<p>
-								<a href="/TrabajoUY/ConsultaDeTipoDePublicacionDeOfertaLaboral" class="text-dark">Tipos de publicación</a>
+								<a href="" class="text-dark">Postulaciones</a>
 							</p>
 							<p>
 								<a href="/TrabajoUY/home_movil" class="text-dark">Ayuda</a>
 							</p>
 					   </div>
-					   <hr class="mb-3">
+					   
 					    <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
 							<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Contacto</h5> 
-							
+							<hr class="mb-3">
 							<p>
 								<li class="fas fa-map me-3"></li>Av. Julio Herrera y Reissig 565
 							</p>
@@ -50,10 +50,10 @@
 								<li class="fas fa-university me-3"></li>FING
 							</p>
 					   </div>
-					   <hr class="mb-3">
+					   
 					   <div class = "col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
 						<h5 class="text-uppercase mb-4 font-weight-bold text-dark">Newsletter</h5> 
-						
+						<hr class="mb-3">
 						
 						<form action="">
                         	<div class="form-group">

@@ -67,7 +67,7 @@
                 </form>
               </li>
               <li class="nav-item dropdown pt-4 pt-lg-0 order-0 order-lg-3">
-                <a class="nav-link" href="#" data-bs-toggle="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                   <img
                     src="<%= request.getContextPath() %>/ServletImagen"
                     onerror="this.src = '/media/img/userImage.jpg'"
