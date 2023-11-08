@@ -85,7 +85,7 @@
                     >
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/TrabajoUY/PostulacionAOferta_movil"
+                    <a class="dropdown-item" href="/TrabajoUY/verPostulaciones_movil"
                       >Ver mis postulaciones</a
                     >
                   </li>

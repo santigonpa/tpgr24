@@ -20,6 +20,7 @@ import com.webservices.controladores.publicar.PublicadorManejadorUsuarioService;
 /**
  * Servlet implementation class ServletVerPostulacion_movil
  */
+@WebServlet (description = "Servlet de ver postulacines", urlPatterns = { "/servletVerPostulacion_movil" })
 public class ServletVerPostulacion_movil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
