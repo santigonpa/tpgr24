@@ -268,4 +268,14 @@
     <servlet-name>postularmeDesdeConsultaOferta_movil</servlet-name>
     <url-pattern>/postularmeDesdeConsultaOferta_movil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletVerPostulacion_movil</display-name>
+    <servlet-name>ServletVerPostulacion_movil</servlet-name>
+    <servlet-class>com.controller.dispositivo_movil.ServletVerPostulacion_movil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVerPostulacion_movil</servlet-name>
+    <url-pattern>/ServletVerPostulacion_movil</url-pattern>
+  </servlet-mapping>
 </web-app>
