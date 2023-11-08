@@ -53,6 +53,7 @@
 	  		<hr>
 		</div>
 
+	<div class="contenedor4">
 		<div class="cartas">
 
 				<%
@@ -75,7 +76,7 @@
     						<h5 class="card-title"><strong><%= nombreOfer %></strong></h5>
     						<hr>
 							<a href="ServletPaqueteDetallado?id=<%= dataTP.getNombre() %>" class="btn btn-outline-dark">Más información</a>
-							<a href="ServletCompraPaquete?nombre=<%= nombrePaq %>" class="btn btn-outline-dark">comprar</a>
+							<a href="ServletCompraPaquete?nombre=<%= nombrePaq %>" class="btn btn-outline-dark">Comprar</a>
 							<br>
 							</div>
 		    	</div>
@@ -86,7 +87,7 @@
 			        %>  
 			    	
 			    	</div>
-			    
+			    </div>
 			    <% 
 			    }else{ 	
 			        	%>

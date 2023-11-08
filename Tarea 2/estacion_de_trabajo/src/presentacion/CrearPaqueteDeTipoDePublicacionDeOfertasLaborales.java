@@ -6,12 +6,14 @@ import javax.swing.SpinnerDateModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
 import javax.swing.JLabel;
 
 import excepciones.NombrePaqueteYaExiste;
+import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
 
 import javax.swing.JButton;
@@ -95,7 +97,7 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cmdCrearPaqueteDeTipoDePublicacionDeOfertaLaboral(e);
-				} catch (NombrePaqueteYaExiste e1) {
+				} catch (NombrePaqueteYaExiste | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -105,14 +107,18 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 		}
 		
 		
-	protected void cmdCrearPaqueteDeTipoDePublicacionDeOfertaLaboral(ActionEvent e) throws NombrePaqueteYaExiste{
+	protected void cmdCrearPaqueteDeTipoDePublicacionDeOfertaLaboral(ActionEvent e) throws NombrePaqueteYaExiste, IOException{
 		String nombre = this.nombrepaquete.getText();
 		String descripcion = this.descripcionpaquete.getText();
 		int validez = Integer.parseInt(this.validez.getText());
     	int descuento = Integer.parseInt(this.descuento.getText());
-    	 Date fechaDeAltaDate = (Date) fechadealtaSpinner.getValue();
-         LocalDate fechaDeAlta = fechaDeAltaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();    	//try {
-    	ICO.crearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta, 0, null);
+    	Date fechaDeAltaDate = (Date) fechadealtaSpinner.getValue();
+    	
+    	cargarDatos cargador = new cargarDatos();
+		byte[] fotoPredeterminada = cargador.getFile("imagenDefaultPaquete.jpg");
+    	
+        LocalDate fechaDeAlta = fechaDeAltaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();    	//try {
+    	ICO.crearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre,descripcion,validez,descuento,fechaDeAlta, 0, fotoPredeterminada);
         JOptionPane.showMessageDialog(this, "El paquete se creo con exito", "Crear Paquete De Tipo De Publicacion De Oferta Laboral", JOptionPane.INFORMATION_MESSAGE);
     	limpiarFormulario();
     	//}catch(NombrePaqueteYaExiste e1){
