@@ -17,6 +17,8 @@ import excepciones.*;
 import logica_controladores.ControladorOferta;
 import logica_datatypes.DataOferta;
 import logica_datatypes.WrapperArrayList;
+import utils.Config;
+
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -29,7 +31,7 @@ public class PublicadorControladorOfertas {
 
     @WebMethod(exclude = true)
     public void publicar() {
-    	String url = "http://localhost:9128/ControladorOfertas";
+    	String url =  Config.getWebServiceBaseURL() + "/ControladorOfertas";     //"http://localhost:9128/ControladorOfertas";
         System.out.println("Publicando servicio de ControladorOfertas en " + url);
         endpoint = Endpoint.publish(url, this);
     }

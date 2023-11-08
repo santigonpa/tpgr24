@@ -21,6 +21,7 @@ import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.Usuario;
 import logica_manejadores.ManejadorUsuario;
+import utils.Config;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +39,7 @@ public class PublicadorManejadorUsuario {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = "http://localhost:9128/ManejadorUsuario";
+        String url = Config.getWebServiceBaseURL() + "/ManejadorUsuario" ;  //"http://localhost:9128/ManejadorUsuario";
         System.out.println("Publicando servicio de ManejadorUsuario en " + url);
         endpoint = Endpoint.publish(url, this);
     }

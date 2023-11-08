@@ -53,6 +53,17 @@
             </includes>
             <targetPath>${project.build.directory}</targetPath>
         </resource>
+        
+        <resource>
+                <directory>${project.basedir}/src</directory>
+                <includes>
+                    <include>config.properties</include>
+                </includes>
+                <targetPath>${project.build.outputDirectory}</targetPath>
+            </resource>
+        
+        
+        
     </resources>
     
 

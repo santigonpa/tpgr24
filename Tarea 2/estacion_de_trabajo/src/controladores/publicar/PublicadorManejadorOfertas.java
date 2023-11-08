@@ -16,6 +16,7 @@ import logica_entidades.OfertaLaboral;
 import logica_entidades.Postulacion;
 import logica_manejadores.ManejadorOferta;
 import logica_manejadores.ManejadorUsuario;
+import utils.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public class PublicadorManejadorOfertas {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = "http://localhost:9128/ManejadorOferta";
+        String url = Config.getWebServiceBaseURL() + "/ManejadorOferta";//"http://localhost:9128/ManejadorOferta";
         System.out.println("Publicando servicio de ManejadorOferta en " + url);
         endpoint = Endpoint.publish(url, this);
     }

@@ -30,6 +30,7 @@ import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_manejadores.IManejadorUsuario;
+import utils.Config;
 import utils.Fabrica;
 
 @WebService
@@ -48,7 +49,7 @@ public class PublicadorControladorUsuario {
 	
 	@WebMethod(exclude = true)
     public void publicar() {
-		String url = "http://localhost:9128/ControladorUsuario";
+		String url =  Config.getWebServiceBaseURL() + "/ControladorUsuario";  //"http://localhost:9128/ControladorUsuario";
         System.out.println("Publicando servicio de ControladorUsuario en " + url);
         endpoint = Endpoint.publish(url, this);
     }

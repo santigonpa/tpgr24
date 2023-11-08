@@ -18,6 +18,7 @@ import controladores.publicar.PublicadorControladorUsuario;
 import logica_controladores.IControladorUsuario;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorUsuario;
+import utils.Config;
 
 import javax.swing.JMenu;
 //import java.awt.Rectangle;
@@ -43,6 +44,9 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
+					Config.cargarConfiguracion();
+					
 					Principal window = new Principal();
 					PublicadorManejadorUsuario pmuser = new PublicadorManejadorUsuario();
 					PublicadorManejadorPyT pmpyt = new PublicadorManejadorPyT();

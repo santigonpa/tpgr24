@@ -12,6 +12,7 @@ import logica_datatypes.WrapperArrayList;
 import logica_entidades.Paquete;
 import logica_entidades.TipoPublicacion;
 import logica_manejadores.ManejadorPaquetesYTiposPubli;
+import utils.Config;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class PublicadorManejadorPyT {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = "http://localhost:9128/ManejadorPaquetesYTiposPubli";
+        String url = Config.getWebServiceBaseURL() + "/ManejadorPaquetesYTiposPubli" ; //"http://localhost:9128/ManejadorPaquetesYTiposPubli";
         System.out.println("Publicando servicio de ManejadorPaquetesYTiposPubli en " + url);
         endpoint = Endpoint.publish(url, this);
     }
