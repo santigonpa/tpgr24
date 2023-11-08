@@ -86,7 +86,7 @@
                   </li>
                   <li>
                     <a class="dropdown-item" href="/TrabajoUY/PostulacionAOferta_movil"
-                      >Postularme a una oferta laboral</a
+                      >Ver mis postulaciones</a
                     >
                   </li>
                   <li>

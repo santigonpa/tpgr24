@@ -53,7 +53,7 @@
 
 <body>
 
-	<jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
+     <jsp:include page="/WEB-INF/mobil/templates_movil/header_movil.jsp"></jsp:include>
 	
 	<main>
 		<div class="container w-75 bg-white mt-5 mb-0 rounded shadow"  style="margin-bottom: 20px">
@@ -71,7 +71,7 @@
                         Lo sentimos, debe ser un postulante para poder inicial sesion desde este medio.
                     </div>
 					<!--Login-->
-					<form action="iniciarSesion" method="POST">
+					<form action="iniciarSesion_movil" method="POST">
 						<div>
 							<label for="email" class="form-label" >Usuario o Correo electrónico</label>
 							<input type="text" class="form-control" name="email" required="required">

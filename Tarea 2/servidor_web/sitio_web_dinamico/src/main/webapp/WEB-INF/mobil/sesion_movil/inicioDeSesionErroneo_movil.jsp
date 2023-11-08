@@ -71,7 +71,7 @@
                         Usuario o contraseña incorrectos. Inténtalo de nuevo.
                     </div>
 					<!--Login-->
-					<form action="iniciarSesion" method="POST">
+					<form action="iniciarSesion_movil" method="POST">
 						<div>
 							<label for="email" class="form-label" >Usuario o Correo electrónico</label>
 							<input type="text" class="form-control" name="email" required="required">
