@@ -130,7 +130,7 @@ public class ServletConsultaDeOfertaLaboral_movil extends HttpServlet {
 							coleccionOfer.add(ofertaData);
 						}
 						request.setAttribute("coleccionOfertas",coleccionOfer);
-						request.getRequestDispatcher("/WEB-INF/home/iniciar.jsp").forward(request,response);
+						request.getRequestDispatcher("/WEB-INF/mobil/ofertasLaborales_movil/consultaDeOfertasLaboralesPost_movil.jsp").forward(request,response);
 
 				
 					}else {

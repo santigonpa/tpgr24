@@ -4,6 +4,7 @@
 	<%@page import= "com.webservices.controladores.publicar.DataEmpresa" %>
 	<%@page import= "com.webservices.controladores.publicar.DataOferta" %>
 	<%@page import= "com.webservices.controladores.publicar.DataKeyWord" %>
+	<%@page import= "com.webservices.controladores.publicar.EstadoOferta" %>
     <%@page import="java.util.Set" %>
     <%@page import = "java.io.FileOutputStream" %>
     <%@page import  = "java.io.IOException" %>
@@ -116,252 +117,201 @@
 
     </style>
 
-    <title>Ofertas Laborales</title>
+    <title>Postularme a oferta laboral</title>
 	</head>
 <body>
     <%@ include file="../templates_movil/headerLogged_movil.jsp" %>
 	
-	<main>
-				<div class="contenedor4">
-			  		<h2 class="titulo"><strong>Ofertas Laborales</strong></h2>
-			  		<p>
-			  		<hr>
-			  		</p>
-				</div>
-
-			<div class="contenedorPrincipal">
-       
-	        <div class="container text-center">
-	            <div class="row">
-	                <div class="col">
-	                    <form id="empresaForm" action="/TrabajoUY/PostulacionAOferta_movil" method="get"> 
-						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
-						    <option selected disabled>Filtrar por empresa</option>
-						    <% 
-							Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
-						    
-						    if(!conjuntoDeEmpresas.isEmpty()){  
-						    	String nickEmpresa;
-						    	for (DataEmpresa dataEmp : conjuntoDeEmpresas) {
-						            nickEmpresa = dataEmp.getNickName();
-						    %>
-						    <option value="<%= nickEmpresa %>"><%= nickEmpresa %></option>
-						    <% }} %>
-						  </select>
-						</form>
-	                </div>
-	                <div class="col">
-	                    <form id="keywordForm" action="/TrabajoUY/PostulacionAOferta_movil" method="get"> 
-						  <select id="keywordSelect" class="form-select" aria-label="Default select example" name="keyword">
-						    <option selected disabled>Filtrar por KeyWord</option>
-						    <% 
-						    ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
-					    	if (keys != null && !keys.isEmpty()) {
-					    		String palabra;
-								for (DataKeyWord key : keys) {  
-					         		palabra = key.getPalabraClave();
-						    %>
-						    <option value="<%= palabra %>"><%= palabra %></option>
-						    <% }} %>
-						  </select>
-						</form>
-	                </div>
-	            </div>
-	        </div>
-				  
-				  <%
-				  
-				  if (request.getAttribute("coleccionOfertas") != null) {
-					 
-					  
-					  
-					 if(request.getParameter("empresa") != null) {
-					  %>
-					 
-					 <div class="contenedor">
-	       	 					<h2 class="titulo">Ofertas de <%= request.getParameter("empresa") %></h2>
-	    					</div>
-					 
-					  <div class="contenedorCards">
-					 		<div class="row mt-4">
-					 		
-					 <%
-					 
-					 }else{
-						 
-						 %>
-						 
-						 <div class="contenedor">
-		       	 					<h2 class="titulo">Ofertas Relacionadas con la palabra clave "<%= request.getParameter("keyword") %>"</h2>
-		    					</div>
-						 
-						  <div class="contenedorCards">
-						 		<div class="row mt-4">
-						 		
-						 <%
-					 
-					 }
-					  
-					  
-						  %>
-					 
-					 <% 
-					 	Set<DataOferta> conjDeOfer = (Set<DataOferta>) request.getAttribute("coleccionOfertas");
-					    
-					    if(conjDeOfer != null && !conjDeOfer.isEmpty()){
-					    
-					        String nombreOfer;
-					        String descripcion;
-					        byte[] imagenBytes;
-					
-					        for (DataOferta dataOfer : conjDeOfer) {
-					            nombreOfer = dataOfer.getNombre();
-								descripcion = dataOfer.getDescripcion();
-					            imagenBytes = dataOfer.getImagen();
-					            
-					            String base64Image = "";
-					            if (imagenBytes != null) {
-					                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-					            }else{
-					            	//aca va la imagen default
-					            }
-					            
-					  
-				  %>
-				  
-				  
-				   
-				    <div class="col-md-4 mb-4">
-				   
-				      <div class="card" style="width: 20rem;">
-					        <img class="card-img-top" src="data:image/jpeg;base64, <%= base64Image %>" alt="imagen de usuario" style="object-fit: cover; width: 100%; height: 100%;">
-					        <div class="card-body">
-		    						<h5 class="card-title"><%= nombreOfer %></h5>
-		    						<p class="card-text"><%= descripcion %></p>
- 										<a href="/TrabajoUY/PostulacionDesdeVerOferta?ofer=<%= nombreOfer %>" class="btn btn-outline-dark">Postularme</a>				    	</div>
-				      </div>
-				      
-				      
-				<%
-					 } //endfor
-					
-					 }else{ 
-					 %>
-					  
-					  </div>
-					
-					</div>
-					
-					<%
-					 
-					if(request.getParameter("empresa") == null){
-						 
-						 %>
-						 
-						 <div class = "my-5"></div>
-						  <div class="container">
-								    <div class="row">
-								        <div class="col text-center">
-								            <div class="alert alert-danger" role="alert">
-								                No hay ofertas registradas con esa palabra clave
-								            </div>
-								        </div>
-								    </div>
-								</div>
-						 
-						 <%
-					 }else if(request.getParameter("keyword") == null){
-				%>
-				  
-				 	<div class = "my-5"></div>
-						  <div class="container">
-								    <div class="row">
-								        <div class="col text-center">
-								            <div class="alert alert-danger" role="alert">
-								                No hay ofertas registradas en la empresa
-								              
-								            </div>
-								        </div>
-								    </div>
-								</div>
-				
-				<%
-					  }else{
-					 
-					  
-						  %>
-						  
-						  <div class = "my-5"></div>
-						  <div class="container">
-								    <div class="row">
-								        <div class="col text-center">
-								            <div class="alert alert-danger" role="alert">
-								                No hay ofertas registradas en la empresa o no ha seleccionado una empresa aún
-								            </div>
-								        </div>
-								    </div>
-								</div>
-						  
-						  <%
-							}
-					 	}				 
-					 }else{ 
-						 
-						 %>
-						  
-						  <div class = "my-5"></div>
-						  <div class="container">
-								    <div class="row">
-								        <div class="col text-center">
-								            <div class="alert alert-success" role="alert">
-								                Selecciona una Empresa o una Keyword.
-								            </div>
-								        </div>
-								    </div>
-								</div>
-						  
-						  <%
-						 
-					 }
-					 
-				%>
-				 </div>
-		 </div>
-	    </div>
-		</main>
+	    </header>
+    <%
+        // Recupera la ofertaSeleccionada de la solicitud
+        DataOferta oferta = (DataOferta) request.getSession().getAttribute("dataOfertaPos");
+	 	String nombre = oferta.getNombre();
+	 	String desc = oferta.getDescripcion();
+	 	String ciudad = oferta.getCiudad();
+	 	String dep = oferta.getDepartamento();
+	 	String horaI = oferta.getHoraInicio();
+	 	String horaF = oferta.getHoraFin();
+	 	float remuneracion = oferta.getRemuneracion();
+	 	String alta = oferta.getFechaDeAlta();
+	 	EstadoOferta est = oferta.getEstado();
+	 	String emp = oferta.getEmpresa();
+        byte[] imagenBytes = oferta.getImagen();
+        String base64Image = "";
+        if (imagenBytes != null) {
+            base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+        }
+       // Set<KeyWord> keys = oferta.getKeyWords(); 
+        ArrayList<String> palabrasClave = (ArrayList<String>) request.getAttribute("keys");
+        
+    %>
     
-   <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
-     
+			   <main>S
+			    <div class="contenedor4">
+			        <div class="row justify-content-center">
+			            <div class="col-6 col-md-4">
+			                <div class="alinearImg3">
+			                    <img src="data:image/jpeg;base64, <%= base64Image %>" class="img-thumbnail shadow" alt="...">
+			                </div>
+			            </div>
+			            <div class="col-md-8">
+			                <div class="contenedor4">
+			                    <h2 class="text-uppercase fs-4 fw-bolder">Información de la oferta</h2>
+			                </div>
+			                <!-- Cargar datos -->
+			                <div class="contenedor4">
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Nombre:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= nombre %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Descripción:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= desc %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Ciudad:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= ciudad %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Departamento:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= dep %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Horario:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= horaI %> - <%= horaF %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Remuneración:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter">$<%= remuneracion %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Fecha:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= alta %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Estado:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-lighter"><%= est %></h4>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                    <div class="row">
+			                        <div class="col">
+			                            <h4 class="fs-5 fw-normal">Empresa:</h4>
+			                        </div>
+			                        <div class="col">
+			                            <a href="#">
+			                                <button type="button" class="btn btn-outline-secondary"><%= emp %></button>
+			                            </a>
+			                        </div>
+			                    </div>
+			                    <hr>
+			                </div>
+			
+			                
+			            </div>
+			        </div>
+			    </div>
+			    
+				<div class = "contenedor4">
+			    <div class="row justify-content-center">
+			        <div class="col-md-6">
+			            <div class="form-container justify-content-center">
+			                
+			                <div class="contenedorPrincipal">
+							    <div class="container">
+							        <h5 class="text-uppercase fs-5 fw-bolder">Keywords Asociadas</h5>
+							        <div class="container">
+							            <p class="fs-6 fw-lighter">
+							                <%
+							                	boolean firstKeyword = true;
+							                    for (String keyword : palabrasClave) {
+							                        if (!firstKeyword) {
+							                            out.print("<span style='margin-right: 5px;'>,</span>"); // Agregar coma y espacio entre las keywords, excepto la primera
+							                        }
+							                        out.print("<span>" + keyword + "</span>"); // Mostrar el nombre de la keyword
+							                        firstKeyword = false;
+							                    }
+							                %>
+							            </p>
+							        </div>
+							    </div>
+							</div>
+			                </div>
+			                <div class="my-5"></div>
+			                <div class="contenedor">
+			                    <h2 class="-titulo-"><strong>Ingrese Los Datos</strong></h2>
+			                    <div class="my-5"></div>
+			                </div>
+			                <div class="my-5"></div>
+			                <div class="text-center"><i class="fa-solid fa-circle-info"></i></div>
+			                <div class="my-5"></div>
+			
+			                <form action = "postularmeDesdeConsultaOferta_movil" method = "POST">
+			                    <div class="form-floating mb-3">
+			                        <input type="text" class="form-control" id="motiv" name="motiv" placeholder="" required>
+			                        <label for="floatingInput">Motivación de la Postulación</label>
+			                    </div>
+			
+			                    <div class="form-floating">
+			                        <textarea class="form-control" placeholder="" id="curriculum" name="curriculum" style="height: 250px" required></textarea>
+			                        <label for="floatingTextarea">Escriba un CV breve</label>
+			                    </div>
+			                    
+			                    <div class="form-floating mb-3">
+			                        <input type="url" class="form-control" id="video" name="video" placeholder="">
+			                        <label for="floatingInput">Ingrese un link a un video de YouTube si lo desea</label>
+			                    </div>
+			
+			                    <div class="my-5"></div>
+			
+			                    <div class="container text-center">
+			                        <button type="submit" class="btn btn-dark">POSTULARME</button>
+			                    </div>
+			                </form>
+			            </div>
+			        </div>
+			    </div>
+		</main>
+			
+	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+           
   </body>
-  
-   <!-- SCRIPTS DEL CASO DE USO PARA MOSTRAR LAS COSAS -->
-  
-
-	 <!-- Esto redirige al servlet cuando selecciona una empresa -->
-	<script>
-	  // Obtén el elemento <select> por su ID
-	  var selectElement = document.getElementById("empresaSelect");
-	
-	  // Agrega un event listener para el evento "change"
-	  selectElement.addEventListener("change", function() {
-	    // Obtén el formulario por su ID
-	    var formElement = document.getElementById("empresaForm");
-	
-	    formElement.submit();
-	  });
-	</script>
-	
-	
-	<script>
-	  // Obtén el elemento <select> por su ID
-	  var selectElement2 = document.getElementById("keywordSelect");
-	
-	  // Agrega un event listener para el evento "change"
-	  selectElement2.addEventListener("change", function() {
-	    // Obtén el formulario por su ID
-	    var formElement2 = document.getElementById("keywordForm");
-	
-	    formElement2.submit();
-	  });
-	</script>
 </html>

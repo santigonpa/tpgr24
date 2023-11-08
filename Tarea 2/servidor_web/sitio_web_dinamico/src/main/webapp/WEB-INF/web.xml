@@ -258,4 +258,14 @@
     <servlet-name>seguirUsuarioServlet</servlet-name>
     <url-pattern>/seguirUsuarioServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>postularmeDesdeConsultaOferta_movil</display-name>
+    <servlet-name>postularmeDesdeConsultaOferta_movil</servlet-name>
+    <servlet-class>com.controller.dispositivo_movil.postularmeDesdeConsultaOferta_movil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>postularmeDesdeConsultaOferta_movil</servlet-name>
+    <url-pattern>/postularmeDesdeConsultaOferta_movil</url-pattern>
+  </servlet-mapping>
 </web-app>

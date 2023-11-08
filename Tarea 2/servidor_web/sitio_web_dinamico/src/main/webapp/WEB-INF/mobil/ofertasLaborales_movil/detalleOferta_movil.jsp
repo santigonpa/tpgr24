@@ -53,7 +53,7 @@
     <title>TrabajoUY</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+    <%@ include file="../templates_movil/headerLogged_movil.jsp" %>
 	    
 	 <%
         // Recupera la ofertaSeleccionada de la solicitud
@@ -213,6 +213,12 @@
   		</div>
 
 		  
+		    <div class="contenedor text-center mt-5">
+			    <a href="/TrabajoUY/postularmeDesdeConsultaOferta_movil?ofer=<%= nombre %>" style="text-decoration: none;">
+				    <button class="btn btn-dark" type="button" style="margin-top: 40px;">Postularme</button>
+				</a>
+			</div>
+		
 		
 	</main>
 	
