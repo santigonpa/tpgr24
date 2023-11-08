@@ -125,12 +125,10 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     		}
         	
     		
-    		Empresa empresita = (Empresa) puertoManejadorUsuario.obteneraEmpresa(user.getNickName());
+    		
         	ArrayList<String> coleccionPTP = new ArrayList<>();		
 
-        	if(empresita.getCompra() == null){
-            	coleccionPTP = null;		
-        	}else {
+        	
         	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
         	
     		for (Object objeto : coleccionPTPWrapper) {
@@ -139,7 +137,7 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     		    }
     		}
     		
-        	}
+        	
     		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
     		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
     		

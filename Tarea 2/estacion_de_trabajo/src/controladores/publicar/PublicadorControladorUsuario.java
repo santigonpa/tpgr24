@@ -120,15 +120,26 @@ public class PublicadorControladorUsuario {
 	}
 	
 	@WebMethod
-	public WrapperArrayList getPublicacionesEmpresa(String emp){
-		ArrayList<DataTipoPublicacion> arr =  ICU.getPublicacionesEmpresa(emp);
-		ArrayList<String> res = new ArrayList<>();
-		for(DataTipoPublicacion data : arr) {
-			res.add(data.getNombre());
-		}
-		WrapperArrayList ret = new WrapperArrayList(res);
-		return ret;
+	public WrapperArrayList getPublicacionesEmpresa(String emp) {
+	    ArrayList<DataTipoPublicacion> arr = ICU.getPublicacionesEmpresa(emp);
+	    ArrayList<String> res = new ArrayList<>();
+	    
+	    if (arr != null) {
+	        if (!arr.isEmpty()) {
+	            for (DataTipoPublicacion data : arr) {
+	                res.add(data.getNombre());
+	            }
+	        } else {
+	            // arr no está vacío, pero está vacío
+	        }
+	    } else {
+	        // arr es nulo
+	    }
+	    
+	    WrapperArrayList ret = new WrapperArrayList(res);
+	    return ret;
 	}
+
 
 	@WebMethod
 	public WrapperArrayList getDataKeyWord(){

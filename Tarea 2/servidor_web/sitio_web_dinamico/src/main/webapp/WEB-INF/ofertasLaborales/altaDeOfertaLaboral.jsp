@@ -57,49 +57,74 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
       
-	    <script>
-      // Lógica para mostrar u ocultar los formularios según la pestaña seleccionada
-      $(document).ready(function () {
-    $("#pagoGen-tab").on("click", function () {
-        $("#pagoGeneral").show();
-        $("#pagoConPaquete").hide();
-        $("#tipoPago").val("pagoGeneral");
+      <input type="hidden" id="tipoPago" name="tipoPago" value="<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoPaquete" %>" />
+      
+      
+	  <script>
+    // Lógica para mostrar u ocultar los formularios según la pestaña seleccionada
+    $(document).ready(function () {
+        var tipoPago = $("#tipoPago").val(); // Obtener el valor de tipoPago
+
+        $("#pagoGen-tab").on("click", function () {
+            $("#pagoGeneral").show();
+            $("#pagoConPaquete").hide();
+            tipoPago = "pagoGeneral"; // Actualizar tipoPago
+        });
+
+        $("#pagoPaq-tab").on("click", function () {
+            $("#pagoGeneral").hide();
+            $("#pagoConPaquete").show();
+            tipoPago = "pagoPaquete"; // Actualizar tipoPago
+        });
+
+        // Al hacer clic en las pestañas, también actualiza el valor del campo oculto tipoPago
+        $("#pagoGen-tab, #pagoPaq-tab").on("click", function () {
+            $("#tipoPago").val(tipoPago);
+        });
     });
+</script>
 
-    $("#pagoPaq-tab").on("click", function () {
-        $("#pagoGeneral").hide(); // Ocultar elementos relacionados con Pago General
-        $("#pagoConPaquete").show();
-        $("#tipoPago").val("pagoPaquete");
-    });
-});
-
-
-    </script>
+      
       
   
       <script>
-		function validarFormulario() {
-			var tipoPubli = document.getElementById("tipoPubli").value;
-		    var nombre = document.getElementById("nombre").value;
-		    var descripcion = document.getElementById("descripcion").value;
-		    var departamento = document.getElementById("departamento").value;
-		    var ciudad = document.getElementById("ciudad").value;
-		    var horaDeInicio = document.getElementById("horaDeInicio").value;
-		    var horaDeFin = document.getElementById("horaDeFin").value;
-		    var remuneracion = document.getElementById("remuneracion").value;
+    function validarFormulario() {
+        <%
+        ArrayList<String> conjuntoDePaquetes3 = (ArrayList<String>) request.getAttribute("coleccionDataPaquetes");
+        int pac; 
+        if (conjuntoDePaquetes3 != null && !conjuntoDePaquetes3.isEmpty()){
+        	pac = 1;
+        }else{
+        	pac = 0;
+        }
+        %>
+        var tipoPago = $("#tipoPago").val(); // Obtener el valor de tipoPago
+        var tipoPubli = document.getElementById("tipoPubli").value;
+        var nombre = document.getElementById("nombre").value;
+        var descripcion = document.getElementById("descripcion").value;
+        var departamento = document.getElementById("departamento").value;
+        var ciudad = document.getElementById("ciudad").value;
+        var horaDeInicio = document.getElementById("horaDeInicio").value;
+        var horaDeFin = document.getElementById("horaDeFin").value;
+        var remuneracion = document.getElementById("remuneracion").value;
+		var tiene = <%= pac %>;
+        
+        if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "")          
+        {
+            alert("Todos los campos son obligatorios");           
+            return false; // Evita que el formulario se envíe si hay campos vacíos           
+        }
+        else if (tipoPago === "pagoPaquete" && (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "" || tiene == "0"))
+        {
+		    alert("Su empresa no cuenta con algún paquete o su paquete ya no tiene más publicaciones");
+		   
+		    return false; // Evita que el formulario se envíe s
+		}else{
 			
-		    
+        return true; // Permite que el formulario se envíe si todas las validaciones pasan
+    	}
 		
-		    if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
-		        alert("Todos los campos son obligatorios");
-		        return false; // Evita que el formulario se envíe si hay campos vacíos
-		    }
-		
-		    // Aquí puedes agregar más validaciones según tus requisitos
-		
-		return true; // Permite que el formulario se envíe si todas las validaciones pasan
-		}
-		
+    } 
 		// Agregar un evento de escucha al formulario para la validación
 	    document.addEventListener("DOMContentLoaded", function () {
 	        var form = document.getElementById("alta-form");
@@ -209,7 +234,7 @@
                     </li>
                 </ul>
             </div>
-    </div>
+  
 <% } %>
 
            <div class="tab-pane fade" id="pagoGeneral">
@@ -261,7 +286,7 @@
 		 <div class="row justify-content-center">
             <div class="col-md-6">
                 <div align="center">			
-		<h3 class="-titulo-">Tipos de publicación disponibles actualmente en su paqute</h3>
+		<h3 class="-titulo-">Tipos de publicación disponibles actualmente en su paquete</h3>
 		         </div>
             </div>
         </div>
@@ -453,8 +478,8 @@
 
               </div>
        </div>
-	</div>
-	
+</div>
+
 			
 	</main>
 	
