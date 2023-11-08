@@ -43,7 +43,7 @@
                   </li>
                 
                   <li>
-                    <a class="dropdown-item" href="/TrabajoUY/PostulacionAOferta_movil"
+                    <a class="dropdown-item" href="/TrabajoUY/servelPostularmeAOferta"
                       >Postularme a oferta laboral</a
                     >
                   </li>
@@ -79,11 +79,6 @@
                   Mi Usuario
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a class="dropdown-item" href="/TrabajoUY/VerPerfil"
-                      >Usuario</a
-                    >
-                  </li>
                   <li>
                     <a class="dropdown-item" href="/TrabajoUY/verPostulaciones_movil"
                       >Ver mis postulaciones</a

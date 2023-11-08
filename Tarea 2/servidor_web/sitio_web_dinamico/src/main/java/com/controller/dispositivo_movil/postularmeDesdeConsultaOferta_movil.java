@@ -51,6 +51,8 @@ public class postularmeDesdeConsultaOferta_movil extends HttpServlet {
 		String oferta = request.getParameter("ofer");
 		ArrayList<Object> ofertasWrapper = (ArrayList<Object>) puertoManejadorOfertas.getOfertas().getLista();
 		
+		
+		
 
 		ArrayList<DataOferta> listaDataOferta = new ArrayList<>();
 

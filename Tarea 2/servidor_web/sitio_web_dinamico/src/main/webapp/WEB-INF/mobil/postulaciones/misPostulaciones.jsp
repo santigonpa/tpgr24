@@ -109,7 +109,7 @@
 				    <h5 class="card-title" style="color: black;"><%= nombreOf %></h5>
 				    <p> </p>
 				    
-				    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOf %>" class="btn btn-dark">Ver más de la postulación</a>
+				    <a href="/TrabajoUY/ServletVerPostulacion_movil?id=<%= nombreOf %>" class="btn btn-dark">Ver más de la postulación</a>
 				  </div>
 				</div>
 				<% } %>

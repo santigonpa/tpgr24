@@ -116,14 +116,14 @@
 
     </style>
 
-    <title>Ofertas Laborales</title>
+    <title>Postularme</title>
 	</head>
 <body>
     <%@ include file="../templates_movil/headerLogged_movil.jsp" %>
 	
 	<main>
 				<div class="container pt-4">
-			  		<h2 class="titulo"><strong>Ofertas Laborales</strong></h2>
+			  		<h2 class="titulo"><strong>Seleccione la oferta a la que desea postularse</strong></h2>
 			  		<hr>
 				</div>
 
@@ -132,9 +132,9 @@
 	        <div class="container text-center">
 	            <div class="row">
 	                <div class="col">
-	                    <form id="empresaForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
+	                    <form id="empresaForm" action="/TrabajoUY/servelPostularmeAOferta" method="get"> 
 						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
-						    <option selected disabled>empresa</option>
+						    <option selected disabled>Filtrar por empresa</option>
 						    <% 
 							Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
 						    
@@ -149,9 +149,9 @@
 						</form>
 	                </div>
 	                 <div class="col">
-	                    <form id="keywordForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
+	                    <form id="keywordForm" action="/TrabajoUY/servelPostularmeAOferta" method="get"> 
 						  <select id="keywordSelect2" class="form-select" aria-label="Default select example" name="keyword">
-						    <option selected disabled>keyword</option>
+						    <option selected disabled>Filtrar por empresa</option>
 						    <% 
 						    ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
 					    	if (keys != null && !keys.isEmpty()) {
@@ -233,7 +233,7 @@
 					        <div class="card-body">
 		    						<h5 class="card-title"><%= nombreOfer %></h5>
 		    						<p class="card-text"><%= descripcion %></p>
-									<a href="DetalleOferta_movil?id=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
+									<a href="/TrabajoUY/postularmeDesdeConsultaOferta_movil?ofer=<%= dataOfer.getNombre() %>" class="btn btn-outline-dark">+info</a>					</div>
 				    	</div>
 				      
 				      

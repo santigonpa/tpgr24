@@ -84,21 +84,19 @@
       crossorigin="anonymous"
     ></script>
 
-    <title>Postulacion a Oferta Laboral</title>
+    <title>Ofertas Laborales</title>
 	</head>
 	<body>
-    <%@ include file="../templates_movil/headerLogged_movil.jsp" %>
+	    <%@ include file="../templates_movil/header_movil.jsp" %>
 		<main>
 		<div class = "contenedor2">
 	  		<div class="alert alert-danger" role="alert">
 	  				<div class = "text-center"><i class="fa fa-user-times" aria-hidden="true"></i></div>
 	  				<hr>
-  					<strong>YA EXISTE UNA POSTUACION DE SU PARTE A ESTE OFERTA</strong>
+  					<strong>PARA ACCEDER A ESTE SITIO DEBE ESTAR LOGGEADO</strong>
   					<br>
   					<br>
-  					<a href="/TrabajoUY/servelPostularmeAOferta" class="alert-link">Haz click aquí para elegir otra oferta</a>
-					<br>
-					<a href="/TrabajoUY/home_movil" class="alert-link">Haz click aquí para volver al inicio</a>
+  					<a href="/TrabajoUY/home_movil" class="alert-link">Haz click aquí para volver al inicio</a>
 			</div>
 			</div>	
 	    </main>

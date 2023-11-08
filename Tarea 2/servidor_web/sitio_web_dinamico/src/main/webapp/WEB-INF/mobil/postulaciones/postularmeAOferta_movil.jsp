@@ -146,7 +146,7 @@
         
     %>
     
-			   <main>S
+			   <main>
 			    <div class="contenedor4">
 			        <div class="row justify-content-center">
 			            <div class="col-6 col-md-4">

@@ -278,4 +278,14 @@
     <servlet-name>ServletVerPostulacion_movil</servlet-name>
     <url-pattern>/ServletVerPostulacion_movil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>servelPostularmeAOferta</display-name>
+    <servlet-name>servelPostularmeAOferta</servlet-name>
+    <servlet-class>com.controller.dispositivo_movil.servelPostularmeAOferta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servelPostularmeAOferta</servlet-name>
+    <url-pattern>/servelPostularmeAOferta</url-pattern>
+  </servlet-mapping>
 </web-app>
