@@ -74,7 +74,7 @@ public class Config {
             cargarConfiguracion();
             seCargoConfiguracion = true;
         }
-        return getHostURL() + "/webservices";
+        return getHostURL();
     }
 
     private static String getHostURL() {
