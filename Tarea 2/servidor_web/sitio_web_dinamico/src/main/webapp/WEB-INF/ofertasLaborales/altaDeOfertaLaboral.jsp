@@ -164,11 +164,11 @@
 	<main>
 	
 	<div class="my-5"></div>
-
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 		<div align="center">
     	<h2><strong>Alta de Oferta Laboral</strong></h2>	
+    	<a href="/TrabajoUY/AltaDeOfertaLaboralGeneral" class="btn btn-outline-dark">General</a>	
 		</div>
 		</div>
 	</div>	
@@ -297,19 +297,11 @@
 				ArrayList<String> conjuntoDePaquetes2 = (ArrayList<String>) request.getAttribute("coleccionDataPaquetes");
 				
 				
-			    if(conjuntoDePaquetes2 != null && !conjuntoDePaquetes2.isEmpty()){
-			    
+			    if(conjuntoDePaquetes2 != null && !conjuntoDePaquetes2.isEmpty()){			 
 			        String nombrePaquete2;
-			        //String descripcion2;
-			
 			        for (String dataTP : conjuntoDePaquetes2) {
 			        	nombrePaquete = dataTP;
-			        	//descripcion2 = dataTP.getDescripcion();
-
-			    %>
-				
-				
-				
+			    %>		
 			    <div class="card" style="width: 20rem;">
 			   		<div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
            	 			<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
@@ -425,10 +417,6 @@
                
 				<div id="nombreHelp" class="form-text">Si lo desea puede seleccionar una imagen.</div>
 					
-									
-                
-              
-				
 				<div class="my-5"></div>
 				
      			
