@@ -93,7 +93,7 @@
         <div
           class="inner-header d-flex justify-content-center align-items-center flex-column"
         >
-          <h1 class="trabajo-uy fs-1">Trabajo UY</h1>
+          <h1 class="trabajo-uy-mobile">Trabajo UY</h1>
           <h2 class="slogan-uy fs-2 p-2">
             Postúlate al trabajo de tus sueños.
           </h2>

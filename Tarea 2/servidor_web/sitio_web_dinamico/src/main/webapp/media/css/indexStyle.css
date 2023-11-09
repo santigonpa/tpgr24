@@ -69,6 +69,12 @@ body{
   margin-top: 0; /* Elimina el espacio en la parte superior predeterminado */
 }
 
+.trabajo-uy-mobile {
+	font-family: 'Fira Sans Condensed', sans-serif;
+	font-size: 4rem;
+	font-weight: bold;
+}
+
 .slogan-uy {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 500;
@@ -97,6 +103,14 @@ p{
   display:inline-block;
   vertical-align: middle;
 }
+
+
+.carousel-item {
+	height: 30vh;
+	object-fit: cover;
+}
+
+
 
 .inner-header {
   display: flex;
