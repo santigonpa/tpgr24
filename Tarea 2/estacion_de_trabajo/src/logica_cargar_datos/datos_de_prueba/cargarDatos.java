@@ -278,7 +278,142 @@ public class cargarDatos {
 		mu.addUsuario(e5);
 		mu.addUsuario((Usuario)e6);
 		
-		//------------------------------//		
+		//------------------------------//	
+		
+		
+		//-----------------------------//
+		
+		//Seguidores y seguidos
+		
+		((Postulante) p1).seguirAUsuario(e1);
+		((Empresa)e1).agregarSeguidor(p1);
+		
+		((Postulante) p1).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(p1);
+
+		((Postulante) p1).seguirAUsuario(e3);
+		((Empresa)e3).agregarSeguidor(p1);
+
+		((Postulante) p1).seguirAUsuario(e4);
+		((Empresa)e4).agregarSeguidor(p1);
+		
+		((Postulante) p1).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(p1);
+		
+		((Postulante) p2).seguirAUsuario(e1);
+		((Empresa)e1).agregarSeguidor(p2);
+
+				
+		((Postulante) p3).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(p3);
+
+				
+		((Postulante) p3).seguirAUsuario(e3);
+		((Empresa)e3).agregarSeguidor(p3);
+
+				
+		((Postulante) p3).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(p3);
+
+				
+		((Postulante) p3).seguirAUsuario(e6);
+		((Empresa)e6).agregarSeguidor(p3);
+
+				
+		((Postulante) p4).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(p4);
+
+		
+		((Postulante) p4).seguirAUsuario(e4);
+		((Empresa)e4).agregarSeguidor(p4);
+		
+		
+		((Postulante) p5).seguirAUsuario(e3);
+		((Empresa)e3).agregarSeguidor(p5);
+		
+		
+		((Postulante) p5).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(p5);
+		
+		
+		((Postulante) p5).seguirAUsuario(e6);
+		((Empresa)e6).agregarSeguidor(p5);
+		
+		
+		((Postulante) p6).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(p6);
+		
+		
+		((Postulante) p6).seguirAUsuario(e4);
+		((Empresa)e4).agregarSeguidor(p6);
+		
+		
+		((Postulante) p6).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(p6);
+		
+		
+		((Postulante) p7).seguirAUsuario(e1);
+		((Empresa)e1).agregarSeguidor(p7);
+		
+		
+		((Postulante) p7).seguirAUsuario(e4);
+		((Empresa)e4).agregarSeguidor(p7);
+		
+		
+		((Postulante) p8).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(p8);
+
+		
+		((Postulante) p8).seguirAUsuario(e3);
+		((Empresa)e3).agregarSeguidor(p8);
+
+		
+		((Postulante) p9).seguirAUsuario(p1);
+		((Postulante)p1).agregarSeguidor(p9);
+		
+		((Postulante) p9).seguirAUsuario(e1);
+		((Empresa)e1).agregarSeguidor(p9);
+		
+		((Postulante) p9).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(p9);
+
+		((Postulante) p9).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(p9);
+
+		((Empresa) e1).seguirAUsuario(p1);
+		((Postulante)p1).agregarSeguidor(p1);
+		
+		((Empresa) e1).seguirAUsuario(e2);
+		((Empresa)e2).agregarSeguidor(e1);
+		
+		((Empresa) e2).seguirAUsuario(e3);
+		((Empresa)e3).agregarSeguidor(e2);
+
+		((Empresa) e3).seguirAUsuario(p1);
+		((Postulante)p1).agregarSeguidor(e3);
+
+		((Empresa) e3).seguirAUsuario(e4);
+		((Empresa)e4).agregarSeguidor(e3);
+
+		((Empresa) e3).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(e3);
+
+		((Empresa) e3).seguirAUsuario(e6);
+		((Empresa)e6).agregarSeguidor(e3);
+
+		((Empresa) e4).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(e4);
+
+		((Empresa) e5).seguirAUsuario(e4);
+		((Empresa)e4).agregarSeguidor(e5);
+
+		((Empresa) e6).seguirAUsuario(e5);
+		((Empresa)e5).agregarSeguidor(e6);
+
+
+
+
+
 		
 		//Cargo Tipos de Publicacion
 		
@@ -411,17 +546,17 @@ public class cargarDatos {
 
 		LocalDate ao1 = LocalDate.of(2023,9,30);
 		LocalDate ao2 = LocalDate.of(2023,9,29);
-		LocalDate ao3 = LocalDate.of(2023,9,29);
-		LocalDate ao4 = LocalDate.of(2023,9,19);
-		LocalDate ao5 = LocalDate.of(2023,10,2);
-		LocalDate ao6 = LocalDate.of(2023,9,21);
-		LocalDate ao7 = LocalDate.of(2023,10,2);
-		LocalDate ao8 = LocalDate.of(2023,9,29);
-		LocalDate ao9 = LocalDate.of(2023,9,29);
-		LocalDate ao10 = LocalDate.of(2023,10,2);
-		LocalDate ao11 = LocalDate.of(2023,9,25);
-		LocalDate ao12 = LocalDate.of(2023,10,2);
-		LocalDate ao13 = LocalDate.of(2023,10,1);
+		LocalDate ao3 = LocalDate.of(2023,10,29);
+		LocalDate ao4 = LocalDate.of(2023,10,19);
+		LocalDate ao5 = LocalDate.of(2023,10,20);
+		LocalDate ao6 = LocalDate.of(2023,11,2);
+		LocalDate ao7 = LocalDate.of(2023,11,2);
+		LocalDate ao8 = LocalDate.of(2023,11,4);
+		LocalDate ao9 = LocalDate.of(2023,10,29);
+		LocalDate ao10 = LocalDate.of(2023,11,4);
+		LocalDate ao11 = LocalDate.of(2023,10,25);
+		LocalDate ao12 = LocalDate.of(2023,11,5);
+		LocalDate ao13 = LocalDate.of(2023,11,1);
 		
 		
 		//Creo Oferta   // FALTAN OFERTAS 
@@ -437,7 +572,8 @@ public class cargarDatos {
 		o1.setFechaAlta(ao1);
 		o1.setImagen(o1img);
 		o1.setTipodePago("Basico");
-
+		o1.setEstado(EstadoOferta.ACEPTADA);
+		
 		OfertaLaboral o2 = new OfertaLaboral();
 		o2.setNombre("Estrategia de Negocios");
 		o2.setDescripcion("Forma parte de nuestro equipo de estrategia y contribuye al crecimiento de las empresas clientes");
@@ -450,7 +586,8 @@ public class cargarDatos {
 		o2.setFechaAlta(ao2);
 		o2.setImagen(o2img);
 		o2.setTipodePago("Sin paquete");
-
+		o2.setEstado(EstadoOferta.ACEPTADA);
+		
 		OfertaLaboral o3 = new OfertaLaboral();
 		o3.setNombre("Diseñador UX/UI");
 		o3.setDescripcion("Trabaja en colaboración con nuestro talentoso equipo de diseño para crear soluciones impactantes.");
@@ -463,7 +600,8 @@ public class cargarDatos {
 		o3.setFechaAlta(ao3);
 		o3.setImagen(o3img);
 		o3.setTipodePago("Sin paquete");
-
+		o3.setEstado(EstadoOferta.ACEPTADA);
+		
 		OfertaLaboral o4 = new OfertaLaboral();
 		o4.setNombre("Analista de Datos");
 		o4.setDescripcion("Ayuda a nuestros clientes a tomar decisiones informadas basadas en análisis y visualizaciones de datos.");
@@ -476,7 +614,8 @@ public class cargarDatos {
 		o4.setFechaAlta(ao4);
 		o4.setImagen(o4img);
 		o4.setTipodePago("Sin paquete");
-
+		o4.setEstado(EstadoOferta.INGRESADA);
+		
 		OfertaLaboral o5 = new OfertaLaboral();
 		o5.setNombre("Content Manager");
 		o5.setDescripcion("Gestiona y crea contenido persuasivo y relevante para impulsar la presencia en línea de nuestros clientes.");
@@ -489,7 +628,8 @@ public class cargarDatos {
 		o5.setFechaAlta(ao5);
 		o5.setImagen(o5img);
 		o5.setTipodePago("Sin paquete");
-
+		o5.setEstado(EstadoOferta.FINALIZADA);
+		
 		OfertaLaboral o6 = new OfertaLaboral();
 		o6.setNombre("Soporte Tecnico");
 		o6.setDescripcion("Ofrece un excelente servicio de soporte técnico a nuestros clientes, resolviendo problemas y brindando soluciones.");
@@ -502,6 +642,7 @@ public class cargarDatos {
 		o6.setFechaAlta(ao6);
 		o6.setImagen(o6img);
 		o6.setTipodePago("Destacado");
+		o6.setEstado(EstadoOferta.ACEPTADA);
 
 		OfertaLaboral o7 = new OfertaLaboral();
 		o7.setNombre("A. de Marketing Digital");
@@ -515,7 +656,8 @@ public class cargarDatos {
 		o7.setFechaAlta(ao7);
 		o7.setImagen(o7img);
 		o7.setTipodePago("Sin paquete");
-
+		o7.setEstado(EstadoOferta.ACEPTADA);
+		
 		OfertaLaboral o8 = new OfertaLaboral();
 		o8.setNombre("Contador Senior");
 		o8.setDescripcion("Únete a nuestro equipo contable y ayuda en la gestión financiera de la empresa.");
@@ -528,7 +670,8 @@ public class cargarDatos {
 		o8.setFechaAlta(ao8);
 		o8.setImagen(o8img);
 		o8.setTipodePago("Sin paquete");
-
+		o8.setEstado(EstadoOferta.RECHAZADA);
+		
 		OfertaLaboral o9 = new OfertaLaboral();
 		o9.setNombre("Técnico/a Básico Red");
 		o9.setDescripcion("RÉGIMEN DE CONTRATO EN FUNCIÓN PÚBLICA EN UN TODO DE ACUERDO CON LA NORMATIVA VIGENTE (LEY 16.127, DEL 7 DE AGOSTO DE 1990, ARTÍCULO 1°, LITERAL A) Y B), CON LA MODIFICACIÓN INTRODUCIDA POR EL ARTÍCULO 11 DE LA LEY 17.930, DEL 19 DE DICIEMBRE DE 2005).");
@@ -541,7 +684,8 @@ public class cargarDatos {
 		o9.setFechaAlta(ao9);
 		o9.setImagen(o9img);
 		o9.setTipodePago("Sin paquete");
-
+		o9.setEstado(EstadoOferta.ACEPTADA);
+		
 		OfertaLaboral o10 = new OfertaLaboral();
 		o10.setNombre("Desarrollador de Software Senior");
 		o10.setDescripcion("Únete a nuestro equipo y lidera proyectos de desarrollo de software sostenible y ecológico. Impulsa la innovación y contribuye a un futuro más verde.");
@@ -554,7 +698,8 @@ public class cargarDatos {
 		o10.setFechaAlta(ao10);
 		o10.setImagen(o10img);
 		o10.setTipodePago("Destacada");
-
+		o10.setEstado(EstadoOferta.INGRESADA);
+		
 		OfertaLaboral o11 = new OfertaLaboral();
 		o11.setNombre("Desarrollador de Software Full Stack");
 		o11.setDescripcion("Únete a nuestro equipo para crear soluciones de software personalizadas de extremo a extremo. Colabora en proyectos emocionantes y desafiantes.");
@@ -567,7 +712,8 @@ public class cargarDatos {
 		o11.setFechaAlta(ao11);
 		o11.setImagen(o11img);
 		o11.setTipodePago("Premium");
-
+		o11.setEstado(EstadoOferta.INGRESADA);
+			
 		OfertaLaboral o12 = new OfertaLaboral();
 		o12.setNombre("Gerente de Proyecto");
 		o12.setDescripcion("Únete a nuestro equipo de gestión de proyectos y lidera la entrega exitosa de soluciones de software personalizadas. Colabora con equipos multidisciplinarios y clientes exigentes.");
@@ -580,7 +726,8 @@ public class cargarDatos {
 		o12.setFechaAlta(ao12);
 		o12.setImagen(o12img);
 		o12.setTipodePago("Destacada");
-
+		o12.setEstado(EstadoOferta.ACEPTADA);
+		
 		OfertaLaboral o13 = new OfertaLaboral();
 		o13.setNombre("Ingeniero de Calidad de Software");
 		o13.setDescripcion("Asegura la calidad de nuestros productos de software sostenibles. Únete a nosotros para garantizar un impacto positivo en el medio ambiente.");
@@ -593,7 +740,9 @@ public class cargarDatos {
 		o13.setFechaAlta(ao13);
 		o13.setImagen(o13img);
 		o13.setTipodePago("Premium");
-
+		o13.setEstado(EstadoOferta.INGRESADA);
+		
+		//falta agregar la compra con el paquete
 		//Agrego oferta a Empresa
 		((Empresa) e1).agregarOfertas(o1.getNombreOferta(),o1);
 		((Empresa) e3).agregarOfertas(o2.getNombreOferta(),o2);
@@ -609,6 +758,7 @@ public class cargarDatos {
 		((Empresa) e6).agregarOfertas(o12.getNombreOferta(),o12);
 		((Empresa) e1).agregarOfertas(o13.getNombreOferta(),o13);
 		
+	
 		
 		//Agrego Empresa a Oferta
 		o1.setEmpresa((Empresa) e1);
@@ -625,22 +775,7 @@ public class cargarDatos {
 		o12.setEmpresa((Empresa) e6);
 		o13.setEmpresa((Empresa) e1);
 		
-		 
-		
-		//estado oferta 
-		o1.setEstado(EstadoOferta.ACEPTADA);
-		o2.setEstado(EstadoOferta.ACEPTADA);
-		o3.setEstado(EstadoOferta.ACEPTADA);
-		o4.setEstado(EstadoOferta.INGRESADA);
-		o5.setEstado(EstadoOferta.INGRESADA);
-		o6.setEstado(EstadoOferta.ACEPTADA);
-		o7.setEstado(EstadoOferta.ACEPTADA);
-		o8.setEstado(EstadoOferta.RECHAZADA);
-		o9.setEstado(EstadoOferta.ACEPTADA);
-		o10.setEstado(EstadoOferta.INGRESADA);
-		o11.setEstado(EstadoOferta.INGRESADA);
-		o12.setEstado(EstadoOferta.ACEPTADA);
-		o13.setEstado(EstadoOferta.INGRESADA);
+		 ;
 		
 		//Agrego Oferta
 		mo.addOferta(o1);
@@ -755,13 +890,14 @@ public class cargarDatos {
 		//------------------------------//	
 		
 		//Convierto String a LocalDate
-		LocalDate fPos1 = LocalDate.parse("16-08-2023", dateFormatter);
-		LocalDate fPos2 = LocalDate.parse("15-08-2023", dateFormatter);
-		LocalDate fPos3 = LocalDate.parse("14-08-2023", dateFormatter);
-		LocalDate fPos4 = LocalDate.parse("13-08-2023", dateFormatter);
-		LocalDate fPos5 = LocalDate.parse("12-08-2023", dateFormatter);
-		LocalDate fPos6 = LocalDate.parse("16-08-2023", dateFormatter);
-		
+		LocalDate fPos1 = LocalDate.parse("01-10-2023", dateFormatter);
+		LocalDate fPos2 = LocalDate.parse("30-09-2023", dateFormatter);
+		LocalDate fPos3 = LocalDate.parse("02-10-2023", dateFormatter);
+		LocalDate fPos4 = LocalDate.parse("30-10-2023", dateFormatter);
+		LocalDate fPos5 = LocalDate.parse("30-09-2023", dateFormatter);
+		LocalDate fPos6 = LocalDate.parse("02-10-2023", dateFormatter);
+		LocalDate fPos7 = LocalDate.parse("21-10-2023", dateFormatter);
+		LocalDate fPos8 = LocalDate.parse("22-10-2023", dateFormatter);
 		
 		//Creo Postulaciones
 		Postulacion pos1 = new Postulacion();
@@ -806,6 +942,29 @@ public class cargarDatos {
 		pos6.setPost((Postulante)p1);
 		pos6.setOfer(o2);
 
+		Postulacion pos7 = new Postulacion();
+		pos7.setFecha(fPos7);
+		pos7.setCurri("Licenciada en Administracion, me considero la mejor menejadora de contenidos del mundo, tengo experiencia en gestion de equipos y proyectos. Conocimientos en Microsoft Office.");
+		pos7.setMotivacion("Estoy emocionada por la oportunidad de formar parte de un equipo tan bonito y contribuir con mis habilidades de liderazgo.");
+		pos7.setPost((Postulante)p1);
+		pos7.setOfer(o5);
+		
+		Postulacion pos8 = new Postulacion();
+		pos8.setFecha(fPos8);
+		pos8.setCurri("Me manejo las redes, tengo 20M de seguidores.");
+		pos8.setMotivacion("Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista");
+		pos8.setPost((Postulante) p5);
+		pos8.setOfer(o5);
+		
+		
+		//videos en las postulaciones
+		pos1.setVideo("https://www.youtube.com/embed/sqh77QZS0G4");
+		pos2.setVideo("https://www.youtube.com/embed/ekm1D3sKoVA");
+		pos4.setVideo("https://www.youtube.com/embed/uNCzhfQCqAs");
+		pos5.setVideo("https://www.youtube.com/embed/jwiV9gbjEi8");
+		pos8.setVideo("https://www.youtube.com/embed/jwiV9gbjEi8");
+		
+		
 		mo.addPostulacion(pos1);
 		mo.addPostulacion(pos2);
 		mo.addPostulacion(pos3);
@@ -917,12 +1076,12 @@ public class cargarDatos {
 		((Empresa) e1).agregarPaquetes(paq4.getNombre(), paq4);
 		
 		//Fechas de las compras
-		LocalDate fc1 = LocalDate.parse("01-10-2023", dateFormatter); //e1 y pq3
-		LocalDate fvc1 = LocalDate.parse("01-12-2023", dateFormatter);
-		LocalDate fc2 = LocalDate.parse("08-09-2023", dateFormatter); 
-		LocalDate fvc2 = LocalDate.parse("24-10-2023", dateFormatter);
-		LocalDate fc3 = LocalDate.parse("23-10-2023", dateFormatter); 
-		LocalDate fvc3 = LocalDate.parse("07-11-2023", dateFormatter);
+		LocalDate fc1 = LocalDate.parse("31-10-2023", dateFormatter); //e1 y pq3
+		LocalDate fvc1 = fc1.plusDays(60);
+		LocalDate fc2 = LocalDate.parse("08-10-2023", dateFormatter); 
+		LocalDate fvc2 = fc2.plusDays(45);
+		LocalDate fc3 = LocalDate.parse("13-10-2023", dateFormatter); 
+		LocalDate fvc3 = fc3.plusDays(45);
 
 		
 		
@@ -944,8 +1103,8 @@ public class cargarDatos {
 		
 		//Le asigno a cada empresa como "compra paquete" su ultimo paquete comprado
 		((Empresa) e1).setCompra(comp1);
-		((Empresa) e2).setCompra(comp3);
-		((Empresa) e6).setCompra(comp2);
+		((Empresa) e2).setCompra(comp3); //u12 
+		((Empresa) e6).setCompra(comp2); //u16
 	
 	}		
 }
