@@ -17,6 +17,7 @@ import controladores.publicar.PublicadorControladorOfertas;
 import controladores.publicar.PublicadorControladorUsuario;
 import logica_controladores.IControladorUsuario;
 import logica_manejadores.IManejadorOferta;
+import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
 import utils.Config;
 
@@ -35,6 +36,7 @@ public class Principal {
 	private PostulacionAOfertaLaboral PosAOferLab;
 	private AltaDeTipoDePublicacionDeOfertaLaboral Altideof;
 	private CrearPaqueteDeTipoDePublicacionDeOfertasLaborales crearpaqtipopublioferlab;
+	private AgregarTipoPubliAPaquete agregarTPubliAPaquete;
 	private aceptarRechazarOferta aorOf;
 	
 	/**
@@ -77,6 +79,7 @@ public class Principal {
 		IControladorOferta ICO = fabrica.getInOfer();
 		IManejadorUsuario IMU =fabrica.getInManejadorUsuario();
 		IManejadorOferta IMO = fabrica.getInManejadorOferta();
+		IManejadorPyT IPYT = fabrica.getInManejadorPyT();
 		trabajouy.getContentPane().setLayout(null);
 		trabajouy.getContentPane().setLayout(null);
 		altaUser = new AltaDeUsuario(ICO, ICU);
@@ -150,6 +153,14 @@ public class Principal {
 		crearpaqtipopublioferlab.setClosable(true);
 		crearpaqtipopublioferlab.setVisible(false);
 		trabajouy.getContentPane().add(crearpaqtipopublioferlab);
+		
+		agregarTPubliAPaquete = new AgregarTipoPubliAPaquete(ICO, IPYT);
+		agregarTPubliAPaquete.setBounds(100, 100, 450, 173);
+		agregarTPubliAPaquete.setMaximizable(true);
+		agregarTPubliAPaquete.setClosable(true);
+		agregarTPubliAPaquete.setVisible(false);
+		trabajouy.getContentPane().add(agregarTPubliAPaquete);
+		
 		
 		aorOf = new aceptarRechazarOferta(ICO,ICU);
 		aorOf.setBounds(100, 100, 438, 261);
@@ -234,6 +245,20 @@ public void actionPerformed(ActionEvent e) {
 				crearpaqtipopublioferlab.limpiarFormulario();
 			}
 		});
+			
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Agregar Tipo de publicación de Oferta Laboral a Paquete");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eprox) {
+				agregarTPubliAPaquete.setVisible(true);
+				agregarTPubliAPaquete.cargarPaquetes();
+				agregarTPubliAPaquete.cargarTipoPubli();
+				agregarTPubliAPaquete.limpiarFormulario();
+			}
+		});
+		
+		
+		
+		mnNewMenu_2.add(mntmNewMenuItem_4);
 		mnNewMenu_2.add(mntmProximamente);
 		
 		/*JMenuItem mntmNewMenuItem_3 = new JMenuItem("Agregar Tipo Oferta Laboral");

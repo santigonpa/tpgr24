@@ -326,5 +326,14 @@ public class ControladorOferta implements IControladorOferta {
         return null;
 	}
 	
+	public void agregarTPAPaquete(String NPaquete, String NTipoPubli, int cantidad) {
+		Fabrica fab = Fabrica.getInstance();
+		IManejadorPyT IPYT = fab.getInManejadorPyT();
+		
+		Paquete paquete = IPYT.getPaquete(NPaquete);
+		TipoPublicacion tipopubli = IPYT.obtenerTipoPublicacion(NTipoPubli);
+		
+		paquete.setPublicaciones(tipopubli, cantidad);
+	}
 
 }

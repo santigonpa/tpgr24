@@ -39,25 +39,25 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 		getContentPane().setLayout(null);
 		
 		JLabel nombrePaq = new JLabel("Nombre de paquete:");
-		nombrePaq.setBounds(10, 22, 101, 14);
+		nombrePaq.setBounds(10, 22, 155, 14);
 		getContentPane().add(nombrePaq);
 		
 		nombrepaquete = new JTextField();
-		nombrepaquete.setBounds(125, 19, 96, 20);
+		nombrepaquete.setBounds(175, 19, 162, 20);
 		getContentPane().add(nombrepaquete);
 		nombrepaquete.setColumns(10);
 		
 		JLabel DescPaq = new JLabel("Descripcion:");
-		DescPaq.setBounds(10, 65, 101, 14);
+		DescPaq.setBounds(10, 65, 155, 14);
 		getContentPane().add(DescPaq);
 		
 		descripcionpaquete = new JTextField();
-		descripcionpaquete.setBounds(125, 62, 96, 20);
+		descripcionpaquete.setBounds(175, 62, 162, 20);
 		getContentPane().add(descripcionpaquete);
 		descripcionpaquete.setColumns(10);
 		
 		validez = new JTextField();
-		validez.setBounds(175, 107, 96, 20);
+		validez.setBounds(175, 107, 162, 20);
 		getContentPane().add(validez);
 		validez.setColumns(10);
 		
@@ -66,11 +66,11 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 		getContentPane().add(lblNewLabel);
 		
 		JLabel descuentoLabel = new JLabel("Descuento %");
-		descuentoLabel.setBounds(10, 158, 79, 14);
+		descuentoLabel.setBounds(10, 158, 155, 14);
 		getContentPane().add(descuentoLabel);
 		
 		descuento = new JTextField();
-		descuento.setBounds(110, 155, 96, 20);
+		descuento.setBounds(175, 155, 162, 20);
 		getContentPane().add(descuento);
 		descuento.setColumns(10);
 		
@@ -78,19 +78,19 @@ public class CrearPaqueteDeTipoDePublicacionDeOfertasLaborales extends JInternal
 		fechadealtaSpinner.setModel((new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_YEAR)));
 		JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(fechadealtaSpinner, "dd/MM/yyyy");
 		fechadealtaSpinner.setEditor(dateEditor);
-		fechadealtaSpinner.setBounds(113, 204, 93, 20);
+		fechadealtaSpinner.setBounds(175, 204, 162, 20);
 		getContentPane().add(fechadealtaSpinner);
 		
 		lblNewLabel_1 = new JLabel("Fecha De Alta:");
-		lblNewLabel_1.setBounds(10, 207, 79, 14);
+		lblNewLabel_1.setBounds(10, 207, 155, 14);
 		getContentPane().add(lblNewLabel_1);
 		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(63, 237, 89, 23);
+		btnAceptar.setBounds(76, 249, 89, 23);
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(248, 237, 89, 23);
+		btnCancelar.setBounds(175, 249, 89, 23);
 		getContentPane().add(btnCancelar);
 		
 		btnAceptar.addActionListener(new ActionListener() {

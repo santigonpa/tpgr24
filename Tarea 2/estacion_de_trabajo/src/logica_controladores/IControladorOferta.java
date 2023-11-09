@@ -11,6 +11,7 @@ import excepciones.noExistePublicacionException;
 import excepciones.noExisteTipoPubli;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_datatypes.DataOferta;
+import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Postulacion;
 
 public interface IControladorOferta  {
@@ -41,5 +42,7 @@ public abstract void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String no
 public abstract void aceptarOfertaLaboral(DataOferta dof);
 
 public abstract void rechazarOfertaLaboral(DataOferta dOf);
+
+public abstract void agregarTPAPaquete(String NPaquete, String NTipoPubli, int cantidad);
 
 }
