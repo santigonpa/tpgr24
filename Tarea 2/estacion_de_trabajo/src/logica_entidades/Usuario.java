@@ -111,10 +111,14 @@ public class Usuario {
 	}
 
 	public void agregarSeguidor(Usuario userSeguidor) {
+		if(!this.nickName.equals(userSeguidor.getNickName())) {
 		this.usuariosQueMeSiguen.add(userSeguidor);
+		}
 	}
 	public void seguirAUsuario(Usuario userASeguir) {
+		if(!this.nickName.equals(userASeguir.getNickName())) {
 		this.usuariosQueYoSigo.add(userASeguir);
+		}
 	}
 
 	public void dejarDeSeguirAUsuario(Usuario userASeguir) {

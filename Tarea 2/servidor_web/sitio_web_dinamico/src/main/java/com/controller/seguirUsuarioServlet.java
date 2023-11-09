@@ -38,7 +38,7 @@ public class seguirUsuarioServlet extends HttpServlet {
 		DataUsuario userSeguidor = (DataUsuario) request.getSession().getAttribute("usuario");
 		String userASeguir  = request.getParameter("usuarioASeguir");
 		if(seguir.equals("seguir")) {
-			
+			 
 			puertoManejadorUsuario.agregarSeguidor(userSeguidor.getNickName(), userASeguir);
 			
 		

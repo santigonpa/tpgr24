@@ -273,7 +273,7 @@ public class PublicadorManejadorUsuario {
     public WrapperArrayList obtenerOfertasFinalizadas(String nickName) {
     	ArrayList<DataOferta> arr = manejadorUsuario.obtenerOfertasFinalizadas(nickName);
     	ArrayList<String> arrString = new ArrayList<>();
-    	for(DataOferta ofActual : arr) {
+    	for (DataOferta ofActual : arr) {
     		arrString.add(ofActual.getNombre());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arrString);
@@ -284,8 +284,10 @@ public class PublicadorManejadorUsuario {
     public void agregarSeguidor(String usuarioSeguidor, String usuarioASeguir ) {
         Usuario userSeguidor = manejadorUsuario.obtenerUsuario(usuarioSeguidor);
         Usuario userASeguir = manejadorUsuario.obtenerUsuario(usuarioASeguir);
+        if (!userSeguidor.equals(userASeguir)) {
         userSeguidor.seguirAUsuario(userASeguir);
         userASeguir.agregarSeguidor(userSeguidor);
+        }
     }
 
     @WebMethod
