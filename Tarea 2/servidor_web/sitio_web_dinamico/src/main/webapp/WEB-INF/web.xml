@@ -288,4 +288,14 @@
     <servlet-name>servelPostularmeAOferta</servlet-name>
     <url-pattern>/servelPostularmeAOferta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletAltaDeOfertaLaboralGeneral</display-name>
+    <servlet-name>ServletAltaDeOfertaLaboralGeneral</servlet-name>
+    <servlet-class>com.controller.ServletAltaDeOfertaLaboralGeneral</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletAltaDeOfertaLaboralGeneral</servlet-name>
+    <url-pattern>/ServletAltaDeOfertaLaboralGeneral</url-pattern>
+  </servlet-mapping>
 </web-app>
