@@ -82,8 +82,8 @@
 	   
 	   %>
 	    
-			<div class="row">
-		<div class="col-6 col-md-4">
+			<div class="d-flex flex-column flex-md-row">
+		<div class="col-12 col-md-4">
 			<div class = "alinearImg3">
            
   				<img src="data:image/jpeg;base64, <%= base64Image %>" align = "absmiddle" class="img-thumbnail shadow" alt="...">
@@ -156,7 +156,7 @@
     			if(!(video == null) ) {
     			%>
     			<div class="col">
-      					<iframe width="873" height="491" src="<%= video %>"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      					<iframe wclass="col-12" src="<%= video %>"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     		 	</div>
     		 	<%
     			}else{

@@ -81,7 +81,7 @@
 	<main>
 	
 	<div class = "texto-of">
-	    		<h2>Mis Postulaciones</h2>
+	    		<h2 class="h1 fw-bold text-center pt-5 pb-2">Mis Postulaciones</h2>
 	    		</div> 
 	<% 
 		ArrayList<DataOferta> ofertasDePostulacion = (ArrayList<DataOferta>) request.getAttribute("coleccionPostulaciones");
@@ -90,7 +90,7 @@
 	    	  
 	      %>
 	       	 <div class="container">
-		     	 <div class= "cartas-ofertas">
+		     	 <div class= "cartas-ofertas d-flex flex-column align-items-center px-2">
 		     	 
 					<%
 				        String nombreOf;
@@ -103,7 +103,7 @@
 				            
 				    %>
 					
-					<div class="card bg-light" style="width: 15rem;">
+					<div class="card bg-light w-100">
 				  <img src="data:image/jpeg;base64, <%= base64ImagenOf %>" class="card-img-top" alt="imagen de usuario">
 				  <div class="card-body">
 				    <h5 class="card-title" style="color: black;"><%= nombreOf %></h5>

@@ -134,7 +134,7 @@
 	                <div class="col">
 	                    <form id="empresaForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
 						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
-						    <option selected disabled>empresa</option>
+						    <option selected disabled class="fst-italic">Empresa</option>
 						    <% 
 							Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
 						    
@@ -151,7 +151,7 @@
 	                 <div class="col">
 	                    <form id="keywordForm" action="/TrabajoUY/ConsultaDeOfertaLaboral_movil" method="get"> 
 						  <select id="keywordSelect2" class="form-select" aria-label="Default select example" name="keyword">
-						    <option selected disabled>keyword</option>
+						    <option selected disabled class="fst-italic">Keyword</option>
 						    <% 
 						    ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
 					    	if (keys != null && !keys.isEmpty()) {
@@ -189,7 +189,7 @@
 						 %>
 						 
 						 <div class="contenedor">
-		       	 					<h2 class="titulo">Ofertas Relacionadas con la palabra clave "<%= request.getParameter("keyword") %>"</h2>
+		       	 					<h2 class="titulo px-2 fst-italic">Ofertas relacionadas con la palabra clave "<%= request.getParameter("keyword") %>"</h2>
 		    					</div>
 						 
 						  <div class="container mx-auto row justify-content-center align-items-center mt-4">

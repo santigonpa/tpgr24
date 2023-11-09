@@ -149,10 +149,8 @@
 			   <main>
 			    <div class="contenedor4">
 			        <div class="row justify-content-center">
-			            <div class="col-6 col-md-4">
-			                <div class="alinearImg3">
+			            <div class="col-12">
 			                    <img src="data:image/jpeg;base64, <%= base64Image %>" class="img-thumbnail shadow" alt="...">
-			                </div>
 			            </div>
 			            <div class="col-md-8">
 			                <div class="contenedor4">
@@ -277,7 +275,7 @@
 			                </div>
 			                <div class="my-5"></div>
 			                <div class="contenedor">
-			                    <h2 class="-titulo-"><strong>Ingrese Los Datos</strong></h2>
+			                    <h2 class="-titulo- fst-italic"><strong>Ingrese los datos</strong></h2>
 			                    <div class="my-5"></div>
 			                </div>
 			                <div class="my-5"></div>
