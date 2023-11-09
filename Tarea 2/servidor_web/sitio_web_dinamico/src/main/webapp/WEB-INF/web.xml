@@ -298,4 +298,14 @@
     <servlet-name>ServletAltaDeOfertaLaboralGeneral</servlet-name>
     <url-pattern>/ServletAltaDeOfertaLaboralGeneral</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>servletAltaOfertaLaboralPaquete</display-name>
+    <servlet-name>servletAltaOfertaLaboralPaquete</servlet-name>
+    <servlet-class>com.controller.servletAltaOfertaLaboralPaquete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletAltaOfertaLaboralPaquete</servlet-name>
+    <url-pattern>/servletAltaOfertaLaboralPaquete</url-pattern>
+  </servlet-mapping>
 </web-app>
