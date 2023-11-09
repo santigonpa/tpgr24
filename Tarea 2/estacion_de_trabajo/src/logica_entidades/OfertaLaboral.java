@@ -35,6 +35,7 @@ public class OfertaLaboral {
 	private byte[] imagen;
 	private String tipoDePago;
 	private ArrayList<String> ordenPostulaciones = new ArrayList<>();
+	private LocalDate fechaFinalizada;
 	
 	//Links de oferta
 		
@@ -77,6 +78,10 @@ public class OfertaLaboral {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void setFechaFin(LocalDate fFin) {
+		this.fechaFinalizada = fFin;
 	}
 	
 	public void setDescripcion(String desc) {
@@ -146,6 +151,10 @@ public class OfertaLaboral {
 	}
 	
 	//getters
+	
+	public LocalDate getFechaFin() {
+		return this.fechaFinalizada;
+	}
 	
 	public TipoPublicacion getTipoDeOferta() {
 		return this.tipoDeOferta;
