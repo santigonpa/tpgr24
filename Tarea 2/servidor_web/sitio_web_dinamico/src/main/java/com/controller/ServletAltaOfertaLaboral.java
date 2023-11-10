@@ -56,18 +56,7 @@ import com.webservices.controladores.publicar.WrapperArrayList;
 
 public class ServletAltaOfertaLaboral extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
-	private PublicadorManejadorPyT puertoManejadorPyT = servicePublicadorManejadorPyT.getPublicadorManejadorPyTPort();
-	private PublicadorControladorOfertasService servicePublicadorOfertas = new PublicadorControladorOfertasService();
-	private PublicadorControladorOfertas puertoControladorOfertas = servicePublicadorOfertas.getPublicadorControladorOfertasPort();
-	private PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
-	private PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
-	private PublicadorManejadorUsuarioService servicePublicadorManUsuario = new PublicadorManejadorUsuarioService();
-	private PublicadorManejadorUsuario puertoManejadorUsuario = servicePublicadorManUsuario.getPublicadorManejadorUsuarioPort();
-	private PublicadorControladorUsuarioService servicePublicadorUsuario = new PublicadorControladorUsuarioService();
-	private PublicadorControladorUsuario puertoControladorUsuario = servicePublicadorUsuario.getPublicadorControladorUsuarioPort();
-    
-    
+	
 	public static EstadoSesion getEstado(HttpServletRequest request)
 	{	//obtiene el tipo de la sesion
 		return (EstadoSesion) request.getSession().getAttribute("estadoSesion");
@@ -104,7 +93,6 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     	DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 
 		
@@ -113,59 +101,9 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
     		request.getRequestDispatcher("/WEB-INF/sesion/inicioDeSesion.jsp").forward(request, response);
     	 //es una empresa todo ok
     	}else if (user instanceof DataEmpresa) {
-    		
-    		ArrayList<Object> coleccionPTPWrapperCompleta = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
-        	ArrayList<DataTipoPublicacion> coleccionPTPCompleta = new ArrayList<>();
-
-    		for (Object objeto : coleccionPTPWrapperCompleta) {
-    		    if (objeto instanceof DataTipoPublicacion) {
-    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto;
-    		        coleccionPTPCompleta.add(dataTipoPublicacion);
-    		    }
-    		}
-        	
-    		
-    		
-        	ArrayList<String> coleccionPTP = new ArrayList<>();		
-
-        	
-        	ArrayList<Object> coleccionPTPWrapper = (ArrayList<Object>) puertoControladorUsuario.getPublicacionesEmpresa(user.getNickName()).getLista();
-        	
-    		for (Object objeto : coleccionPTPWrapper) {
-    		    if (objeto instanceof String) {
-    		        coleccionPTP.add((String)objeto);
-    		    }
-    		}
-    		
-        	
-    		ArrayList<Object> coleccionKeysWrapper = (ArrayList<Object>) puertoManejadorOfertas.getDataKeyWord().getLista();
-    		ArrayList<DataKeyWord> coleccionKeys = new ArrayList<>();
-    		
-    		for (Object objeto2 : coleccionKeysWrapper) {
-    		    if (objeto2 instanceof DataKeyWord) {
-    		    	DataKeyWord key = (DataKeyWord) objeto2;
-    		    	coleccionKeys.add(key);
-    		    }
-    		}
-    		request.setAttribute("coleccionDataPaquetes", coleccionPTP);
-    		request.setAttribute("coleccionDataPaquetesCompleta", coleccionPTPCompleta);
-    		
-    		ArrayList<Object> coleccionDataTWrapper = (ArrayList<Object>) puertoManejadorPyT.getDataTipoPublicacion().getLista();
-        	ArrayList<DataTipoPublicacion> tiposPubli = new ArrayList<>();
-
-    		for (Object objeto3 : coleccionDataTWrapper) {
-    		    if (objeto3 instanceof DataTipoPublicacion) {
-    		        DataTipoPublicacion dataTipoPublicacion = (DataTipoPublicacion) objeto3;
-    		        tiposPubli.add(dataTipoPublicacion);
-    		    }
-    		}
-
-    		request.setAttribute("keys", coleccionKeys);
-    		request.setAttribute("tiposPubli", tiposPubli);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
     	}//	es un postulante
     	else {
-    		//request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralErroneo.jsp").forward(request, response);
     		request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralErroneo.jsp").forward(request, response);
     	}
     }
@@ -174,144 +112,6 @@ public class ServletAltaOfertaLaboral extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	DataUsuario usuario = (DataUsuario) request.getSession().getAttribute("usuario");
     	
-    	
-    	
-		
-		String nombre = request.getParameter("nombre");
-		String descripcion = request.getParameter("descripcion");
-		String departamento = request.getParameter("departamento");
-		String ciudad = request.getParameter("ciudad");
-		String horaDeInicioo = request.getParameter("horaDeInicio");
-		String horaDeFinn = request.getParameter("horaDeFin");
-		String opcionSeleccionadaTP = request.getParameter("tipoPubli");
-		System.out.println(opcionSeleccionadaTP);
-		
-		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
-	
-		LocalTime horaDeInicio = LocalTime.parse(horaDeInicioo, formateo);
-		LocalTime horaDeFin = LocalTime.parse(horaDeFinn, formateo);
-	
-    	
-		String remuneracionn = request.getParameter("remuneracion");
-		int remuneracion = Integer.parseInt(remuneracionn);
-		
-		//FOTO
-				Part filePart = request.getPart("profile-pic");
-				byte[] imagenBytes = null;
-				
-				if (filePart != null && filePart.getSize() > 0) {
-				    // Obtén el nombre del archivo
-				    String fileName = filePart.getSubmittedFileName();
-				    // Verifica si el nombre del archivo tiene una extensión de imagen válida
-				    if (isValidImageExtension(fileName)) {
-				        // Procede a procesar y adjuntar la imagen al usuario
-				        /// Lee el flujo de entrada de la imagen
-			            InputStream fileContent = filePart.getInputStream();
-			            try {
-			            // Convierte el flujo de entrada de la imagen en un byte[]
-			             imagenBytes = readImageBytes(fileContent);
-			            }catch(Exception e) {}
-				    }else{
-				    	// Obtiene el contexto del servlet
-				        ServletContext context = getServletContext();
-
-				        // Obtiene la ruta de ejecución del servlet
-				        String rutaEjecucion = context.getRealPath("media/img/imgagenDefaultOferta");
-				        Path imagePath = Paths.get(rutaEjecucion);
-				    	 imagenBytes = Files.readAllBytes(imagePath);
-				    }     
-				}else {
-					// Obtiene el contexto del servlet
-			        ServletContext context = getServletContext();
-
-			        // Obtiene la ruta de ejecución del servlet
-			        String rutaEjecucion = context.getRealPath("media/img/imgagenDefaultOferta.jpg");
-			        Path imagePath = Paths.get(rutaEjecucion);
-			    	 imagenBytes = Files.readAllBytes(imagePath);
-			        // Imprime la ruta de ejecución para verificarla
-			        System.out.println("Ruta de ejecución del servlet: " + rutaEjecucion);
-			        
-				}
-		
-    
-		
- 
-		String[] opcionesSeleccionadasKey = request.getParameterValues("keys");
-		Set<String> conjuntoOpciones = new HashSet<>();
-
-		if (opcionesSeleccionadasKey != null) {
-		    conjuntoOpciones = new HashSet<>(Arrays.asList(opcionesSeleccionadasKey));
-		}
-
-		Set<KeyWord> keys = new HashSet<>();
-		for (String iter : conjuntoOpciones) {
-			KeyWord clave = new KeyWord();
-			clave.setPalabraClave(iter);
-		    keys.add(clave);
-		}
-		
-		WrapperArrayList conjuntoOpcionesWrapper = new WrapperArrayList();
-		for(String key : conjuntoOpciones) {
-			conjuntoOpcionesWrapper.getLista().add(key);
-		}
-	
-		
-		String tipoPago = request.getParameter("tipoPago");
-
-		LocalDate fechaActual = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-        String fechaFormateada = fechaActual.format(formatter);
-		
-        
-		System.out.println("El" + tipoPago);
-		
-		if(tipoPago.equals("pagoGeneral")) {
-			try {
-				puertoControladorOfertas.altaPublicacionOfertaLaboralGeneral(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, "Sin paquete");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-				dispatcher.forward(request, response);
-			}catch (NombreRepetidoOfertaException_Exception e){	
-	           request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
-	           request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
-	            return;
-	        }catch(NoExistePublicacionException_Exception e) {
-	        	request.setAttribute("errorNombrePubli", "El tipo de publicacion seleccionada no existe");
-		        request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
-		        return;
-	        }
-		}else {
-			String nombrePaq;
-		try {
-			DataEmpresa empr = (DataEmpresa) puertoManejadorUsuario.obtenerDataUsuario(usuario.getNickName());
-			String valor = puertoManejadorUsuario.tienePaquetePregunta(empr.getNickName());
-			if(valor.equals("si")) { //esto se fija si tiene paquete ,  y si tiene paquete le pone el nombre a nombrePaq 
-				// cequeen si lo hice bien porque estoy cambiando un millon de cosas y no se muy bien que hace esto xdd
-				nombrePaq = puertoManejadorUsuario.obtenerNombrePaquete(empr.getNickName());
-			}else {
-				nombrePaq = "Servlet";
-			}
-			
-			System.out.println(nombrePaq);
-			System.out.println(opcionSeleccionadaTP);
-			puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, nombrePaq);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
-			dispatcher.forward(request, response);
-		}catch (NombreRepetidoOfertaException_Exception e){
-				request.setAttribute("errorNombreOferta", "El nombre de la oferta ya está en uso");
-	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
-	        	return;
-		} catch (NoExistePublicacionException_Exception e) {
-	        	request.setAttribute("errorTipoPubli", "No cuenta con el tipo de publicacion seleccionada");
-	        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);     
-	        	return;
-		} catch(NoExisteTipoPubli_Exception e) {
-				request.setAttribute("errorPubli", "No cuenta con el tipo de publicacion elegida");
-				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboral.jsp").forward(request, response);
-				return;
-		}
-		}
     }	
 }
