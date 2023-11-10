@@ -35,7 +35,7 @@ main() {
 compilarEstacionDeTrabajo(){
 	
 	echo "Compilando Estacion De Trabajo y Servidor Central..."
-	cd estacion_de_trabajo
+	cd estacion_de_trabajos
 	mvn clean package install
 	
 }
