@@ -149,10 +149,14 @@ public class ControladorOferta implements IControladorOferta {
 		}
 		
 		byte[] img = null;
-		try {
-			img = this.getFile("imgagenDefaultOferta.jpg");
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (imagen != null) {
+			img = imagen;
+		}else {
+			try {
+				img = this.getFile("imgagenDefaultOferta.jpg");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		nuevaOferta = new OfertaLaboral();
@@ -201,11 +205,16 @@ public class ControladorOferta implements IControladorOferta {
 		}
 		
 		costoOfertaLaboral = (int) tipo.getCosto();
+		
 		byte[] img = null;
-		try {
-			img = this.getFile("imgagenDefaultOferta.jpg");
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (imagen != null) {
+			img = imagen;
+		}else {
+			try {
+				img = this.getFile("imgagenDefaultOferta.jpg");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		nuevaOferta = new OfertaLaboral();

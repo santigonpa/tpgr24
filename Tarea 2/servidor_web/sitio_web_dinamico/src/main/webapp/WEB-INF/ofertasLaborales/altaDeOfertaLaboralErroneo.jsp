@@ -51,7 +51,7 @@
     <title>TrabajoUY</title>
   </head>
   <body>
-    <jsp:include page="/WEB-INF/template/headerLogged.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/template/header.jsp"></jsp:include>
 	    <main>
 	    <div class = "contenedor2">
 	  		<div class="alert alert-danger" role="alert">

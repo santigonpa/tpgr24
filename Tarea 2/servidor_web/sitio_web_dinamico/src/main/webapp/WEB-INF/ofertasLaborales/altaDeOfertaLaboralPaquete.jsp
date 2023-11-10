@@ -56,49 +56,13 @@
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
-      
-      <input type="hidden" id="tipoPago" name="tipoPago" value="<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoPaquete" %>" />
-      
-      
-	  <script>
-    // Lógica para mostrar u ocultar los formularios según la pestaña seleccionada
-    $(document).ready(function () {
-        var tipoPago = $("#tipoPago").val(); // Obtener el valor de tipoPago
-
-        $("#pagoGen-tab").on("click", function () {
-            $("#pagoGeneral").show();
-            $("#pagoConPaquete").hide();
-            tipoPago = "pagoGeneral"; // Actualizar tipoPago
-        });
-
-        $("#pagoPaq-tab").on("click", function () {
-            $("#pagoGeneral").hide();
-            $("#pagoConPaquete").show();
-            tipoPago = "pagoPaquete"; // Actualizar tipoPago
-        });
-
-        // Al hacer clic en las pestañas, también actualiza el valor del campo oculto tipoPago
-        $("#pagoGen-tab, #pagoPaq-tab").on("click", function () {
-            $("#tipoPago").val(tipoPago);
-        });
-    });
-</script>
+            
 
       
       
   
-      <script>
+   <script>
     function validarFormulario() {
-        <%
-        ArrayList<String> conjuntoDePaquetes3 = (ArrayList<String>) request.getAttribute("coleccionDataPaquetes");
-        int pac; 
-        if (conjuntoDePaquetes3 != null && !conjuntoDePaquetes3.isEmpty()){
-        	pac = 1;
-        }else{
-        	pac = 0;
-        }
-        %>
-        var tipoPago = $("#tipoPago").val(); // Obtener el valor de tipoPago
         var tipoPubli = document.getElementById("tipoPubli").value;
         var nombre = document.getElementById("nombre").value;
         var descripcion = document.getElementById("descripcion").value;
@@ -107,53 +71,25 @@
         var horaDeInicio = document.getElementById("horaDeInicio").value;
         var horaDeFin = document.getElementById("horaDeFin").value;
         var remuneracion = document.getElementById("remuneracion").value;
-		var tiene = <%= pac %>;
-        
-        if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "")          
-        {
-            alert("Todos los campos son obligatorios");           
-            return false; // Evita que el formulario se envíe si hay campos vacíos           
+
+        if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
+            alert("Todos los campos son obligatorios");
+            return false; // Evita que el formulario se envíe si hay campos vacíos
+        } else {
+            return true; // Permite que el formulario se envíe si todas las validaciones pasan
         }
-        else if (tipoPago === "pagoPaquete" && (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "" || tiene == "0"))
-        {
-		    alert("Su empresa no cuenta con algún paquete o su paquete ya no tiene más publicaciones");
-		   
-		    return false; // Evita que el formulario se envíe s
-		}else{
-			
-        return true; // Permite que el formulario se envíe si todas las validaciones pasan
-    	}
-		
-    } 
-		// Agregar un evento de escucha al formulario para la validación
-	    document.addEventListener("DOMContentLoaded", function () {
-	        var form = document.getElementById("alta-form");
-	        form.addEventListener("submit", function (event) {
-	            if (!validarFormulario()) {
-	                event.preventDefault();
-	            }
-	        });
-	    });
-	</script>
-      
-	<script>
-	document.addEventListener("DOMContentLoaded", function () {
-        var form = document.getElementById("alta-form");
+    }
+
+    // Agregar un evento de escucha al formulario para la validación
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("alta-formulario");
         form.addEventListener("submit", function (event) {
             if (!validarFormulario()) {
-                event.preventDefault(); // Evita que el formulario se envíe si la fecha no es válida
+                event.preventDefault();
             }
         });
     });
-	</script>
-	
-<style>
-    
-.row {
---bs-gutter-x: 0rem !important;
-}
-    
-    </style>
+</script>
 	  
 </head>
 
@@ -168,8 +104,6 @@
 		<div class="col-md-6">
 		<div align="center">
     	<h2><strong>Alta de Oferta Laboral</strong></h2>	
-    	<a href="/TrabajoUY/AltaDeOfertaLaboralGeneral" class="btn btn-outline-dark">General</a>	
-    	<a href="/TrabajoUY/AltaDeOfertaLaboralPaquete" class="btn btn-outline-dark">Paquete</a>	
 		</div>
 		</div>
 	</div>	
@@ -183,7 +117,7 @@
 					<hr>
 				      <%= request.getAttribute("errorNombreOferta") %>
 				      <br>
-				      <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
+				      <a href="/TrabajoUY/servletAltaOfertaLaboralPaquete" class="text-dark">Reintentar</a>
 				    </div>
 				  <% } %>
 				  
@@ -193,7 +127,7 @@
 			        <hr>
 			        <%= request.getAttribute("errorTipoPubli") %>
 			        <br>
-			        <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
+			        <a href="/TrabajoUY/servletAltaOfertaLaboralPaquete" class="text-dark">Reintentar</a>
 			    </div>
 			<% } %>
 			<% if (request.getAttribute("errorNombrePubli") != null) { %>
@@ -202,7 +136,7 @@
 			        <hr>
 			        <%= request.getAttribute("errorNombrePubli") %>
 			        <br>
-			        <a href="/TrabajoUY/AltaDeOfertaLaboral" class="text-dark">Reintentar</a>
+			        <a href="/TrabajoUY/servletAltaOfertaLaboralPaquete" class="text-dark">Reintentar</a>
 			    </div>
 			<% } %>
 		</div>			  	
@@ -217,15 +151,6 @@
                 <ul class="nav nav-tabs card-header-tabs justify-content-center">
                     <li class="nav-item">
                         <a
-                            class="nav-link active text-muted fs-3"
-                            id="pagoGen-tab"
-                            data-toggle="tab"
-                            href="#pagoGeneral"
-                            >Pago General</a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a
                             class="nav-link text-muted fs-3"
                             id="pagoPaq-tab"
                             data-toggle="tab"
@@ -238,51 +163,6 @@
   
 <% } %>
 
-           <div class="tab-pane fade" id="pagoGeneral">
-            <div class="cartas">
-
-				<%
-			    
-				ArrayList<DataTipoPublicacion> conjuntoDePaquetes = (ArrayList<DataTipoPublicacion>) request.getAttribute("coleccionDataPaquetesCompleta");
-				ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
-				
-				
-			    if(conjuntoDePaquetes != null && !conjuntoDePaquetes.isEmpty()){
-			    
-			        String nombrePaquete;
-			        String descripcion;
-			        int exp;
-			        int duracion;
-			        float costo;
-			        String fecha;
-			
-			        for (DataTipoPublicacion dataTP : conjuntoDePaquetes) {
-			        	nombrePaquete = dataTP.getNombre();
-
-			    %>
-				
-				
-				
-			    <div class="card" style="width: 20rem;">
-			   		<div style="overflow: hidden; width: 100%; height: 5rem;"> <!-- Corta la imagen -->
-           	 			<img class="card-img-top" src="media/img/imagenTP3.jpg" alt="Card image cap" style="object-fit: cover; width: 100%; height: 100%;">
-        			</div>
-        			
-			        <div class="card-body">
-    						<h5 class="card-title"><strong><%= nombrePaquete %></strong></h5>
-    				 		<input type="radio" class="btn-check" name ="btnradio" id="<%= nombrePaquete %>" autocomplete="off">		
-					</div>
-		    	</div>
-			    
-			    <%
-			        	}
-			        
-			        %>  
-			    	
-			    	</div>
-			    	</div>
-
-	<div class="tab-pane fade" id="pagoConPaquete">
 		<div class="my-5"></div>
 		 <div class="row justify-content-center">
             <div class="col-md-6">
@@ -296,10 +176,11 @@
 				<%
 			    
 				ArrayList<String> conjuntoDePaquetes2 = (ArrayList<String>) request.getAttribute("coleccionDataPaquetes");
-				
+				ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
+
 				
 			    if(conjuntoDePaquetes2 != null && !conjuntoDePaquetes2.isEmpty()){			 
-			        String nombrePaquete2;
+			        String nombrePaquete;
 			        for (String dataTP : conjuntoDePaquetes2) {
 			        	nombrePaquete = dataTP;
 			    %>		
@@ -332,7 +213,6 @@
 			        %>  
 			    	
 			    	</div>
-			    	</div>
 
 		<div class="card-body">
 		
@@ -347,9 +227,8 @@
 				<div class="my-5"></div>
 				
 				
-	            <form id="alta-form" action = "/TrabajoUY/AltaDeOfertaLaboral" method = "POST" enctype="multipart/form-data">
+	            <form id="alta-formulario" action = "/TrabajoUY/servletAltaOfertaLaboralPaquete" method = "POST" enctype="multipart/form-data">
 				
-				<input type="hidden" id="tipoPago" name="tipoPago" value="<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoGeneral" %>" />
 				
 				 <div class="form-floating mb-3">
 					<input type="text" class="form-control" id="tipoPubli" name="tipoPubli" placeholder="" value="<%= request.getParameter("tipoPubli") != null ? request.getParameter("tipoPubli") : "" %>">					
@@ -449,21 +328,6 @@
 			
 			</form>	
 			
-			<% 
-			    }else{ 	
-			        	%>
-						    <div class="contendor2">	 
-						    <div class="carta" style="width: 62vw;">       
-							            <div class="alert alert-danger" role="alert">
-							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
-							            	<hr>
-							                Hasta el momento no hay tipos de publicación registrados en el sistema
-							            </div>
-							        </div>
-						</div>
-			       <% 
-			        }
-			    %>
 
               </div>
        </div>
@@ -472,20 +336,7 @@
 			
 	</main>
 	
-	  <script>
-	  // Obtener el valor de tipoPago
-  
-  var tipoPago = "<%= request.getParameter("tipoPago") != null ? request.getParameter("tipoPago") : "pagoPaquete" %>";
 
-  // Verificar el valor y seleccionar la pestaña correspondiente
-  if (tipoPago === "pagoPaquete") {
-    // Selecciona la pestaña de Empresa
-    $("#pagoPaq-tab").tab("show");
-  } else {
-    // Selecciona la pestaña de Postulante (predeterminado)
-    $("#pagoGen-tab").tab("show");
-  }
-</script>
     
 	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
