@@ -47,6 +47,7 @@
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
+    
     <title>TrabajoUY</title>
 </head>
 <body>
@@ -170,14 +171,14 @@
   			<hr>
   			
   			<div class="row">
-    			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Tipo de pago:</h4>
-   				 </div>
-    			<div class="col">
-						<a>
-      						<button type="button" class="btn btn-outline-secondary"><%= pago %></button>
-						</a>    		 	</div>
-  		 	</div>
+			    <div class="col">
+			        <h4 class="fs-5 fw=normal">Tipo de pago:</h4>
+			    </div>
+			    <div class="col">
+			        <a href="ServletPaqueteDetallado?id=<%= pago %>" class="btn btn-outline-secondary" onclick="return redireccionar('<%= pago %>')"><%= pago %></a>
+			    </div>
+			</div>
+
   		 	<hr>
   		  
   		  
@@ -214,16 +215,20 @@
   			<button class="btn btn-dark" type="button">Ver detalles postulantes</button>
 		</a>
 		
-		<% 
-		if (!"Sin paquete".equals(pago)) { %>
-		    <a href="/TrabajoUY/DetalleDePaquete" class="gap-2 py-5" align="centre" style="text-decoration: none;">
-		        <button class="btn btn-dark" type="button">Ver detalles pago con paquete</button>
-		    </a>
-		<% 
-		} 
-		%>
-		
 	</div>	
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+	  
+	 <script>
+	    function redireccionar(tipoPago) {
+	        if (tipoPago === "Sin paquete") {
+	            // No hacer nada si el tipo de pago es "Sin paquete"
+	            alert("Si lo deseas puedes comprar un Paquete de Tipos de Publicación para utilizar en tus próximas Ofertas Laborales.");
+	            return false; // Indicar que la redirección no debe ocurrir
+	        }
+	        return true; // Permitir la redirección para otros tipos de pago
+	    }
+	</script>
+
+	
 </body>
 </html>

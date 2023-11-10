@@ -176,10 +176,9 @@
     			<div class="col">
       					<h4 class = "fs-5 fw=normal">Empresa:</h4>
    				 </div>
-    			<div class="col">
-						<a>
-      						<button type="button" class="btn btn-outline-secondary"><%= emp %></button>
-						</a>    		 	</div>
+    			<div class="col">			
+					<a href="/TrabajoUY/ConsultarUsuario?VerPerfil=<%= emp %>" class="btn btn-outline-secondary"><%= emp %></a>	
+				</div>
   		 	</div>
   		 	<hr>
   		  <%
