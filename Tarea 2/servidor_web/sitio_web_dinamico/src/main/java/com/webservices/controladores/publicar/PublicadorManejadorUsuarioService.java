@@ -4,6 +4,9 @@ package com.webservices.controladores.publicar;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.xml.namespace.QName;
+
+import com.utils.Config;
+
 import jakarta.xml.ws.Service;
 import jakarta.xml.ws.WebEndpoint;
 import jakarta.xml.ws.WebServiceClient;
@@ -17,7 +20,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "PublicadorManejadorUsuarioService", targetNamespace = "http://publicar.controladores/", wsdlLocation = "http://localhost:9128/ManejadorUsuario?wsdl")
+@WebServiceClient(name = "PublicadorManejadorUsuarioService", targetNamespace = "http://publicar.controladores/")
 public class PublicadorManejadorUsuarioService
     extends Service
 {
@@ -30,7 +33,7 @@ public class PublicadorManejadorUsuarioService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9128/ManejadorUsuario?wsdl");
+        	url = new URL(Config.getWebServiceBaseURL() + "/ManejadorUsuario?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
