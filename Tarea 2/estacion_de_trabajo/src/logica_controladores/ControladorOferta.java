@@ -120,31 +120,31 @@ public class ControladorOferta implements IControladorOferta {
 		
 		//busco tipo de publicacion
 		TipoPublicacion tipo = mpt.obtenerTipoPublicacion(tipoPubli);
-		
-		 if (tipo == null) {
-		        throw new noExisteTipoPubli("No cuenta con el tipo de publicación elegida");
-		    }
+		if(tipo == null) {
+			throw new noExistePublicacionException("El tipo de publicacion seleccionado no existe");			
+		}
 		
 		float costoOfertaLaboral = (int) tipo.getCosto();
+		boolean tieneEsaPubli = false;
 		
 		if (emp.tienePaqueteAsociado()) {
 			if (emp.getCompra().existeTipoPubli(tipoPubli)) {
 				costoOfertaLaboral = (int) (tipo.getCosto() - ((emp.getCompra().getPaquete().getDescuento() /100 ) * tipo.getCosto()));
-				emp.getCompra().yaSeUsoTipoPubli(tipoPubli);
+				tieneEsaPubli = emp.getCompra().yaSeUsoTipoPubli(tipoPubli);
 			}else {
 				throw new noExistePublicacionException("No puede realizar el pago de esta manera. Intente de forma general");
 			}
 		}
 		
-		ArrayList<DataTipoPublicacion> tiposPub = emp.getPublicaciones();
+		/*ArrayList<DataTipoPublicacion> tiposPub = emp.getPublicaciones();
 		boolean existeT = false;
 		for(DataTipoPublicacion pub : tiposPub) {
 			if(pub.getNombre().equals(tipoPubli)) {
 				existeT = true;
 			}
-		}
+		}*/
 		
-		if(!existeT) {
+		if(!tieneEsaPubli) {
 			throw new noExisteTipoPubli("No cuenta con el tipo de publicacion elegida");
 		}
 		
@@ -200,7 +200,7 @@ public class ControladorOferta implements IControladorOferta {
 		//busco tipo de publicacion
 		TipoPublicacion tipo = mpt.obtenerTipoPublicacion(tipoPubli);
 		if(tipo == null) {
-			throw new noExistePublicacionException("El tipo de publicacion seleccionada no existe");
+			throw new noExistePublicacionException("El tipo de publicacion seleccionado no existe");
 			
 		}
 		

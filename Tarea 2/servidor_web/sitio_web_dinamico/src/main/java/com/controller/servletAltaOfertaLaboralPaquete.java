@@ -164,7 +164,7 @@ DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 		String horaDeInicioo = request.getParameter("horaDeInicio");
 		String horaDeFinn = request.getParameter("horaDeFin");
 		String opcionSeleccionadaTP = request.getParameter("tipoPubli");
-		System.out.println(opcionSeleccionadaTP);
+		System.out.println("1" + opcionSeleccionadaTP);
 		
 		DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
 	
@@ -249,8 +249,8 @@ DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 						nombrePaq = "Servlet";
 					}
 					
-					System.out.println(nombrePaq);
-					System.out.println(opcionSeleccionadaTP);
+					System.out.println("2" + nombrePaq);
+					System.out.println("3" + opcionSeleccionadaTP);
 					puertoControladorOfertas.altaPublicacionOfertaLaboralConPaquete(usuario.getNickName(), opcionSeleccionadaTP, nombre, descripcion, horaDeInicio.format(formatterHora), horaDeFin.format(formatterHora), remuneracion, ciudad, departamento, fechaFormateada, conjuntoOpcionesWrapper, imagenBytes, nombrePaq);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home/iniciarLogged.jsp");
 					dispatcher.forward(request, response);
@@ -259,7 +259,7 @@ DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 			        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralPaquete.jsp").forward(request, response);     
 			        	return;
 				} catch (NoExistePublicacionException_Exception e) {
-			        	request.setAttribute("errorTipoPubli", "No cuenta con el tipo de publicacion seleccionada");
+			        	request.setAttribute("errorTipoPubli", "El tipo de publicacion seleccionada no existe");
 			        	request.getRequestDispatcher("/WEB-INF/ofertasLaborales/altaDeOfertaLaboralPaquete.jsp").forward(request, response);     
 			        	return;
 				} catch(NoExisteTipoPubli_Exception e) {

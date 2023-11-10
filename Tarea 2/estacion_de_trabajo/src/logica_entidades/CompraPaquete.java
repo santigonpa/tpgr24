@@ -89,7 +89,7 @@ public class CompraPaquete {
 	
 	public boolean yaSeUsoTipoPubli(String nombreTipo) {
 		for (TipoPublicacion publi : this.tipoPublicaciones) {
-			if (nombreTipo .equals(publi.getNombre())) {
+			if (nombreTipo.equals(publi.getNombre())) {
 				tipoPublicaciones.remove(publi);
 				return true;
 			}
