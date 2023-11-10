@@ -169,6 +169,7 @@
 		<div align="center">
     	<h2><strong>Alta de Oferta Laboral</strong></h2>	
     	<a href="/TrabajoUY/AltaDeOfertaLaboralGeneral" class="btn btn-outline-dark">General</a>	
+    	<a href="/TrabajoUY/AltaDeOfertaLaboralPaquete" class="btn btn-outline-dark">Paquete</a>	
 		</div>
 		</div>
 	</div>	

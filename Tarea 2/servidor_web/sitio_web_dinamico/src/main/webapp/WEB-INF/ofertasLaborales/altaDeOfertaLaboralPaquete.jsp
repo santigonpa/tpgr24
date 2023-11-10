@@ -90,14 +90,6 @@
         });
     });
 </script>
-	
-<style>
-    
-.row {
---bs-gutter-x: 0rem !important;
-}
-    
-    </style>
 	  
 </head>
 
@@ -171,9 +163,6 @@
   
 <% } %>
 
-         
-
-	<div class="tab-pane fade" id="pagoConPaquete">
 		<div class="my-5"></div>
 		 <div class="row justify-content-center">
             <div class="col-md-6">
@@ -223,7 +212,6 @@
 			        
 			        %>  
 			    	
-			    	</div>
 			    	</div>
 
 		<div class="card-body">

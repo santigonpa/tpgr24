@@ -3,6 +3,7 @@ package com.controller;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,6 +48,9 @@ import com.webservices.controladores.publicar.WrapperArrayList;
 /**
  * Servlet implementation class servletAltaOfertaLaboralPaquete
  */
+@WebServlet (description = "Servlet de alta de oferta laboral general", urlPatterns = { "/AltaDeOfertaLaboralPaquete" })
+@MultipartConfig
+
 public class servletAltaOfertaLaboralPaquete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PublicadorManejadorPyTService servicePublicadorManejadorPyT = new PublicadorManejadorPyTService();
@@ -187,16 +191,7 @@ DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 			            // Convierte el flujo de entrada de la imagen en un byte[]
 			             imagenBytes = readImageBytes(fileContent);
 			            }catch(Exception e) {}
-				    
-				     
-				    
 				    }else{
-				    	// !!!!!!!!
-				    	/*Path imagePath = Paths.get("C:\\Users\\Usuario\\git\\tpgr24\\Tarea 2\\servidor_web\\sitio_web_dinamico\\src\\main\\java\\com\\controller\\userImage.jpg");
-				    	 imagenBytes = Files.readAllBytes(imagePath);
-				    	}*/
-				    	
-				    	
 				    	// Obtiene el contexto del servlet
 				        ServletContext context = getServletContext();
 
@@ -205,46 +200,7 @@ DataUsuario user = (DataUsuario) request.getSession().getAttribute("usuario");
 				        Path imagePath = Paths.get(rutaEjecucion);
 				    	 imagenBytes = Files.readAllBytes(imagePath);
 				    }     
-				}else {
-					/*
-					//String urlBase = request.getRequestURL().toString();
-					// Construye la URL completa de la imagen en el servidor
-					String urlImagenServidor = "http://localhost:8086/TrabajoUY/media/img/userImage.jpg";
-
-					try {
-					    // Crea una URL a partir de la cadena de URL
-					    URL url = new URL(urlImagenServidor);
-					    
-					    // Abre una conexión HTTP
-					    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					    
-					    // Configura la solicitud HTTP
-					    conn.setRequestMethod("GET");
-					    
-					    // Lee los bytes de la imagen desde la conexión
-					    InputStream inputStream = conn.getInputStream();
-					    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-					    int nRead;
-					    byte[] data = new byte[1024];
-					    
-					    while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
-					        buffer.write(data, 0, nRead);
-					    }
-					    
-					    buffer.flush();
-					    
-					    // Obtiene los bytes de la imagen
-					    imagenBytes = buffer.toByteArray();
-					    
-					    // Cierra la conexión y el flujo de entrada
-					    inputStream.close();
-					    conn.disconnect();
-					} catch (IOException e) {
-					    e.printStackTrace();
-					}
-
-			        */
-					
+				}else {					
 					// Obtiene el contexto del servlet
 			        ServletContext context = getServletContext();
 
