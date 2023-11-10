@@ -7,18 +7,40 @@ import logica_datatypes.WrapperArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
+@Entity
+@Table(name = "POSTULANTE")
+@PrimaryKeyJoinColumn(name = "POSTULANTE_ID")
 public class Postulante extends Usuario{
 	
 	//Atributos
-	private LocalDate nacimiento;
-	private String nacionalidad;
+	
+    @Column(nullable = false, name = "Fecha de Nacimiento", columnDefinition = "DATE")
+    private LocalDate nacimiento;
+    
+    @Column(nullable = false, name = "Nacionalidad")
+    private String nacionalidad;
+	
+    @OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="USUARIO_ID", nullable = true, unique = true)
+	private Usuario user;
 	//private ArrayList<Postulacion> postulaciones = new ArrayList<>();
-	private WrapperArrayList postulaciones = new WrapperArrayList();
+    
+    @Transient
+    private WrapperArrayList postulaciones = new WrapperArrayList();
 	//Constructores
 	
 	public Postulante(){

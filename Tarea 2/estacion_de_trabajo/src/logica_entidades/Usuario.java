@@ -9,19 +9,56 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataUsuario;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.SecondaryTables;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Lob;
+
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 	
 	//Atributos
+	
+	//me dicen que los usuario van a tener un pk id
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+	@Column(unique = true, nullable = false, name = "NickName")
 	private String nickName;
-	private String nombre;
-	private String apellido;
-	private String email;
+    
+	@Column(nullable = false, name = "Nombre")
+    private String nombre;
+    
+	@Column(nullable = false, name = "Apellido")
+    private String apellido;
+    
+	@Column(nullable = false, name = "Email")
+    private String email;
+    
+	@Transient
 	private String psw;
+    
+	@Lob
 	private byte[] imagen; // Nuevo atributo para la imagen de usuario
+    
+	@Transient
 	private ArrayList<Usuario> usuariosQueMeSiguen = new ArrayList<>();
-	private ArrayList<Usuario> usuariosQueYoSigo = new ArrayList<>();
+    
+	@Transient
+    private ArrayList<Usuario> usuariosQueYoSigo = new ArrayList<>();
 
 	//Constructor
 	

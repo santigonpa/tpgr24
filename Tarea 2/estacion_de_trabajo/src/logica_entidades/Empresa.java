@@ -11,16 +11,40 @@ import java.time.LocalDate;
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.OfertaLaboral.EstadoOferta;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
+@Entity
+@Table(name = "EMPRESA")
+@PrimaryKeyJoinColumn(name = "EMPRESA_ID")
 public class Empresa extends Usuario{
 	//Atributos
-	private String descripcion;
-	private String web; 
+    @Column(nullable = false, name = "Descripcion")
+    private String descripcion;
+    
+    @Column(name = "LinkWeb")
+    private String web; 
+    
+    @Transient
 	private CompraPaquete compra;
-	private HashMap<String, OfertaLaboral> ofertas = new HashMap<String, OfertaLaboral>();
-	private HashMap<String, Paquete> paquetes = new HashMap<String, Paquete>();
+    
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="USUARIO_ID", nullable = true, unique = true)
+	private Usuario user;
+    
+	@Transient
+    private HashMap<String, OfertaLaboral> ofertas = new HashMap<String, OfertaLaboral>();
+    
+	@Transient
+    private HashMap<String, Paquete> paquetes = new HashMap<String, Paquete>();
 
 	
 	public Empresa() {
