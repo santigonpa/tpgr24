@@ -186,11 +186,13 @@
 	<jsp:include page="/WEB-INF/mobil/templates_movil/footerMovil.jsp"></jsp:include>
 	<script type="text/javascript">
 	const videoModal = document.getElementById("videoContainer");
+	const video = videoModal.querySelector("iframe");
 
 	// Agrega un event listener al contenedor del modal
 	videoModal.addEventListener("click", (event) => {
 	  // Verifica si el clic fue en el fondo (fuera del iframe)
 	  if (event.target === videoModal) {
+		  video.classList.add("d-none")
 	    // Oculta el modal al hacer clic en el fondo
 	    videoModal.classList.add("d-none");
 	  }
@@ -198,7 +200,9 @@
 
 	const btn = document.getElementById("abrirVideoBtn");
 	btn.addEventListener("click", () => {
-	  videoModal.classList.toggle("d-none");
+	  videoModal.classList.remove("d-none");
+	  video.classList.remove("d-none")
+
 	});
 
 	</script>
