@@ -211,10 +211,12 @@
 						  
 						  <div class = "my-5"></div>
 						  		
-						  		<div class="container">
+						  		<div class="container" style="width: 88vw;">
 								    <div class="row">
 								        <div class="col text-center">
 								            <div class="alert alert-danger" role="alert">
+									            <div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+								            	<hr>
 								                No hay ofertas vencidas en estado de confirmada hasta el momento
 								            </div>
 								        </div>
@@ -235,11 +237,13 @@
 			
 			<div class = "my-5"></div>
 						  		
-						  		<div class="container">
+						  		<div class="container" style="width: 88vw;">
 								    <div class="row">
 								        <div class="col text-center">
 								            <div class="alert alert-danger" role="alert">
-								               Debes estar loggeado como una EMPRESA
+								             	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+								            	<hr>
+								               	Debes estar logueado como una EMPRESA
 								            </div>
 								        </div>
 								    </div>

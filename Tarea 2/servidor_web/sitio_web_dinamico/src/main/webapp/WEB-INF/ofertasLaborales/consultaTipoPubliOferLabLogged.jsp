@@ -66,12 +66,10 @@
 	<main>
 	<div class="contenedor4">
   			<h2 class="-titulo-"><strong>Tipos de Publicación de Ofertas Laborales</strong></h2>
-  			<p>
   			<hr>
-  			</p>
 		</div>	
-	
-	<div class="cartas">
+	<div class="contenedor4">
+		<div class="cartas">
 
 				<%
 			    
@@ -120,12 +118,12 @@
 			        %>  
 			    	
 			    	</div>
-			    
+			    </div>
 			    <% 
 			    }else{ 	
 			        	%>
 						    <div class="contendor2">	 
-						    <div class="carta" style="width: 98vw;">       
+						    <div class="carta" style="width: 88vw;">       
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>

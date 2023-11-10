@@ -22,8 +22,9 @@
 	<meta charset="UTF-8" />
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
-	<link rel="stylesheet" href="normalize.css" />
+	<!-- Estilos -->
+    <link rel="stylesheet" href="media/css/normalize.css" />
+    <link rel="stylesheet" href="media/css/consultaUsuarioStyle.css" />
 	
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;500;900&display=swap" />
@@ -87,12 +88,12 @@
 			        %>  
 			    	
 			    	</div>
-			    </div>
+			 </div>	
 			    <% 
 			    }else{ 	
 			        	%>
 						    <div class="contendor2">	 
-						    <div class="carta" style="width: 98vw;">       
+						    <div class="carta" style="width: 88vw;">       
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>
@@ -103,6 +104,7 @@
 			       <% 
 			        }
 			    %>
+		    
 	</main>
 	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>
