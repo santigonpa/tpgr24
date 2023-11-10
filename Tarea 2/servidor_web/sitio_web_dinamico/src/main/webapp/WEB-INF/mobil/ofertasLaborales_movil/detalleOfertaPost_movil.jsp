@@ -76,8 +76,8 @@
 	<div class = "contenedor4">
 
   		<div class="row">
-		<div class="col-6 col-md-4">
-			<div class = "alinearImg3">
+		<div class="col-12 col-md-4">
+			<div class = "">
            
   				<img src="data:image/jpeg;base64, <%= base64Image %>" align = "absmiddle" class="img-thumbnail shadow" alt="...">
 		

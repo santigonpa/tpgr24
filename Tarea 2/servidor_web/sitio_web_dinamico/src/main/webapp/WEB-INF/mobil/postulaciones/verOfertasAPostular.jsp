@@ -134,7 +134,7 @@
 	                <div class="col">
 	                    <form id="empresaForm" action="/TrabajoUY/servelPostularmeAOferta" method="get"> 
 						  <select id="empresaSelect" class="form-select" aria-label="Default select example" name="empresa">
-						    <option selected disabled>Filtrar por empresa</option>
+						    <option selected disabled>Empresas</option>
 						    <% 
 							Set<DataEmpresa> conjuntoDeEmpresas = (Set<DataEmpresa>) request.getAttribute("coleccionDataEmpresas");
 						    
@@ -151,7 +151,7 @@
 	                 <div class="col">
 	                    <form id="keywordForm" action="/TrabajoUY/servelPostularmeAOferta" method="get"> 
 						  <select id="keywordSelect2" class="form-select" aria-label="Default select example" name="keyword">
-						    <option selected disabled>Filtrar por empresa</option>
+						    <option selected disabled>Keywords</option>
 						    <% 
 						    ArrayList<DataKeyWord> keys = (ArrayList<DataKeyWord>) request.getAttribute("keys");
 					    	if (keys != null && !keys.isEmpty()) {
