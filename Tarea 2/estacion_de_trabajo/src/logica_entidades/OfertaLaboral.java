@@ -41,7 +41,8 @@ public class OfertaLaboral {
 	private LocalTime horaFin;
 	private int remuneracion;
 	private int costoDeOfertaLaboral; 
-	private LocalDate fechaDeAlta; // la del momento en el alta
+	private LocalDate fechaDeAlta; // la del momento del alta
+	private LocalDate fechaDeFinalizacion = null; // la fecha es null hasta que se finalice la oferta
 	private EstadoOferta estado;
 	private byte[] imagen;
 	private String tipoDePago;
@@ -155,6 +156,9 @@ public class OfertaLaboral {
 
 	
 	public void setEstado(EstadoOferta estado) {
+		if(estado == EstadoOferta.FINALIZADA) {
+			this.fechaDeFinalizacion = LocalDate.now(); //si la oferta se finaliza se guarda la fecha de finalizacion
+		}
 		this.estado = estado;
 	}
 	
@@ -298,6 +302,14 @@ public class OfertaLaboral {
 
 	public void setOrdenPostulaciones(ArrayList<String> ordenPostulaciones) {
 		this.ordenPostulaciones = ordenPostulaciones;
+	}
+
+	public LocalDate getFechaDeFinalizacion() {
+		return this.fechaDeFinalizacion;
+	}
+
+	public void setFechaDeFinalizacion(LocalDate fecha) {
+		this.fechaDeFinalizacion = fecha;
 	}
 
 	
