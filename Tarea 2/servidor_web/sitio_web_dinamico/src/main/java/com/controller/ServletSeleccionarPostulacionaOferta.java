@@ -43,7 +43,7 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 		
 		
 		
-		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) ) {
+		if(getEstado(request).equals(EstadoSesion.SI_LOGEADO) && request.getSession().getAttribute("usuario") instanceof DataEmpresa ) {
 			
 			
 			DataEmpresa demp = (DataEmpresa) request.getSession().getAttribute("usuario");
@@ -85,7 +85,7 @@ public class ServletSeleccionarPostulacionaOferta extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/ofertasLaborales/seleccionarOfertasVencidasConfirmadas.jsp").forward(request, response);
 			}
 		
-		}
+		}else {request.getRequestDispatcher("/WEB-INF/ofertasLaborales/seleccionarOfertasVencidasConfirmadas.jsp").forward(request, response);}
 		
 	}
 
