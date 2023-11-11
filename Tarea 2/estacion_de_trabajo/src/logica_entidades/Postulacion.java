@@ -5,19 +5,38 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataPostulacion;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
+@Entity
+@Table(name = "POSTULACION")
 public class Postulacion {
-
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	//Atributos
 	private LocalDate fecha;
 	private String curri;
 	private String motivacion;
+	
+	@ManyToOne
+    @JoinColumn(name = "POSTULANTE_ID", nullable = false)
 	private Postulante post;
+	
+	@ManyToOne
+	@JoinColumn(name = "OFERTA_LABORAL_ID", nullable = false)
 	private OfertaLaboral ofer;
 	private String video;
 	

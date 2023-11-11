@@ -8,7 +8,7 @@ import java.util.Iterator;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataUsuario;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,6 +21,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToOne;
 
 @XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -47,6 +48,12 @@ public class Usuario {
     
 	@Column(nullable = false, name = "Email")
     private String email;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private Empresa empresa;
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private Postulante postulante;
     
 	@Transient
 	private String psw;

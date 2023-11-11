@@ -5,12 +5,21 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataOferta;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
+@Entity
+@Table(name = "OFERTA_LABORAL")
 public class OfertaLaboral {
 	
 	//estado de oferta
@@ -21,7 +30,9 @@ public class OfertaLaboral {
         FINALIZADA
     }
 	 //atributos de la oferta laboral
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 	private String nombre;
 	private String descripcion;
 	private String ciudad;
@@ -38,8 +49,9 @@ public class OfertaLaboral {
 	private LocalDate fechaFinalizada;
 	
 	//Links de oferta
-		
+	@OneToMany(mappedBy = "ofertaLaboral", cascade = CascadeType.ALL, orphanRemoval = true)
 	private ArrayList<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();
+	
 	private Empresa empresaAsociada;
 	private TipoPublicacion tipoDeOferta;
 	private ArrayList<KeyWord> palabrasClave = new ArrayList<>();;
