@@ -16,7 +16,7 @@
 			<property name="jakarta.persistence.jdbc.driver"
 				value="org.hsqldb.jdbcDriver" />
 			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:hsqldb:file:TurismoDB;shutdown=true" />
+				value="jdbc:hsqldb:file:TrabajoUYDB;shutdown=true" />
 			<property name="jakarta.persistence.jdbc.user" value="sa" />
 			<property name="jakarta.persistence.jdbc.password" value="" />
 			<property name="eclipselink.ddl-generation"
