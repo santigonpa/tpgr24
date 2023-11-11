@@ -18,11 +18,13 @@ public class ManejadorOferta implements IManejadorOferta{
 
 	private static ManejadorOferta instancia;
 	private HashMap<String, OfertaLaboral> ofertasLaborales;
+	private HashMap<String, OfertaLaboral> ofertasFinalizadas;
 	private HashMap<String, KeyWord> keywordsTotales;
 	private	ArrayList<Postulacion> postulaciones;
 	
 	private ManejadorOferta() {
 		this.ofertasLaborales = new HashMap<String, OfertaLaboral>();
+		this.ofertasFinalizadas = new HashMap<String, OfertaLaboral>();
 		this.keywordsTotales = new HashMap<String, KeyWord>();
 		this.postulaciones = new ArrayList<Postulacion>();
 	}
@@ -93,17 +95,16 @@ public class ManejadorOferta implements IManejadorOferta{
 		return ofer != null;
 	}
 	
-	public ArrayList<DataOferta> getOfertas(){
-			
-			ArrayList<DataOferta> res = new ArrayList<>();
-			HashMap<String, OfertaLaboral> ofer = this.ofertasLaborales;
-			if (!ofer.isEmpty()) {
-				for (Map.Entry<String, OfertaLaboral> entry : ofer.entrySet()) {
-				    res.add(entry.getValue().getDataOferta());
-				}
+	public ArrayList<DataOferta> getOfertas(){	
+		ArrayList<DataOferta> res = new ArrayList<>();
+		HashMap<String, OfertaLaboral> ofer = this.ofertasLaborales;
+		if (!ofer.isEmpty()) {
+			for (Map.Entry<String, OfertaLaboral> entry : ofer.entrySet()) {
+			    res.add(entry.getValue().getDataOferta());
 			}
-			return res;
 		}
+		return res;
+	}
 	
 	public DataOferta getDataOferta(String nombre) {
 		DataOferta res = this.obtenerOferta(nombre).getDataOferta();
@@ -146,7 +147,32 @@ public class ManejadorOferta implements IManejadorOferta{
 	public void finalizarOferta(String oferta) {
 		OfertaLaboral ofer = this.obtenerOferta(oferta);
 		ofer.setEstado(EstadoOferta.FINALIZADA);
+		this.ofertasFinalizadas.put(oferta, ofer);
 	}
 	
-	} 
+	public ArrayList<OfertaLaboral> getOfertasFinalizadas(){	
+		ArrayList<OfertaLaboral> res = new ArrayList<>();
+		HashMap<String, OfertaLaboral> oferFin = this.ofertasFinalizadas;
+		
+		if (!oferFin.isEmpty()) {
+			for (Map.Entry<String, OfertaLaboral> entry : oferFin.entrySet()) {
+			    res.add(entry.getValue());
+			}
+		}
+		return res;
+	}
+	
+	public ArrayList<DataOferta> getDataOfertasFinalizadas(){
+		ArrayList<DataOferta> res = new ArrayList<>();
+		HashMap<String, OfertaLaboral> oferFin = this.ofertasFinalizadas;
+		
+		if (!oferFin.isEmpty()) {
+			for (Map.Entry<String, OfertaLaboral> entry : oferFin.entrySet()) {
+			    res.add(entry.getValue().getDataOferta());
+			}
+		}
+		return res;
+	}
+	
+} 
 

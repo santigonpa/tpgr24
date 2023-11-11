@@ -37,6 +37,7 @@ public interface IManejadorOferta {
 	
 	public abstract void finalizarOferta(String oferta);
 
+	public abstract ArrayList<OfertaLaboral> getOfertasFinalizadas();
 	
-
+	public abstract ArrayList<DataOferta> getDataOfertasFinalizadas();
 }
