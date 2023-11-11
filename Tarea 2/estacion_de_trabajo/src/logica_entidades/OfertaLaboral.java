@@ -6,12 +6,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataOferta;
@@ -33,28 +37,61 @@ public class OfertaLaboral {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+	
+	@Column(unique = true, nullable = false, name = "nombre")
 	private String nombre;
+	
+	@Column(unique = true, name = "Descripcion")
 	private String descripcion;
+	
+	@Column(unique = true, name = "Ciudad")
 	private String ciudad;
+	
+	@Column(unique = true, name = "Departamento")
 	private String departamento;
-	private LocalTime horaInicio; // horario de trabajo asociado - mejor usar la libreria, pase de DataHorario
+	
+	@Column(unique = true, name = "HoraInicio")
+	private LocalTime horaInicio;
+
+	@Column(unique = true, name = "HoraFin")
 	private LocalTime horaFin;
+	
+	@Column(unique = true, name = "Remuneracion")
 	private int remuneracion;
+	
+	@Column(unique = true, name = "Costo")
 	private int costoDeOfertaLaboral; 
+	
+	@Column(unique = true, name = "Fecha_Alta")
 	private LocalDate fechaDeAlta; // la del momento del alta
+	
+	@Column(unique = true, name = "Fecha_Baja")
 	private LocalDate fechaDeFinalizacion = null; // la fecha es null hasta que se finalice la oferta
+	
+	@Transient
 	private EstadoOferta estado;
+	
+	@Transient
 	private byte[] imagen;
+	
+	@Column(unique = true, name = "Paquete")
 	private String tipoDePago;
+	
+	//en esta no se si persistirla o no
 	private ArrayList<String> ordenPostulaciones = new ArrayList<>();
-	private LocalDate fechaFinalizada;
 	
 	//Links de oferta
 	@OneToMany(mappedBy = "ofertaLaboral", cascade = CascadeType.ALL, orphanRemoval = true)
 	private ArrayList<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();
 	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "EMPRESA_ID", nullable = false)
 	private Empresa empresaAsociada;
+	
+	@Column(unique = true, name = "Tipo_Publicacion")
 	private TipoPublicacion tipoDeOferta;
+	
+	@Transient
 	private ArrayList<KeyWord> palabrasClave = new ArrayList<>();;
 	//private DataOferta dataOferta;
 	
@@ -94,7 +131,7 @@ public class OfertaLaboral {
 	}
 	
 	public void setFechaFin(LocalDate fFin) {
-		this.fechaFinalizada = fFin;
+		this.fechaDeFinalizacion = fFin;
 	}
 	
 	public void setDescripcion(String desc) {
@@ -169,7 +206,7 @@ public class OfertaLaboral {
 	//getters
 	
 	public LocalDate getFechaFin() {
-		return this.fechaFinalizada;
+		return this.fechaDeFinalizacion;
 	}
 	
 	public TipoPublicacion getTipoDeOferta() {

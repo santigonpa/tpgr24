@@ -15,6 +15,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -40,7 +41,7 @@ public class Empresa extends Usuario{
 	@JoinColumn(name="USUARIO_ID", nullable = true, unique = true)
 	private Usuario user;
     
-	@Transient
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, orphanRemoval = true)
     private HashMap<String, OfertaLaboral> ofertas = new HashMap<String, OfertaLaboral>();
     
 	@Transient
