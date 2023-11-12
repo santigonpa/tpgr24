@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Config {
 
-    public static Properties conf;
+    private static Properties conf;
     private static boolean seCargoConfiguracion = false;
     private static final String nombreArchivoConfig = "config.properties";
     private static final String path = System.getProperty("user.dir") + File.separator + nombreArchivoConfig;
@@ -43,8 +43,8 @@ public class Config {
 
             conf = new Properties();
             File configFileHome = new File(path);
-            try (InputStream s = Files.newInputStream(configFileHome.toPath())) {
-                conf.load(s);
+            try (InputStream str = Files.newInputStream(configFileHome.toPath())) {
+                conf.load(str);
             } catch (IOException e) {
                 e.printStackTrace();
             }

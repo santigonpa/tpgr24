@@ -68,9 +68,9 @@ public class ControladorOferta implements IControladorOferta {
             throws  IOException {
 		byte[] byteArray = null;
         try {
-                File f = new File("img/" + name);
+                File file = new File("img/" + name);
                 @SuppressWarnings("resource")
-				FileInputStream streamer = new FileInputStream(f);
+				FileInputStream streamer = new FileInputStream(file);
                 byteArray = new byte[streamer.available()];
                 streamer.read(byteArray);
         } catch (IOException e) {

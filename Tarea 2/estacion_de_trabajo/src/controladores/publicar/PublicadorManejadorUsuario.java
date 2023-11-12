@@ -62,7 +62,7 @@ public class PublicadorManejadorUsuario {
     }
 
     @WebMethod
-    public void compraPaquete(Paquete paq, String empresa, String fAlta, String fVen) {
+    public void CompraPaquete(Paquete paq, String empresa, String fAlta, String fVen) {
     	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate fechaA = LocalDate.parse(fAlta, dateFormatter);
 		LocalDate fechaV = LocalDate.parse(fVen, dateFormatter);
@@ -70,7 +70,7 @@ public class PublicadorManejadorUsuario {
     }
 
     @WebMethod
-    public void compraDePaquete(String paq, String empresa, String fAlta) {	
+    public void CompraDePaquete(String paq, String empresa, String fAlta) {	
         manejadorUsuario.compraDePaquete(paq, empresa, fAlta);
     }
     
