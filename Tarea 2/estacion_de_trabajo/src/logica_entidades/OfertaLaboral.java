@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,11 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import logica_datatypes.DataOferta;
 
-@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 @Table(name = "OFERTA_LABORAL")
@@ -35,8 +32,9 @@ public class OfertaLaboral {
     }
 	 //atributos de la oferta laboral
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@GeneratedValue
+	private int id;
+
 	
 	@Column(unique = true, nullable = false, name = "nombre")
 	private String nombre;
@@ -74,18 +72,16 @@ public class OfertaLaboral {
 	@Transient
 	private byte[] imagen;
 	
-	@Transient
-	private LocalDate fechaCalif;
-	
 	@Column(unique = true, name = "Paquete")
 	private String tipoDePago;
 	
 	//en esta no se si persistirla o no
 	private ArrayList<String> ordenPostulaciones = new ArrayList<>();
 	
-	//Links de oferta
+	// En la clase OfertaLaboral
 	@OneToMany(mappedBy = "ofertaLaboral", cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();
+	private List<Postulacion> postulacionesSobreLaOferta = new ArrayList<>();
+
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "EMPRESA_ID", nullable = false)
@@ -103,40 +99,12 @@ public class OfertaLaboral {
 	public OfertaLaboral() {
 	}
 	
-	public DataOferta getDataOferta() {
-		DataOferta dataOfer = new DataOferta();
-        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDateCalif = this.fechaCalif.format(formatterFecha);
-        String formattedDate = this.fechaDeAlta.format(formatterFecha);
-        String formattedTimeHoraFin = this.horaFin.format(formatterHora);
-        String formattedTimeHoraInicio = this.horaInicio.format(formatterHora);
-		dataOfer.setCiudad(this.ciudad);
-		dataOfer.setCostoDeOfertaLaboral(this.costoDeOfertaLaboral);
-		dataOfer.setDepartamento(this.departamento);
-		dataOfer.setDescripcion(this.descripcion);
-		dataOfer.setEmpresa(this.empresaAsociada.getNickName());
-		dataOfer.setEstado(this.estado);
-		dataOfer.setFechaDeAlta(formattedDate);
-		dataOfer.setHoraFin(formattedTimeHoraFin);
-		dataOfer.setHoraInicio(formattedTimeHoraInicio);
-		dataOfer.setImagen(this.imagen);
-		dataOfer.setTipoDePago(this.tipoDePago);
-		dataOfer.setRemuneracion(this.remuneracion);
-		dataOfer.setNombre(this.nombre);
-		dataOfer.setFechaCalif(formattedDateCalif);
-		//dataOfer.setKeyWords(this.palabrasClave);
-		return dataOfer;
-	}
+
 	
 	//setters
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	
-	public void setFechaCalificacion(LocalDate fFin) {
-		this.fechaCalif= fFin;
 	}
 	
 	public void setFechaFin(LocalDate fFin) {
@@ -202,7 +170,7 @@ public class OfertaLaboral {
 
 	
 	public void setEstado(EstadoOferta estado) {
-		if (estado == EstadoOferta.FINALIZADA) {
+		if(estado == EstadoOferta.FINALIZADA) {
 			this.fechaDeFinalizacion = LocalDate.now(); //si la oferta se finaliza se guarda la fecha de finalizacion
 		}
 		this.estado = estado;
@@ -216,10 +184,6 @@ public class OfertaLaboral {
 	
 	public LocalDate getFechaFin() {
 		return this.fechaDeFinalizacion;
-	}
-	
-	public LocalDate getFechaCalificacion() {
-		return this.fechaCalif;
 	}
 	
 	public TipoPublicacion getTipoDeOferta() {
@@ -308,7 +272,7 @@ public class OfertaLaboral {
 	}
 	
 	public ArrayList<Postulacion> getPostulaciones(){
-		return this.postulacionesSobreLaOferta;
+		return (ArrayList<Postulacion>) this.postulacionesSobreLaOferta;
 	}
 	
 	public boolean existeLaPostulacion(String postulante) {

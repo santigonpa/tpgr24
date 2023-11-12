@@ -1,6 +1,7 @@
 package logica_entidades;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -8,37 +9,42 @@ import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import logica_datatypes.DataPostulacion;
-
-@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 @Table(name = "POSTULACION")
-public class Postulacion {
+@IdClass(PostulacionId.class)
+public class Postulacion implements Serializable {
+
+	  @Id
+	    @ManyToOne
+	    @JoinColumn(name = "OFERTA_LABORAL_ID", nullable = false)
+	    private OfertaLaboral ofertaLaboral;
+
+	    @Id
+	    @ManyToOne
+	    @JoinColumn(name = "POSTULANTE_ID", nullable = false)
+	    private Postulante postulante;
 	
 	//Atributos    
 	
-	@Column(nullable = false, name = "Fecha de postulacion", columnDefinition = "DATE")
+	@Column(nullable = false, name = "Fecha_de_postulacion", columnDefinition = "DATE")
 	private LocalDate fecha;
 	@Column(nullable = false, name = "Cv")
 	private String curri;
 	@Column(nullable = false, name = "Motivacion")
 	private String motivacion;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "POSTULANTE_ID", nullable = false)
-	private Postulante post;
-	
-	@ManyToOne
-	@JoinColumn(name = "OFERTA_LABORAL_ID", nullable = false)
-	private OfertaLaboral ofer;
-    @Transient
+
+    
+	@Transient
 	private String video;
 	
 	//Constructor
@@ -60,11 +66,11 @@ public class Postulacion {
 	}
 	
 	public void setPost(Postulante postu) {
-		this.post = postu;
+		this.postulante = postu;
 	}
 	
 	public void setOfer(OfertaLaboral ofer) {
-		this.ofer = ofer;
+		this.ofertaLaboral = ofer;
 	}
 	//getters
 		public String getCV() {
@@ -80,37 +86,26 @@ public class Postulacion {
 		}
 		
 		public Postulante getPostulante() {
-			return post;
+			return postulante;
 		}
 		
 		public String getNickPostulante() {
-			return post.getNickName();
+			return postulante.getNickName();
 		}
 		
 		public String getNombrePostulante() {
-			return post.getNombre();
+			return postulante.getNombre();
 		}
 		
 		public OfertaLaboral getOferta() {
-			return this.ofer;
+			return this.ofertaLaboral;
 		}
 		
 		public String getNombreOfer() {
-			return ofer.getNombreOferta();
+			return ofertaLaboral.getNombreOferta();
 		}
 		
-		public DataPostulacion getDTPostulacion() {
-			DataPostulacion DtPost = new DataPostulacion();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	        String formattedDate = this.fecha.format(formatter);
-			DtPost.setCurri(this.curri);
-			DtPost.setMotivacion(this.motivacion);
-			DtPost.setFecha(formattedDate);
-			DtPost.setNickPostulante(this.post.getNickName());
-			DtPost.setNombreOferta(this.ofer.getNombreOferta());
-			DtPost.setVideo(this.getVideo());
-			return DtPost;
-		}
+
 		
 		//SI QUEREMOS QUE ANDEN ESTOS METODOS EN OTRAS CLASES HAY QUE IMPLEMENTARLOS ASI Y FACILITAN BASTANTE LAS COSAS
 		@Override
@@ -125,13 +120,13 @@ public class Postulacion {
 	        return Objects.equals(fecha, that.fecha) &&
 	               Objects.equals(curri, that.curri) &&
 	               Objects.equals(motivacion, that.motivacion) &&
-	               Objects.equals(post, that.post) &&
-	               Objects.equals(ofer, that.ofer);
+	               Objects.equals(postulante, that.postulante) &&
+	               Objects.equals(ofertaLaboral, that.ofertaLaboral);
 	    }
 
 	    @Override
 	    public int hashCode() {
-	        return Objects.hash(fecha, curri, motivacion, post, ofer);
+	        return Objects.hash(fecha, curri, motivacion, postulante, ofertaLaboral);
 	    }
 
 		public String getVideo() {

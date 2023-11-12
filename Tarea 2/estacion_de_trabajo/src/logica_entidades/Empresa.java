@@ -2,31 +2,26 @@ package logica_entidades;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-
+import java.util.List;
+import java.util.Map;
 import java.time.LocalDate;
 
-import logica_datatypes.DataEmpresa;
-import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.OfertaLaboral.EstadoOferta;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-
-@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
-@Table(name = "EMPRESA")
-@PrimaryKeyJoinColumn(name = "EMPRESA_ID")
-public class Empresa extends Usuario{
+@DiscriminatorValue("EMPRESA")
+public class Empresa extends Usuario {
 	//Atributos
     @Column(nullable = false, name = "Descripcion")
     private String descripcion;
@@ -37,12 +32,17 @@ public class Empresa extends Usuario{
     @Transient
 	private CompraPaquete compra;
     
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="USUARIO_ID", nullable = true, unique = true)
-	private Usuario user;
+    @MapsId
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "USUARIO_ID", nullable = true, unique = true)
+    private Usuario user;
     
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private HashMap<String, OfertaLaboral> ofertas = new HashMap<String, OfertaLaboral>();
+    @SuppressWarnings("rawtypes")
+    @OneToMany(mappedBy = "empresaAsociada", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OfertaLaboral> ofertasList = new ArrayList<>();
+
+    @Transient // Esto evita que JPA persista este campo
+    private HashMap<String, OfertaLaboral> ofertas = new HashMap<>();
     
 	@Transient
     private HashMap<String, Paquete> paquetes = new HashMap<String, Paquete>();
@@ -108,42 +108,10 @@ public class Empresa extends Usuario{
 		return this.paquetes;
 	}
 	
-	public ArrayList<DataTipoPublicacion> getPublicaciones(){
-		if (this.tienePaqueteAsociado()) {
-			
-			CompraPaquete paquete = this.compra;
-			ArrayList<TipoPublicacion> tipoPub = paquete.getTipoDePublicacionesDisp();
-			ArrayList<DataTipoPublicacion> res = new ArrayList<>();
-			if (tipoPub != null) {
-				if (!tipoPub.isEmpty()) {
-					for (TipoPublicacion tipo : tipoPub) {
-					    res.add(tipo.getDTTipoPublicacion());
-					}
-				}	
-			}
-			return res;			
-		}else {
-			return null;
-		}
-	}
-
-
-	public DataEmpresa getDTEmpresa() {
-		DataEmpresa DtEmp = new DataEmpresa();
-		DtEmp.setApellido(this.getApellido());
-		DtEmp.setDescripcion(this.getDescripcion());
-		DtEmp.setEmail(this.getEmail());
-		DtEmp.setImagen(this.getImagen());
-		DtEmp.setLinkWeb(this.getLinkWeb());
-		DtEmp.setNickName(this.getNickName());
-		DtEmp.setNombre(this.getNombre());
-		DtEmp.setPsw(this.getPsw());
-		return DtEmp;
-	}
 	
 	public HashMap<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-        HashMap<String, OfertaLaboral> mapa = this.getOfertas();
+        HashMap<String,OfertaLaboral> mapa = this.getOfertas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
@@ -155,7 +123,7 @@ public class Empresa extends Usuario{
 	
 	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-		HashMap<String, OfertaLaboral> mapa = this.getOfertas();
+		HashMap<String,OfertaLaboral> mapa = this.getOfertas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
@@ -164,13 +132,13 @@ public class Empresa extends Usuario{
 	    }
 	    return res;
 	}
-	public HashMap<String, OfertaLaboral> getOfertasFinalizadas(){
-		HashMap<String, OfertaLaboral> res = new HashMap<>();
-		HashMap<String, OfertaLaboral> mapa = this.ofertas;
+	public List<OfertaLaboral> getOfertasFinalizadas(){
+		List<OfertaLaboral> res = new ArrayList<>();
+		HashMap<String,OfertaLaboral> mapa = this.ofertas;
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.FINALIZADA)) {
-	    			res.put(ofertaNombre, oferta);
+	    			res.add(oferta);
 	    		}
 	    }
 	    return res;
@@ -178,7 +146,7 @@ public class Empresa extends Usuario{
 	}
 	public HashMap<String, OfertaLaboral> getOfertasAprobadasYVencidasDeEmpresa(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-		HashMap<String, OfertaLaboral> mapa = this.getOfertasVencidas();
+		HashMap<String,OfertaLaboral> mapa = this.getOfertasVencidas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
@@ -204,6 +172,10 @@ public class Empresa extends Usuario{
 	
 	public void setOfertas(HashMap<String, OfertaLaboral> ofer) {
 		this.ofertas = ofer;
+		for (Map.Entry<String, OfertaLaboral> entry : ofertas.entrySet()) {
+            OfertaLaboral oferta = entry.getValue();
+            ofertasList.add(oferta);
+        }
 	}
 	
 	public void setPaquetes(HashMap<String, Paquete> paq) {
@@ -248,7 +220,7 @@ public class Empresa extends Usuario{
 
 	
 	
-	public void comprarPaquete(Paquete paq, LocalDate fechaVenc, LocalDate fechaDeAlta, int Costo) {
+	public void comprarPaquete(Paquete paq, LocalDate fechaVenc,LocalDate fechaDeAlta, int Costo) {
 		CompraPaquete compraPaq = new CompraPaquete();
 		compraPaq.setFechaCompr(fechaDeAlta);
 		compraPaq.setFechaVenc(fechaVenc);
@@ -257,5 +229,6 @@ public class Empresa extends Usuario{
 	}
 	public void agregarOfertas(String nombreOf, OfertaLaboral ofer) {
 		this.ofertas.put(nombreOf, ofer);
+		this.ofertasList.add(ofer);
 	}
 }
