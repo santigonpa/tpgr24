@@ -30,6 +30,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="empresa" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         <element name="tipoDePago" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaFin" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="fechaCalif" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -52,7 +54,9 @@ import jakarta.xml.bind.annotation.XmlType;
     "estado",
     "empresa",
     "imagen",
-    "tipoDePago"
+    "tipoDePago",
+    "fechaFin",
+    "fechaCalif"
 })
 public class DataOferta {
 
@@ -70,6 +74,8 @@ public class DataOferta {
     protected String empresa;
     protected byte[] imagen;
     protected String tipoDePago;
+    protected String fechaFin;
+    protected String fechaCalif;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -363,6 +369,54 @@ public class DataOferta {
      */
     public void setTipoDePago(String value) {
         this.tipoDePago = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaFin.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaFin.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaFin(String value) {
+        this.fechaFin = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaCalif.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFechaCalif() {
+        return fechaCalif;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaCalif.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFechaCalif(String value) {
+        this.fechaCalif = value;
     }
 
 }

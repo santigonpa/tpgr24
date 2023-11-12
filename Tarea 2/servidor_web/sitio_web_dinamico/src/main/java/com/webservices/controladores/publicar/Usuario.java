@@ -20,10 +20,13 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
+ *         <element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="nickName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         <element name="empresa" type="{http://publicar.controladores/}empresa" minOccurs="0"/>
+ *         <element name="postulante" type="{http://publicar.controladores/}postulante" minOccurs="0"/>
  *         <element name="psw" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         <element name="usuariosQueMeSiguen" type="{http://publicar.controladores/}usuario" maxOccurs="unbounded" minOccurs="0"/>
@@ -38,31 +41,53 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "usuario", propOrder = {
+    "id",
     "nickName",
     "nombre",
     "apellido",
     "email",
+    "empresa",
+    "postulante",
     "psw",
     "imagen",
     "usuariosQueMeSiguen",
     "usuariosQueYoSigo"
 })
 @XmlSeeAlso({
-    Postulante.class,
-    Empresa.class
+    Empresa.class,
+    Postulante.class
 })
-public class Usuario {
+public abstract class Usuario {
 
+    protected int id;
     protected String nickName;
     protected String nombre;
     protected String apellido;
     protected String email;
+    protected Empresa empresa;
+    protected Postulante postulante;
     protected String psw;
     protected byte[] imagen;
     @XmlElement(nillable = true)
     protected List<Usuario> usuariosQueMeSiguen;
     @XmlElement(nillable = true)
     protected List<Usuario> usuariosQueYoSigo;
+
+    /**
+     * Obtiene el valor de la propiedad id.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Define el valor de la propiedad id.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad nickName.
@@ -158,6 +183,54 @@ public class Usuario {
      */
     public void setEmail(String value) {
         this.email = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad empresa.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Empresa }
+     *     
+     */
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    /**
+     * Define el valor de la propiedad empresa.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Empresa }
+     *     
+     */
+    public void setEmpresa(Empresa value) {
+        this.empresa = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad postulante.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Postulante }
+     *     
+     */
+    public Postulante getPostulante() {
+        return postulante;
+    }
+
+    /**
+     * Define el valor de la propiedad postulante.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Postulante }
+     *     
+     */
+    public void setPostulante(Postulante value) {
+        this.postulante = value;
     }
 
     /**

@@ -33,7 +33,7 @@ public class PublicadorManejadorOfertasService
         URL url = null;
         WebServiceException e = null;
         try {
-        	url = new URL(Config.getWebServiceBaseURL() + "/ManejadorOferta?wsdl");
+            url = new URL(Config.getWebServiceBaseURL() + "/ManejadorOferta?wsdl");//new URL("http://localhost:9128/ManejadorOferta?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

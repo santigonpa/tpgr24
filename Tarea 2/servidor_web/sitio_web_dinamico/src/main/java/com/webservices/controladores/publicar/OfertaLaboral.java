@@ -20,6 +20,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
+ *         <element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         <element name="ciudad" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -29,6 +30,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="remuneracion" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="costoDeOfertaLaboral" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         <element name="fechaDeAlta" type="{http://publicar.controladores/}localDate" minOccurs="0"/>
+ *         <element name="fechaDeFinalizacion" type="{http://publicar.controladores/}localDate" minOccurs="0"/>
  *         <element name="estado" type="{http://publicar.controladores/}estadoOferta" minOccurs="0"/>
  *         <element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         <element name="tipoDePago" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -37,6 +39,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="empresaAsociada" type="{http://publicar.controladores/}empresa" minOccurs="0"/>
  *         <element name="tipoDeOferta" type="{http://publicar.controladores/}tipoPublicacion" minOccurs="0"/>
  *         <element name="palabrasClave" type="{http://publicar.controladores/}keyWord" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="fechaCalif" type="{http://publicar.controladores/}localDate" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -47,6 +50,7 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ofertaLaboral", propOrder = {
+    "id",
     "nombre",
     "descripcion",
     "ciudad",
@@ -56,6 +60,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "remuneracion",
     "costoDeOfertaLaboral",
     "fechaDeAlta",
+    "fechaDeFinalizacion",
     "estado",
     "imagen",
     "tipoDePago",
@@ -63,10 +68,12 @@ import jakarta.xml.bind.annotation.XmlType;
     "postulacionesSobreLaOferta",
     "empresaAsociada",
     "tipoDeOferta",
-    "palabrasClave"
+    "palabrasClave",
+    "fechaCalif"
 })
 public class OfertaLaboral {
 
+    protected int id;
     protected String nombre;
     protected String descripcion;
     protected String ciudad;
@@ -76,6 +83,7 @@ public class OfertaLaboral {
     protected int remuneracion;
     protected int costoDeOfertaLaboral;
     protected LocalDate fechaDeAlta;
+    protected LocalDate fechaDeFinalizacion;
     @XmlSchemaType(name = "string")
     protected EstadoOferta estado;
     protected byte[] imagen;
@@ -88,6 +96,23 @@ public class OfertaLaboral {
     protected TipoPublicacion tipoDeOferta;
     @XmlElement(nillable = true)
     protected List<KeyWord> palabrasClave;
+    protected LocalDate fechaCalif;
+
+    /**
+     * Obtiene el valor de la propiedad id.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Define el valor de la propiedad id.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -287,6 +312,30 @@ public class OfertaLaboral {
      */
     public void setFechaDeAlta(LocalDate value) {
         this.fechaDeAlta = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaDeFinalizacion.
+     * 
+     * @return
+     *     possible object is
+     *     {@link LocalDate }
+     *     
+     */
+    public LocalDate getFechaDeFinalizacion() {
+        return fechaDeFinalizacion;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaDeFinalizacion.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LocalDate }
+     *     
+     */
+    public void setFechaDeFinalizacion(LocalDate value) {
+        this.fechaDeFinalizacion = value;
     }
 
     /**
@@ -498,6 +547,30 @@ public class OfertaLaboral {
             palabrasClave = new ArrayList<>();
         }
         return this.palabrasClave;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaCalif.
+     * 
+     * @return
+     *     possible object is
+     *     {@link LocalDate }
+     *     
+     */
+    public LocalDate getFechaCalif() {
+        return fechaCalif;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaCalif.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LocalDate }
+     *     
+     */
+    public void setFechaCalif(LocalDate value) {
+        this.fechaCalif = value;
     }
 
 }

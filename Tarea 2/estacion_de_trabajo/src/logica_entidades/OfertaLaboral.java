@@ -10,7 +10,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,7 +19,6 @@ import jakarta.persistence.Transient;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import logica_datatypes.DataOferta;
-import logica_entidades.OfertaLaboral.EstadoOferta;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -101,7 +99,7 @@ public class OfertaLaboral {
 
 
 	@Transient
-	private LocalDate fechaCalif;
+	private LocalDate fechaCalif = null;
 
 	
 	// Operaciones
@@ -113,7 +111,12 @@ public class OfertaLaboral {
 		DataOferta dataOfer = new DataOferta();
         DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
         DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDateCalif = this.fechaCalif.format(formatterFecha);
+        
+        if(this.fechaCalif != null) {
+        	String formattedDateCalif = this.fechaCalif.format(formatterFecha);
+        	dataOfer.setFechaCalif(formattedDateCalif);
+        }
+      
         String formattedDate = this.fechaDeAlta.format(formatterFecha);
         String formattedTimeHoraFin = this.horaFin.format(formatterHora);
         String formattedTimeHoraInicio = this.horaInicio.format(formatterHora);
@@ -130,7 +133,7 @@ public class OfertaLaboral {
 		dataOfer.setTipoDePago(this.tipoDePago);
 		dataOfer.setRemuneracion(this.remuneracion);
 		dataOfer.setNombre(this.nombre);
-		dataOfer.setFechaCalif(formattedDateCalif);
+		
 		//dataOfer.setKeyWords(this.palabrasClave);
 		return dataOfer;
 	}

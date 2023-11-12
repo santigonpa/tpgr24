@@ -2,8 +2,6 @@ package logica_entidades;
 
 
 import logica_datatypes.DataPostulante;
-import logica_datatypes.WrapperArrayList;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -17,9 +15,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 
@@ -54,8 +49,8 @@ public class Postulante extends Usuario {
 	
 	//getters
 	
-	public WrapperArrayList getPostulaciones(){
-		return (WrapperArrayList) this.postulaciones;
+	public List<Postulacion> getPostulaciones(){
+		return  this.postulaciones;
 	}
 	
 	public LocalDate getNacimineto() {
@@ -112,8 +107,7 @@ public class Postulante extends Usuario {
 	} */
 	
 	public void agregarPostulacionAPostulante(Postulacion postulacion) {
-		@SuppressWarnings("unchecked")
-		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) ((WrapperArrayList) this.postulaciones).getLista();
+		List<Postulacion> postulaciones = this.postulaciones;
 		postulaciones.add(postulacion);
 	}
 	/*
@@ -126,8 +120,8 @@ public class Postulante extends Usuario {
 	} */
 	
 	public boolean estaPostulado(Postulacion postu) {
-		@SuppressWarnings("unchecked")
-		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) ((WrapperArrayList) this.postulaciones).getLista();
+		List<Postulacion> postulaciones = this.postulaciones;
+		
 		if (postulaciones.isEmpty()) {
 			return false;
 		}else {
@@ -140,8 +134,8 @@ public class Postulante extends Usuario {
 		return this.postulaciones;
 	}	*/
 	
-	public WrapperArrayList obtenerPostulaciones(){
-		return (WrapperArrayList) this.postulaciones;
+	public List<Postulacion> obtenerPostulaciones(){
+		return this.postulaciones;
 	}
 	/*
 	public Postulacion encontrarPostulacionPorNombreOferta(String nombreOfer) {
@@ -156,8 +150,8 @@ public class Postulante extends Usuario {
 	
 	public Postulacion encontrarPostulacionPorNombreOferta(String nombreOfer) {
 	    Postulacion pos = null;
-	    @SuppressWarnings("unchecked")
-		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) ((WrapperArrayList) this.postulaciones).getLista();
+	    
+		List<Postulacion> postulaciones = this.postulaciones;
 		for (Postulacion postulacion : postulaciones) {
 	        if (postulacion.getOferta().getNombreOferta().equals(nombreOfer)) {
 	            pos = postulacion; 

@@ -33,7 +33,7 @@ public class PublicadorManejadorPyTService
         URL url = null;
         WebServiceException e = null;
         try {
-        	url = new URL(Config.getWebServiceBaseURL() + "/ManejadorPaquetesYTiposPubli?wsdl");
+        	url = new URL(Config.getWebServiceBaseURL() + "/ManejadorPaquetesYTiposPubli?wsdl");//url = new URL("http://localhost:9128/ManejadorPaquetesYTiposPubli?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

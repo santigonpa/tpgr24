@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -158,9 +159,13 @@ public class ConsultaDeUsuario extends JInternalFrame {
                 	
                 	DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
             		Postulante pos = IMU.obtenerPostulante(selectedPostulante.getNickName());
-            		WrapperArrayList wrapper = pos.obtenerPostulaciones();
-            		@SuppressWarnings("unchecked")
-					ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) wrapper.getLista();
+            		List<Postulacion> wrapper = pos.obtenerPostulaciones();
+            		
+            		
+					ArrayList<Postulacion> postulaciones = new ArrayList<>();
+            		for(Postulacion postul : wrapper) {
+            			postulaciones.add(postul);
+            		}
             		//ArrayList<Postulacion> postulaciones = pos.obtenerPostulaciones() ;
             		
             	    if (postulaciones!= null) {

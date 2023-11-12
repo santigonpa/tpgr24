@@ -308,4 +308,14 @@
     <servlet-name>servletAltaOfertaLaboralPaquete</servlet-name>
     <url-pattern>/servletAltaOfertaLaboralPaquete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDescargaPDF</display-name>
+    <servlet-name>ServletDescargaPDF</servlet-name>
+    <servlet-class>com.controller.ServletDescargaPDF</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDescargaPDF</servlet-name>
+    <url-pattern>/ServletDescargaPDF</url-pattern>
+  </servlet-mapping>
 </web-app>

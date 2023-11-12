@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import jakarta.jws.WebMethod;
@@ -175,6 +176,7 @@ public class PublicadorManejadorUsuario {
     public  Postulante obtenerPostulante(String post) {
     	return manejadorUsuario.obtenerPostulante(post);
     }
+    /*
     @WebMethod
     public  Usuario obtenerUsuario(String user) {
     	Usuario usuario = manejadorUsuario.obtenerUsuario(user);
@@ -184,6 +186,8 @@ public class PublicadorManejadorUsuario {
     	}
     	return usuario;
     }
+    */
+    /*
     @WebMethod
     public  Usuario obtenerUsuarioPorEmail(String email) {
     	Usuario usuario =  manejadorUsuario.obtenerUsuarioPorEmail(email);
@@ -193,13 +197,12 @@ public class PublicadorManejadorUsuario {
     	}
     	return usuario;
     }
+    */
     
     @WebMethod
     public  WrapperArrayList obtenerDataPostulaciones(String nickName) { //obtiene las postulaciones del postulante nickName
     	Postulante usuario =  (Postulante) manejadorUsuario.obtenerUsuario(nickName);
-    	WrapperArrayList arregloPostulWrapper = usuario.getPostulaciones();
-    	@SuppressWarnings("unchecked")
-		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
+    	List<Postulacion> arregloPostul = usuario.getPostulaciones();
     	ArrayList<DataPostulacion> arregloDataPostu = new ArrayList<>();
     	for (Postulacion posActual : arregloPostul) {
     		arregloDataPostu.add(posActual.getDTPostulacion());
@@ -223,9 +226,7 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public WrapperArrayList obtenerDataOfertasDePostulaciones(String nickUser) { //son las ofertas a las que esta postulado nickUser
     	Postulante usuario =  (Postulante) manejadorUsuario.obtenerUsuario(nickUser);
-    	WrapperArrayList arregloPostulWrapper = usuario.getPostulaciones();
-    	@SuppressWarnings("unchecked")
-		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
+    	List<Postulacion> arregloPostul = usuario.getPostulaciones();
     	ArrayList<String> arregloDeOfertas = new ArrayList<>();
     	for (Postulacion postul : arregloPostul) {
     		String ofert = postul.getOferta().getNombreOferta();

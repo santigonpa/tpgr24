@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 
 import logica_entidades.CompraPaquete;
 
@@ -94,9 +95,12 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	IManejadorUsuario manejadorUsuario = fabrica.getInManejadorUsuario();
 	
 	Postulante post = (Postulante) manejadorUsuario.obtenerUsuario(usuario);
-	WrapperArrayList wrapper = post.obtenerPostulaciones();
-	@SuppressWarnings("unchecked")
-	ArrayList<Postulacion> res = (ArrayList<Postulacion>) wrapper.getLista();
+	
+	List<Postulacion> res1 = post.obtenerPostulaciones();
+	ArrayList<Postulacion> res = new ArrayList<>();
+	for(Postulacion pos : res1) {
+		res.add(pos);
+	}
 	return res;
 }
 

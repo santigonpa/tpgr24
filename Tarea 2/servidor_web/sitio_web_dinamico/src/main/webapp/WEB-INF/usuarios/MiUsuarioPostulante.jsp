@@ -352,6 +352,26 @@
 				    <p> </p>
 				    
 				    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombreOf %>" class="btn btn-dark">Ver más de la postulación</a>
+				    
+				    
+				    <% 
+				    
+				    WrapperArrayList wrap = puertoManejadorOfertas.getOrdenPostulantes(nombreOf);
+				    List<Object> ordenPostulantes = (List<Object>) wrap.getLista();
+				    ArrayList<String> ordenPostulaciones = new ArrayList<>();
+				    for(Object objetoPostu :ordenPostulantes){
+				    	String objString = (String) objetoPostu;
+				  		ordenPostulaciones.add(objString);
+				    }
+				    
+				    if(!ordenPostulaciones.isEmpty()){
+				    
+				    %>
+				    
+				    <a href="DescargaPDF?nombreOferta=<%= nombreOf %>&nombrePostulante=<%= nickUser %>" class="btn btn-dark">Descargar Resultado de Postulación</a>
+				    
+				    <% } %>
+				    
 				  </div>
 				</div>
 				<% } %>

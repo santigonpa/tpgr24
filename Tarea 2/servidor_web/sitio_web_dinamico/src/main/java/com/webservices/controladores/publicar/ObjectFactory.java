@@ -10,7 +10,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the controladores.publicar package. 
+ * generated in the publicar package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -31,7 +31,7 @@ public class ObjectFactory {
     private final static QName _YaExistePostulacionAOfertaException_QNAME = new QName("http://publicar.controladores/", "yaExistePostulacionAOfertaException");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: controladores.publicar
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: publicar
      * 
      */
     public ObjectFactory() {
@@ -218,26 +218,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Postulante }
-     * 
-     * @return
-     *     the new instance of {@link Postulante }
-     */
-    public Postulante createPostulante() {
-        return new Postulante();
-    }
-
-    /**
-     * Create an instance of {@link Usuario }
-     * 
-     * @return
-     *     the new instance of {@link Usuario }
-     */
-    public Usuario createUsuario() {
-        return new Usuario();
-    }
-
-    /**
      * Create an instance of {@link OfertaLaboral }
      * 
      * @return
@@ -265,6 +245,16 @@ public class ObjectFactory {
      */
     public CompraPaquete createCompraPaquete() {
         return new CompraPaquete();
+    }
+
+    /**
+     * Create an instance of {@link Postulante }
+     * 
+     * @return
+     *     the new instance of {@link Postulante }
+     */
+    public Postulante createPostulante() {
+        return new Postulante();
     }
 
     /**
