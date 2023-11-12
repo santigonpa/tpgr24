@@ -74,6 +74,9 @@ public class OfertaLaboral {
 	@Transient
 	private byte[] imagen;
 	
+	@Transient
+	private LocalDate fechaCalif;
+	
 	@Column(unique = true, name = "Paquete")
 	private String tipoDePago;
 	
@@ -104,6 +107,7 @@ public class OfertaLaboral {
 		DataOferta dataOfer = new DataOferta();
         DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
         DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDateCalif = this.fechaCalif.format(formatterFecha);
         String formattedDate = this.fechaDeAlta.format(formatterFecha);
         String formattedTimeHoraFin = this.horaFin.format(formatterHora);
         String formattedTimeHoraInicio = this.horaInicio.format(formatterHora);
@@ -120,6 +124,7 @@ public class OfertaLaboral {
 		dataOfer.setTipoDePago(this.tipoDePago);
 		dataOfer.setRemuneracion(this.remuneracion);
 		dataOfer.setNombre(this.nombre);
+		dataOfer.setFechaCalif(formattedDateCalif);
 		//dataOfer.setKeyWords(this.palabrasClave);
 		return dataOfer;
 	}
@@ -128,6 +133,10 @@ public class OfertaLaboral {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void setFechaCalificacion(LocalDate fFin) {
+		this.fechaCalif= fFin;
 	}
 	
 	public void setFechaFin(LocalDate fFin) {
@@ -207,6 +216,10 @@ public class OfertaLaboral {
 	
 	public LocalDate getFechaFin() {
 		return this.fechaDeFinalizacion;
+	}
+	
+	public LocalDate getFechaCalificacion() {
+		return this.fechaCalif;
 	}
 	
 	public TipoPublicacion getTipoDeOferta() {

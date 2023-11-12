@@ -23,6 +23,8 @@ public class DataOferta {
 	private String empresa;
 	private byte[] imagen;
 	private String tipoDePago;
+	private String fechaFin;
+	private String fechaCalif;
 	
 	//private ArrayList<KeyWord> palabrasClave;
 
@@ -177,6 +179,26 @@ public class DataOferta {
 	public String toString() {
         return this.getNombre(); // Devuelve el nombre de la oferta
     }
+
+
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+
+	public String getFechaCalif() {
+		return fechaCalif;
+	}
+
+
+	public void setFechaCalif(String fechaCalif) {
+		this.fechaCalif = fechaCalif;
+	}
 
 }
 

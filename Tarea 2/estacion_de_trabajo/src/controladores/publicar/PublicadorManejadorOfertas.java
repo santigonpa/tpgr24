@@ -18,6 +18,7 @@ import logica_manejadores.ManejadorOferta;
 import logica_manejadores.ManejadorUsuario;
 import utils.Config;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -184,6 +185,7 @@ public class PublicadorManejadorOfertas {
     @WebMethod 
     public void addOrdenPostulantes(WrapperArrayList wrapper, String nombreOferta) {
     	OfertaLaboral ofer = manejadorOferta.obtenerOferta(nombreOferta);
+    	ofer.setFechaCalificacion(LocalDate.now());
     	ArrayList<String> ret = new ArrayList<>();
     	
     	for (Object obj :wrapper.getLista() ) {
@@ -192,6 +194,14 @@ public class PublicadorManejadorOfertas {
     	}
     	
     	ofer.setOrdenPostulaciones(ret);
+    }
+    
+    @WebMethod 
+    public WrapperArrayList getOrdenPostulantes(String nombreOferta) {
+    	OfertaLaboral ofer = manejadorOferta.obtenerOferta(nombreOferta);
+    	ArrayList<String> orden = ofer.getOrdenPostulaciones();
+    	WrapperArrayList ret = new WrapperArrayList(orden);
+    	return ret;
     }
     
     @WebMethod 
