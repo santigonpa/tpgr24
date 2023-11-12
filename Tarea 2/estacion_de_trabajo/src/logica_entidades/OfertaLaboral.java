@@ -17,7 +17,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import logica_datatypes.DataOferta;
+import logica_entidades.OfertaLaboral.EstadoOferta;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 @Table(name = "OFERTA_LABORAL")
@@ -93,18 +98,51 @@ public class OfertaLaboral {
 	@Transient
 	private ArrayList<KeyWord> palabrasClave = new ArrayList<>();;
 	//private DataOferta dataOferta;
+
+
+	@Transient
+	private LocalDate fechaCalif;
+
 	
 	// Operaciones
 	
 	public OfertaLaboral() {
 	}
 	
-
+	public DataOferta getDataOferta() {
+		DataOferta dataOfer = new DataOferta();
+        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatterFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDateCalif = this.fechaCalif.format(formatterFecha);
+        String formattedDate = this.fechaDeAlta.format(formatterFecha);
+        String formattedTimeHoraFin = this.horaFin.format(formatterHora);
+        String formattedTimeHoraInicio = this.horaInicio.format(formatterHora);
+		dataOfer.setCiudad(this.ciudad);
+		dataOfer.setCostoDeOfertaLaboral(this.costoDeOfertaLaboral);
+		dataOfer.setDepartamento(this.departamento);
+		dataOfer.setDescripcion(this.descripcion);
+		dataOfer.setEmpresa(this.empresaAsociada.getNickName());
+		dataOfer.setEstado(this.estado);
+		dataOfer.setFechaDeAlta(formattedDate);
+		dataOfer.setHoraFin(formattedTimeHoraFin);
+		dataOfer.setHoraInicio(formattedTimeHoraInicio);
+		dataOfer.setImagen(this.imagen);
+		dataOfer.setTipoDePago(this.tipoDePago);
+		dataOfer.setRemuneracion(this.remuneracion);
+		dataOfer.setNombre(this.nombre);
+		dataOfer.setFechaCalif(formattedDateCalif);
+		//dataOfer.setKeyWords(this.palabrasClave);
+		return dataOfer;
+	}
 	
 	//setters
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void setFechaCalificacion(LocalDate fFin) {
+		this.fechaCalif= fFin;
 	}
 	
 	public void setFechaFin(LocalDate fFin) {
@@ -170,7 +208,7 @@ public class OfertaLaboral {
 
 	
 	public void setEstado(EstadoOferta estado) {
-		if(estado == EstadoOferta.FINALIZADA) {
+		if (estado == EstadoOferta.FINALIZADA) {
 			this.fechaDeFinalizacion = LocalDate.now(); //si la oferta se finaliza se guarda la fecha de finalizacion
 		}
 		this.estado = estado;
@@ -184,6 +222,10 @@ public class OfertaLaboral {
 	
 	public LocalDate getFechaFin() {
 		return this.fechaDeFinalizacion;
+	}
+	
+	public LocalDate getFechaCalificacion() {
+		return this.fechaCalif;
 	}
 	
 	public TipoPublicacion getTipoDeOferta() {

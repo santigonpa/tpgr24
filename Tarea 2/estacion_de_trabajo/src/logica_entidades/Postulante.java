@@ -1,6 +1,9 @@
 package logica_entidades;
 
 
+import logica_datatypes.DataPostulante;
+import logica_datatypes.WrapperArrayList;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,7 +13,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
@@ -18,9 +20,10 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import java.util.ArrayList;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 @DiscriminatorValue("POSTULANTE")
@@ -43,8 +46,7 @@ public class Postulante extends Usuario {
     @OneToMany(mappedBy = "postulante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Postulacion> postulaciones = new ArrayList<>();
 
-    
-   
+  	
 	public Postulante(){
 		super();
 		
@@ -52,7 +54,9 @@ public class Postulante extends Usuario {
 	
 	//getters
 	
-
+	public WrapperArrayList getPostulaciones(){
+		return (WrapperArrayList) this.postulaciones;
+	}
 	
 	public LocalDate getNacimineto() {
 		return nacimiento;
@@ -71,7 +75,22 @@ public class Postulante extends Usuario {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-
+	
+	public DataPostulante getDTPostulante() {
+		DataPostulante DtPost = new DataPostulante();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = this.nacimiento.format(formatter);
+		DtPost.setNickName(this.getNickName());
+		DtPost.setNombre(this.getNombre());
+		DtPost.setApellido(this.getApellido());
+		DtPost.setEmail(this.getEmail());
+		DtPost.setNacimiento(formattedDate);
+		DtPost.setNacionalidad(nacionalidad);
+		DtPost.setPsw(this.getPsw());
+		DtPost.setImagen(this.getImagen());
+		return DtPost;
+	}
+	
 	//public void agregarPostulacionAPostulante(Postulacion post){
 		//String nombreOfer = this.post.getNombreOferta();
 		
@@ -94,7 +113,7 @@ public class Postulante extends Usuario {
 	
 	public void agregarPostulacionAPostulante(Postulacion postulacion) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones;
+		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) ((WrapperArrayList) this.postulaciones).getLista();
 		postulaciones.add(postulacion);
 	}
 	/*
@@ -108,7 +127,7 @@ public class Postulante extends Usuario {
 	
 	public boolean estaPostulado(Postulacion postu) {
 		@SuppressWarnings("unchecked")
-		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones;
+		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) ((WrapperArrayList) this.postulaciones).getLista();
 		if (postulaciones.isEmpty()) {
 			return false;
 		}else {
@@ -121,8 +140,8 @@ public class Postulante extends Usuario {
 		return this.postulaciones;
 	}	*/
 	
-	public ArrayList obtenerPostulaciones(){
-		return (ArrayList) this.postulaciones;
+	public WrapperArrayList obtenerPostulaciones(){
+		return (WrapperArrayList) this.postulaciones;
 	}
 	/*
 	public Postulacion encontrarPostulacionPorNombreOferta(String nombreOfer) {
@@ -138,7 +157,7 @@ public class Postulante extends Usuario {
 	public Postulacion encontrarPostulacionPorNombreOferta(String nombreOfer) {
 	    Postulacion pos = null;
 	    @SuppressWarnings("unchecked")
-		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) this.postulaciones;
+		ArrayList<Postulacion> postulaciones = (ArrayList<Postulacion>) ((WrapperArrayList) this.postulaciones).getLista();
 		for (Postulacion postulacion : postulaciones) {
 	        if (postulacion.getOferta().getNombreOferta().equals(nombreOfer)) {
 	            pos = postulacion; 

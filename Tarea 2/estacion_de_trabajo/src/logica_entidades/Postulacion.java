@@ -9,14 +9,17 @@ import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import logica_datatypes.DataPostulacion;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 @Table(name = "POSTULACION")
@@ -46,7 +49,7 @@ public class Postulacion implements Serializable {
     
 	@Transient
 	private String video;
-	
+
 	//Constructor
 	public Postulacion() {
 	}
@@ -105,7 +108,18 @@ public class Postulacion implements Serializable {
 			return ofertaLaboral.getNombreOferta();
 		}
 		
-
+		public DataPostulacion getDTPostulacion() {
+			DataPostulacion DtPost = new DataPostulacion();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String formattedDate = this.fecha.format(formatter);
+			DtPost.setCurri(this.curri);
+			DtPost.setMotivacion(this.motivacion);
+			DtPost.setFecha(formattedDate);
+			DtPost.setNickPostulante(this.postulante.getNickName());
+			DtPost.setNombreOferta(this.ofertaLaboral.getNombreOferta());
+			DtPost.setVideo(this.getVideo());
+			return DtPost;
+		}
 		
 		//SI QUEREMOS QUE ANDEN ESTOS METODOS EN OTRAS CLASES HAY QUE IMPLEMENTARLOS ASI Y FACILITAN BASTANTE LAS COSAS
 		@Override
@@ -120,7 +134,7 @@ public class Postulacion implements Serializable {
 	        return Objects.equals(fecha, that.fecha) &&
 	               Objects.equals(curri, that.curri) &&
 	               Objects.equals(motivacion, that.motivacion) &&
-	               Objects.equals(postulante, that.postulante) &&
+	               Objects.equals(postulante, this.postulante) &&
 	               Objects.equals(ofertaLaboral, that.ofertaLaboral);
 	    }
 
@@ -138,3 +152,4 @@ public class Postulacion implements Serializable {
 		}
 	
 }
+

@@ -1,20 +1,20 @@
 package logica_entidades;
 
-
+import jakarta.xml.bind.annotation.XmlType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import logica_datatypes.DataUsuario;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.SecondaryTable;
-import jakarta.persistence.SecondaryTables;
-import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -22,8 +22,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Table;
 
+@XmlType
+@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity
 @Table(name = "USUARIO")
@@ -68,8 +70,7 @@ public abstract class Usuario {
     
 	@Transient
     private ArrayList<Usuario> usuariosQueYoSigo = new ArrayList<>();
-
-	//Constructor
+ 	//Constructor
 	
 	public Usuario() {
 
@@ -128,6 +129,16 @@ public abstract class Usuario {
 		this.imagen = imagen;
 	}
 	//obtener dataTypes
+	public DataUsuario getDTUsuario(){
+		DataUsuario DtUser = new DataUsuario();
+		DtUser.setApellido(this.apellido);
+		DtUser.setEmail(this.email);
+		DtUser.setImagen(this.imagen);
+		DtUser.setNickName(this.nickName);
+		DtUser.setNombre(this.nombre);
+		DtUser.setPsw(this.psw);
+		return DtUser;
+	}
 
 
 	public ArrayList<Usuario> getUsuariosQueMeSiguen() {
@@ -147,12 +158,12 @@ public abstract class Usuario {
 	}
 
 	public void agregarSeguidor(Usuario userSeguidor) {
-		if(!this.nickName.equals(userSeguidor.getNickName())) {
+		if (!this.nickName.equals(userSeguidor.getNickName())) {
 		this.usuariosQueMeSiguen.add(userSeguidor);
 		}
 	}
 	public void seguirAUsuario(Usuario userASeguir) {
-		if(!this.nickName.equals(userASeguir.getNickName())) {
+		if (!this.nickName.equals(userASeguir.getNickName())) {
 		this.usuariosQueYoSigo.add(userASeguir);
 		}
 	}
@@ -181,3 +192,4 @@ public abstract class Usuario {
 
 
 }
+
