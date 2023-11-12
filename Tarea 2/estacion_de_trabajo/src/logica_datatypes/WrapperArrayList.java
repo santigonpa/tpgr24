@@ -10,7 +10,7 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WrapperArrayList {
 
-	ArrayList<?> lista;
+	private ArrayList<?> lista;
 	
 	public WrapperArrayList() {
 	    this.lista = new ArrayList<>();

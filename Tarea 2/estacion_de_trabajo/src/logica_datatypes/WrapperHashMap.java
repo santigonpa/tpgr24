@@ -7,21 +7,21 @@ import java.util.HashMap;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WrapperHashMap {
 
-    private HashMap<String,?> mapa;
+    private HashMap<String, ?> mapa;
 
     public WrapperHashMap() {
         this.mapa = new HashMap<>();
     }
 
-    public WrapperHashMap(HashMap<String,?> mapa) {
+    public WrapperHashMap(HashMap<String, ?> mapa) {
         this.mapa = mapa;
     }
 
-    public HashMap<String,?> getMapa() {
+    public HashMap<String, ?> getMapa() {
         return mapa;
     }
 
-    public void setMapa(HashMap<String,?> mapa) {
+    public void setMapa(HashMap<String, ?> mapa) {
         this.mapa = mapa;
     }
 }

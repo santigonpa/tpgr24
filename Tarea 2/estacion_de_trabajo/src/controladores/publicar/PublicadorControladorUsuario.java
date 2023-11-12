@@ -40,7 +40,7 @@ public class PublicadorControladorUsuario {
 
 	private Endpoint endpoint = null;
 	
-	private IControladorUsuario ICU = Fabrica.getInstance().getInUser();
+	private IControladorUsuario icu = Fabrica.getInstance().getInUser();
 	
 	
 	//Constructor
@@ -66,20 +66,20 @@ public class PublicadorControladorUsuario {
 			String nacionalidad, byte[]imagen , String psw)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate fechaNacimiento = LocalDate.parse(nacimiento, dateFormatter);
-		ICU.altaUsuarioPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, psw);
+		icu.altaUsuarioPostulante(nickname, nombre, apellido, email, fechaNacimiento, nacionalidad, imagen, psw);
 	}
 	
 	@WebMethod
 	public void altaUsuarioEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String web , byte[]imagen , String psw)throws NicknameYaExisteException, EmailYaExisteException, campoInvalidoException {
 		
-		ICU.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web, imagen, psw);
+		icu.altaUsuarioEmpresa(nickname, nombre, apellido, email, descripcion, web, imagen, psw);
 	}
 	
 	
 	@WebMethod
 	public void agregarPostulacionAPostulante(String postulante, Postulacion postulacion) throws yaExistePostulacionAOfertaException {
-		ICU.agregarPostulacionAPostulante(postulante, postulacion);
+		icu.agregarPostulacionAPostulante(postulante, postulacion);
 	}
 	
 	@WebMethod
@@ -89,25 +89,25 @@ public class PublicadorControladorUsuario {
 		IManejadorUsuario IMU = fab.getInManejadorUsuario();
 		Empresa emp = IMU.obtenerEmpresa(empresa);
 		DataEmpresa dataEmp = emp.getDTEmpresa();
-		HashMap<String, OfertaLaboral> mapa = ICU.obtenerOfertarDeEmpresa(dataEmp);
+		HashMap<String, OfertaLaboral> mapa = icu.obtenerOfertarDeEmpresa(dataEmp);
 		WrapperHashMap ret = new WrapperHashMap(mapa);
 		return ret;
 	}
 	
 	@WebMethod
 	public void comprarPaquete(Paquete paq, String empresa) {
-		ICU.comprarPaquete(paq, empresa);
+		icu.comprarPaquete(paq, empresa);
 	}
 	
 	@WebMethod
 	public DataUsuario listarInfoUser(String usuario) {
-		return ICU.listarInfoUser(usuario);
+		return icu.listarInfoUser(usuario);
 	}
 	
 	@WebMethod
 	public WrapperArrayList obtenerPostulaciones(String usuario){
 		
-		ArrayList<Postulacion> arr =  ICU.obtenerPostulaciones(usuario);
+		ArrayList<Postulacion> arr =  icu.obtenerPostulaciones(usuario);
 		WrapperArrayList ret = new WrapperArrayList(arr);
 		return ret;
 	}
@@ -115,14 +115,14 @@ public class PublicadorControladorUsuario {
 	
 	@WebMethod
 	public WrapperArrayList getDataTipoPublicacion() {
-		ArrayList<DataTipoPublicacion> arr =  ICU.getDataTipoPublicacion();
+		ArrayList<DataTipoPublicacion> arr =  icu.getDataTipoPublicacion();
 		WrapperArrayList ret = new WrapperArrayList(arr);
 		return ret;
 	}
 	
 	@WebMethod
 	public WrapperArrayList getPublicacionesEmpresa(String emp) {
-	    ArrayList<DataTipoPublicacion> arr = ICU.getPublicacionesEmpresa(emp);
+	    ArrayList<DataTipoPublicacion> arr = icu.getPublicacionesEmpresa(emp);
 	    ArrayList<String> res = new ArrayList<>();
 	    
 	    if (arr != null) {
@@ -144,28 +144,28 @@ public class PublicadorControladorUsuario {
 
 	@WebMethod
 	public WrapperArrayList getDataKeyWord(){
-		ArrayList<DataKeyWord> arr =  ICU.getDataKeyWord();
+		ArrayList<DataKeyWord> arr =  icu.getDataKeyWord();
 		WrapperArrayList ret = new WrapperArrayList(arr);
 		return ret;
 	}
 	
 	@WebMethod
 	public WrapperArrayList getDataUsuarios() throws UsuarioNoExisteException {
-		ArrayList<DataUsuario> arr =  ICU.getDataUsuarios();
+		ArrayList<DataUsuario> arr =  icu.getDataUsuarios();
 		WrapperArrayList ret = new WrapperArrayList(arr);
 		return ret;
 	}
 	
 	@WebMethod
 	public WrapperArrayList getDataOfertasDeEmpresa(String nickName) {
-		ArrayList<DataOferta> arr = ICU.getDataOfertasDeEmpresa(nickName);
+		ArrayList<DataOferta> arr = icu.getDataOfertasDeEmpresa(nickName);
 		WrapperArrayList ret = new WrapperArrayList(arr);
 		return ret;
 	}
 	
 	@WebMethod
 	public WrapperArrayList getDataPostulante() {
-		ArrayList<DataPostulante> arr = ICU.getDataPostulante();
+		ArrayList<DataPostulante> arr = icu.getDataPostulante();
 		WrapperArrayList ret = new WrapperArrayList(arr);
 		return ret;
 		}
@@ -182,13 +182,13 @@ public class PublicadorControladorUsuario {
         // Define el formato de salida
         DateTimeFormatter formatoSalida = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String fechaFormateada = fecha.format(formatoSalida);
-		ICU.modificarDatosPostulante(nickname, nombre, apellido, email, fechaFormateada, nacionalidad, imagen, psw);
+		icu.modificarDatosPostulante(nickname, nombre, apellido, email, fechaFormateada, nacionalidad, imagen, psw);
 	}
 	
 	@WebMethod
 	public void modificarDatosEmpresa(String nickname, String nombre, String apellido, String email, String descripcion,
 			String web, byte[] imagen, String psw) {
-		ICU.modificarDatosEmpresa(nickname, nombre, apellido, email, descripcion, web, imagen, psw);
+		icu.modificarDatosEmpresa(nickname, nombre, apellido, email, descripcion, web, imagen, psw);
 	}
 	
 }

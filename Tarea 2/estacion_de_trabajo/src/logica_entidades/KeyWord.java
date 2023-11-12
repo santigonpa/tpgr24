@@ -32,7 +32,7 @@ public class KeyWord {
 		return this.palabraClave;
 	}
 	
-	public HashMap<String, OfertaLaboral>getOfertas() {
+	public HashMap<String, OfertaLaboral> getOfertas() {
 		return this.ofertas;
 	}
 	

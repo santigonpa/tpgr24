@@ -43,11 +43,11 @@ public interface IManejadorUsuario {
 	
 	public abstract Empresa obtenerEmpresa(String emp);
 	
-	public abstract void CompraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen);
+	public abstract void compraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen);
 
 	public abstract ArrayList<DataOferta> obtenerOfertasFinalizadas(String empresa);
 	
-	public abstract void CompraDePaquete(String paq, String empresa, String fAlta);
+	public abstract void compraDePaquete(String paq, String empresa, String fAlta);
 
 	
 }

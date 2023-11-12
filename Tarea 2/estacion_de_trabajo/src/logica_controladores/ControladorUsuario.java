@@ -195,7 +195,7 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
         postulante.setPsw(psw);
         postulante.setNacimiento(nacimiento);
         postulante.setNacionalidad(nacionalidad);
-        muser.addUsuario((Usuario)postulante);
+        muser.addUsuario((Usuario) postulante);
 		
 	}
 

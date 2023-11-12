@@ -14,14 +14,13 @@ import excepciones.noExistePublicacionException;
 import excepciones.noExisteTipoPubli;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_datatypes.DataOferta;
-import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.OfertaLaboral.EstadoOferta;
 import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
-import logica_entidades.OfertaLaboral.EstadoOferta;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
@@ -120,7 +119,7 @@ public class ControladorOferta implements IControladorOferta {
 		
 		//busco tipo de publicacion
 		TipoPublicacion tipo = mpt.obtenerTipoPublicacion(tipoPubli);
-		if(tipo == null) {
+		if (tipo == null) {
 			throw new noExistePublicacionException("El tipo de publicacion seleccionado no existe");			
 		}
 		
@@ -144,7 +143,7 @@ public class ControladorOferta implements IControladorOferta {
 			}
 		}*/
 		
-		if(!tieneEsaPubli) {
+		if (!tieneEsaPubli) {
 			throw new noExisteTipoPubli("No cuenta con el tipo de publicacion elegida");
 		}
 		
@@ -199,7 +198,7 @@ public class ControladorOferta implements IControladorOferta {
 		
 		//busco tipo de publicacion
 		TipoPublicacion tipo = mpt.obtenerTipoPublicacion(tipoPubli);
-		if(tipo == null) {
+		if (tipo == null) {
 			throw new noExistePublicacionException("El tipo de publicacion seleccionado no existe");
 			
 		}

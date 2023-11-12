@@ -6,14 +6,18 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import excepciones.NombrePaqueteYaExiste;
+import excepciones.NombreRepetidoOfertaException;
+import excepciones.NombreTipoPubliYaExisteException;
+import excepciones.noExistePublicacionException;
+import excepciones.noExisteTipoPubli;
+import excepciones.yaExistePostulacionAOfertaException;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.xml.ws.Endpoint;
-
-import excepciones.*;
 import logica_controladores.ControladorOferta;
 import logica_datatypes.DataOferta;
 import logica_datatypes.WrapperArrayList;
@@ -47,14 +51,14 @@ public class PublicadorControladorOfertas {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalTime horaDeInicio = LocalTime.parse(horaInicio, formateo);
 		LocalTime horaDeFin = LocalTime.parse(horaFin, formateo);
-    	LocalDate fecha = LocalDate.parse(fechaDeAlta,formatter);
+    	LocalDate fecha = LocalDate.parse(fechaDeAlta, formatter);
     	controladorOferta.darAltaOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, costoDeOfertaLaboral, fecha, imagen, tipoDePago);
     }
 
     @WebMethod
     public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, String fechaDeAlta, int costo, byte[] imagen) throws NombrePaqueteYaExiste {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDate fecha = LocalDate.parse(fechaDeAlta,formatter);
+    	LocalDate fecha = LocalDate.parse(fechaDeAlta, formatter);
     	controladorOferta.crearPaqueteDeTipoDePublicacionDeOfertasLaborales(nombre, descripcion, validez, descuento, fecha, costo, imagen);
     }
 
@@ -66,7 +70,7 @@ public class PublicadorControladorOfertas {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDate fechaLocalDate = LocalDate.parse(fecha,formatter);
+    	LocalDate fechaLocalDate = LocalDate.parse(fecha, formatter);
 		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
 		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
 		
@@ -83,7 +87,7 @@ public class PublicadorControladorOfertas {
         
     	DateTimeFormatter formateo = DateTimeFormatter.ofPattern("HH:mm");	
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDate fechaLocalDate = LocalDate.parse(fecha,formatter);
+    	LocalDate fechaLocalDate = LocalDate.parse(fecha, formatter);
 		LocalTime horaDeInicio = LocalTime.parse(horarioInicio, formateo);
 		LocalTime horaDeFin = LocalTime.parse(horarioFin, formateo);
 		

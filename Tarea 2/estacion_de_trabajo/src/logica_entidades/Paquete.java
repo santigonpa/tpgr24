@@ -64,10 +64,10 @@ public class Paquete {
 	}
 	
 	public void setPublicaciones(TipoPublicacion publi, int cantidad) {
-		if(this.tipoPublicaciones == null) {
+		if (this.tipoPublicaciones == null) {
 			this.tipoPublicaciones = new ArrayList<TipoPublicacion>();
 		}
-		for(int i=1; i <= cantidad ; i++) {
+		for (int i=1; i <= cantidad ; i++) {
 			(this.tipoPublicaciones).add(publi);			
 		}
 	}
@@ -110,16 +110,16 @@ public class Paquete {
 	
 	public TipoPublicacion getTipoPubli(String tipoP) {
 		for (TipoPublicacion tipo : this.tipoPublicaciones) {
-			if(tipo.getNombre() .equals(tipoP)) {
+			if (tipo.getNombre() .equals(tipoP)) {
 				return tipo;
 			}
 		}
 		return null;
 	}
 	
-	public boolean ExisteTipoPubli(String tipoP) {
+	public boolean existeTipoPubli(String tipoP) {
 		for (TipoPublicacion tipo : this.tipoPublicaciones) {
-			if(tipo.getNombre() .equals(tipoP)) {
+			if (tipo.getNombre() .equals(tipoP)) {
 				return true;
 			}
 		}

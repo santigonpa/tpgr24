@@ -1,14 +1,19 @@
 package controladores.publicar;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
-import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
+import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.xml.ws.Endpoint;
 import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataOferta;
-import logica_datatypes.DataPaquete;
 import logica_datatypes.DataPostulacion;
 import logica_datatypes.DataPostulante;
 import logica_datatypes.DataUsuario;
@@ -22,12 +27,6 @@ import logica_entidades.Postulante;
 import logica_entidades.Usuario;
 import logica_manejadores.ManejadorUsuario;
 import utils.Config;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
@@ -63,22 +62,22 @@ public class PublicadorManejadorUsuario {
     }
 
     @WebMethod
-    public void CompraPaquete(Paquete paq, String empresa, String fAlta, String fVen) {
+    public void compraPaquete(Paquete paq, String empresa, String fAlta, String fVen) {
     	DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		LocalDate fechaA = LocalDate.parse(fAlta, dateFormatter);
 		LocalDate fechaV = LocalDate.parse(fVen, dateFormatter);
-        manejadorUsuario.CompraPaquete(paq, empresa, fechaA, fechaV);
+        manejadorUsuario.compraPaquete(paq, empresa, fechaA, fechaV);
     }
 
     @WebMethod
-    public void CompraDePaquete(String paq, String empresa, String fAlta) {	
-        manejadorUsuario.CompraDePaquete(paq, empresa, fAlta);
+    public void compraDePaquete(String paq, String empresa, String fAlta) {	
+        manejadorUsuario.compraDePaquete(paq, empresa, fAlta);
     }
     
     @WebMethod
     public DataUsuario obtenerDataUsuario(String nick) {
         Usuario usu = manejadorUsuario.obtenerUsuario(nick);
-        if(usu == null) {
+        if (usu == null) {
         	DataUsuario usuar = new DataUsuario();
         	 usuar.setNickName("null");
         	return usuar;
@@ -95,7 +94,7 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public DataUsuario obtenerDataUsuarioPorEmail(String email) {
         Usuario usu = manejadorUsuario.obtenerUsuarioPorEmail(email);
-        if(usu == null) {
+        if (usu == null) {
         	DataUsuario usuar = new DataUsuario();
         	 usuar.setNickName("null");
         	return usuar;
@@ -155,7 +154,7 @@ public class PublicadorManejadorUsuario {
     public WrapperArrayList obtenerOfertasConfirmadasDeEmpresa(String nickName) {
     	ArrayList<DataOferta> arr = manejadorUsuario.obtenerOfertasConfirmadasDeEmpresa(nickName);
     	ArrayList<String> arrString = new ArrayList<>();
-    	for(DataOferta ofActual : arr) {
+    	for (DataOferta ofActual : arr) {
     		arrString.add(ofActual.getNombre());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arrString);
@@ -166,7 +165,7 @@ public class PublicadorManejadorUsuario {
     public WrapperArrayList obtenerOfertasRechazadasIngresadas(String nickName) {
     	ArrayList<DataOferta> arr = manejadorUsuario.obtenerOfertasRechazadasIngresadas(nickName);
     	ArrayList<String> arrString = new ArrayList<>();
-    	for(DataOferta ofActual : arr) {
+    	for (DataOferta ofActual : arr) {
     		arrString.add(ofActual.getNombre());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arrString);
@@ -179,7 +178,7 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public  Usuario obtenerUsuario(String user) {
     	Usuario usuario = manejadorUsuario.obtenerUsuario(user);
-    	if(usuario == null) {
+    	if (usuario == null) {
     		usuario = new Usuario();
     		usuario.setNickName("null");
     	}
@@ -188,7 +187,7 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public  Usuario obtenerUsuarioPorEmail(String email) {
     	Usuario usuario =  manejadorUsuario.obtenerUsuarioPorEmail(email);
-    	if(usuario == null) {
+    	if (usuario == null) {
     		usuario = new Usuario();
     		usuario.setNickName("null");
     	}
@@ -202,7 +201,7 @@ public class PublicadorManejadorUsuario {
     	@SuppressWarnings("unchecked")
 		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
     	ArrayList<DataPostulacion> arregloDataPostu = new ArrayList<>();
-    	for(Postulacion posActual : arregloPostul) {
+    	for (Postulacion posActual : arregloPostul) {
     		arregloDataPostu.add(posActual.getDTPostulacion());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arregloDataPostu);
@@ -212,9 +211,9 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public  WrapperArrayList obtenerDataPaquetes(String nickName) { //obtiene los paquetes de nickName
     	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
-    	Map<String,Paquete> paquetes = usuario.getPaquetes();
+    	Map<String, Paquete> paquetes = usuario.getPaquetes();
     	ArrayList<String> dataPaquetes = new ArrayList<>();
-    	for(Paquete paqActual : paquetes.values()) {
+    	for (Paquete paqActual : paquetes.values()) {
     		dataPaquetes.add(paqActual.getDTPaquete().getNombre());
     	}
     	WrapperArrayList ret = new WrapperArrayList(dataPaquetes);
@@ -228,7 +227,7 @@ public class PublicadorManejadorUsuario {
     	@SuppressWarnings("unchecked")
 		ArrayList<Postulacion> arregloPostul = (ArrayList<Postulacion>) arregloPostulWrapper.getLista();
     	ArrayList<String> arregloDeOfertas = new ArrayList<>();
-    	for(Postulacion postul : arregloPostul) {
+    	for (Postulacion postul : arregloPostul) {
     		String ofert = postul.getOferta().getNombreOferta();
     		arregloDeOfertas.add(ofert);
     	}
@@ -239,9 +238,9 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public WrapperArrayList obtenerDataOfertasDeEmpresa(String nickUser) { // ESTO DEVUELVE las ofertas de la empresa en data
     	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickUser);
-    	Map<String,OfertaLaboral> ofertas = usuario.getOfertas();
+    	Map<String, OfertaLaboral> ofertas = usuario.getOfertas();
     	ArrayList<DataOferta> dataOfertas = new ArrayList<>();
-    	for(OfertaLaboral oferActual : ofertas.values()) {
+    	for (OfertaLaboral oferActual : ofertas.values()) {
     		dataOfertas.add(oferActual.getDataOferta());
     	}
     	WrapperArrayList ret = new WrapperArrayList(dataOfertas);
@@ -257,7 +256,7 @@ public class PublicadorManejadorUsuario {
     @WebMethod
     public  String tienePaquetePregunta(String nickName) {
     	Empresa usuario =  (Empresa) manejadorUsuario.obtenerUsuario(nickName);
-    	if( usuario.getCompra() != null ) {
+    	if ( usuario.getCompra() != null ) {
     		return "si";
     	}else {
     		return "no";
@@ -302,7 +301,7 @@ public class PublicadorManejadorUsuario {
     public WrapperArrayList obtenerSeguidos(String nickUser) {
         Usuario usuario =   manejadorUsuario.obtenerUsuario(nickUser);
         ArrayList<String> dataUsuarios = new ArrayList<>();
-        for(Usuario user : usuario.getUsuariosQueYoSigo()) {
+        for (Usuario user : usuario.getUsuariosQueYoSigo()) {
             dataUsuarios.add(user.getNickName());
         }
         WrapperArrayList ret = new WrapperArrayList(dataUsuarios);
@@ -314,7 +313,7 @@ public class PublicadorManejadorUsuario {
     public WrapperArrayList obtenerSeguidores(String nickUser) {
         Usuario usuario =   manejadorUsuario.obtenerUsuario(nickUser);
         ArrayList<String> dataUsuarios = new ArrayList<>();
-        for(Usuario user : usuario.getUsuariosQueMeSiguen()) {
+        for (Usuario user : usuario.getUsuariosQueMeSiguen()) {
             dataUsuarios.add(user.getNickName());
         }
         WrapperArrayList ret = new WrapperArrayList(dataUsuarios);

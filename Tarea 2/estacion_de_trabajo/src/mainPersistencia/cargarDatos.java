@@ -1,26 +1,17 @@
 package mainPersistencia;
 
-import java.time.LocalDate;
-
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import logica_controladores.IControladorOferta;
-import logica_controladores.IControladorUsuario;
-import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
-import logica_entidades.Postulacion;
-import logica_entidades.Postulante;
-import logica_entidades.Usuario;
 import utils.Fabrica;
 import logica_manejadores.IManejadorOferta;
 
 public class cargarDatos {
-	static Fabrica fabrica = Fabrica.getInstance();
+	private static Fabrica fabrica = Fabrica.getInstance();
 	private static IManejadorOferta imo = fabrica.getInManejadorOferta();
 	
 	public static void main(String[] args) {
@@ -40,7 +31,7 @@ public class cargarDatos {
 		ArrayList<OfertaLaboral> ofertasFin = imo.getOfertasFinalizadas();
 		//OfertaLaboral oferta1 = new OfertaLaboral();
 		// Configurar oferta1 con los datos necesarios
-		for(OfertaLaboral oferPer : ofertasFin){
+		for (OfertaLaboral oferPer : ofertasFin){
 			enM.persist(oferPer);
 		}
 		// Crear e insertar más objetos según sea necesario

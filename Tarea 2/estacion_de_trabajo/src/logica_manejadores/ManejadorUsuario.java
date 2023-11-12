@@ -59,14 +59,14 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	
     }
     
-	public void CompraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen) {
+	public void compraPaquete(Paquete paq, String empresa, LocalDate fAlta, LocalDate fVen) {
 		Empresa emp =(Empresa) this.empresas.get(empresa);
 	    int costo = paq.getCosto();
-	    emp.comprarPaquete(paq, fVen,fAlta, costo);
+	    emp.comprarPaquete(paq, fVen, fAlta, costo);
 	    emp.agregarPaquetes(paq.getNombre(), paq);
 	}
 
-	public void CompraDePaquete(String paq, String empresa, String fAlta) {
+	public void compraDePaquete(String paq, String empresa, String fAlta) {
 		Fabrica fab = Fabrica.getInstance();
 		IManejadorPyT MPyT = fab.getInManejadorPyT();
 		Paquete paquete = MPyT.getPaquete(paq);
@@ -98,7 +98,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
     	ArrayList<Empresa> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-    	ArrayList<String> clavesEmpresas = new ArrayList<> (this.empresas.keySet());
+    	ArrayList<String> clavesEmpresas = new ArrayList<>(this.empresas.keySet());
         for (String nombreEmpresa : clavesEmpresas) {
         	Empresa empAct = (Empresa) this.empresas.get(nombreEmpresa);
         	temp.add(empAct);
@@ -201,7 +201,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<Usuario> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-		ArrayList<String> clavesUsuarios = new ArrayList<> (this.usuarios.keySet());
+		ArrayList<String> clavesUsuarios = new ArrayList<>(this.usuarios.keySet());
         for (String nombreUsuario : clavesUsuarios) {
         	Usuario user =  this.usuarios.get(nombreUsuario);
         	temp.add(user);
@@ -244,7 +244,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
 		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertas();
-		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
+		ArrayList<String> claves = new ArrayList<>(mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();
@@ -275,7 +275,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
 		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasAprobadasDeEmpresa();
-		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
+		ArrayList<String> claves = new ArrayList<>(mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();
@@ -306,7 +306,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(nickName);
 		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasRechazadasIngresadas();
-		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
+		ArrayList<String> claves = new ArrayList<>(mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();
@@ -349,7 +349,7 @@ public class ManejadorUsuario implements IManejadorUsuario {
 		ArrayList<DataOferta> res = new ArrayList<>();
 		Empresa emp = (Empresa) this.empresas.get(empresa);
 		HashMap<String, OfertaLaboral> mapaOfertas = emp.getOfertasFinalizadas();
-		ArrayList<String> claves = new ArrayList<> (mapaOfertas.keySet());
+		ArrayList<String> claves = new ArrayList<>(mapaOfertas.keySet());
 		for (String clave : claves) {
 			OfertaLaboral oferta = mapaOfertas.get(clave);
 			DataOferta ofert = new DataOferta();

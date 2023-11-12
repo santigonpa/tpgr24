@@ -193,7 +193,7 @@ public class OfertaLaboral {
 
 	
 	public void setEstado(EstadoOferta estado) {
-		if(estado == EstadoOferta.FINALIZADA) {
+		if (estado == EstadoOferta.FINALIZADA) {
 			this.fechaDeFinalizacion = LocalDate.now(); //si la oferta se finaliza se guarda la fecha de finalizacion
 		}
 		this.estado = estado;

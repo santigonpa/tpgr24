@@ -65,7 +65,7 @@ public class ManejadorOferta implements IManejadorOferta{
 		ArrayList<KeyWord> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-		ArrayList<String> clavesKeyWord = new ArrayList<> (this.keywordsTotales.keySet());
+		ArrayList<String> clavesKeyWord = new ArrayList<>(this.keywordsTotales.keySet());
         for (String nombreKeyword : clavesKeyWord) {
         	KeyWord keyAct = (KeyWord) this.keywordsTotales.get(nombreKeyword);
         	temp.add(keyAct);

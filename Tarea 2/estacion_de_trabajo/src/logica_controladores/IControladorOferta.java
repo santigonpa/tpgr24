@@ -11,7 +11,6 @@ import excepciones.noExistePublicacionException;
 import excepciones.noExisteTipoPubli;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_datatypes.DataOferta;
-import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Postulacion;
 
 public interface IControladorOferta  {

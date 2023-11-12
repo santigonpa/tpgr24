@@ -40,7 +40,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 		ArrayList<TipoPublicacion> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-		ArrayList<String> clavesTipoPublicacion = new ArrayList<> (this.tiposDePublicacion.keySet());
+		ArrayList<String> clavesTipoPublicacion = new ArrayList<>(this.tiposDePublicacion.keySet());
         for (String nombreTipoPublicacion : clavesTipoPublicacion) {
         	TipoPublicacion tipoAct = (TipoPublicacion) this.tiposDePublicacion.get(nombreTipoPublicacion);
         	temp.add(tipoAct);
@@ -94,7 +94,7 @@ public class ManejadorPaquetesYTiposPubli implements IManejadorPyT {
 			ArrayList<Paquete> temp = new ArrayList<>();
     	
     	// Obtener las claves del Map
-			ArrayList<String> clavesPaquete = new ArrayList<> (this.paquetes.keySet());
+			ArrayList<String> clavesPaquete = new ArrayList<>(this.paquetes.keySet());
         for (String nombreTipoPublicacion : clavesPaquete) {
         	Paquete tipoAct = (Paquete) this.paquetes.get(nombreTipoPublicacion);
         	temp.add(tipoAct);

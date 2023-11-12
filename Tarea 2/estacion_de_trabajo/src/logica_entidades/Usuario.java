@@ -12,9 +12,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.SecondaryTable;
-import jakarta.persistence.SecondaryTables;
-import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -155,12 +152,12 @@ public class Usuario {
 	}
 
 	public void agregarSeguidor(Usuario userSeguidor) {
-		if(!this.nickName.equals(userSeguidor.getNickName())) {
+		if (!this.nickName.equals(userSeguidor.getNickName())) {
 		this.usuariosQueMeSiguen.add(userSeguidor);
 		}
 	}
 	public void seguirAUsuario(Usuario userASeguir) {
-		if(!this.nickName.equals(userASeguir.getNickName())) {
+		if (!this.nickName.equals(userASeguir.getNickName())) {
 		this.usuariosQueYoSigo.add(userASeguir);
 		}
 	}

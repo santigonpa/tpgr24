@@ -33,7 +33,7 @@ public class PublicadorManejadorOfertas {
 
     @WebMethod(exclude = true)
     public void publicar() {
-        String url = Config.getWebServiceBaseURL() + "/ManejadorOferta";//"http://localhost:9128/ManejadorOferta";
+        String url = Config.getWebServiceBaseURL() + "/ManejadorOferta"; //"http://localhost:9128/ManejadorOferta";
         System.out.println("Publicando servicio de ManejadorOferta en " + url);
         endpoint = Endpoint.publish(url, this);
     }
@@ -101,7 +101,7 @@ public class PublicadorManejadorOfertas {
     public WrapperArrayList getOfertas() {
     	ArrayList<DataOferta> arrOfertas =  manejadorOferta.getOfertas();
     	ArrayList<String> arr = new ArrayList<>();
-    	for(DataOferta data : arrOfertas) {
+    	for (DataOferta data : arrOfertas) {
     		arr.add(data.getNombre());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arr);
@@ -131,7 +131,7 @@ public class PublicadorManejadorOfertas {
     	OfertaLaboral ofert = manejadorOferta.obtenerOferta(nombreOferta);
     	ArrayList<Postulacion> arrPostus = ofert.getPostulaciones();
     	ArrayList<DataPostulacion> dataPostus = new ArrayList<>();
-    	for(Postulacion posActual : arrPostus) {
+    	for (Postulacion posActual : arrPostus) {
     		dataPostus.add(posActual.getDTPostulacion());
     	}
     	WrapperArrayList ret = new WrapperArrayList(dataPostus);
@@ -143,7 +143,7 @@ public class PublicadorManejadorOfertas {
     	OfertaLaboral ofer = manejadorOferta.obtenerOferta(oferta);
     	ArrayList<Postulacion> arrPostus = ofer.getPostulaciones();
     	ArrayList<String> arr = new ArrayList<>();
-    	for(Postulacion posActual : arrPostus) {
+    	for (Postulacion posActual : arrPostus) {
     		arr.add(posActual.getNickPostulante());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arr);
@@ -154,7 +154,7 @@ public class PublicadorManejadorOfertas {
     public WrapperArrayList getNickPostulantesAOferEmpresa(String oferta, String empresa) {
     	ArrayList<Postulacion> arrPostus = manejadorOferta.obtenerPostulaciones(oferta, empresa);
     	ArrayList<String> arr = new ArrayList<>();
-    	for(Postulacion posActual : arrPostus) {
+    	for (Postulacion posActual : arrPostus) {
     		arr.add(posActual.getNickPostulante());
     	}
     	WrapperArrayList ret = new WrapperArrayList(arr);
@@ -174,7 +174,7 @@ public class PublicadorManejadorOfertas {
     	Empresa emp = manejadorUsuario.obtenerEmpresa(nickname);
 		HashMap<String, OfertaLaboral> oferVencidas = emp.getOfertasAprobadasYVencidasDeEmpresa();
 		ArrayList<String> oferVencidasStr = new ArrayList<>();
-		for(String ofer : oferVencidas.keySet()) {
+		for (String ofer : oferVencidas.keySet()) {
 			oferVencidasStr.add(ofer); 
 		}
 		WrapperArrayList ret = new WrapperArrayList(oferVencidasStr);
@@ -186,7 +186,7 @@ public class PublicadorManejadorOfertas {
     	OfertaLaboral ofer = manejadorOferta.obtenerOferta(nombreOferta);
     	ArrayList<String> ret = new ArrayList<>();
     	
-    	for(Object obj :wrapper.getLista() ) {
+    	for (Object obj :wrapper.getLista() ) {
     		String nombrePostulante = (String) obj;
     		ret.add(nombrePostulante);
     	}

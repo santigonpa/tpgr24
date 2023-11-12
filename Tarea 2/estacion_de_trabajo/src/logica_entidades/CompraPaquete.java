@@ -80,7 +80,7 @@ public class CompraPaquete {
 	//operaciones 
 	
 	public boolean existeTipoPubli(String nombreTipo) {
-		return this.paqCompr.ExisteTipoPubli(nombreTipo);
+		return this.paqCompr.existeTipoPubli(nombreTipo);
 	}
 	
 	public int cantTipoPubli() {

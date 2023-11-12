@@ -109,12 +109,12 @@ public class Empresa extends Usuario{
 	}
 	
 	public ArrayList<DataTipoPublicacion> getPublicaciones(){
-		if(this.tienePaqueteAsociado()) {
+		if (this.tienePaqueteAsociado()) {
 			
 			CompraPaquete paquete = this.compra;
 			ArrayList<TipoPublicacion> tipoPub = paquete.getTipoDePublicacionesDisp();
 			ArrayList<DataTipoPublicacion> res = new ArrayList<>();
-			if(tipoPub != null) {
+			if (tipoPub != null) {
 				if (!tipoPub.isEmpty()) {
 					for (TipoPublicacion tipo : tipoPub) {
 					    res.add(tipo.getDTTipoPublicacion());
@@ -122,7 +122,7 @@ public class Empresa extends Usuario{
 				}	
 			}
 			return res;			
-		}else{
+		}else {
 			return null;
 		}
 	}
@@ -143,7 +143,7 @@ public class Empresa extends Usuario{
 	
 	public HashMap<String, OfertaLaboral> getOfertasRechazadasIngresadas(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-        HashMap<String,OfertaLaboral> mapa = this.getOfertas();
+        HashMap<String, OfertaLaboral> mapa = this.getOfertas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (!oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
@@ -155,7 +155,7 @@ public class Empresa extends Usuario{
 	
 	public HashMap<String, OfertaLaboral> getOfertasAprobadasDeEmpresa(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-		HashMap<String,OfertaLaboral> mapa = this.getOfertas();
+		HashMap<String, OfertaLaboral> mapa = this.getOfertas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
@@ -166,7 +166,7 @@ public class Empresa extends Usuario{
 	}
 	public HashMap<String, OfertaLaboral> getOfertasFinalizadas(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-		HashMap<String,OfertaLaboral> mapa = this.ofertas;
+		HashMap<String, OfertaLaboral> mapa = this.ofertas;
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.FINALIZADA)) {
@@ -178,7 +178,7 @@ public class Empresa extends Usuario{
 	}
 	public HashMap<String, OfertaLaboral> getOfertasAprobadasYVencidasDeEmpresa(){
 		HashMap<String, OfertaLaboral> res = new HashMap<>();
-		HashMap<String,OfertaLaboral> mapa = this.getOfertasVencidas();
+		HashMap<String, OfertaLaboral> mapa = this.getOfertasVencidas();
 	    for (String ofertaNombre : mapa.keySet()) {
 	    	OfertaLaboral oferta = this.ofertas.get(ofertaNombre);
 	    		if (oferta.getEstado().equals(EstadoOferta.ACEPTADA)) {
@@ -248,7 +248,7 @@ public class Empresa extends Usuario{
 
 	
 	
-	public void comprarPaquete(Paquete paq, LocalDate fechaVenc,LocalDate fechaDeAlta, int Costo) {
+	public void comprarPaquete(Paquete paq, LocalDate fechaVenc, LocalDate fechaDeAlta, int Costo) {
 		CompraPaquete compraPaq = new CompraPaquete();
 		compraPaq.setFechaCompr(fechaDeAlta);
 		compraPaq.setFechaVenc(fechaVenc);
