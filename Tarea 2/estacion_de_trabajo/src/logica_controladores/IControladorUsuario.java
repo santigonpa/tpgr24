@@ -27,6 +27,8 @@ public interface IControladorUsuario {
 	
 	public abstract void comprarPaquete(Paquete paq, String emp);
 
+	public abstract boolean filtro(String emp, String palabra);
+
 	public abstract ArrayList<DataTipoPublicacion> getDataTipoPublicacion();
 	
 	public abstract ArrayList<DataTipoPublicacion> getPublicacionesEmpresa(String emp);

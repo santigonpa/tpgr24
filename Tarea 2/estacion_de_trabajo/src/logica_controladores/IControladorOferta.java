@@ -25,6 +25,8 @@ public interface IControladorOferta  {
 	
 public abstract void darAltaOferta(String nombre, String descripcion, String ciudad, String departamento, LocalTime horaInicio, LocalTime horaFin, int remuneracion, int costoDeOfertaLaboral, LocalDate fechaDeAlta, byte[]imagen, String tipoDePago) throws NombreRepetidoOfertaException;
 
+public abstract boolean filtro(String ofer, String palabra);
+
 
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
 		int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException;

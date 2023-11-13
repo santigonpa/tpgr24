@@ -58,6 +58,11 @@ public class PublicadorControladorUsuario {
     public Endpoint getEndpoint() {
         return endpoint;
     }
+    
+    @WebMethod
+    public boolean filtro(String emp, String palabra) {
+    	return icu.filtro(emp, palabra);
+    }
 	
 	//Operaciones a ser publicadas
 	

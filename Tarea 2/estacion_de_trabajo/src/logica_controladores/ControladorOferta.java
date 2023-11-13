@@ -80,6 +80,12 @@ public class ControladorOferta implements IControladorOferta {
         return byteArray;
 	}
 	
+	public boolean filtro(String ofer, String palabra) {
+		Fabrica fabrica = Fabrica.getInstance();
+		IManejadorOferta imo = fabrica.getInManejadorOferta();
+		return (imo.getDataOferta(ofer)).estaString(palabra); 
+	}
+	
 	public void crearPaqueteDeTipoDePublicacionDeOfertasLaborales(String nombre, String descripcion, int validez, int descuento, LocalDate fechadealta, int costo, byte[] imagen) throws NombrePaqueteYaExiste{
 		Fabrica fabrica = Fabrica.getInstance();
 		IManejadorPyT manejadorPyT = fabrica.getInManejadorPyT();

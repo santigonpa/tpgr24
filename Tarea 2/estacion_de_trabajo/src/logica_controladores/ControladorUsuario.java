@@ -104,6 +104,12 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	return res;
 }
 
+public boolean filtro(String emp, String palabra) {
+	Fabrica fabrica = Fabrica.getInstance();
+	IManejadorUsuario imu = fabrica.getInManejadorUsuario();
+	return (imu.getDataEmpresa(emp)).tienePalabra(palabra);
+}
+
 	@Override
 	public ArrayList<DataEmpresa> getDataEmpresa()throws UsuarioNoExisteException {
 		Fabrica fabrica = Fabrica.getInstance();

@@ -78,12 +78,14 @@
           </li>
           </div>
   	
-  		<div class = button-grup>
-  			<form class="d-flex" role="search">
-      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-    		<button class="btn btn-secondary" type="submit">Buscar</button>
-    		</form>
-  		</div>
+  				<div class="button-group">
+            <form action="/TrabajoUY/servletBuscar" method="get" class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Buscar oferta laboral o empresa" aria-label="Buscar"
+                    name="busqueda"> <!-- Agregamos el nombre del parámetro de búsqueda -->
+                <button type="submit" class="btn btn-secondary" id="botonModal1">Buscar</button>
+            </form>
+        </div>
+        
   		
   		<div class="ml-auto mt-auto dropdown"> <!-- Alinea a la derecha -->
         <div class="nav-button"> <!-- Contenedor del botón -->

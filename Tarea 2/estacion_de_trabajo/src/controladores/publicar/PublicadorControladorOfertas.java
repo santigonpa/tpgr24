@@ -103,6 +103,11 @@ public class PublicadorControladorOfertas {
 		LocalDate fechaAlta = LocalDate.parse(fecha, dateFormatter);
     	controladorOferta.altaDeTipoDePubliDeOferLab(nombre, descripcion, exposicion, costo, duracion, fechaAlta);
     }
+    
+    @WebMethod
+    public boolean filtro(String ofer, String palabra) {
+    	return controladorOferta.filtro(ofer, palabra);
+    }
 
     @WebMethod
     public void agregarPostulacion(String post, String ofer, String curri, String mot, String fecha, String linkVid) throws yaExistePostulacionAOfertaException {
