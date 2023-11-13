@@ -11,7 +11,7 @@
     <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
     <%@page import="java.util.Map" %>
     <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
-    <%@page import= " com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
+    <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
     <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
     <%@ page import="java.util.ArrayList" %>
     <%@page import="java.util.List" %>

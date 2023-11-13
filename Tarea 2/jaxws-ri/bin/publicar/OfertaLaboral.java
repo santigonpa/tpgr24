@@ -40,6 +40,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *         <element name="tipoDeOferta" type="{http://publicar.controladores/}tipoPublicacion" minOccurs="0"/>
  *         <element name="palabrasClave" type="{http://publicar.controladores/}keyWord" maxOccurs="unbounded" minOccurs="0"/>
  *         <element name="fechaCalif" type="{http://publicar.controladores/}localDate" minOccurs="0"/>
+ *         <element name="visitas" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -69,7 +70,8 @@ import jakarta.xml.bind.annotation.XmlType;
     "empresaAsociada",
     "tipoDeOferta",
     "palabrasClave",
-    "fechaCalif"
+    "fechaCalif",
+    "visitas"
 })
 public class OfertaLaboral {
 
@@ -97,6 +99,7 @@ public class OfertaLaboral {
     @XmlElement(nillable = true)
     protected List<KeyWord> palabrasClave;
     protected LocalDate fechaCalif;
+    protected int visitas;
 
     /**
      * Obtiene el valor de la propiedad id.
@@ -571,6 +574,22 @@ public class OfertaLaboral {
      */
     public void setFechaCalif(LocalDate value) {
         this.fechaCalif = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad visitas.
+     * 
+     */
+    public int getVisitas() {
+        return visitas;
+    }
+
+    /**
+     * Define el valor de la propiedad visitas.
+     * 
+     */
+    public void setVisitas(int value) {
+        this.visitas = value;
     }
 
 }

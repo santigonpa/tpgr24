@@ -33,7 +33,7 @@ public class PublicadorControladorUsuarioService
         URL url = null;
         WebServiceException e = null;
         try {
-        	url = new URL(Config.getWebServiceBaseURL() + "/ControladorUsuario?wsdl");//url = new URL("http://localhost:9128/ControladorUsuario?wsdl");
+        	url = new URL(Config.getWebServiceBaseURL() + "/ControladorUsuario?wsdl");// url = new URL("http://localhost:9128/ControladorUsuario?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
