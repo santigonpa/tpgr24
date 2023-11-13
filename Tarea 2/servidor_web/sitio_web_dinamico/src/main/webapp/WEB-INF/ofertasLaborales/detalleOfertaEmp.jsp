@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang = "es">
 <head>
-<meta charset="ISO-8859-1">
+
  <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <link rel="stylesheet" href="media/css/indexStyle.css" />
@@ -86,7 +86,7 @@
 		</div>
     	<div class="col-md-8">
 			<div class="contenedor4">
-				<h2 class="text-uppercase fs-4 fw-bolder">Información de la oferta</h2>
+				<h2 class="text-uppercase fs-4 fw-bolder">InformaciÃ³n de la oferta</h2>
 			</div>
 			<!--cargo datos-->
 		  <div class = "contenedor4">
@@ -102,7 +102,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Descripción:</h4>
+      					<h4 class = "fs-5 fw=normal">DescripciÃ³n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= desc %></h4>
@@ -142,7 +142,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Remuneración:</h4>
+      					<h4 class = "fs-5 fw=normal">RemuneraciÃ³n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= remuneracion %></h4>
@@ -192,7 +192,7 @@
   				</div>
   				<div class="col">
 					    <% for (String key : palabras) { %>
-					        <div class="mb-2 mt-2"> <!-- Agregando margen superior e inferior a cada botón -->
+					        <div class="mb-2 mt-2"> <!-- Agregando margen superior e inferior a cada botÃ³n -->
 					            <a>
 					                <button type="button" class="btn btn-outline-secondary"><%= key %></button>
 					            </a>
@@ -222,10 +222,10 @@
 	    function redireccionar(tipoPago) {
 	        if (tipoPago === "Sin paquete") {
 	            // No hacer nada si el tipo de pago es "Sin paquete"
-	            alert("Si lo deseas puedes comprar un Paquete de Tipos de Publicación para utilizar en tus próximas Ofertas Laborales.");
-	            return false; // Indicar que la redirección no debe ocurrir
+	            alert("Si lo deseas puedes comprar un Paquete de Tipos de PublicaciÃ³n para utilizar en tus prÃ³ximas Ofertas Laborales.");
+	            return false; // Indicar que la redirecciÃ³n no debe ocurrir
 	        }
-	        return true; // Permitir la redirección para otros tipos de pago
+	        return true; // Permitir la redirecciÃ³n para otros tipos de pago
 	    }
 	</script>
 

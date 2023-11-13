@@ -9,7 +9,7 @@
      <%@page import= "com.webservices.controladores.publicar.DataUsuario" %>
      <%@page import= "java.util.Set" %>
 <!DOCTYPE html>
-<html>
+<html lang = "es">
 <head>
  <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

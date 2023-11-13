@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+
 <title>TrabajoUY</title>
 <!-- Estilos -->
     <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
