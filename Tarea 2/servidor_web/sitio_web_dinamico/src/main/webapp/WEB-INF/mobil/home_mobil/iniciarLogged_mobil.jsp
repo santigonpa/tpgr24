@@ -82,11 +82,12 @@
         style="
           position: relative;
           text-align: center;
-          background-image: url('media/img/kenny-eliason-4FJ14D3Ly30-unsplash.jpg');
+          background-image: url('media/img/homeParaMovil3.jpeg');
           background-size: cover;
           background-position: center;
           color: white;
           z-index: -1;
+          text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
         "
       >
         <!--Content before waves-->
