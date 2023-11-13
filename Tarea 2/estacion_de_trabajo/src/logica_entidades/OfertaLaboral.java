@@ -97,11 +97,11 @@ public class OfertaLaboral {
 	private ArrayList<KeyWord> palabrasClave = new ArrayList<>();;
 	//private DataOferta dataOferta;
 
-
 	@Transient
 	private LocalDate fechaCalif = null;
 
-	
+	@Transient
+	private int visitas = 0;
 	// Operaciones
 	
 	public OfertaLaboral() {
@@ -370,6 +370,16 @@ public class OfertaLaboral {
 	public void setFechaDeFinalizacion(LocalDate fecha) {
 		this.fechaDeFinalizacion = fecha;
 	}
-
 	
+	public int getVisitas(){
+		return this.visitas;
+	}
+	
+	public void setVisitas(int visitas) {
+		this.visitas = visitas;
+	}
+	
+	public void visitada() {
+		this.visitas++;
+	}
 }
