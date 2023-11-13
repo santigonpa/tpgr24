@@ -45,8 +45,7 @@ public class ValidacionAjax extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("checkNickname".equals(action)) {
-            String nickname = request.getParameter("nickname");
-            System.out.println(nickname);
+            String nickname = request.getParameter("nickname");       
             DataUsuario nuevo = puertoManejadorUsuario.obtenerDataUsuario(nickname);
             String respuesta;
             if(nuevo.getNickName().equals("null")) {

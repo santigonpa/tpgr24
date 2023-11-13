@@ -134,7 +134,6 @@
 	
 	<script>
 	    $(document).ready(function () {
-	    	console.log("m");
 	        $("#correo").on("input", function () {
 	            var correo = $(this).val();
 	            $.ajax({
