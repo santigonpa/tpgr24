@@ -212,7 +212,7 @@ public void actionPerformed(ActionEvent arg0) {
 			cargador.cargar();
 
 			
-				EntityManagerFactory emf = null;
+				/*EntityManagerFactory emf = null;
 				EntityManager enM = null;
 				try {	
 				//En algún lugar de tu aplicación (puede ser un inicializador, un servlet, etc.)
@@ -245,7 +245,7 @@ public void actionPerformed(ActionEvent arg0) {
 						// Cerrar EntityManager
 						enM.close();
 						emf.close();
-						}
+						}*/
 				
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
