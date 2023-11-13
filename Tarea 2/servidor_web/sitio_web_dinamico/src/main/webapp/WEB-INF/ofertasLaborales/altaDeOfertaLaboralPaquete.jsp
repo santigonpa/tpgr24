@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@page import= "com.webservices.controladores.publicar.DataTipoPublicacion" %>
     <%@page import="java.util.Set" %>
     <%@page import="java.time.LocalDate" %>
@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+
 <title>TrabajoUY</title>
 <!-- Estilos -->
     <link rel="stylesheet" href="media/css/altaDeUsuarioStyle.css" />
@@ -74,13 +74,13 @@
 
         if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
             alert("Todos los campos son obligatorios");
-            return false; // Evita que el formulario se envíe si hay campos vacíos
+            return false; // Evita que el formulario se envÃ­e si hay campos vacÃ­os
         } else {
-            return true; // Permite que el formulario se envíe si todas las validaciones pasan
+            return true; // Permite que el formulario se envÃ­e si todas las validaciones pasan
         }
     }
 
-    // Agregar un evento de escucha al formulario para la validación
+    // Agregar un evento de escucha al formulario para la validaciÃ³n
     document.addEventListener("DOMContentLoaded", function () {
         var form = document.getElementById("alta-formulario");
         form.addEventListener("submit", function (event) {
@@ -167,7 +167,7 @@
 		 <div class="row justify-content-center">
             <div class="col-md-6">
                 <div align="center">			
-		<h3 class="-titulo-">Tipos de publicación disponibles actualmente en su paquete</h3>
+		<h3 class="-titulo-">Tipos de publicaciÃ³n disponibles actualmente en su paquete</h3>
 		         </div>
             </div>
         </div>
@@ -202,7 +202,7 @@
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>
-							                Su empresa no cuenta con algún paquete o su paquete ya no tiene más publicaciones
+							                Su empresa no cuenta con algÃºn paquete o su paquete ya no tiene mÃ¡s publicaciones
 							            </div>
 							        </div>
 						</div>
@@ -232,7 +232,7 @@
 				
 				 <div class="form-floating mb-3">
 					<input type="text" class="form-control" id="tipoPubli" name="tipoPubli" placeholder="" value="<%= request.getParameter("tipoPubli") != null ? request.getParameter("tipoPubli") : "" %>">					
-					<label for="floatingInput">Tipo de publicación de la Oferta</label>
+					<label for="floatingInput">Tipo de publicaciÃ³n de la Oferta</label>
 					
 				</div>
 				
@@ -250,12 +250,12 @@
 					
 					
 					
-					<div id="nombreHelp" class="form-text">El Nombre debe ser único en nuestra plataforma.</div>
+					<div id="nombreHelp" class="form-text">El Nombre debe ser Ãºnico en nuestra plataforma.</div>
 					<div class="my-3"></div>
 					
 					<div class="form-floating mb-">
 					<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="" value="<%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %>">
-					<label for="floatingTextarea">Descripcón</label>
+					<label for="floatingTextarea">DescripcÃ³n</label>
 				</div>
 					
 					<div class="form-floating mb-3">
@@ -283,7 +283,7 @@
 	    			<input type="number" class="form-control" id="remuneracion" name="remuneracion" placeholder=""
 		           		value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>"
 		          		 min="0">
-	    			<label for="floatingInput">Remuneración (En pesos uruguayos)</label>
+	    			<label for="floatingInput">RemuneraciÃ³n (En pesos uruguayos)</label>
 				</div>
 
 

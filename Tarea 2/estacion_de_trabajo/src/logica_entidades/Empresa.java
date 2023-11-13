@@ -93,7 +93,10 @@ public class Empresa extends Usuario {
 	        
 	    for (HashMap.Entry<String, OfertaLaboral> entry : this.ofertas.entrySet()) {
 	        LocalDate fechaO = entry.getValue().getFecha(); // FECHA ALTA
-	        int sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
+	        int sumoDias = 0;
+	        if(entry.getValue().getTipoDeOferta()!=null) {
+	        	 sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
+	        }
 	        LocalDate fechaLimite = fechaO.plusDays(sumoDias);
 	        
 	        if (fechaLimite.isBefore(LocalDate.now())) { // Verifica si esta vencida la oferta

@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,6 +40,7 @@ import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
+import logica_entidades.Usuario;
 import logica_entidades.OfertaLaboral.EstadoOferta;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
@@ -85,7 +88,6 @@ class controladorOfertaTest {
         
             co.darAltaOferta(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta, null, null);
     		OfertaLaboral  publiOfer = mo.obtenerOferta(nombre);
-    		publiOfer.setEstado(EstadoOferta.ACEPTADA);
             OfertaLaboral o = mo.obtenerOferta(nombre);
             Empresa emp = mu.obtenerEmpresa("EcoTech");
             o.setEmpresa(emp);
@@ -111,7 +113,6 @@ class controladorOfertaTest {
 
 	    co.darAltaOferta("Doctor", "Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Doctor");
-		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 	    assertThrows(NombreRepetidoOfertaException.class, () -> {
 	    	co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
 	    });	
@@ -157,7 +158,6 @@ class controladorOfertaTest {
 		co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer");
-		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 		assertEquals("EcoTech", publiOfer.getEmpresa().getNickName());
 		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
 		assertEquals("Nombre ofer", publiOfer.getNombreOferta());
@@ -177,7 +177,6 @@ class controladorOfertaTest {
 		ArrayList<String> palabrasClave1 = new ArrayList<>();
 		co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer2");
-		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 		assertThrows(NombreRepetidoOfertaException.class, () -> {
 			co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		});
@@ -259,6 +258,23 @@ class controladorOfertaTest {
 		assertEquals(hora2, publiOfer.getHoraFin());
 		assertEquals(fecha1, publiOfer.getFecha());
 		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
+	}
+	
+	@Test
+	void testeoNoExistePublicacion() throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli{
+		LocalTime hora1 = LocalTime.of(11, 30);
+		LocalTime hora2 = LocalTime.of(16, 0);
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		ArrayList<String> palabrasClave1 = new ArrayList<>();
+		ArrayList<DataKeyWord> setdt = mo.getDataKeyWord();
+		for(DataKeyWord dtk : setdt) {
+			palabrasClave1.add(dtk.getPalabraClave());
+		}
+		
+		assertThrows(noExistePublicacionException.class, () -> {
+			co.altaPublicacionOfertaLaboralConPaquete("EcoTech", "Ni idea", "Nombre ofer4", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
+
+		});
 	}
 	
 	@Test
@@ -490,12 +506,72 @@ class controladorOfertaTest {
 	}
 	
 	@Test
-	void testEntidades() {
-
+	void testGetDTTipoPubli() {
+		TipoPublicacion tp1 = new TipoPublicacion();
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate at1 = LocalDate.parse("10-08-2023", dateFormatter);
+		tp1.setNombre("Pepe");
+		tp1.setDescripcion("Obtén máxima visibilidad.");
+		tp1.setExposicion(1);
+		tp1.setDuracion(30);
+		tp1.setCosto(4000);
+		tp1.setFecha(at1);
+		DataTipoPublicacion dtp = tp1.getDTTipoPublicacion();
+		assertEquals(dtp.getNombre(),"Pepe");
+	
+	}	
+	
+	@Test
+	void testGetDTPaquete() {
+		Paquete paq1 = new Paquete();
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fhp1 = LocalDate.parse("16-08-2023", dateFormatter);
+		paq1.setNombre("No se");
+		paq1.setDescripcion("Publica ofertas laborales en nuestra plataforma por un período de 30 días.");
+		paq1.setValidez(30);
+		paq1.setDescuento(20);
+		paq1.setFechaAlta(fhp1);
+		paq1.setCosto(3720);
+		paq1.setImagen(null);
 		
+		DataPaquete dtp = paq1.getDTPaquete();
+		assertEquals(dtp.getNombre(),"No se");
+	}
+	
+	@Test
+	void testGetDTCompraPaquete() {
+		CompraPaquete comp1 = new CompraPaquete();
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate fc1 = LocalDate.parse("31-10-2023", dateFormatter); //e1 y pq3
+		LocalDate fvc1 = fc1.plusDays(60);
+		comp1.setFechaCompr(fc1);
+		comp1.setFechaVenc(fvc1);
+		DataCompraPaquete dtcp = comp1.getDTCompraPaquete();
+
+		assertEquals(dtcp.getFechaCompra(),fc1);
+	}
+	
+	@Test
+	void getPublicacionesYOferVencidasTest() {
+		Empresa emp = mu.obtenerEmpresa("EcoTech");
+		ArrayList<DataTipoPublicacion> publicaciones = new ArrayList<>();
+		publicaciones = emp.getPublicaciones();
+		HashMap<String, OfertaLaboral> oferVenc = new HashMap<>();
+		oferVenc = emp.getOfertasVencidas();
+		HashMap<String, OfertaLaboral> oferAprobVenc = new HashMap<>();
+		oferVenc = emp.getOfertasAprobadasYVencidasDeEmpresa();
+		}
+	
+	@Test
+	void seguirOdejarDeSeguirUsuarioTest() {
+		Usuario user1 = mu.obtenerUsuario("lgarcia");
+		Usuario user2 = mu.obtenerUsuario("EcoTech");
+		user1.agregarSeguidor(user2);
+		user2.dejarDeSeguirAUsuario(user2);
+		user1.agregarSeguidor(user2);
+		user1.quitarSeguidor(user2);
 		
 	}
 	
-		
 	}
 	

@@ -367,7 +367,7 @@
 				    if(!ordenPostulaciones.isEmpty()){
 				    
 				    %>
-				    
+				    <div class="my-3"></div>
 				    <a href="DescargaPDF?nombreOferta=<%= nombreOf %>&nombrePostulante=<%= nickUser %>" class="btn btn-dark">Descargar Resultado de Postulación</a>
 				    
 				    <% } %>

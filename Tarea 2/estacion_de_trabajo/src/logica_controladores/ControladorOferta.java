@@ -61,6 +61,7 @@ public class ControladorOferta implements IControladorOferta {
 		ofer.setNombre(nombre);
 		ofer.setRemuneracion(remuneracion);
 		ofer.setTipodePago(tipoDePago);
+		ofer.setEstado(EstadoOferta.INGRESADA);
 		manejadorOferta.addOferta(ofer);
 		}
 	

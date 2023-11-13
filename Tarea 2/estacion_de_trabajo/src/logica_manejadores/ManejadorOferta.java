@@ -183,17 +183,17 @@ public class ManejadorOferta implements IManejadorOferta{
 
         if (!ofertas.isEmpty()) {
             for (Map.Entry<String, OfertaLaboral> entry : ofertas.entrySet()) {
-            	LocalDate fechaO = entry.getValue().getFecha();
-				int sumoDias = entry.getValue().getTipoDeOferta().getDuracion();
-				LocalDate fechaLimite = fechaO.plusDays(sumoDias);
-				 
-				if (entry.getValue().getEstado().equals(EstadoOferta.ACEPTADA) && !fechaLimite.isBefore(LocalDate.now())) { 
-					res.add(entry.getValue());
-				 } 	
+            	if (entry.getValue().getEstado() != null) {
+	                if (entry.getValue().getEstado().equals(EstadoOferta.ACEPTADA)) {
+	                    res.add(entry.getValue());
+	                }
+            	}
             }
+
             // Ordenar la lista de ofertas por el número de visitas
             Collections.sort(res, Comparator.comparingInt(OfertaLaboral::getVisitas).reversed());
         }
+
         return res;
     }
 	

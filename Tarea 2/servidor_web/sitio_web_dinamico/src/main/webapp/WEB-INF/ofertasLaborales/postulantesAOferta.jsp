@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +97,7 @@
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>
-							                Hasta el momento ningún usuario se ha postulado
+							                Hasta el momento ningÃºn usuario se ha postulado
 							            </div>
 							        </div>
 						</div>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +91,7 @@
 		</div>
     	<div class="col-md-8">
 			<div class="contenedor4">
-				<h2 class="text-uppercase fs-4 fw-bolder">Información de la postulacion</h2>
+				<h2 class="text-uppercase fs-4 fw-bolder">InformaciÃ³n de la postulacion</h2>
 			</div>
 			<!--cargo datos-->
 		  <div class = "contenedor4">
@@ -127,7 +127,7 @@
   		 	
 		  	<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Motivación:</h4>
+      					<h4 class = "fs-5 fw=normal">MotivaciÃ³n:</h4>
    				 </div>
     		<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= motivacion %></h4>
@@ -137,7 +137,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Fecha de postulación:</h4>
+      					<h4 class = "fs-5 fw=normal">Fecha de postulaciÃ³n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= fecha %></h4>

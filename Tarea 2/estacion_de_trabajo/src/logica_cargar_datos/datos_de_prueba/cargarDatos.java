@@ -1011,6 +1011,20 @@ public class cargarDatos {
 		}
 		
 		
+		ArrayList<String> ordenPostulaciones1 = new ArrayList<>();
+		ordenPostulaciones1.add(0, p3.getNickName());
+		ordenPostulaciones1.add(1, p1.getNickName());
+		o1.setOrdenPostulaciones(ordenPostulaciones1);
+		o1.setFechaCalificacion(LocalDate.now());
+		
+		ArrayList<String> ordenPostulaciones2 = new ArrayList<>();
+		ordenPostulaciones2.add(0, p1.getNickName());
+		ordenPostulaciones2.add(1, p5.getNickName());
+		ordenPostulaciones2.add(2, p2.getNickName());
+		o2.setOrdenPostulaciones(ordenPostulaciones2);
+		o2.setFechaCalificacion(LocalDate.now());
+		
+		
 		//------------------------------//	
 		//PAQUETES
 	
