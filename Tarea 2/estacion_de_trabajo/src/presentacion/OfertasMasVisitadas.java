@@ -150,7 +150,6 @@ public class OfertasMasVisitadas extends JInternalFrame {
     
     public void cargarOfertas() {
         this.ofertas = IMO.getOfertasConfimadasOrdenadasPorVisitas();
-        System.out.println("Cantidad de ofertas cargadas: " + ofertas.size());
 
         // Actualizar la tabla con las nuevas ofertas
         actualizarTabla();
