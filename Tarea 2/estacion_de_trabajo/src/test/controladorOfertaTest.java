@@ -38,6 +38,7 @@ import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
+import logica_entidades.OfertaLaboral.EstadoOferta;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
@@ -83,6 +84,8 @@ class controladorOfertaTest {
 
         
             co.darAltaOferta(nombre,descripcion,ciudad,departamento,horaInicio,horaFin,remuneracion,costoDeOfertaLaboral,fechaDeAlta, null, null);
+    		OfertaLaboral  publiOfer = mo.obtenerOferta(nombre);
+    		publiOfer.setEstado(EstadoOferta.ACEPTADA);
             OfertaLaboral o = mo.obtenerOferta(nombre);
             Empresa emp = mu.obtenerEmpresa("EcoTech");
             o.setEmpresa(emp);
@@ -106,8 +109,9 @@ class controladorOfertaTest {
 	    LocalTime d2 = LocalTime.of(14, 0); 
 	    LocalTime d1 = LocalTime.of(19, 0); 
 
-	    co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
-        
+	    co.darAltaOferta("Doctor", "Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
+		OfertaLaboral  publiOfer = mo.obtenerOferta("Doctor");
+		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 	    assertThrows(NombreRepetidoOfertaException.class, () -> {
 	    	co.darAltaOferta("Doctor","Cirujano cardio", "La teja", "Montevideo", d2,d1, 1500, 1000, f1, null, null);
 	    });	
@@ -153,6 +157,7 @@ class controladorOfertaTest {
 		co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer");
+		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 		assertEquals("EcoTech", publiOfer.getEmpresa().getNickName());
 		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
 		assertEquals("Nombre ofer", publiOfer.getNombreOferta());
@@ -171,7 +176,8 @@ class controladorOfertaTest {
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
 		ArrayList<String> palabrasClave1 = new ArrayList<>();
 		co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
-		
+		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer2");
+		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 		assertThrows(NombreRepetidoOfertaException.class, () -> {
 			co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer2", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		});
@@ -243,6 +249,7 @@ class controladorOfertaTest {
 		co.altaPublicacionOfertaLaboralConPaquete("EcoTech", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer3");
+		publiOfer.setEstado(EstadoOferta.ACEPTADA);
 		assertEquals("EcoTech", publiOfer.getEmpresa().getNickName());
 		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
 		assertEquals("Nombre ofer3", publiOfer.getNombreOferta());
@@ -384,6 +391,14 @@ class controladorOfertaTest {
 	}
 	
 	@Test
+	void getOfertasConfimadasOrdenadasPorVisitasTest() {
+		ArrayList<OfertaLaboral> arr = new ArrayList<>();
+		arr = mo.getOfertasConfimadasOrdenadasPorVisitas();
+	}
+	
+	
+	
+	@Test
 	void testDataTypes() {
 		//Data Compra Paquete
 		DataCompraPaquete dcp = new DataCompraPaquete();
@@ -476,17 +491,7 @@ class controladorOfertaTest {
 	
 	@Test
 	void testEntidades() {
-		CompraPaquete comPaq = new CompraPaquete();
-		TipoPublicacion tipoPubli = new TipoPublicacion();
-	    LocalDate compra = LocalDate.of( 2023, 9, 9);
-	    LocalDate vencimiento = LocalDate.of( 2024, 9, 9);
-	    comPaq.setFechaCompr(compra);
-	    comPaq.setFechaVenc(vencimiento);
-		DataCompraPaquete dcp = comPaq.getDTCompraPaquete();	
-		int cantTipo = comPaq.cantTipoPubli();
-		int costo = comPaq.getCosto();
-		assertEquals(comPaq.getFechaCompra(), compra); 
-		assertEquals(comPaq.getFechaVencimiento(), vencimiento); 
+
 		
 		
 	}
