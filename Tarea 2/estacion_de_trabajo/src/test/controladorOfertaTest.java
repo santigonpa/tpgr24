@@ -429,8 +429,12 @@ class controladorOfertaTest {
 		DataEmpresa demp = new DataEmpresa();
 		demp.setDescripcion("no se"); 
 		demp.setLinkWeb("www.a.com");
+		demp.setNombre("nombre");
+		boolean notiene = demp.tienePalabra("Palabra");
+		boolean tiene = demp.tienePalabra("nombre");
 		assertEquals(demp.getDescripcion(), "no se"); 
 		assertEquals(demp.getLinkWeb(), "www.a.com"); 
+		
 		
 		//Data Postu
 		DataPostulante dpos = new DataPostulante();
@@ -463,6 +467,7 @@ class controladorOfertaTest {
 		doferta.setFechaFin("13/11/2023");
 		String fechaFin = doferta.getFechaFin();
 		String fechaCalif = doferta.getFechaCalif();
+		boolean esta = doferta.estaString(doferta.getNombre());
 		assertEquals(doferta.getEmpresa(), "EcoTech");
 		assertEquals(doferta.getDescripcion(), "Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.");
 		assertEquals(doferta.getCiudad(), "Flores");

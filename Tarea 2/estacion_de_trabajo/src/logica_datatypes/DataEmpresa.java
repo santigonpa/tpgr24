@@ -28,8 +28,10 @@ public class DataEmpresa extends DataUsuario{
 		
 		public boolean tienePalabra(String palabra) {
 			boolean res = false;
-			if(this.getNombre().equals(palabra) || this.descripcion.contains(palabra)) {
-				res = true;
+			if(this.getNombre()!=null) {
+				if(this.getNombre().equals(palabra) || this.descripcion.contains(palabra)) {
+					res = true;
+				}
 			}
 			return res;
 		}
