@@ -208,4 +208,10 @@ public class PublicadorManejadorOfertas {
     public void finalizarOfer(String nombreOferta) {
     	manejadorOferta.finalizarOferta(nombreOferta);
     }
+    
+    @WebMethod 
+    public void visitaDeOferta(String nombreOferta) {
+    	OfertaLaboral ofer = manejadorOferta.obtenerOferta(nombreOferta);
+    	ofer.visitada();
+    }
 }
