@@ -98,6 +98,15 @@ public class DataOferta {
 		return this.palabrasClave;
 	}
 	*/
+	
+	public boolean estaString(String palabra) {
+		boolean res = false;
+		if(this.nombre.equals(palabra) || this.descripcion.contains(palabra)) {
+			res = true;
+		}
+		return res;
+	}
+	
 	public String getEmpresa() {
 		return this.empresa;
 	}
