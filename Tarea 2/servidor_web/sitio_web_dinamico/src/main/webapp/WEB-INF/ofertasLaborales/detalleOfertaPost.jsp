@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +86,7 @@
 		</div>
     	<div class="col-md-8">
 			<div class="contenedor4">
-				<h2 class="text-uppercase fs-4 fw-bolder">Informaci髇 de la oferta</h2>
+				<h2 class="text-uppercase fs-4 fw-bolder">Informaci贸n de la oferta</h2>
 			</div>
 			<!--cargo datos-->
 		  <div class = "contenedor4">
@@ -102,7 +102,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Descripci髇:</h4>
+      					<h4 class = "fs-5 fw=normal">Descripci贸n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= desc %></h4>
@@ -142,7 +142,7 @@
   			
   			<div class="row">
     			<div class="col">
-      					<h4 class = "fs-5 fw=normal">Remuneraci髇:</h4>
+      					<h4 class = "fs-5 fw=normal">Remuneraci贸n:</h4>
    				 </div>
     			<div class="col">
       					<h4 class = "fs-5 fw-lighter"><%= remuneracion %></h4>
@@ -186,7 +186,7 @@
   				</div>
   				<div class="col">
 					    <% for (String key : palabras) { %>
-					        <div class="mb-2 mt-2"> <!-- Agregando margen superior e inferior a cada bot髇 -->
+					        <div class="mb-2 mt-2"> <!-- Agregando margen superior e inferior a cada bot贸n -->
 					            <a>
 					                <button type="button" class="btn btn-outline-secondary"><%= key %></button>
 					            </a>
@@ -204,7 +204,7 @@
 	
 	<div class="contenedor text-center mt-3">
 	    <a href="ServletConsultaDePostulacionAOfertaLaboral?id=<%= nombre %>" class="gap-2 py-5" align="center" style="text-decoration: none;">
-	        <button class="btn btn-dark" type="button">Ver detalles de la postulaci髇</button>
+	        <button class="btn btn-dark" type="button">Ver detalles de la postulaci贸n</button>
 	    </a>
 	</div>
 	</main>

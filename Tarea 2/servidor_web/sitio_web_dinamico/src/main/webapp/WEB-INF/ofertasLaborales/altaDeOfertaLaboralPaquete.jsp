@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@page import= "com.webservices.controladores.publicar.DataTipoPublicacion" %>
     <%@page import="java.util.Set" %>
     <%@page import="java.time.LocalDate" %>
@@ -74,13 +74,13 @@
 
         if (tipoPubli == "" || nombre == "" || descripcion == "" || departamento == "" || ciudad == "" || horaDeInicio == "" || horaDeFin == "" || remuneracion == "") {
             alert("Todos los campos son obligatorios");
-            return false; // Evita que el formulario se env韊 si hay campos vac韔s
+            return false; // Evita que el formulario se env铆e si hay campos vac铆os
         } else {
-            return true; // Permite que el formulario se env韊 si todas las validaciones pasan
+            return true; // Permite que el formulario se env铆e si todas las validaciones pasan
         }
     }
 
-    // Agregar un evento de escucha al formulario para la validaci髇
+    // Agregar un evento de escucha al formulario para la validaci贸n
     document.addEventListener("DOMContentLoaded", function () {
         var form = document.getElementById("alta-formulario");
         form.addEventListener("submit", function (event) {
@@ -167,7 +167,7 @@
 		 <div class="row justify-content-center">
             <div class="col-md-6">
                 <div align="center">			
-		<h3 class="-titulo-">Tipos de publicaci髇 disponibles actualmente en su paquete</h3>
+		<h3 class="-titulo-">Tipos de publicaci贸n disponibles actualmente en su paquete</h3>
 		         </div>
             </div>
         </div>
@@ -202,7 +202,7 @@
 							            <div class="alert alert-danger" role="alert">
 							            	<div class = "text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
 							            	<hr>
-							                Su empresa no cuenta con alg鷑 paquete o su paquete ya no tiene m醩 publicaciones
+							                Su empresa no cuenta con alg煤n paquete o su paquete ya no tiene m谩s publicaciones
 							            </div>
 							        </div>
 						</div>
@@ -232,7 +232,7 @@
 				
 				 <div class="form-floating mb-3">
 					<input type="text" class="form-control" id="tipoPubli" name="tipoPubli" placeholder="" value="<%= request.getParameter("tipoPubli") != null ? request.getParameter("tipoPubli") : "" %>">					
-					<label for="floatingInput">Tipo de publicaci髇 de la Oferta</label>
+					<label for="floatingInput">Tipo de publicaci贸n de la Oferta</label>
 					
 				</div>
 				
@@ -250,12 +250,12 @@
 					
 					
 					
-					<div id="nombreHelp" class="form-text">El Nombre debe ser 鷑ico en nuestra plataforma.</div>
+					<div id="nombreHelp" class="form-text">El Nombre debe ser 煤nico en nuestra plataforma.</div>
 					<div class="my-3"></div>
 					
 					<div class="form-floating mb-">
 					<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="" value="<%= request.getParameter("descripcion") != null ? request.getParameter("descripcion") : "" %>">
-					<label for="floatingTextarea">Descripc髇</label>
+					<label for="floatingTextarea">Descripc贸n</label>
 				</div>
 					
 					<div class="form-floating mb-3">
@@ -283,7 +283,7 @@
 	    			<input type="number" class="form-control" id="remuneracion" name="remuneracion" placeholder=""
 		           		value="<%= request.getParameter("remuneracion") != null ? request.getParameter("remuneracion") : "" %>"
 		          		 min="0">
-	    			<label for="floatingInput">Remuneraci髇 (En pesos uruguayos)</label>
+	    			<label for="floatingInput">Remuneraci贸n (En pesos uruguayos)</label>
 				</div>
 
 
