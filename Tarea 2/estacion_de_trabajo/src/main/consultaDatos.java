@@ -1,4 +1,4 @@
-package mainPersistencia;
+package main;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import logica_entidades.OfertaLaboral;
 
-public class consultarDatos {
+public class consultaDatos {
 	    public static void main(String[] args) {
 	        // Crear el EntityManager y la EntityManagerFactory
 	        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrabajoUYJPA");

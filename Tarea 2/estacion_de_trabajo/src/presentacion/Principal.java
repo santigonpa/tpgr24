@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -13,9 +14,16 @@ import logica_controladores.IControladorOferta;
 import controladores.publicar.PublicadorManejadorPyT;
 import controladores.publicar.PublicadorManejadorOfertas;
 import controladores.publicar.PublicadorManejadorUsuario;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 import controladores.publicar.PublicadorControladorOfertas;
 import controladores.publicar.PublicadorControladorUsuario;
 import logica_controladores.IControladorUsuario;
+import logica_entidades.Empresa;
+import logica_entidades.OfertaLaboral;
+import logica_entidades.Postulacion;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
 import logica_manejadores.IManejadorUsuario;
@@ -202,6 +210,43 @@ public void actionPerformed(ActionEvent arg0) {
 				cargarDatos cargador = new cargarDatos();
 		 try {
 			cargador.cargar();
+
+			
+				EntityManagerFactory emf = null;
+				EntityManager enM = null;
+				try {	
+				//En algún lugar de tu aplicación (puede ser un inicializador, un servlet, etc.)
+				emf = Persistence.createEntityManagerFactory("persistir");
+				enM = emf.createEntityManager();
+				
+				//Iniciar transacción
+				Fabrica fabrica = Fabrica.getInstance();
+				IManejadorOferta IMO = fabrica.getInManejadorOferta();
+
+				OfertaLaboral o5 = IMO.obtenerOferta("Content Manager");
+				EntityTransaction tx = enM.getTransaction();
+				tx.begin();
+				enM.persist(o5);
+				Empresa emp = o5.getEmpresa();
+				enM.persist(emp);
+				ArrayList<Postulacion> post = o5.getPostulaciones();
+				for(Postulacion postulacion : post){
+					enM.persist(postulacion.getPostulante());
+					enM.persist(postulacion);
+				}
+				tx.commit();
+				System.out.println("Se cargaron los datos correctamente");
+
+				 
+					} catch (Exception e2) {
+						e2.printStackTrace();
+						enM.getTransaction().rollback();
+					} finally {
+						// Cerrar EntityManager
+						enM.close();
+						emf.close();
+						}
+				
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

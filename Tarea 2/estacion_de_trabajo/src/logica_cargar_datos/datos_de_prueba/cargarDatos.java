@@ -10,8 +10,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import excepciones.yaExistePostulacionAOfertaException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 import logica_controladores.IControladorUsuario;
 import logica_entidades.CompraPaquete;
 import logica_entidades.Empresa;
@@ -1105,6 +1110,8 @@ public class cargarDatos {
 		((Empresa) e1).setCompra(comp1);
 		((Empresa) e2).setCompra(comp3); //u12 
 		((Empresa) e6).setCompra(comp2); //u16
+		
+		
 	
 	}		
 }
