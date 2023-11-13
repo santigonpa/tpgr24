@@ -61,6 +61,8 @@ public class ServletDetalleOferta extends HttpServlet {
 			DataOferta ofer = puertoManejadorOfertas.getDataOferta(nombreOfer);
 			request.setAttribute("ofer", ofer);
 			
+			puertoManejadorOfertas.visitaDeOferta(nombreOfer);
+			
 			List<Object> keys = puertoManejadorOfertas.getKeysPorNombreOfer(nombreOfer).getLista();
 			ArrayList<String> keysEnviar = new ArrayList<>();
 			for (Object objetoK : keys) {
