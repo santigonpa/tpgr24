@@ -206,7 +206,7 @@ public ArrayList<Postulacion> obtenerPostulaciones(String usuario){
 	public void comprarPaquete(Paquete paq, String emp) {
 		
 		Fabrica fab = Fabrica.getInstance();
-		IManejadorUsuario imu = (IManejadorUsuario) fab.getInUser();
+		IManejadorUsuario imu =  fab.getInManejadorUsuario();
 		Empresa empresa = (Empresa) imu.obtenerEmpresa(emp);
     	CompraPaquete compPaq = new CompraPaquete();
     	

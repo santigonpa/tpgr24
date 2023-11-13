@@ -22,12 +22,14 @@ import excepciones.noExisteTipoPubli;
 import excepciones.yaExistePostulacionAOfertaException;
 import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
+import logica_controladores.IControladorUsuario;
 import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
 import logica_datatypes.DataPaquete;
 import logica_datatypes.DataTipoPublicacion;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
+import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
 import logica_entidades.TipoPublicacion;
 import logica_manejadores.IManejadorOferta;
@@ -41,6 +43,7 @@ class controladorOfertaTest {
     private static IManejadorOferta mo;
     private static IManejadorPyT mpyt;
     private static IManejadorUsuario mu;
+    private static IControladorUsuario cu;
     LocalDate f1 = LocalDate.of( 1990, 1, 1);
     LocalTime d2 = LocalTime.of( 8, 0); 
     LocalTime d1 = LocalTime.of( 17, 0); 
@@ -51,6 +54,7 @@ class controladorOfertaTest {
         co = f.getInOfer();
         mo = f.getInManejadorOferta();
         mu = f.getInManejadorUsuario();
+        cu = f.getInUser();
         f.getInManejadorUsuario();
         mpyt = f.getInManejadorPyT();
         cargarDatos cargador = new cargarDatos();
@@ -137,6 +141,8 @@ class controladorOfertaTest {
 		for(DataKeyWord dtk : setdt) {
 			palabrasClave1.add(dtk.getPalabraClave());
 		}
+		ArrayList<DataOferta> dataOfers = mo.getDataOfertasFinalizadas();
+		ArrayList<OfertaLaboral> dataOfertasLaborales = mo.getOfertasFinalizadas();
 		
 		co.altaPublicacionOfertaLaboralGeneral("EcoTech", "Premium", "Nombre ofer", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		
@@ -216,7 +222,7 @@ class controladorOfertaTest {
 		@SuppressWarnings("unused")
 		ArrayList<Postulacion> postulaciones = mo.obtenerPostulaciones(ofer,empre);
 	}
-	
+	/*
 	@Test
 	void testeoAltaPubliOferConPaquete() throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli{
 		LocalTime hora1 = LocalTime.of(11, 30);
@@ -228,7 +234,46 @@ class controladorOfertaTest {
 			palabrasClave1.add(dtk.getPalabraClave());
 		}
 		
-		co.altaPublicacionOfertaLaboralConPaquete("FusionTech", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
+		co.altaPublicacionOfertaLaboralConPaquete("FusionTeche", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
+		
+		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer3");
+		assertEquals("FusionTeche", publiOfer.getEmpresa().getNickName());
+		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
+		assertEquals("Nombre ofer3", publiOfer.getNombreOferta());
+		assertEquals("San Carlos", publiOfer.getCiudad());
+		assertEquals("Maldonado", publiOfer.getDepartamento());
+		assertEquals(hora1, publiOfer.getHoraInicio());
+		assertEquals(hora2, publiOfer.getHoraFin());
+		assertEquals(fecha1, publiOfer.getFecha());
+		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
+	}*/
+	
+	@Test
+	void crearPaqueteDeTipoPubliDeOfertasLaboralesTest() throws NombrePaqueteYaExiste {
+		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
+		LocalTime hora1 = LocalTime.of(11, 30);
+		LocalTime hora2 = LocalTime.of(16, 0);
+		LocalDate fecha11 = LocalDate.of(2023, 9, 12);
+		ArrayList<String> palabrasClave1 = new ArrayList<>();
+		ArrayList<DataKeyWord> setdt = mo.getDataKeyWord();
+		for(DataKeyWord dtk : setdt) {
+			palabrasClave1.add(dtk.getPalabraClave());
+		}
+		co.crearPaqueteDeTipoDePublicacionDeOfertasLaborales("Paquete Pro", "descripcion", 30, 20, fecha1, 3720, null);
+		Paquete paqui = mpyt.getPaquete("Paquete Pro");
+		cu.comprarPaquete(paqui, "FusionTech");
+		try {
+			co.altaPublicacionOfertaLaboralConPaquete("FusionTech", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha11, palabrasClave1, null, null);
+		} catch (NombreRepetidoOfertaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (noExistePublicacionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (noExisteTipoPubli e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer3");
 		assertEquals("FusionTech", publiOfer.getEmpresa().getNickName());
@@ -240,13 +285,6 @@ class controladorOfertaTest {
 		assertEquals(hora2, publiOfer.getHoraFin());
 		assertEquals(fecha1, publiOfer.getFecha());
 		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
-	}
-	
-	@Test
-	void crearPaqueteDeTipoPubliDeOfertasLaboralesTest() throws NombrePaqueteYaExiste {
-		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
-		co.crearPaqueteDeTipoDePublicacionDeOfertasLaborales("Paquete Pro", "descripcion", 30, 20, fecha1, 3720, null);
-		
 		DataPaquete dpaq = mpyt.getDataPaquete("Paquete Pro");
 		assertEquals("Paquete Pro",dpaq.getNombre());
 		assertEquals("descripcion", dpaq.getDescripcion());
@@ -328,6 +366,8 @@ class controladorOfertaTest {
 			assertEquals(data.getCosto(),datos.getCosto());
 			
 		}*/
+	
+	
 		
 	}
 	

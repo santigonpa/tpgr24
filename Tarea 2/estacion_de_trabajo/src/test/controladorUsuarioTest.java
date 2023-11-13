@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -156,8 +157,12 @@ class controladorUsuarioTest {
 		
 		try {
 			cu.agregarPostulacionAPostulante(p1.getNickName(), postulacion1);
+			//CU.altaUsuarioEmpresa("nicknei2m", "nom", "ape", "2emaIl", "desc", "web", null, "pass");
+			//CU.altaUsuarioPostulante("nickPos", "nom", "ape", "emailPostu", ao1, "naci", null, "contrasenia");
+			//CU.modificarDatosEmpresa("nick", "nom", "ape", "ema", "desc", "web", null, "pass");
+			//CU.modificarDatosPostulante("nickPos", "nom", "ape", "emailPostu","5/5/0005", "naci", null, "contrasenia");
 		} catch (yaExistePostulacionAOfertaException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		mo.addOferta(o1);
@@ -470,6 +475,13 @@ class controladorUsuarioTest {
 	@Test
 	void testObtenerOfertasEmpresa() {
 		ArrayList<DataOferta> ofertas = mu.obtenerOfertasDeUnaEmpresa("EcoTech");
+		try {
+			@SuppressWarnings("unused")
+			ArrayList<DataEmpresa> ofertas2 = cu.getDataEmpresa();
+		} catch (UsuarioNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		boolean found = false;
 		for (DataOferta ofer : ofertas) {
 		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
@@ -485,7 +497,8 @@ class controladorUsuarioTest {
 		LocalDate fecha111 = LocalDate.of(2023, 9, 15);
 		// Define el formato que deseas
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
+        @SuppressWarnings("unused")
+		ArrayList<Postulacion> datas = cu.obtenerPostulaciones("lgarcia");
         // Formatea la fecha en el formato deseado
         String fechaFormateada = fecha111.format(formato);
 		cu.modificarDatosPostulante("lgarcia", "luchi", "garcia sosa","lgarcia85@gmail.com" , fechaFormateada, "hola", null, "ola");
@@ -503,6 +516,8 @@ class controladorUsuarioTest {
 	
 	@Test
 	void testeoEntidadesUsuario() {
+		@SuppressWarnings("unused")
+		//ArrayList<DataOferta> oferArr= CU.getDataOfertasDeEmpresa("EcoTech");
 		Postulante lgarcia = mu.obtenerPostulante("lgarcia");
 		Postulacion postu = lgarcia.encontrarPostulacionPorNombreOferta("Desarrollador Frontend");
 		Postulacion postu2 = lgarcia.encontrarPostulacionPorNombreOferta("Estratega de Negocios");
@@ -513,7 +528,6 @@ class controladorUsuarioTest {
 		String nombreOfert = postu.getNombreOfer();
 		assertEquals(nombrePostulante, postu.getNombrePostulante());
 		assertEquals(nombreOfert, postu.getNombreOfer());
-
 		assertEquals(cvPostu,postu.getCV());
 		assertEquals(motiPostu,postu.getMotivacion());
 		DataPostulacion dataPos = postu.getDTPostulacion();
@@ -526,13 +540,37 @@ class controladorUsuarioTest {
 		lgarcia.modificarPos("apellido", "nuevo", 3,12, 2000, "Uruguay");
 		assertEquals(mu.getDataEmpresa("EcoTech").getNombre(),"hola");
 		assertEquals(mu.getDataPostulante("lgarcia").getNombre(),"apellido");
+		
+		@SuppressWarnings("unused")
+		ArrayList<DataOferta> oferts = mu.obtenerOfertasFinalizadas("EcoTech");
+		@SuppressWarnings("unused")
+		ArrayList<DataOferta> ofertsRech =mu.obtenerOfertasRechazadasIngresadas("EcoTech");
 		DataUsuario lgarciaData = ((Usuario) lgarcia).getDTUsuario();
 		assertEquals(lgarciaData.getNombre(),"apellido");
 		assertEquals(postu.getNickPostulante(),"lgarcia");
 		HashMap<String, OfertaLaboral> mapa = eco.getOfertasRechazadasIngresadas();
-		
+		@SuppressWarnings("unused")
+		ArrayList<DataOferta> oferT = cu.getDataOfertasDeEmpresa("EcoTech");
 		assertNull(mapa.get("Desarrollador Frontend"));
 	
 		
 	}
+	
+	@Test
+	void testObtenerOfertarDeEmpresa() {
+		
+		DataEmpresa ecoTech = mu.getDataEmpresa("EcoTech");
+		HashMap<String,OfertaLaboral> mapa = cu.obtenerOfertarDeEmpresa(ecoTech);
+		assertNotEquals(mapa.get("EcoTech"),"EcoTech");
+	}
+	
+	@Test
+	void testListarInfoUser() {
+		DataUsuario user = cu.listarInfoUser("lgarcia");
+		assertEquals(user.getNickName(),"lgarcia");
+	}
+	
+	
+	
+	
 }

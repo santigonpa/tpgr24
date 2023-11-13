@@ -227,7 +227,9 @@ public class Empresa extends Usuario {
 	} 
 	
 	public boolean tienePaqueteAsociado() {
-		return this.compra != null;
+		if(this.compra == null) {return false;}
+		else {return true;}
+		
 	}
 	
 	
