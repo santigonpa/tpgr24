@@ -91,6 +91,7 @@ public class servletDetalleOferta_movil extends HttpServlet {
 	    		}
 
 	    		String nombreOfertaConsultada = request.getParameter("id");
+	    		puertoManejadorOfertas.visitaDeOferta(nombreOfertaConsultada);
 	    		boolean estaPost = false;
 	    		
 	    		List<Object> listaObjetosOfertasDePostulante = puertoManejadorUsuario.obtenerDataOfertasDePostulaciones(nickName).getLista();

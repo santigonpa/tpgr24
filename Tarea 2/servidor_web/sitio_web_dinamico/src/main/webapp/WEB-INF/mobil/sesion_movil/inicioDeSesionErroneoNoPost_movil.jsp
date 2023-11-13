@@ -36,12 +36,6 @@
       crossorigin="anonymous"
     ></script>
     <style>
-		body{
-			margin: 0; /* Elimina el margen predeterminado del body */
-			padding: 0; /* Elimina el relleno predeterminado del body */
-			background: linear-gradient(to bottom, #212529 35%, #eee 55% );
-			min-height: 50vh; /* Establece una altura mínima del viewport para main */
-		}
 		.bg{
 			background-image: url(media/img/prueba.jpg);
 			background-position: center center;
@@ -84,7 +78,6 @@
 							<button  type="submit" class="btn btn-dark">Iniciar sesión</button>
 						</div>
 						<div class="my-3">
-							<span>¿No tienes cuenta? <a href="altaDeUsuario.html">Regístrate.</a></span> <br>
 							<span><a href="#">Recuperar contraseña.</a></span>
 						</div>
 					</form>
@@ -95,7 +88,7 @@
 		</div>
 	</main>
 	
-	<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/mobil/templates_movil/footerMovil.jsp"></jsp:include>
 	
 </body>
 </html>

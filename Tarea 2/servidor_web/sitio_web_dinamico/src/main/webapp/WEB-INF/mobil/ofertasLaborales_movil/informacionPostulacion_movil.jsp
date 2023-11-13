@@ -155,6 +155,6 @@
   		</div>
 	</div>
 	    </main>
-		<jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/mobil/templates_movil/footerMovil.jsp"></jsp:include>
 </body>
 </html>

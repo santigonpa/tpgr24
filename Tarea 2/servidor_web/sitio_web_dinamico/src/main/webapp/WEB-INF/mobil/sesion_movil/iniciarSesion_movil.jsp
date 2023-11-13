@@ -77,7 +77,6 @@
 							<button  href="" type="submit" class="btn btn-dark">Iniciar sesión</button>
 						</div>
 						<div class="my-3">
-							<span>¿No tienes cuenta? <a href="AltaUsuario">Regístrate.</a></span> <br>
 							<span><a href="#">Recuperar contraseña.</a></span>
 						</div>
 					</form>
@@ -88,6 +87,6 @@
 		</div>
 	</main>
 
-    <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/mobil/templates_movil/footerMovil.jsp"></jsp:include>
   </body>
 </html>

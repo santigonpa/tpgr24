@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import com.model.EstadoSesion;
+import com.webservices.controladores.publicar.DataPostulante;
 
 /**
  * Servlet implementation class home_movil
@@ -56,6 +57,7 @@ import com.model.EstadoSesion;
 					// hace que se ejecute el jsp sin cambiar la url
 					RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/mobil/home_mobil/iniciarLogged_mobil.jsp"); //obtiene dispatcher construido con la ruta
 					dispatcher2.forward(request, response); // envia los datos hacia la ruta con el request y response
+					
 					break;
 			default:
 				break;
