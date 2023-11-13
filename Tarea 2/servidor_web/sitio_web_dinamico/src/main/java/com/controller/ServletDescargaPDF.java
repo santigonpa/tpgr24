@@ -44,7 +44,7 @@ public class ServletDescargaPDF extends HttpServlet {
 		DataOferta oferta = puertoManejadorOfertas.getDataOferta(nombreOferta);
 		String fechaDeResultados = oferta.getFechaCalif();
 		DataPostulante dataPostulante = puertoManejadorUsuarios.getDataPostulante(nickPostulante);
-		String nombrePostulante = dataPostulante.getNickName();
+		String nombrePostulante = dataPostulante.getNombre();
 		String apellidoPostulante = dataPostulante.getApellido();
 		
 		
