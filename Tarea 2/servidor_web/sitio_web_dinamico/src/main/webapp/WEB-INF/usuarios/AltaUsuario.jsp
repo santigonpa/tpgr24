@@ -65,11 +65,11 @@
     	  return true; // Permitir el envío del formulario si la fecha es válida
     	}
 
-    </script>
+ </script>
     
+	
     
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -92,31 +92,62 @@
     
     <script>
         function validarContraseñas() {
-  // Obtener los valores de las contraseñas
-  var contraseña1 = document.getElementById("password").value;
-  var contraseña2 = document.getElementById("confirmPassword").value;
+  		// Obtener los valores de las contraseñas
+  		var contraseña1 = document.getElementById("password").value;
+  		var contraseña2 = document.getElementById("confirmPassword").value;
 
-  // Comparar las contraseñas
-  if (contraseña1 !== contraseña2) {
-    // Si las contraseñas no coinciden, mostrar un mensaje de error
-    alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
-    return false; // Evitar el envío del formulario
-  }
-  return true; // Envío del formulario si las contraseñas coinciden
-}
+  		// Comparar las contraseñas
+ 		 if (contraseña1 !== contraseña2) {
+   		 // Si las contraseñas no coinciden, mostrar un mensaje de error
+   		alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+    	return false; // Evitar el envío del formulario
+  		}
+  		return true; // Envío del formulario si las contraseñas coinciden
+		}
 
-document.addEventListener("DOMContentLoaded", function () {
-  var form = document.getElementById("alta-form");
-  form.addEventListener("submit", function (event) {
-    if (!validarContraseñas()) {
-      event.preventDefault(); // Evita que el formulario se envíe si las contraseñas no coinciden
-    }
-  });
-});
-
+		document.addEventListener("DOMContentLoaded", function () {
+		  var form = document.getElementById("alta-form");
+		  form.addEventListener("submit", function (event) {
+		    if (!validarContraseñas()) {
+		      event.preventDefault(); // Evita que el formulario se envíe si las contraseñas no coinciden
+		    }
+		  });
+		});
+	</script>
+	
+	<script>
+	    $(document).ready(function () {
+	        $("#nickname").on("input", function () {
+	            var nickname = $(this).val();
+	            $.ajax({
+	                type: "POST",
+	                url: "/TrabajoUY/ValidacionDeAjax",
+	                data: { action: "checkNickname", nickname: nickname },
+	                success: function (response) {
+	                    $("#nicknameStatus").html(response);
+	                }
+	            });
+	        });
+	    });
 	</script>
 	
 	
+	<script>
+	    $(document).ready(function () {
+	        $("#correo").on("input", function () {
+	            var correo = $(this).val();
+	            $.ajax({
+	                type: "POST",
+	                url: "ValidacionDeAjax",
+	                data: { action: "checkEmail", correo: correo },
+	                success: function (response) {
+	                	console.log("Despues de llamar a email");
+	                    $("#emailStatus").html(response);
+	                }
+	            });
+	        });
+	    });
+	</script>
 	
 	
 	
@@ -252,6 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				  <% } %>
                   
                 </div>
+                <span id = "nicknameStatus" style="color:red;"></span>
+                
                 <div class="form-group">
                   <label for="nombre">Nombre:</label>
                   <input
@@ -320,7 +353,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				  <% } %>
 				                  
                 </div>
-    
+    			<span id = "emailStatus" style="color: red;"></span>
+    			
                 <div class="tab-content">
                   <div class="tab-pane fade" id="postulante">
                     <!-- Campos específicos para personas -->
@@ -407,6 +441,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#postulante-tab").tab("show");
   }
 </script>
+
+
     
     <jsp:include page="/WEB-INF/template/footer.jsp"></jsp:include>
 </body>

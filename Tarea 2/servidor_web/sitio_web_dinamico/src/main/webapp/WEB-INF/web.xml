@@ -318,4 +318,14 @@
     <servlet-name>ServletDescargaPDF</servlet-name>
     <url-pattern>/ServletDescargaPDF</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ValidacionAjax</display-name>
+    <servlet-name>ValidacionAjax</servlet-name>
+    <servlet-class>com.controller.ValidacionAjax</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidacionAjax</servlet-name>
+    <url-pattern>/ValidacionAjax</url-pattern>
+  </servlet-mapping>
 </web-app>
