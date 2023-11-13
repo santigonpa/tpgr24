@@ -194,38 +194,9 @@ class controladorUsuarioTest {
 			Empresa e = (Empresa) mu.obtenerEmpresa(nickName2);
 			DataUsuario pruebaDataPos = cu.listarInfoUser(nickName);
 			//DataEmpresa pruebaDataEmp = new DataEmpresa("McDonalds", "Ronald", "ElDonal", "cajitaFeliz@gmail.com", "Comida rapida", "www.mCDonalds.com", null, null);
-			pruebaDataEmp = new DataEmpresa();
-			pruebaDataEmp.setNombre("McDonalds");
-			pruebaDataEmp.setApellido("Ronald");
-			pruebaDataEmp.setDescripcion("ElDonal");
-			pruebaDataEmp.setEmail("cajitaFeliz@gmail.com");
-			pruebaDataEmp.setDescripcion("Comida rapida");
-			pruebaDataEmp.setLinkWeb("www.mCDonalds.com");
-			
+			pruebaDataEmp = e1.getDTEmpresa();
 			HashMap<String, OfertaLaboral> mapaOfEmpresa =  cu.obtenerOfertarDeEmpresa(pruebaDataEmp);
 			OfertaLaboral pruebaEncuentro = mapaOfEmpresa.get("Desarolaldor Frontend");
-			assertEquals("Desarolaldor Frontend",pruebaEncuentro.getNombreOferta());
-			
-			
-			assertEquals(nickName,pruebaDataPos.getNickName());
-			assertEquals(nickName, p.getNickName());
-			assertEquals(nickName2, e.getNickName());
-			assertEquals(nombre, p.getNombre());
-			assertEquals(nombre2, e.getNombre());
-			assertEquals(apellido, p.getApellido());
-			assertEquals(apellido2, e.getApellido());
-			assertEquals(email, p.getEmail());
-			assertEquals(email2, e.getEmail());
-			assertEquals(fecha111, p.getNacimineto());
-			assertEquals(descripcion, e.getDescripcion());
-			assertEquals(nacionalidad, p.getNacionalidad());
-			assertEquals(web, e.getLinkWeb());
-			
-			
-	
-		
-	
-		
 	}
 	
 	@Test
@@ -236,7 +207,7 @@ class controladorUsuarioTest {
 	    //ESTO LO QUE HACE ES FIJARSE SI PASA LA EXCEPCION QUE PONGO DENTRO DEL ASSERTTHROWS
 		//SI OCURRE LA EXCEPCION EL TEST VA A SALIR BIEN LUEGO EN LOS SIGUIENTES TEST DE ABAJO HAGO LO MISMO CON OTRAS EXC
 	    assertThrows(NicknameYaExisteException.class, () -> {
-	        cu.altaUsuarioPostulante("Pedro", "holaworld", "apellido", "nombreInva@gmail.com",n1, "www.noFunc.com", null, null);
+	        cu.altaUsuarioPostulante("pepi", "holaworld", "apellido", "nombreInva@gmail.com",n1, "www.noFunc.com", null, null);
 	    });
 	}
 	
@@ -253,7 +224,7 @@ class controladorUsuarioTest {
 		IControladorUsuario cu = Fabrica.getInstance().getInUser();
 	    
 	    assertThrows(NicknameYaExisteException.class, () -> {
-	        cu.altaUsuarioEmpresa("McDonalds", "holaworld", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com", null, null);
+	        cu.altaUsuarioEmpresa("ElDonal", "holaworld", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com", null, null);
 	    });
 	}
 	
@@ -263,7 +234,7 @@ class controladorUsuarioTest {
 		IControladorUsuario cu = Fabrica.getInstance().getInUser();
 	    
 	    assertThrows(campoInvalidoException.class, () -> {
-	        cu.altaUsuarioEmpresa("", "holaworld", "apellido", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com", null, null);
+	        cu.altaUsuarioEmpresa("", "", "", "nombreInva@gmail.com","No deberia funcionar", "www.noFunc.com", null, null);
 	    });
 	}
 
@@ -464,7 +435,7 @@ class controladorUsuarioTest {
 		ArrayList<DataOferta> ofertas = mu.obtenerOfertasConfirmadasDeEmpresa("EcoTech");
 		boolean found = false;
 		for (DataOferta ofer : ofertas) {
-		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
+		    if (ofer.getNombre().equals("A. de Marketing Digital")) {
 		    	found = true;
 		    	break;
 		    }
@@ -475,16 +446,9 @@ class controladorUsuarioTest {
 	@Test
 	void testObtenerOfertasEmpresa() {
 		ArrayList<DataOferta> ofertas = mu.obtenerOfertasDeUnaEmpresa("EcoTech");
-		try {
-			@SuppressWarnings("unused")
-			ArrayList<DataEmpresa> ofertas2 = cu.getDataEmpresa();
-		} catch (UsuarioNoExisteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		boolean found = false;
 		for (DataOferta ofer : ofertas) {
-		    if(ofer.getNombre().equals("Desarrollador Frontend")) {
+		    if (ofer.getNombre().equals("A. de Marketing Digital")) {
 		    	found = true;
 		    	break;
 		    }

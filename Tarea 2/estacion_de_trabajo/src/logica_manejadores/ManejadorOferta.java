@@ -143,6 +143,7 @@ public class ManejadorOferta implements IManejadorOferta{
 
 	public DataKeyWord getDataKeyWordPorNombre(String nombre) {
 		DataKeyWord dataRes = new DataKeyWord();
+		dataRes.setPalabraclave(nombre);
 		return dataRes;
 	}
 	

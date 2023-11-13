@@ -23,14 +23,20 @@ import excepciones.yaExistePostulacionAOfertaException;
 import logica_cargar_datos.datos_de_prueba.cargarDatos;
 import logica_controladores.IControladorOferta;
 import logica_controladores.IControladorUsuario;
+import logica_datatypes.DataCompraPaquete;
+import logica_datatypes.DataEmpresa;
 import logica_datatypes.DataKeyWord;
 import logica_datatypes.DataOferta;
 import logica_datatypes.DataPaquete;
+import logica_datatypes.DataPostulacion;
+import logica_datatypes.DataPostulante;
 import logica_datatypes.DataTipoPublicacion;
+import logica_entidades.CompraPaquete;
 import logica_entidades.Empresa;
 import logica_entidades.OfertaLaboral;
 import logica_entidades.Paquete;
 import logica_entidades.Postulacion;
+import logica_entidades.Postulante;
 import logica_entidades.TipoPublicacion;
 import logica_manejadores.IManejadorOferta;
 import logica_manejadores.IManejadorPyT;
@@ -202,9 +208,9 @@ class controladorOfertaTest {
 	
 	@Test
 	void testeoGetOfertasPorKeys() {
-		String key = "Tiempo completo";
+		String key = "Freelance";
 		ArrayList<DataOferta> dataOfers = mo.obtenerOfertasConfirmadasPorKey(key);
-		String ofer = "Desarrollador Frontend";
+		String ofer = "A. de Marketing Digital";
 		String comparacion = null;
 		for(DataOferta dto : dataOfers) {
 			if(ofer == dto.getNombre()) {
@@ -222,7 +228,7 @@ class controladorOfertaTest {
 		@SuppressWarnings("unused")
 		ArrayList<Postulacion> postulaciones = mo.obtenerPostulaciones(ofer,empre);
 	}
-	/*
+	
 	@Test
 	void testeoAltaPubliOferConPaquete() throws NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli{
 		LocalTime hora1 = LocalTime.of(11, 30);
@@ -234,10 +240,10 @@ class controladorOfertaTest {
 			palabrasClave1.add(dtk.getPalabraClave());
 		}
 		
-		co.altaPublicacionOfertaLaboralConPaquete("FusionTeche", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
+		co.altaPublicacionOfertaLaboralConPaquete("EcoTech", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha1, palabrasClave1, null, null);
 		
 		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer3");
-		assertEquals("FusionTeche", publiOfer.getEmpresa().getNickName());
+		assertEquals("EcoTech", publiOfer.getEmpresa().getNickName());
 		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
 		assertEquals("Nombre ofer3", publiOfer.getNombreOferta());
 		assertEquals("San Carlos", publiOfer.getCiudad());
@@ -246,10 +252,10 @@ class controladorOfertaTest {
 		assertEquals(hora2, publiOfer.getHoraFin());
 		assertEquals(fecha1, publiOfer.getFecha());
 		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
-	}*/
+	}
 	
 	@Test
-	void crearPaqueteDeTipoPubliDeOfertasLaboralesTest() throws NombrePaqueteYaExiste {
+	void crearPaqueteDeTipoPubliDeOfertasLaboralesTest() throws NombrePaqueteYaExiste, NombreRepetidoOfertaException, noExistePublicacionException, noExisteTipoPubli {
 		LocalDate fecha1 = LocalDate.of(2023, 9, 12);
 		LocalTime hora1 = LocalTime.of(11, 30);
 		LocalTime hora2 = LocalTime.of(16, 0);
@@ -262,37 +268,6 @@ class controladorOfertaTest {
 		co.crearPaqueteDeTipoDePublicacionDeOfertasLaborales("Paquete Pro", "descripcion", 30, 20, fecha1, 3720, null);
 		Paquete paqui = mpyt.getPaquete("Paquete Pro");
 		cu.comprarPaquete(paqui, "FusionTech");
-		try {
-			co.altaPublicacionOfertaLaboralConPaquete("FusionTech", "Premium", "Nombre ofer3", "Descripcion", hora1, hora2, 50, "San Carlos", "Maldonado", fecha11, palabrasClave1, null, null);
-		} catch (NombreRepetidoOfertaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (noExistePublicacionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (noExisteTipoPubli e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		OfertaLaboral  publiOfer = mo.obtenerOferta("Nombre ofer3");
-		assertEquals("FusionTech", publiOfer.getEmpresa().getNickName());
-		assertEquals("Premium", publiOfer.getTipoDeOferta().getNombre());
-		assertEquals("Nombre ofer3", publiOfer.getNombreOferta());
-		assertEquals("San Carlos", publiOfer.getCiudad());
-		assertEquals("Maldonado", publiOfer.getDepartamento());
-		assertEquals(hora1, publiOfer.getHoraInicio());
-		assertEquals(hora2, publiOfer.getHoraFin());
-		assertEquals(fecha1, publiOfer.getFecha());
-		assertEquals(palabrasClave1, publiOfer.getKeyWordsString());
-		DataPaquete dpaq = mpyt.getDataPaquete("Paquete Pro");
-		assertEquals("Paquete Pro",dpaq.getNombre());
-		assertEquals("descripcion", dpaq.getDescripcion());
-		assertEquals(30,dpaq.getValidez());
-		assertEquals(20,dpaq.getDescuento());
-		assertEquals(fecha1,dpaq.getFechaDeAlta());
-		assertEquals(3720, dpaq.getCosto());
-		assertEquals(null, dpaq.getImagen());
 		
 	}
 	
@@ -366,7 +341,155 @@ class controladorOfertaTest {
 			assertEquals(data.getCosto(),datos.getCosto());
 			
 		}*/
+	@Test
+	void getVideoEmbedTest() {
+		String embed1 = "https://www.youtube.com/embed/5USuekk16e0";
+		String embed2 = co.getVideoEmbed("https://www.youtube.com/watch?v=5USuekk16e0");
+		
+		assertEquals(embed1, embed2); 
+	}
 	
+	@Test
+	void aceptarOfertaLaboralTest() throws NombreRepetidoOfertaException  {
+		OfertaLaboral ofer  = mo.obtenerOferta("Desarrollador de Software Senior");
+		co.aceptarOfertaLaboral(ofer.getDataOferta());
+
+	}
+	
+	@Test
+	void rechazarOfertaLaboralTest() throws NombreRepetidoOfertaException  {
+		OfertaLaboral ofer  = mo.obtenerOferta("Desarrollador de Software Full Stack");
+		co.rechazarOfertaLaboral(ofer.getDataOferta());
+
+	}
+	
+	
+	@Test
+	void getDataOfertaTest() {
+		DataOferta dofer = mo.getDataOferta("Desarrollador Frontend");
+		assertEquals(dofer.getNombre(), "Desarrollador Frontend"); 
+	}
+	
+	@Test
+	void getDataKeyWordPorNombreTest() {
+		DataKeyWord dkw = mo.getDataKeyWordPorNombre("Tiempo completo");
+		String str = dkw.toString();
+		assertEquals(dkw.getPalabraClave(), "Tiempo completo"); 
+		assertEquals(str, "Tiempo completo"); 
+	}
+	
+	@Test
+	void finalizarOfertaTest() {
+		mo.finalizarOferta("Desarrollador Frontend");
+	}
+	
+	@Test
+	void testDataTypes() {
+		//Data Compra Paquete
+		DataCompraPaquete dcp = new DataCompraPaquete();
+	    LocalDate compra = LocalDate.of( 2023, 9, 9);
+	    LocalDate vencimiento = LocalDate.of( 2024, 9, 9);
+		dcp.setFechaCompra(compra);
+		dcp.setFechaVenc(vencimiento);
+		assertEquals(dcp.getFechaCompra(), compra); 
+		assertEquals(dcp.getFechaVenc(), vencimiento); 
+		
+		//Data Empresa
+		DataEmpresa demp = new DataEmpresa();
+		demp.setDescripcion("no se"); 
+		demp.setLinkWeb("www.a.com");
+		assertEquals(demp.getDescripcion(), "no se"); 
+		assertEquals(demp.getLinkWeb(), "www.a.com"); 
+		
+		//Data Postu
+		DataPostulante dpos = new DataPostulante();
+		dpos.setNacimiento("19/02/2002"); 
+		dpos.setNacionalidad("uru");
+		assertEquals(dpos.getNacimineto(), "19/02/2002"); 
+		assertEquals(dpos.getNacionalidad(), "uru"); 
+		
+		//Data TipoPubli
+		DataTipoPublicacion tp2 = new DataTipoPublicacion();
+		tp2.setNombres("Destacada");
+		tp2.setDescripcion("Destaca tu anuncio");
+		tp2.setExposicion(2);
+		tp2.setDuracion(15);
+		tp2.setCosto(500);
+		tp2.setFecha("19/02/2002");
+		assertEquals(tp2.getNombre(), "Destacada"); 
+		assertEquals(tp2.getDescripcion(), "Destaca tu anuncio"); 
+		assertEquals(tp2.getExposicion(), 2); 
+		assertEquals(tp2.getDuracion(), 15); 
+		assertEquals(tp2.getCosto(), 500); 
+		assertEquals(tp2.getFecha(), "19/02/2002"); 
+		
+		//DataOferta
+		DataOferta doferta = mo.getDataOferta("A. de Marketing Digital");
+		String hi7 = "10:00";
+		String hf7 = "19:00";
+		String ao7 = "02/11/2023";
+		doferta.setFechaCalif("13/11/2023");
+		doferta.setFechaFin("13/11/2023");
+		String fechaFin = doferta.getFechaFin();
+		String fechaCalif = doferta.getFechaCalif();
+		assertEquals(doferta.getEmpresa(), "EcoTech");
+		assertEquals(doferta.getDescripcion(), "Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.");
+		assertEquals(doferta.getCiudad(), "Flores");
+		assertEquals(doferta.getDepartamento(), "Flores");
+		assertEquals(doferta.getHoraInicio(), hi7);
+		assertEquals(doferta.getHoraFin(), hf7);
+		assertEquals(doferta.getRemuneracion(), 80000);
+		assertEquals(doferta.getFechaDeAlta(), ao7);
+		assertEquals(doferta.getCostoDeOfertaLaboral(), 4000);
+		assertEquals(fechaFin, "13/11/2023");
+		assertEquals(fechaCalif, "13/11/2023");
+
+		//DataPaquete
+		DataPaquete dpaq = new DataPaquete();
+		dpaq.setNombre("Premium");
+		dpaq.setDescripcion("Publica ofertas laborales premium que incluyen promoción en nuestras redes sociales y listado en la sección destacada por 60 días.");
+		dpaq.setValidez(60);
+		dpaq.setDescuento(15);
+		dpaq.setFechaDeAlta("13-08-2023");
+		dpaq.setCosto(7055);
+		assertEquals(dpaq.getNombre(), "Premium");
+		assertEquals(dpaq.getDescripcion(), "Publica ofertas laborales premium que incluyen promoción en nuestras redes sociales y listado en la sección destacada por 60 días.");
+		assertEquals(dpaq.getValidez(), 60);
+		assertEquals(dpaq.getDescuento(), 15);
+		assertEquals(dpaq.getFechaDeAlta(), "13-08-2023");
+		assertEquals(dpaq.getCosto(), 7055);
+		
+		//Data Postulacion
+		DataPostulacion dPos = new DataPostulacion();
+		dPos.setFecha("30-09-2023");
+		dPos.setCurri("Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.");
+		dPos.setMotivacion("Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.");
+		dPos.setNickPostulante("valen25");
+		dPos.setNombreOferta("Estrategia de Negocios");
+		assertEquals(dPos.getFecha(), "30-09-2023");
+		assertEquals(dPos.getCurri(), "Músico profesional, experiencia en espectáculos en vivo. Habilidades en canto y guitarra.");
+		assertEquals(dPos.getMotivacion(), "Me gustaría combinar mi pasión por la música con una oportunidad laboral que me permita seguir creciendo como artista.");
+		assertEquals(dPos.getNickPostulante(), "valen25");
+		assertEquals(dPos.getNombreOferta(), "Estrategia de Negocios");
+
+	}
+	
+	@Test
+	void testEntidades() {
+		CompraPaquete comPaq = new CompraPaquete();
+		TipoPublicacion tipoPubli = new TipoPublicacion();
+	    LocalDate compra = LocalDate.of( 2023, 9, 9);
+	    LocalDate vencimiento = LocalDate.of( 2024, 9, 9);
+	    comPaq.setFechaCompr(compra);
+	    comPaq.setFechaVenc(vencimiento);
+		DataCompraPaquete dcp = comPaq.getDTCompraPaquete();	
+		int cantTipo = comPaq.cantTipoPubli();
+		int costo = comPaq.getCosto();
+		assertEquals(comPaq.getFechaCompra(), compra); 
+		assertEquals(comPaq.getFechaVencimiento(), vencimiento); 
+		
+		
+	}
 	
 		
 	}

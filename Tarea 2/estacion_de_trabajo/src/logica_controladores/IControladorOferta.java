@@ -44,4 +44,6 @@ public abstract void rechazarOfertaLaboral(DataOferta dOf);
 
 public abstract void agregarTPAPaquete(String NPaquete, String NTipoPubli, int cantidad);
 
+public abstract String getVideoEmbed(String videoUrl);
+
 }
