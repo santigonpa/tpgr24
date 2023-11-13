@@ -11,8 +11,10 @@
     <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorUsuario" %>
     <%@page import="java.util.Map" %>
     <%@page import= "com.webservices.controladores.publicar.PublicadorManejadorOfertas" %>
+    <%@page import= " com.webservices.controladores.publicar.PublicadorManejadorOfertasService" %>
     <%@ page import="com.webservices.controladores.publicar.WrapperArrayList" %>
     <%@ page import="java.util.ArrayList" %>
+    <%@page import="java.util.List" %>
     
     
     
@@ -154,6 +156,8 @@
 					 
 					 
 					 <% 
+						PublicadorManejadorOfertasService servicePublicadorManejadorOfertas = new PublicadorManejadorOfertasService();
+						PublicadorManejadorOfertas puertoManejadorOfertas = servicePublicadorManejadorOfertas.getPublicadorManejadorOfertasPort();
 					 	Set<DataOferta> conjDeOfer = (Set<DataOferta>) request.getSession().getAttribute("ofertasVencidas");
 					    
 					    if(conjDeOfer != null && !conjDeOfer.isEmpty()){
@@ -163,16 +167,19 @@
 					        byte[] imagenBytes;
 					
 					        for (DataOferta dataOfer : conjDeOfer) {
-					            nombreOfer = dataOfer.getNombre();
-								descripcion = dataOfer.getDescripcion();
-					            imagenBytes = dataOfer.getImagen();
 					            
-					            String base64Image = "";
-					            if (imagenBytes != null) {
-					                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
-					            }else{
-					            	//aca va la imagen default
-					            }
+					        	List<Object> listaObjetos = puertoManejadorOfertas.getOrdenPostulantes(dataOfer.getNombre()).getLista();
+					        	if(listaObjetos.isEmpty()) { 
+						        	nombreOfer = dataOfer.getNombre();
+									descripcion = dataOfer.getDescripcion();
+						            imagenBytes = dataOfer.getImagen();
+						            
+						            String base64Image = "";
+						            if (imagenBytes != null) {
+						                base64Image = Base64.getEncoder().encodeToString(imagenBytes);
+						            }else{
+						            	//aca va la imagen default
+						            }
 					            
 					  
 				  %>
@@ -191,7 +198,7 @@
 				      </div>
 				      
 				      
-				<%
+				<%	} //endif
 					 } //endfor
 					        %>
 					        
