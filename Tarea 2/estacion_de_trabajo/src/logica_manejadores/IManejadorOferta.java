@@ -40,4 +40,6 @@ public interface IManejadorOferta {
 	public abstract ArrayList<OfertaLaboral> getOfertasFinalizadas();
 	
 	public abstract ArrayList<DataOferta> getDataOfertasFinalizadas();
+	
+	public abstract ArrayList<OfertaLaboral> getOfertasConfimadasOrdenadasPorVisitas();
 }

@@ -45,6 +45,7 @@ public class Principal {
 	private AltaDeTipoDePublicacionDeOfertaLaboral Altideof;
 	private CrearPaqueteDeTipoDePublicacionDeOfertasLaborales crearpaqtipopublioferlab;
 	private AgregarTipoPubliAPaquete agregarTPubliAPaquete;
+	private OfertasMasVisitadas oferMasVisitadas;
 	private aceptarRechazarOferta aorOf;
 	
 	/**
@@ -169,6 +170,12 @@ public class Principal {
 		agregarTPubliAPaquete.setVisible(false);
 		trabajouy.getContentPane().add(agregarTPubliAPaquete);
 		
+		oferMasVisitadas = new OfertasMasVisitadas(IMO);
+		oferMasVisitadas.setBounds(100, 100, 628, 170);
+		oferMasVisitadas.setMaximizable(true);
+		oferMasVisitadas.setClosable(true);
+		oferMasVisitadas.setVisible(false);
+		trabajouy.getContentPane().add(oferMasVisitadas);
 		
 		aorOf = new aceptarRechazarOferta(ICO,ICU);
 		aorOf.setBounds(100, 100, 438, 261);
@@ -278,6 +285,16 @@ public void actionPerformed(ActionEvent e) {
 		
 		JMenu mnNewMenu_2 = new JMenu("Paquete");
 		menuBar.add(mnNewMenu_2);
+			
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Agregar Tipo de publicación de Oferta Laboral a Paquete");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent eprox) {
+				agregarTPubliAPaquete.setVisible(true);
+				agregarTPubliAPaquete.cargarPaquetes();
+				agregarTPubliAPaquete.cargarTipoPubli();
+				agregarTPubliAPaquete.limpiarFormulario();
+			}
+		});
 		
 		//JFrame frame = new JFrame("");
 		
@@ -290,21 +307,11 @@ public void actionPerformed(ActionEvent e) {
 				crearpaqtipopublioferlab.limpiarFormulario();
 			}
 		});
-			
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Agregar Tipo de publicación de Oferta Laboral a Paquete");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent eprox) {
-				agregarTPubliAPaquete.setVisible(true);
-				agregarTPubliAPaquete.cargarPaquetes();
-				agregarTPubliAPaquete.cargarTipoPubli();
-				agregarTPubliAPaquete.limpiarFormulario();
-			}
-		});
+		mnNewMenu_2.add(mntmProximamente);
 		
 		
 		
 		mnNewMenu_2.add(mntmNewMenuItem_4);
-		mnNewMenu_2.add(mntmProximamente);
 		
 		/*JMenuItem mntmNewMenuItem_3 = new JMenuItem("Agregar Tipo Oferta Laboral");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
@@ -385,6 +392,16 @@ public void actionPerformed(ActionEvent e) {
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Ofertas mas visitadas");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				oferMasVisitadas.cargarOfertas();
+				oferMasVisitadas.actualizarTabla();
+				oferMasVisitadas.setVisible(true);	
+			}
+		});;
+		mnNewMenu_3.add(mntmNewMenuItem_9);
 	
 	}
 }

@@ -578,6 +578,7 @@ public class cargarDatos {
 		o1.setImagen(o1img);
 		o1.setTipodePago("Basico");
 		o1.setEstado(EstadoOferta.ACEPTADA);
+		o1.setVisitas(5);
 		
 		OfertaLaboral o2 = new OfertaLaboral();
 		o2.setNombre("Estrategia de Negocios");
@@ -592,6 +593,7 @@ public class cargarDatos {
 		o2.setImagen(o2img);
 		o2.setTipodePago("Sin paquete");
 		o2.setEstado(EstadoOferta.ACEPTADA);
+		o2.setVisitas(10);
 		
 		OfertaLaboral o3 = new OfertaLaboral();
 		o3.setNombre("Diseñador UX/UI");
@@ -606,6 +608,7 @@ public class cargarDatos {
 		o3.setImagen(o3img);
 		o3.setTipodePago("Sin paquete");
 		o3.setEstado(EstadoOferta.ACEPTADA);
+		o3.setVisitas(0);
 		
 		OfertaLaboral o4 = new OfertaLaboral();
 		o4.setNombre("Analista de Datos");
@@ -620,6 +623,7 @@ public class cargarDatos {
 		o4.setImagen(o4img);
 		o4.setTipodePago("Sin paquete");
 		o4.setEstado(EstadoOferta.INGRESADA);
+		o4.setVisitas(15);
 		
 		OfertaLaboral o5 = new OfertaLaboral();
 		o5.setNombre("Content Manager");
@@ -634,6 +638,7 @@ public class cargarDatos {
 		o5.setImagen(o5img);
 		o5.setTipodePago("Sin paquete");
 		o5.setEstado(EstadoOferta.FINALIZADA);
+		o5.setVisitas(20);
 		
 		OfertaLaboral o6 = new OfertaLaboral();
 		o6.setNombre("Soporte Tecnico");
@@ -648,7 +653,8 @@ public class cargarDatos {
 		o6.setImagen(o6img);
 		o6.setTipodePago("Destacado");
 		o6.setEstado(EstadoOferta.ACEPTADA);
-
+		o6.setVisitas(25);
+		
 		OfertaLaboral o7 = new OfertaLaboral();
 		o7.setNombre("A. de Marketing Digital");
 		o7.setDescripcion("Únete a nuestro equipo de marketing y trabaja en estrategias digitales innovadoras.");
@@ -662,6 +668,7 @@ public class cargarDatos {
 		o7.setImagen(o7img);
 		o7.setTipodePago("Sin paquete");
 		o7.setEstado(EstadoOferta.ACEPTADA);
+		o7.setVisitas(30);
 		
 		OfertaLaboral o8 = new OfertaLaboral();
 		o8.setNombre("Contador Senior");
@@ -676,6 +683,7 @@ public class cargarDatos {
 		o8.setImagen(o8img);
 		o8.setTipodePago("Sin paquete");
 		o8.setEstado(EstadoOferta.RECHAZADA);
+		o8.setVisitas(35);
 		
 		OfertaLaboral o9 = new OfertaLaboral();
 		o9.setNombre("Técnico/a Básico Red");
@@ -690,6 +698,7 @@ public class cargarDatos {
 		o9.setImagen(o9img);
 		o9.setTipodePago("Sin paquete");
 		o9.setEstado(EstadoOferta.ACEPTADA);
+		o9.setVisitas(40);
 		
 		OfertaLaboral o10 = new OfertaLaboral();
 		o10.setNombre("Desarrollador de Software Senior");
@@ -704,6 +713,7 @@ public class cargarDatos {
 		o10.setImagen(o10img);
 		o10.setTipodePago("Destacada");
 		o10.setEstado(EstadoOferta.INGRESADA);
+		o10.setVisitas(45);
 		
 		OfertaLaboral o11 = new OfertaLaboral();
 		o11.setNombre("Desarrollador de Software Full Stack");
@@ -718,6 +728,7 @@ public class cargarDatos {
 		o11.setImagen(o11img);
 		o11.setTipodePago("Premium");
 		o11.setEstado(EstadoOferta.INGRESADA);
+		o11.setVisitas(50);
 			
 		OfertaLaboral o12 = new OfertaLaboral();
 		o12.setNombre("Gerente de Proyecto");
@@ -732,6 +743,7 @@ public class cargarDatos {
 		o12.setImagen(o12img);
 		o12.setTipodePago("Destacada");
 		o12.setEstado(EstadoOferta.ACEPTADA);
+		o12.setVisitas(55);
 		
 		OfertaLaboral o13 = new OfertaLaboral();
 		o13.setNombre("Ingeniero de Calidad de Software");
@@ -746,6 +758,7 @@ public class cargarDatos {
 		o13.setImagen(o13img);
 		o13.setTipodePago("Premium");
 		o13.setEstado(EstadoOferta.INGRESADA);
+		o13.setVisitas(7);
 		
 		//falta agregar la compra con el paquete
 		//Agrego oferta a Empresa

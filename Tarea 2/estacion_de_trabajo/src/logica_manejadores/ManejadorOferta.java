@@ -2,6 +2,8 @@ package logica_manejadores;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -173,6 +175,24 @@ public class ManejadorOferta implements IManejadorOferta{
 		}
 		return res;
 	}
+	
+	public ArrayList<OfertaLaboral> getOfertasConfimadasOrdenadasPorVisitas(){
+		ArrayList<OfertaLaboral> res = new ArrayList<>();
+        HashMap<String, OfertaLaboral> ofertas = this.ofertasLaborales;
+
+        if (!ofertas.isEmpty()) {
+            for (Map.Entry<String, OfertaLaboral> entry : ofertas.entrySet()) {
+                if (entry.getValue().getEstado().equals(EstadoOferta.ACEPTADA)) {
+                    res.add(entry.getValue());
+                }
+            }
+
+            // Ordenar la lista de ofertas por el número de visitas
+            Collections.sort(res, Comparator.comparingInt(OfertaLaboral::getVisitas).reversed());
+        }
+
+        return res;
+    }
 	
 } 
 
