@@ -1,10 +1,14 @@
 package logica_controladores;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import logica_entidades.CompraPaquete;
 
@@ -208,6 +212,62 @@ public boolean filtro(String emp, String palabra) {
         muser.addUsuario((Usuario) postulante);
 		
 	}
+	
+
+	public List<DataEmpresa> OrdenarEmpresasPorFecha(Set<DataEmpresa> empresas) {
+
+
+	        List<DataEmpresa> empresasList = new ArrayList<>(empresas);
+
+	        empresasList.sort((Comparator<? super DataEmpresa>) new ComparadorFechaEmpresa());
+	        
+	        return empresasList;
+	        
+	    }
+
+	    private static Set<DataEmpresa> obtenerTuSetDataEmpresa() {
+
+	        return new HashSet<>();
+	    }
+
+	    // Comparador personalizado para ordenar DataEmpresa por fecha de última oferta
+	    private static class ComparadorFechaEmpresa implements Comparator<DataEmpresa> {
+	        @Override
+	        public int compare(DataEmpresa empresa1, DataEmpresa empresa2) {
+	        	
+	        	Fabrica fab = Fabrica.getInstance();
+	        	IManejadorUsuario imu = fab.getInManejadorUsuario();
+	        	
+	            // Obtener la fecha de alta de la última oferta de cada empresa
+	            LocalDate fechaAltaUltimaOferta1 = obtenerFechaAltaUltimaOferta(imu.obtenerEmpresa(empresa1.getNickName()));
+	            LocalDate fechaAltaUltimaOferta2 = obtenerFechaAltaUltimaOferta(imu.obtenerEmpresa(empresa2.getNickName()));
+
+	            // Comparar por fecha de alta de forma descendente
+	            return fechaAltaUltimaOferta2.compareTo(fechaAltaUltimaOferta1);
+	        }
+
+	        private LocalDate obtenerFechaAltaUltimaOferta(Empresa empresa) {
+	            HashMap<String, OfertaLaboral> ofertas = empresa.getOfertas();
+	            OfertaLaboral ofertaMasReciente = null;
+	            LocalDate fechaMasReciente = LocalDate.MIN; // Inicializar con la fecha mínima
+
+	            for (HashMap.Entry<String, OfertaLaboral> entry : ofertas.entrySet()) {
+	                OfertaLaboral ofertaActual = entry.getValue();
+	                LocalDate fechaActual = ofertaActual.getFecha();
+
+	                // Comparar con la fecha más reciente encontrada hasta ahora
+	                if (fechaActual.isAfter(fechaMasReciente)) {
+	                    fechaMasReciente = fechaActual;
+	                    ofertaMasReciente = ofertaActual;
+	                }
+	            }
+	            
+	            return ofertaMasReciente.getFecha(); // Reemplazar con la implementación real
+	        }
+	    }
+
+	
+
 
 	public void comprarPaquete(Paquete paq, String emp) {
 		

@@ -3,6 +3,8 @@ package logica_controladores;
 import java.time.LocalDate;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.ArrayList;
 
 import excepciones.EmailYaExisteException;
@@ -30,6 +32,9 @@ public interface IControladorUsuario {
 	public abstract boolean filtro(String emp, String palabra);
 
 	public abstract ArrayList<DataTipoPublicacion> getDataTipoPublicacion();
+	
+	public abstract List<DataEmpresa> OrdenarEmpresasPorFecha(Set<DataEmpresa> empresas);
+
 	
 	public abstract ArrayList<DataTipoPublicacion> getPublicacionesEmpresa(String emp);
 

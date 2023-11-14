@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import excepciones.EmailYaExisteException;
 import excepciones.NicknameYaExisteException;
@@ -58,6 +60,13 @@ public class PublicadorControladorUsuario {
     public Endpoint getEndpoint() {
         return endpoint;
     }
+    
+	@WebMethod
+	public List<DataEmpresa> filtrarDefecto(Set<DataEmpresa> empresas) {
+		Fabrica fab = Fabrica.getInstance();
+		IControladorUsuario icu = fab.getInUser();
+		return icu.OrdenarEmpresasPorFecha(empresas);
+	}
     
     @WebMethod
     public boolean filtro(String emp, String palabra) {

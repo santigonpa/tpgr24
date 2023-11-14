@@ -19,9 +19,11 @@ import jakarta.jws.soap.SOAPBinding.Style;
 import jakarta.jws.soap.SOAPBinding.ParameterStyle;
 import jakarta.xml.ws.Endpoint;
 import logica_controladores.ControladorOferta;
+import logica_controladores.IControladorOferta;
 import logica_datatypes.DataOferta;
 import logica_datatypes.WrapperArrayList;
 import utils.Config;
+import utils.Fabrica;
 
 
 @WebService
@@ -53,6 +55,13 @@ public class PublicadorControladorOfertas {
 		LocalTime horaDeFin = LocalTime.parse(horaFin, formateo);
     	LocalDate fecha = LocalDate.parse(fechaDeAlta, formatter);
     	controladorOferta.darAltaOferta(nombre, descripcion, ciudad, departamento, horaDeInicio, horaDeFin, remuneracion, costoDeOfertaLaboral, fecha, imagen, tipoDePago);
+    }
+    
+    @WebMethod
+    public ArrayList<DataOferta> filtrarDefecto(ArrayList<DataOferta> ofertas){
+    	Fabrica fab = Fabrica.getInstance();
+    	IControladorOferta ico = fab.getInOfer();
+    	return ico.ordenarOfertas(ofertas);
     }
 
     @WebMethod

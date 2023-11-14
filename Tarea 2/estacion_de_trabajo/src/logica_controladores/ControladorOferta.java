@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 
 import excepciones.NombrePaqueteYaExiste;
 import excepciones.NombreRepetidoOfertaException;
@@ -350,5 +353,57 @@ public class ControladorOferta implements IControladorOferta {
 		
 		paquete.setPublicaciones(tipopubli, cantidad);
 	}
+	
+	public ArrayList<DataOferta> ordenarOfertas(ArrayList<DataOferta> ofertas){
+
+	        Collections.sort(ofertas, new ComparadorExposicion());
+	
+	        return ofertas;
+	  	
+	}
+	private static ArrayList<DataOferta> obtenerTuArrayList() {
+        return new ArrayList<>();
+    }
+	
+	class ComparadorExposicion implements Comparator<DataOferta> {
+	    @Override
+	    public int compare(DataOferta oferta1, DataOferta oferta2) {
+	        // Manejar null o casos excepcionales si es necesario
+
+	        Fabrica fab = Fabrica.getInstance();
+	        IManejadorOferta imo = fab.getInManejadorOferta();
+
+	        // Almacenar ofertas recuperadas para mejorar el rendimiento
+	        HashMap<String, OfertaLaboral> ofertaCache = new HashMap<>();
+
+	        int exposicionOferta1 = obtenerExposicion(imo, ofertaCache, oferta1);
+	        int exposicionOferta2 = obtenerExposicion(imo, ofertaCache, oferta2);
+
+	        // Primero, comparar por exposición de forma descendente
+	        int comparacionExposicion = Integer.compare(exposicionOferta2, exposicionOferta1);
+
+	        // En caso de empate, comparar por fecha de alta de forma descendente
+	        if (comparacionExposicion == 0) {
+	            LocalDate fechaAltaOferta1 = ofertaCache.get(oferta1.getNombre()).getFecha();
+	            LocalDate fechaAltaOferta2 = ofertaCache.get(oferta2.getNombre()).getFecha();
+
+	            return fechaAltaOferta2.compareTo(fechaAltaOferta1);
+	        }
+
+	        return comparacionExposicion;
+	    }
+
+	    private int obtenerExposicion(IManejadorOferta imo, HashMap<String, OfertaLaboral> ofertaCache, DataOferta dataOferta) {
+	        String nombreOferta = dataOferta.getNombre();
+
+	        if (!ofertaCache.containsKey(nombreOferta)) {
+	            OfertaLaboral oferta = imo.obtenerOferta(nombreOferta);
+	            ofertaCache.put(nombreOferta, oferta);
+	        }
+
+	        return ofertaCache.get(nombreOferta).getTipoPubli().getExposicion();
+	    }
+	}
+
 
 }

@@ -27,6 +27,8 @@ public abstract void darAltaOferta(String nombre, String descripcion, String ciu
 
 public abstract boolean filtro(String ofer, String palabra);
 
+public abstract ArrayList<DataOferta> ordenarOfertas(ArrayList<DataOferta> ofertas);
+
 
 public abstract void altaDeTipoDePubliDeOferLab(String nombre, String descripcion, int exposicion,
 		int costo, int duracion, LocalDate fecha) throws NombreTipoPubliYaExisteException;
