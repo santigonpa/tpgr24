@@ -33,7 +33,7 @@ public interface IControladorUsuario {
 
 	public abstract ArrayList<DataTipoPublicacion> getDataTipoPublicacion();
 	
-	public abstract List<DataEmpresa> OrdenarEmpresasPorFecha(Set<DataEmpresa> empresas);
+	public abstract ArrayList<DataEmpresa> OrdenarEmpresasPorFecha(ArrayList<DataEmpresa> empresas);
 
 	
 	public abstract ArrayList<DataTipoPublicacion> getPublicacionesEmpresa(String emp);

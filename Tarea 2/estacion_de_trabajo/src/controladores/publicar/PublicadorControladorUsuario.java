@@ -62,10 +62,10 @@ public class PublicadorControladorUsuario {
     }
     
 	@WebMethod
-	public List<DataEmpresa> filtrarDefecto(Set<DataEmpresa> empresas) {
+	public ArrayList<DataEmpresa> filtrarDefecto(ArrayList<DataEmpresa> empresas) {
 		Fabrica fab = Fabrica.getInstance();
 		IControladorUsuario icu = fab.getInUser();
-		return icu.OrdenarEmpresasPorFecha(empresas);
+		return (ArrayList<DataEmpresa>) icu.OrdenarEmpresasPorFecha(empresas);
 	}
     
     @WebMethod

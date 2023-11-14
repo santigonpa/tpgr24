@@ -214,10 +214,10 @@ public boolean filtro(String emp, String palabra) {
 	}
 	
 
-	public List<DataEmpresa> OrdenarEmpresasPorFecha(Set<DataEmpresa> empresas) {
+	public ArrayList<DataEmpresa> OrdenarEmpresasPorFecha(ArrayList<DataEmpresa> empresas) {
 
 
-	        List<DataEmpresa> empresasList = new ArrayList<>(empresas);
+	        ArrayList<DataEmpresa> empresasList = new ArrayList<>(empresas);
 
 	        empresasList.sort((Comparator<? super DataEmpresa>) new ComparadorFechaEmpresa());
 	        
@@ -225,9 +225,9 @@ public boolean filtro(String emp, String palabra) {
 	        
 	    }
 
-	    private static Set<DataEmpresa> obtenerTuSetDataEmpresa() {
+	    private static ArrayList<DataEmpresa> obtenerTuSetDataEmpresa() {
 
-	        return new HashSet<>();
+	        return new ArrayList<>();
 	    }
 
 	    // Comparador personalizado para ordenar DataEmpresa por fecha de última oferta
